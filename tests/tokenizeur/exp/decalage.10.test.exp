@@ -1,0 +1,24 @@
+Travail sur le fichier tests/tokenizeur/scripts/decalage.10.test.php 
+tests/tokenizeur/scripts/decalage.10.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$x"
+       "=" 
+      gauche : 
+          decalage 
+          droite : 
+              literals 24
+          operation : 287 "<<"
+          gauche : 
+              method_static 
+              307 "self"::functioncall 307 "a" ( arglist(variable 309 "$i", literals 8) ) : 
+                  functioncall a
+                  appel de fonction : a: 
+                      arglist 
+                      0 : 
+                          variable 309 "$i"
+                      1 : 
+                          literals 8

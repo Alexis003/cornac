@@ -1,0 +1,37 @@
+Travail sur le fichier tests/tokenizeur/scripts/sequence.27.test.php 
+tests/tokenizeur/scripts/sequence.27.test.php
+  codephp <?php
+
+  code : 
+      sequence 
+      0 : 
+          affectation 
+          droite : 
+              variable 309 "$s"
+           "=" 
+          gauche : 
+              comparaison 
+              droite : 
+                  functioncall intval
+                  appel de fonction : intval: 
+                      arglist 
+                      0 : 
+                          functioncall substr
+                          appel de fonction : substr: 
+                              arglist 
+                              0 : 
+                                  variable 309 "$a"
+                              1 : 
+                                  literals 1
+                              2 : 
+                                  literals 2
+              operateur :  "<"
+              gauche : 
+                  cdtternaire ?
+                  literals 12 ? literals 'c' : literals 'd'
+                      literals 12
+                      literals 'c'
+                      literals 'd'
+      1 : 
+          _break 
+          Nombre : " "1""

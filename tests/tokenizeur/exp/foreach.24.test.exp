@@ -1,0 +1,9 @@
+Travail sur le fichier tests/tokenizeur/scripts/foreach.24.test.php 
+tests/tokenizeur/scripts/foreach.24.test.php
+  codephp <?php 
+  code : 
+      _foreach (variable 309 "$x" as variable 309 "$y" => variable 309 "$z")
+          block 
+          0 : 
+              _foreach (variable 309 "$a" as variable 309 "$b" => variable 309 "$c")
+                  block 

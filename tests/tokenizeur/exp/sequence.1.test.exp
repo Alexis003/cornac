@@ -1,0 +1,11 @@
+Travail sur le fichier tests/tokenizeur/scripts/sequence.1.test.php 
+tests/tokenizeur/scripts/sequence.1.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$a"
+       "=" 
+      gauche : 
+          literals 1

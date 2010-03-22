@@ -1,0 +1,7 @@
+Travail sur le fichier tests/tokenizeur/scripts/function.20.test.php 
+tests/tokenizeur/scripts/function.20.test.php
+  codephp <?php
+
+  code : 
+      function literals b arglist(typehint 307 "CLASSE" variable 309 "$a", typehint 307 "CLASSE" variable 309 "$b", typehint 307 "CLASSE" variable 309 "$c", typehint 307 "CLASSE" variable 309 "$d", typehint 307 "CLASSE" variable 309 "$e", typehint 307 "CLASSE" variable 309 "$f")
+          block 

@@ -1,0 +1,19 @@
+Travail sur le fichier tests/tokenizeur/scripts/switch.2.test.php 
+tests/tokenizeur/scripts/switch.2.test.php
+  codephp <?php
+
+  code : 
+      _switch 
+          parentheses 
+          ( "literals 1" )
+          block 
+          0 : 
+              _default 
+                  block 
+                  0 : 
+                      affectation 
+                      droite : 
+                          variable 309 "$x"
+                       "=" 
+                      gauche : 
+                          literals 2

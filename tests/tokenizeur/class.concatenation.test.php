@@ -1,0 +1,35 @@
+<?php
+include_once('Analyseur_Framework_TestCase.php');
+
+class Concatenation_Test extends Analyseur_Framework_TestCase
+{
+    /* 25 methodes */
+    public function testConcatenation1()  { $this->generic_test('concatenation.1'); }
+    public function testConcatenation2()  { $this->generic_test('concatenation.2'); }
+    public function testConcatenation3()  { $this->generic_test('concatenation.3'); }
+    public function testConcatenation4()  { $this->generic_test('concatenation.4'); }
+    public function testConcatenation5()  { $this->generic_test('concatenation.5'); }
+    public function testConcatenation6()  { $this->generic_test('concatenation.6'); }
+    public function testConcatenation7()  { $this->generic_test('concatenation.7'); }
+    public function testConcatenation8()  { $this->generic_test('concatenation.8'); }
+    public function testConcatenation9()  { $this->generic_test('concatenation.9'); }
+    public function testConcatenation10()  { $this->generic_test('concatenation.10'); }
+    public function testConcatenation11()  { $this->generic_test('concatenation.11'); }
+    public function testConcatenation12()  { $this->generic_test('concatenation.12'); }
+    public function testConcatenation13()  { $this->generic_test('concatenation.13'); }
+    public function testConcatenation14()  { $this->generic_test('concatenation.14'); }
+    public function testConcatenation15()  { $this->generic_test('concatenation.15'); }
+    public function testConcatenation16()  { $this->generic_test('concatenation.16'); }
+    public function testConcatenation17()  { $this->generic_test('concatenation.17'); }
+    public function testConcatenation18()  { $this->generic_test('concatenation.18'); }
+    public function testConcatenation19()  { $this->generic_test('concatenation.19'); }
+    public function testConcatenation20()  { $this->generic_test('concatenation.20'); }
+    public function testConcatenation21()  { $this->generic_test('concatenation.21'); }
+    public function testConcatenation22()  { $this->generic_test('concatenation.22'); }
+    public function testConcatenation23()  { $this->generic_test('concatenation.23'); }
+    public function testConcatenation24()  { $this->generic_test('concatenation.24'); }
+    public function testConcatenation25()  { $this->generic_test('concatenation.25'); }
+
+}
+
+?>

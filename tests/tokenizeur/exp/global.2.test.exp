@@ -1,0 +1,22 @@
+Travail sur le fichier tests/tokenizeur/scripts/global.2.test.php 
+tests/tokenizeur/scripts/global.2.test.php
+  codephp <?php
+
+  code : 
+      sequence 
+      0 : 
+          _global 
+          0 : 
+              variable 309 "$x"
+      1 : 
+          _global 
+          0 : 
+              variable 309 "$y"
+      2 : 
+          _global 
+          0 : 
+              variable 309 "$z"
+      3 : 
+          _global 
+          0 : 
+              variable 309 "$a"

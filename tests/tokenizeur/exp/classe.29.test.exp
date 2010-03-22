@@ -1,0 +1,18 @@
+Travail sur le fichier tests/tokenizeur/scripts/classe.29.test.php 
+tests/tokenizeur/scripts/classe.29.test.php
+  codephp <?php
+
+  code : 
+       class 307 "x"
+          block 
+          0 : 
+               342 "public"variable 309 "$softwareName" = literals ''
+          1 : 
+               342 "public"347 "static"variable 309 "$importOptions" = functioncall 360 "array" ( ( ) ) 
+          2 : 
+               342 "public"variable 309 "$log" = literals ''
+          3 : 
+               342 "public"variable 309 "$errors" = literals ''
+          4 : 
+              function literals import ( )
+                  block 

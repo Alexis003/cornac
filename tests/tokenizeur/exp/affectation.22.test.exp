@@ -1,0 +1,27 @@
+Travail sur le fichier tests/tokenizeur/scripts/affectation.22.test.php 
+tests/tokenizeur/scripts/affectation.22.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$salt"
+      273 ".=" 
+      gauche : 
+          functioncall substr
+          appel de fonction : substr: 
+              arglist 
+              0 : 
+                  literals "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789./"
+              1 : 
+                  logique 
+                  droite : 
+                      functioncall mt_rand
+                      appel de fonction : mt_rand: 
+                          arglist 
+                          Liste d'argument vide
+                  operateur :  "&"
+                  gauche : 
+                      literals 63
+              2 : 
+                  literals 1

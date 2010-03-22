@@ -1,0 +1,49 @@
+Travail sur le fichier tests/tokenizeur/scripts/logique.9.test.php 
+tests/tokenizeur/scripts/logique.9.test.php
+  codephp <?php
+
+  code : 
+      _switch 
+          parentheses 
+          ( "constante TYPE_DOC" )
+          block 
+          0 : 
+              _case 
+                  literals "facture"
+                  block 
+                  0 : 
+                      functioncall echo
+                      appel de fonction : echo: 
+                          arglist 
+                          0 : 
+                              tableau
+                                  variable 309 "$LANG_ACTION"
+                                  literals 'dateecheance'
+                  1 : 
+                      _break 
+                      Nombre : " "1""
+          1 : 
+              _case 
+                  logique 
+                  droite : 
+                      logique 
+                      droite : 
+                          literals "devis"
+                      operateur : 278 "||"
+                      gauche : 
+                          literals "commande"
+                  operateur : 278 "||"
+                  gauche : 
+                      literals "avoir"
+                  block 
+                  0 : 
+                      functioncall echo
+                      appel de fonction : echo: 
+                          arglist 
+                          0 : 
+                              tableau
+                                  variable 309 "$LANG_ACTION"
+                                  literals 'limitevalidite'
+                  1 : 
+                      _break 
+                      Nombre : " "1""

@@ -1,0 +1,10 @@
+Travail sur le fichier tests/tokenizeur/scripts/property.16.test.php 
+tests/tokenizeur/scripts/property.16.test.php
+  codephp <?php
+
+  code : 
+      functioncall echo
+      appel de fonction : echo: 
+          arglist 
+          0 : 
+              property variable 309 "$a"literals b->

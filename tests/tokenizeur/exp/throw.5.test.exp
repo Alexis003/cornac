@@ -1,0 +1,8 @@
+Travail sur le fichier tests/tokenizeur/scripts/throw.5.test.php 
+tests/tokenizeur/scripts/throw.5.test.php
+  codephp <?php 
+  code : 
+      _throw 
+          tableau
+              variable 309 "$x"
+              literals 'tableau'

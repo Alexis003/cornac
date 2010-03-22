@@ -1,0 +1,7 @@
+Travail sur le fichier tests/tokenizeur/scripts/function.8.test.php 
+tests/tokenizeur/scripts/function.8.test.php
+  codephp <?php
+
+  code : 
+      function literals a arglist(arginit variable 309 "$x" = constante null , arginit variable 309 "$y" = constante true )
+          block 

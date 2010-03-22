@@ -1,0 +1,12 @@
+Travail sur le fichier tests/tokenizeur/scripts/cast.1.test.php 
+tests/tokenizeur/scripts/cast.1.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$x"
+       "=" 
+      gauche : 
+          cast (295 "(int)")literals 1
+              literals 1

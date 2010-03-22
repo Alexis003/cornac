@@ -1,0 +1,10 @@
+Travail sur le fichier tests/tokenizeur/scripts/functioncall.20.test.php 
+tests/tokenizeur/scripts/functioncall.20.test.php
+  codephp <?php
+
+  code : 
+      functioncall array
+      appel de fonction : array: 
+          arglist 
+          0 : 
+              literals 1

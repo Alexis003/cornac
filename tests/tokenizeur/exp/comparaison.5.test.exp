@@ -1,0 +1,13 @@
+Travail sur le fichier tests/tokenizeur/scripts/comparaison.5.test.php 
+tests/tokenizeur/scripts/comparaison.5.test.php
+  codephp <?php
+
+  code : 
+      ifthen if
+      Condition 0) 
+          parentheses 
+          ( "comparaison method variable 309 "$this"->functioncall 307 "methode" ( ( ) )  283 "==" constante false" )
+          block 
+          0 : 
+              _return 
+              return : "constante false"

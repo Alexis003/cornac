@@ -1,0 +1,11 @@
+Travail sur le fichier tests/tokenizeur/scripts/decalage.3.test.php 
+tests/tokenizeur/scripts/decalage.3.test.php
+  codephp <?php
+
+  code : 
+      decalage 
+      droite : 
+          literals 3
+      operation : 287 "<<"
+      gauche : 
+          literals 1

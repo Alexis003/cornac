@@ -1,0 +1,18 @@
+Travail sur le fichier tests/tokenizeur/scripts/comparaison.7.test.php 
+tests/tokenizeur/scripts/comparaison.7.test.php
+  codephp <?php 
+  code : 
+      ifthen if
+      Condition 0) 
+          parentheses 
+          ( "comparaison property_static 307 "self"::tableau variable 309 "$a"[literals 'b']  ">" literals 0" )
+          block 
+          0 : 
+              affectation 
+              droite : 
+                  tableau
+                      variable 309 "$c"
+                      literals 'd'
+               "=" 
+              gauche : 
+                  property_static 307 "e"::tableau variable 309 "$f"[literals 'g']->

@@ -1,0 +1,10 @@
+Travail sur le fichier tests/tokenizeur/scripts/property_static.5.test.php 
+tests/tokenizeur/scripts/property_static.5.test.php
+  codephp <?php 
+  code : 
+      affectation 
+      droite : 
+          property_static 307 "self"::tableau variable 309 "$t"[literals 'i']->
+       "=" 
+      gauche : 
+          literals 0

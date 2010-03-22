@@ -1,0 +1,16 @@
+Travail sur le fichier tests/tokenizeur/scripts/sequence.13.test.php 
+tests/tokenizeur/scripts/sequence.13.test.php
+  codephp <?php
+
+  code : 
+      operation 
+      droite : 
+          parentheses 
+          ( "operation tableau property variable 309 "$this"->literals m_timeStamps[operation functioncall 307 "count" ( arglist(property variable 309 "$this"->literals m_timeStamps) )   "-" literals 1]  "-" tableau property variable 309 "$this"->literals m_timeStamps[literals 0]" )
+      operation :  "/"
+      gauche : 
+          functioncall count
+          appel de fonction : count: 
+              arglist 
+              0 : 
+                  property variable 309 "$this"literals m_timeStamps->

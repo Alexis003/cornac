@@ -1,0 +1,17 @@
+Travail sur le fichier tests/tokenizeur/scripts/literals.12.test.php 
+tests/tokenizeur/scripts/literals.12.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$x"
+       "=" 
+      gauche : 
+          operation 
+          droite : 
+              parentheses 
+              ( "operation variable 309 "$y"  "/" signe  "-"literals 2" )
+          operation :  "+"
+          gauche : 
+              literals 0.3

@@ -1,0 +1,11 @@
+Travail sur le fichier tests/tokenizeur/scripts/comparaison.1.test.php 
+tests/tokenizeur/scripts/comparaison.1.test.php
+  codephp <?php
+
+  code : 
+      comparaison 
+      droite : 
+          literals 1
+      operateur :  ">"
+      gauche : 
+          literals 2

@@ -1,0 +1,11 @@
+Travail sur le fichier tests/tokenizeur/scripts/property_static.1.test.php 
+tests/tokenizeur/scripts/property_static.1.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          property_static 307 "Y"::variable 309 "$C"->
+       "=" 
+      gauche : 
+          literals 3

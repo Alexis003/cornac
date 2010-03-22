@@ -1,0 +1,16 @@
+Travail sur le fichier tests/tokenizeur/scripts/affectation.23.test.php 
+tests/tokenizeur/scripts/affectation.23.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$ping"
+       "=" 
+      gauche : 
+          method_static 
+          307 "Net_Ping"::functioncall 307 "factory" ( ( ) ) : 
+              functioncall factory
+              appel de fonction : factory: 
+                  arglist 
+                  Liste d'argument vide

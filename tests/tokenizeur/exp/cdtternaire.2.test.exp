@@ -1,0 +1,22 @@
+Travail sur le fichier tests/tokenizeur/scripts/cdtternaire.2.test.php 
+tests/tokenizeur/scripts/cdtternaire.2.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$categorie"
+       "=" 
+      gauche : 
+          cdtternaire ?
+          parentheses (comparaison variable 309 "$categorie_id" 282 "!=" literals "") ? concatenation variable 309 "$categorie_id" . literals " - " . variable 309 "$categorie_nom"   : literals ""
+              parentheses 
+              ( "comparaison variable 309 "$categorie_id" 282 "!=" literals """ )
+              concatenation 
+              0 : 
+                  variable 309 "$categorie_id"
+              1 : 
+                  literals " - "
+              2 : 
+                  variable 309 "$categorie_nom"
+              literals ""

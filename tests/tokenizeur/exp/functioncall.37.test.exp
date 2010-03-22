@@ -1,0 +1,34 @@
+Travail sur le fichier tests/tokenizeur/scripts/functioncall.37.test.php 
+tests/tokenizeur/scripts/functioncall.37.test.php
+  codephp <?php
+
+  code : 
+      sequence 
+      0 : 
+          affectation 
+          droite : 
+              variable 309 "$x"
+           "=" 
+          gauche : 
+              literals 3
+      1 : 
+          affectation 
+          droite : 
+              functioncall list
+              appel de fonction : list: 
+                  arglist 
+                  0 : 
+                      variable 309 "$x"
+                  1 : 
+                      variable 309 "$y"
+                  2 : 
+                      variable 309 "$z"
+           "=" 
+          gauche : 
+              functioncall range
+              appel de fonction : range: 
+                  arglist 
+                  0 : 
+                      literals 1
+                  1 : 
+                      literals 3

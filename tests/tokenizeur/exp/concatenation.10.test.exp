@@ -1,0 +1,35 @@
+Travail sur le fichier tests/tokenizeur/scripts/concatenation.10.test.php 
+tests/tokenizeur/scripts/concatenation.10.test.php
+  codephp <?php
+
+  code : 
+      sequence 
+      0 : 
+          functioncall echo
+          appel de fonction : echo: 
+              arglist 
+              0 : 
+                  concatenation 
+                  0 : 
+                      literals '<div style="text-align:right; margin-top:10px;">&copy;2002 - '
+                  1 : 
+                      functioncall date
+                      appel de fonction : date: 
+                          arglist 
+                          0 : 
+                              literals "Y"
+                          1 : 
+                              functioncall strtotime
+                              appel de fonction : strtotime: 
+                                  arglist 
+                                  0 : 
+                                      variable 309 "$PROGRAM_UPDATE"
+                  2 : 
+                      literals '</div>'
+      1 : 
+          affectation 
+          droite : 
+              variable 309 "$x"
+           "=" 
+          gauche : 
+              literals 2

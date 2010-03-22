@@ -1,0 +1,10 @@
+Travail sur le fichier tests/tokenizeur/scripts/tableau.4.test.php 
+tests/tokenizeur/scripts/tableau.4.test.php
+  codephp <?php
+
+  code : 
+      tableau
+          variable 309 "$tableau"
+          tableau
+              variable 309 "$tableau"
+              literals 1

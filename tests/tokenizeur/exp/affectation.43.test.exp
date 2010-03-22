@@ -1,0 +1,34 @@
+Travail sur le fichier tests/tokenizeur/scripts/affectation.43.test.php 
+tests/tokenizeur/scripts/affectation.43.test.php
+  codephp <?php 
+  code : 
+      ifthen if
+      Condition 0) 
+          parentheses 
+          ( "comparaison variable 309 "$cause" 280 "!==" constante null" )
+          block 
+          0 : 
+              affectation 
+              droite : 
+                  property variable 309 "$x"literals a->
+               "=" 
+              gauche : 
+                  variable 309 "$b"
+          1 : 
+              affectation 
+              droite : 
+                  property variable 309 "$x"literals b->
+              273 ".=" 
+              gauche : 
+                  concatenation 
+                  0 : 
+                      literals " c: "
+                  1 : 
+                      method variable 309 "$d"
+                      appel de methode : functioncall 307 "e" ( ( ) ) : 
+                          functioncall e
+                          appel de fonction : e: 
+                              arglist 
+                              Liste d'argument vide
+                  2 : 
+                      literals "f"

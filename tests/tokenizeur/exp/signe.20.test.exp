@@ -1,0 +1,34 @@
+Travail sur le fichier tests/tokenizeur/scripts/signe.20.test.php 
+tests/tokenizeur/scripts/signe.20.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$a"
+       "=" 
+      gauche : 
+          comparaison 
+          droite : 
+              variable 309 "$b"
+          operateur : 283 "=="
+          gauche : 
+              operation 
+              droite : 
+                  operation 
+                  droite : 
+                      functioncall count
+                      appel de fonction : count: 
+                          arglist 
+                          0 : 
+                              variable 309 "$c"
+                  operation :  "-"
+                  gauche : 
+                      cdtternaire ?
+                      literals 1 ? variable 309 "$d" : variable 309 "$r"
+                          literals 1
+                          variable 309 "$d"
+                          variable 309 "$r"
+              operation :  "+"
+              gauche : 
+                  variable 309 "$f"

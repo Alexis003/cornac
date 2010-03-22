@@ -1,0 +1,14 @@
+Travail sur le fichier tests/tokenizeur/scripts/tableau.12.test.php 
+tests/tokenizeur/scripts/tableau.12.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          tableau
+              variable 309 "$a"[]
+                  variable 309 "$a"
+              constante (              b )
+       "=" 
+      gauche : 
+          variable 309 "$c"

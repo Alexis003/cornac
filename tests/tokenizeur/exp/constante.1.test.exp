@@ -1,0 +1,16 @@
+Travail sur le fichier tests/tokenizeur/scripts/constante.1.test.php 
+tests/tokenizeur/scripts/constante.1.test.php
+  codephp <?php
+
+  code : 
+      sequence 
+      0 : 
+          functioncall define
+          appel de fonction : define: 
+              arglist 
+              0 : 
+                  literals 'x'
+              1 : 
+                  literals 1
+      1 : 
+          constante (          x )

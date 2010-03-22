@@ -1,0 +1,7 @@
+Travail sur le fichier tests/tokenizeur/scripts/return.3.test.php 
+tests/tokenizeur/scripts/return.3.test.php
+  codephp <?php
+
+  code : 
+      _return 
+      return : "operation variable 309 "$x"  "+" literals 1"

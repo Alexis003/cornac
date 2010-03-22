@@ -1,0 +1,17 @@
+Travail sur le fichier tests/tokenizeur/scripts/clone.5.test.php 
+tests/tokenizeur/scripts/clone.5.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$x"
+       "=" 
+      gauche : 
+          _clone 
+              method_static 
+              307 "y"::functioncall 307 "w" ( ( ) ) : 
+                  functioncall w
+                  appel de fonction : w: 
+                      arglist 
+                      Liste d'argument vide

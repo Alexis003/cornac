@@ -1,0 +1,25 @@
+Travail sur le fichier tests/tokenizeur/scripts/concatenation.8.test.php 
+tests/tokenizeur/scripts/concatenation.8.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$query"
+       "=" 
+      gauche : 
+          concatenation 
+          0 : 
+              literals "a"
+          1 : 
+              variable 309 "$b"
+          2 : 
+              literals "c"
+          3 : 
+              tableau
+                  variable 309 "$d"
+                  literals 'e'
+          4 : 
+              literals "f"
+          5 : 
+              variable 309 "$g"

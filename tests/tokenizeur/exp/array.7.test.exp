@@ -1,0 +1,22 @@
+Travail sur le fichier tests/tokenizeur/scripts/array.7.test.php 
+tests/tokenizeur/scripts/array.7.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$x"
+       "=" 
+      gauche : 
+          functioncall array
+          appel de fonction : array: 
+              arglist 
+              0 : 
+                  literals 'b' => affectation variable 309 "$a" 273 ".=" constante true
+                      literals 'b'
+                      affectation 
+                      droite : 
+                          variable 309 "$a"
+                      273 ".=" 
+                      gauche : 
+                          constante (                          true )

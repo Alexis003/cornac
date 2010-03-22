@@ -1,0 +1,11 @@
+Travail sur le fichier tests/tokenizeur/scripts/throw.7.test.php 
+tests/tokenizeur/scripts/throw.7.test.php
+  codephp <?php
+
+  code : 
+      _throw 
+          functioncall f
+          appel de fonction : f: 
+              arglist 
+              0 : 
+                  literals "s"

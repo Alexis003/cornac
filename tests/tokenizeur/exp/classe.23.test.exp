@@ -1,0 +1,11 @@
+Travail sur le fichier tests/tokenizeur/scripts/classe.23.test.php 
+tests/tokenizeur/scripts/classe.23.test.php
+  codephp <?php
+
+  code : 
+       class 307 "x"
+          block 
+          0 : 
+               343 "protected"variable 309 "$y" = constante true
+          1 : 
+               343 "protected"variable 309 "$z" = constante true

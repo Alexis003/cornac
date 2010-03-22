@@ -1,0 +1,17 @@
+Travail sur le fichier tests/tokenizeur/scripts/functioncall.48.test.php 
+tests/tokenizeur/scripts/functioncall.48.test.php
+  codephp <?php
+
+  code : 
+      functioncall a
+      appel de fonction : a: 
+          arglist 
+          0 : 
+              parentheses 
+              ( "operation literals 1  "+" literals 1" )
+          1 : 
+              parentheses 
+              ( "operation literals 1  "+" literals 1" )
+          2 : 
+              parentheses 
+              ( "operation literals 1  "+" literals 1" )

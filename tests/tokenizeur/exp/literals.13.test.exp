@@ -1,0 +1,10 @@
+Travail sur le fichier tests/tokenizeur/scripts/literals.13.test.php 
+tests/tokenizeur/scripts/literals.13.test.php
+  codephp <?php
+
+  code : 
+      ifthen if
+      Condition 0) 
+          parentheses 
+          ( "comparaison comparaison variable 309 "$nb_day1"  ">" logique signe  "-"literals 1 279 "&&" variable 309 "$nb_day2" 283 "==" signe  "-"literals 1" )
+          block 

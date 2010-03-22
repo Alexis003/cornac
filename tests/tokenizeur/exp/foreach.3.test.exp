@@ -1,0 +1,64 @@
+Travail sur le fichier tests/tokenizeur/scripts/foreach.3.test.php 
+tests/tokenizeur/scripts/foreach.3.test.php
+  codephp <?php
+
+  code : 
+      ifthen if
+      Condition 0) 
+          parentheses 
+          ( "comparaison property tableau variable 309 "$_SESSION"[literals 'cligraph']->literals nbtuples 283 "==" literals 0" )
+          block 
+          0 : 
+              affectation 
+              droite : 
+                  variable 309 "$date_mess_stock"
+               "=" 
+              gauche : 
+                  functioncall array
+                  appel de fonction : array: 
+                      arglist 
+                      Liste d'argument vide
+       else 
+          block 
+          0 : 
+              affectation 
+              droite : 
+                  variable 309 "$i"
+               "=" 
+              gauche : 
+                  literals 0
+          1 : 
+              _foreach (variable 309 "$result2" as  => variable 309 "$ligne")
+                  block 
+                  0 : 
+                      affectation 
+                      droite : 
+                          tableau
+                              variable 309 "$date_mess_stock"
+                              variable 309 "$i"
+                       "=" 
+                      gauche : 
+                          tableau
+                              variable 309 "$ligne"
+                              literals 0
+                  1 : 
+                      functioncall echo
+                      appel de fonction : echo: 
+                          arglist 
+                          0 : 
+                              concatenation 
+                              0 : 
+                                  literals "<script language='javascript'>calend_valeur_stock[0]["
+                              1 : 
+                                  variable 309 "$i"
+                              2 : 
+                                  literals "]=\""
+                              3 : 
+                                  tableau
+                                      variable 309 "$date_mess_stock"
+                                      variable 309 "$i"
+                              4 : 
+                                  literals "\";</script>"
+                  2 : 
+                      variable 309 "$i"297 "++" 
+                          variable 309 "$i"

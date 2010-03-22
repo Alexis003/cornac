@@ -1,0 +1,15 @@
+Travail sur le fichier tests/tokenizeur/scripts/method.15.test.php 
+tests/tokenizeur/scripts/method.15.test.php
+  codephp <?php
+
+  code : 
+      functioncall strlen
+      appel de fonction : strlen: 
+          arglist 
+          0 : 
+              method variable 309 "$e"
+              appel de methode : functioncall 0 "'namespace1:gt'" ( arglist() ) : 
+                  functioncall 'namespace1:gt'
+                  appel de fonction : 'namespace1:gt': 
+                      arglist 
+                      0 : 

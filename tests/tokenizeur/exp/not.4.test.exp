@@ -1,0 +1,7 @@
+Travail sur le fichier tests/tokenizeur/scripts/not.4.test.php 
+tests/tokenizeur/scripts/not.4.test.php
+  codephp <?php
+
+  code : 
+      not !
+          property variable 309 "$x"literals a->

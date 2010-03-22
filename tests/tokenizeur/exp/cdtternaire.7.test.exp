@@ -1,0 +1,20 @@
+Travail sur le fichier tests/tokenizeur/scripts/cdtternaire.7.test.php 
+tests/tokenizeur/scripts/cdtternaire.7.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$x"
+       "=" 
+      gauche : 
+          cdtternaire ?
+          literals 1 ? literals 2 : method variable 309 "$x"->functioncall 307 "y" ( ( ) ) 
+              literals 1
+              literals 2
+              method variable 309 "$x"
+              appel de methode : functioncall 307 "y" ( ( ) ) : 
+                  functioncall y
+                  appel de fonction : y: 
+                      arglist 
+                      Liste d'argument vide

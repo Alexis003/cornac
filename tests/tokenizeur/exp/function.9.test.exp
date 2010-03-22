@@ -1,0 +1,7 @@
+Travail sur le fichier tests/tokenizeur/scripts/function.9.test.php 
+tests/tokenizeur/scripts/function.9.test.php
+  codephp <?php
+
+  code : 
+      function literals x arglist(variable 309 "$a", arginit variable 309 "$b" = signe  "-"literals 1 , arginit variable 309 "$b" = literals 0 )
+          block 

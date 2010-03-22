@@ -1,0 +1,35 @@
+Travail sur le fichier tests/tokenizeur/scripts/cdtternaire.13.test.php 
+tests/tokenizeur/scripts/cdtternaire.13.test.php
+  codephp <?php 
+  code : 
+      _for 
+        Init : affectation variable 309 "$b"  "=" literals 0;
+        Fin  : comparaison variable 309 "$b"  "<" literals 1;
+        Incr : postplusplus 297 "++"variable 309 "$b";
+          block 
+          0 : 
+              rawtext 
+              Texte : "311 "TR ""
+          1 : 
+              functioncall echo
+              appel de fonction : echo: 
+                  arglist 
+                  0 : 
+                      cdtternaire ?
+                      functioncall 350 "isset" ( arglist(variable 309 "$a") )  ? literals 'desc' : sequenceliterals 'asc'
+rawtext 311 " TR 
+"
+
+                          functioncall isset
+                          appel de fonction : isset: 
+                              arglist 
+                              0 : 
+                                  variable 309 "$a"
+                          literals 'desc'
+                          sequence 
+                          0 : 
+                              literals 'asc'
+                          1 : 
+                              rawtext 
+                              Texte : "311 " TR 
+""

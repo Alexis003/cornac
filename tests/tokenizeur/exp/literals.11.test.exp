@@ -1,0 +1,21 @@
+Travail sur le fichier tests/tokenizeur/scripts/literals.11.test.php 
+tests/tokenizeur/scripts/literals.11.test.php
+  codephp <?php
+
+  code : 
+      sequence 
+      0 : 
+          affectation 
+          droite : 
+              variable 309 "$x"
+           "=" 
+          gauche : 
+              literals 0.2
+      1 : 
+          affectation 
+          droite : 
+              variable 309 "$a"
+           "=" 
+          gauche : 
+              signe  "-"literals 0.3
+                  literals 0.3

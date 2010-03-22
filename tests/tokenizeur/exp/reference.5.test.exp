@@ -1,0 +1,15 @@
+Travail sur le fichier tests/tokenizeur/scripts/reference.5.test.php 
+tests/tokenizeur/scripts/reference.5.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$x"
+       "=" 
+      gauche : 
+          reference &
+              functioncall y
+              appel de fonction : y: 
+                  arglist 
+                  Liste d'argument vide

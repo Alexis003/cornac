@@ -1,0 +1,21 @@
+Travail sur le fichier tests/tokenizeur/scripts/affectation.37.test.php 
+tests/tokenizeur/scripts/affectation.37.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$a"
+      269 "^=" 
+      gauche : 
+          operation 
+          droite : 
+              logique 
+              droite : 
+                  literals 1
+              operateur :  "^"
+              gauche : 
+                  literals 2
+          operation :  "+"
+          gauche : 
+              literals 3

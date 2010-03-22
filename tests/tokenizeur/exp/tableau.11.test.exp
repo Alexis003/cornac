@@ -1,0 +1,11 @@
+Travail sur le fichier tests/tokenizeur/scripts/tableau.11.test.php 
+tests/tokenizeur/scripts/tableau.11.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          property opappend [[]literals b->
+       "=" 
+      gauche : 
+          variable 309 "$c"

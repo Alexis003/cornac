@@ -1,0 +1,7 @@
+Travail sur le fichier tests/tokenizeur/scripts/noscream.1.test.php 
+tests/tokenizeur/scripts/noscream.1.test.php
+  codephp <?php
+
+  code : 
+      noscream @
+          variable 309 "$x"

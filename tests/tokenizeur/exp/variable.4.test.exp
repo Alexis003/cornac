@@ -1,0 +1,8 @@
+Travail sur le fichier tests/tokenizeur/scripts/variable.4.test.php 
+tests/tokenizeur/scripts/variable.4.test.php
+  codephp <?php
+
+  code : 
+      tableau
+          variable 309 "$_ENV"
+          literals 'shell'

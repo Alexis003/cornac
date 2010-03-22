@@ -1,0 +1,32 @@
+Travail sur le fichier tests/tokenizeur/scripts/block.3.test.php 
+tests/tokenizeur/scripts/block.3.test.php
+  codephp <?php
+
+  code : 
+      ifthen if
+      Condition 0) 
+          parentheses 
+          ( "functioncall 351 "empty" ( arglist(tableau variable 309 "$row"[literals 0]) ) " )
+          block 
+          0 : 
+              affectation 
+              droite : 
+                  tableau
+                      variable 309 "$date_choisie"
+                      literals 0
+               "=" 
+              gauche : 
+                  functioncall date
+                  appel de fonction : date: 
+                      arglist 
+                      0 : 
+                          literals "Y"
+          1 : 
+              literals 1
+          2 : 
+              affectation 
+              droite : 
+                  variable 309 "$x"
+               "=" 
+              gauche : 
+                  literals 1

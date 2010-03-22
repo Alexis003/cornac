@@ -1,0 +1,7 @@
+Travail sur le fichier tests/tokenizeur/scripts/return.5.test.php 
+tests/tokenizeur/scripts/return.5.test.php
+  codephp <?php
+
+  code : 
+      _return 
+      return : "constante null"

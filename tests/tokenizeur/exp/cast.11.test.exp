@@ -1,0 +1,12 @@
+Travail sur le fichier tests/tokenizeur/scripts/cast.11.test.php 
+tests/tokenizeur/scripts/cast.11.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$x"
+       "=" 
+      gauche : 
+          cast (289 "(unset)")_new 
+               new  "StdClass" ( ) 

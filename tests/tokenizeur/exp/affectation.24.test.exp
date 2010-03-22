@@ -1,0 +1,12 @@
+Travail sur le fichier tests/tokenizeur/scripts/affectation.24.test.php 
+tests/tokenizeur/scripts/affectation.24.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          noscream @
+              variable 309 "$x"
+       "=" 
+      gauche : 
+          literals 1

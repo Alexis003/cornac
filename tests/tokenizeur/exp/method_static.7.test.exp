@@ -1,0 +1,7 @@
+Travail sur le fichier tests/tokenizeur/scripts/method_static.7.test.php 
+tests/tokenizeur/scripts/method_static.7.test.php
+  codephp <?php
+
+  code : 
+      _return 
+      return : "method method_static 307 "a"::functioncall 307 "b" ( ( ) ) ->functioncall 0 "$c" ( arglist(literals 'd') ) "

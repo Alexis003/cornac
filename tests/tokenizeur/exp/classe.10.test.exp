@@ -1,0 +1,13 @@
+Travail sur le fichier tests/tokenizeur/scripts/classe.10.test.php 
+tests/tokenizeur/scripts/classe.10.test.php
+  codephp <?php
+
+  code : 
+       class 307 "x" extends constante y implements 307 "z"
+          block 
+          0 : 
+              function literals __construct ( )
+                  block 
+          1 : 
+              function literals __destruct ( )
+                  block 

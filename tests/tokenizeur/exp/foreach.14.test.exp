@@ -1,0 +1,14 @@
+Travail sur le fichier tests/tokenizeur/scripts/foreach.14.test.php 
+tests/tokenizeur/scripts/foreach.14.test.php
+  codephp <?php
+
+  code : 
+      _foreach (variable 309 "$x" as  => tableau variable 309 "$y"[literals 1])
+          block 
+          0 : 
+              affectation 
+              droite : 
+                  variable 309 "$t"
+               "=" 
+              gauche : 
+                  literals 1

@@ -1,0 +1,10 @@
+Travail sur le fichier tests/tokenizeur/scripts/function.2.test.php 
+tests/tokenizeur/scripts/function.2.test.php
+  codephp <?php
+
+  code : 
+      function literals a arglist(variable 309 "$b", variable 309 "$c")
+          block 
+          0 : 
+              _return 
+              return : "literals 1"

@@ -1,0 +1,32 @@
+Travail sur le fichier tests/tokenizeur/scripts/array.6.test.php 
+tests/tokenizeur/scripts/array.6.test.php
+  codephp <?php
+
+  code : 
+      functioncall array
+      appel de fonction : array: 
+          arglist 
+          0 : 
+              literals 1 => literals 2
+                  literals 1
+                  literals 2
+          1 : 
+              literals 3 => literals 4
+                  literals 3
+                  literals 4
+          2 : 
+              variable 309 "$x" => variable 309 "$y"
+                  variable 309 "$x"
+                  variable 309 "$y"
+          3 : 
+              literals 5 => functioncall 360 "array" ( arglist(literals 1, literals 2, literals 3) ) 
+                  literals 5
+                  functioncall array
+                  appel de fonction : array: 
+                      arglist 
+                      0 : 
+                          literals 1
+                      1 : 
+                          literals 2
+                      2 : 
+                          literals 3

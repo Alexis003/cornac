@@ -1,0 +1,21 @@
+Travail sur le fichier tests/tokenizeur/scripts/logique.15.test.php 
+tests/tokenizeur/scripts/logique.15.test.php
+  codephp <?php
+
+  code : 
+      logique 
+      droite : 
+          property variable 309 "$this"literals a->
+      operateur : 263 "or"
+      gauche : 
+          affectation 
+          droite : 
+              property variable 309 "$this"literals b->
+           "=" 
+          gauche : 
+              method variable 309 "$this"
+              appel de methode : functioncall 307 "c" ( ( ) ) : 
+                  functioncall c
+                  appel de fonction : c: 
+                      arglist 
+                      Liste d'argument vide

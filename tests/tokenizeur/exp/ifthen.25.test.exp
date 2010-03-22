@@ -1,0 +1,18 @@
+Travail sur le fichier tests/tokenizeur/scripts/ifthen.25.test.php 
+tests/tokenizeur/scripts/ifthen.25.test.php
+  codephp <?php
+
+  code : 
+      ifthen if
+      Condition 0) 
+          parentheses 
+          ( "comparaison variable 309 "$x" 283 "==" literals 6" )
+          block 
+          0 : 
+              _while 
+                  parentheses 
+                  ( "arginit variable 309 "$x" = literals 4 " )
+                  block 
+                  0 : 
+                      variable 309 "$x"296 "--" 
+                          variable 309 "$x"

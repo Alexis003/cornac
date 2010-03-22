@@ -1,0 +1,9 @@
+Travail sur le fichier tests/tokenizeur/scripts/plusplus.5.test.php 
+tests/tokenizeur/scripts/plusplus.5.test.php
+  codephp <?php
+
+  code : 
+      296 "--"tableau variable 309 "$x"[literals 1] 
+          tableau
+              variable 309 "$x"
+              literals 1

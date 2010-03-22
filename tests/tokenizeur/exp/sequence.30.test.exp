@@ -1,0 +1,21 @@
+Travail sur le fichier tests/tokenizeur/scripts/sequence.30.test.php 
+tests/tokenizeur/scripts/sequence.30.test.php
+  codephp <?php
+
+  code : 
+      sequence 
+      0 : 
+          affectation 
+          droite : 
+              variable 309 "$a"
+           "=" 
+          gauche : 
+              cdtternaire ?
+              parentheses (comparaison variable 309 "$b" 283 "==" literals 1) ? variable 309 "$d" : variable 309 "$e"
+                  parentheses 
+                  ( "comparaison variable 309 "$b" 283 "==" literals 1" )
+                  variable 309 "$d"
+                  variable 309 "$e"
+      1 : 
+          parentheses 
+          ( "cdtternaire ?" )

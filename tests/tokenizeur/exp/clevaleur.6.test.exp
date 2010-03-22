@@ -1,0 +1,28 @@
+Travail sur le fichier tests/tokenizeur/scripts/clevaleur.6.test.php 
+tests/tokenizeur/scripts/clevaleur.6.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$a"
+       "=" 
+      gauche : 
+          method method_static 307 "b"::functioncall 307 "c" ( arglist(literals 'd') ) 
+          appel de methode : functioncall 307 "e" ( arglist(functioncall 360 "array" ( arglist(clevaleur method variable 309 "$f"->functioncall 307 "g" ( ( ) )  => variable 309 "$h") ) ) ) : 
+              functioncall e
+              appel de fonction : e: 
+                  arglist 
+                  0 : 
+                      functioncall array
+                      appel de fonction : array: 
+                          arglist 
+                          0 : 
+                              method variable 309 "$f"->functioncall 307 "g" ( ( ) )  => variable 309 "$h"
+                                  method variable 309 "$f"
+                                  appel de methode : functioncall 307 "g" ( ( ) ) : 
+                                      functioncall g
+                                      appel de fonction : g: 
+                                          arglist 
+                                          Liste d'argument vide
+                                  variable 309 "$h"

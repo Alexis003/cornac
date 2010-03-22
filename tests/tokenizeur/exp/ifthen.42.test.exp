@@ -1,0 +1,29 @@
+Travail sur le fichier tests/tokenizeur/scripts/ifthen.42.test.php 
+tests/tokenizeur/scripts/ifthen.42.test.php
+  codephp <?php
+
+  code : 
+      ifthen if
+      Condition 0) 
+          parentheses 
+          ( "variable 309 "$a"" )
+          block 
+          0 : 
+              affectation 
+              droite : 
+                  property_static 307 "C"::variable 309 "$b"->
+               "=" 
+              gauche : 
+                  variable 309 "$d"
+       else 
+          block 
+          0 : 
+              affectation 
+              droite : 
+                  variable 309 "$e"
+               "=" 
+              gauche : 
+                  functioncall f
+                  appel de fonction : f: 
+                      arglist 
+                      Liste d'argument vide

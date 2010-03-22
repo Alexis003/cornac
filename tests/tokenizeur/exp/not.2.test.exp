@@ -1,0 +1,16 @@
+Travail sur le fichier tests/tokenizeur/scripts/not.2.test.php 
+tests/tokenizeur/scripts/not.2.test.php
+  codephp <?php
+
+  code : 
+      ifthen if
+      Condition 0) 
+          parentheses 
+          ( "not !" )
+          block 
+          0 : 
+              functioncall echo
+              appel de fonction : echo: 
+                  arglist 
+                  0 : 
+                      literals 1

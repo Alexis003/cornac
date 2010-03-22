@@ -1,0 +1,16 @@
+Travail sur le fichier tests/tokenizeur/scripts/affectation.14.test.php 
+tests/tokenizeur/scripts/affectation.14.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$x"
+       "=" 
+      gauche : 
+          method variable 309 "$y"
+          appel de methode : functioncall 307 "z" ( ( ) ) : 
+              functioncall z
+              appel de fonction : z: 
+                  arglist 
+                  Liste d'argument vide

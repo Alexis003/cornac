@@ -1,0 +1,18 @@
+Travail sur le fichier tests/tokenizeur/scripts/ifthen.20.test.php 
+tests/tokenizeur/scripts/ifthen.20.test.php
+  codephp <?php
+
+  code : 
+      ifthen if
+      Condition 0) 
+          parentheses 
+          ( "comparaison variable 309 "$x" 283 "==" literals 0" )
+          block 
+       else 
+          block 
+          0 : 
+              _foreach (variable 309 "$result" as  => variable 309 "$row")
+                  block 
+                  0 : 
+                      variable 309 "$u"297 "++" 
+                          variable 309 "$u"

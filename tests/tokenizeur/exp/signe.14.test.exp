@@ -1,0 +1,17 @@
+Travail sur le fichier tests/tokenizeur/scripts/signe.14.test.php 
+tests/tokenizeur/scripts/signe.14.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$tm"
+       "=" 
+      gauche : 
+          signe  "-"operation variable 309 "$tm"  "*" variable 309 "$y"
+              operation 
+              droite : 
+                  variable 309 "$tm"
+              operation :  "*"
+              gauche : 
+                  variable 309 "$y"

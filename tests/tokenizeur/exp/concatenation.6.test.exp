@@ -1,0 +1,14 @@
+Travail sur le fichier tests/tokenizeur/scripts/concatenation.6.test.php 
+tests/tokenizeur/scripts/concatenation.6.test.php
+  codephp <?php
+
+  code : 
+      functioncall header
+      appel de fonction : header: 
+          arglist 
+          0 : 
+              concatenation 
+              0 : 
+                  literals 'a'
+              1 : 
+                  literals 'b'

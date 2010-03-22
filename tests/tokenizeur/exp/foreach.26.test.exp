@@ -1,0 +1,14 @@
+Travail sur le fichier tests/tokenizeur/scripts/foreach.26.test.php 
+tests/tokenizeur/scripts/foreach.26.test.php
+  codephp <?php
+
+  code : 
+      _foreach (cast (array) as  => variable 309 "$b")
+          block 
+          0 : 
+              affectation 
+              droite : 
+                  variable 309 "$c"
+               "=" 
+              gauche : 
+                  literals 2

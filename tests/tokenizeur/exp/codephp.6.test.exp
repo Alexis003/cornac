@@ -1,0 +1,19 @@
+Travail sur le fichier tests/tokenizeur/scripts/codephp.6.test.php 
+tests/tokenizeur/scripts/codephp.6.test.php
+  codephp <?php 
+  code : 
+      sequence 
+      0 : 
+          affectation 
+          droite : 
+              variable 309 "$x"
+           "=" 
+          gauche : 
+              literals 1
+      1 : 
+          affectation 
+          droite : 
+              variable 309 "$y"
+           "=" 
+          gauche : 
+              literals 2

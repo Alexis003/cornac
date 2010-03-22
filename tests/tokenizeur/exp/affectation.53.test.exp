@@ -1,0 +1,16 @@
+Travail sur le fichier tests/tokenizeur/scripts/affectation.53.test.php 
+tests/tokenizeur/scripts/affectation.53.test.php
+  codephp <?php
+
+  code : 
+      ifthen if
+      Condition 0) 
+          parentheses 
+          ( "affectation not ! 273 ".=" functioncall 307 "file_get_contents" ( arglist(variable 309 "$b") ) " )
+          block 
+          0 : 
+              functioncall die
+              appel de fonction : die: 
+                  arglist 
+                  0 : 
+                      literals 'd'

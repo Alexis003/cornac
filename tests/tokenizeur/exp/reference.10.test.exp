@@ -1,0 +1,23 @@
+Travail sur le fichier tests/tokenizeur/scripts/reference.10.test.php 
+tests/tokenizeur/scripts/reference.10.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$x"
+       "=" 
+      gauche : 
+          concatenation 
+          0 : 
+              literals a=
+          1 : 
+              variable variable 309 "$b"
+          2 : 
+              literals &
+          3 : 
+              variable 309 "$c"
+          4 : 
+              literals =
+          5 : 
+              variable variable 309 "$d"

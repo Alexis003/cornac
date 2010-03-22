@@ -1,0 +1,12 @@
+Travail sur le fichier tests/tokenizeur/scripts/block.4.test.php 
+tests/tokenizeur/scripts/block.4.test.php
+  codephp <?php
+
+  code : 
+      ifthen if
+      Condition 0) 
+          parentheses 
+          ( "functioncall 351 "empty" ( arglist(tableau variable 309 "$row"[literals 0]) ) " )
+          block 
+          0 : 
+              literals 1

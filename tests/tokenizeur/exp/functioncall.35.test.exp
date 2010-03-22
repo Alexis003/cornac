@@ -1,0 +1,20 @@
+Travail sur le fichier tests/tokenizeur/scripts/functioncall.35.test.php 
+tests/tokenizeur/scripts/functioncall.35.test.php
+  codephp <?php
+
+  code : 
+      sequence 
+      0 : 
+          affectation 
+          droite : 
+              tableau
+                  variable 309 "$x"
+                  literals 1
+           "=" 
+          gauche : 
+              literals 'phpinfo'
+      1 : 
+          functioncall $x
+          appel de fonction : $x: 
+              arglist 
+              Liste d'argument vide

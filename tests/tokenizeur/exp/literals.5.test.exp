@@ -1,0 +1,28 @@
+Travail sur le fichier tests/tokenizeur/scripts/literals.5.test.php 
+tests/tokenizeur/scripts/literals.5.test.php
+  codephp <?php
+
+  code : 
+      sequence 
+      0 : 
+          affectation 
+          droite : 
+              variable 309 "$x"
+           "=" 
+          gauche : 
+              signe  "-"literals '10'
+                  literals '10'
+      1 : 
+          affectation 
+          droite : 
+              variable 309 "$x"
+           "=" 
+          gauche : 
+              signe  "-"literals "10"
+                  literals "10"
+      2 : 
+          functioncall echo
+          appel de fonction : echo: 
+              arglist 
+              0 : 
+                  variable 309 "$x"

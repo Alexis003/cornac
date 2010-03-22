@@ -1,0 +1,17 @@
+Travail sur le fichier tests/tokenizeur/scripts/logique.14.test.php 
+tests/tokenizeur/scripts/logique.14.test.php
+  codephp <?php
+
+  code : 
+      ifthen if
+      Condition 0) 
+          parentheses 
+          ( "logique literals 1 279 "&&" comparaison tableau property variable 309 "$a"->literals b[variable 309 "$c"] 281 "===" literals '@'" )
+          block 
+          0 : 
+              affectation 
+              droite : 
+                  variable 309 "$x"
+               "=" 
+              gauche : 
+                  literals 1

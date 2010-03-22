@@ -1,0 +1,15 @@
+Travail sur le fichier tests/tokenizeur/scripts/shell.1.test.php 
+tests/tokenizeur/scripts/shell.1.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$x"
+       "=" 
+      gauche : 
+          shell 
+          0 : 
+              variable 309 "$file"
+          1 : 
+              literals  sf 

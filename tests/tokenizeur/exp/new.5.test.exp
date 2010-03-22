@@ -1,0 +1,6 @@
+Travail sur le fichier tests/tokenizeur/scripts/new.5.test.php 
+tests/tokenizeur/scripts/new.5.test.php
+  codephp <?php
+
+  code : 
+       new 0 "$x" arglist(literals 1) 

@@ -1,0 +1,15 @@
+Travail sur le fichier tests/tokenizeur/scripts/cdtternaire.4.test.php 
+tests/tokenizeur/scripts/cdtternaire.4.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$x"
+       "=" 
+      gauche : 
+          cdtternaire ?
+          literals 1 ? literals 2 : property variable 309 "$x"->literals y
+              literals 1
+              literals 2
+              property variable 309 "$x"literals y->

@@ -1,0 +1,7 @@
+Travail sur le fichier tests/tokenizeur/scripts/typehint.1.test.php 
+tests/tokenizeur/scripts/typehint.1.test.php
+  codephp <?php
+
+  code : 
+      function literals x arglist(typehint 360 "array" affectation variable 309 "$defaults"  "=" functioncall 360 "array" ( ( ) ) )
+          block 

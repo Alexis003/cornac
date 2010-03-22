@@ -1,0 +1,17 @@
+Travail sur le fichier tests/tokenizeur/scripts/logique.29.test.php 
+tests/tokenizeur/scripts/logique.29.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$a"
+      273 ".=" 
+      gauche : 
+          concatenation 
+          0 : 
+              literals ^
+          1 : 
+              variable property tableau property property variable 309 "$a"->literals b->literals d[variable 309 "$e"]->literals r
+  rawtext 
+  Texte : "311 "  ""

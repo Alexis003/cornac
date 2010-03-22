@@ -1,0 +1,15 @@
+Travail sur le fichier tests/tokenizeur/scripts/functioncall.15.test.php 
+tests/tokenizeur/scripts/functioncall.15.test.php
+  codephp <?php
+
+  code : 
+      functioncall print
+      appel de fonction : print: 
+          arglist 
+          0 : 
+              operation 
+              droite : 
+                  literals 1
+              operation :  "+"
+              gauche : 
+                  literals 1

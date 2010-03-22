@@ -1,0 +1,11 @@
+Travail sur le fichier tests/tokenizeur/scripts/decalage.1.test.php 
+tests/tokenizeur/scripts/decalage.1.test.php
+  codephp <?php
+
+  code : 
+      decalage 
+      droite : 
+          literals 25
+      operation : 287 "<<"
+      gauche : 
+          variable 309 "$x"

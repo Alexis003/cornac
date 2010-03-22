@@ -1,0 +1,6 @@
+Travail sur le fichier tests/tokenizeur/scripts/static.1.test.php 
+tests/tokenizeur/scripts/static.1.test.php
+  codephp <?php
+
+  code : 
+       347 "static"variable 309 "$browser"

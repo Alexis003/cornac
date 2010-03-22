@@ -1,0 +1,11 @@
+Travail sur le fichier tests/tokenizeur/scripts/new.6.test.php 
+tests/tokenizeur/scripts/new.6.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          property variable 309 "$a"literals c->
+       "=" 
+      gauche : 
+           new method variable 309 "$b"->functioncall 307 "a" ( ( ) )  ( ) 

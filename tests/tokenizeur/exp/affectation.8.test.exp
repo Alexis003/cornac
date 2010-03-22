@@ -1,0 +1,28 @@
+Travail sur le fichier tests/tokenizeur/scripts/affectation.8.test.php 
+tests/tokenizeur/scripts/affectation.8.test.php
+  codephp <?php
+
+  code : 
+      sequence 
+      0 : 
+          affectation 
+          droite : 
+              variable 309 "$x"
+           "=" 
+          gauche : 
+              concatenation 
+              0 : 
+                  literals "a"
+              1 : 
+                  literals "b"
+      1 : 
+          affectation 
+          droite : 
+              variable 309 "$y"
+           "=" 
+          gauche : 
+              concatenation 
+              0 : 
+                  literals "c"
+              1 : 
+                  literals "d"

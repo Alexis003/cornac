@@ -1,0 +1,7 @@
+Travail sur le fichier tests/tokenizeur/scripts/foreach.35.test.php 
+tests/tokenizeur/scripts/foreach.35.test.php
+  codephp <?php
+
+  code : 
+      _foreach (variable 309 "$feed" as variable 309 "$entry" => variable 309 "$id")
+          block 

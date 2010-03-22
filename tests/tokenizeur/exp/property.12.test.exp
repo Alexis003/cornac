@@ -1,0 +1,11 @@
+Travail sur le fichier tests/tokenizeur/scripts/property.12.test.php 
+tests/tokenizeur/scripts/property.12.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$a"
+       "=" 
+      gauche : 
+          property method tableau property property_static 307 "f"::variable 309 "$b"->literals c[literals 0]->functioncall 307 "d" ( ( ) ) literals e->

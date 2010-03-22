@@ -1,0 +1,12 @@
+Travail sur le fichier tests/tokenizeur/scripts/literals.14.test.php 
+tests/tokenizeur/scripts/literals.14.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$x"
+       "=" 
+      gauche : 
+          literals $y $f 
+

@@ -1,0 +1,7 @@
+Travail sur le fichier tests/tokenizeur/scripts/function.14.test.php 
+tests/tokenizeur/scripts/function.14.test.php
+  codephp <?php
+
+  code : 
+      function literals a arglist(typehint 0 "StdClass" reference &variable 309 "$x", typehint 0 "StdClass" reference &variable 309 "$b")
+          block 

@@ -1,0 +1,28 @@
+Travail sur le fichier tests/tokenizeur/scripts/cdtternaire.18.test.php 
+tests/tokenizeur/scripts/cdtternaire.18.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$a"
+       "=" 
+      gauche : 
+          cdtternaire ?
+          functioncall 351 "empty" ( arglist(variable 309 "$b") )  ? variable 309 "$d" : affectation variable 309 "$d" 273 ".=" concatenation literals ' ' . variable 309 "$e"  
+              functioncall empty
+              appel de fonction : empty: 
+                  arglist 
+                  0 : 
+                      variable 309 "$b"
+              variable 309 "$d"
+              affectation 
+              droite : 
+                  variable 309 "$d"
+              273 ".=" 
+              gauche : 
+                  concatenation 
+                  0 : 
+                      literals ' '
+                  1 : 
+                      variable 309 "$e"

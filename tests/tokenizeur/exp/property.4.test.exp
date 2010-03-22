@@ -1,0 +1,6 @@
+Travail sur le fichier tests/tokenizeur/scripts/property.4.test.php 
+tests/tokenizeur/scripts/property.4.test.php
+  codephp <?php
+
+  code : 
+      property property property property property variable 309 "$x"->literals y->literals z->literals a->literals bliterals c->

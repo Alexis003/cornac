@@ -1,0 +1,18 @@
+Travail sur le fichier tests/tokenizeur/scripts/classe.20.test.php 
+tests/tokenizeur/scripts/classe.20.test.php
+  codephp <?php 
+  code : 
+       class 307 "x"
+          block 
+          0 : 
+               343 "protected"347 "static"variable 309 "$a", variable 309 "$b", variable 309 "$c"
+          1 : 
+               343 "protected"347 "static"variable 309 "$d", variable 309 "$e", variable 309 "$f"
+          2 : 
+               342 "public"347 "static"variable 309 "$g", variable 309 "$h", variable 309 "$i"
+          3 : 
+               342 "public"347 "static"variable 309 "$j", variable 309 "$k", variable 309 "$l"
+          4 : 
+               344 "private"347 "static"variable 309 "$m", variable 309 "$n", variable 309 "$o"
+          5 : 
+               344 "private"347 "static"variable 309 "$p", variable 309 "$r", variable 309 "$s"

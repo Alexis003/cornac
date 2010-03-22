@@ -1,0 +1,16 @@
+Travail sur le fichier tests/tokenizeur/scripts/try.3.test.php 
+tests/tokenizeur/scripts/try.3.test.php
+  codephp <?php
+
+  code : 
+      _try 
+          block 
+      0 : 
+          _catch (307 "Exception")variable 309 "$e"
+              block 
+      1 : 
+          _catch (307 "Exception1")variable 309 "$e"
+              block 
+      2 : 
+          _catch (307 "Exception2")variable 309 "$e"
+              block 

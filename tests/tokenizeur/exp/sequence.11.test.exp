@@ -1,0 +1,33 @@
+Travail sur le fichier tests/tokenizeur/scripts/sequence.11.test.php 
+tests/tokenizeur/scripts/sequence.11.test.php
+  codephp <?php
+
+  code : 
+      sequence 
+      0 : 
+          affectation 
+          droite : 
+              variable 309 "$a"
+           "=" 
+          gauche : 
+              literals 'a'
+      1 : 
+          affectation 
+          droite : 
+              variable 309 "$b"
+           "=" 
+          gauche : 
+              literals 'b'
+      2 : 
+          affectation 
+          droite : 
+              variable 309 "$c"
+           "=" 
+          gauche : 
+              literals 'c'
+      3 : 
+          functioncall print
+          appel de fonction : print: 
+              arglist 
+              0 : 
+                  variable 309 "$c"

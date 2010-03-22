@@ -1,0 +1,28 @@
+Travail sur le fichier tests/tokenizeur/scripts/opappend.4.test.php 
+tests/tokenizeur/scripts/opappend.4.test.php
+  codephp <?php
+
+  code : 
+      sequence 
+      0 : 
+          affectation 
+          droite : 
+              variable 309 "$x"
+           "=" 
+          gauche : 
+              functioncall array
+              appel de fonction : array: 
+                  arglist 
+                  0 : 
+                      literals 1
+                  1 : 
+                      literals 2
+      1 : 
+          affectation 
+          droite : 
+              variable 309 "$x"
+           "=" 
+          gauche : 
+              reference &
+                  variable 309 "$x"[]
+                      variable 309 "$x"

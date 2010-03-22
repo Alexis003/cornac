@@ -1,0 +1,26 @@
+Travail sur le fichier tests/tokenizeur/scripts/operation.44.test.php 
+tests/tokenizeur/scripts/operation.44.test.php
+  codephp <?php
+
+  code : 
+      sequence 
+      0 : 
+          affectation 
+          droite : 
+              variable 309 "$a"
+           "=" 
+          gauche : 
+              literals 1
+      1 : 
+          operation 
+          droite : 
+              variable 309 "$a"
+          operation :  "*"
+          gauche : 
+              affectation 
+              droite : 
+                  variable 309 "$b"
+               "=" 
+              gauche : 
+                  parentheses 
+                  ( "operation variable 309 "$c"  "/" literals 2" )

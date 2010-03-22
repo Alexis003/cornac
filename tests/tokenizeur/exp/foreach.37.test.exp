@@ -1,0 +1,7 @@
+Travail sur le fichier tests/tokenizeur/scripts/foreach.37.test.php 
+tests/tokenizeur/scripts/foreach.37.test.php
+  codephp <?php
+
+  code : 
+      _foreach (affectation variable 309 "$z"  "=" _new  as  => variable 309 "$e")
+          block 

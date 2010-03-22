@@ -1,0 +1,21 @@
+Travail sur le fichier tests/tokenizeur/scripts/for.23.test.php 
+tests/tokenizeur/scripts/for.23.test.php
+  codephp <?php 
+  code : 
+      _for 
+        Init : affectation variable 309 "$i"  "=" literals 0;
+        Fin  : comparaison variable 309 "$i"  "<" literals 1;
+        Incr : postplusplus 297 "++"variable 309 "$i";
+          affectation 
+          droite : 
+              variable 309 "$a"[]
+                  variable 309 "$a"
+           "=" 
+          gauche : 
+              method variable 309 "$b"
+              appel de methode : functioncall 307 "c" ( arglist(variable 309 "$d") ) : 
+                  functioncall c
+                  appel de fonction : c: 
+                      arglist 
+                      0 : 
+                          variable 309 "$d"

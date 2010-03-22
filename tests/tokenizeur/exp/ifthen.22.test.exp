@@ -1,0 +1,17 @@
+Travail sur le fichier tests/tokenizeur/scripts/ifthen.22.test.php 
+tests/tokenizeur/scripts/ifthen.22.test.php
+  codephp <?php
+
+  code : 
+      ifthen if
+      Condition 0) 
+          parentheses 
+          ( "comparaison constante false 280 "!==" variable 309 "$x"" )
+          block 
+          0 : 
+              affectation 
+              droite : 
+                  variable 309 "$y"
+               "=" 
+              gauche : 
+                  literals 1

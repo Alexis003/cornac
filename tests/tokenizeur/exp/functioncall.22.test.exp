@@ -1,0 +1,10 @@
+Travail sur le fichier tests/tokenizeur/scripts/functioncall.22.test.php 
+tests/tokenizeur/scripts/functioncall.22.test.php
+  codephp <?php
+
+  code : 
+      functioncall empty
+      appel de fonction : empty: 
+          arglist 
+          0 : 
+              variable 309 "$x"

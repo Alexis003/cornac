@@ -1,0 +1,15 @@
+Travail sur le fichier tests/tokenizeur/scripts/noscream.14.test.php 
+tests/tokenizeur/scripts/noscream.14.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$x"
+       "=" 
+      gauche : 
+          concatenation 
+          0 : 
+              literals @
+          1 : 
+              variable variable 309 "$a"

@@ -1,0 +1,7 @@
+Travail sur le fichier tests/tokenizeur/scripts/logique.10.test.php 
+tests/tokenizeur/scripts/logique.10.test.php
+  codephp <?php
+
+  code : 
+      _return 
+      return : "logique variable 309 "$a" 263 "or" variable 309 "$b""

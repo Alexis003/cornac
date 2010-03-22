@@ -1,0 +1,10 @@
+Travail sur le fichier tests/tokenizeur/scripts/function.1.test.php 
+tests/tokenizeur/scripts/function.1.test.php
+  codephp <?php
+
+  code : 
+      function literals aasdfasf arglist(variable 309 "$b")
+          block 
+          0 : 
+              _return 
+              return : "literals 1"

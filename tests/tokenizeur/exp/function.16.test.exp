@@ -1,0 +1,7 @@
+Travail sur le fichier tests/tokenizeur/scripts/function.16.test.php 
+tests/tokenizeur/scripts/function.16.test.php
+  codephp <?php
+
+  code : 
+      function literals x arglist(typehint 0 "StdClass" affectation reference &variable 309 "$x"  "=" constante null, typehint 0 "StdClass" affectation reference &variable 309 "$b"  "=" constante null, typehint 0 "StdClass" affectation reference &variable 309 "$c"  "=" constante null)
+          block 

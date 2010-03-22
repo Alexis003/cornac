@@ -1,0 +1,17 @@
+Travail sur le fichier tests/tokenizeur/scripts/comparaison.12.test.php 
+tests/tokenizeur/scripts/comparaison.12.test.php
+  codephp <?php
+
+  code : 
+      ifthen if
+      Condition 0) 
+          parentheses 
+          ( "comparaison preplusplus variable 309 "$x"297 "++" 283 "==" literals 0" )
+          block 
+          0 : 
+              affectation 
+              droite : 
+                  variable 309 "$x"
+               "=" 
+              gauche : 
+                  literals 1

@@ -1,0 +1,35 @@
+Travail sur le fichier tests/tokenizeur/scripts/sequence.17.test.php 
+tests/tokenizeur/scripts/sequence.17.test.php
+  codephp <?php
+
+  code : 
+      sequence 
+      0 : 
+          affectation 
+          droite : 
+              variable 309 "$number"
+           "=" 
+          gauche : 
+              logique 
+              droite : 
+                  logique 
+                  droite : 
+                      parentheses 
+                      ( "decalage functioncall 307 "ord" ( arglist(tableau variable 309 "$data"[preplusplus variable 309 "$index"297 "++"]) )   287 "<<"  literals 16 " )
+                  operateur :  "|"
+                  gauche : 
+                      parentheses 
+                      ( "decalage functioncall 307 "ord" ( arglist(tableau variable 309 "$data"[preplusplus variable 309 "$index"297 "++"]) )   287 "<<"  literals 8 " )
+              operateur :  "|"
+              gauche : 
+                  functioncall ord
+                  appel de fonction : ord: 
+                      arglist 
+                      0 : 
+                          tableau
+                              variable 309 "$data"
+                              297 "++"variable 309 "$index" 
+                                  variable 309 "$index"
+      1 : 
+          _return 
+          return : "variable 309 "$number""

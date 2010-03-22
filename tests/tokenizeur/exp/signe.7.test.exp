@@ -1,0 +1,7 @@
+Travail sur le fichier tests/tokenizeur/scripts/signe.7.test.php 
+tests/tokenizeur/scripts/signe.7.test.php
+  codephp <?php
+
+  code : 
+      signe  "-"property variable 309 "$t"->literals x
+          property variable 309 "$t"literals x->

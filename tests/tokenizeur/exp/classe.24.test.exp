@@ -1,0 +1,13 @@
+Travail sur le fichier tests/tokenizeur/scripts/classe.24.test.php 
+tests/tokenizeur/scripts/classe.24.test.php
+  codephp <?php
+
+  code : 
+       class 307 "a"
+          block 
+          0 : 
+               348 "var"variable 309 "$a" = literals 1.2
+          1 : 
+               348 "var"variable 309 "$b" = signe  "-"literals 1
+          2 : 
+               348 "var"variable 309 "$c" = literals 'c'

@@ -1,0 +1,38 @@
+Travail sur le fichier tests/tokenizeur/scripts/decalage.8.test.php 
+tests/tokenizeur/scripts/decalage.8.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$a"
+      273 ".=" 
+      gauche : 
+          functioncall pack
+          appel de fonction : pack: 
+              arglist 
+              0 : 
+                  literals 'b'
+              1 : 
+                  decalage 
+                  droite : 
+                      literals 24
+                  operation : 286 ">>"
+                  gauche : 
+                      variable 309 "$c"
+              2 : 
+                  decalage 
+                  droite : 
+                      literals 16
+                  operation : 286 ">>"
+                  gauche : 
+                      variable 309 "$d"
+              3 : 
+                  decalage 
+                  droite : 
+                      literals 8
+                  operation : 286 ">>"
+                  gauche : 
+                      variable 309 "$e"
+              4 : 
+                  variable 309 "$f"

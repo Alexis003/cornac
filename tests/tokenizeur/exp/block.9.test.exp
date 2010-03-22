@@ -1,0 +1,18 @@
+Travail sur le fichier tests/tokenizeur/scripts/block.9.test.php 
+tests/tokenizeur/scripts/block.9.test.php
+  codephp <?php
+
+  code : 
+      ifthen if
+      Condition 0) 
+          parentheses 
+          ( "variable 309 "$j"" )
+          block 
+          0 : 
+              rawtext 
+              Texte : "311 "<a>""
+          1 : 
+              variable 309 "$p_field_id"
+          2 : 
+              rawtext 
+              Texte : "311 "</a>""

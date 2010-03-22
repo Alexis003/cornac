@@ -1,0 +1,22 @@
+Travail sur le fichier tests/tokenizeur/scripts/concatenation.11.test.php 
+tests/tokenizeur/scripts/concatenation.11.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$z"
+       "=" 
+      gauche : 
+          concatenation 
+          0 : 
+              noscream @
+                  functioncall y
+                  appel de fonction : y: 
+                      arglist 
+                      0 : 
+                          literals 1
+          1 : 
+              literals "a"
+          2 : 
+              variable 309 "$c"

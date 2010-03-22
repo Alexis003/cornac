@@ -1,0 +1,12 @@
+Travail sur le fichier tests/tokenizeur/scripts/affectation.45.test.php 
+tests/tokenizeur/scripts/affectation.45.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$x"
+       "=" 
+      gauche : 
+          invert ~
+              variable 309 "$b"

@@ -1,0 +1,14 @@
+Travail sur le fichier tests/tokenizeur/scripts/opappend.2.test.php 
+tests/tokenizeur/scripts/opappend.2.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          tableau variable 309 "$x"[literals 1][]
+              tableau
+                  variable 309 "$x"
+                  literals 1
+       "=" 
+      gauche : 
+          variable 309 "$y"

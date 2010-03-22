@@ -1,0 +1,19 @@
+Travail sur le fichier tests/tokenizeur/scripts/rawtext.4.test.php 
+tests/tokenizeur/scripts/rawtext.4.test.php
+  codephp <?php
+
+  code : 
+      ifthen if
+      Condition 0) 
+          parentheses 
+          ( "constante true" )
+          block 
+          0 : 
+              variable 309 "$a"297 "++" 
+                  variable 309 "$a"
+          1 : 
+              rawtext 
+              Texte : "311 "b
+""
+  rawtext 
+  Texte : "311 "  ""

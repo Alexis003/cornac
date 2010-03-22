@@ -1,0 +1,26 @@
+Travail sur le fichier tests/tokenizeur/scripts/functioncall.18.test.php 
+tests/tokenizeur/scripts/functioncall.18.test.php
+  codephp <?php
+
+  code : 
+      sequence 
+      0 : 
+          functioncall echo
+          appel de fonction : echo: 
+              arglist 
+              0 : 
+                  literals 1
+      1 : 
+          functioncall echo
+          appel de fonction : echo: 
+              arglist 
+              0 : 
+                  literals 2
+              1 : 
+                  literals 3
+      2 : 
+          functioncall echo
+          appel de fonction : echo: 
+              arglist 
+              0 : 
+                  literals 4

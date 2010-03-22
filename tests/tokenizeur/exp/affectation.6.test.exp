@@ -1,0 +1,11 @@
+Travail sur le fichier tests/tokenizeur/scripts/affectation.6.test.php 
+tests/tokenizeur/scripts/affectation.6.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$x"
+       "=" 
+      gauche : 
+          property variable 309 "$y"literals z->

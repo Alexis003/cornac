@@ -1,0 +1,12 @@
+Travail sur le fichier tests/tokenizeur/scripts/invert.7.test.php 
+tests/tokenizeur/scripts/invert.7.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$mod"
+      271 "&=" 
+      gauche : 
+          invert ~
+              constante_static (              0 "$y"::constante x )

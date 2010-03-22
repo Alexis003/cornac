@@ -1,0 +1,10 @@
+Travail sur le fichier tests/tokenizeur/scripts/foreach.33.test.php 
+tests/tokenizeur/scripts/foreach.33.test.php
+  codephp <?php
+
+  code : 
+      _foreach (property_static 307 "a"::variable 309 "$b" as variable 309 "$d" => variable 309 "$e")
+          block 
+          0 : 
+              variable 309 "$i"297 "++" 
+                  variable 309 "$i"

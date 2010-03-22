@@ -1,0 +1,17 @@
+Travail sur le fichier tests/tokenizeur/scripts/signe.10.test.php 
+tests/tokenizeur/scripts/signe.10.test.php
+  codephp <?php
+
+  code : 
+      functioncall print
+      appel de fonction : print: 
+          arglist 
+          0 : 
+              concatenation 
+              0 : 
+                  literals "a"
+              1 : 
+                  parentheses 
+                  ( "operation operation parentheses (operation parentheses (operation variable 309 "$b"  "-" variable 309 "$c")  "*" literals 2)  "+" parentheses (operation literals 3  "-" variable 309 "$d")  "+" variable 309 "$e"" )
+              2 : 
+                  literals "f"

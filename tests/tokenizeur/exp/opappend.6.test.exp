@@ -1,0 +1,13 @@
+Travail sur le fichier tests/tokenizeur/scripts/opappend.6.test.php 
+tests/tokenizeur/scripts/opappend.6.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          opappend [[][]
+              variable 309 "$lines"[]
+                  variable 309 "$lines"
+       "=" 
+      gauche : 
+          literals 1

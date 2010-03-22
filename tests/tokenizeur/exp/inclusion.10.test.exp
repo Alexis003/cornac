@@ -1,0 +1,7 @@
+Travail sur le fichier tests/tokenizeur/scripts/inclusion.10.test.php 
+tests/tokenizeur/scripts/inclusion.10.test.php
+  codephp <?php
+
+  code : 
+      inclusion include
+          property variable 309 "$a"literals b->

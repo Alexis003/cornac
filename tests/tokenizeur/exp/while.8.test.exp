@@ -1,0 +1,15 @@
+Travail sur le fichier tests/tokenizeur/scripts/while.8.test.php 
+tests/tokenizeur/scripts/while.8.test.php
+  codephp <?php
+
+  code : 
+      _while 
+          parentheses 
+          ( "comparaison preplusplus variable 309 "$a"296 "--" 284 ">=" literals 0" )
+          block 
+          0 : 
+              functioncall $thi
+              appel de fonction : $thi: 
+                  arglist 
+                  0 : 
+                      literals 1

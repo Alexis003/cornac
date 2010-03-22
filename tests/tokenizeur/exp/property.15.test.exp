@@ -1,0 +1,16 @@
+Travail sur le fichier tests/tokenizeur/scripts/property.15.test.php 
+tests/tokenizeur/scripts/property.15.test.php
+  codephp <?php
+
+  code : 
+      method method method property tableau property variable 309 "$a"->literals b[literals 1]->tableau variable 309 "$c"[literals 0]->functioncall 307 "d" ( arglist(literals 'e', literals 'f') ) ->functioncall 307 "g" ( ( ) ) 
+      appel de methode : functioncall 307 "h" ( arglist(literals 1, literals 2, literals 3) ) : 
+          functioncall h
+          appel de fonction : h: 
+              arglist 
+              0 : 
+                  literals 1
+              1 : 
+                  literals 2
+              2 : 
+                  literals 3

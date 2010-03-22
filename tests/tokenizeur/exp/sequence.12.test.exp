@@ -1,0 +1,30 @@
+Travail sur le fichier tests/tokenizeur/scripts/sequence.12.test.php 
+tests/tokenizeur/scripts/sequence.12.test.php
+  codephp <?php
+
+  code : 
+      sequence 
+      0 : 
+          affectation 
+          droite : 
+              variable 309 "$x"
+           "=" 
+          gauche : 
+              cdtternaire ?
+              parentheses (literals 1) ? literals "2" : literals 3
+                  parentheses 
+                  ( "literals 1" )
+                  literals "2"
+                  literals 3
+      1 : 
+          affectation 
+          droite : 
+              variable 309 "$y"
+           "=" 
+          gauche : 
+              cdtternaire ?
+              parentheses (literals 4) ? literals "5" : literals 6
+                  parentheses 
+                  ( "literals 4" )
+                  literals "5"
+                  literals 6

@@ -1,0 +1,5 @@
+<?php if( 1 ): ?>
+<?php if( 2 ): ?>
+Contenu
+<?php endif; ?>
+<?php endif; ?>

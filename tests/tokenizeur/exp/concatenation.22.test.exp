@@ -1,0 +1,32 @@
+Travail sur le fichier tests/tokenizeur/scripts/concatenation.22.test.php 
+tests/tokenizeur/scripts/concatenation.22.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$a"
+       "=" 
+      gauche : 
+          cdtternaire ?
+          not ! ? concatenation literals 'f' . functioncall 0 "$g" ( arglist(literals 'h') )  . literals 'i'   : literals 'j'
+              not !
+                  functioncall empty
+                  appel de fonction : empty: 
+                      arglist 
+                      0 : 
+                          tableau
+                              variable 309 "$b"
+                              literals 'd'
+              concatenation 
+              0 : 
+                  literals 'f'
+              1 : 
+                  functioncall $g
+                  appel de fonction : $g: 
+                      arglist 
+                      0 : 
+                          literals 'h'
+              2 : 
+                  literals 'i'
+              literals 'j'

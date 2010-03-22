@@ -1,0 +1,13 @@
+Travail sur le fichier tests/tokenizeur/scripts/constante_classe.3.test.php 
+tests/tokenizeur/scripts/constante_classe.3.test.php
+  codephp <?php
+
+  code : 
+       class 307 "MyMin"
+          block 
+          0 : 
+              constante_classe               constante a = literals 1 
+          1 : 
+              constante_classe               constante b = literals 2 
+          2 : 
+              constante_classe               constante c = literals 3 

@@ -1,0 +1,11 @@
+Travail sur le fichier tests/tokenizeur/scripts/logique.1.test.php 
+tests/tokenizeur/scripts/logique.1.test.php
+  codephp <?php
+
+  code : 
+      logique 
+      droite : 
+          literals 1
+      operateur : 263 "or"
+      gauche : 
+          literals 2

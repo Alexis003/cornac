@@ -1,0 +1,17 @@
+Travail sur le fichier tests/tokenizeur/scripts/comparaison.16.test.php 
+tests/tokenizeur/scripts/comparaison.16.test.php
+  codephp <?php
+
+  code : 
+      ifthen if
+      Condition 0) 
+          parentheses 
+          ( "comparaison logique comparaison variable 309 "$x" 283 "==" literals 2 263 "OR" constante PHPVERSION 282 "!=" literals 's'" )
+          block 
+          0 : 
+              affectation 
+              droite : 
+                  variable 309 "$x"
+               "=" 
+              gauche : 
+                  literals 1

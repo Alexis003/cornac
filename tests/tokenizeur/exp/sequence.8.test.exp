@@ -1,0 +1,24 @@
+Travail sur le fichier tests/tokenizeur/scripts/sequence.8.test.php 
+tests/tokenizeur/scripts/sequence.8.test.php
+  codephp <?php
+
+  code : 
+      sequence 
+      0 : 
+          affectation 
+          droite : 
+              variable 309 "$x"
+           "=" 
+          gauche : 
+              literals 1
+      1 : 
+          rawtext 
+          Texte : "311 "2
+""
+      2 : 
+          affectation 
+          droite : 
+              variable 309 "$y"
+           "=" 
+          gauche : 
+              literals 3

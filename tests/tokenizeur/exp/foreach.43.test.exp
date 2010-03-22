@@ -1,0 +1,14 @@
+Travail sur le fichier tests/tokenizeur/scripts/foreach.43.test.php 
+tests/tokenizeur/scripts/foreach.43.test.php
+  codephp <?php
+
+  code : 
+      _foreach (parentheses (cdtternaire ?) as  => variable 309 "$d")
+          block 
+          0 : 
+              affectation 
+              droite : 
+                  variable 309 "$e"
+              273 ".=" 
+              gauche : 
+                  literals "e"

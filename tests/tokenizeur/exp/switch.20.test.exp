@@ -1,0 +1,29 @@
+Travail sur le fichier tests/tokenizeur/scripts/switch.20.test.php 
+tests/tokenizeur/scripts/switch.20.test.php
+  codephp <?php
+
+  code : 
+      _switch 
+          parentheses 
+          ( "variable 309 "$a"" )
+          block 
+          0 : 
+              _case 
+                  literals 'a'
+                  block 
+                  0 : 
+                      _break 
+                      Nombre : " "1""
+          1 : 
+              _default 
+                  block 
+                  0 : 
+                      _break 
+                      Nombre : " "1""
+          2 : 
+              _case 
+                  literals 'b'
+                  block 
+                  0 : 
+                      _break 
+                      Nombre : " "1""

@@ -1,0 +1,11 @@
+Travail sur le fichier tests/tokenizeur/scripts/foreach.42.test.php 
+tests/tokenizeur/scripts/foreach.42.test.php
+  codephp <?php
+
+  code : 
+      _foreach (property variable 309 "$a"->literals b as  => variable 309 "$c")
+          block 
+          0 : 
+              tableau
+                  property variable 309 "$this"literals d->
+                  literals 3

@@ -1,0 +1,12 @@
+Travail sur le fichier tests/tokenizeur/scripts/logique.6.test.php 
+tests/tokenizeur/scripts/logique.6.test.php
+  codephp <?php
+
+  code : 
+      ifthen if
+      Condition 0) 
+          parentheses 
+          ( "logique functioncall 350 "isset" ( arglist(tableau variable 309 "$_REQUEST"[literals 'opt']) )  279 "&&" comparaison tableau variable 309 "$_REQUEST"[literals 'opt'] 283 "==" literals 1" )
+          block 
+          0 : 
+              literals '1'

@@ -1,0 +1,13 @@
+Travail sur le fichier tests/tokenizeur/scripts/literals.9.test.php 
+tests/tokenizeur/scripts/literals.9.test.php
+  codephp <?php
+
+  code : 
+      cdtternaire ?
+      signe  "-"literals 1 ? signe  "-"literals 2 : signe  "-"literals 3
+          signe  "-"literals 1
+              literals 1
+          signe  "-"literals 2
+              literals 2
+          signe  "-"literals 3
+              literals 3

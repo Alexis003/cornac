@@ -1,0 +1,25 @@
+Travail sur le fichier tests/tokenizeur/scripts/ifthen.30.test.php 
+tests/tokenizeur/scripts/ifthen.30.test.php
+  codephp <?php 
+  code : 
+      ifthen if
+      Condition 0) 
+          parentheses 
+          ( "literals 1" )
+          block 
+          0 : 
+              rawtext 
+              Texte : "311 """
+          1 : 
+              ifthen if
+              Condition 0) 
+                  parentheses 
+                  ( "literals 2" )
+                  block 
+                  0 : 
+                      rawtext 
+                      Texte : "311 "Contenu
+""
+          2 : 
+              rawtext 
+              Texte : "311 """

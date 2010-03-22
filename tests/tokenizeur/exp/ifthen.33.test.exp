@@ -1,0 +1,38 @@
+Travail sur le fichier tests/tokenizeur/scripts/ifthen.33.test.php 
+tests/tokenizeur/scripts/ifthen.33.test.php
+  codephp <?php
+
+  code : 
+      ifthen if
+      Condition 0) 
+          parentheses 
+          ( "method variable 309 "$a"->functioncall 307 "b" ( ( ) ) " )
+          block 
+          0 : 
+              affectation 
+              droite : 
+                  variable 309 "$c"
+               "=" 
+              gauche : 
+                  method variable 309 "$d"
+                  appel de methode : functioncall 307 "e" ( arglist(literals "f") ) : 
+                      functioncall e
+                      appel de fonction : e: 
+                          arglist 
+                          0 : 
+                              literals "f"
+       else 
+          block 
+          0 : 
+              affectation 
+              droite : 
+                  variable 309 "$g"
+               "=" 
+              gauche : 
+                  method variable 309 "$h"
+                  appel de methode : functioncall 307 "e" ( arglist(literals "i") ) : 
+                      functioncall e
+                      appel de fonction : e: 
+                          arglist 
+                          0 : 
+                              literals "i"

@@ -1,0 +1,14 @@
+Travail sur le fichier tests/tokenizeur/scripts/clone.9.test.php 
+tests/tokenizeur/scripts/clone.9.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$x"
+       "=" 
+      gauche : 
+          _clone 
+              tableau
+                  variable 309 "$y"
+                  literals 0

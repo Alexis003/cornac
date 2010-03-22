@@ -1,0 +1,22 @@
+Travail sur le fichier tests/tokenizeur/scripts/ifthen.9.test.php 
+tests/tokenizeur/scripts/ifthen.9.test.php
+  codephp <?php
+
+  code : 
+      ifthen if
+      Condition 0) 
+          parentheses 
+          ( "literals 'a'" )
+          block 
+          0 : 
+              literals 1
+      Condition 1) 
+          parentheses 
+          ( "literals 'b'" )
+          block 
+          0 : 
+              literals 2
+       else 
+          block 
+          0 : 
+              literals 3

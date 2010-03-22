@@ -1,0 +1,21 @@
+Travail sur le fichier tests/tokenizeur/scripts/concatenation.25.test.php 
+tests/tokenizeur/scripts/concatenation.25.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$x"
+       "=" 
+      gauche : 
+          concatenation 
+          0 : 
+              literals '&nbsp;('
+          1 : 
+              noscream @
+                  297 "++"tableau variable 309 "$n"[variable 309 "$boucle"] 
+                      tableau
+                          variable 309 "$n"
+                          variable 309 "$boucle"
+          2 : 
+              literals ")"

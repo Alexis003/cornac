@@ -1,0 +1,12 @@
+Travail sur le fichier tests/tokenizeur/scripts/decalage.7.test.php 
+tests/tokenizeur/scripts/decalage.7.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$x"
+       "=" 
+      gauche : 
+          parentheses 
+          ( "decalage tableau variable 309 "$y"[literals 'z']  286 ">>"  literals 1 " )

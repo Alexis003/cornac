@@ -1,0 +1,9 @@
+Travail sur le fichier tests/tokenizeur/scripts/classe.5.test.php 
+tests/tokenizeur/scripts/classe.5.test.php
+  codephp <?php
+
+  code : 
+       class 307 "x"
+          block 
+          0 : 
+               348 "var"variable 309 "$a"

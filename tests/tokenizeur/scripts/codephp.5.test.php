@@ -1,0 +1,1 @@
+<?php $x = 1; ?>  Espace vide  <?php $x = 1; ?>

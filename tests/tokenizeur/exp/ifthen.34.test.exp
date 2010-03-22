@@ -1,0 +1,9 @@
+Travail sur le fichier tests/tokenizeur/scripts/ifthen.34.test.php 
+tests/tokenizeur/scripts/ifthen.34.test.php
+  codephp <?php 
+  code : 
+      ifthen if
+      Condition 0) 
+          parentheses 
+          ( "literals 1" )
+          block 

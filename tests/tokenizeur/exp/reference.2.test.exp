@@ -1,0 +1,12 @@
+Travail sur le fichier tests/tokenizeur/scripts/reference.2.test.php 
+tests/tokenizeur/scripts/reference.2.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$z"
+       "=" 
+      gauche : 
+          reference &
+              property variable 309 "$x"literals y->

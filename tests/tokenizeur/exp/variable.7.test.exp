@@ -1,0 +1,9 @@
+Travail sur le fichier tests/tokenizeur/scripts/variable.7.test.php 
+tests/tokenizeur/scripts/variable.7.test.php
+  codephp <?php
+
+  code : 
+       class 307 "x"
+          block 
+          0 : 
+               343 "protected"variable 309 "$a" = constante_static 307 "b"::constante c

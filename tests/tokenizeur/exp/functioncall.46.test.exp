@@ -1,0 +1,37 @@
+Travail sur le fichier tests/tokenizeur/scripts/functioncall.46.test.php 
+tests/tokenizeur/scripts/functioncall.46.test.php
+  rawtext 
+  Texte : "311 " ""
+  codephp <?php 
+  code : 
+      sequence 
+      0 : 
+          functioncall echo
+          appel de fonction : echo: 
+              arglist 
+              0 : 
+                  method variable 309 "$a"
+                  appel de methode : functioncall 307 "b" ( arglist(variable 309 "$d") ) : 
+                      functioncall b
+                      appel de fonction : b: 
+                          arglist 
+                          0 : 
+                              variable 309 "$d"
+      1 : 
+          rawtext 
+          Texte : "311 "(""
+      2 : 
+          functioncall echo
+          appel de fonction : echo: 
+              arglist 
+              0 : 
+                  method variable 309 "$e"
+                  appel de methode : functioncall 307 "f" ( arglist(variable 309 "$g") ) : 
+                      functioncall f
+                      appel de fonction : f: 
+                          arglist 
+                          0 : 
+                              variable 309 "$g"
+  rawtext 
+  Texte : "311 ");
+""

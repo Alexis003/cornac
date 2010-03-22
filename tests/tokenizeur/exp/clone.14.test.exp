@@ -1,0 +1,16 @@
+Travail sur le fichier tests/tokenizeur/scripts/clone.14.test.php 
+tests/tokenizeur/scripts/clone.14.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$x"
+       "=" 
+      gauche : 
+          functioncall array
+          appel de fonction : array: 
+              arglist 
+              0 : 
+                  _clone 
+                      variable 309 "$a"

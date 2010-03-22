@@ -1,0 +1,7 @@
+Travail sur le fichier tests/tokenizeur/scripts/plusplus.3.test.php 
+tests/tokenizeur/scripts/plusplus.3.test.php
+  codephp <?php
+
+  code : 
+      variable 309 "$x"296 "--" 
+          variable 309 "$x"

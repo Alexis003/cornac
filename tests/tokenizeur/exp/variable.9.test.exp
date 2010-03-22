@@ -1,0 +1,13 @@
+Travail sur le fichier tests/tokenizeur/scripts/variable.9.test.php 
+tests/tokenizeur/scripts/variable.9.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$a"
+       "=" 
+      gauche : 
+          concatenation 
+          0 : 
+              variable tableau variable 308 "b"[literals 'c']

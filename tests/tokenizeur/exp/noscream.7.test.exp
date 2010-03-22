@@ -1,0 +1,17 @@
+Travail sur le fichier tests/tokenizeur/scripts/noscream.7.test.php 
+tests/tokenizeur/scripts/noscream.7.test.php
+  codephp <?php
+
+  code : 
+      ifthen if
+      Condition 0) 
+          parentheses 
+          ( "noscream @" )
+          block 
+          0 : 
+              affectation 
+              droite : 
+                  variable 309 "$x"
+               "=" 
+              gauche : 
+                  literals 1

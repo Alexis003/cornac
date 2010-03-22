@@ -1,0 +1,11 @@
+Travail sur le fichier tests/tokenizeur/scripts/while.9.test.php 
+tests/tokenizeur/scripts/while.9.test.php
+  codephp <?php
+
+  code : 
+      _while 
+          parentheses 
+          ( "comparaison preplusplus variable 309 "$a"296 "--" 284 ">=" literals 0" )
+          block 
+          0 : 
+              constante_static (              307 "THIS"::constante C )

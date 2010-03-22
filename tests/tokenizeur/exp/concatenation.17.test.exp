@@ -1,0 +1,18 @@
+Travail sur le fichier tests/tokenizeur/scripts/concatenation.17.test.php 
+tests/tokenizeur/scripts/concatenation.17.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$x"
+       "=" 
+      gauche : 
+          concatenation 
+          0 : 
+              literals A 
+          1 : 
+              variable method_static 0 "$a"::functioncall 307 "b" ( arglist(literals 'c') ) 
+          2 : 
+              literals  B
+

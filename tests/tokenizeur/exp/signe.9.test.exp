@@ -1,0 +1,29 @@
+Travail sur le fichier tests/tokenizeur/scripts/signe.9.test.php 
+tests/tokenizeur/scripts/signe.9.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$a"
+       "=" 
+      gauche : 
+          functioncall substr
+          appel de fonction : substr: 
+              arglist 
+              0 : 
+                  variable 309 "$b"
+              1 : 
+                  literals 0
+              2 : 
+                  operation 
+                  droite : 
+                      signe  "-"functioncall 307 "strlen" ( arglist(variable 309 "$c") ) 
+                          functioncall strlen
+                          appel de fonction : strlen: 
+                              arglist 
+                              0 : 
+                                  variable 309 "$c"
+                  operation :  "-"
+                  gauche : 
+                      literals 1

@@ -1,0 +1,21 @@
+Travail sur le fichier tests/tokenizeur/scripts/cdtternaire.11.test.php 
+tests/tokenizeur/scripts/cdtternaire.11.test.php
+  codephp <?php 
+  code : 
+      affectation 
+      droite : 
+          tableau
+              variable 309 "$a"
+              cdtternaire ?
+              parentheses (variable 309 "$b") ? functioncall 307 "strtoupper" ( arglist(property variable 309 "$e"->literals f) )  : property variable 309 "$e"->literals f
+                  parentheses 
+                  ( "variable 309 "$b"" )
+                  functioncall strtoupper
+                  appel de fonction : strtoupper: 
+                      arglist 
+                      0 : 
+                          property variable 309 "$e"literals f->
+                  property variable 309 "$e"literals f->
+       "=" 
+      gauche : 
+          variable 309 "$f"

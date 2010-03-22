@@ -1,0 +1,21 @@
+Travail sur le fichier tests/tokenizeur/scripts/operation.10.test.php 
+tests/tokenizeur/scripts/operation.10.test.php
+  codephp <?php
+
+  code : 
+      operation 
+      droite : 
+          operation 
+          droite : 
+              literals 1
+          operation :  "*"
+          gauche : 
+              literals 2
+      operation :  "+"
+      gauche : 
+          operation 
+          droite : 
+              literals 3
+          operation :  "*"
+          gauche : 
+              literals 4

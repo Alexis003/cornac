@@ -1,0 +1,11 @@
+Travail sur le fichier tests/tokenizeur/scripts/continue.5.test.php 
+tests/tokenizeur/scripts/continue.5.test.php
+  codephp <?php 
+  code : 
+      ifthen if
+      Condition 0) 
+          parentheses 
+          ( "variable 309 "$x"" )
+          block 
+          0 : 
+              _continue "1" 

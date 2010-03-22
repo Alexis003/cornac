@@ -1,0 +1,6 @@
+Travail sur le fichier tests/tokenizeur/scripts/variable.1.test.php 
+tests/tokenizeur/scripts/variable.1.test.php
+  codephp <?php
+
+  code : 
+      variable 309 "$x"

@@ -1,0 +1,38 @@
+Travail sur le fichier tests/tokenizeur/scripts/ifthen.43.test.php 
+tests/tokenizeur/scripts/ifthen.43.test.php
+  codephp <?php
+
+  code : 
+      sequence 
+      0 : 
+          ifthen if
+          Condition 0) 
+              parentheses 
+              ( "variable 309 "$a"" )
+              block 
+              0 : 
+                  affectation 
+                  droite : 
+                      tableau
+                          tableau
+                              property variable 309 "$b"literals c->
+                              literals 0
+                          literals "d"
+                  273 ".=" 
+                  gauche : 
+                      literals "e"
+      1 : 
+          ifthen if
+          Condition 0) 
+              parentheses 
+              ( "variable 309 "$a"" )
+              block 
+              0 : 
+                  affectation 
+                  droite : 
+                      tableau
+                          property property variable 309 "$b"->literals cliterals d->
+                          literals "e"
+                  273 ".=" 
+                  gauche : 
+                      literals "f"

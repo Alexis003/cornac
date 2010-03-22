@@ -1,0 +1,15 @@
+Travail sur le fichier tests/tokenizeur/scripts/invert.10.test.php 
+tests/tokenizeur/scripts/invert.10.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$a"
+       "=" 
+      gauche : 
+          concatenation 
+          0 : 
+              literals ~
+          1 : 
+              variable variable 309 "$b"

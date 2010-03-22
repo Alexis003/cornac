@@ -1,0 +1,17 @@
+Travail sur le fichier tests/tokenizeur/scripts/signe.15.test.php 
+tests/tokenizeur/scripts/signe.15.test.php
+  codephp <?php
+
+  code : 
+      ifthen if
+      Condition 0) 
+          parentheses 
+          ( "logique comparaison literals '' 283 "==" variable 309 "$a" 278 "||" comparaison signe  "-"literals 1 283 "==" variable 309 "$b"" )
+          block 
+          0 : 
+              affectation 
+              droite : 
+                  variable 309 "$x"
+               "=" 
+              gauche : 
+                  literals 1

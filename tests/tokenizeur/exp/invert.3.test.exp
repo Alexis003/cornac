@@ -1,0 +1,8 @@
+Travail sur le fichier tests/tokenizeur/scripts/invert.3.test.php 
+tests/tokenizeur/scripts/invert.3.test.php
+  codephp <?php
+
+  code : 
+      invert ~
+          parentheses 
+          ( "logique variable 309 "$x"  "|" variable 309 "$y"" )

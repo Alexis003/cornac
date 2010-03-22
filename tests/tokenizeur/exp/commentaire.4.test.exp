@@ -1,0 +1,15 @@
+Travail sur le fichier tests/tokenizeur/scripts/commentaire.4.test.php 
+tests/tokenizeur/scripts/commentaire.4.test.php
+  codephp <?php
+
+  code : 
+      sequence 
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$x"
+       "=" 
+      gauche : 
+          literals 2

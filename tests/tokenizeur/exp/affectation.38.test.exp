@@ -1,0 +1,16 @@
+Travail sur le fichier tests/tokenizeur/scripts/affectation.38.test.php 
+tests/tokenizeur/scripts/affectation.38.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          noscream @
+              tableau
+                  tableau
+                      variable 309 "$a"
+                      variable 309 "$b"
+                  variable 309 "$c"
+      273 ".=" 
+      gauche : 
+          variable 309 "$d"

@@ -1,0 +1,23 @@
+Travail sur le fichier tests/tokenizeur/scripts/switch.15.test.php 
+tests/tokenizeur/scripts/switch.15.test.php
+  codephp <?php
+
+  code : 
+      _switch 
+          parentheses 
+          ( "variable 309 "$x"" )
+          block 
+          0 : 
+              _case 
+                  literals "8"
+                  block 
+                  0 : 
+                      affectation 
+                      droite : 
+                          variable 309 "$filtre_traite2"
+                      273 ".=" 
+                      gauche : 
+                          literals " demarchage_flag='1' "
+                  1 : 
+                      _break 
+                      Nombre : " "1""

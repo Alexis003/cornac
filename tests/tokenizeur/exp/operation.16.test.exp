@@ -1,0 +1,16 @@
+Travail sur le fichier tests/tokenizeur/scripts/operation.16.test.php 
+tests/tokenizeur/scripts/operation.16.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$x"
+       "=" 
+      gauche : 
+          operation 
+          droite : 
+              property variable 309 "$a"literals b->
+          operation :  "+"
+          gauche : 
+              property property variable 309 "$c"->literals dliterals e->

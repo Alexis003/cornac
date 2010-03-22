@@ -1,0 +1,16 @@
+Travail sur le fichier tests/tokenizeur/scripts/rawtext.3.test.php 
+tests/tokenizeur/scripts/rawtext.3.test.php
+  codephp <?php
+
+  code : 
+      ifthen if
+      Condition 0) 
+          parentheses 
+          ( "constante true" )
+          block 
+          0 : 
+              rawtext 
+              Texte : "311 "b
+""
+  rawtext 
+  Texte : "311 "  ""

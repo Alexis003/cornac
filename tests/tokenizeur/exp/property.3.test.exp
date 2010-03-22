@@ -1,0 +1,6 @@
+Travail sur le fichier tests/tokenizeur/scripts/property.3.test.php 
+tests/tokenizeur/scripts/property.3.test.php
+  codephp <?php
+
+  code : 
+      property tableau variable 309 "$x"[literals 'x']literals y->

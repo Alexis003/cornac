@@ -1,0 +1,18 @@
+<?php
+include_once('Analyseur_Framework_TestCase.php');
+
+class Throw_Test extends Analyseur_Framework_TestCase
+{
+    /* 8 methodes */
+    public function testThrow1()  { $this->generic_test('throw.1'); }
+    public function testThrow2()  { $this->generic_test('throw.2'); }
+    public function testThrow3()  { $this->generic_test('throw.3'); }
+    public function testThrow4()  { $this->generic_test('throw.4'); }
+    public function testThrow5()  { $this->generic_test('throw.5'); }
+    public function testThrow6()  { $this->generic_test('throw.6'); }
+    public function testThrow7()  { $this->generic_test('throw.7'); }
+    public function testThrow8()  { $this->generic_test('throw.8'); }
+
+}
+
+?>

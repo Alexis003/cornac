@@ -1,0 +1,16 @@
+Travail sur le fichier tests/tokenizeur/scripts/ifthen.18.test.php 
+tests/tokenizeur/scripts/ifthen.18.test.php
+  codephp <?php
+
+  code : 
+      ifthen if
+      Condition 0) 
+          parentheses 
+          ( "comparaison variable 309 "$a" 282 "!=" literals 0" )
+          block 
+          0 : 
+              function literals a ( )
+                  block 
+                  0 : 
+                      _return 
+                      return : "literals 1"

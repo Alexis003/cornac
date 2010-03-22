@@ -1,0 +1,70 @@
+Travail sur le fichier tests/tokenizeur/scripts/sequence.19.test.php 
+tests/tokenizeur/scripts/sequence.19.test.php
+  codephp <?php 
+  code : 
+      sequence 
+      0 : 
+          affectation 
+          droite : 
+              variable 309 "$sort"
+           "=" 
+          gauche : 
+              parentheses 
+              ( "cdtternaire ?" )
+      1 : 
+          rawtext 
+          Texte : "311 """
+      2 : 
+          ifthen if
+          Condition 0) 
+              parentheses 
+              ( "not !" )
+              block 
+              0 : 
+                  affectation 
+                  droite : 
+                      variable 309 "$sort"
+                   "=" 
+                  gauche : 
+                      functioncall array
+                      appel de fonction : array: 
+                          arglist 
+                          0 : 
+                              variable 309 "$sort"
+                          1 : 
+                              literals 'asc'
+      3 : 
+          rawtext 
+          Texte : "311 "    return array('""
+      4 : 
+          functioncall echo
+          appel de fonction : echo: 
+              arglist 
+              0 : 
+                  tableau
+                      variable 309 "$sort"
+                      literals 0
+      5 : 
+          rawtext 
+          Texte : "311 "', '""
+      6 : 
+          functioncall echo
+          appel de fonction : echo: 
+              arglist 
+              0 : 
+                  cdtternaire ?
+                  functioncall 350 "isset" ( arglist(tableau variable 309 "$sort"[literals 1]) )  ? tableau variable 309 "$sort"[literals 1] : literals 'asc'
+                      functioncall isset
+                      appel de fonction : isset: 
+                          arglist 
+                          0 : 
+                              tableau
+                                  variable 309 "$sort"
+                                  literals 1
+                      tableau
+                          variable 309 "$sort"
+                          literals 1
+                      literals 'asc'
+  rawtext 
+  Texte : "311 "');
+""

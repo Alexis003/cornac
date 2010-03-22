@@ -1,0 +1,28 @@
+Travail sur le fichier tests/tokenizeur/scripts/ifthen.21.test.php 
+tests/tokenizeur/scripts/ifthen.21.test.php
+  codephp <?php
+
+  code : 
+      ifthen if
+      Condition 0) 
+          parentheses 
+          ( "comparaison variable 309 "$x" 283 "==" literals "1"" )
+          block 
+          0 : 
+              affectation 
+              droite : 
+                  variable 309 "$y"
+               "=" 
+              gauche : 
+                  literals 1
+      Condition 1) 
+          parentheses 
+          ( "comparaison variable 309 "$x" 283 "==" literals "2"" )
+          block 
+          0 : 
+              affectation 
+              droite : 
+                  variable 309 "$y"
+               "=" 
+              gauche : 
+                  literals 2

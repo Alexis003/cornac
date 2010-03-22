@@ -1,0 +1,14 @@
+Travail sur le fichier tests/tokenizeur/scripts/foreach.15.test.php 
+tests/tokenizeur/scripts/foreach.15.test.php
+  codephp <?php
+
+  code : 
+      _foreach (variable 309 "$x" as  => reference &variable 309 "$y")
+          block 
+          0 : 
+              affectation 
+              droite : 
+                  variable 309 "$t"
+               "=" 
+              gauche : 
+                  literals 1

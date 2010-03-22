@@ -1,0 +1,20 @@
+Travail sur le fichier tests/tokenizeur/scripts/cdtternaire.10.test.php 
+tests/tokenizeur/scripts/cdtternaire.10.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$a"
+      273 ".=" 
+      gauche : 
+          concatenation 
+          0 : 
+              parentheses 
+              ( "cdtternaire ?" )
+          1 : 
+              literals ' <code>[-&gt;'
+          2 : 
+              variable 309 "$k"
+          3 : 
+              literals ']</code>'

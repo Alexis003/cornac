@@ -1,0 +1,11 @@
+Travail sur le fichier tests/tokenizeur/scripts/property.5.test.php 
+tests/tokenizeur/scripts/property.5.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$a"
+       "=" 
+      gauche : 
+          property variable 309 "$b"concatenation literals 'c' . variable 309 "$d"  ->

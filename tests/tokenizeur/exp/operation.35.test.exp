@@ -1,0 +1,22 @@
+Travail sur le fichier tests/tokenizeur/scripts/operation.35.test.php 
+tests/tokenizeur/scripts/operation.35.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$base"
+       "=" 
+      gauche : 
+          operation 
+          droite : 
+              operation 
+              droite : 
+                  variable 309 "$pad"
+              operation :  "+"
+              gauche : 
+                  variable 309 "$width"
+          operation :  "+"
+          gauche : 
+              297 "++"variable 309 "$i" 
+                  variable 309 "$i"

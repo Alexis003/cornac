@@ -1,0 +1,41 @@
+Travail sur le fichier tests/tokenizeur/scripts/for.24.test.php 
+tests/tokenizeur/scripts/for.24.test.php
+  codephp <?php
+
+  code : 
+      _for 
+        Init : affectation variable 309 "$j"  "=" literals 0;
+        Fin  : comparaison variable 309 "$j"  "<" variable 309 "$n";
+        Incr : postplusplus 297 "++"variable 309 "$j";
+          affectation 
+          droite : 
+              tableau
+                  tableau
+                      tableau
+                          property variable 309 "$a"literals b->
+                          tableau
+                              tableau
+                                  tableau
+                                      property variable 309 "$c"literals d->
+                                      variable 309 "$i"
+                                  literals "f"
+                              literals "g"
+                      literals "h"
+                  tableau
+                      tableau
+                          tableau
+                              tableau
+                                  property variable 309 "$i"literals j->
+                                  variable 309 "$i"
+                              literals "k"
+                          variable 309 "$j"
+                      literals "l"
+           "=" 
+          gauche : 
+              tableau
+                  tableau
+                      tableau
+                          property variable 309 "$p"literals o->
+                          variable 309 "$i"
+                      literals "p"
+                  variable 309 "$j"

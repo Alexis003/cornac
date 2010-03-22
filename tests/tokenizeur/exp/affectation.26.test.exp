@@ -1,0 +1,12 @@
+Travail sur le fichier tests/tokenizeur/scripts/affectation.26.test.php 
+tests/tokenizeur/scripts/affectation.26.test.php
+  codephp <?php 
+  code : 
+      346 "abstract" class 307 "x"
+          block 
+          0 : 
+               344 "private"variable 309 "$t" = literals 1
+          1 : 
+               343 "protected"variable 309 "$u" = literals 2
+          2 : 
+               342 "public"variable 309 "$v" = literals 3

@@ -1,0 +1,17 @@
+Travail sur le fichier tests/tokenizeur/scripts/logique.23.test.php 
+tests/tokenizeur/scripts/logique.23.test.php
+  codephp <?php
+
+  code : 
+      logique 
+      droite : 
+          tableau
+              tableau
+                  tableau
+                      variable 309 "$a"
+                      literals 'b'
+                  property variable 309 "$d"literals e->
+              literals 'f'
+      operateur :  "&"
+      gauche : 
+          property variable 309 "$g"literals h->

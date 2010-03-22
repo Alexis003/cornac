@@ -1,0 +1,22 @@
+Travail sur le fichier tests/tokenizeur/scripts/concatenation.15.test.php 
+tests/tokenizeur/scripts/concatenation.15.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$x"
+       "=" 
+      gauche : 
+          concatenation 
+          0 : 
+              literals 
+Oui
+
+
+          1 : 
+              variable 309 "$x"
+          2 : 
+              literals 
+
+

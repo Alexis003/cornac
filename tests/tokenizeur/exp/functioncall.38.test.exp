@@ -1,0 +1,20 @@
+Travail sur le fichier tests/tokenizeur/scripts/functioncall.38.test.php 
+tests/tokenizeur/scripts/functioncall.38.test.php
+  codephp <?php
+
+  code : 
+      functioncall eval
+      appel de fonction : eval: 
+          arglist 
+          0 : 
+              concatenation 
+              0 : 
+                  literals 'insert_histo_'
+              1 : 
+                  variable 309 "$table"
+              2 : 
+                  literals '('
+              3 : 
+                  variable 309 "$pdt_cle"
+              4 : 
+                  literals ',1);'

@@ -1,0 +1,10 @@
+Travail sur le fichier tests/tokenizeur/scripts/functioncall.8.test.php 
+tests/tokenizeur/scripts/functioncall.8.test.php
+  codephp <?php
+
+  code : 
+      functioncall isset
+      appel de fonction : isset: 
+          arglist 
+          0 : 
+              variable 309 "$x"

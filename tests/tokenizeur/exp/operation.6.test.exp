@@ -1,0 +1,26 @@
+Travail sur le fichier tests/tokenizeur/scripts/operation.6.test.php 
+tests/tokenizeur/scripts/operation.6.test.php
+  codephp <?php
+
+  code : 
+      operation 
+      droite : 
+          operation 
+          droite : 
+              operation 
+              droite : 
+                  operation 
+                  droite : 
+                      literals 1
+                  operation :  "+"
+                  gauche : 
+                      literals 1
+              operation :  "-"
+              gauche : 
+                  literals 1
+          operation :  "+"
+          gauche : 
+              literals 1
+      operation :  "-"
+      gauche : 
+          literals 1

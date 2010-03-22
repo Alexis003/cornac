@@ -1,0 +1,23 @@
+Travail sur le fichier tests/tokenizeur/scripts/while.14.test.php 
+tests/tokenizeur/scripts/while.14.test.php
+  codephp <?php
+
+  code : 
+      _dowhile 
+          block 
+          0 : 
+              affectation 
+              droite : 
+                  variable 309 "$a"
+               "=" 
+              gauche : 
+                  functioncall sha1
+                  appel de fonction : sha1: 
+                      arglist 
+                      0 : 
+                          functioncall microtime
+                          appel de fonction : microtime: 
+                              arglist 
+                              Liste d'argument vide
+          parentheses 
+          ( "functioncall 307 "file_exists" ( arglist(concatenation variable 309 "$c" . variable 309 "$d"  ) ) " )

@@ -1,0 +1,12 @@
+Travail sur le fichier tests/tokenizeur/scripts/plusplus.12.test.php 
+tests/tokenizeur/scripts/plusplus.12.test.php
+  codephp <?php 
+  code : 
+      sequence 
+      0 : 
+          _global 
+          0 : 
+              variable 309 "$a"
+      1 : 
+          property variable 309 "$a"->literals b296 "--" 
+              property variable 309 "$a"literals b->

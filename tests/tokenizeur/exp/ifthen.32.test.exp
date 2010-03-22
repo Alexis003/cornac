@@ -1,0 +1,26 @@
+Travail sur le fichier tests/tokenizeur/scripts/ifthen.32.test.php 
+tests/tokenizeur/scripts/ifthen.32.test.php
+  codephp <?php
+
+  code : 
+      ifthen if
+      Condition 0) 
+          parentheses 
+          ( "literals 1" )
+          block 
+          0 : 
+              affectation 
+              droite : 
+                  variable 309 "$x"
+               "=" 
+              gauche : 
+                  literals 1
+       else 
+          block 
+          0 : 
+              affectation 
+              droite : 
+                  variable 309 "$x"
+               "=" 
+              gauche : 
+                  literals 2

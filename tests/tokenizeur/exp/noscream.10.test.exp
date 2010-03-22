@@ -1,0 +1,12 @@
+Travail sur le fichier tests/tokenizeur/scripts/noscream.10.test.php 
+tests/tokenizeur/scripts/noscream.10.test.php
+  codephp <?php
+
+  code : 
+      noscream @
+          method_static 
+          307 "x"::functioncall 307 "y" ( ( ) ) : 
+              functioncall y
+              appel de fonction : y: 
+                  arglist 
+                  Liste d'argument vide

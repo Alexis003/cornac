@@ -1,0 +1,7 @@
+Travail sur le fichier tests/tokenizeur/scripts/plusplus.15.test.php 
+tests/tokenizeur/scripts/plusplus.15.test.php
+  codephp <?php
+
+  code : 
+      variable variable 309 "$i"297 "++" 
+          variable variable 309 "$i"

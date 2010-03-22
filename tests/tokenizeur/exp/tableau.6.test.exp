@@ -1,0 +1,16 @@
+Travail sur le fichier tests/tokenizeur/scripts/tableau.6.test.php 
+tests/tokenizeur/scripts/tableau.6.test.php
+  codephp <?php
+
+  code : 
+      functioncall echo
+      appel de fonction : echo: 
+          arglist 
+          0 : 
+              tableau
+                  variable 309 "$TABINDEX"
+                  concatenation 
+                  0 : 
+                      literals 'bt_racc'
+                  1 : 
+                      variable 309 "$i"

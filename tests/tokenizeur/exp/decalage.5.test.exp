@@ -1,0 +1,12 @@
+Travail sur le fichier tests/tokenizeur/scripts/decalage.5.test.php 
+tests/tokenizeur/scripts/decalage.5.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$x"
+       "=" 
+      gauche : 
+          parentheses 
+          ( "decalage method variable 309 "$y"->functioncall 307 "z" ( arglist(variable 309 "$a") )   286 ">>"  literals 1 " )

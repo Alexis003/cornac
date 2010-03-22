@@ -1,0 +1,7 @@
+Travail sur le fichier tests/tokenizeur/scripts/return.4.test.php 
+tests/tokenizeur/scripts/return.4.test.php
+  codephp <?php
+
+  code : 
+      _return 
+      return : "parentheses (literals 1)"

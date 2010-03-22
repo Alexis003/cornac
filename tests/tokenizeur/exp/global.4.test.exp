@@ -1,0 +1,20 @@
+Travail sur le fichier tests/tokenizeur/scripts/global.4.test.php 
+tests/tokenizeur/scripts/global.4.test.php
+  codephp <?php
+
+  code : 
+      sequence 
+      0 : 
+          affectation 
+          droite : 
+              variable 309 "$a"
+           "=" 
+          gauche : 
+              literals 1
+      1 : 
+          _global 
+          0 : 
+              variable 309 "$x"
+      2 : 
+          variable 309 "$x"297 "++" 
+              variable 309 "$x"

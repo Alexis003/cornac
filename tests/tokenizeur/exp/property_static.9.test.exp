@@ -1,0 +1,10 @@
+Travail sur le fichier tests/tokenizeur/scripts/property_static.9.test.php 
+tests/tokenizeur/scripts/property_static.9.test.php
+  codephp <?php
+
+  code : 
+      functioncall unset
+      appel de fonction : unset: 
+          arglist 
+          0 : 
+              property property_static 307 "self"::variable 309 "$a"variable 309 "$b"->

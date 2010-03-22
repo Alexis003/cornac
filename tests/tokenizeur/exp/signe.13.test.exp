@@ -1,0 +1,13 @@
+Travail sur le fichier tests/tokenizeur/scripts/signe.13.test.php 
+tests/tokenizeur/scripts/signe.13.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$x"
+       "=" 
+      gauche : 
+          signe  "-"parentheses (operation literals 1  "+" literals 2)
+              parentheses 
+              ( "operation literals 1  "+" literals 2" )

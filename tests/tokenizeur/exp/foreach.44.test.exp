@@ -1,0 +1,9 @@
+Travail sur le fichier tests/tokenizeur/scripts/foreach.44.test.php 
+tests/tokenizeur/scripts/foreach.44.test.php
+  codephp <?php
+
+  code : 
+      _foreach (noscream @ as  => variable 309 "$a")
+          block 
+          0 : 
+              literals 1

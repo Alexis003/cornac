@@ -1,0 +1,11 @@
+Travail sur le fichier tests/tokenizeur/scripts/logique.7.test.php 
+tests/tokenizeur/scripts/logique.7.test.php
+  codephp <?php
+
+  code : 
+      logique 
+      droite : 
+          variable 309 "$x"
+      operateur : 278 "||"
+      gauche : 
+          property variable 309 "$y"literals z->

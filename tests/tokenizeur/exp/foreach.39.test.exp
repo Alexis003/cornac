@@ -1,0 +1,18 @@
+Travail sur le fichier tests/tokenizeur/scripts/foreach.39.test.php 
+tests/tokenizeur/scripts/foreach.39.test.php
+  codephp <?php 
+  code : 
+      _foreach (cast (array) as  => variable 309 "$b")
+          block 
+          0 : 
+              rawtext 
+              Texte : "311 "    ""
+          1 : 
+              functioncall echo
+              appel de fonction : echo: 
+                  arglist 
+                  0 : 
+                      literals 1
+          2 : 
+              rawtext 
+              Texte : "311 """

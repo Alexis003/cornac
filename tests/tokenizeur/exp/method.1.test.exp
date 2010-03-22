@@ -1,0 +1,11 @@
+Travail sur le fichier tests/tokenizeur/scripts/method.1.test.php 
+tests/tokenizeur/scripts/method.1.test.php
+  codephp <?php
+
+  code : 
+      method variable 309 "$x"
+      appel de methode : functioncall 307 "y" ( ( ) ) : 
+          functioncall y
+          appel de fonction : y: 
+              arglist 
+              Liste d'argument vide

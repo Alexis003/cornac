@@ -1,0 +1,15 @@
+Travail sur le fichier tests/tokenizeur/scripts/operation.29.test.php 
+tests/tokenizeur/scripts/operation.29.test.php
+  codephp <?php 
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$a"
+      277 "+=" 
+      gauche : 
+          operation 
+          droite : 
+              property_static 307 "self"::tableau variable 309 "$b"[variable 309 "$c"]->
+          operation :  "+"
+          gauche : 
+              literals 86400

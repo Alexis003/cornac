@@ -1,0 +1,15 @@
+Travail sur le fichier tests/tokenizeur/scripts/opappend.7.test.php 
+tests/tokenizeur/scripts/opappend.7.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          opappend [[][]
+              opappend [[][]
+                  opappend [[][]
+                      variable 309 "$lines"[]
+                          variable 309 "$lines"
+       "=" 
+      gauche : 
+          literals 1

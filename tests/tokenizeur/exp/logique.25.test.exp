@@ -1,0 +1,18 @@
+Travail sur le fichier tests/tokenizeur/scripts/logique.25.test.php 
+tests/tokenizeur/scripts/logique.25.test.php
+  codephp <?php
+
+  code : 
+      noscream @
+          functioncall chmod
+          appel de fonction : chmod: 
+              arglist 
+              0 : 
+                  variable 309 "$fichier"
+              1 : 
+                  logique 
+                  droite : 
+                      constante (                      _SPIP_CHMOD )
+                  operateur :  "&"
+                  gauche : 
+                      literals 0666

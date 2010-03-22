@@ -1,0 +1,27 @@
+Travail sur le fichier tests/tokenizeur/scripts/logique.20.test.php 
+tests/tokenizeur/scripts/logique.20.test.php
+  codephp <?php
+
+  code : 
+      sequence 
+      0 : 
+          logique 
+          droite : 
+              variable 309 "$x"
+          operateur : 279 "&&"
+          gauche : 
+              variable 309 "$y"
+      1 : 
+          logique 
+          droite : 
+              variable 309 "$a"
+          operateur : 279 "&&"
+          gauche : 
+              variable 309 "$b"
+      2 : 
+          logique 
+          droite : 
+              variable 309 "$c"
+          operateur : 279 "&&"
+          gauche : 
+              variable 309 "$d"

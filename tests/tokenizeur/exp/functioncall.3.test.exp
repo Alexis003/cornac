@@ -1,0 +1,12 @@
+Travail sur le fichier tests/tokenizeur/scripts/functioncall.3.test.php 
+tests/tokenizeur/scripts/functioncall.3.test.php
+  codephp <?php
+
+  code : 
+      functioncall x
+      appel de fonction : x: 
+          arglist 
+          0 : 
+              literals 1
+          1 : 
+              literals 2

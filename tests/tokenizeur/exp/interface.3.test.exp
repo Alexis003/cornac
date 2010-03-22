@@ -1,0 +1,10 @@
+Travail sur le fichier tests/tokenizeur/scripts/interface.3.test.php 
+tests/tokenizeur/scripts/interface.3.test.php
+  codephp <?php 
+  code : 
+      _interface constante a
+       extends constante b, 307 "c"
+          block 
+          0 : 
+              function literals x ( )
+                  block 

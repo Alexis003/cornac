@@ -1,0 +1,7 @@
+Travail sur le fichier tests/tokenizeur/scripts/invert.1.test.php 
+tests/tokenizeur/scripts/invert.1.test.php
+  codephp <?php
+
+  code : 
+      invert ~
+          variable 309 "$x"

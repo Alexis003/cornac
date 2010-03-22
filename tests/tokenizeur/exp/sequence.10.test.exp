@@ -1,0 +1,56 @@
+Travail sur le fichier tests/tokenizeur/scripts/sequence.10.test.php 
+tests/tokenizeur/scripts/sequence.10.test.php
+  codephp <?php
+
+  code : 
+      sequence 
+      0 : 
+          affectation 
+          droite : 
+              property variable 309 "$pagination"literals enregistrement->
+           "=" 
+          gauche : 
+              property tableau variable 309 "$_SESSION"[literals 'init_infos']literals nb_pet_liste->
+      1 : 
+          affectation 
+          droite : 
+              property variable 309 "$pagination"literals col_nom->
+           "=" 
+          gauche : 
+              concatenation 
+              0 : 
+                  literals "nom_col"
+              1 : 
+                  property variable 309 "$pagination"literals col_id->
+              2 : 
+                  literals "_9"
+      2 : 
+          affectation 
+          droite : 
+              property variable 309 "$pagination"literals col_sens->
+           "=" 
+          gauche : 
+              literals "DESC"
+      3 : 
+          method variable 309 "$pagination"
+          appel de methode : functioncall 307 "fct_tri" ( ( ) ) : 
+              functioncall fct_tri
+              appel de fonction : fct_tri: 
+                  arglist 
+                  Liste d'argument vide
+      4 : 
+          logique 
+          droite : 
+              method tableau variable 309 "$_SESSION"[literals 'cligraph']
+              appel de methode : functioncall 307 "connect" ( ( ) ) : 
+                  functioncall connect
+                  appel de fonction : connect: 
+                      arglist 
+                      Liste d'argument vide
+          operateur : 263 "or"
+          gauche : 
+              functioncall die
+              appel de fonction : die: 
+                  arglist 
+                  0 : 
+                      property tableau variable 309 "$_SESSION"[literals 'cligraph']literals errormsg->

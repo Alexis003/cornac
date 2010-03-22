@@ -1,0 +1,24 @@
+Travail sur le fichier tests/tokenizeur/scripts/ifthen.6.test.php 
+tests/tokenizeur/scripts/ifthen.6.test.php
+  codephp <?php
+
+  code : 
+      ifthen if
+      Condition 0) 
+          parentheses 
+          ( "variable 309 "$condition"" )
+          block 
+          0 : 
+              literals "a"
+       else 
+          ifthen if
+          Condition 0) 
+              parentheses 
+              ( "variable 309 "$condition"" )
+              block 
+              0 : 
+                  literals "b"
+           else 
+              block 
+              0 : 
+                  literals "c"

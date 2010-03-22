@@ -1,0 +1,28 @@
+Travail sur le fichier tests/tokenizeur/scripts/clevaleur.3.test.php 
+tests/tokenizeur/scripts/clevaleur.3.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$TABINDEX"
+       "=" 
+      gauche : 
+          functioncall array
+          appel de fonction : array: 
+              arglist 
+              0 : 
+                  literals "bouton0" => preplusplus variable 309 "$nbtab"297 "++"
+                      literals "bouton0"
+                      297 "++"variable 309 "$nbtab" 
+                          variable 309 "$nbtab"
+              1 : 
+                  literals "bouton1" => preplusplus variable 309 "$nbtab"297 "++"
+                      literals "bouton1"
+                      297 "++"variable 309 "$nbtab" 
+                          variable 309 "$nbtab"
+              2 : 
+                  literals "bouton2" => preplusplus variable 309 "$nbtab"297 "++"
+                      literals "bouton2"
+                      297 "++"variable 309 "$nbtab" 
+                          variable 309 "$nbtab"

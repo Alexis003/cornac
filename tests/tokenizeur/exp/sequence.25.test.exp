@@ -1,0 +1,33 @@
+Travail sur le fichier tests/tokenizeur/scripts/sequence.25.test.php 
+tests/tokenizeur/scripts/sequence.25.test.php
+  codephp <?php
+
+  code : 
+      sequence 
+      0 : 
+          affectation 
+          droite : 
+              variable 309 "$a"
+           "=" 
+          gauche : 
+              literals ''
+      1 : 
+          affectation 
+          droite : 
+              variable 309 "$b"
+           "=" 
+          gauche : 
+              literals 'c'
+      2 : 
+          ifthen if
+          Condition 0) 
+              parentheses 
+              ( "comparaison variable 309 "$d" 288 "instanceof" constante e" )
+              block 
+              0 : 
+                  affectation 
+                  droite : 
+                      variable 309 "$f"
+                   "=" 
+                  gauche : 
+                      literals 'g'

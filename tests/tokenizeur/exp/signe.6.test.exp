@@ -1,0 +1,12 @@
+Travail sur le fichier tests/tokenizeur/scripts/signe.6.test.php 
+tests/tokenizeur/scripts/signe.6.test.php
+  codephp <?php
+
+  code : 
+      comparaison 
+      droite : 
+          literals 1
+      operateur : 283 "=="
+      gauche : 
+          signe  "-"literals 1
+              literals 1

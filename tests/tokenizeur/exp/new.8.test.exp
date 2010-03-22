@@ -1,0 +1,11 @@
+Travail sur le fichier tests/tokenizeur/scripts/new.8.test.php 
+tests/tokenizeur/scripts/new.8.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$x"
+       "=" 
+      gauche : 
+           new  "$t" ( ) 

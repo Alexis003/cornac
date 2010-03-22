@@ -1,0 +1,11 @@
+Travail sur le fichier tests/tokenizeur/scripts/while.2.test.php 
+tests/tokenizeur/scripts/while.2.test.php
+  codephp <?php
+
+  code : 
+      _dowhile 
+          block 
+          0 : 
+              literals 1
+          parentheses 
+          ( "literals 2" )

@@ -1,0 +1,15 @@
+Travail sur le fichier tests/tokenizeur/scripts/switch.5.test.php 
+tests/tokenizeur/scripts/switch.5.test.php
+  codephp <?php
+
+  code : 
+      _switch 
+          parentheses 
+          ( "literals 1" )
+          block 
+          0 : 
+              _case 
+                  literals 2
+                  block 
+                  0 : 
+                      literals 3

@@ -1,0 +1,20 @@
+Travail sur le fichier tests/tokenizeur/scripts/signe.12.test.php 
+tests/tokenizeur/scripts/signe.12.test.php
+  codephp <?php
+
+  code : 
+      functioncall print
+      appel de fonction : print: 
+          arglist 
+          0 : 
+              operation 
+              droite : 
+                  variable 309 "$a"
+              operation :  "-"
+              gauche : 
+                  signe  "+"signe  "+"signe  "-"signe  "+"signe  "+"variable 309 "$b"
+                      signe  "+"signe  "-"signe  "+"signe  "+"variable 309 "$b"
+                          signe  "-"signe  "+"signe  "+"variable 309 "$b"
+                              signe  "+"signe  "+"variable 309 "$b"
+                                  signe  "+"variable 309 "$b"
+                                      variable 309 "$b"

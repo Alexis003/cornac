@@ -1,0 +1,10 @@
+Travail sur le fichier tests/tokenizeur/scripts/constante.2.test.php 
+tests/tokenizeur/scripts/constante.2.test.php
+  codephp <?php
+
+  code : 
+      functioncall print
+      appel de fonction : print: 
+          arglist 
+          0 : 
+              constante (              __CLASS__ )

@@ -1,0 +1,11 @@
+Travail sur le fichier tests/tokenizeur/scripts/new.13.test.php 
+tests/tokenizeur/scripts/new.13.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$a"
+       "=" 
+      gauche : 
+           new method variable 309 "$b"->functioncall 307 "c" ( arglist(variable 309 "$d") )  ( ) 

@@ -1,0 +1,27 @@
+Travail sur le fichier tests/tokenizeur/scripts/block.7.test.php 
+tests/tokenizeur/scripts/block.7.test.php
+  codephp <?php
+
+  code : 
+      sequence 
+      0 : 
+          ifthen if
+          Condition 0) 
+              parentheses 
+              ( "comparaison constante OFF 283 "==" functioncall 307 "a" ( arglist(literals 'b') ) " )
+              block 
+              0 : 
+                  functioncall c
+                  appel de fonction : c: 
+                      arglist 
+                      0 : 
+                          literals 'd.php'
+      1 : 
+          rawtext 
+          Texte : "311 """
+      2 : 
+          functioncall a
+          appel de fonction : a: 
+              arglist 
+              0 : 
+                  literals 1

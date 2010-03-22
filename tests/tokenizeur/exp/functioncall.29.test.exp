@@ -1,0 +1,9 @@
+Travail sur le fichier tests/tokenizeur/scripts/functioncall.29.test.php 
+tests/tokenizeur/scripts/functioncall.29.test.php
+  codephp <?php
+
+  code : 
+      functioncall exit
+      appel de fonction : exit: 
+          arglist 
+          0 : 

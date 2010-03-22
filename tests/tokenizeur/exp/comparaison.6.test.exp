@@ -1,0 +1,13 @@
+Travail sur le fichier tests/tokenizeur/scripts/comparaison.6.test.php 
+tests/tokenizeur/scripts/comparaison.6.test.php
+  codephp <?php
+
+  code : 
+      ifthen if
+      Condition 0) 
+          parentheses 
+          ( "comparaison variable 309 "$x" 288 "instanceof" constante Exception" )
+          block 
+          0 : 
+              _return 
+              return : "constante false"

@@ -1,0 +1,21 @@
+Travail sur le fichier tests/tokenizeur/scripts/array.9.test.php 
+tests/tokenizeur/scripts/array.9.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$z"
+       "=" 
+      gauche : 
+          functioncall array
+          appel de fonction : array: 
+              arglist 
+              0 : 
+                  literals 'a' => functioncall 0 "$c" ( arglist(literals 'b') ) 
+                      literals 'a'
+                      functioncall $c
+                      appel de fonction : $c: 
+                          arglist 
+                          0 : 
+                              literals 'b'

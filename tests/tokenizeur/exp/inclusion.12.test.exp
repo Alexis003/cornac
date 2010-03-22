@@ -1,0 +1,9 @@
+Travail sur le fichier tests/tokenizeur/scripts/inclusion.12.test.php 
+tests/tokenizeur/scripts/inclusion.12.test.php
+  codephp <?php
+
+  code : 
+      inclusion include
+          tableau
+              variable 309 "$a"
+              literals 'b'

@@ -1,0 +1,7 @@
+Travail sur le fichier tests/tokenizeur/scripts/typehint.2.test.php 
+tests/tokenizeur/scripts/typehint.2.test.php
+  codephp <?php
+
+  code : 
+      function literals x arglist(typehint 307 "Stdclass" variable 309 "$defaults")
+          block 

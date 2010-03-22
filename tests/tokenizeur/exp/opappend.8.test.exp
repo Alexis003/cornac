@@ -1,0 +1,16 @@
+Travail sur le fichier tests/tokenizeur/scripts/opappend.8.test.php 
+tests/tokenizeur/scripts/opappend.8.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          tableau opappend [[][literals 'adf'][]
+              tableau
+                  opappend [[][]
+                      variable 309 "$lines"[]
+                          variable 309 "$lines"
+                  literals 'adf'
+       "=" 
+      gauche : 
+          literals 1

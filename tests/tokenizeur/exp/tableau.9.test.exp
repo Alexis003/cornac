@@ -1,0 +1,15 @@
+Travail sur le fichier tests/tokenizeur/scripts/tableau.9.test.php 
+tests/tokenizeur/scripts/tableau.9.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$v"
+       "=" 
+      gauche : 
+          tableau
+              tableau
+                  variable 309 "$ret"
+                  literals 2
+              literals 0

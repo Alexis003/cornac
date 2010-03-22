@@ -1,0 +1,20 @@
+Travail sur le fichier tests/tokenizeur/scripts/noscream.8.test.php 
+tests/tokenizeur/scripts/noscream.8.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$functions"
+       "=" 
+      gauche : 
+          cdtternaire ?
+          noscream @ ? literals '' : literals 'bzopen'
+              noscream @
+                  functioncall function_exists
+                  appel de fonction : function_exists: 
+                      arglist 
+                      0 : 
+                          literals 'bzopen'
+              literals ''
+              literals 'bzopen'

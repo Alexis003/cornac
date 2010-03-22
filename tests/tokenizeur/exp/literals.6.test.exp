@@ -1,0 +1,18 @@
+Travail sur le fichier tests/tokenizeur/scripts/literals.6.test.php 
+tests/tokenizeur/scripts/literals.6.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$x"
+       "=" 
+      gauche : 
+          functioncall range
+          appel de fonction : range: 
+              arglist 
+              0 : 
+                  signe  "-"literals 1
+                      literals 1
+              1 : 
+                  literals 2

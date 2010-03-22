@@ -1,0 +1,26 @@
+Travail sur le fichier tests/tokenizeur/scripts/logique.5.test.php 
+tests/tokenizeur/scripts/logique.5.test.php
+  codephp <?php
+
+  code : 
+      logique 
+      droite : 
+          logique 
+          droite : 
+              logique 
+              droite : 
+                  logique 
+                  droite : 
+                      literals 1
+                  operateur : 265 "and"
+                  gauche : 
+                      literals 2
+              operateur : 263 "or"
+              gauche : 
+                  literals 3
+          operateur : 264 "xor"
+          gauche : 
+              literals 4
+      operateur : 265 "and"
+      gauche : 
+          literals 5

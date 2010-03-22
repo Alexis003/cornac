@@ -1,0 +1,10 @@
+Travail sur le fichier tests/tokenizeur/scripts/functioncall.12.test.php 
+tests/tokenizeur/scripts/functioncall.12.test.php
+  codephp <?php
+
+  code : 
+      functioncall print
+      appel de fonction : print: 
+          arglist 
+          0 : 
+              literals "oui"

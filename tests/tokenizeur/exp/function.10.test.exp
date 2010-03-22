@@ -1,0 +1,14 @@
+Travail sur le fichier tests/tokenizeur/scripts/function.10.test.php 
+tests/tokenizeur/scripts/function.10.test.php
+  codephp <?php
+
+  code : 
+      function literals x ( )
+          block 
+          0 : 
+              affectation 
+              droite : 
+                  variable 309 "$x"
+               "=" 
+              gauche : 
+                  literals 1

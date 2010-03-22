@@ -1,0 +1,26 @@
+Travail sur le fichier tests/tokenizeur/scripts/operation.22.test.php 
+tests/tokenizeur/scripts/operation.22.test.php
+  codephp <?php
+
+  code : 
+      operation 
+      droite : 
+          parentheses 
+          ( "cdtternaire ?" )
+      operation :  "*"
+      gauche : 
+          functioncall $sorter
+          appel de fonction : $sorter: 
+              arglist 
+              0 : 
+                  tableau
+                      variable 309 "$a"
+                      tableau
+                          variable 309 "$GLOBALS"
+                          literals 'callback_sort_by'
+              1 : 
+                  tableau
+                      variable 309 "$b"
+                      tableau
+                          variable 309 "$GLOBALS"
+                          literals 'callback_sort_by'

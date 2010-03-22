@@ -1,0 +1,20 @@
+Travail sur le fichier tests/tokenizeur/scripts/affectation.19.test.php 
+tests/tokenizeur/scripts/affectation.19.test.php
+  codephp <?php
+
+  code : 
+      functioncall z
+      appel de fonction : z: 
+          arglist 
+          0 : 
+               argument et initialisation 
+                  variable 309 "$a"
+                  literals 1
+          1 : 
+               argument et initialisation 
+                  variable 309 "$b"
+                  literals 2
+          2 : 
+               argument et initialisation 
+                  variable 309 "$c"
+                  literals 3

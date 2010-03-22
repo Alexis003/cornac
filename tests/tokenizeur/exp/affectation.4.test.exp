@@ -1,0 +1,15 @@
+Travail sur le fichier tests/tokenizeur/scripts/affectation.4.test.php 
+tests/tokenizeur/scripts/affectation.4.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$x"
+       "=" 
+      gauche : 
+          cdtternaire ?
+          variable 309 "$b" ? literals 1 : literals 2
+              variable 309 "$b"
+              literals 1
+              literals 2

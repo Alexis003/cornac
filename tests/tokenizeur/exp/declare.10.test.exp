@@ -1,0 +1,16 @@
+Travail sur le fichier tests/tokenizeur/scripts/declare.10.test.php 
+tests/tokenizeur/scripts/declare.10.test.php
+  codephp <?php
+
+  code : 
+      _declare 
+         ticks = literals 1
+         encoding = 
+          block 
+          0 : 
+              affectation 
+              droite : 
+                  variable 309 "$b"
+               "=" 
+              gauche : 
+                  variable 309 "$a"

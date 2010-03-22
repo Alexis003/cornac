@@ -1,0 +1,17 @@
+Travail sur le fichier tests/tokenizeur/scripts/concatenation.20.test.php 
+tests/tokenizeur/scripts/concatenation.20.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$x"
+       "=" 
+      gauche : 
+          concatenation 
+          0 : 
+              literals (
+          1 : 
+              variable variable 309 "$derivedSelect"
+          2 : 
+              literals )

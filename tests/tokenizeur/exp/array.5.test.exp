@@ -1,0 +1,12 @@
+Travail sur le fichier tests/tokenizeur/scripts/array.5.test.php 
+tests/tokenizeur/scripts/array.5.test.php
+  codephp <?php
+
+  code : 
+      functioncall array
+      appel de fonction : array: 
+          arglist 
+          0 : 
+              literals 1 => literals 2
+                  literals 1
+                  literals 2

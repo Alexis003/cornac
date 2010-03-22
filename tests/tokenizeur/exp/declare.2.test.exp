@@ -1,0 +1,8 @@
+Travail sur le fichier tests/tokenizeur/scripts/declare.2.test.php 
+tests/tokenizeur/scripts/declare.2.test.php
+  codephp <?php
+
+  code : 
+      _declare 
+         ticks = 
+         encoding = literals 'ISO-8859-1'

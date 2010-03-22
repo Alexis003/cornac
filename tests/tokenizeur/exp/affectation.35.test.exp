@@ -1,0 +1,21 @@
+Travail sur le fichier tests/tokenizeur/scripts/affectation.35.test.php 
+tests/tokenizeur/scripts/affectation.35.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          functioncall list
+          appel de fonction : list: 
+              arglist 
+              0 : 
+                  variable 309 "$x"
+       "=" 
+      gauche : 
+          functioncall explode
+          appel de fonction : explode: 
+              arglist 
+              0 : 
+                  literals 'a'
+              1 : 
+                  literals 'abacada'

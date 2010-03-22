@@ -1,0 +1,7 @@
+Travail sur le fichier tests/tokenizeur/scripts/inclusion.11.test.php 
+tests/tokenizeur/scripts/inclusion.11.test.php
+  codephp <?php
+
+  code : 
+      inclusion include
+          constante_static (          307 "a"::constante b )

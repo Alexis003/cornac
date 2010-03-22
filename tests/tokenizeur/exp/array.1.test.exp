@@ -1,0 +1,9 @@
+Travail sur le fichier tests/tokenizeur/scripts/array.1.test.php 
+tests/tokenizeur/scripts/array.1.test.php
+  codephp <?php
+
+  code : 
+      functioncall array
+      appel de fonction : array: 
+          arglist 
+          Liste d'argument vide

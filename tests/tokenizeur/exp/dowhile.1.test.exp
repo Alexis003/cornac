@@ -1,0 +1,16 @@
+Travail sur le fichier tests/tokenizeur/scripts/dowhile.1.test.php 
+tests/tokenizeur/scripts/dowhile.1.test.php
+  codephp <?php
+
+  code : 
+      _dowhile 
+          block 
+          0 : 
+              affectation 
+              droite : 
+                  variable 309 "$x"
+               "=" 
+              gauche : 
+                  literals 1
+          parentheses 
+          ( "comparaison variable 309 "$x" 283 "==" literals 3" )

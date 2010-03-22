@@ -1,0 +1,6 @@
+Travail sur le fichier tests/tokenizeur/scripts/property.8.test.php 
+tests/tokenizeur/scripts/property.8.test.php
+  codephp <?php
+
+  code : 
+      property functioncall 307 "f" ( arglist(variable 309 "$a") ) literals p->

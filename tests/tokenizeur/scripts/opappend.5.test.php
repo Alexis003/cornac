@@ -1,0 +1,3 @@
+<?php
+   $coll[]->url = $file;
+?>

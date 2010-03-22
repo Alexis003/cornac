@@ -1,0 +1,20 @@
+Travail sur le fichier tests/tokenizeur/scripts/method_static.4.test.php 
+tests/tokenizeur/scripts/method_static.4.test.php
+  codephp <?php 
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$result"
+       "=" 
+      gauche : 
+          method_static 
+          307 "self"::functioncall 0 "$a" ( arglist(variable 309 "$b", variable 309 "$c", variable 309 "$d") ) : 
+              functioncall $a
+              appel de fonction : $a: 
+                  arglist 
+                  0 : 
+                      variable 309 "$b"
+                  1 : 
+                      variable 309 "$c"
+                  2 : 
+                      variable 309 "$d"

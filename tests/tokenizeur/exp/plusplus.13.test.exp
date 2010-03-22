@@ -1,0 +1,13 @@
+Travail sur le fichier tests/tokenizeur/scripts/plusplus.13.test.php 
+tests/tokenizeur/scripts/plusplus.13.test.php
+  rawtext 
+  Texte : "311 " ""
+  codephp <?php 
+  code : 
+      affectation 
+      droite : 
+          property variable 309 "$this"literals a->
+       "=" 
+      gauche : 
+          property_static 307 "self"::variable 309 "$b"297 "++" 
+              property_static 307 "self"::variable 309 "$b"->

@@ -1,0 +1,10 @@
+Travail sur le fichier tests/tokenizeur/scripts/affectation.44.test.php 
+tests/tokenizeur/scripts/affectation.44.test.php
+  codephp <?php
+
+  code : 
+      ifthen if
+      Condition 0) 
+          parentheses 
+          ( "tableau variable 309 "$a"[affectation variable 309 "$i"  "=" method property variable 309 "$c"->literals e->functioncall 307 "d" ( ( ) ) ]" )
+          block 

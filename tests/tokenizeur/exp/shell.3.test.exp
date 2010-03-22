@@ -1,0 +1,19 @@
+Travail sur le fichier tests/tokenizeur/scripts/shell.3.test.php 
+tests/tokenizeur/scripts/shell.3.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$x"
+       "=" 
+      gauche : 
+          functioncall strtolower
+          appel de fonction : strtolower: 
+              arglist 
+              0 : 
+                  shell 
+                  0 : 
+                      variable property variable 309 "$file"->literals x
+                  1 : 
+                      literals  sf 

@@ -1,0 +1,17 @@
+Travail sur le fichier tests/tokenizeur/scripts/constante_static.2.test.php 
+tests/tokenizeur/scripts/constante_static.2.test.php
+  codephp <?php
+
+  code : 
+      ifthen if
+      Condition 0) 
+          parentheses 
+          ( "comparaison functioncall 307 "fopen" ( arglist(variable 309 "$nom", constante_static 307 "CLASSE"::constante CREATE) )  280 "!==" constante TRUE" )
+          block 
+          0 : 
+              affectation 
+              droite : 
+                  variable 309 "$x"
+               "=" 
+              gauche : 
+                  literals 1

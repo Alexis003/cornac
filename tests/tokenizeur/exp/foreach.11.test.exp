@@ -1,0 +1,23 @@
+Travail sur le fichier tests/tokenizeur/scripts/foreach.11.test.php 
+tests/tokenizeur/scripts/foreach.11.test.php
+  codephp <?php
+
+  code : 
+      _foreach (variable 309 "$keys" as variable 309 "$keypos" => variable 309 "$key")
+          block 
+          0 : 
+              functioncall array_splice
+              appel de fonction : array_splice: 
+                  arglist 
+                  0 : 
+                      variable 309 "$address"
+                  1 : 
+                      operation 
+                      droite : 
+                          variable 309 "$key"
+                      operation :  "-"
+                      gauche : 
+                          parentheses 
+                          ( "operation operation variable 309 "$keypos"  "*" literals 2  "+" literals 1" )
+                  2 : 
+                      literals 2

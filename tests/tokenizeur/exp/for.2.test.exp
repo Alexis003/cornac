@@ -1,0 +1,23 @@
+Travail sur le fichier tests/tokenizeur/scripts/for.2.test.php 
+tests/tokenizeur/scripts/for.2.test.php
+  codephp <?php
+
+  code : 
+      _for 
+        Init : affectation variable 309 "$i"  "=" literals 0;
+        Fin  : comparaison variable 309 "$i"  "<" functioncall 307 "count" ( arglist(variable 309 "$tab_rac") ) ;
+        Incr : postplusplus 297 "++"variable 309 "$i";
+          block 
+          0 : 
+              literals 1
+          1 : 
+              affectation 
+              droite : 
+                  tableau
+                      tableau
+                          variable 309 "$x"
+                          literals 1
+                      literals 2
+               "=" 
+              gauche : 
+                  literals 2

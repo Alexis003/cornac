@@ -1,0 +1,28 @@
+Travail sur le fichier tests/tokenizeur/scripts/operation.38.test.php 
+tests/tokenizeur/scripts/operation.38.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$x"
+       "=" 
+      gauche : 
+          operation 
+          droite : 
+              noscream @
+                  functioncall number_format
+                  appel de fonction : number_format: 
+                      arglist 
+                      0 : 
+                          operation 
+                          droite : 
+                              variable 309 "$a"
+                          operation :  "/"
+                          gauche : 
+                              variable 309 "$b"
+                      1 : 
+                          literals 2
+          operation :  "*"
+          gauche : 
+              variable 309 "$c"

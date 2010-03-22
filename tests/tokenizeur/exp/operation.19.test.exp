@@ -1,0 +1,13 @@
+Travail sur le fichier tests/tokenizeur/scripts/operation.19.test.php 
+tests/tokenizeur/scripts/operation.19.test.php
+  codephp <?php
+
+  code : 
+      operation 
+      droite : 
+          literals 1
+      operation :  "*"
+      gauche : 
+          tableau
+              variable 309 "$code"
+              literals 2

@@ -1,0 +1,17 @@
+Travail sur le fichier tests/tokenizeur/scripts/tableau.5.test.php 
+tests/tokenizeur/scripts/tableau.5.test.php
+  codephp <?php
+
+  code : 
+      tableau
+          tableau
+              variable 309 "$GLOBALS"
+              literals '_TABLE_CORRESPONDANCE_MENU'
+          tableau
+              variable 309 "$tb_menu_racc"
+              operation 
+              droite : 
+                  variable 309 "$i"
+              operation :  "-"
+              gauche : 
+                  literals 1

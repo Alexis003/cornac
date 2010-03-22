@@ -1,0 +1,13 @@
+Travail sur le fichier tests/tokenizeur/scripts/foreach.9.test.php 
+tests/tokenizeur/scripts/foreach.9.test.php
+  codephp <?php
+
+  code : 
+      _foreach (functioncall 307 "array_keys" ( arglist(variable 309 "$x") )  as  => variable 309 "$k")
+          block 
+          0 : 
+              functioncall print
+              appel de fonction : print: 
+                  arglist 
+                  0 : 
+                      variable 309 "$k"

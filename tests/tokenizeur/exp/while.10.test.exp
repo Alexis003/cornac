@@ -1,0 +1,24 @@
+Travail sur le fichier tests/tokenizeur/scripts/while.10.test.php 
+tests/tokenizeur/scripts/while.10.test.php
+  codephp <?php
+
+  code : 
+      _while 
+          parentheses 
+          ( "comparaison postplusplus 296 "--"variable 309 "$a"  ">" literals 0" )
+          block 
+          0 : 
+              affectation 
+              droite : 
+                  variable 309 "$b"[]
+                      variable 309 "$b"
+               "=" 
+              gauche : 
+                  concatenation 
+                  0 : 
+                      literals ""
+                  1 : 
+                      tableau
+                          variable 309 "$d"
+                          variable 309 "$e"297 "++" 
+                              variable 309 "$e"

@@ -1,0 +1,9 @@
+Travail sur le fichier tests/tokenizeur/scripts/foreach.30.test.php 
+tests/tokenizeur/scripts/foreach.30.test.php
+  codephp <?php
+
+  code : 
+      _foreach (variable 309 "$a" as variable 309 "$b" => variable 309 "$c")
+          block 
+          0 : 
+              _continue2 

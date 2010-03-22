@@ -1,0 +1,21 @@
+Travail sur le fichier tests/tokenizeur/scripts/functioncall.47.test.php 
+tests/tokenizeur/scripts/functioncall.47.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          noscream @
+              functioncall list
+              appel de fonction : list: 
+                  arglist 
+                  0 : 
+                      variable 309 "$a"
+                  1 : 
+                      variable 309 "$b"
+       "=" 
+      gauche : 
+          functioncall func_get_args
+          appel de fonction : func_get_args: 
+              arglist 
+              Liste d'argument vide

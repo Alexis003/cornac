@@ -1,0 +1,13 @@
+Travail sur le fichier tests/tokenizeur/scripts/foreach.4.test.php 
+tests/tokenizeur/scripts/foreach.4.test.php
+  codephp <?php 
+  code : 
+      _foreach (tableau variable 309 "$a"[literals 1] as  => variable 309 "$b")
+          block 
+          0 : 
+              affectation 
+              droite : 
+                  variable 309 "$x"
+               "=" 
+              gauche : 
+                  literals 1

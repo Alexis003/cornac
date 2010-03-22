@@ -1,0 +1,9 @@
+Travail sur le fichier tests/tokenizeur/scripts/noscream.4.test.php 
+tests/tokenizeur/scripts/noscream.4.test.php
+  codephp <?php
+
+  code : 
+      noscream @
+          tableau
+              variable 309 "$x"
+              literals 1

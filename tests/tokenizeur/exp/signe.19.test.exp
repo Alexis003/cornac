@@ -1,0 +1,13 @@
+Travail sur le fichier tests/tokenizeur/scripts/signe.19.test.php 
+tests/tokenizeur/scripts/signe.19.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$a"
+       "=" 
+      gauche : 
+          cast (295 "(int)")signe  "-"literals 3
+              signe  "-"literals 3
+                  literals 3

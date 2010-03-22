@@ -1,0 +1,13 @@
+Travail sur le fichier tests/tokenizeur/scripts/affectation.12.test.php 
+tests/tokenizeur/scripts/affectation.12.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$row"
+       "=" 
+      gauche : 
+          tableau
+              variable 309 "$result"
+              literals 0

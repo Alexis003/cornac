@@ -1,0 +1,12 @@
+Travail sur le fichier tests/tokenizeur/scripts/opappend.1.test.php 
+tests/tokenizeur/scripts/opappend.1.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$x"[]
+              variable 309 "$x"
+       "=" 
+      gauche : 
+          literals 1

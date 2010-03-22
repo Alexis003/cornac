@@ -1,0 +1,27 @@
+Travail sur le fichier tests/tokenizeur/scripts/affectation.25.test.php 
+tests/tokenizeur/scripts/affectation.25.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          noscream @
+              variable 309 "$x"
+       "=" 
+      gauche : 
+          cdtternaire ?
+          comparaison variable 309 "$y" 283 "==" signe  "-"literals 1 ? affectation variable 309 "$z"  "=" literals 2 : variable 309 "$a"
+              comparaison 
+              droite : 
+                  variable 309 "$y"
+              operateur : 283 "=="
+              gauche : 
+                  signe  "-"literals 1
+                      literals 1
+              affectation 
+              droite : 
+                  variable 309 "$z"
+               "=" 
+              gauche : 
+                  literals 2
+              variable 309 "$a"

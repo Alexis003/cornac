@@ -1,0 +1,22 @@
+Travail sur le fichier tests/tokenizeur/scripts/functioncall.41.test.php 
+tests/tokenizeur/scripts/functioncall.41.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          functioncall list
+          appel de fonction : list: 
+              arglist 
+              0 : 
+                  property_static 307 "a"::tableau variable 309 "$b"[literals 'c']->
+              1 : 
+                  variable 309 "$d"
+       "=" 
+      gauche : 
+          method_static 
+          307 "e"::functioncall 307 "f" ( ( ) ) : 
+              functioncall f
+              appel de fonction : f: 
+                  arglist 
+                  Liste d'argument vide
