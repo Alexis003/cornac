@@ -1,0 +1,305 @@
+digraph G {
+size="8,6"; ratio=fill; node[fontsize=24];
+"/batchs/db_v3stock_to_v4.php" -> "/include/toolfunctions.inc";
+"/batchs/db_v3stock_to_v4.php" -> "/include/database/mysql_DB.inc";
+"/batchs/db_v3stock_to_v4.php" -> "/include/config.inc.php";
+"/html/cde/bak/cde_cde_ent.php" -> "/include/toolfunctions.inc";
+"/html/cde/bak/cde_cde_ent.php" -> "/include/session_open_run.inc";
+"/html/cde/bak/cde_cde_ent.php" -> "/include/config.inc.php";
+"/html/cde/bak/cde_cde_ent.php" -> "/include/db_open.inc";
+"/html/cde/bak/cde_cde_ent.php" -> "/include/Basic/Basic.inc";
+"/html/cde/bak/cde_cde_ent.php" -> "/include/Commandes/Commandes.inc";
+"/html/cde/bak/cde_cde_ent.php" -> "/html/cde/cde_sommaire.php";
+"/html/cde/bak/cde_cde_ent.php" -> "/html/tools/multiform_caller.inc";
+"/html/cde/bak/cde_cde_lig.php" -> "/include/toolfunctions.inc";
+"/html/cde/bak/cde_cde_lig.php" -> "/include/session_open_run.inc";
+"/html/cde/bak/cde_cde_lig.php" -> "/include/config.inc.php";
+"/html/cde/bak/cde_cde_lig.php" -> "/include/db_open.inc";
+"/html/cde/bak/cde_cde_lig.php" -> "/include/Basic/Basic.inc";
+"/html/cde/bak/cde_cde_lig.php" -> "/include/Commandes/Commandes.inc";
+"/html/cde/bak/cde_cde_lig.php" -> "/html/cde/cde_sommaire.php";
+"/html/cde/bak/cde_cde_lig.php" -> "/html/tools/multiform_caller.inc";
+"/html/cde/bak/cde_search_cdes.php" -> "/include/session_open_run.inc";
+"/html/cde/bak/cde_search_cdes.php" -> "/include/config.inc.php";
+"/html/cde/bak/cde_search_cdes.php" -> "/include/toolfunctions.inc";
+"/html/cde/bak/cde_search_cdes.php" -> "/include/db_open.inc";
+"/html/cde/bak/cde_search_cdes.php" -> "/include/Basic/Basic.inc";
+"/html/cde/bak/cde_search_cdes.php" -> "/include/Commandes/Commandes.inc";
+"/html/cde/bak/cde_search_cdes.php" -> "/html/cde/cde_sommaire.php";
+"/html/cde/bak/cde_vague_build.php" -> "/include/toolfunctions.inc";
+"/html/cde/bak/cde_vague_build.php" -> "/include/session_open_run.inc";
+"/html/cde/bak/cde_vague_build.php" -> "/include/config.inc.php";
+"/html/cde/bak/cde_vague_build.php" -> "/include/db_open.inc";
+"/html/cde/bak/cde_vague_build.php" -> "/include/Basic/Basic.inc";
+"/html/cde/bak/cde_vague_build.php" -> "/include/Commandes/Commandes.inc";
+"/html/cde/bak/cde_vague_build.php" -> "/include/ChargeManager/ChargeManager.inc";
+"/html/cde/bak/cde_vague_build.php" -> "/html/cde/cde_sommaire.php";
+"/html/cde/bak/cde_vague_build.php" -> "/html/tools/multiform_caller.inc";
+"/html/cde/bak/chr_vague_cde.php" -> "/include/toolfunctions.inc";
+"/html/cde/bak/chr_vague_cde.php" -> "/include/session_open_run.inc";
+"/html/cde/bak/chr_vague_cde.php" -> "/include/config.inc.php";
+"/html/cde/bak/chr_vague_cde.php" -> "/include/db_open.inc";
+"/html/cde/bak/chr_vague_cde.php" -> "/include/Basic/Basic.inc";
+"/html/cde/bak/chr_vague_cde.php" -> "/include/ChargeManager/ChargeManager.inc";
+"/html/cde/bak/chr_vague_cde.php" -> "/html/cde/cde_sommaire.php";
+"/html/cde/bak/chr_vague_cde.php" -> "/html/tools/multiform_caller.inc";
+"/html/cde/cde__cfg_ol_infos.php" -> "/include/toolfunctions.inc";
+"/html/cde/cde__cfg_ol_infos.php" -> "/include/session_open_run.inc";
+"/html/cde/cde__cfg_ol_infos.php" -> "/include/config.inc.php";
+"/html/cde/cde__cfg_ol_infos.php" -> "/include/db_open.inc";
+"/html/cde/cde__cfg_ol_infos.php" -> "/include/Basic/Basic.inc";
+"/html/cde/cde__cfg_ol_infos.php" -> "/include/Commandes/Commandes.inc";
+"/html/cde/cde__cfg_ol_infos.php" -> "/html/cde/cde_sommaire.php";
+"/html/cde/cde__cfg_ol_infos.php" -> "/html/tools/multiform_caller.inc";
+"/html/cde/cde_sommaire.php" -> "/include/session_open_run.inc";
+"/html/cde/cde_sommaire.php" -> "/include/config.inc.php";
+"/html/cde/cde_sommaire.php" -> "/include/database/mysql_DB.inc";
+"/html/cde/cde_sommaire.php" -> "/include/db_open.inc";
+"/html/cde/cde_sommaire.php" -> "/include/Basic/Basic.inc";
+"/html/cde/cde_sommaire.php" -> "/include/Commandes/Commandes.inc";
+"/html/cde/cde_sommaire.php" -> "/html/top.php";
+"/html/eqp/eqp_engins.php" -> "/include/toolfunctions.inc";
+"/html/eqp/eqp_engins.php" -> "/include/session_open_run.inc";
+"/html/eqp/eqp_engins.php" -> "/include/config.inc.php";
+"/html/eqp/eqp_engins.php" -> "/include/db_open.inc";
+"/html/eqp/eqp_engins.php" -> "/include/Basic/Basic.inc";
+"/html/eqp/eqp_engins.php" -> "/include/Equip/Equip.inc";
+"/html/eqp/eqp_engins.php" -> "/include/Stock/Stock.inc";
+"/html/eqp/eqp_engins.php" -> "/html/eqp/eqp_sommaire.php";
+"/html/eqp/eqp_engins.php" -> "/html/tools/multiform_caller.inc";
+"/html/eqp/eqp_people.php" -> "/include/toolfunctions.inc";
+"/html/eqp/eqp_people.php" -> "/include/session_open_run.inc";
+"/html/eqp/eqp_people.php" -> "/include/config.inc.php";
+"/html/eqp/eqp_people.php" -> "/include/db_open.inc";
+"/html/eqp/eqp_people.php" -> "/include/Basic/Basic.inc";
+"/html/eqp/eqp_people.php" -> "/include/Equip/Equip.inc";
+"/html/eqp/eqp_people.php" -> "/include/Stock/Stock.inc";
+"/html/eqp/eqp_people.php" -> "/html/eqp/eqp_sommaire.php";
+"/html/eqp/eqp_people.php" -> "/html/tools/multiform_caller.inc";
+"/html/eqp/eqp_softusers.php" -> "/include/toolfunctions.inc";
+"/html/eqp/eqp_softusers.php" -> "/include/session_open_run.inc";
+"/html/eqp/eqp_softusers.php" -> "/include/config.inc.php";
+"/html/eqp/eqp_softusers.php" -> "/include/db_open.inc";
+"/html/eqp/eqp_softusers.php" -> "/include/Basic/Basic.inc";
+"/html/eqp/eqp_softusers.php" -> "/include/Equip/Equip.inc";
+"/html/eqp/eqp_softusers.php" -> "/include/Stock/Stock.inc";
+"/html/eqp/eqp_softusers.php" -> "/html/eqp/eqp_sommaire.php";
+"/html/eqp/eqp_softusers.php" -> "/html/tools/multiform_caller.inc";
+"/html/exp/exp_sommaire.php" -> "/include/session_open_run.inc";
+"/html/exp/exp_sommaire.php" -> "/include/config.inc.php";
+"/html/exp/exp_sommaire.php" -> "/include/database/mysql_DB.inc";
+"/html/exp/exp_sommaire.php" -> "/include/db_open.inc";
+"/html/exp/exp_sommaire.php" -> "/html/top.php";
+"/html/menu.php" -> "/include/session_open_run.inc";
+"/html/menu.php" -> "/include/config.inc.php";
+"/html/menu.php" -> "/html/top.php";
+"/html/mvt/mvt__cfg_in_infos.php" -> "/include/toolfunctions.inc";
+"/html/mvt/mvt__cfg_in_infos.php" -> "/include/session_open_run.inc";
+"/html/mvt/mvt__cfg_in_infos.php" -> "/include/config.inc.php";
+"/html/mvt/mvt__cfg_in_infos.php" -> "/include/db_open.inc";
+"/html/mvt/mvt__cfg_in_infos.php" -> "/include/Basic/Basic.inc";
+"/html/mvt/mvt__cfg_in_infos.php" -> "/include/MvtsIn/MvtsIn.inc";
+"/html/mvt/mvt__cfg_in_infos.php" -> "/html/mvt/mvt_sommaire.php";
+"/html/mvt/mvt__cfg_in_infos.php" -> "/html/tools/multiform_caller.inc";
+"/html/mvt/mvt_in_doc.php" -> "/include/toolfunctions.inc";
+"/html/mvt/mvt_in_doc.php" -> "/include/session_open_run.inc";
+"/html/mvt/mvt_in_doc.php" -> "/include/config.inc.php";
+"/html/mvt/mvt_in_doc.php" -> "/include/db_open.inc";
+"/html/mvt/mvt_in_doc.php" -> "/include/Basic/Basic.inc";
+"/html/mvt/mvt_in_doc.php" -> "/include/MvtsIn/MvtsIn.inc";
+"/html/mvt/mvt_in_doc.php" -> "/include/Prep/Prep.inc";
+"/html/mvt/mvt_in_doc.php" -> "/html/top.php";
+"/html/mvt/mvt_in_doc.php" -> "/html/mvt/mvt_sommaire.php";
+"/html/mvt/mvt_in_doc.php" -> "/html/tools/multiform_caller.inc";
+"/html/mvt/mvt_in_list.php" -> "/include/toolfunctions.inc";
+"/html/mvt/mvt_in_list.php" -> "/include/session_open_run.inc";
+"/html/mvt/mvt_in_list.php" -> "/include/config.inc.php";
+"/html/mvt/mvt_in_list.php" -> "/include/db_open.inc";
+"/html/mvt/mvt_in_list.php" -> "/include/Basic/Basic.inc";
+"/html/mvt/mvt_in_list.php" -> "/include/MvtsIn/MvtsIn.inc";
+"/html/mvt/mvt_in_list.php" -> "/include/_IO_custom/IO_custom_procedures.inc";
+"/html/mvt/mvt_in_list.php" -> "/html/mvt/mvt_sommaire.php";
+"/html/mvt/mvt_in_list.php" -> "/html/tools/multiform_caller.inc";
+"/html/mvt/mvt_in_mags_edit.php" -> "/include/toolfunctions.inc";
+"/html/mvt/mvt_in_mags_edit.php" -> "/include/session_open_run.inc";
+"/html/mvt/mvt_in_mags_edit.php" -> "/include/config.inc.php";
+"/html/mvt/mvt_in_mags_edit.php" -> "/include/db_open.inc";
+"/html/mvt/mvt_in_mags_edit.php" -> "/include/Basic/Basic.inc";
+"/html/mvt/mvt_in_mags_edit.php" -> "/include/Refs/Refs.inc";
+"/html/mvt/mvt_in_mags_edit.php" -> "/include/Stock/Stock.inc";
+"/html/mvt/mvt_in_mags_edit.php" -> "/html/mvt/mvt_sommaire.php";
+"/html/mvt/mvt_in_mags_edit.php" -> "/html/tools/multiform_caller.inc";
+"/html/mvt/mvt_in_planning.php" -> "/include/toolfunctions.inc";
+"/html/mvt/mvt_in_planning.php" -> "/include/session_open_run.inc";
+"/html/mvt/mvt_in_planning.php" -> "/include/config.inc.php";
+"/html/mvt/mvt_in_planning.php" -> "/include/db_open.inc";
+"/html/mvt/mvt_in_planning.php" -> "/include/Basic/Basic.inc";
+"/html/mvt/mvt_in_planning.php" -> "/include/Refs/Refs.inc";
+"/html/mvt/mvt_in_planning.php" -> "/include/Stock/Stock.inc";
+"/html/mvt/mvt_in_planning.php" -> "/include/MvtsIn/MvtsIn.inc";
+"/html/mvt/mvt_in_planning.php" -> "/html/mvt/mvt_sommaire.php";
+"/html/mvt/mvt_in_planning.php" -> "/html/tools/multiform_caller.inc";
+"/html/mvt/mvt_sommaire.php" -> "/include/session_open_run.inc";
+"/html/mvt/mvt_sommaire.php" -> "/include/config.inc.php";
+"/html/mvt/mvt_sommaire.php" -> "/include/database/mysql_DB.inc";
+"/html/mvt/mvt_sommaire.php" -> "/include/db_open.inc";
+"/html/mvt/mvt_sommaire.php" -> "/html/top.php";
+"/html/prp/prp_sommaire.php" -> "/include/session_open_run.inc";
+"/html/prp/prp_sommaire.php" -> "/include/config.inc.php";
+"/html/prp/prp_sommaire.php" -> "/include/database/mysql_DB.inc";
+"/html/prp/prp_sommaire.php" -> "/include/db_open.inc";
+"/html/prp/prp_sommaire.php" -> "/include/Basic/Basic.inc";
+"/html/prp/prp_sommaire.php" -> "/html/top.php";
+"/html/rep/rep_sommaire.php" -> "/include/session_open_run.inc";
+"/html/rep/rep_sommaire.php" -> "/include/config.inc.php";
+"/html/rep/rep_sommaire.php" -> "/include/database/mysql_DB.inc";
+"/html/rep/rep_sommaire.php" -> "/include/db_open.inc";
+"/html/rep/rep_sommaire.php" -> "/html/top.php";
+"/html/stk/stk_adrlog_mag.php" -> "/include/toolfunctions.inc";
+"/html/stk/stk_adrlog_mag.php" -> "/include/session_open_run.inc";
+"/html/stk/stk_adrlog_mag.php" -> "/include/config.inc.php";
+"/html/stk/stk_adrlog_mag.php" -> "/include/db_open.inc";
+"/html/stk/stk_adrlog_mag.php" -> "/include/Basic/Basic.inc";
+"/html/stk/stk_adrlog_mag.php" -> "/include/Stock/Stock.inc";
+"/html/stk/stk_adrlog_mag.php" -> "/html/stk/stk_sommaire.php";
+"/html/stk/stk_adrlog_mag.php" -> "/html/tools/multiform_caller.inc";
+"/html/stk/stk_adrs_allee.php" -> "/include/toolfunctions.inc";
+"/html/stk/stk_adrs_allee.php" -> "/include/session_open_run.inc";
+"/html/stk/stk_adrs_allee.php" -> "/include/config.inc.php";
+"/html/stk/stk_adrs_allee.php" -> "/include/db_open.inc";
+"/html/stk/stk_adrs_allee.php" -> "/include/Basic/Basic.inc";
+"/html/stk/stk_adrs_allee.php" -> "/include/Stock/Stock.inc";
+"/html/stk/stk_adrs_allee.php" -> "/html/stk/stk_sommaire.php";
+"/html/stk/stk_adrs_allee.php" -> "/html/tools/multiform_caller.inc";
+"/html/stk/stk_adrs_mag.php" -> "/include/toolfunctions.inc";
+"/html/stk/stk_adrs_mag.php" -> "/include/session_open_run.inc";
+"/html/stk/stk_adrs_mag.php" -> "/include/config.inc.php";
+"/html/stk/stk_adrs_mag.php" -> "/include/db_open.inc";
+"/html/stk/stk_adrs_mag.php" -> "/include/Basic/Basic.inc";
+"/html/stk/stk_adrs_mag.php" -> "/include/Stock/Stock.inc";
+"/html/stk/stk_adrs_mag.php" -> "/html/stk/stk_sommaire.php";
+"/html/stk/stk_adrs_mag.php" -> "/html/tools/multiform_caller.inc";
+"/html/stk/stk_adrs_ssmag.php" -> "/include/toolfunctions.inc";
+"/html/stk/stk_adrs_ssmag.php" -> "/include/session_open_run.inc";
+"/html/stk/stk_adrs_ssmag.php" -> "/include/config.inc.php";
+"/html/stk/stk_adrs_ssmag.php" -> "/include/db_open.inc";
+"/html/stk/stk_adrs_ssmag.php" -> "/include/Basic/Basic.inc";
+"/html/stk/stk_adrs_ssmag.php" -> "/include/Stock/Stock.inc";
+"/html/stk/stk_adrs_ssmag.php" -> "/html/stk/stk_sommaire.php";
+"/html/stk/stk_adrs_ssmag.php" -> "/html/tools/multiform_caller.inc";
+"/html/stk/stk_profiles.php" -> "/include/toolfunctions.inc";
+"/html/stk/stk_profiles.php" -> "/include/session_open_run.inc";
+"/html/stk/stk_profiles.php" -> "/include/config.inc.php";
+"/html/stk/stk_profiles.php" -> "/include/db_open.inc";
+"/html/stk/stk_profiles.php" -> "/include/Basic/Basic.inc";
+"/html/stk/stk_profiles.php" -> "/include/Stock/Stock.inc";
+"/html/stk/stk_profiles.php" -> "/include/Refs/Refs.inc";
+"/html/stk/stk_profiles.php" -> "/html/stk/stk_sommaire.php";
+"/html/stk/stk_profiles.php" -> "/html/tools/multiform_caller.inc";
+"/html/stk/stk_refs.php" -> "/include/toolfunctions.inc";
+"/html/stk/stk_refs.php" -> "/include/session_open_run.inc";
+"/html/stk/stk_refs.php" -> "/include/config.inc.php";
+"/html/stk/stk_refs.php" -> "/include/db_open.inc";
+"/html/stk/stk_refs.php" -> "/include/Basic/Basic.inc";
+"/html/stk/stk_refs.php" -> "/include/Refs/Refs.inc";
+"/html/stk/stk_refs.php" -> "/include/Stock/Stock.inc";
+"/html/stk/stk_refs.php" -> "/html/stk/stk_sommaire.php";
+"/html/stk/stk_refs.php" -> "/html/tools/multiform_caller.inc";
+"/html/stk/stk_refs.php" -> "/include/_IO_custom/IO_custom_procedures.inc";
+"/html/stk/stk_service.php" -> "/include/toolfunctions.inc";
+"/html/stk/stk_service.php" -> "/include/session_open_run.inc";
+"/html/stk/stk_service.php" -> "/include/config.inc.php";
+"/html/stk/stk_service.php" -> "/include/db_open.inc";
+"/html/stk/stk_service.php" -> "/include/Basic/Basic.inc";
+"/html/stk/stk_service.php" -> "/include/Stock/Stock.inc";
+"/html/stk/stk_service.php" -> "/include/Refs/Refs.inc";
+"/html/stk/stk_service.php" -> "/html/stk/stk_sommaire.php";
+"/html/stk/stk_service.php" -> "/html/tools/multiform_caller.inc";
+"/html/stk/stk_sommaire.php" -> "/include/session_open_run.inc";
+"/html/stk/stk_sommaire.php" -> "/include/config.inc.php";
+"/html/stk/stk_sommaire.php" -> "/include/database/mysql_DB.inc";
+"/html/stk/stk_sommaire.php" -> "/include/db_open.inc";
+"/html/stk/stk_sommaire.php" -> "/html/top.php";
+"/html/tnt/tnt_sommaire.php" -> "/include/session_open_run.inc";
+"/html/tnt/tnt_sommaire.php" -> "/include/config.inc.php";
+"/html/tnt/tnt_sommaire.php" -> "/include/database/mysql_DB.inc";
+"/html/tnt/tnt_sommaire.php" -> "/include/db_open.inc";
+"/html/tnt/tnt_sommaire.php" -> "/html/top.php";
+"/include/_IO_custom/IO_custom.inc" -> "/include/Basic/_Manager.inc";
+"/include/_IO_custom/IO_custom.inc" -> "/include/Basic/Basic.inc";
+"/include/_IO_custom/IO_custom.inc" -> "/include/Refs/Refs.inc";
+"/include/_IO_custom/IO_custom.inc" -> "/include/Stock/Stock.inc";
+"/include/_IO_custom/IO_custom.inc" -> "/include/Commandes/Commandes.inc";
+"/include/_IO_custom/IO_custom.inc" -> "/include/MvtsBasic/MvtsBasic.inc";
+"/include/_IO_custom/IO_custom.inc" -> "/include/MvtsIn/MvtsIn.inc";
+"/include/Basic/Basic.inc" -> "/include/Basic/_Manager.inc";
+"/include/Basic/Basic.inc" -> "/include/tools/AdrBook.inc";
+"/include/ChargeManager/ChargeManager.inc" -> "/include/Basic/_Manager.inc";
+"/include/ChargeManager/ChargeManager.inc" -> "/include/Commandes/Commandes.inc";
+"/include/ChargeManager/ChargeManager.inc" -> "/include/ChargeManager/VagueEntCde.inc";
+"/include/ChargeManager/VagueEntCde.inc" -> "/include/tools/attribNo.inc";
+"/include/Commandes/Commandes.inc" -> "/include/Basic/_Manager.inc";
+"/include/Commandes/Commandes.inc" -> "/include/tools/LocksManager.inc";
+"/include/Commandes/Commandes.inc" -> "/include/Stock/Stock.inc";
+"/include/Commandes/Commandes.inc" -> "/include/StockAffectation/StockAffectation.inc";
+"/include/db_open.inc" -> "/include/database/mysql_DB.inc";
+"/include/Equip/Equip.inc" -> "/include/Basic/_Manager.inc";
+"/include/MvtsBasic/MvtsBasic.inc" -> "/include/Basic/_Manager.inc";
+"/include/MvtsIn/MvtsIn.inc" -> "/include/Basic/_Manager.inc";
+"/include/MvtsIn/MvtsIn.inc" -> "/include/Refs/Refs.inc";
+"/include/MvtsIn/MvtsIn.inc" -> "/include/Stock/Stock.inc";
+"/include/MvtsIn/MvtsIn.inc" -> "/include/StockAdressage/StockAdressage.inc";
+"/include/MvtsIn/MvtsIn.inc" -> "/include/MvtsBasic/MvtsBasic.inc";
+"/include/Prep/Prep.inc" -> "/include/Basic/_Manager.inc";
+"/include/Prep/Prep.inc" -> "/include/tools/LocksManager.inc";
+"/include/Prep/Prep.inc" -> "/include/MvtsIn/MvtsIn.inc";
+"/include/Prep/Prep.inc" -> "/include/Commandes/Commandes.inc";
+"/include/Prep/Prep.inc" -> "/include/Equip/Equip.inc";
+"/include/Refs/Refs.inc" -> "/include/Basic/_Manager.inc";
+"/include/Stock/Stock.inc" -> "/include/Basic/_Manager.inc";
+"/include/Stock/Stock.inc" -> "/include/tools/LocksManager.inc";
+"/include/StockAdressage/StockAdressage.inc" -> "/include/Basic/_Manager.inc";
+"/include/StockAdressage/StockAdressage.inc" -> "/include/Stock/Stock.inc";
+"/include/StockAffectation/StockAffectation.inc" -> "/include/Basic/_Manager.inc";
+"/include/StockAffectation/StockAffectation.inc" -> "/include/Stock/Stock.inc";
+"/include/StockAffectation/StockAffectation.inc" -> "/include/StockReappro/StockReappro.inc";
+"/include/StockReappro/StockReappro.inc" -> "/include/Basic/_Manager.inc";
+"/include/StockReappro/StockReappro.inc" -> "/include/Stock/Stock.inc";
+"/include/StockReappro/StockReappro.inc" -> "/include/StockAdressage/StockAdressage.inc";
+"/include/tools/AdrBook.inc" -> "/include/tools/attribNo.inc";
+
+subgraph "cluster_/batchs" { label="/batchs"; ""; }
+subgraph "cluster_/include" { label="/include"; "/include/toolfunctions.inc";"/include/config.inc.php";"/include/session_open_run.inc";"/include/db_open.inc"; }
+subgraph "cluster_/include/database" { label="/include/database"; "/include/database/mysql_DB.inc"; }
+subgraph "cluster_/html/_html_print" { label="/html/_html_print"; ""; }
+subgraph "cluster_Image" { label="Image"; ""; }
+subgraph "cluster_/html/cde/bak" { label="/html/cde/bak"; ""; }
+subgraph "cluster_/include/Basic" { label="/include/Basic"; "/include/Basic/Basic.inc";"/include/Basic/_Manager.inc"; }
+subgraph "cluster_/include/Commandes" { label="/include/Commandes"; "/include/Commandes/Commandes.inc"; }
+subgraph "cluster_/html/cde" { label="/html/cde"; "/html/cde/cde_sommaire.php"; }
+subgraph "cluster_/html/tools" { label="/html/tools"; "/html/tools/multiform_caller.inc"; }
+subgraph "cluster_." { label="."; ""; }
+subgraph "cluster_/include/ChargeManager" { label="/include/ChargeManager"; "/include/ChargeManager/ChargeManager.inc";"/include/ChargeManager/VagueEntCde.inc"; }
+subgraph "cluster_/html" { label="/html"; "/html/top.php"; }
+subgraph "cluster_/html/eqp" { label="/html/eqp"; "/html/eqp/eqp_sommaire.php"; }
+subgraph "cluster_/include/Equip" { label="/include/Equip"; "/include/Equip/Equip.inc"; }
+subgraph "cluster_/include/Stock" { label="/include/Stock"; "/include/Stock/Stock.inc"; }
+subgraph "cluster_/html/exp" { label="/html/exp"; ""; }
+subgraph "cluster_/html/mvt" { label="/html/mvt"; "/html/mvt/mvt_sommaire.php"; }
+subgraph "cluster_/include/MvtsIn" { label="/include/MvtsIn"; "/include/MvtsIn/MvtsIn.inc"; }
+subgraph "cluster_/include/Prep" { label="/include/Prep"; "/include/Prep/Prep.inc"; }
+subgraph "cluster_/include/TnT" { label="/include/TnT"; ""; }
+subgraph "cluster_/include/_IO_custom" { label="/include/_IO_custom"; "/include/_IO_custom/IO_custom_procedures.inc"; }
+subgraph "cluster_/include/Refs" { label="/include/Refs"; "/include/Refs/Refs.inc"; }
+subgraph "cluster_/html/prp" { label="/html/prp"; ""; }
+subgraph "cluster_/html/rep" { label="/html/rep"; ""; }
+subgraph "cluster_/html/stk" { label="/html/stk"; "/html/stk/stk_sommaire.php"; }
+subgraph "cluster_/html/tnt" { label="/html/tnt"; ""; }
+subgraph "cluster_/include/MvtsBasic" { label="/include/MvtsBasic"; "/include/MvtsBasic/MvtsBasic.inc"; }
+subgraph "cluster_/include/tools" { label="/include/tools"; "/include/tools/AdrBook.inc";"/include/tools/attribNo.inc";"/include/tools/LocksManager.inc"; }
+subgraph "cluster_/include/StockAffectation" { label="/include/StockAffectation"; "/include/StockAffectation/StockAffectation.inc"; }
+subgraph "cluster_/include/StockAdressage" { label="/include/StockAdressage"; "/include/StockAdressage/StockAdressage.inc"; }
+subgraph "cluster_/include/DMI" { label="/include/DMI"; ""; }
+subgraph "cluster_/include/StockReappro" { label="/include/StockReappro"; "/include/StockReappro/StockReappro.inc"; }
+
+}

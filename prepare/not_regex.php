@@ -1,0 +1,29 @@
+<?php
+
+class not_regex extends analyseur_regex {
+    function __construct() {
+        parent::__construct(array());
+    }
+
+    function getTokens() {
+        return array('!');
+    }
+    
+    function check($t) {
+        if (!$t->hasNext()) { return false; }
+
+        if ($t->checkNotClass('Token')) { return false; }
+        if ($t->getNext()->checkNotClass('Token') &&
+            (!$t->hasNext(2) || $t->getNext(1)->checkNotCode(array('=','->','[','(')))) {
+            $this->args = array(1);
+            $this->remove = array(1);
+
+            mon_log(get_class($t)." => ".__CLASS__);
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+
+?>
