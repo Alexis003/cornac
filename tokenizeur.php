@@ -5,7 +5,7 @@
 ini_set('memory_limit',234217728);
 
 $times = array('debut' => microtime(true));
-include('commun.php');
+include('prepare/commun.php');
 include('prepare/token_traite.php');
 
 // ** Capture du nom de l'application à auditer
