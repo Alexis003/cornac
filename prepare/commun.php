@@ -61,9 +61,9 @@ $EXPORTATEUR['limite'] = 10;
 /// configuration automatique
 //include('tokens.php');
 
-include('classes/modules.php');
-include('classes/oneliners.php');
-include('classes/native_php_functions.php');
+//include('classes/modules.php');
+//include('classes/oneliners.php');
+//include('classes/native_php_functions.php');
 
 $mid = mysqli_connect($ANALYSEUR['db']['host'],$ANALYSEUR['db']['login'],$ANALYSEUR['db']['password'],$ANALYSEUR['db']['database']);
 
