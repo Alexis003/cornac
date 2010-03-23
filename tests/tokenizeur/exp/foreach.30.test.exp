@@ -6,4 +6,4 @@ tests/tokenizeur/scripts/foreach.30.test.php
       _foreach (variable 309 "$a" as variable 309 "$b" => variable 309 "$c")
           block 
           0 : 
-              _continue2 
+              _continue "2" 
