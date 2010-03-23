@@ -7,6 +7,7 @@ ini_set('memory_limit',234217728);
 $times = array('debut' => microtime(true));
 include('prepare/commun.php');
 include('prepare/token_traite.php');
+include("prepare/analyseur.php");
 
 // ** Capture du nom de l'application à auditer
 $application = $ANALYSEUR['application'];
@@ -140,11 +141,13 @@ if ($id = array_search( '-d', $argv)) {
     $objects = new arrayIterator(array($fichier => $fichier));
     $scriptsPHP = new PHPFilter($objects);
 
-} else {
+} elseif ($path !== false) {
     print "Travail dans le dossier $path \n";
     // ajouter un système de detection des fichiers
     $objects = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path), RecursiveIteratorIterator::SELF_FIRST);
     $scriptsPHP = new PHPFilter($objects);
+} else {
+    help();
 }
 
 if ($id = array_search( '-v', $argv)) {
@@ -258,7 +261,6 @@ foreach($scriptsPHP as $name => $object){
        }
     } while ($t = $t->getNext());
 
-    include("prepare/analyseur.php");
     $analyseur = new analyseur();
 
     $nb_tokens_courant = -1;
@@ -522,6 +524,7 @@ function help() {
     -d : test all .php files of the folder
     -e : also open the file in an editor
     -l : activate log (in the file tokenizer.log)
+
 TEXT;
     
     die();
