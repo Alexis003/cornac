@@ -59,7 +59,7 @@ $EXPORTATEUR['limite'] = 10;
 
 
 /// configuration automatique
-include('tokens.php');
+//include('tokens.php');
 
 include('classes/modules.php');
 include('classes/oneliners.php');
