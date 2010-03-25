@@ -1,0 +1,20 @@
+Travail sur le fichier tests/tokenizeur/scripts/codephp.10.test.php 
+tests/tokenizeur/scripts/codephp.10.test.php
+  codephp <?php
+
+  code : 
+      sequence 
+      0 : 
+          logique 
+          droite : 
+              variable 309 "$x"
+          operateur :  "|"
+          gauche : 
+              variable 309 "$y"
+      1 : 
+          affectation 
+          droite : 
+              variable 309 "$x"
+           "=" 
+          gauche : 
+              literals 1
