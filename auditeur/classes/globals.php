@@ -1,8 +1,8 @@
 <?php
 
 class globals extends modules {
-    protected    $description = 'Liste des émissions d\'entêtes HTTP';
-    protected    $description_en = 'Where globals are declared';
+    protected    $description = 'Liste des variables globales utilisées';
+    protected    $description_en = 'Global variable list';
 
     function __construct($mid) {
         parent::__construct($mid);

@@ -113,6 +113,15 @@ class rendu {
         return __METHOD__;
     }
 
+    function affiche_cast($droite) {
+         $this->traite($droite + 1);
+         $expr = $this->lignes[$droite + 1];
+         $retour =  $this->lignes[$droite]['code']." {$expr}";
+         unset($this->lignes[$droite + 1]);
+
+         return $retour; 
+    }
+
     function affiche_comparaison($droite) {
         $retour = array();
 
@@ -253,6 +262,15 @@ class rendu {
         return " new ".$this->lignes[$droite + 1]['code']."";
     }
 
+    function affiche_noscream($droite) {
+         $this->traite($droite + 1);
+         $expr = $this->lignes[$droite + 1];
+         $retour = "@{$expr}";
+         unset($this->lignes[$droite + 1]);
+
+         return $retour; 
+    }
+
     function affiche_not($droite) {
         return __METHOD__;
     }
@@ -293,6 +311,15 @@ class rendu {
         unset($this->lignes[$droite + 1]);
         unset($this->lignes[$droite + 3]);
         return $retour; 
+    }
+
+    function affiche_postplusplus($droite) {
+         $this->traite($droite + 1);
+         $expr = $this->lignes[$droite + 1];
+         $retour = "{$expr}++";
+         unset($this->lignes[$droite + 1]);
+
+         return $retour; 
     }
 
     function affiche_rawtext($droite) {

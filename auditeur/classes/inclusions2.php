@@ -21,6 +21,9 @@ class inclusions2 extends modules {
 	        
 	        $code = str_replace('$server_root.','',$code);
 	        $code = str_replace('$app_root.','',$code);
+	        $code = str_replace('$html_root.','',$code);
+	        
+	        if (strpos('html_root', $code) !== false) { print "$code\nOui\n"; die();}
 	        $code = trim($code, "'\"");
 	        
 	        $ligne['fichier'] = str_replace('References/optima4','', $ligne['fichier']);
