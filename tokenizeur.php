@@ -115,7 +115,8 @@ if ($id = array_search( '-d', $argv)) {
 
         foreach($fichiers as $fichier) {
             $code = file_get_contents($fichier);
-            if (strpos($code, '<?php') === false) { continue; }
+            if (strpos($code, '<?') === false) { continue; }
+            
             $commande = "./tokenizeur.php -f $fichier -g ".GABARIT;
             print $commande. "\n";
             print shell_exec($commande);
@@ -202,7 +203,10 @@ foreach($scriptsPHP as $name => $object){
     $fichier = $name;
 
     $code = file_get_contents($name);
-    
+    if (preg_match('/<\?[^p]/is', $code) ) { 
+        $code = preg_replace('/<\\?([^p])/is', '<?php'."\n".'\1', $code);
+    }
+
     $brut = token_get_all($code);
     if (count($brut) == 0) {
         die();
