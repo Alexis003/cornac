@@ -3,9 +3,11 @@ tests/tokenizeur/scripts/while.2.test.php
   codephp <?php
 
   code : 
-      _dowhile 
-          block 
-          0 : 
-              literals 1
-          parentheses 
-          ( "literals 2" )
+      sequence 
+      0 : 
+          literals 1
+      1 : 
+          _while 
+              parentheses 
+              ( "literals 2" )
+              block 

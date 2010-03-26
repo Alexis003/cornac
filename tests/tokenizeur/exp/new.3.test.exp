@@ -3,4 +3,4 @@ tests/tokenizeur/scripts/new.3.test.php
   codephp <?php
 
   code : 
-       new  "$x" ( ) 
+       new variable 309 "$x" ( ) 

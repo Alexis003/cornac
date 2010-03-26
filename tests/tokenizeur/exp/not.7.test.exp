@@ -14,7 +14,7 @@ tests/tokenizeur/scripts/not.7.test.php
           1 : 
               literals /
           2 : 
-              variable property variable 309 "$b"->literals c
+              property variable 309 "$b"literals c->
           3 : 
               variable variable 309 "$d"
           4 : 

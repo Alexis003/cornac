@@ -8,4 +8,4 @@ tests/tokenizeur/scripts/new.9.test.php
           variable 309 "$x"
        "=" 
       gauche : 
-           new  "$classe" ( ) 
+           new variable variable 309 "$classe" ( ) 

@@ -3,7 +3,7 @@ include_once('Analyseur_Framework_TestCase.php');
 
 class Concatenation_Test extends Analyseur_Framework_TestCase
 {
-    /* 25 methodes */
+    /* 28 methodes */
     public function testConcatenation1()  { $this->generic_test('concatenation.1'); }
     public function testConcatenation2()  { $this->generic_test('concatenation.2'); }
     public function testConcatenation3()  { $this->generic_test('concatenation.3'); }
@@ -29,6 +29,9 @@ class Concatenation_Test extends Analyseur_Framework_TestCase
     public function testConcatenation23()  { $this->generic_test('concatenation.23'); }
     public function testConcatenation24()  { $this->generic_test('concatenation.24'); }
     public function testConcatenation25()  { $this->generic_test('concatenation.25'); }
+    public function testConcatenation26()  { $this->generic_test('concatenation.26'); }
+    public function testConcatenation27()  { $this->generic_test('concatenation.27'); }
+    public function testConcatenation28()  { $this->generic_test('concatenation.28'); }
 
 }
 

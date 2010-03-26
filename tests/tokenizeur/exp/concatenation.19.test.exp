@@ -10,26 +10,44 @@ tests/tokenizeur/scripts/concatenation.19.test.php
       gauche : 
           concatenation 
           0 : 
-              variable tableau variable 309 "$i"[literals 'a']
+              tableau
+                  variable 309 "$i"
+                  literals 'a'
           1 : 
               literals .
           2 : 
-              variable tableau variable 309 "$i"[literals 'b']
+              tableau
+                  variable 309 "$i"
+                  literals 'b'
           3 : 
               literals .
           4 : 
-              variable tableau variable 309 "$i"[literals 'c']
+              tableau
+                  variable 309 "$i"
+                  literals 'c'
           5 : 
               literals .
           6 : 
-              variable tableau variable 309 "$i"[literals 'd']
+              tableau
+                  variable 309 "$i"
+                  literals 'd'
           7 : 
               literals -
           8 : 
-              variable tableau variable 309 "$i"[literals 'e']
+              tableau
+                  variable 309 "$i"
+                  literals 'e'
           9 : 
-              variable tableau variable 309 "$i"[literals 'f']
+              tableau
+                  variable 309 "$i"
+                  literals 'f'
           10 : 
               literals .
           11 : 
-              variable tableau tableau tableau variable 309 "$i"[literals 'g'][literals 'x'][literals 'x']
+              tableau
+                  tableau
+                      tableau
+                          variable 309 "$i"
+                          literals 'g'
+                      literals 'x'
+                  literals 'x'

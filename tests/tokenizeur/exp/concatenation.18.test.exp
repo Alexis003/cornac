@@ -11,7 +11,7 @@ tests/tokenizeur/scripts/concatenation.18.test.php
               0 : 
                   literals a 
               1 : 
-                  variable property variable 309 "$this"->literals b
+                  property variable 309 "$this"literals b->
               2 : 
                   literals  c 
               3 : 

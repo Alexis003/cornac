@@ -8,4 +8,4 @@ tests/tokenizeur/scripts/new.7.test.php
           variable 309 "$x"
        "=" 
       gauche : 
-           new  "$t" ( ) 
+           new tableau variable 309 "$t"[literals 1] ( ) 

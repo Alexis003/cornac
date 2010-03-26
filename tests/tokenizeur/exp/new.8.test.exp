@@ -8,4 +8,4 @@ tests/tokenizeur/scripts/new.8.test.php
           variable 309 "$x"
        "=" 
       gauche : 
-           new  "$t" ( ) 
+           new property variable 309 "$t"->literals u ( ) 

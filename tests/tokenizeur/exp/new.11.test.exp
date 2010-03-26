@@ -8,4 +8,4 @@ tests/tokenizeur/scripts/new.11.test.php
           variable 309 "$x"
        "=" 
       gauche : 
-           new  "::" ( ) 
+           new property_static 307 "classe"::variable 309 "$property" ( ) 

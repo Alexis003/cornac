@@ -10,6 +10,8 @@ tests/tokenizeur/scripts/concatenation.24.test.php
       gauche : 
           concatenation 
           0 : 
-              variable tableau property variable 309 "$this"->literals properties[literals 'prefix']
+              tableau
+                  property variable 309 "$this"literals properties->
+                  literals 'prefix'
           1 : 
               property variable 309 "$node"literals id->

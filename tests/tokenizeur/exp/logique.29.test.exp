@@ -12,6 +12,6 @@ tests/tokenizeur/scripts/logique.29.test.php
           0 : 
               literals ^
           1 : 
-              variable property tableau property property variable 309 "$a"->literals b->literals d[variable 309 "$e"]->literals r
+              property tableau property property variable 309 "$a"->literals b->literals d[variable 309 "$e"]literals r->
   rawtext 
   Texte : "311 "  ""
