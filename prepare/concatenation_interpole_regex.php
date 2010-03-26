@@ -42,13 +42,25 @@ class concatenation_interpole_regex extends analyseur_regex {
         while ($var->checkNotCode($token_fin)) {
             if ($var->checkCode('{') && 
                 $var->getNext()->checkClass($this->sequence_classes) && 
-                  $var->getNext(1)->checkCode('}')) {
+                $var->getNext(1)->checkCode('}')) {
 
-                $regex = new modele_regex('variable',array(0), array(-1, 1));
-                Token::applyRegex($var->getNext(), 'variable', $regex);
+                if ($var->getNext()->checkClass(array('tableau','property'))) {
+                    $this->args[] = $pos + 1;
+                    
+                    $this->remove[] = $pos; 
+                    $this->remove[] = $pos + 1; 
+                    $this->remove[] = $pos + 2; 
+                    
+                    $pos += 3;
+                    $var = $var->getNext(2);
+                    continue;
+                } else {
+                    $regex = new modele_regex('variable',array(0), array(-1, 1));
+                    Token::applyRegex($var->getNext(), 'variable', $regex);
 
-                mon_log(get_class($var->getNext())." => ".get_class($var->getNext())." (".__CLASS__.")");
-                return false;
+                    mon_log(get_class($var->getNext())." => ".get_class($var->getNext())." (".__CLASS__.")");
+                    return false;
+                }
             }
 
             if ($var->checkNotClass($this->sequence_classes) &&

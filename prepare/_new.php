@@ -26,7 +26,9 @@ class _new extends instruction {
                 $this->args = $entree[1];
             }
         } elseif ($constructeur->checkClass(array('variable','tableau','property','property_static','method_static'))) {
-            $this->classe = new token_traite($constructeur->getCode());
+//            $this->classe = new token_traite($constructeur->getCode());
+            $this->classe = $constructeur;
+
             if (!isset($entree[1])) {
                 $this->args = new arglist();
             } else {

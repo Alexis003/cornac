@@ -416,6 +416,8 @@ class template_tree extends template {
     }
 
     function affiche_token_traite($noeud, $niveau) {
+        print get_class($noeud);
+    
         print str_repeat('  ', $niveau).$noeud->getCode()." \n";
     }
 

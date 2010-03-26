@@ -26,7 +26,7 @@ $modules = array('variables',
                  'classes_hierarchie',
                  );
 
-$modules = array('parentheses');
+$modules = array('globals');
 //$modules = array('classes');
 //$modules = array('classes_hierarchie');
 
