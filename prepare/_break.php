@@ -9,7 +9,7 @@ class _break extends instruction {
         if (!isset($expression[1])) {
             $this->niveaux = new token_traite(1);
         } else {
-            $this->niveaux = $expression[1]->getCode();
+            $this->niveaux =  new token_traite($expression[1]->getCode());
         }
     }
 

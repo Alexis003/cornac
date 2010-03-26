@@ -2,13 +2,13 @@
 
 class codephp extends instruction {
     
-    function __construct($php_code = null) {
+    function __construct($entree = null) {
         parent::__construct(array());
 
-        if (is_null($php_code)) {
+        if (is_null($entree)) {
             $this->php_code = new sequence(array());
         } else {
-            $this->php_code = $php_code[0];
+            $this->php_code = $entree[0];
         }
     }
 

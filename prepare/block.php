@@ -9,7 +9,7 @@ class block extends instruction {
         if (is_null($entree)) {
             $entree = array();
         }
-        
+
         foreach($entree as $l) {
             if (get_class($l) == 'sequence') {
                 $this->list = array_merge($this->list, $l->getElements());
@@ -33,6 +33,10 @@ class block extends instruction {
         return 0;
     }
 
+    function getCode() {
+        return '';
+    }
+
     function neutralise() {
         foreach($this->list as &$e) {
             $e->detach();
@@ -42,6 +46,7 @@ class block extends instruction {
     function getRegex(){
         return array('block_normal_regex',
                      'block_casedefault_regex',
+                     'block_opening_regex',
                     );
     }
 }
