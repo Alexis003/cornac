@@ -21,9 +21,14 @@ $modules = array('variables',
                  'headers',
                  'functions_frequency',
                  'globals',
+                 'inclusions2',
+                 'classes',
+                 'classes_hierarchie',
                  );
 
-//$modules = array('inclusions2');
+$modules = array('parentheses');
+//$modules = array('classes');
+//$modules = array('classes_hierarchie');
 
 foreach($modules as $module) {
     include('classes/'.$module.'.php');
