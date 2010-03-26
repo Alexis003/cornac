@@ -1,0 +1,73 @@
+Exporter vers MySQL
+  ++ attention aux classes (certaines notions ne sont plus différentiables en base)
+Relire depuis MySQL
+Mettre des tests unitaires pour l'auditeur
+
+Pouvoir paraleliser les analyses de code (gearman? une liste de fichier en base? Faire les fichiers récents ou qui n'ont pas été finis.. )
+
+Mettre un verificateur automatique de hasPrev et hasNext dans analyseur
+Faire un log d'utilité des tests
+
+Simplifier les sequences de 1
+
+retirer l'utilisation des getNext() dans les regex
+Utiliser un getNext() avec cache dans applyRegex
+Compter les GetNext et getPrev dans les stats
+
+appliquer immédiatement les litéraux pour ne pas faire un double passage
+
+mettre les code comme les tokens pour moreceler encore plus les recherches
+
+avoir une fonction qui 'prèfere' certain token, une fois qu'une classe a été ouverte
+
+prévoir un système pour modifier les conditions automatiquement, et voir si on peut en retirer / ajouter sans que cela pertrube les tests.
+
+Convertir les constructeurs à $entree, et vérifier leur nombre à chaque fois. 
+Ajouter des messages d'erreurs significatifs (actuellement, des DIE avec message en dure)
+
+Migrer la liste chaînée vers la SPL 
+
+Ajouter mon propre code dans reference.sh
+Ajouter elgg et OBM
+
+Pouvoir désactiver un token (suppréssion par défaut, si pas compris? )
+
+
+
+autres idées : 
+SImplifier le code, pour l'exprimer sous la forme de liens : entrant, combiné, sortant
+définition des fonctions/classes
+utilisation des fonctions et classes
+utilisations des globales
+query, protection, 
+
+Faire des statistiques globales sur toute l'application
+
+Faire des stats inversées (variables par fichiers, et fichiers par variables)
+
+Extraire le core d'un script (sans les définition, classes et fonctions)
+Extraire les affectations de variables (une a l'autre)
+Extraire les variables d'entrée et celles de sorties.
+utilisation des super globales (affectations, passages en paramètre, etc).
+identifications des variables de register globale
+Repérer le code PHP adns les commentaires
+Repérer le code SQL ou HTML dans les chaînes
+Extraire les interferances entre les noms (variables, constantes, fonctions, classes, HTML, SQL).
+Extraire les foreach simples (un ou deux lignes) : c'est souvent des opérations élémentaires de rattrappage d'une situation.
+
+Tokens : trouver le début de l'instruction.
+
+Repérer les regex utilisées
+
+Faire des tests unitaires sur les fonctions de soutien token_*
+Calculer le contexte courant (nom de la classe, fonction ou global)
+Calculer le numéro d'instruction (sortir un arbre d'exécution?)
+
+Faire un affichage par cle et par valeur de chaque tableau (cle => valeur). 
+
+produire un arbre d'appel des fonctions (quelle fonction appelle quelle autre), et passer le tout à graphviz
+
+Recherche d'une chaîne spéciale, indépendemment des tokens
+    Capitalisation des valeurs trouvées (via une base? ) 
+    Sélection de différents types de token trouvés
+
