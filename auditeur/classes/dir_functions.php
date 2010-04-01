@@ -1,6 +1,6 @@
 <?php
 
-class dir_functions extends modules_fonctions {
+class dir_functions extends functioncalls {
 	protected	$description = 'Liste des fonctions de dossier';
 	protected	$description_en = 'usage of directory functions';
 
@@ -11,9 +11,8 @@ class dir_functions extends modules_fonctions {
 	}
 	
 	public function analyse() {
-	    $functions = array('opendir','dir','unlink', 'rename','move_uploaded_files','is_uploaded_file','is_writeable');
-	    
-	    $this->analyse_function($functions);
+	    $this->functions = array('opendir','dir','unlink', 'rename','move_uploaded_files','is_uploaded_file','is_writeable');
+	    parent::analyse();
 	}
 }
 

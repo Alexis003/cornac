@@ -6,28 +6,35 @@ include 'classes/sommaire.php';
 $sommaire = new sommaire();
 
 include 'classes/modules.php';
-include 'classes/modules_fonctions.php';
+//include 'classes/modules_fonctions.php';
+include 'classes/functioncalls.php';
+include 'classes/typecalls.php';
 
-$modules = array('variables',
-                 'constantes',
-                 'evals',
-                 'dieexit',
-                 'vardump',
-                 'inclusions',
+$modules = array(
+                 'variables',
+                 
                  'emptyfunctions',
-                 'deffunctions',
-                 'dir_functions',
-                 'file_functions',
-                 'headers',
-                 'functions_frequency',
-                 'globals',
-                 'inclusions2',
                  'classes',
+                 'deffunctions',
+                 
+                 'functions_frequency',
+// dot (ou gex...)
+                 'inclusions2',
                  'classes_hierarchie',
                  );
 
-$modules = array('globals');
-//$modules = array('classes');
+$modules = array('constantes',
+                 'evals',
+                 'globals',
+                 'arobases',
+                 'vardump',
+                 'headers',
+                 'dieexit',
+                 'inclusions',
+                 'dir_functions',
+                 'file_functions');
+
+$modules = array('variables');
 //$modules = array('classes_hierarchie');
 
 foreach($modules as $module) {
