@@ -25,7 +25,7 @@ class variable extends token {
     }
     
     function neutralise() {
-        //  $this->code = $this->nom->getCode();
+        $this->nom->detach();
     }
 
     function getRegex(){
