@@ -25,29 +25,38 @@ class globals extends modules {
     
     */
 
-        $requete = "SELECT T2.code, COUNT(*) AS nb
+        $module = __CLASS__;
+        $requete = <<<SQL
+DELETE FROM rapport WHERE module='$module'
+SQL;
+        $res = $this->mid->query($requete);
+
+        $requete = <<<SQL
+INSERT INTO rapport 
+        SELECT 0, T2.fichier, replace(replace(T2.code,'\$"',''),"'",'') AS code, T2.id, '$module'
     FROM tokens T1
     JOIN tokens T2 
         ON T1.droite + 1 = T2.droite
     WHERE T1.type='_global' AND
           T2.fichier = T1.fichier
-    GROUP BY T2.code";
+SQL;
         $res = $this->mid->query($requete);
         $this->functions = array();
         while($ligne = $res->fetch(PDO::FETCH_ASSOC)) {
-            $this->functions[$ligne['code']] = $ligne['nb'];
+            $this->functions[trim($ligne['code'],'$\'"')] = $ligne['nb'];
             $this->occurrences++;
         }
-
+        
 // variables globales via $GLOBALS
-       $requete = "
-       select T2.code, T1.fichier, T2.gauche as gauche, T2.droite as droite, T2.fichier as fichier
-    from tokens T1
+       $requete = <<<SQL
+INSERT INTO rapport 
+SELECT 0, T2.fichier, replace(replace(T2.code,'\$"',''),"'",'') AS code, T2.id, '$module'
+    FROM tokens T1
     JOIN tokens T2 
         ON T1.droite + 2 = T2.droite
-    where T1.code = '\$GLOBALS' and 
+    WHERE T1.code = '\$GLOBALS' AND
           T1.fichier = T2.fichier;
-";
+SQL;
         $res = $this->mid->query($requete);
         include_once('classes/rendu.php');
         $rendu = new rendu($this->mid);
@@ -56,7 +65,7 @@ class globals extends modules {
 //            print $ligne["code"]."\t".$ligne["fichier"]."\n";
             $code = $rendu->rendu($ligne['droite'], $ligne['gauche'], $ligne['fichier']);
         
-            $this->functions[$ligne['code']] = 1;
+            $this->functions[trim($ligne['code'],'$\'"')] = 1;
             $this->occurrences++;
         }
     }

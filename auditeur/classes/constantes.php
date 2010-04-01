@@ -14,14 +14,23 @@ class constantes extends modules {
     }
 
 	public function analyse() {
-	    $requete = "select fichier, code, count(*) as nb from tokens where type = 'constante' group by fichier, code";
-	    $res = $this->mid->query($requete);
-	    $this->functions = array();
-	    while($ligne = $res->fetch(PDO::FETCH_ASSOC)) {
-	        $this->functions[$ligne['fichier']][$ligne['code']] = $ligne['nb'];
-	        $this->occurrences++;
-	    }
-        $this->fichiers_identifies = count($this->functions);
+        $module = __CLASS__;
+        $requete = <<<SQL
+DELETE FROM rapport WHERE module='{$this->name}'
+SQL;
+        $this->mid->query($requete);
+
+        $requete = <<<SQL
+INSERT INTO rapport 
+        SELECT 0, fichier, code AS code, id, '{$this->name}'
+    FROM tokens
+    WHERE type='constante'
+SQL;
+
+        $this->mid->query($requete);
+
+        $this->updateCache();
+        $this->functions = array();
 	}
 	
 }

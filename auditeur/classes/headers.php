@@ -1,6 +1,6 @@
 <?php
 
-class headers extends modules_fonctions {
+class headers extends functioncalls {
 	protected	$description = 'Liste des émissions d\'entêtes HTTP';
 	protected	$description_en = 'Where files are included';
 
@@ -11,9 +11,8 @@ class headers extends modules_fonctions {
 	}
 	
 	public function analyse() {
-	    $functions = array('headers','setcookie');
-	    
-	    $this->analyse_function($functions);
+        $this->functions = array('headers','setcookie');;
+        parent::analyse();
 	}
 }
 

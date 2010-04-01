@@ -21,9 +21,9 @@ class rendu {
             }
         }
         
-        if ($fichier == 'References/optima4/include/Refs/Reference.inc') {
-//            print_r($this->lignes);
-//            die();
+        if (!isset($debut)) {
+            print "$droite $gauche, $fichier\n$requete\n";
+            die();
         }
 
         $this->traite($debut);
