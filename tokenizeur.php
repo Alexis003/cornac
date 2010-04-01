@@ -18,6 +18,7 @@ $FIN['debut'] = microtime(true);
 
 $path = realpath($application);
 
+// @todo : exporter les informations d'options dans une inclusion
 if ($id = array_search( '-h', $argv)) {
     help();
 }
@@ -84,6 +85,29 @@ if ($id = array_search( '-i', $argv)) {
 } else {
     $limite = -1;
 }
+
+if ($id = array_search( '-I', $argv)) {
+    $ini = $argv[$id + 1];
+    
+    unset($argv[$id]);
+    unset($argv[$id + 1]);
+    
+    global $INI;
+    if (file_exists('ini/'.$ini)) {
+        define('INI','ini/'.$ini);
+    } elseif (file_exists('ini/'.$ini.".ini")) {
+        define('INI','ini/'.$ini.".ini");
+    } else {
+        define('INI','ini/'.'tokenizeur.ini');
+    }
+} else {
+    define('INI','ini/'.'tokenizeur.ini');
+}
+
+// @todo : que faire si on ne trouve même pas le .ini ? 
+global $INI;
+print "Fichier de directives : ".INI."\n";
+$INI = parse_ini_file(INI, true);
 
 if ($id = array_search( '-r', $argv)) {
     unset($argv[$id]);
@@ -258,7 +282,7 @@ foreach($scriptsPHP as $name => $object){
 
         if (VERBOSE) {
             print "$i) ".$t->getCode()."---- \n";
-            $template = getTemplate($root);
+            $template = getTemplate($root, $fichier);
             $template->affiche();
             unset($template);
             print "$i) ".$t->getCode()."---- \n";
@@ -292,7 +316,7 @@ foreach($scriptsPHP as $name => $object){
 
             if (VERBOSE) {
                 print "$i) ".$t->getCode()."---- \n";
-                $template = getTemplate($root);
+                $template = getTemplate($root, $fichier);
                 $template->affiche();
                 unset($template);
                 print "$i) ".$t->getCode()."---- \n";
@@ -348,7 +372,7 @@ foreach($scriptsPHP as $name => $object){
         $id++;
     }
    
-    $template = getTemplate($root);
+    $template = getTemplate($root, $fichier);
     $template->affiche();
     $template->save();
 
@@ -514,15 +538,16 @@ function mon_log($message) {
     fwrite($LOG, date('r')."\t$message\r");
 }
 
-function getTemplate($racine) {
+function getTemplate($racine, $fichier) {
     $classe  = "template_".GABARIT;
-    return new $classe($racine);
+    return new $classe($racine, $fichier);
 }
 
 function help() {
     print <<<TEXT
     -h : This help
     -i : number of cycles. Default to 
+    -I : ini file. Default to 'tokenizeur.ini'. 
     -S : display internal objects stats
     -f : work on this file
     -d : test all .php files of the folder
