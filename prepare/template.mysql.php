@@ -6,23 +6,31 @@ class template_mysql extends template {
     private $ligne = 0;
     private $scope = 'global';
     
-    function __construct($root) {
+    private $table = 'tokens';
+    
+    function __construct($root, $fichier = null) {
         parent::__construct();
         
-        $this->mysql = new pdo('mysql:dbname=analyseur;host=127.0.0.1','root','');
+        global $INI;
         
-//        $this->mysql->query('DROP TABLE tokens');
-        global $fichier;
-        $this->mysql->query('DELETE FROM tokens WHERE fichier = "'.$fichier.'"');
-        $this->mysql->query('CREATE TABLE tokens (id       INT UNIQUE PRIMARY KEY AUTO_INCREMENT, 
-                                                  droite   INT UNSIGNED, 
-                                                  gauche   INT UNSIGNED,
-                                                  type     CHAR(20),
-                                                  code     VARCHAR(255),
-                                                  fichier  VARCHAR(255) DEFAULT "prec",
-                                                  ligne    INT,
-                                                  scope    VARCHAR(255)
-                                                  )');
+        $this->host = '127.0.0.1';
+        $this->user = 'root';
+        $this->mdp = '';
+        $this->dbname = 'analyseur';
+        $this->table = $INI['template.mysql']['table'] ?: 'tokens';
+
+        $this->mysql = new pdo("mysql:dbname={$this->dbname};host={$this->host}",$this->user,$this->mdp);
+
+        $this->mysql->query('DELETE FROM '.$this->table.' WHERE fichier = "'.$fichier.'"');
+        $this->mysql->query('CREATE TABLE '.$this->table.' (id       INT UNIQUE PRIMARY KEY AUTO_INCREMENT, 
+                                                          droite   INT UNSIGNED, 
+                                                          gauche   INT UNSIGNED,
+                                                          type     CHAR(20),
+                                                          code     VARCHAR(255),
+                                                          fichier  VARCHAR(255) DEFAULT "prec",
+                                                          ligne    INT,
+                                                          scope    VARCHAR(255)
+                                                          )');
         
         $this->root = $root;
     }
@@ -87,7 +95,7 @@ class template_mysql extends template {
             $this->ligne = $noeud->getligne() + 0;
         } 
         
-        $requete = "INSERT INTO tokens VALUES 
+        $requete = "INSERT INTO {$this->table} VALUES 
             (0 ,
              '".$noeud->myDroite."',
              '".$noeud->myGauche."',
@@ -403,7 +411,6 @@ class template_mysql extends template {
 
         $this->affiche($noeud->getTableau(), $niveau + 1);
         $this->affiche($noeud->getValue(), $niveau + 1);
-        $this->affiche($noeud->getBlock(), $niveau + 1);
         $this->affiche($noeud->getBlock(), $niveau + 1);
 
         $noeud->myGauche = $this->getIntervalleId();
