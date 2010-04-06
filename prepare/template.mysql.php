@@ -5,8 +5,10 @@ class template_mysql extends template {
     private $mysql = null;
     private $ligne = 0;
     private $scope = 'global';
+    private $class = '';
     
     private $table = 'tokens';
+    private $tags = array();
     
     function __construct($root, $fichier = null) {
         parent::__construct();
@@ -18,6 +20,7 @@ class template_mysql extends template {
         $this->mdp = '';
         $this->dbname = 'analyseur';
         $this->table = $INI['template.mysql']['table'] ?: 'tokens';
+        $this->table_tags = $this->table.'_tags';
 
         $this->mysql = new pdo("mysql:dbname={$this->dbname};host={$this->host}",$this->user,$this->mdp);
 
@@ -29,10 +32,36 @@ class template_mysql extends template {
                                                           code     VARCHAR(255),
                                                           fichier  VARCHAR(255) DEFAULT "prec",
                                                           ligne    INT,
-                                                          scope    VARCHAR(255)
+                                                          scope    VARCHAR(255),
+                                                          class    VARCHAR(255),
+                                                          PRIMARY KEY (`id`),
+                                                          UNIQUE KEY `id` (`id`),
+                                                          KEY `fichier` (`fichier`),
+                                                          KEY `type` (`type`),
+                                                          KEY `droite` (`droite`),
+                                                          KEY `gauche` (`gauche`)
+                                                          
                                                           )');
+
+        $this->mysql->query('CREATE TABLE '.$this->table_tags.' (
+  `token_id` int(10) unsigned NOT NULL,
+  `token_sub_id` int(10) unsigned NOT NULL,
+  `type` varchar(50) NOT NULL,
+  KEY `token_id` (`token_id`),
+  KEY `token_sub_id` (`token_sub_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1');
+
+        $this->mysql->query('delimiter //');
+        $this->mysql->query('CREATE TRIGGER auto_tag BEFORE DELETE ON `tokens`
+FOR EACH ROW
+BEGIN
+DELETE FROM tokens_tags WHERE token_id = OLD.id OR token_sub_id = OLD.id;
+END;
+//');
+        $this->mysql->query('delimiter ;');
         
         $this->root = $root;
+
     }
     
     function save($filename = null) {
@@ -63,13 +92,16 @@ class template_mysql extends template {
         $method = "affiche_$class";
         
         if (method_exists($this, $method)) {
-            $this->$method($noeud, $niveau + 1);
+            $retour = $this->$method($noeud, $niveau + 1);
         } else {
             print "Affichage ".__CLASS__." de '".$method."'\n";die;
         }
         if (!is_null($noeud->getNext())){
+            print "GetNext()\n";
             $this->affiche($noeud->getNext(), $niveau);
         }
+
+        return $retour;
     }
     
 ////////////////////////////////////////////////////////////////////////
@@ -103,7 +135,8 @@ class template_mysql extends template {
              ".$this->mysql->quote($noeud->getCode()).",
              '$fichier',
              ". $this->ligne .",
-             '". $this->scope ."'
+             '". $this->scope ."',
+             '". $this->class ."'
              )";
              
 
@@ -113,7 +146,32 @@ class template_mysql extends template {
             print_r($this->mysql->errorInfo());
             die();
         }
+        
+        $retour = $this->mysql->lastinsertid();
+        
+        if (is_array($this->tags) && count($this->tags) > 0) {
+            foreach($this->tags as $label => $tokens) {
+                foreach($tokens as $token) {
+                    $requete = "INSERT INTO {$this->table_tags} VALUES 
+                    ($retour ,
+                     '".$token."',
+                     '".$label."')";
+    
+                    $this->mysql->query($requete);
+                    if ($this->mysql->errorCode() != 0) {
+                        print $requete."\n";
+                        print_r($this->mysql->errorInfo());
+                        die();
+                    }
+                }
+            }
+        }
+        
+        $this->tags = array();
+        
+        return $retour;
     }
+
 ////////////////////////////////////////////////////////////////////////
 // mysql functions
 ////////////////////////////////////////////////////////////////////////
@@ -121,7 +179,7 @@ class template_mysql extends template {
         $noeud->myId = $this->getNextId();
         $noeud->myDroite = $this->getIntervalleId();
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);        
+        return $this->saveNoeud($noeud);        
     }
 
     function affiche_affectation($noeud, $niveau) {
@@ -134,7 +192,7 @@ class template_mysql extends template {
         $this->affiche($noeud->getGauche(), $niveau + 1);
 
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);
+        return $this->saveNoeud($noeud);
     }
 
     function affiche_arginit($noeud, $niveau) {
@@ -146,7 +204,7 @@ class template_mysql extends template {
         $this->affiche($noeud->getValeur(), $niveau + 1);
 
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);
+        return $this->saveNoeud($noeud);
     }
 
     function affiche_arglist($noeud, $niveau) {
@@ -171,7 +229,7 @@ class template_mysql extends template {
         }
 
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);
+        return $this->saveNoeud($noeud);
     }
 
     function affiche_block($noeud, $niveau) {
@@ -186,7 +244,8 @@ class template_mysql extends template {
             $this->affiche($e, $niveau + 1);
         }
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);
+        $retour = $this->saveNoeud($noeud);
+        return $retour;
     }
 
     function affiche__break($noeud, $niveau) {
@@ -197,7 +256,7 @@ class template_mysql extends template {
         $this->affiche($noeud->getNiveaux(), $niveau + 1);
 
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);
+        return $this->saveNoeud($noeud);
     }
 
     function affiche__case($noeud, $niveau) {
@@ -211,7 +270,7 @@ class template_mysql extends template {
         $this->affiche($noeud->getBlock(), $niveau + 1);
 
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);
+        return $this->saveNoeud($noeud);
     }
 
     function affiche_cast($noeud, $niveau) {
@@ -221,7 +280,7 @@ class template_mysql extends template {
         $this->affiche($noeud->getExpression(), $niveau + 1);
 
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);
+        return $this->saveNoeud($noeud);
     }
 
     function affiche__catch($noeud, $niveau) {
@@ -233,7 +292,7 @@ class template_mysql extends template {
         $this->affiche($noeud->getBlock(), $niveau + 1);
 
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);
+        return $this->saveNoeud($noeud);
     }
 
     function affiche__continue($noeud, $niveau) {
@@ -243,7 +302,7 @@ class template_mysql extends template {
         $this->affiche($noeud->getNiveaux(), $niveau + 1);
 
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);
+        return $this->saveNoeud($noeud);
     }
     
     function affiche_cdtternaire($noeud, $niveau) {
@@ -255,7 +314,7 @@ class template_mysql extends template {
         $this->affiche($noeud->getFaux(), $niveau + 1);
 
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);
+        return $this->saveNoeud($noeud);
     }
 
     function affiche_codephp($noeud, $niveau) {
@@ -269,37 +328,42 @@ class template_mysql extends template {
         $this->affiche($noeud->getphp_code(), $niveau + 1);
 
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);
+        return $this->saveNoeud($noeud);
     }
 
     function affiche__class($noeud, $niveau) {
         $noeud->myId = $this->getNextId();
         $noeud->myDroite = $this->getIntervalleId();
         $noeud->setCode('');
+        $classe_precedent = $this->class;
+        $this->class = $noeud->getNom()->getCode();
 
+        $tags = array();
         $abstract = $noeud->getAbstract();
         if(!is_null($abstract)) {
-            $this->affiche($abstract, $niveau + 1);            
+            $tags['abstract'][] = $this->affiche($abstract, $niveau + 1);            
         }
 
-        $this->affiche($noeud->getNom(), $niveau + 1);            
+        $tags['name'][] = $this->affiche($noeud->getNom(), $niveau + 1);            
 
         $extends = $noeud->getExtends();
         if (!is_null($extends)) {
-            $this->affiche($extends, $niveau + 1);            
+            $tags['extends'][] = $this->affiche($extends, $niveau + 1);            
         }
 
         $implements = $noeud->getImplements();
         if (count($implements) > 0) {
             foreach($implements as $implement) {
-                $this->affiche($implement, $niveau + 1);            
+                $tags['implements'][] =  $this->affiche($implement, $niveau + 1);            
             }
         }
 
-        $this->affiche($noeud->getBlock(), $niveau + 1);            
+        $tags['block'][] = $this->affiche($noeud->getBlock(), $niveau + 1);            
 
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);
+        $this->class = $classe_precedent;
+        $this->tags = $tags;
+        return $this->saveNoeud($noeud);
     }
 
     function affiche__clone($noeud, $niveau) {
@@ -309,7 +373,7 @@ class template_mysql extends template {
         $this->affiche($noeud->getExpression(), $niveau + 1);
 
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);
+        return $this->saveNoeud($noeud);
     }
 
     function affiche_clevaleur($noeud, $niveau) {
@@ -320,7 +384,7 @@ class template_mysql extends template {
         $this->affiche($noeud->getValeur(), $niveau + 1);
 
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);
+        return $this->saveNoeud($noeud);
     }
 
     function affiche_comparaison($noeud, $niveau) {
@@ -333,7 +397,7 @@ class template_mysql extends template {
         $this->affiche($noeud->getGauche(), $niveau + 1);
 
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);
+        return $this->saveNoeud($noeud);
     }
 
     function affiche_concatenation($noeud, $niveau) {
@@ -349,7 +413,7 @@ class template_mysql extends template {
         }
 
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);
+        return $this->saveNoeud($noeud);
     }
 
     function affiche_constante($noeud, $niveau) {
@@ -357,7 +421,7 @@ class template_mysql extends template {
         $noeud->myDroite = $this->getIntervalleId();
         
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);
+        return $this->saveNoeud($noeud);
     }
 
    function affiche_decalage($noeud, $niveau) {
@@ -370,7 +434,7 @@ class template_mysql extends template {
         $this->affiche($noeud->getGauche(), $niveau + 1);
 
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);
+        return $this->saveNoeud($noeud);
     }
     
     function affiche__default($noeud, $niveau) {
@@ -381,7 +445,7 @@ class template_mysql extends template {
         $this->affiche($noeud->getBlock(), $niveau + 1);
 
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);
+        return $this->saveNoeud($noeud);
     }
 
     function affiche__for($noeud, $niveau) {
@@ -401,7 +465,7 @@ class template_mysql extends template {
         $this->affiche($noeud->getBlock(), $niveau + 1);
 
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);
+        return $this->saveNoeud($noeud);
     }
 
     function affiche__foreach($noeud, $niveau) {
@@ -414,7 +478,7 @@ class template_mysql extends template {
         $this->affiche($noeud->getBlock(), $niveau + 1);
 
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);
+        return $this->saveNoeud($noeud);
     }
 
     function affiche__function($noeud, $niveau) {
@@ -424,22 +488,25 @@ class template_mysql extends template {
         $scope_precedent = $this->scope;
         $this->scope = $noeud->getName()->getCode();
 
+        $tags = array();
         if (!is_null($m = $noeud->getVisibility())) {
-            $this->affiche($m, $niveau + 1);
+            $tags['visibility'][] = $this->affiche($m, $niveau + 1);
         }
         if (!is_null($m = $noeud->getAbstract())) {
-            $this->affiche($m, $niveau + 1);
+            $tags['abstract'][] = $this->affiche($m, $niveau + 1);
         }
         if (!is_null($m = $noeud->getStatic())) {
-            $this->affiche($m, $niveau + 1);
+            $tags['static'][] = $this->affiche($m, $niveau + 1);
         }
-        $this->affiche($noeud->getName(), $niveau + 1);
-        $this->affiche($noeud->getArgs(), $niveau + 1);
-        $this->affiche($noeud->getBlock(), $niveau + 1);
+        $tags['name'][] = $this->affiche($noeud->getName(), $niveau + 1);
+        $tags['args'][] = $this->affiche($noeud->getArgs(), $niveau + 1);
+        $tags['block'][] = $this->affiche($noeud->getBlock(), $niveau + 1);
 
         $noeud->myGauche = $this->getIntervalleId();
         $this->scope = $scope_precedent;
-        $this->saveNoeud($noeud);
+
+        $this->tags = $tags;
+        return $this->saveNoeud($noeud);
     }
 
     function affiche_functioncall($noeud, $niveau) {
@@ -447,11 +514,13 @@ class template_mysql extends template {
         $noeud->myDroite = $this->getIntervalleId();
         $noeud->setCode('');
 
-        $this->affiche($noeud->getFunction(), $niveau + 1);
-        $this->affiche($noeud->getArgs(), $niveau + 1);
+        $tags = array();
+        $tags['fonction'][] = $this->affiche($noeud->getFunction(), $niveau + 1);
+        $tags['args'][] = $this->affiche($noeud->getArgs(), $niveau + 1);
 
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);
+        $this->tags = $tags;
+        return $this->saveNoeud($noeud);
     }
 
     function affiche__global($noeud, $niveau) {
@@ -464,7 +533,7 @@ class template_mysql extends template {
         }
 
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);    
+        return $this->saveNoeud($noeud);    
     }
 
     function affiche_ifthen($noeud, $niveau) {
@@ -475,20 +544,23 @@ class template_mysql extends template {
         $thens = $noeud->getThen();
         $labels = array();
 
+        $tags = array();
+        
         foreach($conditions as $id => &$condition) {
             $condition->setCode('elseif');
-            $this->affiche($condition, $niveau + 1);
-            $this->affiche($thens[$id], $niveau + 1);
+            $tags['condition'][] = $this->affiche($condition, $niveau + 1);
+            $tags['then'][] = $this->affiche($thens[$id], $niveau + 1);
         }
-
+        
         $else = $noeud->getElse();
         if (!is_null($else)){
             $else->setCode('else');
-            $this->affiche($else, $niveau + 1);
+            $tags['else'][] = $this->affiche($else, $niveau + 1);
         }
 
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);        
+        $this->tags = $tags;
+        return $this->saveNoeud($noeud);
     }
 
     function affiche_inclusion($noeud, $niveau) {
@@ -498,14 +570,14 @@ class template_mysql extends template {
         $this->affiche($noeud->getInclusion(), $niveau + 1);
 
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);        
+        return $this->saveNoeud($noeud);        
     }
 
     function affiche_literals($noeud, $niveau) {
         $noeud->myId = $this->getNextId();
         $noeud->myDroite = $this->getIntervalleId();
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);        
+        return $this->saveNoeud($noeud);        
     }
 
     function affiche_logique($noeud, $niveau) {
@@ -517,7 +589,7 @@ class template_mysql extends template {
         $this->affiche($noeud->getGauche(), $niveau + 1);
         
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);        
+        return $this->saveNoeud($noeud);        
     }
 
     function affiche_method($noeud, $niveau) {
@@ -528,7 +600,7 @@ class template_mysql extends template {
         $this->affiche($noeud->getMethod(), $niveau + 1);
         
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);        
+        return $this->saveNoeud($noeud);        
     }
 
     function affiche_method_static($noeud, $niveau) {
@@ -539,18 +611,20 @@ class template_mysql extends template {
         $this->affiche($noeud->getMethod(), $niveau + 1);
         
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);        
+        return $this->saveNoeud($noeud);        
     }
 
     function affiche__new($noeud, $niveau) {
         $noeud->myId = $this->getNextId();
         $noeud->myDroite = $this->getIntervalleId();
 
-        $this->affiche($noeud->getClasse(), $niveau + 1);
-        $this->affiche($noeud->getArgs(), $niveau + 1);
+        $tags = array();
+        $tags['name'][] = $this->affiche($noeud->getClasse(), $niveau + 1);
+        $tags['args'][] = $this->affiche($noeud->getArgs(), $niveau + 1);
         
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);        
+        $this->tags = array();
+        return $this->saveNoeud($noeud);        
     }
 
     
@@ -561,7 +635,7 @@ class template_mysql extends template {
         $this->affiche($noeud->getExpression(), $niveau + 1);
         
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);        
+        return $this->saveNoeud($noeud);        
     }
 
     function affiche_not($noeud, $niveau) {
@@ -571,7 +645,7 @@ class template_mysql extends template {
         $this->affiche($noeud->getExpression(), $niveau + 1);
         
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);        
+        return $this->saveNoeud($noeud);        
     }
 
     function affiche_opappend($noeud, $niveau) {
@@ -581,7 +655,7 @@ class template_mysql extends template {
         $this->affiche($noeud->getVariable(), $niveau + 1);
         
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);        
+        return $this->saveNoeud($noeud);        
     }
 
     function affiche_operation($noeud, $niveau) {
@@ -593,7 +667,7 @@ class template_mysql extends template {
         $this->affiche($noeud->getGauche(), $niveau + 1);
         
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);        
+        return $this->saveNoeud($noeud);        
     }
 
     function affiche_parentheses($noeud, $niveau) {
@@ -603,7 +677,7 @@ class template_mysql extends template {
         $this->affiche($noeud->getContenu(), $niveau + 1);
         
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);        
+        return $this->saveNoeud($noeud);        
     }
 
     function affiche_preplusplus($noeud, $niveau) {
@@ -614,7 +688,7 @@ class template_mysql extends template {
         $this->affiche($noeud->getOperateur(), $niveau + 1);
         
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);    
+        return $this->saveNoeud($noeud);    
     }
 
     function affiche_postplusplus($noeud, $niveau) {
@@ -625,7 +699,7 @@ class template_mysql extends template {
         $this->affiche($noeud->getOperateur(), $niveau + 1);
         
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);    
+        return $this->saveNoeud($noeud);    
     }
 
     function affiche_property($noeud, $niveau) {
@@ -636,7 +710,7 @@ class template_mysql extends template {
         $this->affiche($noeud->getProperty(), $niveau + 1);
         
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);        
+        return $this->saveNoeud($noeud);        
     }
 
     function affiche_property_static($noeud, $niveau) {
@@ -647,7 +721,7 @@ class template_mysql extends template {
         $this->affiche($noeud->getProperty(), $niveau + 1);
         
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);        
+        return $this->saveNoeud($noeud);        
     }
 
     function affiche_rawtext($noeud, $niveau) {
@@ -655,7 +729,7 @@ class template_mysql extends template {
         $noeud->myDroite = $this->getIntervalleId();
 
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);
+        return $this->saveNoeud($noeud);
     }
 
     function affiche_reference($noeud, $niveau) {
@@ -665,7 +739,7 @@ class template_mysql extends template {
         $this->affiche($noeud->getExpression(), $niveau + 1);
 
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);
+        return $this->saveNoeud($noeud);
     }
 
     function affiche__return($noeud, $niveau) {
@@ -677,7 +751,7 @@ class template_mysql extends template {
         }
 
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);
+        return $this->saveNoeud($noeud);
     }
 
     function affiche_sequence($noeud, $niveau) {
@@ -701,7 +775,7 @@ class template_mysql extends template {
         }
 
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);
+        return $this->saveNoeud($noeud);
     }
 
     function affiche_signe($noeud, $niveau) {
@@ -712,7 +786,7 @@ class template_mysql extends template {
         $this->affiche($noeud->getExpression(), $niveau + 1);
         
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);
+        return $this->saveNoeud($noeud);
     }
 
     function affiche__static($noeud, $niveau) {
@@ -723,7 +797,7 @@ class template_mysql extends template {
         $this->affiche($noeud->getExpression(), $niveau + 1);
         
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);
+        return $this->saveNoeud($noeud);
     }
 
     function affiche__switch($noeud, $niveau) {
@@ -735,7 +809,7 @@ class template_mysql extends template {
         $this->affiche($noeud->getBlock(), $niveau + 1);
         
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);
+        return $this->saveNoeud($noeud);
     }
 
     function affiche_tableau($noeud, $niveau) {
@@ -747,7 +821,7 @@ class template_mysql extends template {
         $this->affiche($noeud->getIndex(), $niveau + 1);
         
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);
+        return $this->saveNoeud($noeud);
     }
 
     function affiche__try($noeud, $niveau) {
@@ -763,7 +837,7 @@ class template_mysql extends template {
         }
         
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);
+        return $this->saveNoeud($noeud);
     }
 
     function affiche__var($noeud, $niveau) {
@@ -790,7 +864,7 @@ class template_mysql extends template {
         }
 
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);
+        return $this->saveNoeud($noeud);
     }
 
     function affiche_variable($noeud, $niveau) {
@@ -798,7 +872,7 @@ class template_mysql extends template {
         $noeud->myDroite = $this->getIntervalleId();
 
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);
+        return $this->saveNoeud($noeud);
     }
 
     function affiche__while($noeud, $niveau) {
@@ -809,7 +883,7 @@ class template_mysql extends template {
         $this->affiche($noeud->getBlock(), $niveau + 1);
 
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);
+        return $this->saveNoeud($noeud);
     }
 
     function affiche__dowhile($noeud, $niveau) {
@@ -820,7 +894,7 @@ class template_mysql extends template {
         $this->affiche($noeud->getBlock(), $niveau + 1);
 
         $noeud->myGauche = $this->getIntervalleId();
-        $this->saveNoeud($noeud);
+        return $this->saveNoeud($noeud);
     }
     
     function affiche_Token($noeud, $niveau) {
