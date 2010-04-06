@@ -9,8 +9,15 @@ class rendu {
     
     function rendu($droite, $gauche, $fichier) {
         $this->fichier = $fichier;
-        
-        $requete = "select * from tokens where droite >= $droite and gauche <= $gauche and fichier = ".$this->mid->quote($fichier).' order by droite';
+        $sql_fichier = $this->mid->quote($fichier);
+
+        $requete = <<<SQL
+SELECT * FROM tokens 
+WHERE droite >= $droite AND 
+      gauche <= $gauche AND 
+      fichier = $sql_fichier 
+ORDER BY droite
+SQL;
         $res = $this->mid->query($requete);
         
         $this->lignes = array();

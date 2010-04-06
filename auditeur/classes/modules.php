@@ -12,6 +12,8 @@ abstract class modules {
     const FORMAT_HTMLLIST = 1;
     const FORMAT_DOT = 2;
 
+    protected  $format = modules::FORMAT_HTMLLIST;
+
     function __construct($mid) {
         $this->mid = $mid;
         $this->format_export = modules::FORMAT_DEFAULT;
@@ -76,10 +78,12 @@ abstract class modules {
             return false;
         }
         
-        if (!isset($this->functions)) { print get_class($this)." n'a pas de functions\n";}
+//        if (!isset($this->functions)) { print get_class($this)." n'a pas de functions\n";}
         
-        $this->mid->query("REPLACE INTO rapport_module VALUES ('$this->name', NOW())");
+        $this->mid->query("REPLACE INTO rapport_module VALUES ('$this->name', NOW(), '{$this->format}')");
+        print_r($this->mid->errorinfo());
 
+/*
         if ($this->format_export == modules::FORMAT_DOT) {
             $this->export = $this->array2dot($this->functions);
         } else {
@@ -95,6 +99,7 @@ abstract class modules {
             $this->export = $this->array2li($this->array_invert($this->functions));
             $this->save_file($this->name.".inverse");        
         }
+        */
     }
 
 function array2li($array) {
@@ -190,6 +195,7 @@ $subgraph
 }
 
     function updateCache() {
+        return false;
         $requete = <<<SQL
 SELECT tokens.id, tokens.droite, tokens.gauche, tokens.fichier FROM rapport 
     JOIN tokens ON rapport.token_id = tokens.id 

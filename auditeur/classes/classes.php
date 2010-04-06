@@ -1,6 +1,6 @@
 <?php
 
-class classes extends modules {
+class classes extends noms {
 	protected	$description = 'Liste des classes et de leurs extensions';
 	protected	$description_en = 'List of classes et its extensions';
 
@@ -8,9 +8,16 @@ class classes extends modules {
         parent::__construct($mid);
         
     	$this->name = __CLASS__;
+    	$this->functions = array();
 	}
 	
 	public function analyse() {
+	    $this->noms['type_token'] = '_class';
+	    $this->noms['type_tags'] = 'name';
+	    
+	    parent::analyse();
+	    return;
+	    
 	    $requete = "DELETE FROM caches WHERE type='classe_nom'";
 	    $res = $this->mid->query($requete);
 

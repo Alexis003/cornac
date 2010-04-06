@@ -7,31 +7,34 @@ class inclusions2 extends modules {
 	function __construct($mid) {
         parent::__construct($mid);
         
-        $this->format_export = modules::FORMAT_DOT;
+        $this->format = modules::FORMAT_DOT;
     	$this->name = __CLASS__;
+    	$this->functions = array();
 	}
 	
 	public function analyse() {
-	    $requete = "select fichier, droite, gauche, code from tokens where type='inclusion'";
+	    $requete = "SELECT fichier, droite, gauche, code FROM tokens WHERE type='inclusion'";
 	    $res = $this->mid->query($requete);
+        include_once('classes/rendu.php');
+        $rendu = new rendu($this->mid);
+
 	    while($ligne = $res->fetch(PDO::FETCH_ASSOC)) {
-	        include_once('classes/rendu.php');
-	        $rendu = new rendu($this->mid);
 	        $code = $rendu->rendu($ligne['droite'] + 1, $ligne['gauche'] - 1, $ligne['fichier']);
 	        
 	        $code = str_replace('$server_root.','',$code);
 	        $code = str_replace('$app_root.','',$code);
 	        $code = str_replace('$html_root.','',$code);
 	        
-	        if (strpos('html_root', $code) !== false) { print "$code\nOui\n"; die();}
 	        $code = trim($code, "'\"");
-	        
+
 	        $ligne['fichier'] = str_replace('References/optima4','', $ligne['fichier']);
-	        
-	        $this->functions[$ligne['fichier']][$code] = 1;
-	        $this->occurrences++;
+
+            $dir = dirname($ligne['fichier']);
+            $requete = <<<SQL
+INSERT INTO rapport_dot VALUES ('{$ligne['fichier']}','{$code}','{$dir}','{$this->name}')
+SQL;
+            $this->mid->query($requete);
 	    }
-        $this->fichiers_identifies = count($this->functions);
 	}
 }
 

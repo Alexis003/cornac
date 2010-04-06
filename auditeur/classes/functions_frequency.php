@@ -1,6 +1,6 @@
 <?php
 
-class functions_frequency extends modules_fonctions {
+class functions_frequency extends noms {
 	protected	$description = 'Liste des appels de fonctions';
 	protected	$description_en = 'Frequence of functions usage';
 
@@ -8,10 +8,14 @@ class functions_frequency extends modules_fonctions {
         parent::__construct($mid);
         
     	$this->name = __CLASS__;
+    	$this->functions = array();
 	}
 	
 	public function analyse() {
-	    $this->analyse_functioncall();
+	    $this->noms['type_token'] = 'functioncall';
+	    $this->noms['type_tags'] = 'fonction';
+	    
+	    parent::analyse();
 	}
 }
 
