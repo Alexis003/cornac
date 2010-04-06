@@ -77,16 +77,16 @@ Recherche d'une chaîne spéciale, indépendemment des tokens
 
 + (XT)ML protection function usage
 + (XT)ML unprotection function usage
-+ @ operator usage
+[+] @ operator usage
 + Comments usage
-+ Constante usage
+[+] Constante usage
 + Constants defintions (define(X, 2);)
 + Debugging functions usage
 + echo and print usage
-+ eval() usage
-+ File inclusions
+[+] eval() usage
+[+] File inclusions
 + Global variable usage
-+ header() usage
+[+] header() usage
 + Liste of classes definition
 + Liste of empty function definition
 + Liste of function definition
@@ -110,3 +110,9 @@ Recherche d'une chaîne spéciale, indépendemment des tokens
 + Variable affectations (type : $x = 2;)
 + variable variables usage
 + Variables being used
+
+
+Stats (juste les nombres d'occurrences par elements)
+stats par fichier (nombre d'elements par fichier)
+par element, fichiers impliqués
+par fichier, elements présents
