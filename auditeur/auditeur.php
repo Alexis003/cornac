@@ -9,18 +9,12 @@ include 'classes/modules.php';
 //include 'classes/modules_fonctions.php';
 include 'classes/functioncalls.php';
 include 'classes/typecalls.php';
+include 'classes/noms.php';
 
 $modules = array(
-                 'variables',
-                 
                  'emptyfunctions',
-                 'classes',
-                 'deffunctions',
-                 
-                 'functions_frequency',
 // dot (ou gex...)
-                 'inclusions2',
-                 'classes_hierarchie',
+                 '',
                  );
 
 $modules = array('constantes',
@@ -32,9 +26,17 @@ $modules = array('constantes',
                  'dieexit',
                  'inclusions',
                  'dir_functions',
-                 'file_functions');
+                 'file_functions',
+                 'deffunctions',
+                 'functions_frequency',
+                 'classes',
+                 'variables',
+                 'classes_hierarchie',
+                 'inclusions2',
+                 'defconstantes',
+                 );
 
-$modules = array('variables');
+$modules = array('classes_hierarchie',);
 //$modules = array('classes_hierarchie');
 
 foreach($modules as $module) {
