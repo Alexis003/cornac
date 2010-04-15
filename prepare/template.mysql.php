@@ -25,7 +25,7 @@ class template_mysql extends template {
         $this->mysql = new pdo("mysql:dbname={$this->dbname};host={$this->host}",$this->user,$this->mdp);
 
         $this->mysql->query('DELETE FROM '.$this->table.' WHERE fichier = "'.$fichier.'"');
-        $this->mysql->query('CREATE TABLE '.$this->table.' (id       INT UNIQUE PRIMARY KEY AUTO_INCREMENT, 
+        $this->mysql->query('CREATE TABLE '.$this->table.' (id       INT AUTO_INCREMENT, 
                                                           droite   INT UNSIGNED, 
                                                           gauche   INT UNSIGNED,
                                                           type     CHAR(20),
@@ -598,8 +598,13 @@ END;
 
         $this->affiche($noeud->getObject(), $niveau + 1);
         $this->affiche($noeud->getMethod(), $niveau + 1);
+
+        $tags = array();
+        $tags['objet'][] = $this->affiche($noeud->getObject(), $niveau + 1);
+        $tags['methode'][] = $this->affiche($noeud->getMethod(), $niveau + 1);
         
         $noeud->myGauche = $this->getIntervalleId();
+        $this->tags = array();
         return $this->saveNoeud($noeud);        
     }
 
@@ -609,8 +614,13 @@ END;
 
         $this->affiche($noeud->getClass(), $niveau + 1);
         $this->affiche($noeud->getMethod(), $niveau + 1);
+
+        $tags = array();
+        $tags['classe'][] = $this->affiche($noeud->getObject(), $niveau + 1);
+        $tags['methode'][] = $this->affiche($noeud->getMethod(), $niveau + 1);
         
         $noeud->myGauche = $this->getIntervalleId();
+        $this->tags = array();
         return $this->saveNoeud($noeud);        
     }
 
@@ -708,8 +718,13 @@ END;
         
         $this->affiche($noeud->getObject(), $niveau + 1);
         $this->affiche($noeud->getProperty(), $niveau + 1);
+
+        $tags = array();
+        $tags['objet'][] = $this->affiche($noeud->getObject(), $niveau + 1);
+        $tags['propriete'][] = $this->affiche($noeud->getProperty(), $niveau + 1);
         
         $noeud->myGauche = $this->getIntervalleId();
+        $this->tags = array();
         return $this->saveNoeud($noeud);        
     }
 
@@ -720,7 +735,12 @@ END;
         $this->affiche($noeud->getClass(), $niveau + 1);
         $this->affiche($noeud->getProperty(), $niveau + 1);
         
+        $tags = array();
+        $tags['classe'][] = $this->affiche($noeud->getObject(), $niveau + 1);
+        $tags['propriete'][] = $this->affiche($noeud->getProperty(), $niveau + 1);
+        
         $noeud->myGauche = $this->getIntervalleId();
+        $this->tags = array();
         return $this->saveNoeud($noeud);        
     }
 
