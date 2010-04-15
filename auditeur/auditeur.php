@@ -6,7 +6,6 @@ include 'classes/sommaire.php';
 $sommaire = new sommaire();
 
 include 'classes/modules.php';
-//include 'classes/modules_fonctions.php';
 include 'classes/functioncalls.php';
 include 'classes/typecalls.php';
 include 'classes/noms.php';
@@ -17,29 +16,43 @@ $modules = array(
                  '',
                  );
 
-$modules = array('constantes',
-                 'evals',
-                 'globals',
+$modules = array(
                  'arobases',
-                 'vardump',
-                 'headers',
-                 'dieexit',
-                 'inclusions',
-                 'dir_functions',
-                 'file_functions',
-                 'deffunctions',
-                 'functions_frequency',
-                 'classes',
-                 'variables',
                  'classes_hierarchie',
-                 'inclusions2',
+                 'classes',
+                 'constantes',
                  'defconstantes',
+                 'deffunctions',
+                 'dieexit',
+                 'dir_functions',
+                 'emptyfunctions',
+                 'execs',
+                 'evals',
+                 'file_functions',
+                 'functions_frequency',
+                 'globals',
+                 'headers',
+                 'ifsanselse',
+                 'inclusions',
+                 'inclusions2',
+                 'php_functions',
+                 'parentheses',
+                 'vardump',
+                 'variables',
+                 'mysql_functions',
+                 'mysqli_functions',
+                 'ldap_functions',
+                 'sql_queries',
+                 'xml_functions',
+                 'image_functions',
+                 'xml_functions',
                  );
 
-$modules = array('classes_hierarchie',);
+$modules = array('_new');
 //$modules = array('classes_hierarchie');
 
 foreach($modules as $module) {
+    print "+ $module\n";
     include('classes/'.$module.'.php');
     
     $x = new $module($mysql);
