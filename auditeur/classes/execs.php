@@ -1,6 +1,6 @@
 <?php
 
-class execs extends modules_fonctions {
+class execs extends functioncalls {
 	protected	$description = 'Liste des fonctions d\'execution de commandes en ligne';
 	protected	$description_en = 'usage of shell execution functions';
 
@@ -11,9 +11,9 @@ class execs extends modules_fonctions {
 	}
 	
 	public function analyse() {
-	    $functions = array('exec','shell_exec','system','passthru');
+	    $this->functions = array('exec','shell_exec','system','passthru');
 	    
-	    $this->analyse_function($functions);
+	    parent::analyse();
 	}
 }
 

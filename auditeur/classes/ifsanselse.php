@@ -11,27 +11,22 @@ class ifsanselse extends modules {
 	}
 	
 	public function analyse() {
-	    $requete = <<<SQL
-SELECT tokens.droite, tokens.gauche, sum(tokens_block.type = 'block') AS `else` FROM tokens 
-LEFT JOIN tokens tokens_if ON tokens_if.fichier = tokens.fichier AND tokens_if.droite >= tokens.droite AND tokens_if.gauche <= tokens.gauche
-LEFT JOIN tokens tokens_block ON tokens_block.gauche + 1 = tokens_if.droite
-WHERE 
-tokens.type = 'ifthen' 
-AND  tokens_if.type = 'block'
-AND  tokens_block.fichier = tokens.fichier 
-GROUP BY tokens.id
+        $requete = <<<SQL
+DELETE FROM <rapport> WHERE module='{$this->name}'
 SQL;
+        $this->exec_query($requete);
 
-//     tokens.fichier = './tests.php' AND 
-	    $res = $this->mid->query($requete);
-	    $this->functions = array();
-	    while($ligne = $res->fetch(PDO::FETCH_ASSOC)) {
-	        if ($ligne['else'] == 0) {
-    	        $this->functions[$ligne['fichier']][$ligne['droite'].'-'.$ligne['gauche']] = 1;
-    	        $this->occurrences++;
-	        }
-	    }
-        $this->fichiers_identifies = count($this->functions);
+	    $requete = <<<SQL
+INSERT INTO <rapport>
+   SELECT 0, T1.fichier, SUM(if (TT.type = 'else', 1, 0))  AS elsee, T1.id, '{$this->name}'
+    FROM savelys_test T1
+    LEFT join savelys_test_tags TT ON
+        T1.id = TT.token_id
+    WHERE T1.type = 'ifthen' 
+    GROUP by fichier, droite
+    HAVING elsee = 0;
+SQL;
+        $this->exec_query($requete);
 	}
 }
 

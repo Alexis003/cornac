@@ -6,7 +6,8 @@ abstract class modules {
     protected  $occurrences = 0;
     protected  $fichiers_identifies = 0;
     protected  $total_de_fichiers = 0;
-    protected  $mid = null;
+    public static    $mid   = null;
+    public static    $table = null;
     
     const FORMAT_DEFAULT = 0;
     const FORMAT_HTMLLIST = 1;
@@ -17,6 +18,13 @@ abstract class modules {
     function __construct($mid) {
         $this->mid = $mid;
         $this->format_export = modules::FORMAT_DEFAULT;
+        
+        $this->tables = array('<rapport>' => 'savelys_rapport',
+                              '<tokens>' => 'savelys_test',
+                              '<tokens_tags>' => 'savelys_test_tags',
+                              '<rapport_module>' => 'savelys_rapport_module',
+                              '<rapport_dot>' => 'savelys_rapport_dot',
+                            );
     }
     
     abstract function analyse();
@@ -80,8 +88,7 @@ abstract class modules {
         
 //        if (!isset($this->functions)) { print get_class($this)." n'a pas de functions\n";}
         
-        $this->mid->query("REPLACE INTO rapport_module VALUES ('$this->name', NOW(), '{$this->format}')");
-        print_r($this->mid->errorinfo());
+        $this->exec_query("REPLACE INTO <rapport_module> VALUES ('$this->name', NOW(), '{$this->format}')");
 
 /*
         if ($this->format_export == modules::FORMAT_DOT) {
@@ -215,6 +222,18 @@ INSERT INTO caches VALUES ('{$ligne['id']}','$code');
 SQL;
             $this->mid->query($requete);
         }
+    }
+    
+    function exec_query($requete) {
+        $requete = str_replace(array_keys($this->tables), array_values($this->tables), $requete);
+        
+        if (preg_match_all('/<\w+>/', $requete, $r)) {
+            print "Il reste des tables à analyser : ".join(', ', $r[0]);
+        }
+
+        $res = $this->mid->query($requete);
+
+        return $res;
     }
 }
 ?>

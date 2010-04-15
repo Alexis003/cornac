@@ -13,23 +13,23 @@ class dot extends modules {
 
         $module = __CLASS__;
         $requete = <<<SQL
-DELETE FROM rapport_dot WHERE module='{$this->name}'
+DELETE FROM <rapport_dot> WHERE module='{$this->name}'
 SQL;
-        $this->mid->query($requete);
+        $this->exec_query($requete);
 
         $requete = <<<SQL
-INSERT INTO rapport 
+INSERT INTO <rapport> 
    SELECT T1.fichier, T2.code, T1.id, '{$this->name}'
-   FROM tokens T1
-    JOIN tokens_tags 
-        ON T1.id = tokens_tags.token_id  
-    JOIN tokens T2 
-        ON tokens_tags.token_sub_id = T2.id
+   FROM <tokens> T1
+    JOIN <tokens_tags> TT 
+        ON T1.id = TT.token_id  
+    JOIN <tokens> T2 
+        ON TT.token_sub_id = T2.id
     WHERE T1.type='$type_token'      AND 
-          tokens_tags.type = '$type_tag';
+          TT.type = '$type_tag';
 SQL;
 
-        $this->mid->query($requete);
+        $this->exec_query($requete);
 
         $this->updateCache();
     }

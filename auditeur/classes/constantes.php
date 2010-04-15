@@ -1,6 +1,6 @@
 <?php
 
-class constantes extends modules {
+class constantes extends typecalls {
 	protected	$inverse = true;
 	protected	$name = 'Classe sans nom';
 
@@ -14,23 +14,9 @@ class constantes extends modules {
     }
 
 	public function analyse() {
-        $module = __CLASS__;
-        $requete = <<<SQL
-DELETE FROM rapport WHERE module='{$this->name}'
-SQL;
-        $this->mid->query($requete);
-
-        $requete = <<<SQL
-INSERT INTO rapport 
-        SELECT 0, fichier, code AS code, id, '{$this->name}'
-    FROM tokens
-    WHERE type='constante'
-SQL;
-
-        $this->mid->query($requete);
-
-        $this->updateCache();
-        $this->functions = array();
+	    $this->type = 'constante';
+	    parent::analyse();
+	    return;
 	}
 	
 }

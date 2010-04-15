@@ -13,23 +13,23 @@ class defconstantes extends modules {
 	
 	public function analyse() {
         $requete = <<<SQL
-DELETE FROM rapport WHERE module='{$this->name}'
+DELETE FROM <rapport> WHERE module='{$this->name}'
 SQL;
-        $this->mid->query($requete);
+        $this->exec_query($requete);
 
 	    $requete = <<<SQL
-INSERT INTO rapport 
+INSERT INTO <rapport>
     SELECT 0, tokens.fichier, T3.code, tokens.id, '{$this->name}'
-    FROM tokens
+    FROM <tokens> T1
     JOIN tokens_tags
-      ON tokens.id = tokens_tags.token_id AND tokens_tags.type = 'fonction'
-    JOIN tokens T2
-      ON tokens_tags.token_sub_id = T2.id AND T2.fichier = tokens.fichier
-    JOIN tokens T3
-      ON T3.droite = T2.droite + 3 AND tokens.fichier = T3.fichier
-    WHERE tokens.type = 'functioncall' AND T2.code='define'
+      ON T1.id = TT.token_id AND TT.type = 'fonction'
+    JOIN <tokens> T2
+      ON TT.token_sub_id = T2.id AND T2.fichier = T1.fichier
+    JOIN <tokens> T3
+      ON T3.droite = T2.droite + 3 AND T1.fichier = T3.fichier
+    WHERE T1.type = 'functioncall' AND T2.code='define'
 SQL;
-        $this->mid->query($requete);
+        $this->exec_query($requete);
 
 	}
 }

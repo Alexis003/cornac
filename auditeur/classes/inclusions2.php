@@ -13,27 +13,35 @@ class inclusions2 extends modules {
 	}
 	
 	public function analyse() {
-	    $requete = "SELECT fichier, droite, gauche, code FROM tokens WHERE type='inclusion'";
-	    $res = $this->mid->query($requete);
+	    $requete = "SELECT fichier, droite, gauche, code, type FROM <tokens> WHERE type='inclusion'";
+	    $res = $this->exec_query($requete);
+
         include_once('classes/rendu.php');
         $rendu = new rendu($this->mid);
 
 	    while($ligne = $res->fetch(PDO::FETCH_ASSOC)) {
 	        $code = $rendu->rendu($ligne['droite'] + 1, $ligne['gauche'] - 1, $ligne['fichier']);
+
+	        $code = trim($code, "'\"");
 	        
+	        // code pour optima! 
 	        $code = str_replace('$server_root.','',$code);
 	        $code = str_replace('$app_root.','',$code);
 	        $code = str_replace('$html_root.','',$code);
-	        
-	        $code = trim($code, "'\"");
-
 	        $ligne['fichier'] = str_replace('References/optima4','', $ligne['fichier']);
+
+            while (substr($code, 0, 2) == './') { $code = substr($code, 2); }
+            while (substr($code, 0, 3) == '../') { $code = substr($code, 3); }
+//	        print $ligne['fichier']."\n";
+//	        print $code."\n";
+//	        $real = dirname($ligne['fichier']).$code."\n";
+//	        print "\n";
 
             $dir = dirname($ligne['fichier']);
             $requete = <<<SQL
-INSERT INTO rapport_dot VALUES ('{$ligne['fichier']}','{$code}','{$dir}','{$this->name}')
+INSERT INTO <rapport_dot> VALUES ('{$ligne['fichier']}','{$code}','{$dir}','{$this->name}')
 SQL;
-            $this->mid->query($requete);
+            $this->exec_query($requete);
 	    }
 	}
 }

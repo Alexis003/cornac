@@ -1,6 +1,6 @@
 <?php
 
-class arobases extends modules {
+class arobases extends typecalls {
     protected    $description = 'Utilisation des arobases';
     protected    $description_en = 'Usage of @';
 
@@ -11,23 +11,9 @@ class arobases extends modules {
     }
     
     public function analyse() {
-        $module = __CLASS__;
-        $requete = <<<SQL
-DELETE FROM rapport WHERE type='$module'
-SQL;
-        $res = $this->mid->query($requete);
-
-        $requete = <<<SQL
-INSERT INTO rapport 
-        SELECT 0, fichier, replace(replace(code,'\$"',''),"'",'') AS code, id, '$module'
-    FROM tokens
-    WHERE type='noscream'
-SQL;
-
-        $this->mid->query($requete);
-
-        $this->updateCache();
-        $this->functions = array();
+	    $this->type = 'noscream';
+	    parent::analyse();
+        return ;
     }
 }
 

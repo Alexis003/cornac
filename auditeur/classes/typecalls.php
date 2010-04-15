@@ -12,18 +12,18 @@ class typecalls extends modules {
 
         $module = __CLASS__;
         $requete = <<<SQL
-DELETE FROM rapport WHERE module='{$this->name}'
+DELETE FROM <rapport> WHERE module='{$this->name}'
 SQL;
-        $this->mid->query($requete);
+        $this->exec_query($requete);
 
         $requete = <<<SQL
-INSERT INTO rapport 
+INSERT INTO <rapport>
     SELECT 0, T1.fichier, T1.code AS code, T1.id, '{$this->name}'
-    FROM tokens T1 
+    FROM <tokens> T1 
     WHERE T1.type = '$in'
 SQL;
 
-        $this->mid->query($requete);
+        $this->exec_query($requete);
 
 //        $this->updateCache();
         $this->functions = array();

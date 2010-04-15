@@ -11,23 +11,25 @@ class parentheses extends modules {
     }
     
     public function analyse() {
-        $requete = "DELETE FROM caches WHERE type='parentheses'";
-        $res = $this->mid->query($requete);
-
-        $requete = "
-        INSERT INTO caches
-        select fichier, id, 'parentheses',code from tokens where type = 'parentheses';";
-
-        $res = $this->mid->query($requete);
+        $requete = <<<SQL
+DELETE FROM <caches> WHERE type='parentheses'
+SQL;
+        $res = $this->exec_query($requete);
 
         $requete = <<<SQL
-select fichier, droite, gauche from tokens where type = 'parentheses';
+INSERT INTO caches
+   SELECT fichier, id, 'parentheses',code FROM <tokens> WHERE type = 'parentheses';
 SQL;
-        $res = $this->mid->query($requete);
+
+        $res = $this->exec_query($requete);
+
+        $requete = <<<SQL
+SELECT fichier, droite, gauche FROM <tokens> WHERE type = 'parentheses';
+SQL;
+        $res = $this->exec_query($requete);
         $this->functions = array();
         include_once('classes/rendu.php');
         $rendu = new rendu($this->mid);
-        
 
         while($ligne = $res->fetch(PDO::FETCH_ASSOC)) {
             $code = $rendu->rendu($ligne['droite'] + 1, $ligne['gauche'] - 1, $ligne['fichier']);

@@ -1,6 +1,7 @@
 <?php
 
 class functioncalls extends modules {
+    protected $not = false; 
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -10,26 +11,31 @@ class functioncalls extends modules {
 	    $in = join("','", $this->functions);
         $this->functions = array();
 
+        if ($this->not) {
+            $not = ' not ';
+        } else {
+            $not = '';
+        }
+        
         $module = __CLASS__;
         $requete = <<<SQL
-DELETE FROM rapport WHERE module='{$this->name}'
+DELETE FROM <rapport> WHERE module='{$this->name}'
 SQL;
-        $this->mid->query($requete);
+        $this->exec_query($requete);
 
         $requete = <<<SQL
-INSERT INTO rapport 
+INSERT INTO <rapport> 
     SELECT 0, T1.fichier, T2.code AS code, T1.id, '{$this->name}'
-    FROM tokens T1 
-    JOIN tokens T2
+    FROM <tokens> T1 
+    JOIN <tokens> T2
         ON T2.droite = T1.droite + 1 AND
            T2.fichier = T1.fichier
-    WHERE T1.type='functioncall' AND T2.code in ('$in')
+    WHERE T1.type='functioncall' AND T2.code $not in ('$in')
 SQL;
 
-        $this->mid->query($requete);
+        $this->exec_query($requete);
 
-        $this->updateCache();
-        $this->functions = array();
+//        $this->updateCache();
 	}
 }
 
