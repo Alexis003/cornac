@@ -97,6 +97,8 @@ if ($id = array_search( '-I', $argv)) {
         define('INI','ini/'.$ini);
     } elseif (file_exists('ini/'.$ini.".ini")) {
         define('INI','ini/'.$ini.".ini");
+    } elseif (file_exists($ini)) {
+        define('INI',$ini);
     } else {
         define('INI','ini/'.'tokenizeur.ini');
     }
@@ -124,14 +126,19 @@ if ($id = array_search( '-d', $argv)) {
         $dossier = substr($dossier, 0, -1);
     }
 
+    if (!file_exists($dossier)) {
+        print "Impossible de trouver le dossier '$dossier'\n Annulation\n";
+        die();
+    }
+
     print "Travail sur le dossier {$dossier} \n";
     
     $fichiers = glob($dossier.'/*.php');
     $fichiers = array_slice($fichiers, 1, 1);
     
     foreach($fichiers as $fichier) {
-        print "./tokenizeur.php -f $fichier -g ".GABARIT. "\n";
-        print shell_exec("./tokenizeur.php  -T -i -1 -f $fichier -g ".GABARIT. " ");
+        print "./tokenizeur.php -f $fichier -g ".GABARIT. ""." -I ".INI."\n";
+        print shell_exec("./tokenizeur.php  -T -i -1 -f $fichier -g ".GABARIT. " "." -I ".INI);
     }
     
     if (RECURSIVE) {
@@ -141,7 +148,7 @@ if ($id = array_search( '-d', $argv)) {
             $code = file_get_contents($fichier);
             if (strpos($code, '<?') === false) { continue; }
             
-            $commande = "./tokenizeur.php -f $fichier -g ".GABARIT;
+            $commande = "./tokenizeur.php -f $fichier -g ".GABARIT." -I ".INI;
             print $commande. "\n";
             print shell_exec($commande);
         }
