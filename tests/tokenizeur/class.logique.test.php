@@ -3,7 +3,7 @@ include_once('Analyseur_Framework_TestCase.php');
 
 class Logique_Test extends Analyseur_Framework_TestCase
 {
-    /* 29 methodes */
+    /* 34 methodes */
     public function testLogique1()  { $this->generic_test('logique.1'); }
     public function testLogique2()  { $this->generic_test('logique.2'); }
     public function testLogique3()  { $this->generic_test('logique.3'); }
@@ -33,6 +33,11 @@ class Logique_Test extends Analyseur_Framework_TestCase
     public function testLogique27()  { $this->generic_test('logique.27'); }
     public function testLogique28()  { $this->generic_test('logique.28'); }
     public function testLogique29()  { $this->generic_test('logique.29'); }
+    public function testLogique30()  { $this->generic_test('logique.30'); }
+    public function testLogique31()  { $this->generic_test('logique.31'); }
+    public function testLogique32()  { $this->generic_test('logique.32'); }
+    public function testLogique33()  { $this->generic_test('logique.33'); }
+    public function testLogique34()  { $this->generic_test('logique.34'); }
 
 }
 

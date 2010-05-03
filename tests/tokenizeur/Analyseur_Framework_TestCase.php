@@ -16,7 +16,9 @@ class Analyseur_Framework_TestCase  extends PHPUnit_Framework_TestCase {
         $exp = file_get_contents('exp/'.$test.'.test.exp');
         $exp = str_replace('tests/tokenizeur/','tests/tokenizeur/scripts/', $exp);
         $exp = str_replace('scripts/scripts/','scripts/', $exp);
-        
+
+        $retour = preg_replace("/Fichier de directives : .*?\n/is",'', $retour);
+
         $this->assertEquals($retour, $exp);        
     }
 

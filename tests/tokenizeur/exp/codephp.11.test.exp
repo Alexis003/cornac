@@ -1,0 +1,12 @@
+Travail sur le fichier tests/tokenizeur/scripts/codephp.11.test.php 
+tests/tokenizeur/scripts/codephp.11.test.php
+  codephp <?php
+
+  code : 
+      sequence 
+      0 : 
+          functioncall echo
+          appel de fonction : echo: 
+              variable 309 "$x"
+      1 : 
+          variable 309 "$y"
