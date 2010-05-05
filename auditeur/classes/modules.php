@@ -16,14 +16,15 @@ abstract class modules {
     protected  $format = modules::FORMAT_HTMLLIST;
 
     function __construct($mid) {
+        $prefixe = 'rd';
         $this->mid = $mid;
         $this->format_export = modules::FORMAT_DEFAULT;
         
-        $this->tables = array('<rapport>' => 'savelys_rapport',
-                              '<tokens>' => 'savelys_test',
-                              '<tokens_tags>' => 'savelys_test_tags',
-                              '<rapport_module>' => 'savelys_rapport_module',
-                              '<rapport_dot>' => 'savelys_rapport_dot',
+        $this->tables = array('<rapport>' => $prefixe.'_rapport',
+                              '<tokens>' => $prefixe.'',
+                              '<tokens_tags>' => $prefixe.'_tags',
+                              '<rapport_module>' => $prefixe.'_rapport_module',
+                              '<rapport_dot>' => $prefixe.'_rapport_dot',
                             );
     }
     
@@ -223,14 +224,21 @@ SQL;
             $this->mid->query($requete);
         }
     }
-    
-    function exec_query($requete) {
+
+    function prepare_query($requete) {
         $requete = str_replace(array_keys($this->tables), array_values($this->tables), $requete);
         
         if (preg_match_all('/<\w+>/', $requete, $r)) {
             print "Il reste des tables à analyser : ".join(', ', $r[0]);
         }
-
+        
+        return $requete;
+    }
+    
+    function exec_query($requete) {
+        $requete = $this->prepare_query($requete);
+        
+//        print $requete."\n\n";
         $res = $this->mid->query($requete);
 
         return $res;

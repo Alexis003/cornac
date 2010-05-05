@@ -11,7 +11,7 @@ class image_functions extends functioncalls {
 	}
 	
 	public function analyse() {
-	    $this->functions = get_extension_funcs("image");
+	    $this->functions = get_extension_funcs("gd");
 	    parent::analyse();
 	}
 }

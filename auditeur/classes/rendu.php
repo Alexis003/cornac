@@ -12,7 +12,7 @@ class rendu {
         $sql_fichier = $this->mid->quote($fichier);
 
         $requete = <<<SQL
-SELECT * FROM savelys_test
+SELECT * FROM rd
 WHERE droite >= $droite AND 
       gauche <= $gauche AND 
       fichier = $sql_fichier 

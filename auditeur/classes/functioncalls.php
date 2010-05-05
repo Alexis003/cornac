@@ -8,6 +8,9 @@ class functioncalls extends modules {
 	}
 	
 	public function analyse() {
+	    if (!is_array($this->functions)) {
+	        print "Aucunes fonctions fournies pour ".__CLASS__." : annulation du traitement\n";
+	    }
 	    $in = join("','", $this->functions);
         $this->functions = array();
 
@@ -32,7 +35,8 @@ INSERT INTO <rapport>
            T2.fichier = T1.fichier
     WHERE T1.type='functioncall' AND T2.code $not in ('$in')
 SQL;
-
+//        print $this->prepare_query($requete)."\n\n";
+//die();
         $this->exec_query($requete);
 
 //        $this->updateCache();
