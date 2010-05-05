@@ -4,3 +4,19 @@ comparaison inutiles
 affectation en if
 Used / unused globals 
 Used / unused variables
+
+
+select 
+    fichier, 
+    sum(if (type='functioncall',1,0)) as functioncall,
+    sum(if (code in ('echo','print','phpinfo','var_dump','print_r','imagejpeg','imagegif','imagepng','tablerender'), 1, 0)) as affichages
+    
+from savelys_test 
+
+where scope='global' and 
+      class='' and 
+      type not in ('_function','rawtext','_class') 
+group by fichier 
+
+
+order by count(*);
