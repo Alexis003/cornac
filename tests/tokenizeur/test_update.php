@@ -39,6 +39,11 @@ foreach($args as $arg) {
     if (CREATE) {
       print "Modification de /exp/".$arg.".test.exp\n";
       shell_exec("cd ../../; ./tokenizeur.php -f tests/tokenizeur/scripts/".$arg.".test.php > tests/tokenizeur/exp/".$arg.".test.exp");
+
+      $fichier = "exp/".$arg.".test.exp";
+      $exp = file_get_contents($fichier);
+      $exp = str_replace("Fichier de directives : ini/tokenizeur.ini\n", '', $exp);
+      file_put_contents($fichier, $exp);
     } else {
       shell_exec("bbedit ./exp/".$arg.".test.exp");
       shell_exec("cd ../../; ./tokenizeur.php -f tests/tokenizeur/scripts/".$arg.".test.php | bbedit");

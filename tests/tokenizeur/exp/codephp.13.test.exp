@@ -1,21 +1,22 @@
 Travail sur le fichier tests/tokenizeur/scripts/codephp.13.test.php 
 tests/tokenizeur/scripts/codephp.13.test.php
-Plus d'upgrade au cycle 6 
-  Token <?php  ( Affichage par défaut)
-  block 
-  0 : 
-      affectation 
-      droite : 
-          variable 309 "$x"
-       "=" 
-      gauche : 
-          literals 1
-  rawtext 
-  Texte : "311 "raw
+  codephp <?php 
+  code : 
+      sequence 
+      0 : 
+          affectation 
+          droite : 
+              variable 309 "$x"
+           "=" 
+          gauche : 
+              literals 1
+      1 : 
+          rawtext 
+          Texte : "311 "raw
 ""
-  Token = ( Affichage par défaut)
-  variable 309 "$x"
-  Token ; ( Affichage par défaut)
-  variable 309 "$y"
-  Token ; ( Affichage par défaut)
-  Token ?> ( Affichage par défaut)
+      2 : 
+          functioncall echo
+          appel de fonction : echo: 
+              variable 309 "$x"
+      3 : 
+          variable 309 "$y"
