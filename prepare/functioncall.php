@@ -7,6 +7,9 @@ class functioncall extends instruction {
     function __construct($entree) {
         parent::__construct(array());
         
+        if ($entree[0]->checkCode('=')) {
+            $entree[0]->code = 'echo';
+        }
         $function = new token_traite($entree[0]);
         $function->replace($entree[0]);
 
@@ -44,6 +47,7 @@ class functioncall extends instruction {
     'functioncall_variable_regex',
     'functioncall_variableempty_regex',
     'functioncall_list_regex',
+    'functioncall_shorttag_regex',
                     );
     }    
 }

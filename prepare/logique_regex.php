@@ -25,7 +25,7 @@ class logique_regex extends analyseur_regex {
         if ($t->getPrev()->checkForAssignation()) { return false;}
         if ((!$t->hasPrev(2) || ($t->getPrev(1)->checkBeginInstruction()) || 
                                  $t->getPrev(1)->checkCode(')') ) &&
-            (!$t->hasNext(2) || $t->getNext(1)->checkNotCode(array('[','->','{','=','('))) && 
+            (!$t->hasNext(2) || ($t->getNext(1)->checkNotCode(array('[','->','{','(')) && !$t->getNext(1)->checkForAssignation())) && 
             (!$t->hasNext(2) || $t->getNext(1)->checkNotClass(array('parentheses')))
 
             ) {

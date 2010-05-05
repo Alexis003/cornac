@@ -221,7 +221,7 @@ class Token {
     }
 
     function getNext($n = 0) {
-        if ($n > 300) {
+        if ($n > 3000) {
             print_r(xdebug_get_function_stack());        
             print "\$n est > a 300\n";
             die();
@@ -534,7 +534,13 @@ class Token {
 
     function checkForAssignation() {
         if ($this->checkNotClass('Token')) { return false; }
-        $liste = array('=','.=','*=','+=','-=','/=','%=','>>=','&=','^=','>>>=', '|=','<<=','>>=');
+        $liste = array('=','.=','*=','+=','-=','/=','%=','>>=','&=','^=', '|=','<<=');
+        return $this->checkCode($liste);
+    }
+
+    function checkForLogical() {
+        if ($this->checkNotClass('Token')) { return false; }
+        $liste = array('&&','and','or','xor','||');
         return $this->checkCode($liste);
     }
 

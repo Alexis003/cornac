@@ -24,8 +24,8 @@ class template_mysql extends template {
 
         $this->mysql = new pdo("mysql:dbname={$this->dbname};host={$this->host}",$this->user,$this->mdp);
 
-        $this->mysql->query('DELETE FROM '.$this->table.' WHERE fichier = "'.$fichier.'"');
-        $this->mysql->query('CREATE TABLE '.$this->table.' (id       INT AUTO_INCREMENT, 
+        $this->mysql->query('DELETE FROM  IF NOT EXISTS '.$this->table.' WHERE fichier = "'.$fichier.'"');
+        $this->mysql->query('CREATE TABLE  IF NOT EXISTS '.$this->table.' (id       INT AUTO_INCREMENT, 
                                                           droite   INT UNSIGNED, 
                                                           gauche   INT UNSIGNED,
                                                           type     CHAR(20),
@@ -39,11 +39,34 @@ class template_mysql extends template {
                                                           KEY `fichier` (`fichier`),
                                                           KEY `type` (`type`),
                                                           KEY `droite` (`droite`),
-                                                          KEY `gauche` (`gauche`)
-                                                          
+                                                          KEY `gauche` (`gauche`),
+                                                          KEY `code` (`code`)
                                                           )');
 
-        $this->mysql->query('CREATE TABLE '.$this->table_tags.' (
+        $this->mysql->query('CREATE TABLE IF NOT EXISTS '.$this->table.'_rapport (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `fichier` varchar(500) NOT NULL,
+  `element` varchar(500) NOT NULL,
+  `token_id` int(10) unsigned NOT NULL,
+  `module` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1');
+
+        $this->mysql->query('CREATE TABLE  IF NOT EXISTS '.$this->table.'_rapport_dot (
+  `a` varchar(255) NOT NULL,
+  `b` varchar(255) NOT NULL,
+  `cluster` varchar(255) NOT NULL DEFAULT \'\',
+  `module` varchar(255) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1');
+
+        $this->mysql->query('CREATE TABLE  IF NOT EXISTS '.$this->table.'_rapport_module (
+  `module` varchar(255) NOT NULL,
+  `fait` datetime NOT NULL,
+  `format` enum("html","dot","gefx") NOT NULL,
+  PRIMARY KEY (`module`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1');
+
+        $this->mysql->query('CREATE TABLE  IF NOT EXISTS '.$this->table_tags.' (
   `token_id` int(10) unsigned NOT NULL,
   `token_sub_id` int(10) unsigned NOT NULL,
   `type` varchar(50) NOT NULL,
@@ -616,7 +639,7 @@ END;
         $this->affiche($noeud->getMethod(), $niveau + 1);
 
         $tags = array();
-        $tags['classe'][] = $this->affiche($noeud->getObject(), $niveau + 1);
+        $tags['classe'][] = $this->affiche($noeud->getClass(), $niveau + 1);
         $tags['methode'][] = $this->affiche($noeud->getMethod(), $niveau + 1);
         
         $noeud->myGauche = $this->getIntervalleId();
@@ -736,7 +759,7 @@ END;
         $this->affiche($noeud->getProperty(), $niveau + 1);
         
         $tags = array();
-        $tags['classe'][] = $this->affiche($noeud->getObject(), $niveau + 1);
+        $tags['classe'][] = $this->affiche($noeud->getClass(), $niveau + 1);
         $tags['propriete'][] = $this->affiche($noeud->getProperty(), $niveau + 1);
         
         $noeud->myGauche = $this->getIntervalleId();

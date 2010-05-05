@@ -43,7 +43,8 @@ class sequence_regex extends analyseur_regex {
             }
             if (!$var->hasNext()) {
                 mon_log(get_class($t)." => 1null ".__CLASS__);
-                return true; 
+                
+                return !$var->checkToken(T_CLOSE_TAG); 
             }
             
             while ($var->checkSubClass('instruction')) {
@@ -75,6 +76,7 @@ class sequence_regex extends analyseur_regex {
             
             if ($var && (
                 $var->checkCode(array(',','->','[','(',',')) ||
+                $var->checkForLogical() ||
                 $var->checkForAssignation() ||
                 $var->checkClass('arglist'))) {
 

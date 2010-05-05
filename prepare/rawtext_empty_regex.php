@@ -14,6 +14,11 @@ class rawtext_empty_regex extends analyseur_regex {
 
       if ($t->checkToken(T_CLOSE_TAG) &&
           $t->getNext()->checkToken(T_OPEN_TAG)) {
+            if ($t->getNext(1)->checkCode('=')) {
+                // cas d'un raw text suivi d'un <?= 
+                // on attend
+                return false; 
+            }
               $this->args = array(0);
               $this->remove = array( 1);
           mon_log(get_class($t)." => ".__CLASS__);

@@ -44,6 +44,12 @@ class ifthenelse_multiples_regex extends analyseur_regex {
                   
                   $pos += 3;
                   $var = $var->getNext(2);
+      
+                  // on trouve plus rien : le elsif est terminé, comme le script. 
+                  if (is_null($var)) {
+                      mon_log(get_class($t)." => ".__CLASS__." ".count($this->args).": $var :");
+                      return true; 
+                 }
             }
 
             if   ($var->checkToken(T_ELSEIF)) {
