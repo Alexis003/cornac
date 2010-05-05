@@ -39,6 +39,7 @@ $modules = array(
                  'parentheses',
                  'vardump',
                  'variables',
+                 'gpc',
                  'mysql_functions',
                  'mysqli_functions',
                  'ldap_functions',
@@ -46,10 +47,23 @@ $modules = array(
                  'xml_functions',
                  'image_functions',
                  'xml_functions',
+                 'session_functions',
+                 'secu_protection_functions',
+                 'regex',
                  );
 
-$modules = array('_new');
-//$modules = array('classes_hierarchie');
+$modules = array('vardump',
+                 'variables',
+                 'gpc',
+                 'mysql_functions',
+                 'mysqli_functions',
+                 'ldap_functions',
+                 'sql_queries',
+                 'xml_functions',
+                 'image_functions',
+                 'xml_functions',
+                 'session_functions',);
+$modules = array('regex');
 
 foreach($modules as $module) {
     print "+ $module\n";
