@@ -44,25 +44,39 @@ if ($id = array_search( '-S', $argv)) {
     define('STATS',false);
 }
 
+// @toto : mettre plusieurs templates en même temps (séparés par des virgules?)
 if ($id = array_search( '-g', $argv)) {
-    $template = $argv[$id + 1];
+    $templates = explode(',', $argv[$id + 1]);
+
+    $templates = array_unique($templates);
     
-    if (!file_exists('prepare/template.'.$template.'.php')) {
-        print "$template n'existe pas.\n";
-        $template = 'tree';
+    foreach ($templates as $i => $template) {
+        if (!file_exists('prepare/template.'.$template.'.php')) {
+            print "$id) '$template' n'existe pas.\n";
+            unset($templates[$i]);
+//            $template = 'tree';
+        } else {
+            print "Utilisation du gabarit ".$template."\n";
+        }
     }
     
-    print "Utilisation du gabarit ".$template."\n";
-
-    define('GABARIT',$template);
+    if (count($templates) == 0) {
+        $templates = array('tree');
+    }
+    
+    
+    define('GABARIT',join(',',$templates));
     unset($argv[$id]);
     unset($argv[$id + 1]);
 } else {
     define('GABARIT','tree');
+    $templates = array('tree');
 }
 
 include('prepare/template.php');
-include('prepare/template.'.GABARIT.'.php');
+foreach ($templates as $id => $template) {
+    include('prepare/template.'.$template.'.php');
+}
 
 if ($id = array_search( '-l', $argv)) {
     unset($argv[$id]);
@@ -289,8 +303,8 @@ foreach($scriptsPHP as $name => $object){
 
         if (VERBOSE) {
             print "$i) ".$t->getCode()."---- \n";
-            $template = getTemplate($root, $fichier);
-            $template->affiche();
+            $template = getTemplate($root, $fichier, 'tree');
+            $template['tree']->affiche();
             unset($template);
             print "$i) ".$t->getCode()."---- \n";
        }
@@ -301,7 +315,6 @@ foreach($scriptsPHP as $name => $object){
     $nb_tokens_courant = -1;
     $nb_tokens_precedent = array(-1);
 
-//    for($i = 0; $i < $limite; $i++) {
     $i = 0;
     while (1) {
         $i++;
@@ -314,7 +327,6 @@ foreach($scriptsPHP as $name => $object){
         $nb_tokens_courant = 0;
         do {
             $t = $analyseur->upgrade($t);
-            //$t = $t->upgrade();
             if (get_class($t) == 'Token') { $nb_tokens_courant++; }
             if ($t->getId() == 0 && $t != $root) {
                 mon_log("Nouveau Root : ".$t."");
@@ -323,8 +335,8 @@ foreach($scriptsPHP as $name => $object){
 
             if (VERBOSE) {
                 print "$i) ".$t->getCode()."---- \n";
-                $template = getTemplate($root, $fichier);
-                $template->affiche();
+                $template = getTemplate($root, $fichier, 'tree');
+                $template['tree']->affiche();
                 unset($template);
                 print "$i) ".$t->getCode()."---- \n";
            }
@@ -379,9 +391,11 @@ foreach($scriptsPHP as $name => $object){
         $id++;
     }
    
-    $template = getTemplate($root, $fichier);
-    $template->affiche();
-    $template->save();
+    $templates = getTemplate($root, $fichier);
+    foreach($templates as $template) {
+        $template->affiche();
+        $template->save();
+    }
 
     if (STATS) {
         include('prepare/template.stats.php');
@@ -545,21 +559,35 @@ function mon_log($message) {
     fwrite($LOG, date('r')."\t$message\r");
 }
 
-function getTemplate($racine, $fichier) {
-    $classe  = "template_".GABARIT;
-    return new $classe($racine, $fichier);
+function getTemplate($racine, $fichier, $gabarit = null) {
+    if (is_null($gabarit)) {
+        $gabarit = GABARIT;
+    }
+    $templates = explode(',' , $gabarit);
+    
+    $retour = array();
+    foreach($templates as $template) {
+        $classe  = "template_".$template;
+        $retour[$template] = new $classe($racine, $fichier);
+    }
+    return $retour;
 }
 
 function help() {
     print <<<TEXT
+    -d : test all .php files of the folder
+    -e : also open the file in an editor
+    -f : work on this file
+    -g : gabarit à utiliser
+    -l : activate log (in the file tokenizer.log)
     -h : This help
     -i : number of cycles. Default to 
     -I : ini file. Default to 'tokenizeur.ini'. 
+    -q : quick tests.php file
+    -r : mode récursif (avec -d)
     -S : display internal objects stats
-    -f : work on this file
-    -d : test all .php files of the folder
-    -e : also open the file in an editor
-    -l : activate log (in the file tokenizer.log)
+    -t : display tokens produced and quit
+    -T : activate test mode
 
 TEXT;
     
