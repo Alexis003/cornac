@@ -4,14 +4,11 @@ class signe extends instruction {
     protected $signe = null;
     protected $expression = null;
     
-    function __construct($expression = null) {
+    function __construct($entree = null) {
         parent::__construct(array());
-        
-        $signe = new token_traite($expression[0]);
-        $signe->replace($expression[0]);
 
-        $this->signe = $signe;
-        $this->expression = $expression[1];
+        $this->signe = $this->make_token_traite($entree[0]);
+        $this->expression = $entree[1];
     }
 
     function __toString() {
