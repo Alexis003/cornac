@@ -221,12 +221,31 @@ class Token {
     }
 
     function getNext($n = 0) {
+//        global $id_getNext;
+        
+        if (!isset($id_getNext)) {$id_getNext = 1;} else { $id_getNext++; } 
+/*        
+        $fp = fopen('/tmp/getNext.log','a');
+        fwrite($fp, "$id_getNext\t$n\n");
+        fclose($fp);
+        */
         if ($n > 3000) {
             print_r(xdebug_get_function_stack());        
-            print "\$n est > a 300\n";
+            print "\$n est > a 3000\n";
             die();
         }
-        $retour = $this->next;
+        
+        $n++;
+        $retour = $this;
+        while($n > 0) {
+            $retour = $retour->next;
+            if (is_null($retour)) { return NULL; }
+            $n--;
+        }
+        
+        return $retour;
+        
+        /*
         
         if ($n > 0) {
             if (is_null($retour)) {
@@ -236,6 +255,7 @@ class Token {
         }
 
         return $retour;
+        */
     }
     
     function __toString() {
@@ -260,6 +280,17 @@ class Token {
         return $t;
     }
     
+    function make_token_traite($entree) {
+        $clone = clone $entree;
+                
+        $retour = new token_traite($clone);
+        $retour->replace($clone);
+        $retour->setToken($entree->getToken());
+        
+        return $retour;
+    }
+    
+
     static function applyRegex($t, $class, $r) { 
         $args = $r->getArgs();
         
