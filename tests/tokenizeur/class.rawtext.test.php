@@ -3,7 +3,7 @@ include_once('Analyseur_Framework_TestCase.php');
 
 class Rawtext_Test extends Analyseur_Framework_TestCase
 {
-    /* 8 methodes */
+    /* 9 methodes */
     public function testRawtext1()  { $this->generic_test('rawtext.1'); }
     public function testRawtext2()  { $this->generic_test('rawtext.2'); }
     public function testRawtext3()  { $this->generic_test('rawtext.3'); }
@@ -12,6 +12,7 @@ class Rawtext_Test extends Analyseur_Framework_TestCase
     public function testRawtext6()  { $this->generic_test('rawtext.6'); }
     public function testRawtext7()  { $this->generic_test('rawtext.7'); }
     public function testRawtext8()  { $this->generic_test('rawtext.8'); }
+    public function testRawtext9()  { $this->generic_test('rawtext.9'); }
 
 }
 
