@@ -9,10 +9,7 @@ class typehint extends token {
         
         if (count($entree) != 2) { die("pb dans le nombre d'argument de ".__METHOD__);}
         
-        $type = new token_traite($entree[0]);
-        $type->replace($entree[0]);
-        $this->type = $type;
-
+        $this->type = $this->make_token_traite($entree[0]);
         $this->nom = $entree[1];
     }
 
@@ -35,8 +32,6 @@ class typehint extends token {
 
     function getRegex(){
         return array('typehint_regex');
-        // rien, produit par d'autres regex
-
     }
 }
 
