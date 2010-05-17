@@ -8,10 +8,7 @@ class method_static extends instruction {
         parent::__construct(array());
         
         if (is_array($entree)) {
-            $class = new token_traite($entree[0]);
-            $class->replace($entree[0]);
-            
-            $this->class = $class;
+            $this->class = $this->make_token_traite($entree[0]);
             $this->method = $entree[1];
         } else {
             die('Appel de method avec deux arguments? '. join(', ',func_get_args()));
