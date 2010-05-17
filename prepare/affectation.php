@@ -13,9 +13,9 @@ class affectation extends instruction {
         if (is_array($entree)) {
             while ($entree[0]->checkToken(array(T_PUBLIC, T_PRIVATE, T_PROTECTED, T_STATIC))) {
                 if ($entree[0]->checkToken(array(T_PUBLIC, T_PRIVATE, T_PROTECTED))) {
-                    $this->_visibility = $entree[0];
+                    $this->_visibility = $this->make_token_traite($entree[0]);
                 } elseif ($entree[0]->checkToken(array(T_STATIC))) {
-                    $this->_static = $entree[0];
+                    $this->_static = $this->make_token_traite($entree[0]);
                 }
 
                 unset($entree[0]);
@@ -27,12 +27,7 @@ class affectation extends instruction {
             }
 
             $this->droite = $entree[0];
-            
-            $operateur = new token_traite($entree[1]);
-            $operateur->replace($entree[1]);
-                
-            $this->operateur = $operateur;
-    
+            $this->operateur = $this->make_token_traite($entree[1]);
             $this->gauche = $entree[2];
         } else {
             die(__CLASS__." a recu des arguments bizarres dans ".__METHOD__);
