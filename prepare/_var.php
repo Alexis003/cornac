@@ -11,23 +11,9 @@ class _var extends instruction {
 
         while ($entree[0]->checkToken(array(T_VAR, T_PRIVATE, T_PROTECTED, T_PUBLIC, T_STATIC))) {
             if ($entree[0]->checkToken(array(T_VAR, T_PRIVATE, T_PROTECTED, T_PUBLIC))) {
-                $clone = clone $entree[0];
-                
-                $visibility = new token_traite($clone);
-                $visibility->replace($clone);
-                $visibility->setToken($entree[0]->getToken());
-
-                $this->_visibility = $visibility;
+                $this->_visibility = $this->make_token_traite($entree[0]);
             } elseif ($entree[0]->checkToken(array(T_STATIC))) {
-/*                $clone = clone $entree[0];
-                
-                $static = new token_traite($clone);
-                $static->replace($clone);
-                $static->setToken($entree[0]->getToken());
-
-                $this->_static = $static;
-*/
-                $this->_static = clone new token_traite($entree[0]);
+                $this->_static = $this->make_token_traite($entree[0]);
             } else {
                 die( " Classe d'attribut non gérée par ".__CLASS__." : ".get_class($entree[0])."\n");
             }
