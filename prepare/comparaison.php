@@ -9,11 +9,8 @@ class comparaison extends instruction {
         parent::__construct(array());
         
         if (is_array($entree) && count($entree) == 3) {
-            $operateur = new token_traite($entree[1]);
-            $operateur->replace($entree[1]);
-
             $this->droite = $entree[0];
-            $this->operateur = $operateur;
+            $this->operateur = $this->make_token_traite($entree[1]);
             $this->gauche = $entree[2];
         } else {
             die("Nombre d'arguments pour ".__CLASS__." incompris : ".count($entree)." au lieu de 3\n");
