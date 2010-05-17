@@ -8,11 +8,8 @@ class decalage extends instruction {
     function __construct($expression = null) {
         parent::__construct(array());
 
-        $operateur = new token_traite($expression[1]);
-        $operateur->replace($expression[1]);
-        
         $this->gauche = $expression[0];
-        $this->operateur = $operateur;
+        $this->operateur = $this->make_token_traite($expression[1]);
         $this->droite = $expression[2];
     }
 
