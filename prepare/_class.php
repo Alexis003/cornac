@@ -13,7 +13,7 @@ class _class extends instruction {
 
         $pos = 0;
         if ($entree[$pos]->checkToken(array(T_ABSTRACT, T_FINAL))) {
-            $this->_abstract = $entree[$pos];
+            $this->_abstract = $this->make_token_traite($entree[$pos]);
             $pos += 1;
         }
 
