@@ -32,10 +32,6 @@ class inclusions2 extends modules {
 
             while (substr($code, 0, 2) == './') { $code = substr($code, 2); }
             while (substr($code, 0, 3) == '../') { $code = substr($code, 3); }
-//	        print $ligne['fichier']."\n";
-//	        print $code."\n";
-//	        $real = dirname($ligne['fichier']).$code."\n";
-//	        print "\n";
 
             $dir = dirname($ligne['fichier']);
             $requete = <<<SQL

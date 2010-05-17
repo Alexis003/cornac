@@ -17,7 +17,7 @@ DELETE FROM <rapport> WHERE module='{$this->name}'
 SQL;
         $this->exec_query($requete);
 
-print        $requete = <<<SQL
+        $requete = <<<SQL
 INSERT INTO <rapport> 
    SELECT 0, T1.fichier, T2.code, T1.id, '{$this->name}'
    FROM <tokens> T1

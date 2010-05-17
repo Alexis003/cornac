@@ -2,6 +2,7 @@
 
 class functioncalls extends modules {
     protected $not = false; 
+    protected $functions = array();
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -9,7 +10,8 @@ class functioncalls extends modules {
 	
 	public function analyse() {
 	    if (!is_array($this->functions)) {
-	        print "Aucunes fonctions fournies pour ".__CLASS__." : annulation du traitement\n";
+	        print "Aucune fonction fournie pour ".__CLASS__." : annulation du traitement\n";
+	        die();
 	    }
 	    $in = join("','", $this->functions);
         $this->functions = array();
@@ -35,11 +37,7 @@ INSERT INTO <rapport>
            T2.fichier = T1.fichier
     WHERE T1.type='functioncall' AND T2.code $not in ('$in')
 SQL;
-//        print $this->prepare_query($requete)."\n\n";
-//die();
         $this->exec_query($requete);
-
-//        $this->updateCache();
 	}
 }
 

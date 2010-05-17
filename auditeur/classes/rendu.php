@@ -30,6 +30,7 @@ SQL;
         
         if (!isset($debut)) {
             print "$droite $gauche, $fichier\n$requete\n";
+            return '';
             die();
         }
 

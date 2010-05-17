@@ -14,49 +14,35 @@ class globals extends modules {
     public function analyse() {
 // variables marquées comme globales avec global
 
-        $module = __CLASS__;
-        $requete = <<<SQL
-DELETE FROM <rapport> WHERE module='$module'
-SQL;
-        $res = $this->exec_query($requete);
-
+        $this->clean_rapport();
+        
         $requete = <<<SQL
 INSERT INTO <rapport> 
-        SELECT 0, T2.fichier, replace(replace(T2.code,'\$"',''),"'",'') AS code, T2.id, '$module'
+SELECT 0, T2.fichier, T2.code AS code, T2.id, '{$this->name}'
     FROM <tokens> T1
     JOIN <tokens> T2 
-        ON T1.droite + 1 = T2.droite
-    WHERE T1.type='_global' AND
-          T2.fichier = T1.fichier
+        ON T1.droite + 1 = T2.droite AND
+           T1.fichier = T2.fichier
+    WHERE T1.type='_global' 
 SQL;
         $res = $this->exec_query($requete);
-        $this->functions = array();
-        while($ligne = $res->fetch(PDO::FETCH_ASSOC)) {
-            $this->functions[trim($ligne['code'],'$\'"')] = $ligne['nb'];
-            $this->occurrences++;
-        }
         
 // variables globales via $GLOBALS
        $requete = <<<SQL
 INSERT INTO <rapport> 
-SELECT 0, T2.fichier, replace(replace(T2.code,'\$"',''),"'",'') AS code, T2.id, '$module'
+SELECT 0, T1.fichier, T3.code AS code, T2.id, '{$this->name}'
     FROM <tokens> T1
     JOIN <tokens> T2 
-        ON T1.droite + 2 = T2.droite
-    WHERE T1.code = '\$GLOBALS' AND
-          T1.fichier = T2.fichier;
+        ON T1.droite + 1 = T2.droite AND
+           T1.fichier = T2.fichier
+    LEFT JOIN <tokens_cache> T3
+        ON T1.id = T3.id AND
+           T1.fichier = T3.fichier
+    WHERE 
+          T1.type = 'tableau' AND
+          T2.code = '\$GLOBALS';
 SQL;
         $res = $this->exec_query($requete);
-        include_once('classes/rendu.php');
-        $rendu = new rendu($this->mid);
-        
-        while($ligne = $res->fetch(PDO::FETCH_ASSOC)) {
-//            print $ligne["code"]."\t".$ligne["fichier"]."\n";
-            $code = $rendu->rendu($ligne['droite'], $ligne['gauche'], $ligne['fichier']);
-        
-            $this->functions[trim($ligne['code'],'$\'"')] = 1;
-            $this->occurrences++;
-        }
     }
 }
 

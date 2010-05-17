@@ -16,12 +16,13 @@ abstract class modules {
     protected  $format = modules::FORMAT_HTMLLIST;
 
     function __construct($mid) {
-        $prefixe = 'rd';
+        $prefixe = 'discuz';
         $this->mid = $mid;
         $this->format_export = modules::FORMAT_DEFAULT;
         
         $this->tables = array('<rapport>' => $prefixe.'_rapport',
                               '<tokens>' => $prefixe.'',
+                              '<tokens_cache>' => $prefixe.'_cache',
                               '<tokens_tags>' => $prefixe.'_tags',
                               '<rapport_module>' => $prefixe.'_rapport_module',
                               '<rapport_dot>' => $prefixe.'_rapport_dot',
@@ -242,6 +243,13 @@ SQL;
         $res = $this->mid->query($requete);
 
         return $res;
+    }
+    
+    function clean_rapport() {
+        $requete = <<<SQL
+DELETE FROM <rapport> WHERE module='{$this->name}'
+SQL;
+        $this->exec_query($requete);
     }
 }
 ?>

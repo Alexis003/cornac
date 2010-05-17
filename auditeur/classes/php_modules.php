@@ -17,9 +17,6 @@ class php_modules extends functioncalls {
 	    $this->functions = $functions['internal'];
 	    
 	    
-	    //parent::analyse();
-	    
-	    print "analyse\n";
 	    $requete = "SELECT distinct element FROM <rapport> WHERE module = '{$this->name}'";
 	    $res = $this->exec_query($requete);
 
@@ -34,14 +31,10 @@ class php_modules extends functioncalls {
             if (!is_array($functions)) { print "pas de tableau $ext\n"; continue; }
             $liste = array_intersect($functions, $fonctions);
             if (count($liste) > 0) {
-                print $ext."\n";
-                
                 $requete = "UPDATE <rapport> SET element = '$ext' WHERE module = '{$this->name}' AND element in ( '".join("','", $liste)."')";
                 $this->exec_query($requete);
             }
         }
-//        print_r($fonctions);
-	    
 	}
 }
 
