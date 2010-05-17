@@ -4,14 +4,11 @@ class cast extends instruction {
     protected $cast = null;
     protected $expression = null;
     
-    function __construct($expression) {
+    function __construct($entree) {
         parent::__construct(array());
-        
-        $cast = new token_traite($expression[0]);
-        $cast->replace($expression[0]);
 
-        $this->cast = $cast;
-        $this->expression = $expression[1];
+        $this->cast = $this->make_token_traite($entree[0]);
+        $this->expression = $entree[1];
     }
 
     function __toString() {
