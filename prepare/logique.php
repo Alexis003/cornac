@@ -10,10 +10,7 @@ class logique extends instruction {
         
         if (is_array($entree)) {
             $this->droite = $entree[0];
-            $operateur = new token_traite($entree[1]);
-            $operateur->replace($entree[1]);
-            
-            $this->operateur = $operateur;
+            $this->operateur = $this->make_token_traite($entree[1]);
             $this->gauche = $entree[2];
         } else {
             die("entre doit être un tableau dans ".__METHOD__);
