@@ -23,7 +23,6 @@ class _continue extends instruction {
 
 
     function neutralise() {
-//        $this->expression->detach();
     }
 
     function getRegex(){

@@ -22,7 +22,6 @@ class _break extends instruction {
     }
 
     function neutralise() {
-//        $this->expression->detach();
     }
 
     function getRegex(){
