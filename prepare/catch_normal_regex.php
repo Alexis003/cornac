@@ -16,7 +16,7 @@ class catch_normal_regex extends analyseur_regex {
             $t->getNext(3)->checkOperateur(')') &&
             $t->getNext(4)->checkClass('block') 
             ) {
-
+            
             $this->args = array(2, 3, 5);
             $this->remove = array(1,2,3,4,5);
 
