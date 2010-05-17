@@ -195,6 +195,7 @@ END;
         }
         
         $this->tags = array();
+        $noeud->mysql_id = $retour;
         
         return $retour;
     }
@@ -501,6 +502,10 @@ END;
         $noeud->setCode('');
 
         $this->affiche($noeud->getTableau(), $niveau + 1);
+        $key = $noeud->getKey();
+        if (!is_null($key)) {
+            $this->affiche($key, $niveau + 1);
+        }
         $this->affiche($noeud->getValue(), $niveau + 1);
         $this->affiche($noeud->getBlock(), $niveau + 1);
 
@@ -740,8 +745,8 @@ END;
         $noeud->myId = $this->getNextId();
         $noeud->myDroite = $this->getIntervalleId();
         
-        $this->affiche($noeud->getObject(), $niveau + 1);
-        $this->affiche($noeud->getProperty(), $niveau + 1);
+//        $this->affiche($noeud->getObject(), $niveau + 1);
+//        $this->affiche($noeud->getProperty(), $niveau + 1);
 
         $tags = array();
         $tags['objet'][] = $this->affiche($noeud->getObject(), $niveau + 1);
