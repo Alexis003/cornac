@@ -8,10 +8,7 @@ class property_static extends token {
         parent::__construct();
         
         if (is_array($entree)) {
-            $class = new token_traite($entree[0]);
-            $class->replace($entree[0]);
-            
-            $this->class = $class;
+            $this->class = $this->make_token_traite($entree[0]);
             $this->property = $entree[1];
         } else {
             die('Appel de constant avec deux arguments? '. join(', ',func_get_args()));
