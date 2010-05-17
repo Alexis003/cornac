@@ -5,25 +5,15 @@ class operation extends instruction {
     protected $operation = null;
     protected $gauche = null;
     
-    function __construct($droite, $operation = null,  $gauche = null) {
+    function __construct($entree) {
         parent::__construct(array());
         
-        if (is_array($droite)) {
-            $this->droite = $droite[0];
-
-            $operation = new token_traite($droite[1]);
-            $operation->replace($droite[1]);
-            
-            $this->operation = $operation;
-            $this->gauche = $droite[2];
+        if (count($entree) == 3) {
+            $this->droite = $entree[0];
+            $this->operation = $this->make_token_traite($entree[1]);
+            $this->gauche = $entree[2];
         } else {
-            $this->droite = $droite;
-
-            $op = new token_traite($operation);
-            $op->replace($operation);
-            
-            $this->operation = $op;
-            $this->gauche = $gauche;
+            die("On ne devrait pas arriver ici : ".__CLASS__);
         }
     }
 
