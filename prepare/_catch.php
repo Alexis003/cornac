@@ -10,13 +10,8 @@ class _catch extends instruction {
         
         $this->block = array_pop($entree);
         if (count($entree) == 2) {
-            $this->exception = $entree[0];
-            $this->variable = $entree[1];
-/*        } elseif (count($entree) == 1) {
-            if ($entree[0]->checkNotClass('parentheses')) { }
-            $contenu = $entree[0]->getContenu();
-            $this->exception = $contenu[0];
-            $this->variable = $contenu[1];*/
+            $this->exception = $this->make_token_traite($entree[0]);
+            $this->variable  = $entree[1];
         } else {
             die(__CLASS__." n'a pas recu le bon nombre d'arguments (".count($entree)." au lieu de 3)\n");
         }
