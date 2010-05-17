@@ -23,6 +23,24 @@ class rawtext_regex extends analyseur_regex {
                 }
                 $this->args = array(0);
                 $this->remove = array(-1, 1);
+            } elseif ($t->getPrev()->checkClass('codephp') &&
+                      $t->getNext()->checkToken(T_OPEN_TAG)) {
+                
+                if ($t->getNext(1)->checkCode('=')) {
+                    // cas des short tags
+                    return false;
+                }
+                $this->args = array(0);
+                $this->remove = array();
+            } elseif ($t->getPrev()->checkToken(T_CLOSE_TAG) &&
+                      $t->getNext()->checkClass('codephp')) {
+                $this->args = array(0);
+                $this->remove = array(-1);
+            } elseif ($t->getPrev()->checkClass('codephp') &&
+                      $t->getNext()->checkClass('codephp')) {
+                      // rien, on peut continuer
+            } else {
+                print $t->getPrev()." ".$t->getNext()." sans tags PHP\n";
             }
         }
 
