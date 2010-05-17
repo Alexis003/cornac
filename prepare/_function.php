@@ -16,39 +16,23 @@ class _function extends instruction {
         while($entree[0]->checkToken(array(T_PUBLIC, T_PROTECTED, T_PRIVATE, T_STATIC, T_ABSTRACT, T_FINAL))) {
 
             if ($entree[0]->checkToken(array(T_PUBLIC, T_PROTECTED, T_PRIVATE))) {
-                $clone = clone $entree[0];
-                
-                $visibility = new token_traite($clone);
-                $visibility->replace($clone);
-                $visibility->setToken($entree[0]->getToken());
-
-                $this->_visibility = $visibility;
+                $this->_visibility = $this->make_token_traite($entree[0]);
                 unset($entree[0]);
                 $entree = array_values($entree);
                 continue;
             }
 
             if ($entree[0]->checkToken(array(T_STATIC))) {
-                $clone = clone $entree[0];
-                
-                $static = new token_traite($clone);
-                $static->replace($clone);
-                $static->setToken($entree[0]->getToken());
+                $this->_static = $this->make_token_traite($entree[0]);
 
-                $this->_static = $static;
                 unset($entree[0]);
                 $entree = array_values($entree);
                 continue;
             }
 
             if ($entree[0]->checkToken(array(T_ABSTRACT, T_FINAL))) {
-                $clone = clone $entree[0];
-                
-                $asfin = new token_traite($clone);
-                $asfin->replace($clone);
-                $asfin->setToken($entree[0]->getToken());
+                $this->_abstract = $this->make_token_traite($entree[0]);
 
-                $this->_abstract = $asfin;
                 unset($entree[0]);
                 $entree = array_values($entree);
                 continue;
