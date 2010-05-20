@@ -16,7 +16,7 @@ abstract class modules {
     protected  $format = modules::FORMAT_HTMLLIST;
 
     function __construct($mid) {
-        $prefixe = 'discuz';
+        $prefixe = 'rachatco';
         $this->mid = $mid;
         $this->format_export = modules::FORMAT_DEFAULT;
         
@@ -248,6 +248,11 @@ SQL;
     function clean_rapport() {
         $requete = <<<SQL
 DELETE FROM <rapport> WHERE module='{$this->name}'
+SQL;
+        $this->exec_query($requete);
+
+        $requete = <<<SQL
+DELETE FROM <rapport_dot> WHERE module='{$this->name}'
 SQL;
         $this->exec_query($requete);
     }
