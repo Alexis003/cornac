@@ -11,10 +11,7 @@ class parentheses extends modules {
     }
     
     public function analyse() {
-        $requete = <<<SQL
-DELETE FROM <caches> WHERE type='parentheses'
-SQL;
-//        $res = $this->exec_query($requete);
+        $this->clean_rapport();
 
         $requete = <<<SQL
 INSERT INTO caches

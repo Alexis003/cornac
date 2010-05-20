@@ -21,11 +21,7 @@ class tableaux extends modules {
             $not = '';
         }
         
-        $module = __CLASS__;
-        $requete = <<<SQL
-DELETE FROM <rapport> WHERE module='{$this->name}'
-SQL;
-        $this->exec_query($requete);
+        $this->clean_rapport();
 
 // cas simple : variable -> method
         $requete = <<<SQL

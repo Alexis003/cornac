@@ -11,10 +11,7 @@ class ifsanselse extends modules {
 	}
 	
 	public function analyse() {
-        $requete = <<<SQL
-DELETE FROM <rapport> WHERE module='{$this->name}'
-SQL;
-        $this->exec_query($requete);
+        $this->clean_rapport();
 
 	    $requete = <<<SQL
 INSERT INTO <rapport>

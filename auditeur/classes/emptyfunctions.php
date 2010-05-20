@@ -11,21 +11,7 @@ class emptyfunctions extends modules {
 	}
 	
 	public function analyse() {
-        $requete = <<<SQL
-DELETE FROM <rapport> WHERE module='{$this->name}'
-SQL;
-        $this->exec_query($requete);
-
-/*
-
-
-SELECT 
-    group_concat(if(T2.droite = T1.droite + 1, T2.code, '') SEPARATOR '') as nom,
-    if ('block' = group_concat(if(T1.gauche - 2 = T2.droite, T2.type, '') SEPARATOR ''), 
-        'vide',
-        '') as empty_bloc,
-    T1.fichier
-*/
+        $this->clean_rapport();
 
 	    $requete = <<<SQL
 INSERT INTO <rapport>

@@ -11,11 +11,7 @@ class noms extends modules {
 	    $type_tag = $this->noms['type_tags'];
         $this->noms = array();
 
-        $module = __CLASS__;
-        $requete = <<<SQL
-DELETE FROM <rapport> WHERE module='{$this->name}'
-SQL;
-        $this->exec_query($requete);
+        $this->clean_rapport();
 
         $requete = <<<SQL
 INSERT INTO <rapport> 

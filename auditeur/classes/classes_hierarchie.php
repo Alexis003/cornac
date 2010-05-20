@@ -13,11 +13,7 @@ class classes_hierarchie extends modules {
 	}
 	
 	public function analyse() {
-        $module = __CLASS__;
-        $requete = <<<SQL
-DELETE FROM <rapport_dot> WHERE module='{$this->name}'
-SQL;
-        $this->exec_query($requete);
+        $this->clean_rapport();
 
         $requete = <<<SQL
 INSERT INTO <rapport_dot> 

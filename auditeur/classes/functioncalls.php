@@ -22,11 +22,7 @@ class functioncalls extends modules {
             $not = '';
         }
         
-        $module = __CLASS__;
-        $requete = <<<SQL
-DELETE FROM <rapport> WHERE module='{$this->name}'
-SQL;
-        $this->exec_query($requete);
+        $this->clean_rapport();
 
         $requete = <<<SQL
 INSERT INTO <rapport> 
