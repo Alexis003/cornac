@@ -13,32 +13,36 @@ class inclusions2 extends modules {
 	}
 	
 	public function analyse() {
-	    $requete = "SELECT fichier, droite, gauche, code, type FROM <tokens> WHERE type='inclusion'";
-	    $res = $this->exec_query($requete);
-
-        include_once('classes/rendu.php');
-        $rendu = new rendu($this->mid);
-
-	    while($ligne = $res->fetch(PDO::FETCH_ASSOC)) {
-	        $code = $rendu->rendu($ligne['droite'] + 1, $ligne['gauche'] - 1, $ligne['fichier']);
-
-	        $code = trim($code, "'\"");
-	        
-	        // code pour optima! 
-	        $code = str_replace('$server_root.','',$code);
-	        $code = str_replace('$app_root.','',$code);
-	        $code = str_replace('$html_root.','',$code);
-	        $ligne['fichier'] = str_replace('References/optima4','', $ligne['fichier']);
-
-            while (substr($code, 0, 2) == './') { $code = substr($code, 2); }
-            while (substr($code, 0, 3) == '../') { $code = substr($code, 3); }
-
-            $dir = dirname($ligne['fichier']);
-            $requete = <<<SQL
-INSERT INTO <rapport_dot> VALUES ('{$ligne['fichier']}','{$code}','{$dir}','{$this->name}')
+        $this->clean_rapport();
+        
+        $requete = <<<SQL
+INSERT INTO <rapport_dot> 
+SELECT T1.fichier, T3.code,T1.fichier, '{$this->name}'
+FROM <tokens> T1
+    JOIN <tokens> T2
+        ON T2.droite  = T1.droite + 1 AND
+           T2.fichier = T1.fichier
+    JOIN <tokens_cache> T3
+        ON T3.id = T2.id
+          AND T3.fichier = T2.fichier
+	    WHERE T1.type='inclusion'
 SQL;
-            $this->exec_query($requete);
-	    }
+    print $this->prepare_query($requete);
+        $res = $this->exec_query($requete);
+        
+// variables globales via $GLOBALS
+       $requete = <<<SQL
+INSERT INTO <rapport_dot> 
+SELECT T1.fichier, T2.code, T1.fichier, '{$this->name}'
+    FROM <tokens> T1
+    JOIN <tokens> T2
+        ON T2.droite  = T1.droite + 1 AND
+           T2.fichier = T1.fichier
+	    WHERE T1.type='inclusion' AND
+	          T2.type in ('literals','variable');
+SQL;
+//    print $this->prepare_query($requete);
+        $res = $this->exec_query($requete);
 	}
 }
 
