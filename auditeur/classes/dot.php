@@ -26,8 +26,6 @@ INSERT INTO <rapport>
 SQL;
 
         $this->exec_query($requete);
-
-        $this->updateCache();
     }
 }
 

@@ -9,7 +9,6 @@ class typecalls extends modules {
 	
 	public function analyse() {
 	    $in = $this->type;
-        $this->functions = array();
 
         $this->clean_rapport();
 
@@ -24,9 +23,6 @@ SQL;
         }
 
         $this->exec_query($requete);
-
-//        $this->updateCache();
-        $this->functions = array();
 	}
 }
 

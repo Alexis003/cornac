@@ -203,6 +203,7 @@ $subgraph
     return $retour;
 }
 
+/*
     function updateCache() {
         return false;
         $requete = <<<SQL
@@ -225,6 +226,7 @@ SQL;
             $this->mid->query($requete);
         }
     }
+*/
 
     function prepare_query($requete) {
         $requete = str_replace(array_keys($this->tables), array_values($this->tables), $requete);

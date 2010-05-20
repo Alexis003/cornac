@@ -24,8 +24,6 @@ INSERT INTO <rapport_dot>
     WHERE TT.type = 'extends';
 SQL;
         $this->exec_query($requete);
-
-//        $this->updateCache();
     }
 }
 
