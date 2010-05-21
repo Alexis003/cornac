@@ -16,7 +16,7 @@ abstract class modules {
     protected  $format = modules::FORMAT_HTMLLIST;
 
     function __construct($mid) {
-        $prefixe = 'rachatco';
+        $prefixe = 'caceis';
         $this->mid = $mid;
         $this->format_export = modules::FORMAT_DEFAULT;
         
@@ -198,6 +198,13 @@ $subgraph
         $requete = $this->prepare_query($requete);
         
         $res = $this->mid->query($requete);
+        $erreur = $this->mid->errorInfo();
+        
+        if ($erreur[2]) {
+            print_r($erreur);
+            print $requete;
+            die();
+        }
 
         return $res;
     }
