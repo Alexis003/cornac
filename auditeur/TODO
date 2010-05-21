@@ -1,4 +1,9 @@
-fonctions recursives
+Corriger les inclusions (supprimer rendu)
+Corriger les globales (rachatco en a!)
+Résoudre les codes pour les inclusions 
+supprimer rendu 
+Exporter vers un ODT.
+Identifier les fonctions recursives
 fonctions sans return
 comparaison inutiles
 affectation en if
@@ -20,3 +25,4 @@ group by fichier
 
 
 order by count(*);
+
