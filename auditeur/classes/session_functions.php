@@ -17,4 +17,3 @@ class session_functions extends functioncalls {
 }
 
 ?>
-
