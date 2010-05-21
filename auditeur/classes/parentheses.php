@@ -15,9 +15,14 @@ class parentheses extends modules {
 
         $requete = <<<SQL
 INSERT INTO caches
-   SELECT fichier, id, 'parentheses',code FROM <tokens> WHERE type = 'parentheses';
+   SELECT T1.fichier, T1.id, 'parentheses',T2.code 
+   FROM <tokens> T1
+   JOIN <tokens_cache> T2
+   ON T1.id = T2.id
+   WHERE T1.type = 'parentheses';
 SQL;
-
+    print $this->prepare_query($requete);
+    die();
         $res = $this->exec_query($requete);
 
         $requete = <<<SQL
