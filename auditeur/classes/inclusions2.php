@@ -17,7 +17,7 @@ class inclusions2 extends modules {
         
         $requete = <<<SQL
 INSERT INTO <rapport_dot> 
-SELECT T1.fichier, T3.code,T1.fichier, '{$this->name}'
+SELECT distinct T1.fichier, T3.code,T1.fichier, '{$this->name}'
 FROM <tokens> T1
     JOIN <tokens> T2
         ON T2.droite  = T1.droite + 1 AND
@@ -33,7 +33,7 @@ SQL;
 // variables globales via $GLOBALS
        $requete = <<<SQL
 INSERT INTO <rapport_dot> 
-SELECT T1.fichier, T2.code, T1.fichier, '{$this->name}'
+SELECT distinct T1.fichier, T2.code, T1.fichier, '{$this->name}'
     FROM <tokens> T1
     JOIN <tokens> T2
         ON T2.droite  = T1.droite + 1 AND
