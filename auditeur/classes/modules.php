@@ -88,27 +88,8 @@ abstract class modules {
             return false;
         }
         
-//        if (!isset($this->functions)) { print get_class($this)." n'a pas de functions\n";}
-        
         $this->exec_query("REPLACE INTO <rapport_module> VALUES ('$this->name', NOW(), '{$this->format}')");
 
-/*
-        if ($this->format_export == modules::FORMAT_DOT) {
-            $this->export = $this->array2dot($this->functions);
-        } else {
-            $this->init_file();
-            $this->export .= $this->array2li($this->functions);
-            $this->finish_file();
-        }
-
-        $this->save_file($this->name);
-
-        if (isset($this->inverse) && $this->inverse) {
-            $this->init_file();
-            $this->export = $this->array2li($this->array_invert($this->functions));
-            $this->save_file($this->name.".inverse");        
-        }
-        */
     }
 
 function array2li($array) {
@@ -203,31 +184,6 @@ $subgraph
     return $retour;
 }
 
-/*
-    function updateCache() {
-        return false;
-        $requete = <<<SQL
-SELECT tokens.id, tokens.droite, tokens.gauche, tokens.fichier FROM rapport 
-    JOIN tokens ON rapport.token_id = tokens.id 
-    LEFT JOIN caches ON rapport.id = caches.id  
-WHERE rapport.module='{$this->name}'
-SQL;
-        $res = $this->mid->query($requete);
-        
-        include_once('classes/rendu.php');
-        $rendu = new rendu($this->mid);
-
-        while($ligne = $res->fetch(PDO::FETCH_ASSOC)) {
-            $code = $rendu->rendu($ligne['droite'] , $ligne['gauche'] , $ligne['fichier']);
-            
-            $requete = <<<SQL
-INSERT INTO caches VALUES ('{$ligne['id']}','$code');
-SQL;
-            $this->mid->query($requete);
-        }
-    }
-*/
-
     function prepare_query($requete) {
         $requete = str_replace(array_keys($this->tables), array_values($this->tables), $requete);
         
@@ -241,7 +197,6 @@ SQL;
     function exec_query($requete) {
         $requete = $this->prepare_query($requete);
         
-//        print $requete."\n\n";
         $res = $this->mid->query($requete);
 
         return $res;
