@@ -11,12 +11,6 @@ include 'classes/typecalls.php';
 include 'classes/noms.php';
 
 $modules = array(
-                 'emptyfunctions',
-// dot (ou gex...)
-                 '',
-                 );
-
-$modules = array(
                  'arobases',
                  'classes_hierarchie',
                  'classes',
@@ -50,24 +44,22 @@ $modules = array(
                  'session_functions',
                  'secu_protection_functions',
                  'regex',
+                 'filter_functions',
+                 'methodscall',
                  );
+/*
+$modules = array(                 'xml_functions',
+                 'session_functions',
+                 'secu_protection_functions',
+                 'regex',
+                 'filter_functions',
+);*/
+$modules = array('classes_hierarchie',);
 
-$modules = array('vardump',
-                 'variables',
-                 'gpc',
-                 'mysql_functions',
-                 'mysqli_functions',
-                 'ldap_functions',
-                 'sql_queries',
-                 'xml_functions',
-                 'image_functions',
-                 'xml_functions',
-                 'session_functions',);
-$modules = array('regex');
 
 foreach($modules as $module) {
     print "+ $module\n";
-    include('classes/'.$module.'.php');
+    include_once('classes/'.$module.'.php');
     
     $x = new $module($mysql);
     $x->analyse();
