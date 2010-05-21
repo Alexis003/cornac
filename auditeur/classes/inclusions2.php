@@ -27,7 +27,6 @@ FROM <tokens> T1
           AND T3.fichier = T2.fichier
 	    WHERE T1.type='inclusion'
 SQL;
-    print $this->prepare_query($requete);
         $res = $this->exec_query($requete);
         
 // variables globales via $GLOBALS
@@ -41,7 +40,6 @@ SELECT distinct T1.fichier, T2.code, T1.fichier, '{$this->name}'
 	    WHERE T1.type='inclusion' AND
 	          T2.type in ('literals','variable');
 SQL;
-//    print $this->prepare_query($requete);
         $res = $this->exec_query($requete);
 	}
 }
