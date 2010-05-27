@@ -66,7 +66,6 @@ class template_cache extends template {
             print "Affichage ".__CLASS__." de '".$method."'\n";die;
         }
         if (!is_null($noeud->getNext())){
-            print "GetNext()\n";
             $this->affiche($noeud->getNext(), $niveau);
         }
 
@@ -140,6 +139,10 @@ class template_cache extends template {
                     //rien
                 } else {
                     $this->affiche($e, $niveau + 1);
+                    if (!isset($e->cache)) {
+                        print $e;
+                        die();
+                    }
                     $labels[] = $e->cache;
                 }
             }
@@ -292,6 +295,26 @@ class template_cache extends template {
 
     function affiche_constante($noeud, $niveau) {
         $noeud->cache = $noeud->getCode();
+    }
+
+    function affiche_constante_static($noeud, $niveau) {
+        $classe = $noeud->getClass();
+        $this->affiche($classe, $niveau + 1);
+        $methode = $noeud->getConstant();
+        $this->affiche($methode, $niveau + 1);
+
+        $noeud->cache = $classe->cache.'::'.$methode->cache;
+        return $this->saveNoeud($noeud);        
+    }
+
+    function affiche_constante_classe($noeud, $niveau) {
+        $classe = $noeud->getName();
+        $this->affiche($classe, $niveau + 1);
+        $methode = $noeud->getConstante();
+        $this->affiche($methode, $niveau + 1);
+
+        $noeud->cache = $classe->cache.'::'.$methode->cache;
+        return $this->saveNoeud($noeud);        
     }
 
    function affiche_decalage($noeud, $niveau) {
@@ -549,7 +572,7 @@ class template_cache extends template {
         $property = $noeud->getProperty();
         $this->affiche($property, $niveau + 1);
         
-        $noeud->cache = $object->cache."->".$property->cache;
+        $noeud->cache = $classe->cache."->".$property->cache;
         $this->saveNoeud($noeud);
     }
 
@@ -615,6 +638,7 @@ class template_cache extends template {
     function affiche__switch($noeud, $niveau) {
         $this->affiche($noeud->getOperande(), $niveau + 1);
         $this->affiche($noeud->getBlock(), $niveau + 1);
+        $noeud->cache = '<switch>';
     }
 
     function affiche_tableau($noeud, $niveau) {
@@ -644,7 +668,7 @@ class template_cache extends template {
             $this->affiche($e, $niveau + 1);
             $labels[]=  $e->cache;
         }
-        
+        $noeud->cache = '<try>';        
     }
 
     function affiche_typehint($noeud, $niveau) {
@@ -653,7 +677,7 @@ class template_cache extends template {
         $nom = $noeud->getNom();
         $this->affiche($nom, $niveau + 1);
         
-        $nom = $type->cache." ".$nom->cache;
+        $noeud->cache = $type->cache." ".$nom->cache;
     }
 
     function affiche__var($noeud, $niveau) {
@@ -699,11 +723,13 @@ class template_cache extends template {
     function affiche__while($noeud, $niveau) {
         $this->affiche($noeud->getCondition(), $niveau + 1);
         $this->affiche($noeud->getBlock(), $niveau + 1);
+        $noeud->cache = '<while>';        
     }
 
     function affiche__dowhile($noeud, $niveau) {
         $this->affiche($noeud->getCondition(), $niveau + 1);
         $this->affiche($noeud->getBlock(), $niveau + 1);
+        $noeud->cache = '<do_while>';        
     }
     
     function affiche_Token($noeud, $niveau) {

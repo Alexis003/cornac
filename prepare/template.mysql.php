@@ -69,7 +69,7 @@ class template_mysql extends template {
   PRIMARY KEY (`module`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1');
 
-        $this->mysql->query('DELETE FROM '.$this->table_tags.'_rapport_module WHERE fichier = "'.$fichier.'"');
+        $this->mysql->query('DELETE FROM '.$this->table_tags.' WHERE fichier = "'.$fichier.'"');
         $this->mysql->query('CREATE TABLE IF NOT EXISTS '.$this->table_tags.' (
   `token_id` int(10) unsigned NOT NULL,
   `token_sub_id` int(10) unsigned NOT NULL,
@@ -124,7 +124,6 @@ END;
             print "Affichage ".__CLASS__." de '".$method."'\n";die;
         }
         if (!is_null($noeud->getNext())){
-            print "GetNext()\n";
             $this->affiche($noeud->getNext(), $niveau);
         }
 
@@ -452,6 +451,32 @@ END;
         return $this->saveNoeud($noeud);
     }
 
+    function affiche_constante_static($noeud, $niveau) {
+        $noeud->myId = $this->getNextId();
+        $noeud->myDroite = $this->getIntervalleId();
+
+        $classe = $noeud->getClass();
+        $this->affiche($classe, $niveau + 1);
+        $methode = $noeud->getConstant();
+        $this->affiche($methode, $niveau + 1);
+
+        $noeud->myGauche = $this->getIntervalleId();
+        return $this->saveNoeud($noeud);
+    }
+
+    function affiche_constante_classe($noeud, $niveau) {
+        $noeud->myId = $this->getNextId();
+        $noeud->myDroite = $this->getIntervalleId();
+
+        $classe = $noeud->getName();
+        $this->affiche($classe, $niveau + 1);
+        $methode = $noeud->getConstante();
+        $this->affiche($methode, $niveau + 1);
+
+        $noeud->myGauche = $this->getIntervalleId();
+        return $this->saveNoeud($noeud);
+    }
+
    function affiche_decalage($noeud, $niveau) {
         $noeud->myId = $this->getNextId();
         $noeud->myDroite = $this->getIntervalleId();
@@ -605,6 +630,20 @@ END;
         return $this->saveNoeud($noeud);        
     }
 
+    function affiche__interface($noeud, $niveau) {
+        $noeud->myId = $this->getNextId();
+        $noeud->myDroite = $this->getIntervalleId();
+
+        $e = $noeud->getExtends();
+        if (count($e) > 0) {
+            $this->affiche($e, $niveau + 1);
+        }
+        $this->affiche($noeud->getBlock(), $niveau + 1);
+
+        $noeud->myGauche = $this->getIntervalleId();
+        return $this->saveNoeud($noeud);        
+    }
+
     function affiche_literals($noeud, $niveau) {
         $noeud->myId = $this->getNextId();
         $noeud->myDroite = $this->getIntervalleId();
@@ -633,7 +672,7 @@ END;
         $tags['methode'][] = $this->affiche($noeud->getMethod(), $niveau + 1);        
         
         $noeud->myGauche = $this->getIntervalleId();
-        $this->tags = array();
+        $this->tags = $tags;
         return $this->saveNoeud($noeud);        
     }
 
@@ -641,15 +680,12 @@ END;
         $noeud->myId = $this->getNextId();
         $noeud->myDroite = $this->getIntervalleId();
 
-        $this->affiche($noeud->getClass(), $niveau + 1);
-        $this->affiche($noeud->getMethod(), $niveau + 1);
-
         $tags = array();
         $tags['classe'][] = $this->affiche($noeud->getClass(), $niveau + 1);
         $tags['methode'][] = $this->affiche($noeud->getMethod(), $niveau + 1);
         
         $noeud->myGauche = $this->getIntervalleId();
-        $this->tags = array();
+        $this->tags = $tags;
         return $this->saveNoeud($noeud);        
     }
 
@@ -662,7 +698,7 @@ END;
         $tags['args'][] = $this->affiche($noeud->getArgs(), $niveau + 1);
         
         $noeud->myGauche = $this->getIntervalleId();
-        $this->tags = array();
+        $this->tags = $tags;
         return $this->saveNoeud($noeud);        
     }
 
@@ -753,7 +789,7 @@ END;
         $tags['propriete'][] = $this->affiche($noeud->getProperty(), $niveau + 1);
         
         $noeud->myGauche = $this->getIntervalleId();
-        $this->tags = array();
+        $this->tags = $tags;
         return $this->saveNoeud($noeud);        
     }
 
@@ -769,7 +805,7 @@ END;
         $tags['propriete'][] = $this->affiche($noeud->getProperty(), $niveau + 1);
         
         $noeud->myGauche = $this->getIntervalleId();
-        $this->tags = array();
+        $this->tags = $tags;
         return $this->saveNoeud($noeud);        
     }
 
