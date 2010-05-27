@@ -10,10 +10,13 @@ class functioncall extends instruction {
         if ($entree[0]->checkCode('=')) {
             $entree[0]->code = 'echo';
         }
-        $function = new token_traite($entree[0]);
-        $function->replace($entree[0]);
+        
+        if ($entree[0]->checkClass('Token')) {
+            $this->function = $this->make_token_traite($entree[0]);
+        } else {
+            $this->function = $entree[0];
+        }
 
-        $this->function = $function;
         if (isset($entree[1])) {
             $this->args = $entree[1];
         } else {

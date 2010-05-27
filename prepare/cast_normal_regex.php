@@ -26,7 +26,7 @@ class cast_normal_regex extends analyseur_regex {
                                  T_OBJECT_CAST,
                                  T_UNSET_CAST)) &&
             $t->getNext()->checkNotClass('Token') && 
-            ($t->getNext(1)->checkNotCode(array('[','->','{')))
+            ($t->getNext(1)->checkNotCode(array('[','->','{','::')))
             ) {
 
             $this->args = array(0, 1);

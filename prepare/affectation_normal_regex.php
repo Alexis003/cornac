@@ -22,7 +22,7 @@ class affectation_normal_regex extends analyseur_regex {
                 
              
         if ($t->hasPrev(1) && $t->getPrev(1)->checkCode(array('&','$','::','@','->','var','public','private','protected'))) { return false;}
-        if (($t->getPrev()->checkClass(array('variable','property','opappend','functioncall','not','noscream','property_static','reference')) || 
+        if (($t->getPrev()->checkClass(array('variable','property','opappend','functioncall','not','noscream','property_static','reference','cast')) || 
              $t->getPrev()->checkSubclass('variable')) &&
             (/*$t->getNext()->checkSubclass(array('instruction'))  || */
              $t->getNext()->checkClass(array('literals', 'variable','tableau','signe','noscream',
