@@ -12,7 +12,7 @@ tests/tokenizeur/scripts/array.9.test.php
           appel de fonction : array: 
               arglist 
               0 : 
-                  literals 'a' => functioncall 0 "$c" ( arglist(literals 'b') ) 
+                  literals 'a' => functioncall variable 309 "$c" ( arglist(literals 'b') ) 
                       literals 'a'
                       functioncall $c
                       appel de fonction : $c: 

@@ -1,0 +1,18 @@
+Travail sur le fichier tests/tokenizeur/scripts/affectation.54.test.php 
+tests/tokenizeur/scripts/affectation.54.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          cast (292 "(array)")variable 309 "$x"
+              variable 309 "$x"
+       "=" 
+      gauche : 
+          method variable 309 "$a"
+          appel de methode : functioncall 307 "b" ( arglist(variable 309 "$c") ) : 
+              functioncall b
+              appel de fonction : b: 
+                  arglist 
+                  0 : 
+                      variable 309 "$c"

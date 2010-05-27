@@ -1,0 +1,11 @@
+Travail sur le fichier tests/tokenizeur/scripts/cast.13.test.php 
+tests/tokenizeur/scripts/cast.13.test.php
+  codephp <?php 
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$x"
+       "=" 
+      gauche : 
+          cast (293 "(string)")property_static 0 "$a"::variable 309 "$b"
+              property_static 0 "$a"::variable 309 "$b"->
