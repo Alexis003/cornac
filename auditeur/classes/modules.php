@@ -184,6 +184,11 @@ $subgraph
     return $retour;
 }
 
+    function print_query($requete) {
+        print $this->prepare_query($requete)."\n";
+        die();
+    }
+
     function prepare_query($requete) {
         $requete = str_replace(array_keys($this->tables), array_values($this->tables), $requete);
         
