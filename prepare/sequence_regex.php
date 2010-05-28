@@ -11,7 +11,7 @@ class sequence_regex extends analyseur_regex {
  
     function check($t) {
         if (!$t->hasNext() ) { return false; }
-                
+        
         if ( $t->hasPrev() && $t->getPrev()->checkForAssignation()) { return false; }
         if ( $t->hasPrev() && $t->getPrev()->checkClass('parentheses')) { return false; }
         if ( $t->hasPrev() && $t->getPrev()->checkCode(array(')','->','(',',','.','new','!==','::',':',

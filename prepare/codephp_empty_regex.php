@@ -14,6 +14,12 @@ class codephp_empty_regex extends analyseur_regex {
 
         if ($t->checkToken(T_OPEN_TAG) &&
             $t->getNext()->checkToken(T_CLOSE_TAG)) {
+            
+            if ($t->hasNext(1) && 
+                $t->getNext(1)->checkToken(T_INLINE_HTML)) {
+                    // on évite de polluer le travail de rawtext
+                return false;
+            }
             $this->args = array();
             $this->remove = array(1);
             

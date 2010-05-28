@@ -1,7 +1,7 @@
 <?php
 
 class shell extends instruction {
-    protected $expression = null;
+    protected $expression = array();
     
     function __construct($entree) {
         parent::__construct(array());

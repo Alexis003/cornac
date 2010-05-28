@@ -13,17 +13,17 @@ class reference_normal_regex extends analyseur_regex {
         if (!$t->hasNext()) { return false; }
 
         if ( $t->checkClass('literals')) { return false; }
+        if ( $t->getNext(1)->checkCode(array('->','[','('))) { return false; }
+
         if ($t->getPrev()->checkToken(T_AS)) {
             // continue, c'est une exception
-//        } elseif ($t->getPrev(1)->checkToken(T_STRING)) {
-//            return false;
         } elseif ($t->getPrev()->checkClass(array('arglist','functioncall'))) {
             return false;
-        } elseif (!$t->getPrev()->checkBeginInstruction()) {  return false; }
+        } elseif (!$t->getPrev()->checkBeginInstruction()) {  
+            return false; 
+        }
         
-        if ($t->getNext()->checkClass(array('variable','_new','method','functioncall','_new','property','tableau','property_static','method_static','opappend')) &&
-            $t->getNext(1)->checkNotCode(array('->','[','('))
-            ) {
+        if ($t->getNext()->checkClass(array('variable','_new','method','functioncall','_new','property','tableau','property_static','method_static','opappend'))) {
 
             $this->args = array(1);
             $this->remove = array(1);

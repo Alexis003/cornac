@@ -3,7 +3,7 @@
 class _interface extends instruction {
     protected $name = null;
     protected $block = null;
-    protected $extends = null;
+    protected $extends = array();
     
     function __construct($entree = null) {
         parent::__construct(array());
@@ -12,7 +12,9 @@ class _interface extends instruction {
         unset($entree[0]);
         $this->block = array_pop($entree);
         
-        $this->extends = $entree;
+        foreach($entree as $e) {
+            $this->extends[] = $this->make_token_traite($e);
+        }
     }
 
     function __toString() {

@@ -55,7 +55,7 @@ class template_cache extends template {
         if (!is_object($noeud)) {
             print_r(xdebug_get_function_stack());        
             print "Attention, $noeud n'est pas un objet (".gettype($noeud).")\n";
-            die();
+            die(__METHOD__);
         }
         $class = get_class($noeud);
         $method = "affiche_$class";
@@ -446,6 +446,32 @@ class template_cache extends template {
         $this->affiche($inclusion, $niveau + 1);
         
         $noeud->cache = 'include '.$inclusion->cache;
+        return $this->saveNoeud($noeud);        
+    }
+
+    function affiche__interface($noeud, $niveau) {
+        $cache = array();
+        $e = $noeud->getExtends();
+        if (count($e) > 0) {
+            foreach($e as $ex) {
+                $this->affiche($ex, $niveau + 1);
+                $cache[] = $ex->cache;
+            }
+        }
+        $this->affiche($noeud->getBlock(), $niveau + 1);
+
+        $noeud->cache = 'interface '.$noeud->getName();
+        if (count($e) > 0) {
+            $noeud->cache .= 'implements '.join(', ', $cache);
+        }
+        return $this->saveNoeud($noeud);        
+    }
+
+    function affiche_invert($noeud, $niveau) {
+        $expression = $noeud->getExpression();
+        $this->affiche($expression, $niveau + 1);
+
+        $noeud->cache = ' '.$expression->cache;
         return $this->saveNoeud($noeud);        
     }
 

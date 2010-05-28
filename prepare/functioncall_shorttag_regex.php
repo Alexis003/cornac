@@ -15,6 +15,7 @@ class functioncall_shorttag_regex extends analyseur_regex {
         if ($t->getNext()->checkNotCode(array("="))) { return false; }
         if ($t->getNext()->checkNotClass(array("Token"))) { return false; }
         if ($t->getNext(1)->checkClass(array("Token"))) { return false; }
+        if ($t->getNext(2)->checkCode(array("[","::",'->','('))) { return false; }
         
         $args = array(0, 1);
         $delete = array( 1);

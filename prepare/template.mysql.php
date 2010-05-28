@@ -113,7 +113,7 @@ END;
         if (!is_object($noeud)) {
             print_r(xdebug_get_function_stack());        
             print "Attention, $noeud n'est pas un objet (".gettype($noeud).")\n";
-            die();
+            die(__METHOD__."\n");
         }
         $class = get_class($noeud);
         $method = "affiche_$class";
@@ -636,10 +636,22 @@ END;
 
         $e = $noeud->getExtends();
         if (count($e) > 0) {
-            $this->affiche($e, $niveau + 1);
+            foreach($e as $ex) {
+                $this->affiche($ex, $niveau + 1);
+            }
         }
         $this->affiche($noeud->getBlock(), $niveau + 1);
 
+        $noeud->myGauche = $this->getIntervalleId();
+        return $this->saveNoeud($noeud);        
+    }
+
+    function affiche_invert($noeud, $niveau) {
+        $noeud->myId = $this->getNextId();
+        $noeud->myDroite = $this->getIntervalleId();
+        
+        $this->affiche($noeud->getExpression(), $niveau + 1);
+        
         $noeud->myGauche = $this->getIntervalleId();
         return $this->saveNoeud($noeud);        
     }

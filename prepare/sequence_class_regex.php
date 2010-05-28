@@ -12,8 +12,7 @@ class sequence_class_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasNext() ) { return false; }
 
-        if (!$t->checkForBlock(true)) {return false; } 
-
+        if (!$t->checkForBlock(true) && $t->checkNotClass(array('codephp','rawtext'))) { return false; } 
         if (!$t->getNext()->checkForBlock(true) && 
             !$t->getNext()->checkForVariable() &&
             $t->getNext()->checkNotClass(array('parentheses')) ) { return false; } 

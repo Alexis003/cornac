@@ -18,9 +18,11 @@ class typehint_regex extends analyseur_regex {
         if ($t->getPrev(1)->checkToken(array(T_CATCH))) { return false; }
         if ($t->checkNotClass('Token')  &&  $t->checkToken(T_ARRAY)) { return false; }
         if ($t->checkToken(T_AS)) { return false; }
+        // cas des " d'interpolation : " est alors un token seul
+        if ($t->checkClass('Token')) { return false; } 
 
         if ($t->getNext()->checkOperateur('&') &&
-            $t->getNext(1)->checkToken(T_VARIABLE)) {
+            $t->getNext(1)->checkClass('variable')) {
             
             $regex = new modele_regex('reference',array(1), array(1));
             Token::applyRegex($t->getNext(), 'reference', $regex);

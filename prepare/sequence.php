@@ -11,6 +11,13 @@ class sequence extends instruction {
                 $this->elements = array_merge($this->elements, $l->getElements());
             } elseif (get_class($l) == 'block') {
                 $this->elements = array_merge($this->elements, $l->getList());
+            } elseif (get_class($l) == 'codephp') {
+                $code = $l->getphp_code();
+                if (get_class($code) == 'sequence') {
+                    $this->elements = array_merge($this->elements, $code->getElements());
+                } else {
+                    $this->elements[] = $l;
+                }
             } else {
                 $this->elements[] = $l;
             }
@@ -48,12 +55,13 @@ class sequence extends instruction {
         $this->neutralise();
     }
     
-       function getRegex() {
+    public function getRegex() {
         return array(
           'sequence_regex',
           'sequence_suite_regex',
           'sequence_class_regex',
           'sequence_empty_regex',
+          'sequence_cdr_regex',
                     );
     }    
 }

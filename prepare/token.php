@@ -229,12 +229,14 @@ class Token {
         fwrite($fp, "$id_getNext\t$n\n");
         fclose($fp);
         */
-        if ($n > 3000) {
+        
+        /*
+        if ($n > 3100) {
             print_r(xdebug_get_function_stack());        
-            print "\$n est > a 3000\n";
+            print "\$n est > a 3000 ($n) \n";
             die();
         }
-        
+        */
         $n++;
         $retour = $this;
         while($n > 0) {

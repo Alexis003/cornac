@@ -1,6 +1,7 @@
 <?php
 
 class codephp extends instruction {
+    private $php_code = array();
     
     function __construct($entree = null) {
         parent::__construct(array());
@@ -8,7 +9,10 @@ class codephp extends instruction {
         if (is_null($entree)) {
             $this->php_code = new sequence(array());
         } else {
-            $this->php_code = $entree[0];
+            $this->php_code =  $entree[0];
+            if (count($entree) > 1) {
+                die("Des elements de entree sont perdu!\n".__METHOD__."\n");
+            }
         }
     }
 
@@ -27,7 +31,7 @@ class codephp extends instruction {
                      'codephp_normal_regex',
                      'codephp_avecpointvirgule_regex',
                      'codephp_unfinishedavecpointvirgule_regex',
-);
+                    );
     }
 }
 
