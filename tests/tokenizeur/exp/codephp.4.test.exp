@@ -2,9 +2,5 @@ Travail sur le fichier tests/tokenizeur/scripts/codephp.4.test.php
 tests/tokenizeur/scripts/codephp.4.test.php
   codephp <?php 
   code : 
-      sequence 
-  rawtext 
-  Texte : "311 "  Espace vide  ""
-  codephp <?php 
-  code : 
-      sequence 
+      rawtext 
+      Texte : "311 "  Espace vide  ""
