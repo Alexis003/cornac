@@ -1,33 +1,31 @@
 Travail sur le fichier tests/tokenizeur/scripts/rawtext.9.test.php 
 tests/tokenizeur/scripts/rawtext.9.test.php
-Plus d'upgrade au cycle 8 
-  Token <?php
- ( Affichage par défaut)
-  Token if ( Affichage par défaut)
-  parentheses 
-  ( "not !" )
-  Token { ( Affichage par défaut)
-  rawtext 
-  Texte : "311 "<p style="border:1px solid black;padding:10px;">Tag créé (<a href="""
   codephp <?php
 
   code : 
-      functioncall echo
-      appel de fonction : echo: 
-          variable 309 "$tag"
-  rawtext 
-  Texte : "311 "">Link</a>)<br/><input type="text" value="
+      ifthen if
+      Condition 0) 
+          parentheses 
+          ( "not !" )
+          block 
+          0 : 
+              rawtext 
+              Texte : "311 "<p style="border:1px solid black;padding:10px;">Tag créé (<a href="""
+          1 : 
+              codephp <?php
+
+              code : 
+                  functioncall echo
+                  appel de fonction : echo: 
+                      variable 309 "$tag"
+          2 : 
+              rawtext 
+              Texte : "311 "">Link</a>)<br/><input type="text" value="
 ""
-  Token <?php
- ( Affichage par défaut)
-  sequence 
-  0 : 
-      functioncall echo
-      appel de fonction : echo: 
-          variable 309 "$tag"
-  1 : 
-      rawtext 
-      Texte : "311 "" readonly="true" style="width:400px;" /></p>""
-  Token } ( Affichage par défaut)
-  Token ?>
- ( Affichage par défaut)
+          3 : 
+              functioncall echo
+              appel de fonction : echo: 
+                  variable 309 "$tag"
+          4 : 
+              rawtext 
+              Texte : "311 "" readonly="true" style="width:400px;" /></p>""

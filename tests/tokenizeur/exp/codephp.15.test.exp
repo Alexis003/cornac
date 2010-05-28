@@ -1,0 +1,8 @@
+Travail sur le fichier tests/tokenizeur/scripts/codephp.15.test.php 
+tests/tokenizeur/scripts/codephp.15.test.php
+  codephp <?php
+
+  code : 
+      functioncall echo
+      appel de fonction : echo: 
+          property variable 309 "$lang"literals forum->

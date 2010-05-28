@@ -1,0 +1,8 @@
+Travail sur le fichier tests/tokenizeur/scripts/codephp.16.test.php 
+tests/tokenizeur/scripts/codephp.16.test.php
+  codephp <?php
+
+  code : 
+      functioncall echo
+      appel de fonction : echo: 
+          constante_static (          0 "$lang"::constante forum )
