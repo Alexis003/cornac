@@ -17,7 +17,7 @@ class sequence_class_regex extends analyseur_regex {
             !$t->getNext()->checkForVariable() &&
             $t->getNext()->checkNotClass(array('parentheses')) ) { return false; } 
         if ( (!$t->hasNext(1) || 
-               ($t->getNext(1)->checkNotCode(array('or','and','xor','->','[','::',')','.','||','&&','++','--','+','-','/','*','%')) &&
+               ($t->getNext(1)->checkNotCode(array('or','and','xor','->','[','::',')','.','^','&','|','||','&&','++','--','+','-','/','*','%')) &&
                 !$t->getNext(1)->checkForAssignation()) &&
                 $t->getNext(1)->checkNotClass('arglist'))
                ) { 

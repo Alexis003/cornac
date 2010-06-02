@@ -31,8 +31,7 @@ class concatenation_interpole_regex extends analyseur_regex {
         } elseif ($t->checkToken(T_START_HEREDOC) ) {
             $token_fin = trim(substr($t->getCode(), 3));
         } else {
-            print $t."\n";
-            die("Can't reach here ".__METHOD__);
+            die($t."\n"."Can't reach here ".__METHOD__);
         }
 
         $var = $t->getNext(); 

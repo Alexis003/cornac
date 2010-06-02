@@ -72,7 +72,6 @@ function __autoload($class_name) {
         require_once 'classes/'.$class_name . '.php';
     }
     if (file_exists('prepare/'.$class_name . '.php')) {
-//        print "Inclusion : $class_name\n";
         require_once 'prepare/'.$class_name . '.php';
     }
 }
@@ -85,7 +84,6 @@ function is_crochet(Token $t) {
 
 function is_pointvirgule($t) {
     if (!is_object($t)) { return false; } 
-//    print get_class($t)."\n";
     if (!is_subclass_of($t,'Token') && 
         (get_class($t) != 'Token')) { 
         return false; 

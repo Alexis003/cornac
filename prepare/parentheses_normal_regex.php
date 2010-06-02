@@ -20,15 +20,19 @@ class parentheses_normal_regex extends analyseur_regex {
         if ($t->getNext()->checkClass('Token')) { return false; }
         if ( $t->getNext(1)->checkNotOperateur(')')) { return false; }
 
-        if ($t->getPrev()->checkNotFunction()) {
+        if ($t->getPrev()->checkFunction() ) { 
+            if ($t->getPrev()->checkCode('echo')) {
+                // on peut continuer, c'est possible 
+            } else {
+                return false; 
+            }
+        }
 
-            $this->args = array(1);
-            $this->remove = array(1, 2);
+        $this->args = array(1);
+        $this->remove = array(1, 2);
 
-            mon_log(get_class($t)." => ".__CLASS__);
-            return true; 
-        } 
-        return false;
+        mon_log(get_class($t)." => ".__CLASS__);
+        return true; 
     }
 }
 ?>

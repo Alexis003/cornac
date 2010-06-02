@@ -46,17 +46,19 @@ class arglist_regex extends analyseur_regex {
             // cas des conditions ? : 
             $this->remove[] = $pos; // le ) finale
             
-            mon_log(get_class($t)." => ".__CLASS__);
+            mon_log(get_class($t)." =>1 ".__CLASS__);
             return true; 
         } elseif ($var->getNext()->checkCode(')')) {
             if ($var->checkClass('Token')) { return false; }
-
+            
+            if ($t->getPrev()->checkCode('echo') && $var->getNext(1)->checkCode(array('|','&','^'))) { return false; }
+            
             $this->args[]    = $pos ;
 
             $this->remove[]  = $pos ;
             $this->remove[]  = $pos + 1;
 
-            mon_log(get_class($t)." => ".__CLASS__);
+            mon_log(get_class($t)." =>2 ".__CLASS__);
             return true; 
         } else {
             $this->args = array();
