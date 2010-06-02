@@ -1,0 +1,1 @@
+<?php echo ($property['emp_id']==-1)|($property['emp_id']=='')?'selected':'' ?>A<?php echo $lang_Admin_Property_Please_Select;?>

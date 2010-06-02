@@ -1,0 +1,16 @@
+Travail sur le fichier tests/tokenizeur/scripts/logique.35.test.php 
+tests/tokenizeur/scripts/logique.35.test.php
+  codephp <?php 
+  code : 
+      functioncall echo
+      appel de fonction : echo: 
+          arglist 
+          0 : 
+              logique 
+              droite : 
+                  parentheses 
+                  ( "literals 1" )
+              operateur :  "|"
+              gauche : 
+                  parentheses 
+                  ( "comparaison tableau variable 309 "$a"[literals 'b'] 283 "==" literals ''" )

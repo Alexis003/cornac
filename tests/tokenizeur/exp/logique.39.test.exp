@@ -1,0 +1,12 @@
+Travail sur le fichier tests/tokenizeur/scripts/logique.39.test.php 
+tests/tokenizeur/scripts/logique.39.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$x"
+       "=" 
+      gauche : 
+          parentheses 
+          ( "comparaison parentheses (logique method variable 309 "$b"->functioncall 307 "c" ( arglist(variable 309 "$d") )   "^" property variable 309 "$e"->literals f) 280 "!==" literals 5" )

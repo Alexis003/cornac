@@ -1,0 +1,1 @@
+<?php echo ($property['emp_id']=='')|(1); ?>

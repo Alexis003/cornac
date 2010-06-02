@@ -1,0 +1,16 @@
+Travail sur le fichier tests/tokenizeur/scripts/logique.36.test.php 
+tests/tokenizeur/scripts/logique.36.test.php
+  codephp <?php 
+  code : 
+      functioncall echo
+      appel de fonction : echo: 
+          arglist 
+          0 : 
+              logique 
+              droite : 
+                  parentheses 
+                  ( "comparaison tableau variable 309 "$property"[literals 'emp_id'] 283 "==" literals ''" )
+              operateur :  "|"
+              gauche : 
+                  parentheses 
+                  ( "literals 1" )
