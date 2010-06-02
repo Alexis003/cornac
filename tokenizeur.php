@@ -23,6 +23,34 @@ if ($id = array_search( '-h', $argv)) {
     help();
 }
 
+// lecture du fichier de .INI pour pouvoir l'utiliser comme valeur par défaut.
+if ($id = array_search( '-I', $argv)) {
+    $ini = $argv[$id + 1];
+    
+    unset($argv[$id]);
+    unset($argv[$id + 1]);
+    
+    global $INI;
+    if (file_exists('ini/'.$ini)) {
+        define('INI','ini/'.$ini);
+    } elseif (file_exists('ini/'.$ini.".ini")) {
+        define('INI','ini/'.$ini.".ini");
+    } elseif (file_exists($ini)) {
+        define('INI',$ini);
+    } else {
+        define('INI','ini/'.'tokenizeur.ini');
+    }
+} else {
+    define('INI','ini/'.'tokenizeur.ini');
+}
+
+// @todo : que faire si on ne trouve même pas le .ini ? 
+print "Fichier de directives : ".INI."\n";
+global $INI;
+$INI = parse_ini_file(INI, true);
+
+
+// lecture des constantes qui peuvent être définies dans le .INI
 if ($id = array_search( '-t', $argv)) {
     unset($argv[$id]);
     define('TOKENS',true);
@@ -99,31 +127,6 @@ if ($id = array_search( '-i', $argv)) {
 } else {
     $limite = -1;
 }
-
-if ($id = array_search( '-I', $argv)) {
-    $ini = $argv[$id + 1];
-    
-    unset($argv[$id]);
-    unset($argv[$id + 1]);
-    
-    global $INI;
-    if (file_exists('ini/'.$ini)) {
-        define('INI','ini/'.$ini);
-    } elseif (file_exists('ini/'.$ini.".ini")) {
-        define('INI','ini/'.$ini.".ini");
-    } elseif (file_exists($ini)) {
-        define('INI',$ini);
-    } else {
-        define('INI','ini/'.'tokenizeur.ini');
-    }
-} else {
-    define('INI','ini/'.'tokenizeur.ini');
-}
-
-// @todo : que faire si on ne trouve même pas le .ini ? 
-global $INI;
-print "Fichier de directives : ".INI."\n";
-$INI = parse_ini_file(INI, true);
 
 if ($id = array_search( '-r', $argv)) {
     unset($argv[$id]);
@@ -596,17 +599,33 @@ TEXT;
 
 function Liste_directories_recursive( $path = '.', $level = 0 ){ 
     $ignore = array( 'cgi-bin', '.', '..' ); 
+    global $INI;
+    if (isset($INI['tokenizeur']['ignore_dirs']) && !empty($INI['tokenizeur']['ignore_dirs'])) {
+        $ignore = array_merge($ignore, explode(',',$INI['tokenizeur']['ignore_dirs']));
+    }
+    
+    if (isset($INI['tokenizeur']['ignore_suffixe']) && !empty($INI['tokenizeur']['ignore_suffixe'])) {
+        $regex_suffixe = '/('.str_replace(',','|',  preg_quote($INI['tokenizeur']['ignore_suffixe'])).')$/';
+    } else {
+        $regex_suffixe = '';
+    }
+    if (isset($INI['tokenizeur']['ignore_prefixe']) && !empty($INI['tokenizeur']['ignore_prefixe'])) {
+        $regex_prefixe = '/('.str_replace(',','|',  preg_quote($INI['tokenizeur']['ignore_prefixe'])).')$/';
+    } else {
+        $regex_prefixe = '';
+    }
 
     $dh = opendir( $path ); 
     $retour = array();
     while( false !== ( $file = readdir( $dh ) ) ){ 
-        if( !in_array( $file, $ignore ) ){ 
-            if( is_dir( "$path/$file" ) ){ 
-                $r = Liste_directories_recursive( "$path/$file", ($level+1) ); 
-                $retour = array_merge($retour, $r);
-            } else { 
-                $retour[] = "$path/$file";
-            } 
+        if( in_array( $file, $ignore ) ){ continue; }
+        if( is_dir( "$path/$file" ) ){ 
+            $r = Liste_directories_recursive( "$path/$file", ($level+1) ); 
+            $retour = array_merge($retour, $r);
+        } else { 
+            if ($regex_suffixe && preg_match($regex_suffixe, $file)) { continue; }
+            if ($regex_suffixe && preg_match($regex_prefixe, $file)) { continue; }
+            $retour[] = "$path/$file";
         } 
     } 
      
