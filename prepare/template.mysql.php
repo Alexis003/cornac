@@ -388,9 +388,10 @@ END;
         $tags['block'][] = $this->affiche($noeud->getBlock(), $niveau + 1);            
 
         $noeud->myGauche = $this->getIntervalleId();
-        $this->class = $classe_precedent;
         $this->tags = $tags;
-        return $this->saveNoeud($noeud);
+        $res = $this->saveNoeud($noeud);
+        $this->class = $classe_precedent;
+        return $res;
     }
 
     function affiche__clone($noeud, $niveau) {
@@ -560,10 +561,11 @@ END;
         $tags['block'][] = $this->affiche($noeud->getBlock(), $niveau + 1);
 
         $noeud->myGauche = $this->getIntervalleId();
-        $this->scope = $scope_precedent;
 
         $this->tags = $tags;
-        return $this->saveNoeud($noeud);
+        $res = $this->saveNoeud($noeud);
+        $this->scope = $scope_precedent;
+        return $res;
     }
 
     function affiche_functioncall($noeud, $niveau) {
@@ -633,6 +635,8 @@ END;
     function affiche__interface($noeud, $niveau) {
         $noeud->myId = $this->getNextId();
         $noeud->myDroite = $this->getIntervalleId();
+        $classe_precedent = $this->class;
+        $this->class = $noeud->getName()->getCode();
 
         $e = $noeud->getExtends();
         if (count($e) > 0) {
@@ -643,7 +647,9 @@ END;
         $this->affiche($noeud->getBlock(), $niveau + 1);
 
         $noeud->myGauche = $this->getIntervalleId();
-        return $this->saveNoeud($noeud);        
+        $res = $this->saveNoeud($noeud);
+        $this->class = $classe_precedent;
+        return $res;
     }
 
     function affiche_invert($noeud, $niveau) {
