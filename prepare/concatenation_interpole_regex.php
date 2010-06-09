@@ -30,6 +30,8 @@ class concatenation_interpole_regex extends analyseur_regex {
             $token_fin = '"';
         } elseif ($t->checkToken(T_START_HEREDOC) ) {
             $token_fin = trim(substr($t->getCode(), 3));
+        } elseif ($t->checkClass('rawtext') ) {
+            return false; 
         } else {
             die($t."\n"."Can't reach here ".__METHOD__);
         }
