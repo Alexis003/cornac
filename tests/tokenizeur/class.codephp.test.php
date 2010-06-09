@@ -3,7 +3,7 @@ include_once('Analyseur_Framework_TestCase.php');
 
 class Codephp_Test extends Analyseur_Framework_TestCase
 {
-    /* 19 methodes */
+    /* 20 methodes */
     public function testCodephp1()  { $this->generic_test('codephp.1'); }
     public function testCodephp2()  { $this->generic_test('codephp.2'); }
     public function testCodephp3()  { $this->generic_test('codephp.3'); }
@@ -23,6 +23,7 @@ class Codephp_Test extends Analyseur_Framework_TestCase
     public function testCodephp17()  { $this->generic_test('codephp.17'); }
     public function testCodephp18()  { $this->generic_test('codephp.18'); }
     public function testCodephp19()  { $this->generic_test('codephp.19'); }
+    public function testCodephp20()  { $this->generic_test('codephp.20'); }
 
 }
 

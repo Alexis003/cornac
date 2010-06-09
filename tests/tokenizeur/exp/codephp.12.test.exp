@@ -16,6 +16,8 @@ tests/tokenizeur/scripts/codephp.12.test.php
       2 : 
           functioncall echo
           appel de fonction : echo: 
-              variable 309 "$x"
+              arglist 
+              0 : 
+                  variable 309 "$x"
       3 : 
           variable 309 "$y"

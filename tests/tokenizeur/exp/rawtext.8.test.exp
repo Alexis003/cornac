@@ -32,11 +32,13 @@ function initinput() {
           2 : 
               functioncall echo
               appel de fonction : echo: 
-                  functioncall lang
-                  appel de fonction : lang: 
-                      arglist 
-                      0 : 
-                          literals 'install_in_processed'
+                  arglist 
+                  0 : 
+                      functioncall lang
+                      appel de fonction : lang: 
+                          arglist 
+                          0 : 
+                              literals 'install_in_processed'
           3 : 
               rawtext 
               Texte : "311 "" disabled style="height: 25" id="laststep" onclick="initinput()">

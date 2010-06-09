@@ -1,10 +1,11 @@
 Travail sur le fichier tests/tokenizeur/scripts/codephp.14.test.php 
 tests/tokenizeur/scripts/codephp.14.test.php
-  codephp <?php
-
+  codephp <?php 
   code : 
       functioncall echo
       appel de fonction : echo: 
-          tableau
-              variable 309 "$lang"
-              literals 'forum'
+          arglist 
+          0 : 
+              tableau
+                  variable 309 "$lang"
+                  literals 'forum'

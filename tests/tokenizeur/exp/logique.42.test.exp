@@ -1,0 +1,17 @@
+Travail sur le fichier tests/tokenizeur/scripts/logique.42.test.php 
+tests/tokenizeur/scripts/logique.42.test.php
+  codephp <?php
+
+  code : 
+      ifthen if
+      Condition 0) 
+          parentheses 
+          ( "logique logique logique logique logique constante A  "&" variable 309 "$b" 278 "||" constante C  "&" variable 309 "$d" 278 "||" constante E  "&" variable 309 "$f"" )
+          block 
+          0 : 
+              affectation 
+              droite : 
+                  variable 309 "$g"
+               "=" 
+              gauche : 
+                  literals 1

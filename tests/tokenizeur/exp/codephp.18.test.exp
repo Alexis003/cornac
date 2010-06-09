@@ -1,11 +1,12 @@
 Travail sur le fichier tests/tokenizeur/scripts/codephp.18.test.php 
 tests/tokenizeur/scripts/codephp.18.test.php
-  codephp <?php
-
+  codephp <?php 
   code : 
       functioncall echo
       appel de fonction : echo: 
-          functioncall lang
-          appel de fonction : lang: 
-              arglist 
-              Liste d'argument vide
+          arglist 
+          0 : 
+              functioncall lang
+              appel de fonction : lang: 
+                  arglist 
+                  Liste d'argument vide

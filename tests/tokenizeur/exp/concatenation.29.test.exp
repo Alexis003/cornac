@@ -1,0 +1,34 @@
+Travail sur le fichier tests/tokenizeur/scripts/concatenation.29.test.php 
+tests/tokenizeur/scripts/concatenation.29.test.php
+  rawtext 
+  Texte : "311 "A""
+  codephp <?php 
+  code : 
+      sequence 
+      0 : 
+          functioncall echo
+          appel de fonction : echo: 
+              arglist 
+              0 : 
+                  functioncall a
+                  appel de fonction : a: 
+                      arglist 
+                      0 : 
+                          variable 309 "$b"
+      1 : 
+          rawtext 
+          Texte : "311 """"
+      2 : 
+          ifthen if
+          Condition 0) 
+              parentheses 
+              ( "functioncall 307 "defined" ( arglist(literals 'c') ) " )
+              block 
+              0 : 
+                  functioncall echo
+                  appel de fonction : echo: 
+                      arglist 
+                      0 : 
+                          literals 'd'
+  rawtext 
+  Texte : "311 "E""

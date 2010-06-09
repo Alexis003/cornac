@@ -1,0 +1,10 @@
+Travail sur le fichier tests/tokenizeur/scripts/new.14.test.php 
+tests/tokenizeur/scripts/new.14.test.php
+  codephp <?php 
+  code : 
+      affectation 
+      droite : 
+          variable 309 "$a"
+       "=" 
+      gauche : 
+           new tableau variable 309 "$b"[literals 'd.e'] parentheses (variable 309 "$f") 
