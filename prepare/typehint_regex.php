@@ -26,6 +26,10 @@ class typehint_regex extends analyseur_regex {
         if ($t->getNext()->checkOperateur(array('&','|','^')) &&
             $t->getNext(1)->checkClass('variable')) {
             
+            if ($t->checkClass('constante')) {
+                return false;
+            }
+            
             $regex = new modele_regex('reference',array(1), array(1));
             Token::applyRegex($t->getNext(), 'reference', $regex);
 
