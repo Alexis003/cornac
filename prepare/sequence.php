@@ -16,7 +16,7 @@ class sequence extends instruction {
                 if (get_class($code) == 'sequence') {
                     $this->elements = array_merge($this->elements, $code->getElements());
                 } else {
-                    $this->elements[] = $l;
+                    $this->elements[] = $code;
                 }
             } else {
                 $this->elements[] = $l;
