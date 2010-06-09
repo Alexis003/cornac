@@ -3,7 +3,8 @@ Corriger les globales (rachatco en a!)
 Résoudre les codes pour les inclusions 
 supprimer rendu 
 Exporter vers un ODT.
-Faire un arbre des relations entre fonctions
+Faire un arbre des relations entre fonctions et méthodes
+Faire un arbre des relations entre classes et méthodes
 Identifier les fonctions recursives
 fonctions sans return
 comparaison inutiles
@@ -27,3 +28,29 @@ group by fichier
 
 order by count(*);
 
+Extrait les appels de méthodes/fonctions issus d'un 
+SELECT T1.fichier, T1.id, T5.code, T2.type, T3.code
+FROM caceis T1
+JOIN caceis T2
+ON T1.fichier = T2.fichier AND
+   T2.droite BETWEEN T1.droite AND T1.gauche AND
+   T2.type = 'functioncall'
+JOIN caceis T3
+ON T1.fichier = T3.fichier AND
+   T3.droite = T2.droite + 1
+JOIN caceis_tags T4
+ON T1.id = T4.token_id AND
+   T4.type='name'
+JOIN caceis T5
+ON T1.fichier = T5.fichier AND
+   T4.token_sub_id = T5.id
+WHERE T1.type='_function'  AND
+      T2.type='functioncall'
+      AND T1.fichier = './References/caceis-20100521/Libs/VPI/Form/MandatForm.php'
+      ;
+      
+LIMIT 12;
+
+
+
+, T3.code

@@ -2,7 +2,7 @@
 
 class appelsfonctions extends modules {
 	protected	$description = 'Appels d\'une fonction par une autre';
-	protected	$description_en = 'List of classes et its extensions';
+	protected	$description_en = 'Function call through the code';
 
 	function __construct($mid) {
         parent::__construct($mid);

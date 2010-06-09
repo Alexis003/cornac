@@ -6,10 +6,11 @@ class functioncalls extends modules {
 
 	function __construct($mid) {
         parent::__construct($mid);
+//    	$this->name = __CLASS__;
 	}
 	
 	public function analyse() {
-	    if (!is_array($this->functions)) {
+	    if (!is_array($this->functions) || empty($this->functions) || empty($this->name) ) {
 	        print "Aucune fonction fournie pour ".__CLASS__." : annulation du traitement\n";
 	        die();
 	    }

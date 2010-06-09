@@ -17,6 +17,7 @@ $modules = array(
                  'constantes',
                  'defconstantes',
                  'deffunctions',
+                 'defmethodes',
                  'dieexit',
                  'dir_functions',
                  'emptyfunctions',
@@ -45,7 +46,20 @@ $modules = array(
                  'secu_protection_functions',
                  'regex',
                  'filter_functions',
+                 'xdebug_functions',
+                 'ereg_functions',
                  'methodscall',
+                 'literals',
+                 'zfAction',
+                 'zfGetGPC', 
+                 'zfController',
+                 'tableaux',
+                 'tableaux_gpc',
+                 'constantes_classes',
+                 'modules_used' ,
+                 '_new',
+                 'proprietes_publiques',
+                 
                  );
 /*
 $modules = array(                 'xml_functions',
@@ -54,7 +68,7 @@ $modules = array(                 'xml_functions',
                  'regex',
                  'filter_functions',
 );*/
-$modules = array('classes_hierarchie',);
+$modules = array(     'functions_undefined','functions_unused'       );
 
 
 foreach($modules as $module) {

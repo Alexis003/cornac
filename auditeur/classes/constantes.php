@@ -14,7 +14,7 @@ class constantes extends typecalls {
     }
 
 	public function analyse() {
-	    $this->type = 'constante';
+	    $this->in = array('constante', 'constante_magique');
 	    parent::analyse();
 	    return;
 	}

@@ -20,7 +20,7 @@ SELECT 0, T1.fichier, T1.code, T1.id, '{$this->name}'
     JOIN  <tokens_tags> TT
         ON TT.token_sub_id = T1.id
     WHERE 
-        T1.code in ("getRequest",'getPost','getParams','getParam','isErrors','isValid','isPost','getModuleName','getControllerName','getActionName')
+        T1.code in ("getRequest",'getPost','getParams','getParam','isErrors','isValid','isPost','getModuleName','getControllerName','getActionName','getParameterValue')
         AND TT.type='fonction'
     ;
 SQL;

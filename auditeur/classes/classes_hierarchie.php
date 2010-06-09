@@ -23,6 +23,7 @@ INSERT INTO <rapport_dot>
        ON TT.token_sub_id = T2.id
     WHERE TT.type = 'extends';
 SQL;
+    
         $this->exec_query($requete);
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-class methodscall extends modules {
+class functions_unused extends modules {
     protected $not = false; 
 
 	function __construct($mid) {
@@ -13,12 +13,11 @@ class methodscall extends modules {
 
         $requete = <<<SQL
 INSERT INTO <rapport> 
-SELECT 0, T1.fichier, T2.code AS code, T1.id, 'methodscall'
-  from <tokens> T1
-  join <tokens_cache> T2 
-    on T1.id = T2.id
-where 
- T1.type='method'
+SELECT 0, TR1.fichier, TR1.element AS code, TR1.id, '{$this->name}'
+    FROM <rapport>  TR1
+    LEFT JOIN <rapport>  TR2 
+    ON TR1.element = TR2.element AND TR2.module='functionscalls' 
+    WHERE TR1.module = 'deffunctions' AND TR2.element IS NULL;
 SQL;
         $this->exec_query($requete);
 
