@@ -52,7 +52,7 @@ class _new extends instruction {
 
     function neutralise() {
         $this->classe->detach();
-        // même pas besoin...
+        $this->args->detach();
     }
 
     function getRegex(){
