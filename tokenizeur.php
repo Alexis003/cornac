@@ -240,9 +240,12 @@ foreach($scriptsPHP as $name => $object){
         continue;
     }
 
-    $exec = shell_exec('php -l '.$name);
+//
+// 4177 est le error_reporting de  E_COMPILE_ERROR|E_RECOVERABLE_ERROR|E_ERROR|E_CORE_ERROR (erreurs de compilations seules)
+    $exec = shell_exec('php -d short_open_tag=1 -d error_reporting=4177  -l '.$name); // masque trop les erreurs -d error_reporting=4177 
     if (trim($exec) != 'No syntax errors detected in '.$name) {
-        print "Le script $name n'est pas compilable par PHP\n$exec\nNo syntax errors detected in $name\n";
+    //\nNo syntax errors detected in $name
+        print "Le script $name n'est pas compilable par PHP\n$exec\n";
         die();
         
     }
@@ -251,11 +254,21 @@ foreach($scriptsPHP as $name => $object){
     $fichier = $name;
 
     $code = file_get_contents($name);
-    if (preg_match('/<\?[^p]/is', $code) ) { 
-        $code = preg_replace('/<\\?([^p])/is', '<?php'."\n".'\1', $code);
+    
+    // il faut laisser les <?php et <?xml (et autres) intacts
+    // il faut aussi laisser les <?R& (\w\W), qui sont du binaires et pas une PI
+    // il faut prendre les <?\s 
+    
+    if ($c = preg_match_all('/<\\?(?!php)(\w?\s)/is', $code, $r) ) { 
+        if (VERBOSE) {
+            print "$c corrections de balises ouvrantes\n";
+        }
+        $code = preg_replace('/<\\?(?!php)(\w?\s)/is', '<?php'."\n".'\1', $code);
     }
-
-    $brut = token_get_all($code);
+    // trop simple, mais devrait marcher sauf pour des binaires (et encore...)
+    $code = str_replace('<?=', '<?php echo ', $code);
+    
+    $brut = @token_get_all($code);
     if (count($brut) == 0) {
         die();
     }
