@@ -597,4 +597,11 @@ class Token {
     }
 }
 
+function affiche_entree($entree) {
+        foreach($entree as $id => $e) {
+            print "$id) $e\n";
+        }
+        print "------\n";
+}
+
 ?>
