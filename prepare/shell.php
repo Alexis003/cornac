@@ -23,7 +23,7 @@ class shell extends instruction {
         }
     }
 
-    function getRegex(){
+    static function getRegex(){
         return array('shell_normal_regex'
                     );
     }
