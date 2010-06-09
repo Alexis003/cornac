@@ -19,7 +19,15 @@ class codephp_normal_regex extends analyseur_regex {
             $t->getNext(1)->checkToken(T_CLOSE_TAG)) {
             $this->args = array(1);
             $this->remove = array(1,2);
-            
+
+/*            
+            if ($t->hasPrev() && $t->getPrev()->checkClass('rawtext')) {
+                $this->args[] = -1;
+                sort($this->args);
+                $this->remove[] = -1;
+                sort($this->remove);
+            }
+            */
             mon_log(get_class($t)." => ".__CLASS__);
             return true;
         } 
