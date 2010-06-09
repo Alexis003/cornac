@@ -310,10 +310,10 @@ class template_cache extends template {
     function affiche_constante_classe($noeud, $niveau) {
         $classe = $noeud->getName();
         $this->affiche($classe, $niveau + 1);
-        $methode = $noeud->getConstante();
-        $this->affiche($methode, $niveau + 1);
+        $constante = $noeud->getConstante();
+        $this->affiche($constante, $niveau + 1);
 
-        $noeud->cache = $classe->cache.'::'.$methode->cache;
+        $noeud->cache = $classe->cache.'::'.$constante->cache;
         return $this->saveNoeud($noeud);        
     }
 
