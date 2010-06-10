@@ -12,6 +12,7 @@ abstract class modules {
     const FORMAT_DEFAULT = 0;
     const FORMAT_HTMLLIST = 1;
     const FORMAT_DOT = 2;
+    const FORMAT_SCOPE = 3;
 
     protected  $format = modules::FORMAT_HTMLLIST;
 
@@ -27,6 +28,7 @@ abstract class modules {
         $this->format_export = modules::FORMAT_DEFAULT;
         
         $this->tables = array('<rapport>' => $prefixe.'_rapport',
+                              '<rapport_scope>' => $prefixe.'_rapport_scope',
                               '<tokens>' => $prefixe.'',
                               '<tokens_cache>' => $prefixe.'_cache',
                               '<tokens_tags>' => $prefixe.'_tags',

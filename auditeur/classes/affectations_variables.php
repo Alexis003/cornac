@@ -7,7 +7,6 @@ class affectations_variables extends modules {
 	function __construct($mid) {
         parent::__construct($mid);
         
-        $this->format = modules::FORMAT_DOT;
     	$this->name = __CLASS__;
     	$this->functions = array();
 	}

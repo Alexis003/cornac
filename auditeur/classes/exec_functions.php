@@ -1,8 +1,8 @@
 <?php
 
-class file_functions extends functioncalls {
-	protected	$description = 'Liste des fonctions de fichiers';
-	protected	$description_en = 'usage of file functions';
+class exec_functions extends functioncalls {
+	protected	$description = 'Liste des fonctions d execution shell';
+	protected	$description_en = 'usage of exec functions';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -11,7 +11,7 @@ class file_functions extends functioncalls {
 	}
 	
 	public function analyse() {
-	    $this->functions = array('fopen','file_put_contents','file_get_contents', 'fwrite','move_uploaded_file','rename');
+	    $this->functions = array('exec','shell_exec','passthru', 'system');
 	    parent::analyse();
 	}
 }
