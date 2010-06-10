@@ -19,7 +19,7 @@ class modules_used extends modules {
 
 // cas simple : variable -> method
         $requete = <<<SQL
-SELECT DISTINCT LOWER(element) FROM caceis_rapport WHERE module='php_functions';
+SELECT DISTINCT LOWER(element) FROM <rapport> WHERE module='php_functions';
 SQL;
 
         $res = $this->exec_query($requete);

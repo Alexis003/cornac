@@ -8,6 +8,10 @@ class functions_unused extends modules {
     	$this->name = __CLASS__;
 	}
 	
+	function dependsOn() {
+	    return array('functionscalls','deffunctions');
+	}
+	
 	public function analyse() {
         $this->clean_rapport();
 

@@ -25,7 +25,6 @@ INSERT INTO <rapport>
           TT.type = 'name' AND
           T1.class = '';
 SQL;
-    print $this->prepare_query($requete);
     
         $this->exec_query($requete);
 

@@ -20,6 +20,9 @@ SELECT 0, T1.fichier, T2.code AS code, T1.id, 'methodscall'
 where 
  T1.type='method'
 SQL;
+
+        print $this->prepare_query($requete);
+        die();
         $this->exec_query($requete);
 
 

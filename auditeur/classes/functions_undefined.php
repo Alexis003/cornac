@@ -7,6 +7,10 @@ class functions_undefined extends modules {
         parent::__construct($mid);
     	$this->name = __CLASS__;
 	}
+
+	function dependsOn() {
+	    return array('functionscalls','deffunctions');
+	}
 	
 	public function analyse() {
         $this->clean_rapport();

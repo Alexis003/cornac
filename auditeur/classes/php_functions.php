@@ -11,10 +11,7 @@ class php_functions extends functioncalls {
 	}
 	
 	public function analyse() {
-	    $functions = get_defined_functions();
-	    $extras = array('echo','print','die','exit','isset','empty','array','list');
-	    $this->functions = array_merge($functions['internal'], $extras);
-//	    $this->functions = $functions['internal'];
+	    $this->functions = modules::getPHPFunctions();
 	    parent::analyse();
 	}
 }

@@ -11,9 +11,7 @@ class functionscalls extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
-	    $functions = get_defined_functions();
-	    $extras = array('echo','print','die','exit','isset','empty','array','list','unset');
-	    $total = array_merge($functions['internal'], $extras);
+	    $total = modules::getPHPFunctions();
 	    $in = join("', '", $total);
 
         $requete = <<<SQL
@@ -30,11 +28,8 @@ where
 ( TT.token_id IS NULL OR TT.type != 'methode') AND
 T2.code NOT IN ('$in')
 SQL;
-        print $this->prepare_query($requete);
-//        die();
+
         $this->exec_query($requete);
-
-
 	}
 }
 

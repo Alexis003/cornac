@@ -1,6 +1,8 @@
 <?php
 
 class sommaire {
+    private $modules = array();
+    
 	function __construct() {
 
 	}

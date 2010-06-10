@@ -16,7 +16,13 @@ abstract class modules {
     protected  $format = modules::FORMAT_HTMLLIST;
 
     function __construct($mid) {
-        $prefixe = 'caceis';
+        global $prefixe;
+        
+        if (!isset($prefixe)) {
+           $prefixe = 'tokens';
+        }
+        
+        
         $this->mid = $mid;
         $this->format_export = modules::FORMAT_DEFAULT;
         
@@ -214,6 +220,10 @@ $subgraph
         return $res;
     }
     
+    function dependsOn() {
+        return array();
+    }
+    
     function clean_rapport() {
         $requete = <<<SQL
 DELETE FROM <rapport> WHERE module='{$this->name}'
@@ -224,6 +234,14 @@ SQL;
 DELETE FROM <rapport_dot> WHERE module='{$this->name}'
 SQL;
         $this->exec_query($requete);
+    }
+    
+    static public function getPHPFunctions() {
+        // dépend du PHP d'exécution.
+        // utiliser un .ini ou un fichier pour stocker cela
+  	    $functions = get_defined_functions();
+	    $extras = array('echo','print','die','exit','isset','empty','array','list','unset');
+	    return array_merge($functions['internal'], $extras);
     }
 }
 ?>
