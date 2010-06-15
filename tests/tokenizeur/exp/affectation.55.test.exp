@@ -1,0 +1,17 @@
+Travail sur le fichier tests/tokenizeur/scripts/affectation.55.test.php 
+tests/tokenizeur/scripts/affectation.55.test.php
+  codephp <?php
+
+  code : 
+      ifthen if
+      Condition 0) 
+          parentheses 
+          ( "affectation variable $c  "=" literals 3" )
+          block 
+          0 : 
+              affectation 
+              droite : 
+                  variable $d
+               "=" 
+              gauche : 
+                  literals 4

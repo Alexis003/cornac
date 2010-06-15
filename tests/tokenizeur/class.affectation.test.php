@@ -3,7 +3,7 @@ include_once('Analyseur_Framework_TestCase.php');
 
 class Affectation_Test extends Analyseur_Framework_TestCase
 {
-    /* 54 methodes */
+    /* 55 methodes */
     public function testAffectation1()  { $this->generic_test('affectation.1'); }
     public function testAffectation2()  { $this->generic_test('affectation.2'); }
     public function testAffectation3()  { $this->generic_test('affectation.3'); }
@@ -58,6 +58,7 @@ class Affectation_Test extends Analyseur_Framework_TestCase
     public function testAffectation52()  { $this->generic_test('affectation.52'); }
     public function testAffectation53()  { $this->generic_test('affectation.53'); }
     public function testAffectation54()  { $this->generic_test('affectation.54'); }
+    public function testAffectation55()  { $this->generic_test('affectation.55'); }
 
 }
 
