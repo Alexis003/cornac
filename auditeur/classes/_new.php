@@ -2,13 +2,12 @@
 
 class _new extends modules {
 	protected	$description = 'Liste des classes et de leurs extensions';
-	protected	$description_en = 'List of classes et its extensions';
+	protected	$description_en = 'List of classes definitions and their its extensions';
 
 	function __construct($mid) {
         parent::__construct($mid);
         
     	$this->name = __CLASS__;
-    	$this->functions = array();
 	}
 	
 	public function analyse() {

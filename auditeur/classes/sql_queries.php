@@ -8,7 +8,6 @@ class sql_queries extends noms {
         parent::__construct($mid);
         
     	$this->name = __CLASS__;
-    	$this->functions = array();
 	}
 	
 	public function analyse() {

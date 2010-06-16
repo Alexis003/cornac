@@ -2,13 +2,12 @@
 
 class affectations_variables extends modules {
 	protected	$description = 'Noms des variables affectées dans l\'application';
-	protected	$description_en = 'Function call through the code';
+	protected	$description_en = 'Name of the variables that are actually assigned within the application';
 
 	function __construct($mid) {
         parent::__construct($mid);
         
     	$this->name = __CLASS__;
-    	$this->functions = array();
 	}
 	
 	public function analyse() {
