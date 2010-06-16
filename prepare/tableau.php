@@ -33,7 +33,7 @@ class tableau extends variable {
 
     function getRegex(){
         return array('tableau_regex',
-                      'tableau_accolade_regex',
+                     'tableau_accolade_regex',
                      );
     }
 }
