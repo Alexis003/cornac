@@ -1,16 +1,32 @@
 Ajouter une LICENCE, README et INSTALLATION
+Pousser sur GitHub
+Prévenir Jean-Marc
+Refaire les tests unitaires
+Tester la couverture de code
+Passer sur SQLITE
+Mettre les dictionnaires en fichiers .ini ou en bases SQLite (ou autres)
+Comment inclure les références? (TAR)
+Migrer les templates dans un dossier
+Pouvoir utiliser un autre php que le PHP système
 
-Exporter vers MySQL
-  ++ attention aux classes (certaines notions ne sont plus différentiables en base)
-Relire depuis MySQL
-Mettre des tests unitaires pour l'auditeur
 
+Pouvoir relire les objets depuis MySQL
+Faire une interface fluide pour construire les requêtes SQL
+Avoir des rapports intermédiaires rapides (nouveaux tags?)
+Passer la liste chaînée en SPL
+Avancer les tests unitaires pour l'auditeur
+
+Accumuler les résultats 
+Avoir une vue pour l'auditeur (export HTML, PDF, ODT)
 Pouvoir paraleliser les analyses de code (gearman? une liste de fichier en base? Faire les fichiers récents ou qui n'ont pas été finis.. )
+
+Noter le délimiteur des litéraux et le retirer de la valeru
+Mettre toutes les méthodes en anglais
+Ajouter une licence dans tous les fichiers
+
 
 Mettre un verificateur automatique de hasPrev et hasNext dans analyseur
 Faire un log d'utilité des tests
-
-Simplifier les sequences de 1
 
 retirer l'utilisation des getNext() dans les regex
 Utiliser un getNext() avec cache dans applyRegex
@@ -80,35 +96,35 @@ Recherche d'une chaîne spéciale, indépendemment des tokens
 [+] @ operator usage
 + Comments usage
 [+] Constante usage
-+ Constants defintions (define(X, 2);)
-+ Debugging functions usage
-+ echo and print usage
+[+] Constants defintions (define(X, 2);)
+[+] Debugging functions usage
+[+] echo and print usage
 [+] eval() usage
 [+] File inclusions
-+ Global variable usage
+[+] Global variable usage
 [+] header() usage
 + Liste of classes definition
-+ Liste of empty function definition
-+ Liste of function definition
+[+] Liste of empty function definition
+[+] Liste of function definition
 + Massive variable creation
-+ native function for dir manipulation
-+ native function for file manipulation
+[+] native function for dir manipulation
+[+] native function for file manipulation
 + Nested loops
 + PHP configuration function usage
-+ PHP native function usage
+[+] PHP native function usage
 + Regex usage (pcre, ereg)
 + Script interruption with (die, exit)
 + Script mail usage
 + SQL queries lists
 + SQL queries protections
-+ Superglobal variables usage
+[+] Superglobal variables usage
 + System function usage (exec, shell_exec, system)
 + Upper case variables
 + URL manipulations
 + User functions usage
-+ Utilisation des fonctions de gestion de fichiers
-+ Variable affectations (type : $x = 2;)
-+ variable variables usage
+[+] Utilisation des fonctions de gestion de fichiers
+[+] Variable affectations (type : $x = 2;)
+[+] variable variables usage
 + Variables being used
 
 
@@ -116,3 +132,30 @@ Stats (juste les nombres d'occurrences par elements)
 stats par fichier (nombre d'elements par fichier)
 par element, fichiers impliqués
 par fichier, elements présents
+
+Faire la fiche d'une fonction :
+entrée (global, statiques, membres)
+sortie (return)
+local (variables)
+
+
+
+Pouvoir cocher les elements qui ont été validés manuellement (ajouter une colonne, et un tick dans l'interface, MAJ des informations)
+Faire une répartition par fichier (actuel), par classe, par scope. 
+avoir une option -log pour exporter dans un fichier de log
+
+Faire la liste des dépendences entre les rapports (certains ont besoin des autres)
+faire la liste des classes et des méthodes (inventaire)
+Faire la liste des méthodes/fonctions, constantes/constantes de classes, variable/propriétés
+Faire une option de nettoyage des bases (par défaut, c'est remis fichier par fichier)
+
+
+methodes appelées
+exceptions lancées
+fonctions/méthodes lanceuses d'exception
+
+méthodes pas appelées
+propriétés définies
+propriétés pas appelées
+
+Extraire les abstracts des arguments inutilisés
