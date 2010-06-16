@@ -21,11 +21,9 @@ SELECT 0, TR1.fichier, TR1.element AS code, TR1.id, '{$this->name}'
     FROM <rapport>  TR1
     LEFT JOIN <rapport>  TR2 
     ON TR1.element = TR2.element AND TR2.module='functionscalls' 
-    WHERE TR1.module = 'deffunctions' AND TR2.element IS NULL;
+    WHERE TR1.module = 'deffunctions' AND TR2.module IS NULL
 SQL;
         $this->exec_query($requete);
-
-
 	}
 }
 
