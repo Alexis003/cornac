@@ -44,25 +44,18 @@ SHELL;
         }
 
         foreach($this->attendus as $attendu) {
-            $this->assertTrue(in_array($attendu, $elements), "$attendu n'a pas été trouvé mais le devrait\n");
+            $this->assertTrue(in_array($attendu, $elements), "Couldn't find expected '$attendu'\n");
             unset($elements[$attendu]);
         }
 
         foreach($this->inattendus as $inattendu) {
-            $this->assertTrue(!in_array($inattendu, $elements), "$inattendu a été trouvé mais ne devrait pas\n");
+            $this->assertTrue(!in_array($inattendu, $elements), "Found '$inattendu', but it shouldn\'t be\n");
             unset($elements[$inattendu]);
         }
         
         if (!empty($elements)) {
-            $this->assertTrue(false, "Il reste ".count($elements)." qui ne sont pas attendus ou inattendus (".join(', ', $elements).")");
+            $this->assertTrue(false, "".count($elements)." objects were found, but they are not processed by the tests (".join(', ', $elements).")");
         }
-
-/*
-        foreach($this->inattendus as $inattendu) {
-            $this->assertTrue(!in_array($inattendu, $elements), "$inattendu a été trouvé mais ne devrait pas\n");
-            unset($inattendu);
-        }
-*/
     }
 }
 
