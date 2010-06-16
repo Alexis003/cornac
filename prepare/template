@@ -523,7 +523,7 @@ class template_cache extends template {
         $expression = $noeud->getExpression();
         $this->affiche($expression, $niveau + 1);
 
-        $noeud->cache = '!'.$expression->cache;
+        $noeud->cache = '@'.$expression->cache;
         return $this->saveNoeud($noeud);
     }
 
@@ -743,7 +743,14 @@ class template_cache extends template {
     }
 
     function affiche_variable($noeud, $niveau) {
-        $noeud->cache = $noeud->getCode();
+        $nom = $noeud->getNom();
+        if (is_object($nom)) {
+            $this->affiche($nom, $niveau + 1);
+            $noeud->cache = '$'.$nom->cache;
+        } else {
+            $noeud->cache = $nom;
+        }
+        return $this->saveNoeud($noeud);
     }
 
     function affiche__while($noeud, $niveau) {
