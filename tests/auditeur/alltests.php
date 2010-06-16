@@ -34,8 +34,6 @@ foreach($tests as $i => $test ) {
         die();
     }
     
-    print "$fichier\n";
-    
     /*
     $class = $r[1];
     $methods = get_class_methods($class);
@@ -85,8 +83,6 @@ class Framework_AllTests
              $test = ucwords($test);
              $test = str_replace('_test','_Test', $test);
              
-             print $test."\n";
-
             $suite->addTestSuite($test);
          }
  
