@@ -9,14 +9,17 @@ print "Travail avec la base $prefixe\n";
 
 $mysql = new pdo('mysql:dbname=analyseur;host=127.0.0.1','root','');
 
+// rendu (templates)
 include 'classes/sommaire.php';
 $sommaire = new sommaire();
 
-include 'classes/modules.php';
-include 'classes/functioncalls.php';
-include 'classes/typecalls.php';
-include 'classes/noms.php';
+include 'classes/abstract/modules.php';
+include 'classes/abstract/functioncalls.php';
+include 'classes/abstract/typecalls.php';
+include 'classes/abstract/noms.php';
 
+
+// analyseurs
 $modules = array(
 '_new',
 'affectations_variables',
@@ -31,7 +34,6 @@ $modules = array(
 'defmethodes',
 'dieexit',
 'dir_functions',
-//'dot',
 'emptyfunctions',
 'ereg_functions',
 'error_functions',
@@ -40,7 +42,6 @@ $modules = array(
 'execs',
 'file_functions',
 'filter_functions',
-//'functioncalls',
 'functions_frequency',
 'functions_undefined',
 'functions_unused',
@@ -93,27 +94,17 @@ $modules = array(
 'zfElements',
 'zfGetGPC',
                  );
-/*
-$modules = array(                 'xml_functions',
-                 'session_functions',
-                 'secu_protection_functions',
-                 'regex',
-                 'filter_functions',
-);
-$modules = array(                    'variables', 'constantes','_new',
-    'affectations_variables', 'headers',
-                 'method_special','globals',
-                 'iffectations',
-);
-*/
-//$modules = array('functions_undefined','functions_unused');
-//$modules = array('zfGetGPC');
 
+$modules = array("arobases");
+
+/*
 
 $modules_faits = array();
 $res = $mysql->query('SELECT module FROM '.$prefixe.'_rapport_module');
 $modules_faits = $res->fetchall(PDO::FETCH_COLUMN);
-//print_r($modules_faits);
+*/
+$modules_faits = array();
+
 
 // init avec le contenu de la base? 
 
@@ -127,7 +118,7 @@ function analyse_module($module) {
     global $modules_faits, $mysql,$sommaire;
     
     if (isset($modules_faits[$module])) {  
-        continue; 
+        return ;
     }
 
     $x = new $module($mysql);
@@ -142,7 +133,7 @@ function analyse_module($module) {
                 analyse_module($m);
             }
         } else {
-            print "Pas de dépendance\n";
+            print "Dépendances faites\n";
         }
     }
     
