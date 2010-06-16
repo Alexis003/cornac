@@ -95,7 +95,7 @@ $modules = array(
 'zfGetGPC',
                  );
 
-$modules = array("arobases");
+//$modules = array("arobases");
 
 /*
 

@@ -21,7 +21,6 @@ SELECT 0, TC.fichier, TC.code AS code, T1.id, '{$this->name}'
     ON T1.id = TC.id 
     WHERE T1.type='noscream' 
 SQL;
-        print $this->prepare_query($requete);
         $this->exec_query($requete);
     }
 }
