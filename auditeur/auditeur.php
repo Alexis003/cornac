@@ -1,25 +1,30 @@
+#!/usr/bin/php
 <?php
 
-if (count($argv) > 1) {
-    $prefixe = $argv[1];
+if ($id = array_search('-?', $argv)) {
+    print_help();
+    die();
+}
+
+if ($id = array_search('-h', $argv)) {
+    print_help();
+    die();
+}
+
+if ($id = array_search('-help', $argv)) {
+    print_help();
+    die();
+}
+
+$args = $argv;
+if ($id = array_search('-p', $argv)) {
+    $prefixe = $args[$id + 1];
+    unset($args[$id]);
+    unset($args[$id + 1]);
 } else {
     $prefixe = 'tokens';
 }
-print "Travail avec la base $prefixe\n";
 
-$mysql = new pdo('mysql:dbname=analyseur;host=127.0.0.1','root','');
-
-// rendu (templates)
-include 'classes/sommaire.php';
-$sommaire = new sommaire();
-
-include 'classes/abstract/modules.php';
-include 'classes/abstract/functioncalls.php';
-include 'classes/abstract/typecalls.php';
-include 'classes/abstract/noms.php';
-
-
-// analyseurs
 $modules = array(
 '_new',
 'affectations_variables',
@@ -64,11 +69,9 @@ $modules = array(
 'mysqli_functions',
 'nestedif',
 'nestedloops',
-//'noms',
 'nonphp_functions',
 'parentheses',
 'php_functions',
-//'php_modules',
 'proprietes_publiques',
 'regex',
 'returns',
@@ -93,9 +96,48 @@ $modules = array(
 'zfController',
 'zfElements',
 'zfGetGPC',
-                 );
+);
 
-//$modules = array("arobases");
+if ($id = array_search('-a', $argv)) {
+    $m = explode(',', $args[$id + 1]);
+    unset($args[$id]);
+    unset($args[$id + 1]);
+
+    $diff = array_diff($m , $modules);
+    if (count($diff) > 0) {
+        print count($diff)." modules are unknown, and omitted : ".join(', ', $diff)."\n";
+    }
+
+    $m = array_intersect($m, $modules);
+    
+    if (count($m) == 0) {
+        print "No analyzer provided : aborting\n";
+        die();
+    } else {
+        $modules = $m;
+    }
+} else {
+    // rien 
+}
+
+print count($modules)." modules will be treated : ".join(', ', $modules)."\n";
+
+
+print "Work with prefixes '$prefixe'\n";
+
+$mysql = new pdo('mysql:dbname=analyseur;host=127.0.0.1','root','');
+
+// rendu (templates)
+include 'classes/sommaire.php';
+$sommaire = new sommaire();
+
+// abstract classes 
+include 'classes/abstract/modules.php';
+include 'classes/abstract/functioncalls.php';
+include 'classes/abstract/typecalls.php';
+include 'classes/abstract/noms.php';
+
+// analyzers doing the real thing
 
 /*
 
@@ -145,5 +187,20 @@ function analyse_module($module) {
 }
 
 $sommaire->sauve();
+
+function help() {
+    print <<<TEXT
+Usage : ./auditeur.php
+prefix : tokens (default)
+
+    -?    : this help
+    -h    : this help
+    -help : this help
+    -p    : prefixe for the tables to be used. Default to 'tokens'
+    -a    : comma separated list of analyzers to be used. Defaut to all. 
+TEXT;
+    
+    die();
+}
 
 ?>
