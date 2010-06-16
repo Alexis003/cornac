@@ -236,13 +236,18 @@ SQL;
 DELETE FROM <rapport_dot> WHERE module='{$this->name}'
 SQL;
         $this->exec_query($requete);
+
+        $requete = <<<SQL
+DELETE FROM <rapport_module> WHERE module='{$this->name}'
+SQL;
+        $this->exec_query($requete);
     }
     
     static public function getPHPFunctions() {
         // dépend du PHP d'exécution.
         // utiliser un .ini ou un fichier pour stocker cela
   	    $functions = get_defined_functions();
-	    $extras = array('echo','print','die','exit','isset','empty','array','list','unset');
+	    $extras = array('echo','print','die','exit','isset','empty','array','list','unset','eval');
 	    return array_merge($functions['internal'], $extras);
     }
 }
