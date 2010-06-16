@@ -25,7 +25,7 @@ WHERE scope IN ( '__construct','__toString','__destruct',
                  '__wakeup','__sleep'
                  ) 
  OR scope = class 
-GROUP BY scope;
+GROUP BY fichier, class, scope;
 
 SQL;
     $this->exec_query($requete);
