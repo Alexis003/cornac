@@ -12,7 +12,10 @@ $tests = array(
 'class.method_special.test.php',
 'class.globals.test.php',
 'class.iffectations.test.php',
-
+'class.functions_undefined.test.php',
+'class.functions_unused.test.php',
+'class.classes.test.php',
+'class.arobases.test.php',
 // Prochain tests
 );
 

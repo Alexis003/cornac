@@ -1,0 +1,30 @@
+Travail sur le fichier tests/tokenizeur/scripts/affectation.56.test.php 
+tests/tokenizeur/scripts/affectation.56.test.php
+  codephp <?php
+
+  code : 
+      ifthen if
+      Condition 0) 
+          parentheses 
+          ( "comparaison variable $y 283 "==" literals 2" )
+          block 
+      Condition 1) 
+          parentheses 
+          ( "affectation variable $z  "=" literals 3" )
+          block 
+          0 : 
+              affectation 
+              droite : 
+                  variable $b
+               "=" 
+              gauche : 
+                  literals 6
+       else 
+          block 
+          0 : 
+              affectation 
+              droite : 
+                  variable $a
+               "=" 
+              gauche : 
+                  literals 5
