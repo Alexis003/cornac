@@ -9,8 +9,8 @@ tests/tokenizeur/scripts/rawtext.4.test.php
           ( "constante true" )
           block 
           0 : 
-              variable 309 "$a"297 "++" 
-                  variable 309 "$a"
+              variable $a297 "++" 
+                  variable $a
           1 : 
               rawtext 
               Texte : "311 "b

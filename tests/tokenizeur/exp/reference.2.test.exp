@@ -5,8 +5,8 @@ tests/tokenizeur/scripts/reference.2.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$z"
+          variable $z
        "=" 
       gauche : 
           reference &
-              property variable 309 "$x"literals y->
+              property variable $xliterals y->

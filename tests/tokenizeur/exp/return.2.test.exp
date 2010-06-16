@@ -4,4 +4,4 @@ tests/tokenizeur/scripts/return.2.test.php
 
   code : 
       _return 
-      return : "variable 309 "$x""
+      return : "variable $x"

@@ -3,13 +3,13 @@ tests/tokenizeur/scripts/return.7.test.php
   codephp <?php
 
   code : 
-      function literals cmp1 arglist(variable 309 "$a", variable 309 "$b")
+      function literals cmp1 arglist(variable $a, variable $b)
           block 
           0 : 
               ifthen if
               Condition 0) 
                   parentheses 
-                  ( "comparaison tableau variable 309 "$a"[literals 'fichier'] 283 "==" tableau variable 309 "$b"[literals 'fichier']" )
+                  ( "comparaison tableau variable $a[literals 'fichier'] 283 "==" tableau variable $b[literals 'fichier']" )
                   block 
                   0 : 
                       _return 

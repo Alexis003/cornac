@@ -5,5 +5,5 @@ tests/tokenizeur/scripts/not.3.test.php
   code : 
       not !
           tableau
-              variable 309 "$x"
+              variable $x
               literals 1

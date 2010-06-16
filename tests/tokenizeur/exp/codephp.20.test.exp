@@ -11,7 +11,7 @@ XML
       0 : 
           affectation 
           droite : 
-              variable 309 "$x"
+              variable $x
            "=" 
           gauche : 
               literals 1
@@ -21,7 +21,7 @@ XML
       2 : 
           affectation 
           droite : 
-              variable 309 "$y"
+              variable $y
            "=" 
           gauche : 
               literals 1

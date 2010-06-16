@@ -5,13 +5,13 @@ tests/tokenizeur/scripts/tableau.5.test.php
   code : 
       tableau
           tableau
-              variable 309 "$GLOBALS"
+              variable $GLOBALS
               literals '_TABLE_CORRESPONDANCE_MENU'
           tableau
-              variable 309 "$tb_menu_racc"
+              variable $tb_menu_racc
               operation 
               droite : 
-                  variable 309 "$i"
+                  variable $i
               operation :  "-"
               gauche : 
                   literals 1

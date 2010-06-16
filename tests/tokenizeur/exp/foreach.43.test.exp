@@ -3,12 +3,12 @@ tests/tokenizeur/scripts/foreach.43.test.php
   codephp <?php
 
   code : 
-      _foreach (parentheses (cdtternaire ?) as  => variable 309 "$d")
+      _foreach (parentheses (cdtternaire ?) as  => variable $d)
           block 
           0 : 
               affectation 
               droite : 
-                  variable 309 "$e"
+                  variable $e
               273 ".=" 
               gauche : 
                   literals "e"

@@ -14,5 +14,5 @@ tests/tokenizeur/scripts/functioncall.27.test.php
                   literals 'b'
               2 : 
                   tableau
-                      variable 309 "$t"
+                      variable $t
                       literals 3

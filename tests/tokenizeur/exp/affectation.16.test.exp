@@ -5,14 +5,14 @@ tests/tokenizeur/scripts/affectation.16.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$select_increment1"
+          variable $select_increment1
        "=" 
       gauche : 
           functioncall substr
           appel de fonction : substr: 
               arglist 
               0 : 
-                  variable 309 "$select_increment1"
+                  variable $select_increment1
               1 : 
                   literals 1
               2 : 
@@ -22,7 +22,7 @@ tests/tokenizeur/scripts/affectation.16.test.php
                       appel de fonction : strlen: 
                           arglist 
                           0 : 
-                              variable 309 "$select_increment1"
+                              variable $select_increment1
                   operation :  "-"
                   gauche : 
                       literals 1

@@ -9,6 +9,6 @@ tests/tokenizeur/scripts/variable.6.test.php
           0 : 
               concatenation 
               0 : 
-                  variable variable 308 "b"
+                  variable variable b
               1 : 
                   literals [1]

@@ -7,24 +7,24 @@ tests/tokenizeur/scripts/property_static.6.test.php
       0 : 
           affectation 
           droite : 
-              property_static 307 "self"::tableau variable 309 "$a"[literals 'b'][]
-                  property_static 307 "self"::tableau variable 309 "$a"[literals 'b']->
+              property_static 307 "self"::tableau variable $a[literals 'b'][]
+                  property_static 307 "self"::tableau variable $a[literals 'b']->
            "=" 
           gauche : 
-              variable 309 "$d"
+              variable $d
       1 : 
           affectation 
           droite : 
-              property_static 307 "self"::tableau tableau variable 309 "$a"[variable 309 "$b"][literals '1'][]
-                  property_static 307 "self"::tableau tableau variable 309 "$a"[variable 309 "$b"][literals '1']->
+              property_static 307 "self"::tableau tableau variable $a[variable $b][literals '1'][]
+                  property_static 307 "self"::tableau tableau variable $a[variable $b][literals '1']->
            "=" 
           gauche : 
-              variable 309 "$d"
+              variable $d
       2 : 
           affectation 
           droite : 
-              property_static 307 "self"::tableau tableau tableau variable 309 "$a"[variable 309 "$b"][literals '1'][constante true][]
-                  property_static 307 "self"::tableau tableau tableau variable 309 "$a"[variable 309 "$b"][literals '1'][constante true]->
+              property_static 307 "self"::tableau tableau tableau variable $a[variable $b][literals '1'][constante true][]
+                  property_static 307 "self"::tableau tableau tableau variable $a[variable $b][literals '1'][constante true]->
            "=" 
           gauche : 
-              variable 309 "$d"
+              variable $d

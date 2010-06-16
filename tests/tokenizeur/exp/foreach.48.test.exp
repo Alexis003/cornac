@@ -3,12 +3,12 @@ tests/tokenizeur/scripts/foreach.48.test.php
   codephp <?php
 
   code : 
-      _foreach (property variable 309 "$adminTab"->literals _includeVars as variable 309 "$var" => variable 309 "$value")
+      _foreach (property variable $adminTab->literals _includeVars as variable $var => variable $value)
           block 
           0 : 
               affectation 
               droite : 
-                  property variable 309 "$adminTab"variable 309 "$var"->
+                  property variable $adminTabvariable $var->
                "=" 
               gauche : 
-                  property variable 309 "$this"variable 309 "$value"->
+                  property variable $thisvariable $value->

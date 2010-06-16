@@ -6,8 +6,8 @@ tests/tokenizeur/scripts/opappend.6.test.php
       affectation 
       droite : 
           opappend [[][]
-              variable 309 "$lines"[]
-                  variable 309 "$lines"
+              variable $lines[]
+                  variable $lines
        "=" 
       gauche : 
           literals 1

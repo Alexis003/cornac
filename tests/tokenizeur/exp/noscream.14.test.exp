@@ -5,11 +5,11 @@ tests/tokenizeur/scripts/noscream.14.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$x"
+          variable $x
        "=" 
       gauche : 
           concatenation 
           0 : 
               literals @
           1 : 
-              variable variable 309 "$a"
+              variable variable $a

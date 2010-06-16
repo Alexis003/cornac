@@ -8,9 +8,9 @@ tests/tokenizeur/scripts/dowhile.1.test.php
           0 : 
               affectation 
               droite : 
-                  variable 309 "$x"
+                  variable $x
                "=" 
               gauche : 
                   literals 1
           parentheses 
-          ( "comparaison variable 309 "$x" 283 "==" literals 3" )
+          ( "comparaison variable $x 283 "==" literals 3" )

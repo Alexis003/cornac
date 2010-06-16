@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/property.11.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$a"
+          variable $a
        "=" 
       gauche : 
-          property method tableau property variable 309 "$b"->literals c[literals 0]->functioncall 307 "d" ( ( ) ) literals e->
+          property method tableau property variable $b->literals c[literals 0]->functioncall 307 "d" ( ( ) ) literals e->

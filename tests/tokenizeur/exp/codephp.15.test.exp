@@ -6,4 +6,4 @@ tests/tokenizeur/scripts/codephp.15.test.php
       appel de fonction : echo: 
           arglist 
           0 : 
-              property variable 309 "$lang"literals forum->
+              property variable $langliterals forum->

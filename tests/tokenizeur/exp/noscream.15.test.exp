@@ -5,9 +5,9 @@ tests/tokenizeur/scripts/noscream.15.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$x"
+          variable $x
        "=" 
       gauche : 
           noscream @
               _clone 
-                  variable 309 "$y"
+                  variable $y

@@ -6,13 +6,13 @@ tests/tokenizeur/scripts/ifthen.3.test.php
       ifthen if
       Condition 0) 
           parentheses 
-          ( "variable 309 "$condition"" )
+          ( "variable $condition" )
           block 
           0 : 
               ifthen if
               Condition 0) 
                   parentheses 
-                  ( "variable 309 "$condition2"" )
+                  ( "variable $condition2" )
                   block 
                   0 : 
                       literals "a"

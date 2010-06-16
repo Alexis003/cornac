@@ -7,21 +7,21 @@ tests/tokenizeur/scripts/sequence.3.test.php
       0 : 
           affectation 
           droite : 
-              variable 309 "$a"
+              variable $a
            "=" 
           gauche : 
               literals 1
       1 : 
           affectation 
           droite : 
-              variable 309 "$b"
+              variable $b
            "=" 
           gauche : 
               literals 2
       2 : 
           affectation 
           droite : 
-              variable 309 "$c"
+              variable $c
            "=" 
           gauche : 
               literals 3

@@ -5,17 +5,17 @@ tests/tokenizeur/scripts/cdtternaire.6.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$x"
+          variable $x
        "=" 
       gauche : 
           cdtternaire ?
-          literals 1 ? literals 2 : tableau tableau tableau variable 309 "$x"[literals 1][literals 2][literals 3]
+          literals 1 ? literals 2 : tableau tableau tableau variable $x[literals 1][literals 2][literals 3]
               literals 1
               literals 2
               tableau
                   tableau
                       tableau
-                          variable 309 "$x"
+                          variable $x
                           literals 1
                       literals 2
                   literals 3

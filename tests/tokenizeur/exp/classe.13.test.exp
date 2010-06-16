@@ -6,4 +6,4 @@ tests/tokenizeur/scripts/classe.13.test.php
        class 307 "x"
           block 
           0 : 
-               348 "var"variable 309 "$x" = functioncall 360 "array" ( ( ) ) 
+               348 "var"variable $x = functioncall 360 "array" ( ( ) ) 

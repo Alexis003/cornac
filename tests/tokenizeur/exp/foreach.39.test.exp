@@ -2,7 +2,7 @@ Travail sur le fichier tests/tokenizeur/scripts/foreach.39.test.php
 tests/tokenizeur/scripts/foreach.39.test.php
   codephp <?php 
   code : 
-      _foreach (cast (array) as  => variable 309 "$b")
+      _foreach (cast (array) as  => variable $b)
           block 
           0 : 
               rawtext 

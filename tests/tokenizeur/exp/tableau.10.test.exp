@@ -4,4 +4,4 @@ tests/tokenizeur/scripts/tableau.10.test.php
 
   code : 
       parentheses 
-      ( "comparaison tableau variable 309 "$seq"[variable 309 "$i"] 282 "!=" tableau variable 309 "$seq"[parentheses (operation variable 309 "$i"  "+" literals 1)]" )
+      ( "comparaison tableau variable $seq[variable $i] 282 "!=" tableau variable $seq[parentheses (operation variable $i  "+" literals 1)]" )

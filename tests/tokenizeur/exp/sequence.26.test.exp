@@ -7,27 +7,27 @@ tests/tokenizeur/scripts/sequence.26.test.php
       0 : 
           affectation 
           droite : 
-              variable 309 "$a"
+              variable $a
            "=" 
           gauche : 
               literals ''
       1 : 
           affectation 
           droite : 
-              variable 309 "$b"
+              variable $b
            "=" 
           gauche : 
               literals 'c'
       2 : 
           _for 
-            Init : affectation variable 309 "$i"  "=" literals 1;
-            Fin  : comparaison variable 309 "$i"  "<" literals 3;
-            Incr : postplusplus 297 "++"variable 309 "$i";
+            Init : affectation variable $i  "=" literals 1;
+            Fin  : comparaison variable $i  "<" literals 3;
+            Incr : postplusplus 297 "++"variable $i;
               block 
               0 : 
                   affectation 
                   droite : 
-                      variable 309 "$f"
+                      variable $f
                    "=" 
                   gauche : 
                       literals 'g'

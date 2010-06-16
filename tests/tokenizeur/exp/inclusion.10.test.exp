@@ -4,4 +4,4 @@ tests/tokenizeur/scripts/inclusion.10.test.php
 
   code : 
       inclusion include
-          property variable 309 "$a"literals b->
+          property variable $aliterals b->

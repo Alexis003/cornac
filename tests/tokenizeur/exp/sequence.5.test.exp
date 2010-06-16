@@ -34,5 +34,5 @@ tests/tokenizeur/scripts/sequence.5.test.php
                       literals 'b'
                   2 : 
                       tableau
-                          variable 309 "$t"
+                          variable $t
                           literals 3

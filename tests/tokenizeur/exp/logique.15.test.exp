@@ -5,15 +5,15 @@ tests/tokenizeur/scripts/logique.15.test.php
   code : 
       logique 
       droite : 
-          property variable 309 "$this"literals a->
+          property variable $thisliterals a->
       operateur : 263 "or"
       gauche : 
           affectation 
           droite : 
-              property variable 309 "$this"literals b->
+              property variable $thisliterals b->
            "=" 
           gauche : 
-              method variable 309 "$this"
+              method variable $this
               appel de methode : functioncall 307 "c" ( ( ) ) : 
                   functioncall c
                   appel de fonction : c: 

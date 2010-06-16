@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/clone.12.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$x"
+          variable $x
        "=" 
       gauche : 
           _clone 

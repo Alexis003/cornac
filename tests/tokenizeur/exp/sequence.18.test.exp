@@ -10,7 +10,7 @@ tests/tokenizeur/scripts/sequence.18.test.php
               appel de fonction : fwrite: 
                   arglist 
                   0 : 
-                      variable 309 "$fp"
+                      variable $fp
                   1 : 
                       literals 1
       1 : 
@@ -19,7 +19,7 @@ tests/tokenizeur/scripts/sequence.18.test.php
               appel de fonction : fwrite: 
                   arglist 
                   0 : 
-                      variable 309 "$fp"
+                      variable $fp
                   1 : 
                       literals 2
       2 : 
@@ -28,7 +28,7 @@ tests/tokenizeur/scripts/sequence.18.test.php
               appel de fonction : fwrite: 
                   arglist 
                   0 : 
-                      variable 309 "$fp"
+                      variable $fp
                   1 : 
                       literals 3
       3 : 
@@ -37,6 +37,6 @@ tests/tokenizeur/scripts/sequence.18.test.php
               appel de fonction : fclose: 
                   arglist 
                   0 : 
-                      variable 309 "$fp"
+                      variable $fp
                   1 : 
                       literals 4

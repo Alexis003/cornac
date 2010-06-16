@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/new.9.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$x"
+          variable $x
        "=" 
       gauche : 
-           new variable variable 309 "$classe" ( ) 
+           new variable variable $classe ( ) 

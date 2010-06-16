@@ -5,8 +5,8 @@ tests/tokenizeur/scripts/logique.39.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$x"
+          variable $x
        "=" 
       gauche : 
           parentheses 
-          ( "comparaison parentheses (logique method variable 309 "$b"->functioncall 307 "c" ( arglist(variable 309 "$d") )   "^" property variable 309 "$e"->literals f) 280 "!==" literals 5" )
+          ( "comparaison parentheses (logique method variable $b->functioncall 307 "c" ( arglist(variable $d) )   "^" property variable $e->literals f) 280 "!==" literals 5" )

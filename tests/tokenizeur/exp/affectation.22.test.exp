@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/affectation.22.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$salt"
+          variable $salt
       273 ".=" 
       gauche : 
           functioncall substr

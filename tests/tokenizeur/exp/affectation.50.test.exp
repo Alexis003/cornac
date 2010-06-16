@@ -5,8 +5,8 @@ tests/tokenizeur/scripts/affectation.50.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$x"
+          variable $x
        "=" 
       gauche : 
           noscream @
-              variable 309 "$b"
+              variable $b

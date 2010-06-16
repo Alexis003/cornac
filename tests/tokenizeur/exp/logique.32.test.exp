@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/logique.32.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$a"
+          variable $a
        "=" 
       gauche : 
           logique 
@@ -14,12 +14,12 @@ tests/tokenizeur/scripts/logique.32.test.php
               appel de fonction : b: 
                   arglist 
                   0 : 
-                      variable 309 "$q"
+                      variable $q
           operateur : 263 "or"
           gauche : 
               affectation 
               droite : 
-                  variable 309 "$x"
+                  variable $x
               276 "-=" 
               gauche : 
                   literals 2

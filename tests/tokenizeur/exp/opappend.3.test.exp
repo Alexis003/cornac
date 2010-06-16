@@ -5,8 +5,8 @@ tests/tokenizeur/scripts/opappend.3.test.php
   code : 
       affectation 
       droite : 
-          property variable 309 "$x"->literals y[]
-              property variable 309 "$x"literals y->
+          property variable $x->literals y[]
+              property variable $xliterals y->
        "=" 
       gauche : 
-          variable 309 "$z"
+          variable $z

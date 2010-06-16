@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/cdtternaire.10.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$a"
+          variable $a
       273 ".=" 
       gauche : 
           concatenation 
@@ -15,6 +15,6 @@ tests/tokenizeur/scripts/cdtternaire.10.test.php
           1 : 
               literals ' <code>[-&gt;'
           2 : 
-              variable 309 "$k"
+              variable $k
           3 : 
               literals ']</code>'

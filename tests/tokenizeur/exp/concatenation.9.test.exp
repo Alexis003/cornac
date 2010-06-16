@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/concatenation.9.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$query"
+          variable $query
        "=" 
       gauche : 
           concatenation 
@@ -15,5 +15,5 @@ tests/tokenizeur/scripts/concatenation.9.test.php
               literals "b"
           2 : 
               tableau
-                  variable 309 "$d"
+                  variable $d
                   literals 'e'

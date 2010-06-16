@@ -7,10 +7,10 @@ tests/tokenizeur/scripts/return.6.test.php
       0 : 
           affectation 
           droite : 
-              variable 309 "$x"
+              variable $x
            "=" 
           gauche : 
               literals 1
       1 : 
           _return 
-          return : "variable 309 "$x""
+          return : "variable $x"

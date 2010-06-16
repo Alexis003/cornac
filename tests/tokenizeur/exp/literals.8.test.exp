@@ -7,7 +7,7 @@ tests/tokenizeur/scripts/literals.8.test.php
       0 : 
           affectation 
           droite : 
-              property variable 309 "$r"literals a->
+              property variable $rliterals a->
            "=" 
           gauche : 
               literals 1
@@ -20,4 +20,4 @@ tests/tokenizeur/scripts/literals.8.test.php
                   0 : 
                       literals ABC
                   1 : 
-                      property variable 309 "$r"literals a->
+                      property variable $rliterals a->

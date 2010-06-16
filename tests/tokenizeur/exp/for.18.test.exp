@@ -4,13 +4,13 @@ tests/tokenizeur/scripts/for.18.test.php
 
   code : 
       _for 
-        Init : block {affectation variable 309 "$i"  "=" literals 0
-affectation variable 309 "$a"  "=" literals 1 };
-        Fin  : block {comparaison variable 309 "$i"  "<" literals 0
-affectation variable 309 "$b"  "=" literals 2 };
-        Incr : postplusplus 297 "++"variable 309 "$i";
+        Init : block {affectation variable $i  "=" literals 0
+affectation variable $a  "=" literals 1 };
+        Fin  : block {comparaison variable $i  "<" literals 0
+affectation variable $b  "=" literals 2 };
+        Incr : postplusplus 297 "++"variable $i;
           functioncall unset
           appel de fonction : unset: 
               arglist 
               0 : 
-                  variable 309 "$t"
+                  variable $t

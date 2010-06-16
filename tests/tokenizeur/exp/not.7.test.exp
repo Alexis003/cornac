@@ -5,19 +5,19 @@ tests/tokenizeur/scripts/not.7.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$x"
+          variable $x
        "=" 
       gauche : 
           concatenation 
           0 : 
-              variable variable 309 "$a"
+              variable variable $a
           1 : 
               literals /
           2 : 
-              property variable 309 "$b"literals c->
+              property variable $bliterals c->
           3 : 
-              variable variable 309 "$d"
+              variable variable $d
           4 : 
               literals !
           5 : 
-              property variable 309 "$e"literals f->
+              property variable $eliterals f->

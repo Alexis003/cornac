@@ -8,10 +8,10 @@ tests/tokenizeur/scripts/logique.23.test.php
           tableau
               tableau
                   tableau
-                      variable 309 "$a"
+                      variable $a
                       literals 'b'
-                  property variable 309 "$d"literals e->
+                  property variable $dliterals e->
               literals 'f'
       operateur :  "&"
       gauche : 
-          property variable 309 "$g"literals h->
+          property variable $gliterals h->

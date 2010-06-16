@@ -4,4 +4,4 @@ tests/tokenizeur/scripts/logique.10.test.php
 
   code : 
       _return 
-      return : "logique variable 309 "$a" 263 "or" variable 309 "$b""
+      return : "logique variable $a 263 "or" variable $b"

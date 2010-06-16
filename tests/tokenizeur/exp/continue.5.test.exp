@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/continue.5.test.php
       ifthen if
       Condition 0) 
           parentheses 
-          ( "variable 309 "$x"" )
+          ( "variable $x" )
           block 
           0 : 
               _continue "1" 

@@ -4,5 +4,5 @@ tests/tokenizeur/scripts/tableau.1.test.php
 
   code : 
       tableau
-          variable 309 "$tableau"
+          variable $tableau
           literals 1

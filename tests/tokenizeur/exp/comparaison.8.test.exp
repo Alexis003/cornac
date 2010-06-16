@@ -4,4 +4,4 @@ tests/tokenizeur/scripts/comparaison.8.test.php
 
   code : 
       _return 
-      return : "comparaison method variable 309 "$conn"->functioncall 307 "Execute" ( arglist(variable 309 "$sql") )  280 "!==" constante false"
+      return : "comparaison method variable $conn->functioncall 307 "Execute" ( arglist(variable $sql) )  280 "!==" constante false"

@@ -5,18 +5,18 @@ tests/tokenizeur/scripts/concatenation.22.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$a"
+          variable $a
        "=" 
       gauche : 
           cdtternaire ?
-          not ! ? concatenation literals 'f' . functioncall variable 309 "$g" ( arglist(literals 'h') )  . literals 'i'   : literals 'j'
+          not ! ? concatenation literals 'f' . functioncall variable $g ( arglist(literals 'h') )  . literals 'i'   : literals 'j'
               not !
                   functioncall empty
                   appel de fonction : empty: 
                       arglist 
                       0 : 
                           tableau
-                              variable 309 "$b"
+                              variable $b
                               literals 'd'
               concatenation 
               0 : 

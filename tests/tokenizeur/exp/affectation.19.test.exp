@@ -8,13 +8,13 @@ tests/tokenizeur/scripts/affectation.19.test.php
           arglist 
           0 : 
                argument et initialisation 
-                  variable 309 "$a"
+                  variable $a
                   literals 1
           1 : 
                argument et initialisation 
-                  variable 309 "$b"
+                  variable $b
                   literals 2
           2 : 
                argument et initialisation 
-                  variable 309 "$c"
+                  variable $c
                   literals 3

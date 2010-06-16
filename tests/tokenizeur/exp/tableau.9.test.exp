@@ -5,11 +5,11 @@ tests/tokenizeur/scripts/tableau.9.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$v"
+          variable $v
        "=" 
       gauche : 
           tableau
               tableau
-                  variable 309 "$ret"
+                  variable $ret
                   literals 2
               literals 0

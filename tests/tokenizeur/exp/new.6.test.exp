@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/new.6.test.php
   code : 
       affectation 
       droite : 
-          property variable 309 "$a"literals c->
+          property variable $aliterals c->
        "=" 
       gauche : 
-           new method variable 309 "$b"->functioncall 307 "a" ( ( ) )  ( ) 
+           new method variable $b->functioncall 307 "a" ( ( ) )  ( ) 

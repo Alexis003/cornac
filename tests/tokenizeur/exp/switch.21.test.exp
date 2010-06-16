@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/switch.21.test.php
   code : 
       _switch 
           parentheses 
-          ( "variable 309 "$a"" )
+          ( "variable $a" )
           block 
           0 : 
               _case 

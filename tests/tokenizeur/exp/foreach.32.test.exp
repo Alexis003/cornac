@@ -3,8 +3,8 @@ tests/tokenizeur/scripts/foreach.32.test.php
   codephp <?php
 
   code : 
-      _foreach (method_static 307 "a"::functioncall 307 "b" ( arglist(variable 309 "$c", variable 309 "$c") )  as variable 309 "$d" => variable 309 "$e")
+      _foreach (method_static 307 "a"::functioncall 307 "b" ( arglist(variable $c, variable $c) )  as variable $d => variable $e)
           block 
           0 : 
-              variable 309 "$i"297 "++" 
-                  variable 309 "$i"
+              variable $i297 "++" 
+                  variable $i

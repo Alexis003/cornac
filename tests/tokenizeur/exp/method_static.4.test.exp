@@ -4,17 +4,17 @@ tests/tokenizeur/scripts/method_static.4.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$result"
+          variable $result
        "=" 
       gauche : 
           method_static 
-          307 "self"::functioncall variable 309 "$a" ( arglist(variable 309 "$b", variable 309 "$c", variable 309 "$d") ) : 
+          307 "self"::functioncall variable $a ( arglist(variable $b, variable $c, variable $d) ) : 
               functioncall $a
               appel de fonction : $a: 
                   arglist 
                   0 : 
-                      variable 309 "$b"
+                      variable $b
                   1 : 
-                      variable 309 "$c"
+                      variable $c
                   2 : 
-                      variable 309 "$d"
+                      variable $d

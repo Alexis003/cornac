@@ -5,9 +5,9 @@ tests/tokenizeur/scripts/variable.9.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$a"
+          variable $a
        "=" 
       gauche : 
           concatenation 
           0 : 
-              variable tableau variable 308 "b"[literals 'c']
+              variable tableau variable b[literals 'c']

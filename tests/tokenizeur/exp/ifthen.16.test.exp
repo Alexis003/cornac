@@ -11,7 +11,7 @@ tests/tokenizeur/scripts/ifthen.16.test.php
           0 : 
               affectation 
               droite : 
-                  variable 309 "$acces_ip"
+                  variable $acces_ip
                "=" 
               gauche : 
                   concatenation 
@@ -19,7 +19,7 @@ tests/tokenizeur/scripts/ifthen.16.test.php
                       literals " AND acces_ip=\""
                   1 : 
                       tableau
-                          variable 309 "$_SERVER"
+                          variable $_SERVER
                           literals 'REMOTE_ADDR'
                   2 : 
                       literals "\""
@@ -28,7 +28,7 @@ tests/tokenizeur/scripts/ifthen.16.test.php
           0 : 
               affectation 
               droite : 
-                  variable 309 "$acces_ip"
+                  variable $acces_ip
                "=" 
               gauche : 
                   literals ""

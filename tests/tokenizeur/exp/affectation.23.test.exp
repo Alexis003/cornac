@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/affectation.23.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$ping"
+          variable $ping
        "=" 
       gauche : 
           method_static 

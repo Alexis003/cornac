@@ -7,4 +7,4 @@ tests/tokenizeur/scripts/functioncall.33.test.php
       appel de fonction : $x: 
           arglist 
           0 : 
-              variable 309 "$y"
+              variable $y

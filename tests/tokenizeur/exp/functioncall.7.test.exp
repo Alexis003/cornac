@@ -13,7 +13,7 @@ tests/tokenizeur/scripts/functioncall.7.test.php
           2 : 
               literals 3
           3 : 
-              variable 309 "$x"
+              variable $x
           4 : 
               functioncall x
               appel de fonction : x: 

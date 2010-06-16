@@ -5,10 +5,10 @@ tests/tokenizeur/scripts/reference.4.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$y"
+          variable $y
        "=" 
       gauche : 
           reference &
               tableau
-                  variable 309 "$x"
+                  variable $x
                   literals 1

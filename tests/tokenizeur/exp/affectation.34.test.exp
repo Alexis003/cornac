@@ -9,9 +9,9 @@ tests/tokenizeur/scripts/affectation.34.test.php
           appel de fonction : list: 
               arglist 
               0 : 
-                  variable 309 "$x"
+                  variable $x
               1 : 
-                  variable 309 "$y"
+                  variable $y
        "=" 
       gauche : 
           functioncall explode

@@ -10,7 +10,7 @@ tests/tokenizeur/scripts/declare.10.test.php
           0 : 
               affectation 
               droite : 
-                  variable 309 "$b"
+                  variable $b
                "=" 
               gauche : 
-                  variable 309 "$a"
+                  variable $a

@@ -5,13 +5,13 @@ tests/tokenizeur/scripts/signe.14.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$tm"
+          variable $tm
        "=" 
       gauche : 
-          signe  "-"operation variable 309 "$tm"  "*" variable 309 "$y"
+          signe  "-"operation variable $tm  "*" variable $y
               operation 
               droite : 
-                  variable 309 "$tm"
+                  variable $tm
               operation :  "*"
               gauche : 
-                  variable 309 "$y"
+                  variable $y

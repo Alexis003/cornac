@@ -4,4 +4,4 @@ tests/tokenizeur/scripts/inclusion.7.test.php
 
   code : 
       inclusion require_once
-          variable 309 "$var"
+          variable $var

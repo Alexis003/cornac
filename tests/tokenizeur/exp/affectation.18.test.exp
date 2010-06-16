@@ -8,17 +8,17 @@ tests/tokenizeur/scripts/affectation.18.test.php
           0 : 
               affectation 
               droite : 
-                  variable 309 "$a"
+                  variable $a
                "=" 
               gauche : 
                   literals 1
           1 : 
-              _foreach (variable 309 "$b" as  => variable 309 "$c")
+              _foreach (variable $b as  => variable $c)
                   block 
                   0 : 
                       affectation 
                       droite : 
-                          variable 309 "$d"
+                          variable $d
                        "=" 
                       gauche : 
                           literals 2

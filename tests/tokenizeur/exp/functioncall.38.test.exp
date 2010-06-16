@@ -11,10 +11,10 @@ tests/tokenizeur/scripts/functioncall.38.test.php
               0 : 
                   literals 'insert_histo_'
               1 : 
-                  variable 309 "$table"
+                  variable $table
               2 : 
                   literals '('
               3 : 
-                  variable 309 "$pdt_cle"
+                  variable $pdt_cle
               4 : 
                   literals ',1);'

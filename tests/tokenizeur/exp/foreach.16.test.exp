@@ -3,12 +3,12 @@ tests/tokenizeur/scripts/foreach.16.test.php
   codephp <?php
 
   code : 
-      _foreach (variable 309 "$x" as variable 309 "$y" => reference &variable 309 "$z")
+      _foreach (variable $x as variable $y => reference &variable $z)
           block 
           0 : 
               affectation 
               droite : 
-                  variable 309 "$t"
+                  variable $t
                "=" 
               gauche : 
                   literals 1

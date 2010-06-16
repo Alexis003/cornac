@@ -4,11 +4,11 @@ tests/tokenizeur/scripts/property_static.10.test.php
 
   code : 
       method method_static 307 "self"::functioncall 307 "a" ( ( ) ) 
-      appel de methode : functioncall 307 "b" ( arglist(variable 309 "$c", variable 309 "$d") ) : 
+      appel de methode : functioncall 307 "b" ( arglist(variable $c, variable $d) ) : 
           functioncall b
           appel de fonction : b: 
               arglist 
               0 : 
-                  variable 309 "$c"
+                  variable $c
               1 : 
-                  variable 309 "$d"
+                  variable $d

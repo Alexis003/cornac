@@ -23,13 +23,13 @@ tests/tokenizeur/scripts/concatenation.10.test.php
                               appel de fonction : strtotime: 
                                   arglist 
                                   0 : 
-                                      variable 309 "$PROGRAM_UPDATE"
+                                      variable $PROGRAM_UPDATE
                   2 : 
                       literals '</div>'
       1 : 
           affectation 
           droite : 
-              variable 309 "$x"
+              variable $x
            "=" 
           gauche : 
               literals 2

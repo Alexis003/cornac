@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/switch.19.test.php
   code : 
       _switch 
           parentheses 
-          ( "variable 309 "$a"" )
+          ( "variable $a" )
           block 
           0 : 
               _case 
@@ -14,7 +14,7 @@ tests/tokenizeur/scripts/switch.19.test.php
                   0 : 
                       affectation 
                       droite : 
-                          variable 309 "$z"
+                          variable $z
                        "=" 
                       gauche : 
                           literals 1
@@ -27,7 +27,7 @@ tests/tokenizeur/scripts/switch.19.test.php
                   0 : 
                       affectation 
                       droite : 
-                          variable 309 "$z"
+                          variable $z
                        "=" 
                       gauche : 
                           literals 3

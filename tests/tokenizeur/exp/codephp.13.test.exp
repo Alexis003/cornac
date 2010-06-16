@@ -6,7 +6,7 @@ tests/tokenizeur/scripts/codephp.13.test.php
       0 : 
           affectation 
           droite : 
-              variable 309 "$x"
+              variable $x
            "=" 
           gauche : 
               literals 1
@@ -19,6 +19,6 @@ tests/tokenizeur/scripts/codephp.13.test.php
           appel de fonction : echo: 
               arglist 
               0 : 
-                  variable 309 "$x"
+                  variable $x
       3 : 
-          variable 309 "$y"
+          variable $y

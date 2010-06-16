@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/logique.7.test.php
   code : 
       logique 
       droite : 
-          variable 309 "$x"
+          variable $x
       operateur : 278 "||"
       gauche : 
-          property variable 309 "$y"literals z->
+          property variable $yliterals z->

@@ -5,11 +5,11 @@ tests/tokenizeur/scripts/shell.1.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$x"
+          variable $x
        "=" 
       gauche : 
           shell 
           0 : 
-              variable 309 "$file"
+              variable $file
           1 : 
               literals  sf 

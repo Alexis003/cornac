@@ -5,14 +5,14 @@ tests/tokenizeur/scripts/cdtternaire.7.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$x"
+          variable $x
        "=" 
       gauche : 
           cdtternaire ?
-          literals 1 ? literals 2 : method variable 309 "$x"->functioncall 307 "y" ( ( ) ) 
+          literals 1 ? literals 2 : method variable $x->functioncall 307 "y" ( ( ) ) 
               literals 1
               literals 2
-              method variable 309 "$x"
+              method variable $x
               appel de methode : functioncall 307 "y" ( ( ) ) : 
                   functioncall y
                   appel de fonction : y: 

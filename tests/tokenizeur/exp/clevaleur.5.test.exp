@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/clevaleur.5.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$TABINDEX"
+          variable $TABINDEX
        "=" 
       gauche : 
           functioncall array

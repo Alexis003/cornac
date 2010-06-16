@@ -15,9 +15,9 @@ tests/tokenizeur/scripts/array.6.test.php
                   literals 3
                   literals 4
           2 : 
-              variable 309 "$x" => variable 309 "$y"
-                  variable 309 "$x"
-                  variable 309 "$y"
+              variable $x => variable $y
+                  variable $x
+                  variable $y
           3 : 
               literals 5 => functioncall 360 "array" ( arglist(literals 1, literals 2, literals 3) ) 
                   literals 5

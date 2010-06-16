@@ -8,6 +8,6 @@ tests/tokenizeur/scripts/codephp.11.test.php
           appel de fonction : echo: 
               arglist 
               0 : 
-                  variable 309 "$x"
+                  variable $x
       1 : 
-          variable 309 "$y"
+          variable $y

@@ -9,7 +9,7 @@ tests/tokenizeur/scripts/for.6.test.php
         Incr : ;
           affectation 
           droite : 
-              variable 309 "$x"
+              variable $x
            "=" 
           gauche : 
               literals 's'

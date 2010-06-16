@@ -8,7 +8,7 @@ tests/tokenizeur/scripts/sequence.33.test.php
           appel de fonction : a: 
               arglist 
               0 : 
-                  variable 309 "$b"
+                  variable $b
       1 : 
           logique 
           droite : 
@@ -18,10 +18,10 @@ tests/tokenizeur/scripts/sequence.33.test.php
                   appel de fonction : c: 
                       arglist 
                       0 : 
-                          variable 309 "$d"
+                          variable $d
               operateur : 282 "!="
               gauche : 
-                  variable 309 "$e"
+                  variable $e
           operateur : 263 "or"
           gauche : 
               functioncall f

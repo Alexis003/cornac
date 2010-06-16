@@ -11,4 +11,4 @@ tests/tokenizeur/scripts/functioncall.23.test.php
               appel de fonction : b: 
                   arglist 
                   0 : 
-                      variable 309 "$x"
+                      variable $x

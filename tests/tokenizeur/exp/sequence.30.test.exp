@@ -7,15 +7,15 @@ tests/tokenizeur/scripts/sequence.30.test.php
       0 : 
           affectation 
           droite : 
-              variable 309 "$a"
+              variable $a
            "=" 
           gauche : 
               cdtternaire ?
-              parentheses (comparaison variable 309 "$b" 283 "==" literals 1) ? variable 309 "$d" : variable 309 "$e"
+              parentheses (comparaison variable $b 283 "==" literals 1) ? variable $d : variable $e
                   parentheses 
-                  ( "comparaison variable 309 "$b" 283 "==" literals 1" )
-                  variable 309 "$d"
-                  variable 309 "$e"
+                  ( "comparaison variable $b 283 "==" literals 1" )
+                  variable $d
+                  variable $e
       1 : 
           parentheses 
           ( "cdtternaire ?" )

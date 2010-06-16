@@ -5,13 +5,13 @@ tests/tokenizeur/scripts/concatenation.24.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$x"
+          variable $x
        "=" 
       gauche : 
           concatenation 
           0 : 
               tableau
-                  property variable 309 "$this"literals properties->
+                  property variable $thisliterals properties->
                   literals 'prefix'
           1 : 
-              property variable 309 "$node"literals id->
+              property variable $nodeliterals id->

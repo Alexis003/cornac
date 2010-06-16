@@ -6,18 +6,18 @@ tests/tokenizeur/scripts/block.6.test.php
       ifthen if
       Condition 0) 
           parentheses 
-          ( "comparaison variable 309 "$a" 282 "!=" tableau tableau tableau variable 309 "$b"[literals 'c'][literals 'd'][literals 0]" )
+          ( "comparaison variable $a 282 "!=" tableau tableau tableau variable $b[literals 'c'][literals 'd'][literals 0]" )
           block 
           0 : 
               affectation 
               droite : 
-                  variable 309 "$a"
+                  variable $a
                "=" 
               gauche : 
                   tableau
                       tableau
                           tableau
-                              variable 309 "$b"
+                              variable $b
                               literals 'c'
                           literals 'd'
                       literals 0

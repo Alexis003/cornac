@@ -5,12 +5,12 @@ tests/tokenizeur/scripts/affectation.15.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$a"
+          variable $a
        "=" 
       gauche : 
           affectation 
           droite : 
-              variable 309 "$b"
+              variable $b
            "=" 
           gauche : 
               literals "c"

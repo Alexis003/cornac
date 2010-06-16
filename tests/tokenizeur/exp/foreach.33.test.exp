@@ -3,8 +3,8 @@ tests/tokenizeur/scripts/foreach.33.test.php
   codephp <?php
 
   code : 
-      _foreach (property_static 307 "a"::variable 309 "$b" as variable 309 "$d" => variable 309 "$e")
+      _foreach (property_static 307 "a"::variable $b as variable $d => variable $e)
           block 
           0 : 
-              variable 309 "$i"297 "++" 
-                  variable 309 "$i"
+              variable $i297 "++" 
+                  variable $i

@@ -7,7 +7,7 @@ tests/tokenizeur/scripts/functioncall.37.test.php
       0 : 
           affectation 
           droite : 
-              variable 309 "$x"
+              variable $x
            "=" 
           gauche : 
               literals 3
@@ -18,11 +18,11 @@ tests/tokenizeur/scripts/functioncall.37.test.php
               appel de fonction : list: 
                   arglist 
                   0 : 
-                      variable 309 "$x"
+                      variable $x
                   1 : 
-                      variable 309 "$y"
+                      variable $y
                   2 : 
-                      variable 309 "$z"
+                      variable $z
            "=" 
           gauche : 
               functioncall range

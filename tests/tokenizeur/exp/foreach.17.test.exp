@@ -7,7 +7,7 @@ tests/tokenizeur/scripts/foreach.17.test.php
       0 : 
           affectation 
           droite : 
-              variable 309 "$x"
+              variable $x
            "=" 
           gauche : 
               functioncall range
@@ -18,7 +18,7 @@ tests/tokenizeur/scripts/foreach.17.test.php
                   1 : 
                       literals 3
       1 : 
-          _foreach (variable 309 "$x" as tableau variable 309 "$y"[literals 1] => reference &tableau variable 309 "$z"[literals 3])
+          _foreach (variable $x as tableau variable $y[literals 1] => reference &tableau variable $z[literals 3])
               block 
               0 : 
                   functioncall print
@@ -26,5 +26,5 @@ tests/tokenizeur/scripts/foreach.17.test.php
                       arglist 
                       0 : 
                           tableau
-                              variable 309 "$y"
+                              variable $y
                               literals 1

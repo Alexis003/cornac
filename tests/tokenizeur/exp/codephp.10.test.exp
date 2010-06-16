@@ -7,14 +7,14 @@ tests/tokenizeur/scripts/codephp.10.test.php
       0 : 
           logique 
           droite : 
-              variable 309 "$x"
+              variable $x
           operateur :  "|"
           gauche : 
-              variable 309 "$y"
+              variable $y
       1 : 
           affectation 
           droite : 
-              variable 309 "$x"
+              variable $x
            "=" 
           gauche : 
               literals 1

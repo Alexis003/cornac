@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/method.2.test.php
   codephp <?php
 
   code : 
-      method tableau variable 309 "$x"[literals 1]
+      method tableau variable $x[literals 1]
       appel de methode : functioncall 307 "y" ( ( ) ) : 
           functioncall y
           appel de fonction : y: 

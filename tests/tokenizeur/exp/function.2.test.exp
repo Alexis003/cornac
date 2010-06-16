@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/function.2.test.php
   codephp <?php
 
   code : 
-      function literals a arglist(variable 309 "$b", variable 309 "$c")
+      function literals a arglist(variable $b, variable $c)
           block 
           0 : 
               _return 

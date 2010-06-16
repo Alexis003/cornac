@@ -3,5 +3,5 @@ tests/tokenizeur/scripts/function.8.test.php
   codephp <?php
 
   code : 
-      function literals a arglist(arginit variable 309 "$x" = constante null , arginit variable 309 "$y" = constante true )
+      function literals a arglist(arginit variable $x = constante null , arginit variable $y = constante true )
           block 

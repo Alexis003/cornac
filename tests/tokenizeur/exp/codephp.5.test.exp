@@ -6,7 +6,7 @@ tests/tokenizeur/scripts/codephp.5.test.php
       0 : 
           affectation 
           droite : 
-              variable 309 "$x"
+              variable $x
            "=" 
           gauche : 
               literals 1
@@ -16,7 +16,7 @@ tests/tokenizeur/scripts/codephp.5.test.php
       2 : 
           affectation 
           droite : 
-              variable 309 "$x"
+              variable $x
            "=" 
           gauche : 
               literals 1

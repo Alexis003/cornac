@@ -12,11 +12,11 @@ tests/tokenizeur/scripts/concatenation.26.test.php
                   literals a
               1 : 
                   tableau
-                      variable 309 "$GLOBALS"
+                      variable $GLOBALS
                       literals 'b'
               2 : 
                   literals c 
               3 : 
-                  variable 309 "$bgcolor"
+                  variable $bgcolor
               4 : 
                   literals  d

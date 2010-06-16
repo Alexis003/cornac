@@ -7,21 +7,21 @@ tests/tokenizeur/scripts/logique.20.test.php
       0 : 
           logique 
           droite : 
-              variable 309 "$x"
+              variable $x
           operateur : 279 "&&"
           gauche : 
-              variable 309 "$y"
+              variable $y
       1 : 
           logique 
           droite : 
-              variable 309 "$a"
+              variable $a
           operateur : 279 "&&"
           gauche : 
-              variable 309 "$b"
+              variable $b
       2 : 
           logique 
           droite : 
-              variable 309 "$c"
+              variable $c
           operateur : 279 "&&"
           gauche : 
-              variable 309 "$d"
+              variable $d

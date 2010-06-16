@@ -4,7 +4,7 @@ tests/tokenizeur/scripts/for.28.test.php
 
   code : 
       _for 
-        Init : affectation variable 309 "$i"  "=" literals 0;
+        Init : affectation variable $i  "=" literals 0;
         Fin  : ;
-        Incr : postplusplus 297 "++"variable 309 "$i";
+        Incr : postplusplus 297 "++"variable $i;
           block 

@@ -5,19 +5,19 @@ tests/tokenizeur/scripts/cdtternaire.3.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$rech_ven"
+          variable $rech_ven
        "=" 
       gauche : 
           cdtternaire ?
-          functioncall 350 "isset" ( arglist(tableau variable 309 "$_REQUEST"[literals 'rech_ven']) )  ? tableau variable 309 "$_REQUEST"[literals 'rech_ven'] : literals ""
+          functioncall 350 "isset" ( arglist(tableau variable $_REQUEST[literals 'rech_ven']) )  ? tableau variable $_REQUEST[literals 'rech_ven'] : literals ""
               functioncall isset
               appel de fonction : isset: 
                   arglist 
                   0 : 
                       tableau
-                          variable 309 "$_REQUEST"
+                          variable $_REQUEST
                           literals 'rech_ven'
               tableau
-                  variable 309 "$_REQUEST"
+                  variable $_REQUEST
                   literals 'rech_ven'
               literals ""

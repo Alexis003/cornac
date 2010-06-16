@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/throw.3.test.php
   codephp <?php 
   code : 
       _throw 
-          method variable 309 "$x"
+          method variable $x
           appel de methode : functioncall 307 "method" ( ( ) ) : 
               functioncall method
               appel de fonction : method: 

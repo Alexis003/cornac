@@ -4,7 +4,7 @@ tests/tokenizeur/scripts/codephp.1.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$x"
+          variable $x
        "=" 
       gauche : 
           literals 1

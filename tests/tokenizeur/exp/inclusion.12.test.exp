@@ -5,5 +5,5 @@ tests/tokenizeur/scripts/inclusion.12.test.php
   code : 
       inclusion include
           tableau
-              variable 309 "$a"
+              variable $a
               literals 'b'

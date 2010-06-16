@@ -5,17 +5,17 @@ tests/tokenizeur/scripts/cdtternaire.11.test.php
       affectation 
       droite : 
           tableau
-              variable 309 "$a"
+              variable $a
               cdtternaire ?
-              parentheses (variable 309 "$b") ? functioncall 307 "strtoupper" ( arglist(property variable 309 "$e"->literals f) )  : property variable 309 "$e"->literals f
+              parentheses (variable $b) ? functioncall 307 "strtoupper" ( arglist(property variable $e->literals f) )  : property variable $e->literals f
                   parentheses 
-                  ( "variable 309 "$b"" )
+                  ( "variable $b" )
                   functioncall strtoupper
                   appel de fonction : strtoupper: 
                       arglist 
                       0 : 
-                          property variable 309 "$e"literals f->
-                  property variable 309 "$e"literals f->
+                          property variable $eliterals f->
+                  property variable $eliterals f->
        "=" 
       gauche : 
-          variable 309 "$f"
+          variable $f

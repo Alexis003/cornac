@@ -6,5 +6,5 @@ tests/tokenizeur/scripts/affectation.44.test.php
       ifthen if
       Condition 0) 
           parentheses 
-          ( "tableau variable 309 "$a"[affectation variable 309 "$i"  "=" method property variable 309 "$c"->literals e->functioncall 307 "d" ( ( ) ) ]" )
+          ( "tableau variable $a[affectation variable $i  "=" method property variable $c->literals e->functioncall 307 "d" ( ( ) ) ]" )
           block 

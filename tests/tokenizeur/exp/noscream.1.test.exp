@@ -4,4 +4,4 @@ tests/tokenizeur/scripts/noscream.1.test.php
 
   code : 
       noscream @
-          variable 309 "$x"
+          variable $x

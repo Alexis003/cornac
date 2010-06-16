@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/concatenation.14.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$x"
+          variable $x
        "=" 
       gauche : 
           literals 

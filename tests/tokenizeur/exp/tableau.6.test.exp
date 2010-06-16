@@ -8,9 +8,9 @@ tests/tokenizeur/scripts/tableau.6.test.php
           arglist 
           0 : 
               tableau
-                  variable 309 "$TABINDEX"
+                  variable $TABINDEX
                   concatenation 
                   0 : 
                       literals 'bt_racc'
                   1 : 
-                      variable 309 "$i"
+                      variable $i

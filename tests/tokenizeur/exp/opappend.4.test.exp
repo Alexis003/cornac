@@ -7,7 +7,7 @@ tests/tokenizeur/scripts/opappend.4.test.php
       0 : 
           affectation 
           droite : 
-              variable 309 "$x"
+              variable $x
            "=" 
           gauche : 
               functioncall array
@@ -20,9 +20,9 @@ tests/tokenizeur/scripts/opappend.4.test.php
       1 : 
           affectation 
           droite : 
-              variable 309 "$x"
+              variable $x
            "=" 
           gauche : 
               reference &
-                  variable 309 "$x"[]
-                      variable 309 "$x"
+                  variable $x[]
+                      variable $x

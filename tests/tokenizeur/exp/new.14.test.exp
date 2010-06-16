@@ -4,7 +4,7 @@ tests/tokenizeur/scripts/new.14.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$a"
+          variable $a
        "=" 
       gauche : 
-           new tableau variable 309 "$b"[literals 'd.e'] parentheses (variable 309 "$f") 
+           new tableau variable $b[literals 'd.e'] parentheses (variable $f) 

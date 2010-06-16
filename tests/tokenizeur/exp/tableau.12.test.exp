@@ -6,9 +6,9 @@ tests/tokenizeur/scripts/tableau.12.test.php
       affectation 
       droite : 
           tableau
-              variable 309 "$a"[]
-                  variable 309 "$a"
+              variable $a[]
+                  variable $a
               constante (              b )
        "=" 
       gauche : 
-          variable 309 "$c"
+          variable $c

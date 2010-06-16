@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/affectation.41.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$salt"
+          variable $salt
       273 ".=" 
       gauche : 
           functioncall substr
@@ -22,6 +22,6 @@ tests/tokenizeur/scripts/affectation.41.test.php
                           Liste d'argument vide
                   operateur :  "&"
                   gauche : 
-                      variable 309 "$c3"
+                      variable $c3
               2 : 
                   literals 1

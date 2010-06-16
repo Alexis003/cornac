@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/cast.8.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$x"
+          variable $x
        "=" 
       gauche : 
           cast (295 "(integer)")_new 

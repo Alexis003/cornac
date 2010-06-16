@@ -10,4 +10,4 @@ tests/tokenizeur/scripts/property_static.7.test.php
                   block 
                   0 : 
                       _return 
-                      return : "property_static 347 "static"::variable 309 "$b""
+                      return : "property_static 347 "static"::variable $b"

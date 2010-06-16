@@ -3,5 +3,5 @@ tests/tokenizeur/scripts/plusplus.7.test.php
   codephp <?php
 
   code : 
-      property variable 309 "$x"->literals y297 "++" 
-          property variable 309 "$x"literals y->
+      property variable $x->literals y297 "++" 
+          property variable $xliterals y->

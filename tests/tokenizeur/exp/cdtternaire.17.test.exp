@@ -13,7 +13,7 @@ tests/tokenizeur/scripts/cdtternaire.17.test.php
               0 : 
                   affectation 
                   droite : 
-                      variable 309 "$x"
+                      variable $x
                    "=" 
                   gauche : 
                       literals 1

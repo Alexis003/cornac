@@ -7,4 +7,4 @@ tests/tokenizeur/scripts/property.6.test.php
       appel de fonction : print: 
           arglist 
           0 : 
-              property variable 309 "$x"variable 309 "$b"->
+              property variable $xvariable $b->

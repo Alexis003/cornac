@@ -5,8 +5,8 @@ tests/tokenizeur/scripts/plusplus.10.test.php
       ifthen if
       Condition 0) 
           parentheses 
-          ( "comparaison literals 1 283 "==" operation postplusplus 296 "--"variable 309 "$i"  "%" literals 2" )
+          ( "comparaison literals 1 283 "==" operation postplusplus 296 "--"variable $i  "%" literals 2" )
           block 
           0 : 
               _return 
-              return : "variable 309 "$a""
+              return : "variable $a"

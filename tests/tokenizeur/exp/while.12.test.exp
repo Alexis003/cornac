@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/while.12.test.php
   code : 
       _while 
           parentheses 
-          ( "variable 309 "$action"" )
+          ( "variable $action" )
           block 
           0 : 
               functioncall print

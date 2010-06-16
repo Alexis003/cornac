@@ -6,5 +6,5 @@ tests/tokenizeur/scripts/for.30.test.php
       _for 
         Init : ;
         Fin  : ;
-        Incr : postplusplus 297 "++"variable 309 "$i";
+        Incr : postplusplus 297 "++"variable $i;
           block 

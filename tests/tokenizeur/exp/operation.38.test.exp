@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/operation.38.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$x"
+          variable $x
        "=" 
       gauche : 
           operation 
@@ -17,12 +17,12 @@ tests/tokenizeur/scripts/operation.38.test.php
                       0 : 
                           operation 
                           droite : 
-                              variable 309 "$a"
+                              variable $a
                           operation :  "/"
                           gauche : 
-                              variable 309 "$b"
+                              variable $b
                       1 : 
                           literals 2
           operation :  "*"
           gauche : 
-              variable 309 "$c"
+              variable $c

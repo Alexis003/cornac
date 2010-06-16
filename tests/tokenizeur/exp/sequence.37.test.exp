@@ -8,7 +8,7 @@ Plus d'upgrade au cycle 7
       appel de fonction : a: 
           arglist 
           0 : 
-              variable 309 "$b"
+              variable $b
   1 : 
       comparaison 
       droite : 
@@ -16,10 +16,10 @@ Plus d'upgrade au cycle 7
           appel de fonction : c: 
               arglist 
               0 : 
-                  variable 309 "$d"
+                  variable $d
       operateur : 282 "!="
       gauche : 
-          variable 309 "$e"
+          variable $e
   Token AND ( Affichage par défaut)
   functioncall f
   appel de fonction : f: 

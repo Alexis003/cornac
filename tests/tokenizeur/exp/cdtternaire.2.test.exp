@@ -5,18 +5,18 @@ tests/tokenizeur/scripts/cdtternaire.2.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$categorie"
+          variable $categorie
        "=" 
       gauche : 
           cdtternaire ?
-          parentheses (comparaison variable 309 "$categorie_id" 282 "!=" literals "") ? concatenation variable 309 "$categorie_id" . literals " - " . variable 309 "$categorie_nom"   : literals ""
+          parentheses (comparaison variable $categorie_id 282 "!=" literals "") ? concatenation variable $categorie_id . literals " - " . variable $categorie_nom   : literals ""
               parentheses 
-              ( "comparaison variable 309 "$categorie_id" 282 "!=" literals """ )
+              ( "comparaison variable $categorie_id 282 "!=" literals """ )
               concatenation 
               0 : 
-                  variable 309 "$categorie_id"
+                  variable $categorie_id
               1 : 
                   literals " - "
               2 : 
-                  variable 309 "$categorie_nom"
+                  variable $categorie_nom
               literals ""

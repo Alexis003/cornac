@@ -10,16 +10,16 @@ tests/tokenizeur/scripts/dowhile.2.test.php
               0 : 
                   affectation 
                   droite : 
-                      variable 309 "$x"
+                      variable $x
                    "=" 
                   gauche : 
                       literals 1
               parentheses 
-              ( "comparaison property variable 309 "$this"->literals _code  "<" literals 200" )
+              ( "comparaison property variable $this->literals _code  "<" literals 200" )
       1 : 
           affectation 
           droite : 
-              property variable 309 "$this"literals _ready->
+              property variable $thisliterals _ready->
            "=" 
           gauche : 
               constante (              true )

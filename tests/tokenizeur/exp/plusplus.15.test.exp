@@ -3,5 +3,5 @@ tests/tokenizeur/scripts/plusplus.15.test.php
   codephp <?php
 
   code : 
-      variable variable 309 "$i"297 "++" 
-          variable variable 309 "$i"
+      variable variable $i297 "++" 
+          variable variable $i

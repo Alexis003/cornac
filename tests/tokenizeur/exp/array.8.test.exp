@@ -5,18 +5,18 @@ tests/tokenizeur/scripts/array.8.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$x"
+          variable $x
        "=" 
       gauche : 
           functioncall array
           appel de fonction : array: 
               arglist 
               0 : 
-                  literals 'b' => affectation variable 309 "$a"  "=" constante true
+                  literals 'b' => affectation variable $a  "=" constante true
                       literals 'b'
                       affectation 
                       droite : 
-                          variable 309 "$a"
+                          variable $a
                        "=" 
                       gauche : 
                           constante (                          true )

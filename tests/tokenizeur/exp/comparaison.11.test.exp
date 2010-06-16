@@ -6,12 +6,12 @@ tests/tokenizeur/scripts/comparaison.11.test.php
       ifthen if
       Condition 0) 
           parentheses 
-          ( "comparaison preplusplus variable 309 "$x"296 "--" 283 "==" literals 0" )
+          ( "comparaison preplusplus variable $x296 "--" 283 "==" literals 0" )
           block 
           0 : 
               affectation 
               droite : 
-                  variable 309 "$x"
+                  variable $x
                "=" 
               gauche : 
                   literals 1

@@ -5,23 +5,23 @@ tests/tokenizeur/scripts/logique.8.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$a"
+          variable $a
        "=" 
       gauche : 
           logique 
           droite : 
-              method tableau variable 309 "$b"[literals 'c']
-              appel de methode : functioncall 307 "d" ( arglist(tableau variable 309 "$e"[literals 0]) ) : 
+              method tableau variable $b[literals 'c']
+              appel de methode : functioncall 307 "d" ( arglist(tableau variable $e[literals 0]) ) : 
                   functioncall d
                   appel de fonction : d: 
                       arglist 
                       0 : 
                           tableau
-                              variable 309 "$e"
+                              variable $e
                               literals 0
           operateur : 263 "or"
           gauche : 
-              method tableau variable 309 "$f"[literals 'g']
+              method tableau variable $f[literals 'g']
               appel de methode : functioncall 307 "h" ( ( ) ) : 
                   functioncall h
                   appel de fonction : h: 

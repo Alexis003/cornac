@@ -7,14 +7,14 @@ tests/tokenizeur/scripts/functioncall.44.test.php
       0 : 
           affectation 
           droite : 
-              variable 309 "$a"
+              variable $a
            "=" 
           gauche : 
               concatenation 
               0 : 
                   literals 'b'
               1 : 
-                  variable 309 "$c"
+                  variable $c
       1 : 
           functioncall echo
           appel de fonction : echo: 
@@ -25,5 +25,5 @@ tests/tokenizeur/scripts/functioncall.44.test.php
                       arglist 
                       0 : 
                           tableau
-                              variable 309 "$e"
-                              variable 309 "$f"
+                              variable $e
+                              variable $f

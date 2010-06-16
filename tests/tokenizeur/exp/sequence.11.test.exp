@@ -7,21 +7,21 @@ tests/tokenizeur/scripts/sequence.11.test.php
       0 : 
           affectation 
           droite : 
-              variable 309 "$a"
+              variable $a
            "=" 
           gauche : 
               literals 'a'
       1 : 
           affectation 
           droite : 
-              variable 309 "$b"
+              variable $b
            "=" 
           gauche : 
               literals 'b'
       2 : 
           affectation 
           droite : 
-              variable 309 "$c"
+              variable $c
            "=" 
           gauche : 
               literals 'c'
@@ -30,4 +30,4 @@ tests/tokenizeur/scripts/sequence.11.test.php
           appel de fonction : print: 
               arglist 
               0 : 
-                  variable 309 "$c"
+                  variable $c

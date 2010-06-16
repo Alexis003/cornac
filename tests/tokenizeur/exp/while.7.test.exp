@@ -5,9 +5,9 @@ tests/tokenizeur/scripts/while.7.test.php
   code : 
       _while 
           parentheses 
-          ( "comparaison preplusplus variable 309 "$a"296 "--" 284 ">=" literals 0" )
+          ( "comparaison preplusplus variable $a296 "--" 284 ">=" literals 0" )
           block 
           0 : 
               tableau
-                  variable 309 "$thi"
+                  variable $thi
                   literals 'c'

@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/signe.11.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$CurrNav"
+          variable $CurrNav
        "=" 
       gauche : 
           functioncall array

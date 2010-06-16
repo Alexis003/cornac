@@ -5,5 +5,5 @@ tests/tokenizeur/scripts/noscream.4.test.php
   code : 
       noscream @
           tableau
-              variable 309 "$x"
+              variable $x
               literals 1

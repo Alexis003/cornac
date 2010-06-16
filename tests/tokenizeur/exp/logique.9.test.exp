@@ -17,7 +17,7 @@ tests/tokenizeur/scripts/logique.9.test.php
                           arglist 
                           0 : 
                               tableau
-                                  variable 309 "$LANG_ACTION"
+                                  variable $LANG_ACTION
                                   literals 'dateecheance'
                   1 : 
                       _break 
@@ -42,7 +42,7 @@ tests/tokenizeur/scripts/logique.9.test.php
                           arglist 
                           0 : 
                               tableau
-                                  variable 309 "$LANG_ACTION"
+                                  variable $LANG_ACTION
                                   literals 'limitevalidite'
                   1 : 
                       _break 

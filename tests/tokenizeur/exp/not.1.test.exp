@@ -4,4 +4,4 @@ tests/tokenizeur/scripts/not.1.test.php
 
   code : 
       not !
-          variable 309 "$x"
+          variable $x

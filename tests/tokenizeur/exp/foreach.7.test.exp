@@ -2,12 +2,12 @@ Travail sur le fichier tests/tokenizeur/scripts/foreach.7.test.php
 tests/tokenizeur/scripts/foreach.7.test.php
   codephp <?php 
   code : 
-      _foreach (property variable 309 "$a"->literals b as variable 309 "$c" => variable 309 "$d")
+      _foreach (property variable $a->literals b as variable $c => variable $d)
           block 
           0 : 
               affectation 
               droite : 
-                  variable 309 "$x"
+                  variable $x
                "=" 
               gauche : 
                   literals 1

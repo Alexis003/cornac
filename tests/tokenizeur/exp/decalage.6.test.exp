@@ -5,8 +5,8 @@ tests/tokenizeur/scripts/decalage.6.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$x"
+          variable $x
        "=" 
       gauche : 
           parentheses 
-          ( "decalage property variable 309 "$y"->literals z  286 ">>"  literals 1 " )
+          ( "decalage property variable $y->literals z  286 ">>"  literals 1 " )

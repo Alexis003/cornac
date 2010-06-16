@@ -6,7 +6,7 @@ tests/tokenizeur/scripts/ifthen.1.test.php
       ifthen if
       Condition 0) 
           parentheses 
-          ( "variable 309 "$condition"" )
+          ( "variable $condition" )
           block 
           0 : 
               literals 'then'

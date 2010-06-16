@@ -5,23 +5,23 @@ tests/tokenizeur/scripts/operation.21.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$x1"
+          variable $x1
        "=" 
       gauche : 
           operation 
           droite : 
-              variable 309 "$x1"
+              variable $x1
           operation :  "/"
           gauche : 
               operation 
               droite : 
-                  method variable 309 "$this"
-                  appel de methode : functioncall 307 "_size_col" ( arglist(variable 309 "$col_start") ) : 
+                  method variable $this
+                  appel de methode : functioncall 307 "_size_col" ( arglist(variable $col_start) ) : 
                       functioncall _size_col
                       appel de fonction : _size_col: 
                           arglist 
                           0 : 
-                              variable 309 "$col_start"
+                              variable $col_start
               operation :  "+"
               gauche : 
                   literals 1024

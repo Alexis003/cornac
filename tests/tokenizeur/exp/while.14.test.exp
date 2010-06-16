@@ -8,7 +8,7 @@ tests/tokenizeur/scripts/while.14.test.php
           0 : 
               affectation 
               droite : 
-                  variable 309 "$a"
+                  variable $a
                "=" 
               gauche : 
                   functioncall sha1
@@ -20,4 +20,4 @@ tests/tokenizeur/scripts/while.14.test.php
                               arglist 
                               Liste d'argument vide
           parentheses 
-          ( "functioncall 307 "file_exists" ( arglist(concatenation variable 309 "$c" . variable 309 "$d"  ) ) " )
+          ( "functioncall 307 "file_exists" ( arglist(concatenation variable $c . variable $d  ) ) " )

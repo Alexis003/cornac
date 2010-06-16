@@ -6,7 +6,7 @@ tests/tokenizeur/scripts/ifthen.50.test.php
       ifthen if
       Condition 0) 
           parentheses 
-          ( "comparaison variable 309 "$commentheader" 283 "==" literals "no"" )
+          ( "comparaison variable $commentheader 283 "==" literals "no"" )
           block 
           0 : 
               functioncall echo
@@ -16,7 +16,7 @@ tests/tokenizeur/scripts/ifthen.50.test.php
                       literals "<br>"
       Condition 1) 
           parentheses 
-          ( "comparaison variable 309 "$commentheader" 283 "==" literals "1"" )
+          ( "comparaison variable $commentheader 283 "==" literals "1"" )
           block 
           0 : 
               functioncall echo
@@ -26,7 +26,7 @@ tests/tokenizeur/scripts/ifthen.50.test.php
                       literals "<br>"
       Condition 2) 
           parentheses 
-          ( "comparaison variable 309 "$commentheader" 283 "==" literals "2"" )
+          ( "comparaison variable $commentheader 283 "==" literals "2"" )
           block 
           0 : 
               functioncall echo
@@ -36,7 +36,7 @@ tests/tokenizeur/scripts/ifthen.50.test.php
                       literals "<br>"
       Condition 3) 
           parentheses 
-          ( "comparaison variable 309 "$commentheader" 283 "==" literals "3"" )
+          ( "comparaison variable $commentheader 283 "==" literals "3"" )
           block 
           0 : 
               functioncall echo
@@ -46,7 +46,7 @@ tests/tokenizeur/scripts/ifthen.50.test.php
                       literals "<br>"
       Condition 4) 
           parentheses 
-          ( "comparaison variable 309 "$commentheader" 283 "==" literals "4"" )
+          ( "comparaison variable $commentheader 283 "==" literals "4"" )
           block 
           0 : 
               functioncall echo

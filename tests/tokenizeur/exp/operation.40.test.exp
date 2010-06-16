@@ -5,13 +5,13 @@ tests/tokenizeur/scripts/operation.40.test.php
   code : 
       operation 
       droite : 
-          variable 309 "$a"
+          variable $a
       operation :  "+"
       gauche : 
           affectation 
           droite : 
-              variable 309 "$b"
+              variable $b
            "=" 
           gauche : 
               parentheses 
-              ( "operation variable 309 "$c"  "/" literals 2" )
+              ( "operation variable $c  "/" literals 2" )

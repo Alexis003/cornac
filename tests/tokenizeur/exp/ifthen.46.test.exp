@@ -6,11 +6,11 @@ tests/tokenizeur/scripts/ifthen.46.test.php
       ifthen if
       Condition 0) 
           parentheses 
-          ( "functioncall 307 "preg_match" ( arglist(variable 309 "$pattern", variable 309 "$path", variable 309 "$matches") ) " )
+          ( "functioncall 307 "preg_match" ( arglist(variable $pattern, variable $path, variable $matches) ) " )
           block 
           0 : 
               _return 
-              return : "tableau variable 309 "$matches"[literals 1]"
+              return : "tableau variable $matches[literals 1]"
        else 
           block 
           0 : 

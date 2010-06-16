@@ -7,7 +7,7 @@ tests/tokenizeur/scripts/affectation.10.test.php
       droite : 
           tableau
               tableau
-                  variable 309 "$x"
+                  variable $x
                   literals 1
               literals 2
        "=" 

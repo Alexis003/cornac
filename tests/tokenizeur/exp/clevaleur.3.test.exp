@@ -5,24 +5,24 @@ tests/tokenizeur/scripts/clevaleur.3.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$TABINDEX"
+          variable $TABINDEX
        "=" 
       gauche : 
           functioncall array
           appel de fonction : array: 
               arglist 
               0 : 
-                  literals "bouton0" => preplusplus variable 309 "$nbtab"297 "++"
+                  literals "bouton0" => preplusplus variable $nbtab297 "++"
                       literals "bouton0"
-                      297 "++"variable 309 "$nbtab" 
-                          variable 309 "$nbtab"
+                      297 "++"variable $nbtab 
+                          variable $nbtab
               1 : 
-                  literals "bouton1" => preplusplus variable 309 "$nbtab"297 "++"
+                  literals "bouton1" => preplusplus variable $nbtab297 "++"
                       literals "bouton1"
-                      297 "++"variable 309 "$nbtab" 
-                          variable 309 "$nbtab"
+                      297 "++"variable $nbtab 
+                          variable $nbtab
               2 : 
-                  literals "bouton2" => preplusplus variable 309 "$nbtab"297 "++"
+                  literals "bouton2" => preplusplus variable $nbtab297 "++"
                       literals "bouton2"
-                      297 "++"variable 309 "$nbtab" 
-                          variable 309 "$nbtab"
+                      297 "++"variable $nbtab 
+                          variable $nbtab

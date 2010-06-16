@@ -14,13 +14,13 @@ tests/tokenizeur/scripts/operation.22.test.php
               arglist 
               0 : 
                   tableau
-                      variable 309 "$a"
+                      variable $a
                       tableau
-                          variable 309 "$GLOBALS"
+                          variable $GLOBALS
                           literals 'callback_sort_by'
               1 : 
                   tableau
-                      variable 309 "$b"
+                      variable $b
                       tableau
-                          variable 309 "$GLOBALS"
+                          variable $GLOBALS
                           literals 'callback_sort_by'

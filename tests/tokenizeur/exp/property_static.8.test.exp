@@ -10,4 +10,4 @@ tests/tokenizeur/scripts/property_static.8.test.php
                   block 
                   0 : 
                       _return 
-                      return : "property_static 307 "parent"::variable 309 "$_categoryCombiClass""
+                      return : "property_static 307 "parent"::variable $_categoryCombiClass"

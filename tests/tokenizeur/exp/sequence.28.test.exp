@@ -7,7 +7,7 @@ tests/tokenizeur/scripts/sequence.28.test.php
       0 : 
           affectation 
           droite : 
-              variable 309 "$s"
+              variable $s
            "=" 
           gauche : 
               comparaison 
@@ -20,7 +20,7 @@ tests/tokenizeur/scripts/sequence.28.test.php
                           appel de fonction : substr: 
                               arglist 
                               0 : 
-                                  variable 309 "$a"
+                                  variable $a
                               1 : 
                                   literals 1
                               2 : 

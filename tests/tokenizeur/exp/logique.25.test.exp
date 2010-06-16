@@ -8,7 +8,7 @@ tests/tokenizeur/scripts/logique.25.test.php
           appel de fonction : chmod: 
               arglist 
               0 : 
-                  variable 309 "$fichier"
+                  variable $fichier
               1 : 
                   logique 
                   droite : 

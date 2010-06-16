@@ -3,9 +3,9 @@ tests/tokenizeur/scripts/signe.8.test.php
   codephp <?php
 
   code : 
-      signe  "-"tableau tableau variable 309 "$t"[literals 4][literals 5]
+      signe  "-"tableau tableau variable $t[literals 4][literals 5]
           tableau
               tableau
-                  variable 309 "$t"
+                  variable $t
                   literals 4
               literals 5

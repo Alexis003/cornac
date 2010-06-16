@@ -7,7 +7,7 @@ tests/tokenizeur/scripts/rawtext.2.test.php
       0 : 
           affectation 
           droite : 
-              variable 309 "$x"
+              variable $x
            "=" 
           gauche : 
               literals "a"
@@ -17,7 +17,7 @@ tests/tokenizeur/scripts/rawtext.2.test.php
       2 : 
           affectation 
           droite : 
-              variable 309 "$x"
+              variable $x
            "=" 
           gauche : 
               literals "c"

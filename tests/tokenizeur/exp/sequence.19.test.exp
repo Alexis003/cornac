@@ -6,7 +6,7 @@ tests/tokenizeur/scripts/sequence.19.test.php
       0 : 
           affectation 
           droite : 
-              variable 309 "$sort"
+              variable $sort
            "=" 
           gauche : 
               parentheses 
@@ -23,14 +23,14 @@ tests/tokenizeur/scripts/sequence.19.test.php
               0 : 
                   affectation 
                   droite : 
-                      variable 309 "$sort"
+                      variable $sort
                    "=" 
                   gauche : 
                       functioncall array
                       appel de fonction : array: 
                           arglist 
                           0 : 
-                              variable 309 "$sort"
+                              variable $sort
                           1 : 
                               literals 'asc'
       3 : 
@@ -42,7 +42,7 @@ tests/tokenizeur/scripts/sequence.19.test.php
               arglist 
               0 : 
                   tableau
-                      variable 309 "$sort"
+                      variable $sort
                       literals 0
       5 : 
           rawtext 
@@ -53,16 +53,16 @@ tests/tokenizeur/scripts/sequence.19.test.php
               arglist 
               0 : 
                   cdtternaire ?
-                  functioncall 350 "isset" ( arglist(tableau variable 309 "$sort"[literals 1]) )  ? tableau variable 309 "$sort"[literals 1] : literals 'asc'
+                  functioncall 350 "isset" ( arglist(tableau variable $sort[literals 1]) )  ? tableau variable $sort[literals 1] : literals 'asc'
                       functioncall isset
                       appel de fonction : isset: 
                           arglist 
                           0 : 
                               tableau
-                                  variable 309 "$sort"
+                                  variable $sort
                                   literals 1
                       tableau
-                          variable 309 "$sort"
+                          variable $sort
                           literals 1
                       literals 'asc'
   rawtext 

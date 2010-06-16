@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/affectation.6.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$x"
+          variable $x
        "=" 
       gauche : 
-          property variable 309 "$y"literals z->
+          property variable $yliterals z->

@@ -9,11 +9,11 @@ tests/tokenizeur/scripts/functioncall.32.test.php
           appel de fonction : list: 
               arglist 
               0 : 
-                  variable 309 "$x"
+                  variable $x
               1 : 
-                  variable 309 "$y"
+                  variable $y
               2 : 
-                  variable 309 "$z"
+                  variable $z
        "=" 
       gauche : 
           functioncall range

@@ -5,21 +5,21 @@ tests/tokenizeur/scripts/concatenation.23.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$x"
+          variable $x
        "=" 
       gauche : 
           concatenation 
           0 : 
               literals a 
           1 : 
-              property variable 309 "$b"literals c->
+              property variable $bliterals c->
           2 : 
               literals  '
           3 : 
-              variable 309 "$d"
+              variable $d
           4 : 
               literals -
           5 : 
-              variable 309 "$e"
+              variable $e
           6 : 
               literals -01'

@@ -4,5 +4,5 @@ tests/tokenizeur/scripts/tableau.8.test.php
 
   code : 
       tableau
-          property variable 309 "$x"literals y->
+          property variable $xliterals y->
           literals 0

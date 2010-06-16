@@ -5,11 +5,11 @@ tests/tokenizeur/scripts/clevaleur.7.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$a"
+          variable $a
        "=" 
       gauche : 
           method method_static 307 "b"::functioncall 307 "c" ( arglist(literals 'd') ) 
-          appel de methode : functioncall 307 "e" ( arglist(functioncall 360 "array" ( arglist(clevaleur method_static 0 "$f"::functioncall 307 "g" ( ( ) )  => variable 309 "$h") ) ) ) : 
+          appel de methode : functioncall 307 "e" ( arglist(functioncall 360 "array" ( arglist(clevaleur method_static 0 "$f"::functioncall 307 "g" ( ( ) )  => variable $h) ) ) ) : 
               functioncall e
               appel de fonction : e: 
                   arglist 
@@ -18,11 +18,11 @@ tests/tokenizeur/scripts/clevaleur.7.test.php
                       appel de fonction : array: 
                           arglist 
                           0 : 
-                              method_static 0 "$f"::functioncall 307 "g" ( ( ) )  => variable 309 "$h"
+                              method_static 0 "$f"::functioncall 307 "g" ( ( ) )  => variable $h
                                   method_static 
                                   0 "$f"::functioncall 307 "g" ( ( ) ) : 
                                       functioncall g
                                       appel de fonction : g: 
                                           arglist 
                                           Liste d'argument vide
-                                  variable 309 "$h"
+                                  variable $h

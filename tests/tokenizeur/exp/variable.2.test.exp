@@ -3,4 +3,4 @@ tests/tokenizeur/scripts/variable.2.test.php
   codephp <?php
 
   code : 
-      variable 309 "$C1"
+      variable $C1

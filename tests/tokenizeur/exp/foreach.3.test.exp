@@ -6,12 +6,12 @@ tests/tokenizeur/scripts/foreach.3.test.php
       ifthen if
       Condition 0) 
           parentheses 
-          ( "comparaison property tableau variable 309 "$_SESSION"[literals 'cligraph']->literals nbtuples 283 "==" literals 0" )
+          ( "comparaison property tableau variable $_SESSION[literals 'cligraph']->literals nbtuples 283 "==" literals 0" )
           block 
           0 : 
               affectation 
               droite : 
-                  variable 309 "$date_mess_stock"
+                  variable $date_mess_stock
                "=" 
               gauche : 
                   functioncall array
@@ -23,23 +23,23 @@ tests/tokenizeur/scripts/foreach.3.test.php
           0 : 
               affectation 
               droite : 
-                  variable 309 "$i"
+                  variable $i
                "=" 
               gauche : 
                   literals 0
           1 : 
-              _foreach (variable 309 "$result2" as  => variable 309 "$ligne")
+              _foreach (variable $result2 as  => variable $ligne)
                   block 
                   0 : 
                       affectation 
                       droite : 
                           tableau
-                              variable 309 "$date_mess_stock"
-                              variable 309 "$i"
+                              variable $date_mess_stock
+                              variable $i
                        "=" 
                       gauche : 
                           tableau
-                              variable 309 "$ligne"
+                              variable $ligne
                               literals 0
                   1 : 
                       functioncall echo
@@ -50,15 +50,15 @@ tests/tokenizeur/scripts/foreach.3.test.php
                               0 : 
                                   literals "<script language='javascript'>calend_valeur_stock[0]["
                               1 : 
-                                  variable 309 "$i"
+                                  variable $i
                               2 : 
                                   literals "]=\""
                               3 : 
                                   tableau
-                                      variable 309 "$date_mess_stock"
-                                      variable 309 "$i"
+                                      variable $date_mess_stock
+                                      variable $i
                               4 : 
                                   literals "\";</script>"
                   2 : 
-                      variable 309 "$i"297 "++" 
-                          variable 309 "$i"
+                      variable $i297 "++" 
+                          variable $i

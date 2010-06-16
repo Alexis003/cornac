@@ -8,4 +8,4 @@ tests/tokenizeur/scripts/decalage.2.test.php
           literals 25
       operation : 286 ">>"
       gauche : 
-          variable 309 "$x"
+          variable $x

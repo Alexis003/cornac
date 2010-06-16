@@ -9,5 +9,5 @@ tests/tokenizeur/scripts/operation.19.test.php
       operation :  "*"
       gauche : 
           tableau
-              variable 309 "$code"
+              variable $code
               literals 2

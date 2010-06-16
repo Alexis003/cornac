@@ -4,5 +4,5 @@ tests/tokenizeur/scripts/throw.5.test.php
   code : 
       _throw 
           tableau
-              variable 309 "$x"
+              variable $x
               literals 'tableau'

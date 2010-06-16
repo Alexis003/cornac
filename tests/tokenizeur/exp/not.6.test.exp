@@ -11,7 +11,7 @@ tests/tokenizeur/scripts/not.6.test.php
           0 : 
               affectation 
               droite : 
-                  variable 309 "$x"
+                  variable $x
                "=" 
               gauche : 
                   literals 1

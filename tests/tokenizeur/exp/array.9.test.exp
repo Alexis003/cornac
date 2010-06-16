@@ -5,14 +5,14 @@ tests/tokenizeur/scripts/array.9.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$z"
+          variable $z
        "=" 
       gauche : 
           functioncall array
           appel de fonction : array: 
               arglist 
               0 : 
-                  literals 'a' => functioncall variable 309 "$c" ( arglist(literals 'b') ) 
+                  literals 'a' => functioncall variable $c ( arglist(literals 'b') ) 
                       literals 'a'
                       functioncall $c
                       appel de fonction : $c: 

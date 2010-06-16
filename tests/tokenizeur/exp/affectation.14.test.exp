@@ -5,10 +5,10 @@ tests/tokenizeur/scripts/affectation.14.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$x"
+          variable $x
        "=" 
       gauche : 
-          method variable 309 "$y"
+          method variable $y
           appel de methode : functioncall 307 "z" ( ( ) ) : 
               functioncall z
               appel de fonction : z: 

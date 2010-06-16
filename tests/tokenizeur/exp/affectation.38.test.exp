@@ -8,9 +8,9 @@ tests/tokenizeur/scripts/affectation.38.test.php
           noscream @
               tableau
                   tableau
-                      variable 309 "$a"
-                      variable 309 "$b"
-                  variable 309 "$c"
+                      variable $a
+                      variable $b
+                  variable $c
       273 ".=" 
       gauche : 
-          variable 309 "$d"
+          variable $d

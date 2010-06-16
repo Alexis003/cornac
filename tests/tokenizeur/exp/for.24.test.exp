@@ -4,20 +4,20 @@ tests/tokenizeur/scripts/for.24.test.php
 
   code : 
       _for 
-        Init : affectation variable 309 "$j"  "=" literals 0;
-        Fin  : comparaison variable 309 "$j"  "<" variable 309 "$n";
-        Incr : postplusplus 297 "++"variable 309 "$j";
+        Init : affectation variable $j  "=" literals 0;
+        Fin  : comparaison variable $j  "<" variable $n;
+        Incr : postplusplus 297 "++"variable $j;
           affectation 
           droite : 
               tableau
                   tableau
                       tableau
-                          property variable 309 "$a"literals b->
+                          property variable $aliterals b->
                           tableau
                               tableau
                                   tableau
-                                      property variable 309 "$c"literals d->
-                                      variable 309 "$i"
+                                      property variable $cliterals d->
+                                      variable $i
                                   literals "f"
                               literals "g"
                       literals "h"
@@ -25,17 +25,17 @@ tests/tokenizeur/scripts/for.24.test.php
                       tableau
                           tableau
                               tableau
-                                  property variable 309 "$i"literals j->
-                                  variable 309 "$i"
+                                  property variable $iliterals j->
+                                  variable $i
                               literals "k"
-                          variable 309 "$j"
+                          variable $j
                       literals "l"
            "=" 
           gauche : 
               tableau
                   tableau
                       tableau
-                          property variable 309 "$p"literals o->
-                          variable 309 "$i"
+                          property variable $pliterals o->
+                          variable $i
                       literals "p"
-                  variable 309 "$j"
+                  variable $j

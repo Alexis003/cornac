@@ -6,13 +6,13 @@ tests/tokenizeur/scripts/block.9.test.php
       ifthen if
       Condition 0) 
           parentheses 
-          ( "variable 309 "$j"" )
+          ( "variable $j" )
           block 
           0 : 
               rawtext 
               Texte : "311 "<a>""
           1 : 
-              variable 309 "$p_field_id"
+              variable $p_field_id
           2 : 
               rawtext 
               Texte : "311 "</a>""

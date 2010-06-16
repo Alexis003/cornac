@@ -6,5 +6,5 @@ tests/tokenizeur/scripts/literals.13.test.php
       ifthen if
       Condition 0) 
           parentheses 
-          ( "comparaison comparaison variable 309 "$nb_day1"  ">" logique signe  "-"literals 1 279 "&&" variable 309 "$nb_day2" 283 "==" signe  "-"literals 1" )
+          ( "comparaison comparaison variable $nb_day1  ">" logique signe  "-"literals 1 279 "&&" variable $nb_day2 283 "==" signe  "-"literals 1" )
           block 

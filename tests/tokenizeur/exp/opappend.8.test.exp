@@ -8,8 +8,8 @@ tests/tokenizeur/scripts/opappend.8.test.php
           tableau opappend [[][literals 'adf'][]
               tableau
                   opappend [[][]
-                      variable 309 "$lines"[]
-                          variable 309 "$lines"
+                      variable $lines[]
+                          variable $lines
                   literals 'adf'
        "=" 
       gauche : 

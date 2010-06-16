@@ -5,14 +5,14 @@ tests/tokenizeur/scripts/classe.18.test.php
        class 307 "x"
           block 
           0 : 
-               343 "protected"347 "static"variable 309 "$a" = literals 1
+               343 "protected"347 "static"variable $a = literals 1
           1 : 
-               343 "protected"347 "static"variable 309 "$b" = literals 1
+               343 "protected"347 "static"variable $b = literals 1
           2 : 
-               342 "public"347 "static"variable 309 "$c" = literals 1
+               342 "public"347 "static"variable $c = literals 1
           3 : 
-               342 "public"347 "static"variable 309 "$d" = literals 1
+               342 "public"347 "static"variable $d = literals 1
           4 : 
-               344 "private"347 "static"variable 309 "$e" = literals 1
+               344 "private"347 "static"variable $e = literals 1
           5 : 
-               344 "private"347 "static"variable 309 "$f" = literals 1
+               344 "private"347 "static"variable $f = literals 1

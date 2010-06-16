@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/concatenation.25.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$x"
+          variable $x
        "=" 
       gauche : 
           concatenation 
@@ -13,9 +13,9 @@ tests/tokenizeur/scripts/concatenation.25.test.php
               literals '&nbsp;('
           1 : 
               noscream @
-                  297 "++"tableau variable 309 "$n"[variable 309 "$boucle"] 
+                  297 "++"tableau variable $n[variable $boucle] 
                       tableau
-                          variable 309 "$n"
-                          variable 309 "$boucle"
+                          variable $n
+                          variable $boucle
           2 : 
               literals ")"

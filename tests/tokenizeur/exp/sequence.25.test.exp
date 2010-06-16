@@ -7,14 +7,14 @@ tests/tokenizeur/scripts/sequence.25.test.php
       0 : 
           affectation 
           droite : 
-              variable 309 "$a"
+              variable $a
            "=" 
           gauche : 
               literals ''
       1 : 
           affectation 
           droite : 
-              variable 309 "$b"
+              variable $b
            "=" 
           gauche : 
               literals 'c'
@@ -22,12 +22,12 @@ tests/tokenizeur/scripts/sequence.25.test.php
           ifthen if
           Condition 0) 
               parentheses 
-              ( "comparaison variable 309 "$d" 288 "instanceof" constante e" )
+              ( "comparaison variable $d 288 "instanceof" constante e" )
               block 
               0 : 
                   affectation 
                   droite : 
-                      variable 309 "$f"
+                      variable $f
                    "=" 
                   gauche : 
                       literals 'g'

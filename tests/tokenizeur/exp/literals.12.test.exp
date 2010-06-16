@@ -5,13 +5,13 @@ tests/tokenizeur/scripts/literals.12.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$x"
+          variable $x
        "=" 
       gauche : 
           operation 
           droite : 
               parentheses 
-              ( "operation variable 309 "$y"  "/" signe  "-"literals 2" )
+              ( "operation variable $y  "/" signe  "-"literals 2" )
           operation :  "+"
           gauche : 
               literals 0.3

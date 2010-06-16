@@ -4,5 +4,5 @@ tests/tokenizeur/scripts/variable.4.test.php
 
   code : 
       tableau
-          variable 309 "$_ENV"
+          variable $_ENV
           literals 'shell'

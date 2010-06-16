@@ -5,12 +5,12 @@ tests/tokenizeur/scripts/logique.17.test.php
   code : 
       affectation 
       droite : 
-          property variable 309 "$this"literals z->
+          property variable $thisliterals z->
        "=" 
       gauche : 
           logique 
           droite : 
-              method variable 309 "$this"
+              method variable $this
               appel de methode : functioncall 307 "a" ( ( ) ) : 
                   functioncall a
                   appel de fonction : a: 
@@ -20,7 +20,7 @@ tests/tokenizeur/scripts/logique.17.test.php
           gauche : 
               affectation 
               droite : 
-                  property variable 309 "$this"literals b->
+                  property variable $thisliterals b->
                "=" 
               gauche : 
                   method_static 

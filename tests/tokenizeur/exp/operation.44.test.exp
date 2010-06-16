@@ -7,20 +7,20 @@ tests/tokenizeur/scripts/operation.44.test.php
       0 : 
           affectation 
           droite : 
-              variable 309 "$a"
+              variable $a
            "=" 
           gauche : 
               literals 1
       1 : 
           operation 
           droite : 
-              variable 309 "$a"
+              variable $a
           operation :  "*"
           gauche : 
               affectation 
               droite : 
-                  variable 309 "$b"
+                  variable $b
                "=" 
               gauche : 
                   parentheses 
-                  ( "operation variable 309 "$c"  "/" literals 2" )
+                  ( "operation variable $c  "/" literals 2" )

@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/typehint.6.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$x"
+          variable $x
        "=" 
       gauche : 
           concatenation 
@@ -18,20 +18,20 @@ tests/tokenizeur/scripts/typehint.6.test.php
                   0 : 
                       concatenation 
                       0 : 
-                          variable 309 "$b"
+                          variable $b
                       1 : 
                           literals ,
                       2 : 
-                          variable 309 "$c"
+                          variable $c
                       3 : 
                           literals ,
                       4 : 
-                          variable 309 "$d"
+                          variable $d
                       5 : 
                           literals ,e,
                       6 : 
                           tableau
-                              variable 309 "$r"
+                              variable $r
                               constante (                              g )
           2 : 
               literals "\n"

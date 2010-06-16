@@ -5,8 +5,8 @@ tests/tokenizeur/scripts/invert.6.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$mod"
+          variable $mod
       271 "&=" 
       gauche : 
           invert ~
-              property variable 309 "$y"literals x->
+              property variable $yliterals x->

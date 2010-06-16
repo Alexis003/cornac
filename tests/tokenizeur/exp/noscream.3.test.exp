@@ -4,4 +4,4 @@ tests/tokenizeur/scripts/noscream.3.test.php
 
   code : 
       noscream @
-          property variable 309 "$x"literals t->
+          property variable $xliterals t->

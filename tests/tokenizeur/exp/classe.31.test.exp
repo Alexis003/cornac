@@ -9,13 +9,13 @@ tests/tokenizeur/scripts/classe.31.test.php
               346 "abstract"function  "&" literals b
                   arglist 
                   0 : 
-                      variable 309 "$d"
+                      variable $d
                   1 : 
                        argument et initialisation 
-                          variable 309 "$e"
+                          variable $e
                           constante (                          false )
           1 : 
-              346 "abstract"function literals d arglist(variable 309 "$e", arginit variable 309 "$f" = functioncall 360 "array" ( ( ) )  )
+              346 "abstract"function literals d arglist(variable $e, arginit variable $f = functioncall 360 "array" ( ( ) )  )
                   block 
           2 : 
               function literals g ( )

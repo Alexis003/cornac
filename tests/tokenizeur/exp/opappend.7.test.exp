@@ -8,8 +8,8 @@ tests/tokenizeur/scripts/opappend.7.test.php
           opappend [[][]
               opappend [[][]
                   opappend [[][]
-                      variable 309 "$lines"[]
-                          variable 309 "$lines"
+                      variable $lines[]
+                          variable $lines
        "=" 
       gauche : 
           literals 1

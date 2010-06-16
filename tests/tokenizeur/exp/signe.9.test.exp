@@ -5,25 +5,25 @@ tests/tokenizeur/scripts/signe.9.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$a"
+          variable $a
        "=" 
       gauche : 
           functioncall substr
           appel de fonction : substr: 
               arglist 
               0 : 
-                  variable 309 "$b"
+                  variable $b
               1 : 
                   literals 0
               2 : 
                   operation 
                   droite : 
-                      signe  "-"functioncall 307 "strlen" ( arglist(variable 309 "$c") ) 
+                      signe  "-"functioncall 307 "strlen" ( arglist(variable $c) ) 
                           functioncall strlen
                           appel de fonction : strlen: 
                               arglist 
                               0 : 
-                                  variable 309 "$c"
+                                  variable $c
                   operation :  "-"
                   gauche : 
                       literals 1

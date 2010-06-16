@@ -8,4 +8,4 @@ tests/tokenizeur/scripts/tableau.11.test.php
           property opappend [[]literals b->
        "=" 
       gauche : 
-          variable 309 "$c"
+          variable $c

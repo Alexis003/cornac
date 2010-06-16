@@ -4,7 +4,7 @@ tests/tokenizeur/scripts/reference.9.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$a"
+          variable $a
        "=" 
       gauche : 
           reference &
@@ -12,8 +12,8 @@ tests/tokenizeur/scripts/reference.9.test.php
               appel de fonction : $b: 
                   arglist 
                   0 : 
-                      variable 309 "$c"
+                      variable $c
                   1 : 
-                      variable 309 "$d"
+                      variable $d
                   2 : 
-                      variable 309 "$e"
+                      variable $e

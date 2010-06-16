@@ -6,13 +6,13 @@ tests/tokenizeur/scripts/ifthen.20.test.php
       ifthen if
       Condition 0) 
           parentheses 
-          ( "comparaison variable 309 "$x" 283 "==" literals 0" )
+          ( "comparaison variable $x 283 "==" literals 0" )
           block 
        else 
           block 
           0 : 
-              _foreach (variable 309 "$result" as  => variable 309 "$row")
+              _foreach (variable $result as  => variable $row)
                   block 
                   0 : 
-                      variable 309 "$u"297 "++" 
-                          variable 309 "$u"
+                      variable $u297 "++" 
+                          variable $u

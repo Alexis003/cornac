@@ -6,12 +6,12 @@ tests/tokenizeur/scripts/ifthen.22.test.php
       ifthen if
       Condition 0) 
           parentheses 
-          ( "comparaison constante false 280 "!==" variable 309 "$x"" )
+          ( "comparaison constante false 280 "!==" variable $x" )
           block 
           0 : 
               affectation 
               droite : 
-                  variable 309 "$y"
+                  variable $y
                "=" 
               gauche : 
                   literals 1

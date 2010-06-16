@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/method.11.test.php
   codephp <?php
 
   code : 
-      method variable 309 "$e"
+      method variable $e
       appel de methode : functioncall concatenation literals 'namespace1:gt' . literals '3' . literals '4'   ( ( ) ) : 
           functioncall .
           appel de fonction : .: 

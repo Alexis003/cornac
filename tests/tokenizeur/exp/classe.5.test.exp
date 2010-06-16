@@ -6,4 +6,4 @@ tests/tokenizeur/scripts/classe.5.test.php
        class 307 "x"
           block 
           0 : 
-               348 "var"variable 309 "$a"
+               348 "var"variable $a

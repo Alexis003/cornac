@@ -7,4 +7,4 @@ tests/tokenizeur/scripts/property.16.test.php
       appel de fonction : echo: 
           arglist 
           0 : 
-              property variable 309 "$a"literals b->
+              property variable $aliterals b->

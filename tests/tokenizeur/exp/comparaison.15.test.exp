@@ -5,12 +5,12 @@ tests/tokenizeur/scripts/comparaison.15.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$x"
+          variable $x
        "=" 
       gauche : 
           comparaison 
           droite : 
-               new 307 "a" arglist(variable 309 "$b") 
+               new 307 "a" arglist(variable $b) 
           operateur : 288 "instanceof"
           gauche : 
               constante (              d )

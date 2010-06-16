@@ -5,8 +5,8 @@ tests/tokenizeur/scripts/opappend.1.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$x"[]
-              variable 309 "$x"
+          variable $x[]
+              variable $x
        "=" 
       gauche : 
           literals 1

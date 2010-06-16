@@ -5,23 +5,23 @@ tests/tokenizeur/scripts/clone.13.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$a"
+          variable $a
        "=" 
       gauche : 
           cdtternaire ?
-          functioncall 350 "isset" ( arglist(tableau property variable 309 "$b"->literals c[literals 'd']) )  ? _clone clone : method method variable 309 "$f"->functioncall 307 "g" ( ( ) ) ->functioncall 307 "h" ( arglist(literals 'i') ) 
+          functioncall 350 "isset" ( arglist(tableau property variable $b->literals c[literals 'd']) )  ? _clone clone : method method variable $f->functioncall 307 "g" ( ( ) ) ->functioncall 307 "h" ( arglist(literals 'i') ) 
               functioncall isset
               appel de fonction : isset: 
                   arglist 
                   0 : 
                       tableau
-                          property variable 309 "$b"literals c->
+                          property variable $bliterals c->
                           literals 'd'
               _clone 
                   tableau
-                      property variable 309 "$c"literals d->
+                      property variable $cliterals d->
                       literals 'e'
-              method method variable 309 "$f"->functioncall 307 "g" ( ( ) ) 
+              method method variable $f->functioncall 307 "g" ( ( ) ) 
               appel de methode : functioncall 307 "h" ( arglist(literals 'i') ) : 
                   functioncall h
                   appel de fonction : h: 

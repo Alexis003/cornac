@@ -5,11 +5,11 @@ tests/tokenizeur/scripts/invert.10.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$a"
+          variable $a
        "=" 
       gauche : 
           concatenation 
           0 : 
               literals ~
           1 : 
-              variable variable 309 "$b"
+              variable variable $b

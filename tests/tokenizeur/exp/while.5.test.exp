@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/while.5.test.php
   code : 
       _while 
           parentheses 
-          ( "affectation functioncall 359 "list" ( arglist(variable 309 "$key", variable 309 "$value") )   "=" functioncall 307 "each" ( arglist(variable 309 "$array") ) " )
+          ( "affectation functioncall 359 "list" ( arglist(variable $key, variable $value) )   "=" functioncall 307 "each" ( arglist(variable $array) ) " )
           block 
           0 : 
               functioncall echo
@@ -14,6 +14,6 @@ tests/tokenizeur/scripts/while.5.test.php
                   0 : 
                       concatenation 
                       0 : 
-                          variable 309 "$value"
+                          variable $value
                       1 : 
                           literals \n

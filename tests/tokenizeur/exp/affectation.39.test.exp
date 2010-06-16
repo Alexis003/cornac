@@ -5,4 +5,4 @@ tests/tokenizeur/scripts/affectation.39.test.php
        class 307 "a"
           block 
           0 : 
-               348 "var"variable 309 "$b" = literals 1
+               348 "var"variable $b = literals 1

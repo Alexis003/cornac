@@ -14,7 +14,7 @@ tests/tokenizeur/scripts/concatenation.29.test.php
                   appel de fonction : a: 
                       arglist 
                       0 : 
-                          variable 309 "$b"
+                          variable $b
       1 : 
           rawtext 
           Texte : "311 """"

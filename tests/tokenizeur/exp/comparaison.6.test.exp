@@ -6,7 +6,7 @@ tests/tokenizeur/scripts/comparaison.6.test.php
       ifthen if
       Condition 0) 
           parentheses 
-          ( "comparaison variable 309 "$x" 288 "instanceof" constante Exception" )
+          ( "comparaison variable $x 288 "instanceof" constante Exception" )
           block 
           0 : 
               _return 

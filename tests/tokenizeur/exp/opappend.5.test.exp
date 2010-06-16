@@ -8,4 +8,4 @@ tests/tokenizeur/scripts/opappend.5.test.php
           property opappend [[]literals url->
        "=" 
       gauche : 
-          variable 309 "$file"
+          variable $file

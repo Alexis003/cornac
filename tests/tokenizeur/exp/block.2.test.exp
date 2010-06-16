@@ -6,8 +6,8 @@ tests/tokenizeur/scripts/block.2.test.php
       ifthen if
       Condition 0) 
           parentheses 
-          ( "functioncall 351 "empty" ( arglist(variable 309 "$r") ) " )
+          ( "functioncall 351 "empty" ( arglist(variable $r) ) " )
           block 
           0 : 
-              variable 309 "$i"297 "++" 
-                  variable 309 "$i"
+              variable $i297 "++" 
+                  variable $i

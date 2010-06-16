@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/shell.3.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$x"
+          variable $x
        "=" 
       gauche : 
           functioncall strtolower
@@ -14,6 +14,6 @@ tests/tokenizeur/scripts/shell.3.test.php
               0 : 
                   shell 
                   0 : 
-                      variable property variable 309 "$file"->literals x
+                      variable property variable $file->literals x
                   1 : 
                       literals  sf 

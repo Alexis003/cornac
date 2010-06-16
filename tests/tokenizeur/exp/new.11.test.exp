@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/new.11.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$x"
+          variable $x
        "=" 
       gauche : 
-           new property_static 307 "classe"::variable 309 "$property" ( ) 
+           new property_static 307 "classe"::variable $property ( ) 

@@ -4,7 +4,7 @@ tests/tokenizeur/scripts/sequence.21.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$h"
+          variable $h
        "=" 
       gauche : 
           logique 
@@ -17,11 +17,11 @@ tests/tokenizeur/scripts/sequence.21.test.php
                       appel de fonction : b: 
                           arglist 
                           0 : 
-                              property variable 309 "$c"literals d->
+                              property variable $cliterals d->
           operateur :  "^"
           gauche : 
               functioncall e
               appel de fonction : e: 
                   arglist 
                   0 : 
-                      property variable 309 "$f"literals g->
+                      property variable $fliterals g->

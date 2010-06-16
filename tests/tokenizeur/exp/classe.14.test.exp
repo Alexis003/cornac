@@ -10,7 +10,7 @@ tests/tokenizeur/scripts/classe.14.test.php
                   0 : 
                       affectation 
                       droite : 
-                          variable 309 "$x"
+                          variable $x
                        "=" 
                       gauche : 
                           literals 1

@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/reference.6.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$x"
+          variable $x
        "=" 
       gauche : 
           reference &

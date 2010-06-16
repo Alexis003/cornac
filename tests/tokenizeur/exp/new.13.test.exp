@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/new.13.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$a"
+          variable $a
        "=" 
       gauche : 
-           new method variable 309 "$b"->functioncall 307 "c" ( arglist(variable 309 "$d") )  ( ) 
+           new method variable $b->functioncall 307 "c" ( arglist(variable $d) )  ( ) 

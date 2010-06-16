@@ -5,12 +5,12 @@ tests/tokenizeur/scripts/signe.20.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$a"
+          variable $a
        "=" 
       gauche : 
           comparaison 
           droite : 
-              variable 309 "$b"
+              variable $b
           operateur : 283 "=="
           gauche : 
               operation 
@@ -21,14 +21,14 @@ tests/tokenizeur/scripts/signe.20.test.php
                       appel de fonction : count: 
                           arglist 
                           0 : 
-                              variable 309 "$c"
+                              variable $c
                   operation :  "-"
                   gauche : 
                       cdtternaire ?
-                      literals 1 ? variable 309 "$d" : variable 309 "$r"
+                      literals 1 ? variable $d : variable $r
                           literals 1
-                          variable 309 "$d"
-                          variable 309 "$r"
+                          variable $d
+                          variable $r
               operation :  "+"
               gauche : 
-                  variable 309 "$f"
+                  variable $f

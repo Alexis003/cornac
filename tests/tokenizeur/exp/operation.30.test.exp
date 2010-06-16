@@ -5,18 +5,18 @@ tests/tokenizeur/scripts/operation.30.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$base"
+          variable $base
        "=" 
       gauche : 
           operation 
           droite : 
-              variable 309 "$pad"
+              variable $pad
           operation :  "+"
           gauche : 
               operation 
               droite : 
-                  variable 309 "$width"
+                  variable $width
               operation :  "*"
               gauche : 
-                  variable 309 "$i"297 "++" 
-                      variable 309 "$i"
+                  variable $i297 "++" 
+                      variable $i

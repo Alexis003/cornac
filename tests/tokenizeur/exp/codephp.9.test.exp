@@ -7,21 +7,21 @@ tests/tokenizeur/scripts/codephp.9.test.php
       0 : 
           affectation 
           droite : 
-              variable 309 "$x"
+              variable $x
            "=" 
           gauche : 
               literals 1
       1 : 
           affectation 
           droite : 
-              variable 309 "$y"
+              variable $y
            "=" 
           gauche : 
               literals 2
       2 : 
           affectation 
           droite : 
-              variable 309 "$z"
+              variable $z
            "=" 
           gauche : 
               literals 3

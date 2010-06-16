@@ -6,10 +6,10 @@ tests/tokenizeur/scripts/method.16.test.php
       appel de fonction : echo: 
           arglist 
           0 : 
-              method variable 309 "$d"
-              appel de methode : functioncall 307 "a" ( arglist(variable 309 "$b") ) : 
+              method variable $d
+              appel de methode : functioncall 307 "a" ( arglist(variable $b) ) : 
                   functioncall a
                   appel de fonction : a: 
                       arglist 
                       0 : 
-                          variable 309 "$b"
+                          variable $b

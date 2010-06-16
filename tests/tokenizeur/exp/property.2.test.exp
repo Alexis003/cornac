@@ -3,4 +3,4 @@ tests/tokenizeur/scripts/property.2.test.php
   codephp <?php
 
   code : 
-      property property variable 309 "$x"->literals yliterals z->
+      property property variable $x->literals yliterals z->

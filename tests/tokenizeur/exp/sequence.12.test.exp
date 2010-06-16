@@ -7,7 +7,7 @@ tests/tokenizeur/scripts/sequence.12.test.php
       0 : 
           affectation 
           droite : 
-              variable 309 "$x"
+              variable $x
            "=" 
           gauche : 
               cdtternaire ?
@@ -19,7 +19,7 @@ tests/tokenizeur/scripts/sequence.12.test.php
       1 : 
           affectation 
           droite : 
-              variable 309 "$y"
+              variable $y
            "=" 
           gauche : 
               cdtternaire ?

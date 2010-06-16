@@ -3,5 +3,5 @@ tests/tokenizeur/scripts/function.18.test.php
   codephp <?php
 
   code : 
-      function literals _getRules arglist(arginit variable 309 "$a" = constante null , arginit variable 309 "$b" = constante null , arginit variable 309 "$c" = constante null , arginit variable 309 "$d" = constante null , arginit variable 309 "$e" = constante null , arginit variable 309 "$f" = constante null )
+      function literals _getRules arglist(arginit variable $a = constante null , arginit variable $b = constante null , arginit variable $c = constante null , arginit variable $d = constante null , arginit variable $e = constante null , arginit variable $f = constante null )
           block 

@@ -10,7 +10,7 @@ tests/tokenizeur/scripts/ifthen.31.test.php
           0 : 
               affectation 
               droite : 
-                  variable 309 "$x"
+                  variable $x
                "=" 
               gauche : 
                   literals 1
@@ -23,7 +23,7 @@ tests/tokenizeur/scripts/ifthen.31.test.php
           0 : 
               affectation 
               droite : 
-                  variable 309 "$y"
+                  variable $y
                "=" 
               gauche : 
                   literals 2

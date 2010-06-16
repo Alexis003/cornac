@@ -5,14 +5,14 @@ tests/tokenizeur/scripts/operation.12.test.php
   code : 
       operation 
       droite : 
-          variable 309 "$x"
+          variable $x
       operation :  "+"
       gauche : 
           affectation 
           droite : 
               tableau
-                  variable 309 "$y"
+                  variable $y
                   literals 1
            "=" 
           gauche : 
-              variable 309 "$z"
+              variable $z

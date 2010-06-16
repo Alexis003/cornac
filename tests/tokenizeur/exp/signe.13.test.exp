@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/signe.13.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$x"
+          variable $x
        "=" 
       gauche : 
           signe  "-"parentheses (operation literals 1  "+" literals 2)

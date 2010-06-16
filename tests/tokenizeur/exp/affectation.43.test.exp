@@ -5,26 +5,26 @@ tests/tokenizeur/scripts/affectation.43.test.php
       ifthen if
       Condition 0) 
           parentheses 
-          ( "comparaison variable 309 "$cause" 280 "!==" constante null" )
+          ( "comparaison variable $cause 280 "!==" constante null" )
           block 
           0 : 
               affectation 
               droite : 
-                  property variable 309 "$x"literals a->
+                  property variable $xliterals a->
                "=" 
               gauche : 
-                  variable 309 "$b"
+                  variable $b
           1 : 
               affectation 
               droite : 
-                  property variable 309 "$x"literals b->
+                  property variable $xliterals b->
               273 ".=" 
               gauche : 
                   concatenation 
                   0 : 
                       literals " c: "
                   1 : 
-                      method variable 309 "$d"
+                      method variable $d
                       appel de methode : functioncall 307 "e" ( ( ) ) : 
                           functioncall e
                           appel de fonction : e: 

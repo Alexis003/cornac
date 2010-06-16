@@ -5,13 +5,13 @@ tests/tokenizeur/scripts/while.13.test.php
   code : 
       _while 
           parentheses 
-          ( "comparaison postplusplus 296 "--"variable 309 "$a"  ">" literals 0" )
+          ( "comparaison postplusplus 296 "--"variable $a  ">" literals 0" )
           block 
           0 : 
               affectation 
               droite : 
-                  variable 309 "$b"[]
-                      variable 309 "$b"
+                  variable $b[]
+                      variable $b
               273 ".=" 
               gauche : 
                   concatenation 
@@ -19,6 +19,6 @@ tests/tokenizeur/scripts/while.13.test.php
                       literals ""
                   1 : 
                       tableau
-                          variable 309 "$d"
-                          variable 309 "$e"297 "++" 
-                              variable 309 "$e"
+                          variable $d
+                          variable $e297 "++" 
+                              variable $e

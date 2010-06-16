@@ -24,7 +24,7 @@ tests/tokenizeur/scripts/method.8.test.php
           appel de fonction : echo: 
               arglist 
               0 : 
-                  method variable 309 "$c"
+                  method variable $c
                   appel de methode : functioncall 307 "get" ( arglist(literals 'd') ) : 
                       functioncall get
                       appel de fonction : get: 

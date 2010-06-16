@@ -6,15 +6,15 @@ tests/tokenizeur/scripts/ifthen.40.test.php
       ifthen if
       Condition 0) 
           parentheses 
-          ( "comparaison variable 309 "$a" 283 "==" literals "b"" )
+          ( "comparaison variable $a 283 "==" literals "b"" )
           block 
           0 : 
               affectation 
               droite : 
-                  property variable 309 "$c"literals d->
+                  property variable $cliterals d->
               270 "|=" 
               gauche : 
-                  method variable 309 "$e"
+                  method variable $e
                   appel de methode : functioncall 307 "f" ( ( ) ) : 
                       functioncall f
                       appel de fonction : f: 

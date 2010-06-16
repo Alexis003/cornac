@@ -5,15 +5,15 @@ tests/tokenizeur/scripts/clevaleur.8.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$x"
+          variable $x
        "=" 
       gauche : 
           functioncall array
           appel de fonction : array: 
               arglist 
               0 : 
-                  literals 'a' => tableau variable 309 "$b"[variable 309 "$c"]
+                  literals 'a' => tableau variable $b[variable $c]
                       literals 'a'
                       tableau
-                          variable 309 "$b"
-                          variable 309 "$c"
+                          variable $b
+                          variable $c

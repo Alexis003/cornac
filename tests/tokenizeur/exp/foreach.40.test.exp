@@ -3,11 +3,11 @@ tests/tokenizeur/scripts/foreach.40.test.php
   codephp <?php
 
   code : 
-      _foreach (cdtternaire ? as  => variable 309 "$t")
+      _foreach (cdtternaire ? as  => variable $t)
           block 
           0 : 
               functioncall print
               appel de fonction : print: 
                   arglist 
                   0 : 
-                      variable 309 "$t"
+                      variable $t

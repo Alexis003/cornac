@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/method.3.test.php
   codephp <?php
 
   code : 
-      method method variable 309 "$x"->functioncall 307 "y" ( ( ) ) 
+      method method variable $x->functioncall 307 "y" ( ( ) ) 
       appel de methode : functioncall 307 "z" ( ( ) ) : 
           functioncall z
           appel de fonction : z: 

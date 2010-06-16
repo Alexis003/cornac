@@ -8,7 +8,7 @@ tests/tokenizeur/scripts/functioncall.35.test.php
           affectation 
           droite : 
               tableau
-                  variable 309 "$x"
+                  variable $x
                   literals 1
            "=" 
           gauche : 

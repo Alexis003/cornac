@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/property.14.test.php
   codephp <?php
 
   code : 
-      method property tableau property variable 309 "$a"->literals b[literals 1]->tableau variable 309 "$c"[literals 0]
+      method property tableau property variable $a->literals b[literals 1]->tableau variable $c[literals 0]
       appel de methode : functioncall 307 "d" ( arglist(literals 'e', literals 'f') ) : 
           functioncall d
           appel de fonction : d: 

@@ -3,12 +3,12 @@ tests/tokenizeur/scripts/foreach.27.test.php
   codephp <?php
 
   code : 
-      _foreach (cast (array) as variable 309 "$b" => variable 309 "$c")
+      _foreach (cast (array) as variable $b => variable $c)
           block 
           0 : 
               affectation 
               droite : 
-                  variable 309 "$c"
+                  variable $c
                "=" 
               gauche : 
                   literals 2

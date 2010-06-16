@@ -5,14 +5,14 @@ tests/tokenizeur/scripts/classe.17.test.php
        class 307 "x"
           block 
           0 : 
-               343 "protected"347 "static"variable 309 "$a"
+               343 "protected"347 "static"variable $a
           1 : 
-               343 "protected"347 "static"variable 309 "$b"
+               343 "protected"347 "static"variable $b
           2 : 
-               342 "public"347 "static"variable 309 "$c"
+               342 "public"347 "static"variable $c
           3 : 
-               342 "public"347 "static"variable 309 "$d"
+               342 "public"347 "static"variable $d
           4 : 
-               344 "private"347 "static"variable 309 "$e"
+               344 "private"347 "static"variable $e
           5 : 
-               344 "private"347 "static"variable 309 "$f"
+               344 "private"347 "static"variable $f

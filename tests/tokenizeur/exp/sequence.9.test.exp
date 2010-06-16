@@ -13,7 +13,7 @@ tests/tokenizeur/scripts/sequence.9.test.php
               0 : 
                   affectation 
                   droite : 
-                      variable 309 "$a"
+                      variable $a
                    "=" 
                   gauche : 
                       literals 2
@@ -23,7 +23,7 @@ tests/tokenizeur/scripts/sequence.9.test.php
       2 : 
           affectation 
           droite : 
-              variable 309 "$b"
+              variable $b
            "=" 
           gauche : 
               literals 3

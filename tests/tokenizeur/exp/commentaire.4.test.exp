@@ -9,7 +9,7 @@ tests/tokenizeur/scripts/commentaire.4.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$x"
+          variable $x
        "=" 
       gauche : 
           literals 2

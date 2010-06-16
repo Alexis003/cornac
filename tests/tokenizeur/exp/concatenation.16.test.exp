@@ -5,14 +5,14 @@ tests/tokenizeur/scripts/concatenation.16.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$x"
+          variable $x
        "=" 
       gauche : 
           concatenation 
           0 : 
               literals A 
           1 : 
-              variable method variable 309 "$a"->functioncall 307 "b" ( arglist(literals 'c') ) 
+              variable method variable $a->functioncall 307 "b" ( arglist(literals 'c') ) 
           2 : 
               literals  B
 

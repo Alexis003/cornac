@@ -6,7 +6,7 @@ tests/tokenizeur/scripts/tableau.3.test.php
       tableau
           tableau
               tableau
-                  variable 309 "$tableau"
+                  variable $tableau
                   literals 1
               literals 2
           literals 3

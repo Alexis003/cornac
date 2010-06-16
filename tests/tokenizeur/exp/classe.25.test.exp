@@ -6,14 +6,14 @@ tests/tokenizeur/scripts/classe.25.test.php
        class 307 "a"
           block 
           0 : 
-              342 "public"function literals a arglist(reference &variable 309 "$x")
+              342 "public"function literals a arglist(reference &variable $x)
                   block 
           1 : 
-              344 "private"function literals b arglist(reference &variable 309 "$x")
+              344 "private"function literals b arglist(reference &variable $x)
                   block 
           2 : 
-              343 "protected"function literals c arglist(reference &variable 309 "$x")
+              343 "protected"function literals c arglist(reference &variable $x)
                   block 
           3 : 
-              347 "static"function literals d arglist(reference &variable 309 "$x")
+              347 "static"function literals d arglist(reference &variable $x)
                   block 

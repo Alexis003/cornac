@@ -5,8 +5,8 @@ tests/tokenizeur/scripts/affectation.45.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$x"
+          variable $x
        "=" 
       gauche : 
           invert ~
-              variable 309 "$b"
+              variable $b

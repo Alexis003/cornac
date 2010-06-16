@@ -6,7 +6,7 @@ tests/tokenizeur/scripts/plusplus.12.test.php
       0 : 
           _global 
           0 : 
-              variable 309 "$a"
+              variable $a
       1 : 
-          property variable 309 "$a"->literals b296 "--" 
-              property variable 309 "$a"literals b->
+          property variable $a->literals b296 "--" 
+              property variable $aliterals b->

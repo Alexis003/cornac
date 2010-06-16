@@ -4,7 +4,7 @@ tests/tokenizeur/scripts/noscream.5.test.php
 
   code : 
       noscream @
-          method variable 309 "$x"
+          method variable $x
           appel de methode : functioncall 307 "t" ( ( ) ) : 
               functioncall t
               appel de fonction : t: 

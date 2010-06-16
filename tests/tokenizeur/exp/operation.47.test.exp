@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/operation.47.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$x"
+          variable $x
        "=" 
       gauche : 
           operation 
@@ -13,21 +13,21 @@ tests/tokenizeur/scripts/operation.47.test.php
               operation 
               droite : 
                   parentheses 
-                  ( "operation property variable 309 "$c"->literals y  "-" property property variable 309 "$a"->literals b->literals c" )
+                  ( "operation property variable $c->literals y  "-" property property variable $a->literals b->literals c" )
               operation :  "*"
               gauche : 
                   operation 
                   droite : 
-                      property variable 309 "$d"literals e->
+                      property variable $dliterals e->
                   operation :  "+"
                   gauche : 
-                      property property variable 309 "$f"->literals gliterals h->
+                      property property variable $f->literals gliterals h->
           operation :  "+"
           gauche : 
               operation 
               droite : 
-                  property variable 309 "$i"literals j->
+                  property variable $iliterals j->
               operation :  "*"
               gauche : 
                   parentheses 
-                  ( "operation literals 1  "-" variable 309 "$k"" )
+                  ( "operation literals 1  "-" variable $k" )

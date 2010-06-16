@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/invert.5.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$x"
+          variable $x
       271 "&=" 
       gauche : 
           invert ~

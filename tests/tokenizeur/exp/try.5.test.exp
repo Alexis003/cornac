@@ -6,5 +6,5 @@ tests/tokenizeur/scripts/try.5.test.php
       _try 
           block 
       0 : 
-          _catch (307 "Exception")variable 309 "$e"
+          _catch (307 "Exception")variable $e
               block 

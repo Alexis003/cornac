@@ -6,10 +6,10 @@ tests/tokenizeur/scripts/classe.11.test.php
        class 307 "x" extends constante y implements 307 "z"
           block 
           0 : 
-               348 "var"variable 309 "$a"
+               348 "var"variable $a
           1 : 
-               348 "var"variable 309 "$b"
+               348 "var"variable $b
           2 : 
-               348 "var"variable 309 "$c"
+               348 "var"variable $c
           3 : 
-               348 "var"variable 309 "$d"
+               348 "var"variable $d

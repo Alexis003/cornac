@@ -6,8 +6,8 @@ tests/tokenizeur/scripts/plusplus.13.test.php
   code : 
       affectation 
       droite : 
-          property variable 309 "$this"literals a->
+          property variable $thisliterals a->
        "=" 
       gauche : 
-          property_static 307 "self"::variable 309 "$b"297 "++" 
-              property_static 307 "self"::variable 309 "$b"->
+          property_static 307 "self"::variable $b297 "++" 
+              property_static 307 "self"::variable $b->

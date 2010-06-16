@@ -7,19 +7,19 @@ tests/tokenizeur/scripts/functioncall.40.test.php
       0 : 
           affectation 
           droite : 
-              variable 309 "$histo_fct"
+              variable $histo_fct
            "=" 
           gauche : 
               concatenation 
               0 : 
                   literals 'insert_histo_'
               1 : 
-                  variable 309 "$type_doc"
+                  variable $type_doc
       1 : 
           functioncall $histo_fct
           appel de fonction : $histo_fct: 
               arglist 
               0 : 
-                  variable 309 "$cde_id"
+                  variable $cde_id
               1 : 
                   literals 1

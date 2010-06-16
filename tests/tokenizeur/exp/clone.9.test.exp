@@ -5,10 +5,10 @@ tests/tokenizeur/scripts/clone.9.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$x"
+          variable $x
        "=" 
       gauche : 
           _clone 
               tableau
-                  variable 309 "$y"
+                  variable $y
                   literals 0

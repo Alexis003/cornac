@@ -3,8 +3,8 @@ tests/tokenizeur/scripts/method.5.test.php
   codephp <?php
 
   code : 
-      method variable 309 "$rech"
-      appel de methode : functioncall 307 "fct_rech_pdt" ( arglist(literals 3, literals 1, literals 2, functioncall 360 "array" ( arglist(variable 309 "$select_cle3", variable 309 "$select_increment3") ) , functioncall 360 "array" ( arglist(variable 309 "$select_cle1", variable 309 "$select_increment1") ) , functioncall 360 "array" ( arglist(variable 309 "$select_cle2", variable 309 "$select_increment2") ) ) ) : 
+      method variable $rech
+      appel de methode : functioncall 307 "fct_rech_pdt" ( arglist(literals 3, literals 1, literals 2, functioncall 360 "array" ( arglist(variable $select_cle3, variable $select_increment3) ) , functioncall 360 "array" ( arglist(variable $select_cle1, variable $select_increment1) ) , functioncall 360 "array" ( arglist(variable $select_cle2, variable $select_increment2) ) ) ) : 
           functioncall fct_rech_pdt
           appel de fonction : fct_rech_pdt: 
               arglist 
@@ -19,22 +19,22 @@ tests/tokenizeur/scripts/method.5.test.php
                   appel de fonction : array: 
                       arglist 
                       0 : 
-                          variable 309 "$select_cle3"
+                          variable $select_cle3
                       1 : 
-                          variable 309 "$select_increment3"
+                          variable $select_increment3
               4 : 
                   functioncall array
                   appel de fonction : array: 
                       arglist 
                       0 : 
-                          variable 309 "$select_cle1"
+                          variable $select_cle1
                       1 : 
-                          variable 309 "$select_increment1"
+                          variable $select_increment1
               5 : 
                   functioncall array
                   appel de fonction : array: 
                       arglist 
                       0 : 
-                          variable 309 "$select_cle2"
+                          variable $select_cle2
                       1 : 
-                          variable 309 "$select_increment2"
+                          variable $select_increment2

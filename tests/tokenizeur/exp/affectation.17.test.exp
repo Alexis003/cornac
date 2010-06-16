@@ -5,17 +5,17 @@ tests/tokenizeur/scripts/affectation.17.test.php
   code : 
       affectation 
       droite : 
-          variable variable 309 "$c"
+          variable variable $c
        "=" 
       gauche : 
           functioncall imagecolorallocate
           appel de fonction : imagecolorallocate: 
               arglist 
               0 : 
-                  variable 309 "$image_info"
+                  variable $image_info
               1 : 
-                  variable 309 "$crouge"
+                  variable $crouge
               2 : 
-                  variable 309 "$cvert"
+                  variable $cvert
               3 : 
-                  variable 309 "$cbleu"
+                  variable $cbleu

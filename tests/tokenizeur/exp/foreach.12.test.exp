@@ -5,31 +5,31 @@ tests/tokenizeur/scripts/foreach.12.test.php
   code : 
       sequence 
       0 : 
-          _foreach (variable 309 "$escape" as  => variable 309 "$probe")
+          _foreach (variable $escape as  => variable $probe)
               block 
               0 : 
                   affectation 
                   droite : 
-                      variable 309 "$pattern"
+                      variable $pattern
                    "=" 
                   gauche : 
                       functioncall str_replace
                       appel de fonction : str_replace: 
                           arglist 
                           0 : 
-                              variable 309 "$probe"
+                              variable $probe
                           1 : 
                               concatenation 
                               0 : 
                                   literals \\
                               1 : 
-                                  variable 309 "$probe"
+                                  variable $probe
                           2 : 
-                              variable 309 "$pattern"
+                              variable $pattern
       1 : 
           affectation 
           droite : 
-              variable 309 "$pattern"
+              variable $pattern
            "=" 
           gauche : 
               functioncall str_replace
@@ -40,4 +40,4 @@ tests/tokenizeur/scripts/foreach.12.test.php
                   1 : 
                       literals '*'
                   2 : 
-                      variable 309 "$x"
+                      variable $x

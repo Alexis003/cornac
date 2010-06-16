@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/noscream.9.test.php
   code : 
       affectation 
       droite : 
-          property variable 309 "$this"literals a->
+          property variable $thisliterals a->
        "=" 
       gauche : 
           noscream @
@@ -15,7 +15,7 @@ tests/tokenizeur/scripts/noscream.9.test.php
                   0 : 
                       concatenation 
                       0 : 
-                          variable 309 "$host"
+                          variable $host
                       1 : 
                           literals 'a'
                   1 : 

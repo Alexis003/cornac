@@ -6,7 +6,7 @@ tests/tokenizeur/scripts/affectation.24.test.php
       affectation 
       droite : 
           noscream @
-              variable 309 "$x"
+              variable $x
        "=" 
       gauche : 
           literals 1

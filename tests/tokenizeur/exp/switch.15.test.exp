@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/switch.15.test.php
   code : 
       _switch 
           parentheses 
-          ( "variable 309 "$x"" )
+          ( "variable $x" )
           block 
           0 : 
               _case 
@@ -14,7 +14,7 @@ tests/tokenizeur/scripts/switch.15.test.php
                   0 : 
                       affectation 
                       droite : 
-                          variable 309 "$filtre_traite2"
+                          variable $filtre_traite2
                       273 ".=" 
                       gauche : 
                           literals " demarchage_flag='1' "

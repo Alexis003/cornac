@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/cast.5.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$x"
+          variable $x
        "=" 
       gauche : 
           cast (290 "(bool)")_new 

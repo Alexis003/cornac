@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/new.8.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$x"
+          variable $x
        "=" 
       gauche : 
-           new property variable 309 "$t"->literals u ( ) 
+           new property variable $t->literals u ( ) 

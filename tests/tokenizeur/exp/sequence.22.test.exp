@@ -7,7 +7,7 @@ tests/tokenizeur/scripts/sequence.22.test.php
       0 : 
           affectation 
           droite : 
-              variable 309 "$ignore"
+              variable $ignore
            "=" 
           gauche : 
               literals 1

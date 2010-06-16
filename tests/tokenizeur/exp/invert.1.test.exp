@@ -4,4 +4,4 @@ tests/tokenizeur/scripts/invert.1.test.php
 
   code : 
       invert ~
-          variable 309 "$x"
+          variable $x

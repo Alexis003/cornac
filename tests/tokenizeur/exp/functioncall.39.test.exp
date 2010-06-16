@@ -31,7 +31,7 @@ tests/tokenizeur/scripts/functioncall.39.test.php
                   1 : 
                       literals "?"
                   2 : 
-                      variable 309 "$chart1URL"
+                      variable $chart1URL
       3 : 
           rawtext 
           Texte : "311 "" border="0" usemap="#map1" />""

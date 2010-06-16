@@ -5,12 +5,12 @@ tests/tokenizeur/scripts/operation.15.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$x"
+          variable $x
        "=" 
       gauche : 
           operation 
           droite : 
-              property variable 309 "$a"literals b->
+              property variable $aliterals b->
           operation :  "*"
           gauche : 
-              property variable 309 "$c"literals d->
+              property variable $cliterals d->

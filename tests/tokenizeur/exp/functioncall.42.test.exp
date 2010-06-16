@@ -4,4 +4,4 @@ tests/tokenizeur/scripts/functioncall.42.test.php
 
   code : 
       _return 
-      return : "functioncall 307 "a" ( arglist(functioncall tableau variable 309 "$b"[variable 309 "$c"] ( arglist(variable 309 "$d", variable 309 "$e", variable 309 "$f") ) ) ) "
+      return : "functioncall 307 "a" ( arglist(functioncall tableau variable $b[variable $c] ( arglist(variable $d, variable $e, variable $f) ) ) ) "

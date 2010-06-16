@@ -8,5 +8,5 @@ tests/tokenizeur/scripts/functioncall.10.test.php
           arglist 
           0 : 
               tableau
-                  variable 309 "$x"
+                  variable $x
                   literals 0

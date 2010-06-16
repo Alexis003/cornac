@@ -5,12 +5,12 @@ tests/tokenizeur/scripts/signe.21.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$u"
+          variable $u
        "=" 
       gauche : 
           signe  "-"cast (int)
-              cast (295 "(int)")method variable 309 "$a"->functioncall 307 "b" ( ( ) ) 
-                  method variable 309 "$a"
+              cast (295 "(int)")method variable $a->functioncall 307 "b" ( ( ) ) 
+                  method variable $a
                   appel de methode : functioncall 307 "b" ( ( ) ) : 
                       functioncall b
                       appel de fonction : b: 

@@ -4,4 +4,4 @@ tests/tokenizeur/scripts/return.10.test.php
 
   code : 
       _return 
-      return : "comparaison functioncall 307 "odbtp_execute" ( arglist(variable 309 "$stmt") )  282 "!=" constante false"
+      return : "comparaison functioncall 307 "odbtp_execute" ( arglist(variable $stmt) )  282 "!=" constante false"

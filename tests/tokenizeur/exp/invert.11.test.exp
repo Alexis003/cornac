@@ -5,9 +5,9 @@ tests/tokenizeur/scripts/invert.11.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$x"
+          variable $x
        "=" 
       gauche : 
           invert ~
-              cast (295 "(int)")variable 309 "$b"
-                  variable 309 "$b"
+              cast (295 "(int)")variable $b
+                  variable $b

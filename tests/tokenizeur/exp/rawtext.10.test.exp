@@ -6,7 +6,7 @@ tests/tokenizeur/scripts/rawtext.10.test.php
       ifthen if
       Condition 0) 
           parentheses 
-          ( "variable 309 "$x"" )
+          ( "variable $x" )
           block 
           0 : 
               rawtext 
@@ -29,7 +29,7 @@ tests/tokenizeur/scripts/rawtext.10.test.php
               appel de fonction : echo: 
                   arglist 
                   0 : 
-                      variable 309 "$formulapermexp"
+                      variable $formulapermexp
           4 : 
               rawtext 
               Texte : "311 "D
@@ -44,7 +44,7 @@ tests/tokenizeur/scripts/rawtext.10.test.php
                           arglist 
                           0 : 
                               tableau
-                                  variable 309 "$medal"
+                                  variable $medal
                                   literals 'permission'
           6 : 
               rawtext 
@@ -55,7 +55,7 @@ tests/tokenizeur/scripts/rawtext.10.test.php
                   arglist 
                   0 : 
                       tableau
-                          variable 309 "$lang"
+                          variable $lang
                           literals 'creditwizard_current_formula_notice'
           8 : 
               rawtext 
@@ -63,7 +63,7 @@ tests/tokenizeur/scripts/rawtext.10.test.php
           9 : 
               affectation 
               droite : 
-                  variable 309 "$y"
+                  variable $y
                "=" 
               gauche : 
                   literals 1

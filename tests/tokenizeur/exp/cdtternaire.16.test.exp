@@ -8,12 +8,12 @@ tests/tokenizeur/scripts/cdtternaire.16.test.php
           ifthen if
           Condition 0) 
               parentheses 
-              ( "variable 309 "$x"" )
+              ( "variable $x" )
               block 
               0 : 
                   affectation 
                   droite : 
-                      variable 309 "$x"
+                      variable $x
                    "=" 
                   gauche : 
                       literals 1

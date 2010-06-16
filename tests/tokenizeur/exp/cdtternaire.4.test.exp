@@ -5,11 +5,11 @@ tests/tokenizeur/scripts/cdtternaire.4.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$x"
+          variable $x
        "=" 
       gauche : 
           cdtternaire ?
-          literals 1 ? literals 2 : property variable 309 "$x"->literals y
+          literals 1 ? literals 2 : property variable $x->literals y
               literals 1
               literals 2
-              property variable 309 "$x"literals y->
+              property variable $xliterals y->

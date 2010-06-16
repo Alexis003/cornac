@@ -5,9 +5,9 @@ tests/tokenizeur/scripts/comparaison.4.test.php
   code : 
       comparaison 
       droite : 
-          variable 309 "$x"
+          variable $x
       operateur :  ">"
       gauche : 
           tableau
-              variable 309 "$y"
+              variable $y
               literals 1

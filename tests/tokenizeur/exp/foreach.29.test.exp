@@ -3,10 +3,10 @@ tests/tokenizeur/scripts/foreach.29.test.php
   codephp <?php
 
   code : 
-      _foreach (variable 309 "$a" as  => variable 309 "$c")
+      _foreach (variable $a as  => variable $c)
           block 
           0 : 
-              method variable 309 "$this"
+              method variable $this
               appel de methode : functioncall 307 "d" ( arglist(literals 'e') ) : 
                   functioncall d
                   appel de fonction : d: 

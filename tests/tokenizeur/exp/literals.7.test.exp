@@ -8,7 +8,7 @@ tests/tokenizeur/scripts/literals.7.test.php
           affectation 
           droite : 
               tableau
-                  variable 309 "$r"
+                  variable $r
                   literals 0
            "=" 
           gauche : 
@@ -23,5 +23,5 @@ tests/tokenizeur/scripts/literals.7.test.php
                       literals ABC
                   1 : 
                       tableau
-                          variable 309 "$r"
+                          variable $r
                           literals 0

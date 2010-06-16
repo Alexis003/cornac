@@ -3,5 +3,5 @@ tests/tokenizeur/scripts/signe.2.test.php
   codephp <?php
 
   code : 
-      signe  "+"variable 309 "$x"
-          variable 309 "$x"
+      signe  "+"variable $x
+          variable $x

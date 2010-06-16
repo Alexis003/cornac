@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/decalage.9.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$a"
+          variable $a
       273 ".=" 
       gauche : 
           functioncall pack
@@ -17,32 +17,32 @@ tests/tokenizeur/scripts/decalage.9.test.php
                       literals 36
                   operation : 286 ">>"
                   gauche : 
-                      variable 309 "$c"
+                      variable $c
               1 : 
                   decalage 
                   droite : 
                       literals 24
                   operation : 286 ">>"
                   gauche : 
-                      variable 309 "$c"
+                      variable $c
               2 : 
                   decalage 
                   droite : 
                       literals 16
                   operation : 286 ">>"
                   gauche : 
-                      variable 309 "$d"
+                      variable $d
               3 : 
                   decalage 
                   droite : 
                       literals 8
                   operation : 286 ">>"
                   gauche : 
-                      variable 309 "$e"
+                      variable $e
               4 : 
                   decalage 
                   droite : 
                       literals 8
                   operation : 286 ">>"
                   gauche : 
-                      variable 309 "$c"
+                      variable $c

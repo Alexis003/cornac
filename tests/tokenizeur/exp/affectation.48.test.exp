@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/affectation.48.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$x"
+          variable $x
        "=" 
       gauche : 
           constante (          __LINE__ )

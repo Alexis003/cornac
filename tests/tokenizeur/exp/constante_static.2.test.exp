@@ -6,12 +6,12 @@ tests/tokenizeur/scripts/constante_static.2.test.php
       ifthen if
       Condition 0) 
           parentheses 
-          ( "comparaison functioncall 307 "fopen" ( arglist(variable 309 "$nom", constante_static 307 "CLASSE"::constante CREATE) )  280 "!==" constante TRUE" )
+          ( "comparaison functioncall 307 "fopen" ( arglist(variable $nom, constante_static 307 "CLASSE"::constante CREATE) )  280 "!==" constante TRUE" )
           block 
           0 : 
               affectation 
               droite : 
-                  variable 309 "$x"
+                  variable $x
                "=" 
               gauche : 
                   literals 1

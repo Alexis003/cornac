@@ -9,12 +9,12 @@ tests/tokenizeur/scripts/signe.12.test.php
           0 : 
               operation 
               droite : 
-                  variable 309 "$a"
+                  variable $a
               operation :  "-"
               gauche : 
-                  signe  "+"signe  "+"signe  "-"signe  "+"signe  "+"variable 309 "$b"
-                      signe  "+"signe  "-"signe  "+"signe  "+"variable 309 "$b"
-                          signe  "-"signe  "+"signe  "+"variable 309 "$b"
-                              signe  "+"signe  "+"variable 309 "$b"
-                                  signe  "+"variable 309 "$b"
-                                      variable 309 "$b"
+                  signe  "+"signe  "+"signe  "-"signe  "+"signe  "+"variable $b
+                      signe  "+"signe  "-"signe  "+"signe  "+"variable $b
+                          signe  "-"signe  "+"signe  "+"variable $b
+                              signe  "+"signe  "+"variable $b
+                                  signe  "+"variable $b
+                                      variable $b

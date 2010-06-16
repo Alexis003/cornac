@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/switch.23.test.php
   code : 
       _switch 
           parentheses 
-          ( "variable 309 "$a"" )
+          ( "variable $a" )
           block 
           0 : 
               _case 
@@ -20,14 +20,14 @@ tests/tokenizeur/scripts/switch.23.test.php
                   0 : 
                       affectation 
                       droite : 
-                          variable 309 "$a"
+                          variable $a
                        "=" 
                       gauche : 
                           literals 1
                   1 : 
                       affectation 
                       droite : 
-                          variable 309 "$b"
+                          variable $b
                        "=" 
                       gauche : 
                           literals 2
@@ -51,21 +51,21 @@ tests/tokenizeur/scripts/switch.23.test.php
                   0 : 
                       affectation 
                       droite : 
-                          variable 309 "$a"
+                          variable $a
                        "=" 
                       gauche : 
                           literals 1
                   1 : 
                       affectation 
                       droite : 
-                          variable 309 "$b"
+                          variable $b
                        "=" 
                       gauche : 
                           literals 2
                   2 : 
                       affectation 
                       droite : 
-                          variable 309 "$c"
+                          variable $c
                        "=" 
                       gauche : 
                           literals 3
@@ -85,14 +85,14 @@ tests/tokenizeur/scripts/switch.23.test.php
                   0 : 
                       affectation 
                       droite : 
-                          variable 309 "$a"
+                          variable $a
                        "=" 
                       gauche : 
                           literals 1
                   1 : 
                       affectation 
                       droite : 
-                          variable 309 "$b"
+                          variable $b
                        "=" 
                       gauche : 
                           literals 2
@@ -104,12 +104,12 @@ tests/tokenizeur/scripts/switch.23.test.php
                   block 
                   0 : 
                       method_static 
-                      307 "parent"::functioncall 307 "takeChildFromDOM" ( arglist(variable 309 "$child") ) : 
+                      307 "parent"::functioncall 307 "takeChildFromDOM" ( arglist(variable $child) ) : 
                           functioncall takeChildFromDOM
                           appel de fonction : takeChildFromDOM: 
                               arglist 
                               0 : 
-                                  variable 309 "$child"
+                                  variable $child
                   1 : 
                       _break 
                       Nombre : " "1""

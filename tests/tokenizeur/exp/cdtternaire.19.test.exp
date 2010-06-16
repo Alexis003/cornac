@@ -5,33 +5,33 @@ tests/tokenizeur/scripts/cdtternaire.19.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$a"
+          variable $a
        "=" 
       gauche : 
           cdtternaire ?
-          functioncall 351 "empty" ( arglist(variable 309 "$b") )  ? affectation variable 309 "$d" 273 ".=" concatenation literals ' ' . variable 309 "$e"   : affectation variable 309 "$d" 273 ".=" concatenation literals ' ' . variable 309 "$e"  
+          functioncall 351 "empty" ( arglist(variable $b) )  ? affectation variable $d 273 ".=" concatenation literals ' ' . variable $e   : affectation variable $d 273 ".=" concatenation literals ' ' . variable $e  
               functioncall empty
               appel de fonction : empty: 
                   arglist 
                   0 : 
-                      variable 309 "$b"
+                      variable $b
               affectation 
               droite : 
-                  variable 309 "$d"
+                  variable $d
               273 ".=" 
               gauche : 
                   concatenation 
                   0 : 
                       literals ' '
                   1 : 
-                      variable 309 "$e"
+                      variable $e
               affectation 
               droite : 
-                  variable 309 "$d"
+                  variable $d
               273 ".=" 
               gauche : 
                   concatenation 
                   0 : 
                       literals ' '
                   1 : 
-                      variable 309 "$e"
+                      variable $e

@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/sequence.1.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$a"
+          variable $a
        "=" 
       gauche : 
           literals 1

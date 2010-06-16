@@ -4,4 +4,4 @@ tests/tokenizeur/scripts/return.3.test.php
 
   code : 
       _return 
-      return : "operation variable 309 "$x"  "+" literals 1"
+      return : "operation variable $x  "+" literals 1"

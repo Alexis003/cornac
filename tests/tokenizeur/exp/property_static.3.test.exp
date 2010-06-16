@@ -5,17 +5,17 @@ tests/tokenizeur/scripts/property_static.3.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$x"
+          variable $x
        "=" 
       gauche : 
           affectation 
           droite : 
-              property_static 307 "Y"::variable 309 "$C"->
+              property_static 307 "Y"::variable $C->
            "=" 
           gauche : 
               affectation 
               droite : 
-                  variable 309 "$y"
+                  variable $y
                "=" 
               gauche : 
                   literals 3

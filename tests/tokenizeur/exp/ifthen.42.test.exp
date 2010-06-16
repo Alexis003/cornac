@@ -6,21 +6,21 @@ tests/tokenizeur/scripts/ifthen.42.test.php
       ifthen if
       Condition 0) 
           parentheses 
-          ( "variable 309 "$a"" )
+          ( "variable $a" )
           block 
           0 : 
               affectation 
               droite : 
-                  property_static 307 "C"::variable 309 "$b"->
+                  property_static 307 "C"::variable $b->
                "=" 
               gauche : 
-                  variable 309 "$d"
+                  variable $d
        else 
           block 
           0 : 
               affectation 
               droite : 
-                  variable 309 "$e"
+                  variable $e
                "=" 
               gauche : 
                   functioncall f

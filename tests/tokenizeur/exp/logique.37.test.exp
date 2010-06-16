@@ -11,15 +11,15 @@ tests/tokenizeur/scripts/logique.37.test.php
                   logique 
                   droite : 
                       parentheses 
-                      ( "comparaison tableau variable 309 "$property"[literals 'emp_id'] 283 "==" signe  "-"literals 1" )
+                      ( "comparaison tableau variable $property[literals 'emp_id'] 283 "==" signe  "-"literals 1" )
                   operateur :  "|"
                   gauche : 
                       cdtternaire ?
-                      parentheses (comparaison tableau variable 309 "$property"[literals 'emp_id'] 283 "==" literals '') ? literals 'selected' : sequenceliterals ''
+                      parentheses (comparaison tableau variable $property[literals 'emp_id'] 283 "==" literals '') ? literals 'selected' : sequenceliterals ''
 rawtext 311 "A"
 
                           parentheses 
-                          ( "comparaison tableau variable 309 "$property"[literals 'emp_id'] 283 "==" literals ''" )
+                          ( "comparaison tableau variable $property[literals 'emp_id'] 283 "==" literals ''" )
                           literals 'selected'
                           sequence 
                           0 : 
@@ -32,4 +32,4 @@ rawtext 311 "A"
           appel de fonction : echo: 
               arglist 
               0 : 
-                  variable 309 "$lang_Admin_Property_Please_Select"
+                  variable $lang_Admin_Property_Please_Select

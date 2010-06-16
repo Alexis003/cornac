@@ -5,9 +5,9 @@ tests/tokenizeur/scripts/affectation.12.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$row"
+          variable $row
        "=" 
       gauche : 
           tableau
-              variable 309 "$result"
+              variable $result
               literals 0

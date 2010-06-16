@@ -10,10 +10,10 @@ tests/tokenizeur/scripts/affectation.32.test.php
               arglist 
               0 : 
               1 : 
-                  variable 309 "$x"
+                  variable $x
               2 : 
               3 : 
-                  variable 309 "$y"
+                  variable $y
        "=" 
       gauche : 
           functioncall explode

@@ -7,14 +7,14 @@ tests/tokenizeur/scripts/literals.11.test.php
       0 : 
           affectation 
           droite : 
-              variable 309 "$x"
+              variable $x
            "=" 
           gauche : 
               literals 0.2
       1 : 
           affectation 
           droite : 
-              variable 309 "$a"
+              variable $a
            "=" 
           gauche : 
               signe  "-"literals 0.3

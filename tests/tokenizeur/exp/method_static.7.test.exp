@@ -4,4 +4,4 @@ tests/tokenizeur/scripts/method_static.7.test.php
 
   code : 
       _return 
-      return : "method method_static 307 "a"::functioncall 307 "b" ( ( ) ) ->functioncall variable 309 "$c" ( arglist(literals 'd') ) "
+      return : "method method_static 307 "a"::functioncall 307 "b" ( ( ) ) ->functioncall variable $c ( arglist(literals 'd') ) "

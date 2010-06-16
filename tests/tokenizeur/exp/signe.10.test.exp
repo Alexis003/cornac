@@ -12,6 +12,6 @@ tests/tokenizeur/scripts/signe.10.test.php
                   literals "a"
               1 : 
                   parentheses 
-                  ( "operation operation parentheses (operation parentheses (operation variable 309 "$b"  "-" variable 309 "$c")  "*" literals 2)  "+" parentheses (operation literals 3  "-" variable 309 "$d")  "+" variable 309 "$e"" )
+                  ( "operation operation parentheses (operation parentheses (operation variable $b  "-" variable $c)  "*" literals 2)  "+" parentheses (operation literals 3  "-" variable $d)  "+" variable $e" )
               2 : 
                   literals "f"

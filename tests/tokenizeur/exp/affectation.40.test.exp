@@ -6,12 +6,12 @@ tests/tokenizeur/scripts/affectation.40.test.php
        class 307 "a"
           block 
           0 : 
-              342 "public"function literals __set arglist(variable 309 "$key", variable 309 "$value")
+              342 "public"function literals __set arglist(variable $key, variable $value)
                   block 
                   0 : 
                       affectation 
                       droite : 
-                          property property variable 309 "$this"->literals valuevariable 309 "$key"->
+                          property property variable $this->literals valuevariable $key->
                        "=" 
                       gauche : 
-                          variable 309 "$value"
+                          variable $value

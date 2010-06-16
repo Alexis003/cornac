@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/affectation.21.test.php
   code : 
       affectation 
       droite : 
-          variable 309 "$x"
+          variable $x
       268 "<<=" 
       gauche : 
-          variable 309 "$b"
+          variable $b
