@@ -1,0 +1,16 @@
+Cornac : PHP Code Analyzer
+
+Usage : 
+Create application.ini in ini folder, with correct MySQL access
+./tokenizeur.php -d [code root] -r -g mysql,cache -I <application>.ini
+./auditeur.php <application>
+
+Current version is DEV. 
+
+Pre-requisite : 
+PHP 5.3.1 (only tested on that version).
+MySQL (should work on any version)
+
+This software is released under PHP licence (3.01)
+Code base is copyright (c) Damien Seguy (damien.seguy@gmail.com)
+
