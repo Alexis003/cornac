@@ -1,6 +1,6 @@
 <?php
 
-class secu_protection_functions extends functioncalls {
+class secu_functions extends functioncalls {
 	protected	$description = 'Liste des fonctions de fichiers';
 	protected	$description_en = 'usage of file functions';
 

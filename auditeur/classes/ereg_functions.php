@@ -17,4 +17,3 @@ class ereg_functions extends functioncalls {
 }
 
 ?>
-

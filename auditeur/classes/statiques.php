@@ -1,6 +1,6 @@
 <?php
 
-class statiques extends module {
+class statiques extends modules {
 	protected	$inverse = true;
 	protected	$name = 'Classe sans nom';
 	protected	$functions = array();
@@ -19,7 +19,7 @@ class statiques extends module {
 
         $requete = <<<SQL
 INSERT INTO <rapport>
-   SELECT 0, T1.fichier, T2.code,  T1.id, 'parentheses'
+   SELECT 0, T1.fichier, T1.code,  T1.id, 'parentheses'
    FROM <tokens> T1
    WHERE T1.type != 'codephp AND
          T1.droite = 0';

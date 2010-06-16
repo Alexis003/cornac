@@ -25,7 +25,7 @@ SELECT 0, T2.fichier, T2.code AS code, T2.id, '{$this->name}'
            T1.fichier = T2.fichier
     WHERE T1.type='_global' 
 SQL;
-        $res = $this->exec_query($requete);
+        $this->exec_query($requete);
         
 // variables globales via $GLOBALS
        $requete = <<<SQL
@@ -42,8 +42,20 @@ SELECT 0, T1.fichier, T3.code AS code, T2.id, '{$this->name}'
           T1.type = 'tableau' AND
           T2.code = '\$GLOBALS';
 SQL;
-        $res = $this->exec_query($requete);
-    }
+        $this->exec_query($requete);
+
+// variables du main sont automatiquement des globales
+       $requete = <<<SQL
+INSERT INTO <rapport> 
+SELECT 0, T1.fichier, T1.code AS code, T1.id, '{$this->name}'
+    FROM <tokens> T1
+    WHERE 
+        T1.scope = 'global' AND
+        T1.type = 'variable'
+SQL;
+        $this->exec_query($requete);
+    }    
+    
 }
 
 ?>

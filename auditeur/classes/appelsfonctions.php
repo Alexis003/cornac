@@ -116,7 +116,7 @@ SQL;
             }
             $total++;
         }
-        print "$erreurs à faire\n $total trouves\n";
+//        print "$erreurs à faire\n $total trouves\n";
 //            die();
 
     // @todo supporter les méthodes / classes

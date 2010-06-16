@@ -7,7 +7,6 @@ class proprietes_publiques extends modules {
 	function __construct($mid) {
         parent::__construct($mid);
         
-//        $this->format = modules::FORMAT_DOT;
     	$this->name = __CLASS__;
     	$this->functions = array();
 	}
@@ -25,7 +24,6 @@ JOIN <tokens> T2
 ON T1.fichier = T2.fichier AND TT.token_sub_id = T2.id  
 WHERE T1.type = 'property' AND T1.code != '\$this'
 SQL;
-        print $this->prepare_query($requete);
         $this->exec_query($requete);
 
     // @todo supporter les méthodes / classes

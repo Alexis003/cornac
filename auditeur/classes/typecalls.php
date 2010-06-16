@@ -8,10 +8,10 @@ class typecalls extends modules {
 	}
 	
 	public function analyse() {
-	    if (is_array($this->in)) {
-    	    $in = join("', '", $this->in);
+	    if (is_array($this->type)) {
+    	    $in = join("', '", $this->type);
 	    } else {
-    	    $in = $this->in;
+    	    $in = $this->type;
 	    }
 
         $this->clean_rapport();

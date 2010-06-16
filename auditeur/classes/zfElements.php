@@ -60,7 +60,7 @@ SQL;
         $requete = <<<SQL
 SELECT sum(if (T1.code IN ('addValidator','addFilter'), 1, 0)) AS addValidator, T1.fichier 
     FROM <tokens> T1 
-    WHERE fichier = '".$ligne['fichier']."' AND droite BETWEEN {$ligne['droite']} AND {$ligne2['gauche']}
+    WHERE fichier = '{$ligne['fichier']}' AND droite BETWEEN {$ligne['droite']} AND {$ligne2['gauche']}
 SQL;
         $res2 = $this->exec_query($requete);
         $ligne2 = $res2->fetch();

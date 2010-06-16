@@ -1,6 +1,6 @@
 <?php
 
-class trim_rawtext extends module {
+class trim_rawtext extends modules {
 	protected	$description = 'Liste des fins de scripts type die ou exit';
 	protected	$description_en = 'exit and die usage';
 
@@ -18,7 +18,7 @@ class trim_rawtext extends module {
 
         $requete = <<<SQL
 INSERT INTO <rapport>
-   SELECT 0, T1.fichier, T2.code,  T1.id, 'parentheses'
+   SELECT 0, T1.fichier, T1.code,  T1.id, 'parentheses'
    FROM <tokens> T1
    WHERE T1.type != 'codephp AND
          T1.droite = 0';

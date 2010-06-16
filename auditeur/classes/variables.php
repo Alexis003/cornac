@@ -2,7 +2,6 @@
 
 class variables extends typecalls {
 	protected	$inverse = true;
-	protected	$name = 'Classe sans nom';
 	protected	$functions = array();
 
 	protected	$description = 'Liste des variables et de leur usage';

@@ -17,4 +17,3 @@ class xdebug_functions extends functioncalls {
 }
 
 ?>
-

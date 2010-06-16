@@ -21,8 +21,6 @@ where
  T1.type='method'
 SQL;
 
-        print $this->prepare_query($requete);
-        die();
         $this->exec_query($requete);
 
 

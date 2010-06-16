@@ -2,7 +2,7 @@
 
 class headers extends functioncalls {
 	protected	$description = 'Liste des émissions d\'entêtes HTTP';
-	protected	$description_en = 'Where files are included';
+	protected	$description_en = 'HTTP header emitting functions';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -11,7 +11,7 @@ class headers extends functioncalls {
 	}
 	
 	public function analyse() {
-        $this->functions = array('headers','setcookie');;
+        $this->functions = array('header','setcookie','setrawcookie');
         parent::analyse();
 	}
 }
