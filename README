@@ -5,6 +5,14 @@ Create application.ini in ini folder, with correct MySQL access
 ./tokenizeur.php -d [code root] -r -g mysql,cache -I <application>.ini
 ./auditeur.php <application>
 
+to extract the information : 
+1) install web/index.php on your web root
+  - change database access
+  - change prefixe to the one used in .ini  : $prefixe = 'tu';
+  - direct you browser on the index.php 
+2) use the lecture_module.php file (-h for help)
+3) go in the database, read the tables
+
 Current version is DEV. 
 
 Pre-requisite : 
