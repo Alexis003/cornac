@@ -79,7 +79,7 @@ if ($id = array_search( '-g', $argv)) {
     $templates = array_unique($templates);
     
     foreach ($templates as $i => $template) {
-        if (!file_exists('prepare/template.'.$template.'.php')) {
+        if (!file_exists('prepare/templates/template.'.$template.'.php')) {
             print "$id) '$template' n'existe pas.\n";
             unset($templates[$i]);
 //            $template = 'tree';
@@ -101,9 +101,9 @@ if ($id = array_search( '-g', $argv)) {
     $templates = array('tree');
 }
 
-include('prepare/template.php');
+include('prepare/templates/template.php');
 foreach ($templates as $id => $template) {
-    include('prepare/template.'.$template.'.php');
+    include('prepare/templates/template.'.$template.'.php');
 }
 
 if ($id = array_search( '-l', $argv)) {
