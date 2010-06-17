@@ -214,11 +214,13 @@ END;
         $noeud->myDroite = $this->getIntervalleId();
         $noeud->setCode('');
 
-        $this->affiche($noeud->getDroite(), $niveau + 1);
-        $this->affiche($noeud->getOperateur(), $niveau + 1);
-        $this->affiche($noeud->getGauche(), $niveau + 1);
+        $tags = array();
+        $tags['left'][] = $this->affiche($noeud->getDroite(), $niveau + 1);
+        $tags['operator'][] = $this->affiche($noeud->getOperateur(), $niveau + 1);
+        $tags['right'][] = $this->affiche($noeud->getGauche(), $niveau + 1);
 
         $noeud->myGauche = $this->getIntervalleId();
+        $this->tags = $tags;
         return $this->saveNoeud($noeud);
     }
 
