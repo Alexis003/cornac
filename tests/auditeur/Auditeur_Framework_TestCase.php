@@ -9,7 +9,7 @@ $shell = <<<SHELL
 cd ../..
 ./tokenizeur.php -r -d ./tests/auditeur/scripts/ -g mysql,cache -I testsunitaires
 cd auditeur
-php auditeur.php tu
+./auditeur.php -p tu
 SHELL;
 $retour = shell_exec($shell);
 $fin = microtime(true);
