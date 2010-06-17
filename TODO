@@ -1,14 +1,11 @@
 Ajouter une LICENCE, README et INSTALLATION
-Pousser sur GitHub
-Prévenir Jean-Marc
-Refaire les tests unitaires
+Finir les tests unitaires de l'auditeur
+Move to English (messages, names...)
 Tester la couverture de code
 Passer sur SQLITE
 Mettre les dictionnaires en fichiers .ini ou en bases SQLite (ou autres)
-Comment inclure les références? (TAR)
-Migrer les templates dans un dossier
+Comment inclure les applications de références? (TAR)
 Pouvoir utiliser un autre php que le PHP système
-
 
 Pouvoir relire les objets depuis MySQL
 Faire une interface fluide pour construire les requêtes SQL
@@ -20,7 +17,7 @@ Accumuler les résultats
 Avoir une vue pour l'auditeur (export HTML, PDF, ODT)
 Pouvoir paraleliser les analyses de code (gearman? une liste de fichier en base? Faire les fichiers récents ou qui n'ont pas été finis.. )
 
-Noter le délimiteur des litéraux et le retirer de la valeru
+Noter le délimiteur des litéraux et le retirer de la valeur
 Mettre toutes les méthodes en anglais
 Ajouter une licence dans tous les fichiers
 
