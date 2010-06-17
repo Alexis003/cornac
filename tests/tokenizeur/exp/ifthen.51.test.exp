@@ -60,5 +60,5 @@ tests/tokenizeur/scripts/ifthen.51.test.php
                           literals "6"
               Condition 1) 
                   parentheses 
-                  ( "arginit variable $h = literals "7" " )
+                  ( "affectation variable $h  "=" literals "7"" )
                   block 
