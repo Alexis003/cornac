@@ -2,17 +2,17 @@
 <?php
 
 if ($id = array_search('-?', $argv)) {
-    print_help();
+    help();
     die();
 }
 
 if ($id = array_search('-h', $argv)) {
-    print_help();
+    help();
     die();
 }
 
 if ($id = array_search('-help', $argv)) {
-    print_help();
+    help();
     die();
 }
 
@@ -198,6 +198,7 @@ prefix : tokens (default)
     -help : this help
     -p    : prefixe for the tables to be used. Default to 'tokens'
     -a    : comma separated list of analyzers to be used. Defaut to all. 
+
 TEXT;
     
     die();
