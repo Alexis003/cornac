@@ -17,13 +17,14 @@ if (VERBOSE) {
 }
 
 $mysql = new pdo('mysql:dbname=analyseur;host=127.0.0.1','root','');
+//$mysql = new pdo("sqlite:/tmp/tokenizeur.sq3");
 
 $requete = 'SELECT * FROM '.$prefixe.'_rapport WHERE module='.$mysql->quote($module);
 if (!empty($fichier)) {
     $requete .= ' AND fichier='.$mysql->quote($fichier);
 }
 $res = $mysql->query($requete);
-
+//print_r($mysql->errorInfo());
 if (!$res) {
     print "<document />";
     die();
