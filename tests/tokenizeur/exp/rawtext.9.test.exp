@@ -1,7 +1,6 @@
 Travail sur le fichier tests/tokenizeur/scripts/rawtext.9.test.php 
 tests/tokenizeur/scripts/rawtext.9.test.php
-  codephp <?php
-
+  codephp <?php 
   code : 
       ifthen if
       Condition 0) 

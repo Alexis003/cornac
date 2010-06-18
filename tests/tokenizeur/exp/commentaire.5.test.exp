@@ -1,0 +1,11 @@
+Travail sur le fichier tests/tokenizeur/scripts/commentaire.5.test.php 
+tests/tokenizeur/scripts/commentaire.5.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable $x
+       "=" 
+      gauche : 
+          literals 1

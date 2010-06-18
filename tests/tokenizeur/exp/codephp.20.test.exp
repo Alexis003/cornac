@@ -4,8 +4,7 @@ tests/tokenizeur/scripts/codephp.20.test.php
   Texte : "311 "<?xml ?>
 XML
 ""
-  codephp <?php
-
+  codephp <?php 
   code : 
       sequence 
       0 : 
