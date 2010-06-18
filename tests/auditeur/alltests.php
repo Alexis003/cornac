@@ -16,6 +16,11 @@ $tests = array(
 'class.functions_unused.test.php',
 'class.classes.test.php',
 'class.arobases.test.php',
+'class.properties_defined.test.php',
+'class.properties_used.test.php',
+'class.array_duplication.test.php',
+'class.classes_undefined.test.php',
+'class.classes_unused.test.php',
 // Prochain tests
 );
 

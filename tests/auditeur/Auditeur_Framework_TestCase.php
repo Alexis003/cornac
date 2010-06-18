@@ -16,7 +16,11 @@ $fin = microtime(true);
 print "  Faite (".number_format(($fin - $debut), 2)." s)\n";
 
 class Auditeur_Framework_TestCase  extends PHPUnit_Framework_TestCase {
+    protected $name="Auditeur_Framework_TestCase";
 
+    function __construct() {
+    }
+    
     protected function generic_test() {
         $shell = <<<SHELL
 php -l ./scripts/{$this->name}.php
