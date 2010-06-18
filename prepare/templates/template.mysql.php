@@ -530,13 +530,13 @@ END;
         $noeud->setCode('');
 
         $tags = array();
-        $tags['tableau'][] = $this->affiche($noeud->getTableau(), $niveau + 1);
+        $tags['array'][] = $this->affiche($noeud->getTableau(), $niveau + 1);
 
         $key = $noeud->getKey();
         if (!is_null($key)) {
-           $tags['cle'][] = $this->affiche($key, $niveau + 1);
+           $tags['key'][] = $this->affiche($key, $niveau + 1);
         }
-        $tags['valeur'][] = $this->affiche($noeud->getValue(), $niveau + 1);
+        $tags['value'][] = $this->affiche($noeud->getValue(), $niveau + 1);
         $tags['block'][] = $this->affiche($noeud->getBlock(), $niveau + 1);
 
         $noeud->myGauche = $this->getIntervalleId();
@@ -809,8 +809,8 @@ END;
 //        $this->affiche($noeud->getProperty(), $niveau + 1);
 
         $tags = array();
-        $tags['objet'][] = $this->affiche($noeud->getObject(), $niveau + 1);
-        $tags['propriete'][] = $this->affiche($noeud->getProperty(), $niveau + 1);
+        $tags['object'][] = $this->affiche($noeud->getObject(), $niveau + 1);
+        $tags['property'][] = $this->affiche($noeud->getProperty(), $niveau + 1);
         
         $noeud->myGauche = $this->getIntervalleId();
         $this->tags = $tags;
@@ -825,8 +825,8 @@ END;
         $this->affiche($noeud->getProperty(), $niveau + 1);
         
         $tags = array();
-        $tags['classe'][] = $this->affiche($noeud->getClass(), $niveau + 1);
-        $tags['propriete'][] = $this->affiche($noeud->getProperty(), $niveau + 1);
+        $tags['class'][] = $this->affiche($noeud->getClass(), $niveau + 1);
+        $tags['property'][] = $this->affiche($noeud->getProperty(), $niveau + 1);
         
         $noeud->myGauche = $this->getIntervalleId();
         $this->tags = $tags;
