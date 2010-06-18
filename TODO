@@ -152,7 +152,10 @@ exceptions lancées
 fonctions/méthodes lanceuses d'exception
 
 méthodes pas appelées
-propriétés définies
 propriétés pas appelées
 
 Extraire les abstracts des arguments inutilisés
+
+Manage manual feedback (from where? Web? )
+Add levels of nesting : class, function, method, if/switch/loop/block 
+Identifier les types de données quand c'est possible (intval, new, etc...)
