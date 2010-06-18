@@ -96,7 +96,8 @@ abstract class modules {
             return false;
         }
         
-        $this->exec_query("REPLACE INTO <rapport_module> VALUES ('$this->name', NOW(), '{$this->format}')");
+        $now = date('c');
+        $this->exec_query("REPLACE INTO <rapport_module> VALUES ('$this->name', '$now', '{$this->format}')");
 
     }
 
