@@ -56,7 +56,7 @@ FROM <tokens> T1
 JOIN <tokens> T2
     ON T1.fichier = T2.fichier AND T2.droite = T1.droite + 1
 JOIN <tokens_tags> TT
-    ON TT.token_id = T2.id AND TT.type = 'propriete'
+    ON TT.token_id = T2.id AND TT.type = 'property'
 JOIN <tokens> T3
     ON T1.fichier = T3.fichier AND T3.id = TT.token_sub_id
 WHERE T1.type = 'affectation'  AND T2.type = 'property_static'
