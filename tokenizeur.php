@@ -263,7 +263,7 @@ foreach($scriptsPHP as $name => $object){
         if (VERBOSE) {
             print "$c corrections de balises ouvrantes\n";
         }
-        $code = preg_replace('/<\\?(?!php)(\w?\s)/is', '<?php'."\n".'\1', $code);
+        $code = preg_replace('/<\\?(?!php)(\w?\s)/is', '<?php'." ".'\1', $code);
     }
     // trop simple, mais devrait marcher sauf pour des binaires (et encore...)
     $code = str_replace('<?=', '<?php echo ', $code);
