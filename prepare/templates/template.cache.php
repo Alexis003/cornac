@@ -23,10 +23,11 @@ class template_cache extends template {
         $this->table_tags = $this->table.'_tags';
 
         $this->mysql = new pdo("mysql:dbname={$this->dbname};host={$this->host}",$this->user,$this->mdp);
-
+        //$this->mysql = new pdo("sqlite:/tmp/tokenizeur.sq3");
+        
         $this->mysql->query('DELETE FROM '.$this->table.'_cache WHERE fichier = "'.$fichier.'"');
         $this->mysql->query('CREATE TABLE IF NOT EXISTS '.$this->table.'_cache (
-                                                          id       INT PRIMARY KEY AUTO_INCREMENT, 
+                                                          id       INTEGER PRIMARY KEY AUTOINCREMENT, 
                                                           code     VARCHAR(255),
                                                           fichier  VARCHAR(255)
                                                           )');
@@ -35,6 +36,7 @@ class template_cache extends template {
     
     function save($filename = null) {
         print "Cache mis à jour\n";
+        unset($this->mysql);
     }
     
     function affiche($noeud = null, $niveau = 0) {
