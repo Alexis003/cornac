@@ -61,7 +61,7 @@ SELECT TRD2.a
           TRD1.module = 'classes_hierarchie' AND
           TRD2.module = 'classes_hierarchie'
 SQL;
-        print $this->prepare_query($requete);
+
         $res = $this->exec_query($requete);
         $extensions = $res->fetchAll(PDO::FETCH_COLUMN,0);
         $in = join("', '", $extensions);
@@ -88,7 +88,7 @@ SELECT TRD3.a
           TRD2.module = 'classes_hierarchie' AND 
           TRD3.module = 'classes_hierarchie'          
 SQL;
-        print $this->prepare_query($requete);
+
         $res = $this->exec_query($requete);
         $extensions = $res->fetchAll(PDO::FETCH_COLUMN,0);
         $in = join("', '", $extensions);
@@ -118,7 +118,6 @@ SELECT TRD4.a
           TRD3.module = 'classes_hierarchie' AND 
           TRD4.module = 'classes_hierarchie'          
 SQL;
-        print $this->prepare_query($requete);
         $res = $this->exec_query($requete);
         $extensions = $res->fetchAll(PDO::FETCH_COLUMN,0);
         $in = join("', '", $extensions);
