@@ -23,6 +23,18 @@ class break_leveled_regex extends analyseur_regex {
             mon_log(get_class($t)." => ".__CLASS__);
             return true; 
         } 
+
+        if ($t->checkToken(T_BREAK) &&
+            $t->getNext()->checkClass('parentheses')  &&
+            $t->getNext(1)->checkCode(';')
+            ) {
+
+            $this->args = array(0, 1);
+            $this->remove = array( 1);
+
+            mon_log(get_class($t)." =>2 ".__CLASS__);
+            return true; 
+        } 
         return false;
     }
 }
