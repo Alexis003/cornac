@@ -5,6 +5,7 @@ require_once 'PHPUnit/Framework.php';
 
 print "\nAnalyse des nouveaux fichiers\n";
 $debut = microtime(true);
+//./tokenizeur.php -r -d ./tests/auditeur/scripts/ -g mysql,cache -I testsunitaires
 $shell = <<<SHELL
 cd ../..
 ./tokenizeur.php -r -d ./tests/auditeur/scripts/ -g mysql,cache -I testsunitaires

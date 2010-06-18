@@ -18,7 +18,7 @@ $tests = array(
 'class.arobases.test.php',
 'class.properties_defined.test.php',
 'class.properties_used.test.php',
-'class.array_duplication.test.php',
+//'class.array_duplication.test.php',
 'class.classes_undefined.test.php',
 'class.classes_unused.test.php',
 // Prochain tests
