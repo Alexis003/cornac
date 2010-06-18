@@ -96,6 +96,10 @@ $modules = array(
 'zfController',
 'zfElements',
 'zfGetGPC',
+'properties_defined',
+'properties_used',
+'classes_unused',
+'classes_undefined',
 );
 
 if ($id = array_search('-a', $argv)) {
