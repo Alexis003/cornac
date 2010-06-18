@@ -130,7 +130,8 @@ print count($modules)." modules will be treated : ".join(', ', $modules)."\n";
 print "Work with prefixes '$prefixe'\n";
 
 $mysql = new pdo('mysql:dbname=analyseur;host=127.0.0.1','root','');
-
+//$mysql = new pdo("sqlite:/tmp/tokenizeur.sq3");
+        
 // rendu (templates)
 include 'classes/sommaire.php';
 $sommaire = new sommaire();
