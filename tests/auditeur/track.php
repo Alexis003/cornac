@@ -45,5 +45,17 @@ if(count($diff) != 0) {
     print "Some of the analyzers are not tested : (".count($diff).") ".join(', ', $diff)."\n";
 }
 
+////////////////////////////////////////////////////////////////////////
+
+
+$alltest = file_get_contents('alltests.php');
+preg_match_all("/'class\.(.*?)\.test\.php',/", $alltest, $r);
+$alltest = $r[1];
+
+$diff = array_diff($tests, $alltest);
+if(count($diff) != 0) {
+    print "Some of the tests are not in all tests : (".count($diff).") \n'class.".join(".test.php',\n'class.", $diff).".test.php',\n";
+}
+
 
 ?>
