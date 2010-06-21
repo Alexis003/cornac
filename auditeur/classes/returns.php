@@ -13,10 +13,11 @@ class returns extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
-	    $requete = <<<SQL
+        $concat = $this->concat("sum(type='_return')", "' returns'");
+        $requete = <<<SQL
 INSERT INTO <rapport>
-SELECT 0, T1.fichier, concat(sum(if (type='_return',1,0)), ' returns'), T1.id, '{$this->name}' 
-FROM caceis T1
+SELECT NULL, T1.fichier, $concat, T1.id, '{$this->name}' 
+FROM <tokens> T1
 WHERE scope NOT IN ( '__construct','__destruct','__set','__get','__call','__clone','__toString','__wakeup','__sleep') 
  AND scope != class AND (class != 'global' AND scope != 'global')
 GROUP BY fichier, class, scope 
