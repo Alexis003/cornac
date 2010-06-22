@@ -42,9 +42,11 @@ SQL;
         die();
         $this->exec_query($requete);
 */
-$requete = <<<SQL
+    $concat1 = $this->concat("T1.class","'->'","T1.scope");
+    $concat2 = $this->concat("T3.code","'->'","T4.code");
+    $requete = <<<SQL
 INSERT INTO <rapport_dot> 
-SELECT concat(T1.class,'->',T1.scope), concat(T3.code, '->', T4.code), T1.fichier, '{$this->name}'
+SELECT $concat1, $concat2, T1.fichier, '{$this->name}'
   from <tokens> T1
   join <tokens_cache> T2 
     on T1.id = T2.id
@@ -60,9 +62,11 @@ where
 SQL;
         $res = $this->exec_query($requete);
 
+        $concat1 = $this->concat("T1.class","'->'","T1.scope");
+        $concat2 = $this->concat("T1.class","'->'","T4.code");
 $requete = <<<SQL
 INSERT INTO <rapport_dot> 
-SELECT concat(T1.class,'->',T1.scope), concat(T1.class, '->', T4.code), T1.fichier, '{$this->name}'
+SELECT $concat1, $concat2, T1.fichier, '{$this->name}'
   from tokens T1
   join tokens_cache T2 
     on T1.id = T2.id
@@ -95,6 +99,8 @@ where
 SQL;
         $res = $this->exec_query($requete);
         
+        $erreurs = 0;
+        $total = 0;
         while($ligne = $res->fetch(PDO::FETCH_ASSOC)) {
 $requete = <<<SQL
 SELECT T1.element

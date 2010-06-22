@@ -2,7 +2,7 @@
 
 class template_cache extends template {
     protected $root = null;
-    private $mysql = null;
+    private $database = null;
     private $ligne = 0;
     private $scope = 'global';
     private $class = '';
@@ -15,18 +15,22 @@ class template_cache extends template {
         
         global $INI;
         
-        $this->host = '127.0.0.1';
-        $this->user = 'root';
-        $this->mdp = '';
-        $this->dbname = 'analyseur';
+        global $INI;
+        
         $this->table = $INI['template.mysql']['table'] ?: 'tokens';
         $this->table_tags = $this->table.'_tags';
 
-        $this->mysql = new pdo("mysql:dbname={$this->dbname};host={$this->host}",$this->user,$this->mdp);
-        //$this->mysql = new pdo("sqlite:/tmp/tokenizeur.sq3");
+        if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
+           $this->database = new pdo($INI['mysql']['dsn'],$INI['mysql']['username'], $INI['mysql']['password']);
+        } elseif (isset($INI['sqlite']) && $INI['sqlite']['active'] == true) {
+           $this->database = new pdo($INI['sqlite']['dsn']);
+        } else {
+            print "No database configuration provided (no db)\n";
+            die();
+        }
         
-        $this->mysql->query('DELETE FROM '.$this->table.'_cache WHERE fichier = "'.$fichier.'"');
-        $this->mysql->query('CREATE TABLE IF NOT EXISTS '.$this->table.'_cache (
+        $this->database->query('DELETE FROM '.$this->table.'_cache WHERE fichier = "'.$fichier.'"');
+        $this->database->query('CREATE TABLE IF NOT EXISTS '.$this->table.'_cache (
                                                           id       INTEGER PRIMARY KEY AUTOINCREMENT, 
                                                           code     VARCHAR(255),
                                                           fichier  VARCHAR(255)
@@ -36,7 +40,7 @@ class template_cache extends template {
     
     function save($filename = null) {
         print "Cache mis à jour\n";
-        unset($this->mysql);
+        unset($this->database);
     }
     
     function affiche($noeud = null, $niveau = 0) {
@@ -75,30 +79,30 @@ class template_cache extends template {
     }
     
 ////////////////////////////////////////////////////////////////////////
-// mysql functions
+// database functions
 ////////////////////////////////////////////////////////////////////////
     function saveNoeud($noeud) {
         global $fichier;
         
         $requete = "INSERT INTO {$this->table}_cache VALUES 
             (
-             '".$noeud->mysql_id."',
-             ".$this->mysql->quote($noeud->cache).",
-             ".$this->mysql->quote($fichier)."
+             '".$noeud->database_id."',
+             ".$this->database->quote($noeud->cache).",
+             ".$this->database->quote($fichier)."
              )";
              
 
-        $this->mysql->query($requete);
-        if ($this->mysql->errorCode() != 0) {
+        $this->database->query($requete);
+        if ($this->database->errorCode() != 0) {
             print $requete."\n";
-            print_r($this->mysql->errorInfo());
+            print_r($this->database->errorInfo());
             die();
         }
 
         return TRUE;
     }
 ////////////////////////////////////////////////////////////////////////
-// mysql functions
+// database functions
 ////////////////////////////////////////////////////////////////////////
     function affiche_token_traite($noeud, $niveau) {
         $noeud->cache = $noeud->getCode();

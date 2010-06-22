@@ -15,7 +15,7 @@ class arobases extends modules {
 
         $requete = <<<SQL
 INSERT INTO <rapport> 
-SELECT 0, TC.fichier, TC.code AS code, T1.id, '{$this->name}'
+SELECT NULL, TC.fichier, TC.code AS code, T1.id, '{$this->name}'
     FROM <tokens> T1
     LEFT JOIN <tokens_cache>  TC 
     ON T1.id = TC.id 

@@ -19,7 +19,7 @@ class statiques extends modules {
 
         $requete = <<<SQL
 INSERT INTO <rapport>
-   SELECT 0, T1.fichier, T1.code,  T1.id, 'parentheses'
+   SELECT NULL, T1.fichier, T1.code,  T1.id, 'parentheses'
    FROM <tokens> T1
    WHERE T1.type != 'codephp AND
          T1.droite = 0';

@@ -15,7 +15,7 @@ class parentheses extends modules {
 
         $requete = <<<SQL
 INSERT INTO <rapport>
-   SELECT 0, T1.fichier, T2.code,  T1.id, 'parentheses'
+   SELECT NULL, T1.fichier, T2.code,  T1.id, 'parentheses'
    FROM <tokens> T1
    JOIN <tokens_cache> T2
    ON T1.id = T2.id

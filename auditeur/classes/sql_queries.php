@@ -15,7 +15,7 @@ class sql_queries extends noms {
 
         $requete = <<<SQL
 INSERT INTO <rapport>
-    SELECT 0, T1.fichier, T1.code AS code, T1.id, '{$this->name}'
+    SELECT NULL, T1.fichier, T1.code AS code, T1.id, '{$this->name}'
     FROM <tokens> T1 
     WHERE T1.type = 'literals' and (
         (T1.code LIKE "%SELECT %" AND

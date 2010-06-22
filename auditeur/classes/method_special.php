@@ -14,9 +14,10 @@ class method_special extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
+        $concat = $this->concat("T1.class","'->'","T1.scope");
         $requete = <<<SQL
 INSERT INTO <rapport>
-SELECT 0, T1.fichier, concat(T1.class,'->',T1.scope), T1.id, '{$this->name}' 
+SELECT NULL, T1.fichier, $concat, T1.id, '{$this->name}' 
 FROM <tokens> T1
 WHERE scope IN ( '__construct','__toString','__destruct',
                  '__set','__get','__call','__callStatic',
@@ -32,7 +33,7 @@ SQL;
 
         $requete = <<<SQL
 INSERT INTO <rapport>
-SELECT 0, T1.fichier, concat(T1.scope), T1.id, '{$this->name}' 
+SELECT NULL, T1.fichier, T1.scope, T1.id, '{$this->name}' 
 FROM <tokens> T1
 WHERE scope IN ( '__autoload' ) AND T1.type='_function'
 GROUP BY scope;

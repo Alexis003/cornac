@@ -18,7 +18,7 @@ class globals extends modules {
         
         $requete = <<<SQL
 INSERT INTO <rapport> 
-SELECT 0, T2.fichier, T2.code AS code, T2.id, '{$this->name}'
+SELECT NULL, T2.fichier, T2.code AS code, T2.id, '{$this->name}'
     FROM <tokens> T1
     JOIN <tokens> T2 
         ON T1.droite + 1 = T2.droite AND
@@ -30,7 +30,7 @@ SQL;
 // variables globales via $GLOBALS
        $requete = <<<SQL
 INSERT INTO <rapport> 
-SELECT 0, T1.fichier, T3.code AS code, T2.id, '{$this->name}'
+SELECT NULL, T1.fichier, T3.code AS code, T2.id, '{$this->name}'
     FROM <tokens> T1
     JOIN <tokens> T2 
         ON T1.droite + 1 = T2.droite AND
@@ -47,7 +47,7 @@ SQL;
 // variables du main sont automatiquement des globales
        $requete = <<<SQL
 INSERT INTO <rapport> 
-SELECT 0, T1.fichier, T1.code AS code, T1.id, '{$this->name}'
+SELECT NULL, T1.fichier, T1.code AS code, T1.id, '{$this->name}'
     FROM <tokens> T1
     WHERE 
         T1.scope = 'global' AND

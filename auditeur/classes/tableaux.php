@@ -26,7 +26,7 @@ class tableaux extends modules {
 // cas simple : variable -> method
         $requete = <<<SQL
 INSERT INTO <rapport> 
-SELECT 0, T1.fichier, T2.code AS code, T1.id, '{$this->name}'
+SELECT NULL, T1.fichier, T2.code AS code, T1.id, '{$this->name}'
   from <tokens> T1
   join <tokens_cache> T2 
     on T1.id = T2.id

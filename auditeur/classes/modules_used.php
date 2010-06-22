@@ -35,7 +35,7 @@ SQL;
                 $in = join("', '", $f);
                 $requete = <<<SQL
 INSERT INTO <rapport> 
-SELECT 0, fichier, '$ext', id, '{$this->name}' FROM <rapport> 
+SELECT NULL, fichier, '$ext', id, '{$this->name}' FROM <rapport> 
 WHERE element IN ('$in')
 SQL;
                 $this->exec_query($requete);
@@ -48,7 +48,7 @@ SQL;
         $in = join("', '", $liste);
         $requete = <<<SQL
 INSERT INTO <rapport> 
-SELECT 0, fichier, 'inconnu', id, '{$this->name}' FROM <rapport> 
+SELECT NULL, fichier, 'inconnu', id, '{$this->name}' FROM <rapport> 
 WHERE element IN ('$in')
 SQL;
         $this->exec_query($requete);

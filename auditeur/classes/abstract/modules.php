@@ -251,5 +251,19 @@ SQL;
 	    $extras = array('echo','print','die','exit','isset','empty','array','list','unset','eval');
 	    return array_merge($functions['internal'], $extras);
     }
+    
+    function concat() {
+        $args = func_get_args();
+        
+        global $INI;
+        if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
+            return "CONCAT(".join(",", $args).")";
+        } elseif (isset($INI['sqlite']) && $INI['sqlite']['active'] == true) {
+            return "".join("||", $args)."";
+        } else {
+            print "Concat isn't defined for this database!";
+            die();
+        }
+    }
 }
 ?>

@@ -25,6 +25,31 @@ if ($id = array_search('-p', $argv)) {
     $prefixe = 'tokens';
 }
 
+if ($id = array_search( '-I', $argv)) {
+    $ini = $argv[$id + 1];
+    
+    unset($argv[$id]);
+    unset($argv[$id + 1]);
+    
+    global $INI;
+    if (file_exists('../ini/'.$ini)) {
+        define('INI','../ini/'.$ini);
+    } elseif (file_exists('../ini/'.$ini.".ini")) {
+        define('INI','../ini/'.$ini.".ini");
+    } elseif (file_exists($ini)) {
+        define('INI',$ini);
+    } else {
+        define('INI','../ini/'.'tokenizeur.ini');
+    }
+} else {
+    define('INI','../ini/'.'tokenizeur.ini');
+}
+
+// @todo : que faire si on ne trouve même pas le .ini ? 
+print "Fichier de directives : ".INI."\n";
+global $INI;
+$INI = parse_ini_file(INI, true);
+
 $modules = array(
 '_new',
 'affectations_variables',
@@ -129,9 +154,15 @@ print count($modules)." modules will be treated : ".join(', ', $modules)."\n";
 
 print "Work with prefixes '$prefixe'\n";
 
-$mysql = new pdo('mysql:dbname=analyseur;host=127.0.0.1','root','');
-//$mysql = new pdo("sqlite:/tmp/tokenizeur.sq3");
-        
+
+if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
+    $database = new pdo($INI['mysql']['dsn'],$INI['mysql']['username'], $INI['mysql']['password']);
+} elseif (isset($INI['sqlite'])  && $INI['sqlite']['active'] == true) {
+    $database = new pdo($INI['sqlite']['dsn']);
+} else {
+    print "No database configuration provided (no mysql, no sqlite)\n";
+    die();
+}
 // rendu (templates)
 include 'classes/sommaire.php';
 $sommaire = new sommaire();
@@ -162,13 +193,13 @@ foreach($modules as $module) {
 
 function analyse_module($module) {
     include_once('classes/'.$module.'.php');
-    global $modules_faits, $mysql,$sommaire;
+    global $modules_faits, $database,$sommaire;
     
     if (isset($modules_faits[$module])) {  
         return ;
     }
 
-    $x = new $module($mysql);
+    $x = new $module($database);
     $dependances = $x->dependsOn();
     
     
@@ -203,6 +234,8 @@ prefix : tokens (default)
     -help : this help
     -p    : prefixe for the tables to be used. Default to 'tokens'
     -a    : comma separated list of analyzers to be used. Defaut to all. 
+    -f    : output format : html
+    -o    : folder for output : /tmp
 
 TEXT;
     

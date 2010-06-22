@@ -16,7 +16,7 @@ class affectations_variables extends modules {
 // variables simples        
         $requete = <<<SQL
 INSERT INTO <rapport> 
-SELECT 0, T1.fichier, T2.code, T1.id,'{$this->name}'  
+SELECT NULL, T1.fichier, T2.code, T1.id,'{$this->name}'  
 FROM <tokens> T1
 JOIN <tokens> T2
     ON T1.fichier = T2.fichier AND T2.droite = T1.droite + 1
@@ -27,7 +27,7 @@ SQL;
 // tableaux
         $requete = <<<SQL
 INSERT INTO <rapport> 
-SELECT 0, T1.fichier, T3.code, T1.id,'{$this->name}'  
+SELECT NULL, T1.fichier, T3.code, T1.id,'{$this->name}'  
 FROM <tokens> T1
 JOIN <tokens> T2
     ON T1.fichier = T2.fichier AND T2.droite = T1.droite + 1
@@ -40,7 +40,7 @@ SQL;
 // propriete
         $requete = <<<SQL
 INSERT INTO <rapport> 
-SELECT 0, T1.fichier, T2.code, T1.id,'{$this->name}'  
+SELECT NULL, T1.fichier, T2.code, T1.id,'{$this->name}'  
 FROM <tokens> T1
 JOIN <tokens> T2
     ON T1.fichier = T2.fichier AND T2.droite = T1.droite + 1
@@ -51,7 +51,7 @@ SQL;
 // propriete statique
         $requete = <<<SQL
 INSERT INTO <rapport> 
-SELECT 0, T1.fichier, T3.code, T1.id,'{$this->name}'  
+SELECT NULL, T1.fichier, T3.code, T1.id,'{$this->name}'  
 FROM <tokens> T1
 JOIN <tokens> T2
     ON T1.fichier = T2.fichier AND T2.droite = T1.droite + 1
@@ -67,7 +67,7 @@ SQL;
 
         $requete = <<<SQL
 INSERT INTO <rapport> 
-SELECT 0, T1.fichier, T4.code, T1.id,'{$this->name}'  
+SELECT NULL, T1.fichier, T4.code, T1.id,'{$this->name}'  
 FROM <tokens> T1
 JOIN <tokens> T2
     ON T1.fichier = T2.fichier AND T2.droite = T1.droite + 1 AND T2.type = 'functioncall'

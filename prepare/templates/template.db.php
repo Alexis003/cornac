@@ -79,7 +79,7 @@ class template_db extends template {
              '".$noeud->myDroite."',
              '".$noeud->myGauche."',
              '".get_class($noeud)."',
-             ".$this->mysql->quote($noeud->getCode()).",
+             ".$this->database->quote($noeud->getCode()).",
              '$fichier',
              ". $this->ligne .",
              '". $this->scope ."',
@@ -87,14 +87,14 @@ class template_db extends template {
              )";
              
 
-        $this->mysql->query($requete);
-        if ($this->mysql->errorCode() != 0) {
+        $this->database->query($requete);
+        if ($this->database->errorCode() != 0) {
             print $requete."\n";
-            print_r($this->mysql->errorInfo());
+            print_r($this->database->errorInfo());
             die();
         }
         
-        $retour = $this->mysql->lastinsertid();
+        $retour = $this->database->lastinsertid();
         
         if (is_array($this->tags) && count($this->tags) > 0) {
             foreach($this->tags as $label => $tokens) {
@@ -104,10 +104,10 @@ class template_db extends template {
                      '".$token."',
                      '".$label."')";
     
-                    $this->mysql->query($requete);
-                    if ($this->mysql->errorCode() != 0) {
+                    $this->database->query($requete);
+                    if ($this->database->errorCode() != 0) {
                         print $requete."\n";
-                        print_r($this->mysql->errorInfo());
+                        print_r($this->database->errorInfo());
                         die();
                     }
                 }
@@ -115,13 +115,13 @@ class template_db extends template {
         }
         
         $this->tags = array();
-        $noeud->mysql_id = $retour;
+        $noeud->database_id = $retour;
         
         return $retour;
     }
 
 ////////////////////////////////////////////////////////////////////////
-// mysql functions
+// database functions
 ////////////////////////////////////////////////////////////////////////
     function affiche_token_traite($noeud, $niveau) {
         $noeud->myId = $this->getNextId();

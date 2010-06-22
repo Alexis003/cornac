@@ -16,7 +16,7 @@ class functionscalls extends modules {
 
         $requete = <<<SQL
 INSERT INTO <rapport> 
-SELECT 0, T1.fichier, T2.code AS code, T1.id, '{$this->name}'
+SELECT NULL, T1.fichier, T2.code AS code, T1.id, '{$this->name}'
   FROM <tokens> T1
   JOIN <tokens> T2
        ON T1.fichier = T2.fichier AND

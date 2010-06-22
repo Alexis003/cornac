@@ -14,9 +14,10 @@ class nestedloops extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
+        $concat = $this->concat("T1.type","'->'","T2.type");
         $requete = <<<SQL
 INSERT INTO <rapport>
-SELECT 0, T1.fichier, concat(T1.type,'->',T2.type), T1.id, '{$this->name}' 
+SELECT NULL, T1.fichier, $concat, T1.id, '{$this->name}' 
     FROM <tokens> T1
     JOIN <tokens> T2
         ON T1.fichier = T2.fichier AND T2.droite BETWEEN T1.droite AND T1.gauche

@@ -159,3 +159,17 @@ Extraire les abstracts des arguments inutilisés
 Manage manual feedback (from where? Web? )
 Add levels of nesting : class, function, method, if/switch/loop/block 
 Identifier les types de données quand c'est possible (intval, new, etc...)
+
+Automatically note configuration in .INI from tokenizeur/auditeur if .ini doen't exist (easy creation)
+merge all .ini in one
+make the web publication a simple include
+find a nice display for auditeur export in HTML/Web version
+See how cache template must be used with mysql/sqlite
+
+Merge todos
+
+Make the comment analyzer, to gather suggestion from code (@todo, @question, @.? )
+Add an option for the tokenizeur to clean the tables before working (default : append new files). 
+Stop script when option is unrecognized (all of them);
+Display dots when parsing the file (tokenizer)
+Display dots when processing analyzers (auditeur)

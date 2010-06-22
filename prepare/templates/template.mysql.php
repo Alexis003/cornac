@@ -4,24 +4,25 @@ include_once('template.db.php');
 
 class template_mysql extends template_db {
     protected $root = null;
-    protected $mysql = null;
+    protected $database = null;
     
     function __construct($root, $fichier = null) {
         parent::__construct($root, $fichier);
         
         global $INI;
         
-        $this->host = '127.0.0.1';
-        $this->user = 'root';
-        $this->mdp = '';
-        $this->dbname = 'analyseur';
         $this->table = $INI['template.mysql']['table'] ?: 'tokens';
         $this->table_tags = $this->table.'_tags';
 
-        $this->mysql = new pdo("mysql:dbname={$this->dbname};host={$this->host}",$this->user,$this->mdp);
+        if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
+           $this->mysql = new pdo($INI['mysql']['dsn'],$INI['mysql']['username'], $INI['mysql']['password']);
+        } else {
+            print "No database configuration provided (no mysql)\n";
+            die();
+        }
 
-        $this->mysql->query('DELETE FROM '.$this->table.' WHERE fichier = "'.$fichier.'"');
-        $this->mysql->query('CREATE TABLE IF NOT EXISTS '.$this->table.' (id       INT AUTO_INCREMENT, 
+        $this->database->query('DELETE FROM '.$this->table.' WHERE fichier = "'.$fichier.'"');
+        $this->database->query('CREATE TABLE IF NOT EXISTS '.$this->table.' (id       INT AUTO_INCREMENT, 
                                                           droite   INT UNSIGNED, 
                                                           gauche   INT UNSIGNED,
                                                           type     CHAR(20),
@@ -39,8 +40,8 @@ class template_mysql extends template_db {
                                                           KEY `code` (`code`)
                                                           )');
 
-        $this->mysql->query('DELETE FROM '.$this->table.'_rapport WHERE fichier = "'.$fichier.'"');
-        $this->mysql->query('CREATE TABLE IF NOT EXISTS '.$this->table.'_rapport (
+        $this->database->query('DELETE FROM '.$this->table.'_rapport WHERE fichier = "'.$fichier.'"');
+        $this->database->query('CREATE TABLE IF NOT EXISTS '.$this->table.'_rapport (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `fichier` varchar(500) NOT NULL,
   `element` varchar(500) NOT NULL,
@@ -49,24 +50,24 @@ class template_mysql extends template_db {
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1');
 
-        $this->mysql->query('DELETE FROM '.$this->table.'_rapport_dot WHERE fichier = "'.$fichier.'"');
-        $this->mysql->query('CREATE TABLE IF NOT EXISTS '.$this->table.'_rapport_dot (
+        $this->database->query('DELETE FROM '.$this->table.'_rapport_dot WHERE fichier = "'.$fichier.'"');
+        $this->database->query('CREATE TABLE IF NOT EXISTS '.$this->table.'_rapport_dot (
   `a` varchar(255) NOT NULL,
   `b` varchar(255) NOT NULL,
   `cluster` varchar(255) NOT NULL DEFAULT \'\',
   `module` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1');
 
-        $this->mysql->query('DELETE FROM '.$this->table.'_rapport_module WHERE fichier = "'.$fichier.'"');
-        $this->mysql->query('CREATE TABLE IF NOT EXISTS '.$this->table.'_rapport_module (
+        $this->database->query('DELETE FROM '.$this->table.'_rapport_module WHERE fichier = "'.$fichier.'"');
+        $this->database->query('CREATE TABLE IF NOT EXISTS '.$this->table.'_rapport_module (
   `module` varchar(255) NOT NULL,
   `fait` datetime NOT NULL,
   `format` enum("html","dot","gefx") NOT NULL,
   PRIMARY KEY (`module`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1');
 
-        $this->mysql->query('DELETE FROM '.$this->table_tags.' WHERE fichier = "'.$fichier.'"');
-        $this->mysql->query('CREATE TABLE IF NOT EXISTS '.$this->table_tags.' (
+        $this->database->query('DELETE FROM '.$this->table_tags.' WHERE fichier = "'.$fichier.'"');
+        $this->database->query('CREATE TABLE IF NOT EXISTS '.$this->table_tags.' (
   `token_id` int(10) unsigned NOT NULL,
   `token_sub_id` int(10) unsigned NOT NULL,
   `type` varchar(50) NOT NULL,
@@ -74,14 +75,14 @@ class template_mysql extends template_db {
   KEY `token_sub_id` (`token_sub_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1');
 
-        $this->mysql->query('delimiter //');
-        $this->mysql->query('CREATE TRIGGER auto_tag BEFORE DELETE ON `tokens`
+        $this->database->query('delimiter //');
+        $this->database->query('CREATE TRIGGER auto_tag BEFORE DELETE ON `tokens`
 FOR EACH ROW
 BEGIN
 DELETE FROM tokens_tags WHERE token_id = OLD.id OR token_sub_id = OLD.id;
 END;
 //');
-        $this->mysql->query('delimiter ;');
+        $this->database->query('delimiter ;');
         
         $this->root = $root;
 

@@ -14,9 +14,10 @@ class properties_defined extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
+        $concat = $this->concat("T2.class","'->'","T2.code");
         $requete = <<<SQL
 INSERT INTO <rapport> 
-SELECT 0, T1.fichier, concat(T2.class,'->',T2.code) as code, T2.id, '{$this->name}' 
+SELECT NULL, T1.fichier, $concat as code, T2.id, '{$this->name}' 
 FROM <tokens> T1
   JOIN <tokens> T2 
   ON T2.fichier = T1.fichier AND 

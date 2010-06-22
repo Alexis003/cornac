@@ -15,7 +15,7 @@ class undeffunctions extends modules {
 
         $requete = <<<SQL
 INSERT INTO <rapport> 
-   SELECT 0, T1.fichier, T2.code, T1.id, '{$this->name}'
+   SELECT NULL, T1.fichier, T2.code, T1.id, '{$this->name}'
    FROM <tokens> T1
     JOIN <tokens_tags> TT
         ON T1.id = TT.token_id  
