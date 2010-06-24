@@ -23,6 +23,10 @@ $tests = array(
 'class.classes_unused.test.php',
 'class.php_modules.test.php',
 'class.php_functions.test.php',
+'class.xml_functions.test.php',
+'class.functions_frequency.test.php',
+'class.emptyfunctions.test.php',
+
 // Prochain tests
 );
 
