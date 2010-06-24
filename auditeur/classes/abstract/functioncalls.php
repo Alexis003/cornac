@@ -10,7 +10,7 @@ class functioncalls extends modules {
 	}
 	
 	public function analyse() {
-	    if (!is_array($this->functions) || empty($this->functions) || empty($this->name) ) {
+	    if (!is_array($this->functions) || empty($this->functions)) {
 	        print "Aucune fonction fournie pour ".__CLASS__." : annulation du traitement\n";
 	        die();
 	    }

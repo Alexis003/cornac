@@ -1,35 +1,73 @@
 <?php
 
-class php_modules extends functioncalls {
-	protected	$description = 'Liste des fonctions de dossier';
-	protected	$description_en = 'usage of directory functions';
+class php_modules extends modules {
+	protected	$description = 'Liste des modules PHP utilisés';
+	protected	$description_en = 'PHP modules being used';
 
 	function __construct($mid) {
         parent::__construct($mid);
         
     	$this->name = __CLASS__;
 	}
+
+	function dependsOn() {
+	    return array('php_functions');
+	}
 	
 	public function analyse() {
-	    $this->functions = modules::getPHPFunctions();
+        $this->clean_rapport();
+        $this->functions = modules::getPHPFunctions();
 	    
-	    $requete = "SELECT distinct element FROM <rapport> WHERE module = '{$this->name}'";
+	    $requete = <<<SQL
+INSERT INTO <rapport>
+SELECT NULL, fichier, element, token_id, '{$this->name}' FROM <rapport> WHERE module = 'php_functions'
+SQL;
 	    $res = $this->exec_query($requete);
 
-        $fonctions[] = array();
+	    $requete = <<<SQL
+SELECT DISTINCT element FROM <rapport> WHERE module = '{$this->name}'
+SQL;
+	    $res = $this->exec_query($requete);
+
+        $fonctions = array();
         while($ligne = $res->fetchColumn()) {
             $fonctions[] = $ligne;
         }
         
         $exts = get_loaded_extensions();
         foreach($exts as $ext) {
+            $ext = strtolower($ext);
             $functions = get_extension_funcs($ext);
-            if (!is_array($functions)) { print "pas de tableau $ext\n"; continue; }
+            if (!is_array($functions)) { 
+                continue; 
+            }
             $liste = array_intersect($functions, $fonctions);
             if (count($liste) > 0) {
-                $requete = "UPDATE <rapport> SET element = '$ext' WHERE module = '{$this->name}' AND element in ( '".join("','", $liste)."')";
-                $this->exec_query($requete);
+                $in = join("','", $liste);
+                $requete = <<<SQL
+UPDATE <rapport> SET element = '$ext' 
+    WHERE module = '{$this->name}' AND element in ( '$in')
+SQL;
+                $res = $this->exec_query($requete);
+                $fonctions = array_diff($fonctions, $liste);
             }
+        }
+
+        $functions = modules::getPHPStandardFunctions();
+        $liste = array_intersect($functions, $fonctions);
+        if (count($liste) > 0) {
+            $in = join("','", $liste);
+            $requete = <<<SQL
+UPDATE <rapport> SET element = '$ext' 
+WHERE module = '{$this->name}' AND element in ( '$in')
+SQL;
+            $res = $this->exec_query($requete);
+            $fonctions = array_diff($fonctions, $liste);
+        }
+
+        
+        if (count($fonctions) != 0) {
+            print_r($fonctions);
         }
 	}
 }

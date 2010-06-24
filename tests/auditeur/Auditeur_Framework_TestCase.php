@@ -8,7 +8,7 @@ $debut = microtime(true);
 //./tokenizeur.php -r -d ./tests/auditeur/scripts/ -g mysql,cache -I testsunitaires
 $shell = <<<SHELL
 cd ../..
-./tokenizeur.php -r -d ./tests/auditeur/scripts/ -g mysql,cache -I testsunitaires
+./tokenizeur.php -r -d ./tests/auditeur/scripts/ -g sqlite,cache -I testsunitaires
 cd auditeur
 ./auditeur.php -p tu
 SHELL;
@@ -35,7 +35,7 @@ SHELL;
 
         $shell = <<<SHELL
 cd ../../auditeur
-php lecture_module.php -I tu -a {$this->name} -f ./tests/auditeur/scripts/{$this->name}.php
+php lecture_module.php -I tu -p tu -a {$this->name} -f ./tests/auditeur/scripts/{$this->name}.php
 SHELL;
 
         $retour = shell_exec($shell);

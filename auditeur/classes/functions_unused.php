@@ -23,6 +23,7 @@ SELECT NULL, TR1.fichier, TR1.element AS code, TR1.id, '{$this->name}'
     ON TR1.element = TR2.element AND TR2.module='functionscalls' 
     WHERE TR1.module = 'deffunctions' AND TR2.module IS NULL
 SQL;
+        print $this->prepare_query($requete);
         $this->exec_query($requete);
 	}
 }

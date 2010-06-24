@@ -21,6 +21,8 @@ $tests = array(
 //'class.array_duplication.test.php',
 'class.classes_undefined.test.php',
 'class.classes_unused.test.php',
+'class.php_modules.test.php',
+'class.php_functions.test.php',
 // Prochain tests
 );
 

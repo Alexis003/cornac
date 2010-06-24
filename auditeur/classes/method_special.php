@@ -39,7 +39,7 @@ WHERE scope IN ( '__autoload' ) AND T1.type='_function'
 GROUP BY scope;
 
 SQL;
-    $this->exec_query($requete);
+        $this->exec_query($requete);
 	}
 }
 

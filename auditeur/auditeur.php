@@ -53,7 +53,7 @@ $INI = parse_ini_file(INI, true);
 $modules = array(
 '_new',
 'affectations_variables',
-'appelsfonctions',
+//'appelsfonctions',
 'arobases',
 'classes',
 'classes_hierarchie',
@@ -97,6 +97,7 @@ $modules = array(
 'nonphp_functions',
 'parentheses',
 'php_functions',
+'php_modules',
 'proprietes_publiques',
 'regex',
 'returns',

@@ -79,7 +79,7 @@ if (!empty($fichier)) {
     $requete .= ' AND fichier='.$database->quote($fichier);
 }
 $res = $database->query($requete);
-//print_r($mysql->errorInfo());
+//print_r($database->errorInfo());
 
 // @attention : should support -s for summaries. 
 

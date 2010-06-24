@@ -67,14 +67,14 @@ SQL;
 $requete = <<<SQL
 INSERT INTO <rapport_dot> 
 SELECT $concat1, $concat2, T1.fichier, '{$this->name}'
-  from tokens T1
-  join tokens_cache T2 
+  from <tokens> T1
+  join <tokens_cache> T2 
     on T1.id = T2.id
-  join tokens T3
+  join <tokens> T3
     on T1.fichier = T3.fichier AND
        T3.droite = T1.droite + 1 AND
        T3.code = '\$this'
-  join tokens T4
+  join <tokens> T4
     on T1.fichier = T4.fichier AND
        T4.droite = T1.droite + 4
 where 
@@ -84,14 +84,14 @@ SQL;
 
 $requete = <<<SQL
 SELECT T4.code AS methode, T1.class as classe
-  from tokens T1
-  join tokens_cache T2 
+  from <tokens> T1
+  join <tokens_cache> T2 
     on T1.id = T2.id
-  join tokens T3
+  join <tokens> T3
     on T1.fichier = T3.fichier AND
        T3.droite = T1.droite + 1 AND
        T3.code != '\$this'
-  join tokens T4
+  join <tokens> T4
     on T1.fichier = T4.fichier AND
        T4.droite = T1.droite + 4
 where 
@@ -104,7 +104,7 @@ SQL;
         while($ligne = $res->fetch(PDO::FETCH_ASSOC)) {
 $requete = <<<SQL
 SELECT T1.element
-  from tokens_rapport T1
+  from <rapport> T1
 where 
  T1.module='defmethodes' AND 
  T1.element NOT LIKE "{$ligne["classe"]}->%" AND
