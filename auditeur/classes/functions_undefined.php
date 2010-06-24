@@ -1,6 +1,6 @@
 <?php
 
-class Functions_undefined extends modules {
+class functions_undefined extends modules {
     protected $not = false; 
 
 	function __construct($mid) {
@@ -27,6 +27,7 @@ SELECT NULL, TR1.fichier, TR1.element AS code, TR1.id, '{$this->name}'
     WHERE TR1.module = 'functionscalls' AND TR2.element IS NULL AND
     TR1.element NOT IN ('$in');
 SQL;
+
         $this->exec_query($requete);
 
 

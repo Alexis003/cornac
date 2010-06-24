@@ -38,7 +38,6 @@ WHERE T1.type='_function'  AND
       T2.type='functioncall' AND 
       T3.code NOT IN ('$in');
 SQL;
-        print $this->prepare_query($requete);
         die();
         $this->exec_query($requete);
 */
@@ -115,9 +114,11 @@ SQL;
             $res2 = $this->exec_query($requete);            
             
             if ($res2->rowCount() == 0) {
+            /*
                 print_r($ligne);
                 print $this->prepare_query($requete);
                 print_r($res2->fetchall());
+                */
                 $erreurs++;
             }
             $total++;

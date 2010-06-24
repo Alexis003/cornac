@@ -166,10 +166,13 @@ make the web publication a simple include
 find a nice display for auditeur export in HTML/Web version
 See how cache template must be used with mysql/sqlite
 
-Merge todos
+Merge todos from auditeur and tokenizeur in one. 
 
 Make the comment analyzer, to gather suggestion from code (@todo, @question, @.? )
 Add an option for the tokenizeur to clean the tables before working (default : append new files). 
 Stop script when option is unrecognized (all of them);
 Display dots when parsing the file (tokenizer)
 Display dots when processing analyzers (auditeur)
+
+Detect multiple definitions of functions/classes (things that should be there only once : how can we process that then?)
+Detect missing elements in classes (like methods, properties, etc)
