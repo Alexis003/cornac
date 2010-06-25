@@ -30,7 +30,7 @@ SHELL;
         $retour = shell_exec($shell);
         if ($retour != "No syntax errors detected in ./scripts/".$this->name.".php
 ") {
-            $this->assertFalse(true, " le script /".$this->name." ne compile pas\n");
+            $this->assertFalse(true, " le script scripts/".$this->name.".php ne compile pas\n");
 }
 
         $shell = <<<SHELL
@@ -71,7 +71,8 @@ SHELL;
         $retour = shell_exec($shell);
         if ($retour != "No syntax errors detected in ./scripts/".$this->name.".php
 ") {
-            $this->assertFalse(true, " le script /".$this->name." ne compile pas\n");
+            print $retour; 
+            $this->assertFalse(true, " le script scripts/".$this->name.".php ne compile pas\n");
 }
 
         $shell = <<<SHELL

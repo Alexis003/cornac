@@ -9,3 +9,4 @@
 ./tokenizeur.php  -r -d ./References/orangehrm-2.5.0.4/ -I ini/orangehrm.ini -g mysql,cache > log/orangehrm.log 
 ./tokenizeur.php  -r -d ./References/PHP_CodeBrowser-b588cde/ -I ini/phpcodebrowser.ini -g mysql,cache > log/phpcodebrowser.log 
 ./tokenizeur.php  -r -d ./References/PHPUnit-3.4.9/ -I ini/phpunit.ini -g mysql,cache > log/phpunit.log 
+./tokenizeur.php  -r -d ./References/optima4/ -I ini/optima4.ini -g mysql,cache > log/optima4.log 

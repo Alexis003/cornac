@@ -61,6 +61,8 @@ $modules = array(
 'constantes_classes',
 'defconstantes',
 'deffunctions',
+'doubledeffunctions',
+'doubledefclass',
 'defmethodes',
 'dieexit',
 'dir_functions',

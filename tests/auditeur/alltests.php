@@ -26,6 +26,8 @@ $tests = array(
 'class.xml_functions.test.php',
 'class.functions_frequency.test.php',
 'class.emptyfunctions.test.php',
+'class.doubledeffunctions.test.php',
+'class.doubledefclass.test.php',
 
 // Prochain tests
 );
