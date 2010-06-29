@@ -176,3 +176,6 @@ Display dots when processing analyzers (auditeur)
 
 Detect multiple definitions of functions/classes (things that should be there only once : how can we process that then?)
 Detect missing elements in classes (like methods, properties, etc)
+
+Add INI in the PHPFilter class of the tokenizer.
+List open-ended inclusions (including files that we don't know about)
