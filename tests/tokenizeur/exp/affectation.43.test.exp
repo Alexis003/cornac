@@ -22,7 +22,7 @@ tests/tokenizeur/scripts/affectation.43.test.php
               gauche : 
                   concatenation 
                   0 : 
-                      literals " c: "
+                      literals  c: 
                   1 : 
                       method variable $d
                       appel de methode : functioncall 307 "e" ( ( ) ) : 
@@ -31,4 +31,4 @@ tests/tokenizeur/scripts/affectation.43.test.php
                               arglist 
                               Liste d'argument vide
                   2 : 
-                      literals "f"
+                      literals f

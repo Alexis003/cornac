@@ -12,9 +12,9 @@ tests/tokenizeur/scripts/affectation.8.test.php
           gauche : 
               concatenation 
               0 : 
-                  literals "a"
+                  literals a
               1 : 
-                  literals "b"
+                  literals b
       1 : 
           affectation 
           droite : 
@@ -23,6 +23,6 @@ tests/tokenizeur/scripts/affectation.8.test.php
           gauche : 
               concatenation 
               0 : 
-                  literals "c"
+                  literals c
               1 : 
-                  literals "d"
+                  literals d

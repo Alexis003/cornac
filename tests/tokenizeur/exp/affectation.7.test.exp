@@ -10,6 +10,6 @@ tests/tokenizeur/scripts/affectation.7.test.php
       gauche : 
           concatenation 
           0 : 
-              literals "a"
+              literals a
           1 : 
-              literals "b"
+              literals b

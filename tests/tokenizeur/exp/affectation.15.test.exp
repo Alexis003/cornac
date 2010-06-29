@@ -13,4 +13,4 @@ tests/tokenizeur/scripts/affectation.15.test.php
               variable $b
            "=" 
           gauche : 
-              literals "c"
+              literals c

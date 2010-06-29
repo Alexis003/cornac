@@ -10,8 +10,8 @@ tests/tokenizeur/scripts/literals.10.test.php
       gauche : 
           concatenation 
           0 : 
-              literals "a"
+              literals a
           1 : 
-              variable concatenation literals 'b' . variable $c . literals 'd'  
+              variable concatenation literals b . variable $c . literals d  
           2 : 
-              literals "d"
+              literals d

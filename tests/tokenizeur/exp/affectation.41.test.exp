@@ -12,7 +12,7 @@ tests/tokenizeur/scripts/affectation.41.test.php
           appel de fonction : substr: 
               arglist 
               0 : 
-                  literals "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789./"
+                  literals abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789./
               1 : 
                   logique 
                   droite : 

@@ -18,6 +18,6 @@ tests/tokenizeur/scripts/affectation.34.test.php
           appel de fonction : explode: 
               arglist 
               0 : 
-                  literals 'a'
+                  literals a
               1 : 
-                  literals 'abacada'
+                  literals abacada

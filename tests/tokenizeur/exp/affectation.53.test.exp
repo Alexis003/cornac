@@ -13,4 +13,4 @@ tests/tokenizeur/scripts/affectation.53.test.php
               appel de fonction : die: 
                   arglist 
                   0 : 
-                      literals 'd'
+                      literals d

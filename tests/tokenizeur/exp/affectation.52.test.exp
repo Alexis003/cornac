@@ -9,4 +9,4 @@ tests/tokenizeur/scripts/affectation.52.test.php
        "=" 
       gauche : 
           inclusion include
-              literals 'b.php'
+              literals b.php
