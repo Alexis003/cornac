@@ -65,8 +65,10 @@ $INI = parse_ini_file(INI, true);
 
 if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
     $database = new pdo($INI['mysql']['dsn'],$INI['mysql']['username'], $INI['mysql']['password']);
+//    print "MySQL\n";
 } elseif (isset($INI['sqlite'])  && $INI['sqlite']['active'] == true) {
     $database = new pdo($INI['sqlite']['dsn']);
+//    print "sqlite\n";
 } else {
     print "No database configuration provided (no mysql, no sqlite)\n";
     die();
@@ -79,7 +81,6 @@ if (!empty($fichier)) {
     $requete .= ' AND fichier='.$database->quote($fichier);
 }
 $res = $database->query($requete);
-//print_r($database->errorInfo());
 
 // @attention : should support -s for summaries. 
 
@@ -138,6 +139,7 @@ Options :
 -F     : format to use. Supported : xml (default)
 -s     : produce the current summary of available analyzer
 -h     : This help
+-p     : application
 -o     : folder of output
 
 SHELL;
