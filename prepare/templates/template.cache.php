@@ -15,26 +15,33 @@ class template_cache extends template {
         
         global $INI;
         
-        global $INI;
-        
-        $this->table = $INI['template.sqlite']['table'] ?: 'tokens';
-        $this->table_tags = $this->table.'_tags';
-
         if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
-           $this->database = new pdo($INI['mysql']['dsn'],$INI['mysql']['username'], $INI['mysql']['password']);
+            $this->database = new pdo($INI['mysql']['dsn'],$INI['mysql']['username'], $INI['mysql']['password']);
+            $this->table = $INI['template.mysql']['table'] ?: 'tokens';
+
+            $this->database->query('DELETE FROM '.$this->table.'_cache WHERE fichier = "'.$fichier.'"');
+            $this->database->query('CREATE TABLE IF NOT EXISTS '.$this->table.'_cache (
+                                                          id       INTEGER PRIMARY KEY AUTO_INCREMENT, 
+                                                          code     VARCHAR(255),
+                                                          fichier  VARCHAR(255)
+                                                          )');
         } elseif (isset($INI['sqlite']) && $INI['sqlite']['active'] == true) {
-           $this->database = new pdo($INI['sqlite']['dsn']);
+            $this->database = new pdo($INI['sqlite']['dsn']);
+            $this->table = $INI['template.sqlite']['table'] ?: 'tokens';
+
+            $this->database->query('DELETE FROM '.$this->table.'_cache WHERE fichier = "'.$fichier.'"');
+            $this->database->query('CREATE TABLE IF NOT EXISTS '.$this->table.'_cache (
+                                                          id       INTEGER PRIMARY KEY AUTOINCREMENT, 
+                                                          code     VARCHAR(255),
+                                                          fichier  VARCHAR(255)
+                                                          )');
         } else {
             print "No database configuration provided (no db)\n";
             die();
         }
         
-        $this->database->query('DELETE FROM '.$this->table.'_cache WHERE fichier = "'.$fichier.'"');
-        $this->database->query('CREATE TABLE IF NOT EXISTS '.$this->table.'_cache (
-                                                          id       INTEGER PRIMARY KEY AUTOINCREMENT, 
-                                                          code     VARCHAR(255),
-                                                          fichier  VARCHAR(255)
-                                                          )');
+        $this->table_tags = $this->table.'_tags';
+
         $this->root = $root;
     }
     
