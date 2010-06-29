@@ -15,7 +15,7 @@ class template_mysql extends template_db {
         $this->table_tags = $this->table.'_tags';
 
         if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
-           $this->mysql = new pdo($INI['mysql']['dsn'],$INI['mysql']['username'], $INI['mysql']['password']);
+           $this->database = new pdo($INI['mysql']['dsn'],$INI['mysql']['username'], $INI['mysql']['password']);
         } else {
             print "No database configuration provided (no mysql)\n";
             die();
@@ -47,7 +47,9 @@ class template_mysql extends template_db {
   `element` varchar(500) NOT NULL,
   `token_id` int(10) unsigned NOT NULL,
   `module` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `element` (`element`),
+  KEY `module` (`module`)
 ) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1');
 
         $this->database->query('DELETE FROM '.$this->table.'_rapport_dot WHERE fichier = "'.$fichier.'"');
