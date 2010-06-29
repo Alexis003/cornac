@@ -1,32 +1,50 @@
 <?php
 
 class literals extends token {
-    function __construct($signe = null) {
+    private $value = null;     // value of the literal
+    private $delimiter = null; // delimter used. Used for string literals
+    
+    function __construct($entree = null) {
         parent::__construct(array());
         
-        $this->valeur = $signe[0]->getCode();
-        
+        $this->value = $entree[0]->getCode();
+        if ($this->value[0] == '"' || $this->value[0] == "'") {
+            $this->delimiter = $this->value[0];
+            $this->value = trim($this->value, "'\"");
+        }
+
         if (isset($signe[1])) {
-            $this->valeur = trim($this->valeur,"'\"");
+//            $this->value = trim($this->value,"'\"");
             if ($signe[1]->checkCode("-")){
-                $this->valeur = -1 * $this->valeur;
+                $this->value = -1 * $this->value;
             }
         }
     }
+    
+    function getCode() {
+        if ($this->value[0] == '"' || $this->value[0] == "'") {
+            $this->delimiter = $this->value[0];
+            $this->value = trim($this->value, "'\"");
+        }
+        return $this->value;
+    }
 
     function __toString() {
-        return __CLASS__." ".$this->valeur;
+        return __CLASS__." ".$this->value;
     }
 
     function getLiteral() {
-        return $this->valeur;
+        return $this->value;
+    }
+
+    function getDelimiter() {
+        return $this->delimiter;
     }
 
     static function getRegex() {
         return array('literals_regex',
-                    'literals_heredoc_regex'
-        
-                        );
+                     'literals_heredoc_regex',
+                    );
     }
 }
 
