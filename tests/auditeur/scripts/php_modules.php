@@ -1,12 +1,14 @@
 <?php
 
-// xdebug
-xdebug_get_stack_depth();
+// simplexml
+simplexml_load_string();
 
 // sqlite
 sqlite_open();
 
 // 
-//echo "";
+echo "";
 
+// no xdebug
+//xdebug_get_stack_depth
 ?>

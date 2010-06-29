@@ -5,7 +5,7 @@ class php_functions_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
         $this->name = 'php_functions';
-        $this->attendus = array('xdebug_get_stack_depth','sqlite_open','echo');
+        $this->attendus = array('xdebug_get_stack_depth','sqlite_open','echo','ECHO', 'eCHo');
         $this->inattendus = array();
         
         parent::generic_test();

@@ -1,20 +1,22 @@
 <?php
 
-require_once 'PHPUnit/Framework.php'; 
-//include_once('Phpunit_Framework_TestCase.php');
+$args = $GLOBALS['argv'];
 
-print "\nAnalyse des nouveaux fichiers\n";
+require_once 'PHPUnit/Framework.php'; 
+
 $debut = microtime(true);
-//./tokenizeur.php -r -d ./tests/auditeur/scripts/ -g mysql,cache -I testsunitaires
-$shell = <<<SHELL
+if (in_array('-f', $args)) {
+    print "\nAnalyse des nouveaux fichiers\n";
+    $shell = <<<SHELL
 cd ../..
-./tokenizeur.php -r -d ./tests/auditeur/scripts/ -g sqlite,cache -I testsunitaires
+./tokenizeur.php -r -d ./tests/auditeur/scripts/ -g mysql,cache -I testsunitaires
 cd auditeur
-./auditeur.php -p tu
+./auditeur.php -p tu -I testsunitaires
 SHELL;
-$retour = shell_exec($shell);
-$fin = microtime(true);
-print "  Faite (".number_format(($fin - $debut), 2)." s)\n";
+    $retour = shell_exec($shell);
+    $fin = microtime(true);
+    print "  Faite (".number_format(($fin - $debut), 2)." s)\n";
+}
 
 class Auditeur_Framework_TestCase  extends PHPUnit_Framework_TestCase {
     protected $name="Auditeur_Framework_TestCase";
@@ -35,7 +37,7 @@ SHELL;
 
         $shell = <<<SHELL
 cd ../../auditeur
-php lecture_module.php -I tu -p tu -a {$this->name} -f ./tests/auditeur/scripts/{$this->name}.php
+php lecture_module.php -I testsunitaires -p tu -a {$this->name} -f ./tests/auditeur/scripts/{$this->name}.php
 SHELL;
 
         $retour = shell_exec($shell);

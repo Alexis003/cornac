@@ -28,6 +28,7 @@ $tests = array(
 'class.emptyfunctions.test.php',
 'class.doubledeffunctions.test.php',
 'class.doubledefclass.test.php',
+'class.inclusions.test.php',
 
 // Prochain tests
 );
