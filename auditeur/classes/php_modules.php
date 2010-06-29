@@ -31,7 +31,7 @@ SQL;
 
         $fonctions = array();
         while($ligne = $res->fetchColumn()) {
-            $fonctions[] = $ligne;
+            $fonctions[] = strtolower($ligne);
         }
         
         $exts = get_loaded_extensions();
@@ -39,6 +39,11 @@ SQL;
             $ext = strtolower($ext);
             $functions = get_extension_funcs($ext);
             if (!is_array($functions)) { 
+//                print "$ext n'a pas de tableau de fonctions\n";
+                continue; 
+            }
+            if (empty($functions)) {
+//                print "$ext a un tableau de fonctions vide\n";
                 continue; 
             }
             $liste = array_intersect($functions, $fonctions);
@@ -51,6 +56,7 @@ SQL;
                 $res = $this->exec_query($requete);
                 $fonctions = array_diff($fonctions, $liste);
             }
+            unset($liste);
         }
 
         $functions = modules::getPHPStandardFunctions();
@@ -58,7 +64,7 @@ SQL;
         if (count($liste) > 0) {
             $in = join("','", $liste);
             $requete = <<<SQL
-UPDATE <rapport> SET element = '$ext' 
+UPDATE <rapport> SET element = 'standard' 
 WHERE module = '{$this->name}' AND element in ( '$in')
 SQL;
             $res = $this->exec_query($requete);
