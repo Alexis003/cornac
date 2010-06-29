@@ -82,6 +82,17 @@ if (!empty($fichier)) {
 }
 $res = $database->query($requete);
 
+// probably in _dot. Just try it. is it worth knowing which table to query? 
+/*
+if ($res->rowCOunt() == 0) {
+    $requete = 'SELECT * FROM '.$prefixe.'_rapport_dot WHERE module='.$database->quote($module);
+    if (!empty($fichier)) {
+        $requete .= ' AND cluster='.$database->quote($fichier);
+    }
+    $res = $database->query($requete);
+}
+*/
+
 // @attention : should support -s for summaries. 
 
 include('render/'.$format.'.php');

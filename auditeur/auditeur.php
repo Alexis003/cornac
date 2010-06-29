@@ -18,6 +18,7 @@ if ($id = array_search('-help', $argv)) {
 
 if ($id = array_search('-d', $argv)) {
     define("DO_DEPENDENCES",true);
+    unset($args[$id]);
 } else {
     define("DO_DEPENDENCES",false);
 }
@@ -134,6 +135,7 @@ $modules = array(
 'properties_used',
 'classes_unused',
 'classes_undefined',
+'html_tags', 
 );
 
 if ($id = array_search('-a', $argv)) {
@@ -145,7 +147,7 @@ if ($id = array_search('-a', $argv)) {
     if (count($diff) > 0) {
         print count($diff)." modules are unknown, and omitted : ".join(', ', $diff)."\n";
     }
-
+    
     $m = array_intersect($m, $modules);
     
     if (count($m) == 0) {
@@ -201,7 +203,7 @@ foreach($modules as $module) {
 }
 
 function analyse_module($module) {
-    include_once('classes/'.$module.'.php');
+    require_once('classes/'.$module.'.php');
     global $modules_faits, $database,$sommaire;
     
     if (isset($modules_faits[$module])) {  
@@ -219,6 +221,7 @@ function analyse_module($module) {
                 if (DO_DEPENDENCES) {
                     analyse_module($m);
                 } else {
+                    print " omitted ";
                     // @todo : check if dependances are there or not. 
                     // if not, they should be done, of course!
                     // nothing

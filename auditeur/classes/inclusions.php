@@ -19,8 +19,22 @@ INSERT INTO <rapport>
    FROM <tokens>  T1
    WHERE T1.type = 'inclusion';
 SQL;
-
         $this->exec_query($requete);
+
+        $requete = <<<SQL
+INSERT INTO <rapport>
+  SELECT NULL, T1.fichier, T2.code, T1.id, '{$this->name}'
+  FROM  many T1
+  JOIN many_tags TT 
+    ON TT.token_id = T1.id
+  JOIN many T2
+    ON TT.token_sub_id = T2.id AND
+       T1.fichier = T2.fichier AND
+       TT.type='fonction' 
+       AND T2.code='loadLibrary'
+SQL;
+        $this->exec_query($requete);
+
 	}
 }
 

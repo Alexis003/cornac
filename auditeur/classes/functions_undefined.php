@@ -27,11 +27,21 @@ SELECT NULL, TR1.fichier, TR1.element AS code, TR1.id, '{$this->name}'
     WHERE TR1.module = 'functionscalls' AND TR2.element IS NULL AND
     TR1.element NOT IN ('$in');
 SQL;
-
         $this->exec_query($requete);
 
 
 	}
 }
 
+/*
+SELECT NULL, TR1.fichier, TR1.element AS code, TR1.id, 'functions_undefined'
+    FROM tu_rapport  TR1
+    LEFT JOIN tu_rapport  TR2 
+    ON TR1.element = TR2.element AND TR2.module='deffunctions' 
+    WHERE TR1.module = 'functionscalls' AND TR2.element IS NULL AND
+    TR1.element NOT IN ('zend_version', 'func_num_args');
+    
+
+
+*/
 ?>
