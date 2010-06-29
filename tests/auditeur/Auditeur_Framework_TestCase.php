@@ -11,7 +11,7 @@ if (in_array('-f', $args)) {
 cd ../..
 ./tokenizeur.php -r -d ./tests/auditeur/scripts/ -g mysql,cache -I testsunitaires
 cd auditeur
-./auditeur.php -p tu -I testsunitaires
+./auditeur.php -d -p tu -I testsunitaires
 SHELL;
     $retour = shell_exec($shell);
     $fin = microtime(true);
