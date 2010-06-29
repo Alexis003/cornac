@@ -159,7 +159,7 @@ if ($id = array_search( '-d', $argv)) {
     }
     
     if (RECURSIVE) {
-        $fichiers = Liste_directories_recursive($dossier);
+        $fichiers = liste_directories_recursive($dossier);
 
         foreach($fichiers as $fichier) {
             $code = file_get_contents($fichier);
@@ -188,7 +188,8 @@ if ($id = array_search( '-d', $argv)) {
     }
     
     $objects = new arrayIterator(array($fichier => $fichier));
-    $scriptsPHP = new PHPFilter($objects);
+    $scriptsPHP = $objects;
+//    $scriptsPHP = new PHPFilter($objects);
 
 } elseif ($path !== false) {
     print "Travail dans le dossier $path \n";
@@ -569,7 +570,7 @@ function mon_log($message) {
     }
     
     if (!is_resource($LOG)) {
-        die("Le fichier de log est mort!\n");
+        die("Log file is not accessible for writing!\n");
     }
     
     fwrite($LOG, date('r')."\t$message\r");
@@ -610,11 +611,13 @@ TEXT;
     die();
 }
 
-function Liste_directories_recursive( $path = '.', $level = 0 ){ 
-    $ignore = array( 'cgi-bin', '.', '..' ); 
+function liste_directories_recursive( $path = '.', $level = 0 ){ 
     global $INI;
+
     if (isset($INI['tokenizeur']['ignore_dirs']) && !empty($INI['tokenizeur']['ignore_dirs'])) {
-        $ignore = array_merge($ignore, explode(',',$INI['tokenizeur']['ignore_dirs']));
+        $ignore_dirs = array_merge($ignore, explode(',',$INI['tokenizeur']['ignore_dirs']));
+    } else {
+        $ignore_dirs = array( 'cgi-bin', '.', '..' ); 
     }
     
     if (isset($INI['tokenizeur']['ignore_suffixe']) && !empty($INI['tokenizeur']['ignore_suffixe'])) {
@@ -631,9 +634,9 @@ function Liste_directories_recursive( $path = '.', $level = 0 ){
     $dh = opendir( $path ); 
     $retour = array();
     while( false !== ( $file = readdir( $dh ) ) ){ 
-        if( in_array( $file, $ignore ) ){ continue; }
+        if( in_array( $file, $ignore_dirs ) ){ continue; }
         if( is_dir( "$path/$file" ) ){ 
-            $r = Liste_directories_recursive( "$path/$file", ($level+1) ); 
+            $r = liste_directories_recursive( "$path/$file", ($level+1) ); 
             $retour = array_merge($retour, $r);
         } else { 
             if ($regex_suffixe && preg_match($regex_suffixe, $file)) { continue; }
