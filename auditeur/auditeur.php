@@ -16,6 +16,12 @@ if ($id = array_search('-help', $argv)) {
     die();
 }
 
+if ($id = array_search('-d', $argv)) {
+    define("DO_DEPENDENCES",true);
+} else {
+    define("DO_DEPENDENCES",false);
+}
+
 $args = $argv;
 if ($id = array_search('-p', $argv)) {
     $prefixe = $args[$id + 1];
@@ -205,13 +211,19 @@ function analyse_module($module) {
     $x = new $module($database);
     $dependances = $x->dependsOn();
     
-    
     if (count($dependances) > 0) {
         $manque = array_diff($dependances, $modules_faits);
         if (count($manque) > 0) {
             foreach($manque as $m) {
-                print "  +  $m\n";
-                analyse_module($m);
+                print "  +  $m";
+                if (DO_DEPENDENCES) {
+                    analyse_module($m);
+                } else {
+                    // @todo : check if dependances are there or not. 
+                    // if not, they should be done, of course!
+                    // nothing
+                }
+                print "\n";
             }
         } else {
             print "Dépendances faites\n";
@@ -235,10 +247,11 @@ prefix : tokens (default)
     -?    : this help
     -h    : this help
     -help : this help
-    -p    : prefixe for the tables to be used. Default to 'tokens'
     -a    : comma separated list of analyzers to be used. Defaut to all. 
+    -d    : refresh dependent analyzers (default : no)
     -f    : output format : html
     -o    : folder for output : /tmp
+    -p    : prefixe for the tables to be used. Default to 'tokens'
 
 TEXT;
     
