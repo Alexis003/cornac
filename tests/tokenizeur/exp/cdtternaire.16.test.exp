@@ -19,12 +19,12 @@ tests/tokenizeur/scripts/cdtternaire.16.test.php
                       literals 1
       1 : 
           cdtternaire ?
-          parentheses (functioncall 307 "function_exists" ( arglist(literals 'a') ) ) ? functioncall 307 "a" ( arglist(literals "b") )  : literals ""
+          parentheses (functioncall 307 "function_exists" ( arglist(literals a) ) ) ? functioncall 307 "a" ( arglist(literals b) )  : literals 
               parentheses 
-              ( "functioncall 307 "function_exists" ( arglist(literals 'a') ) " )
+              ( "functioncall 307 "function_exists" ( arglist(literals a) ) " )
               functioncall a
               appel de fonction : a: 
                   arglist 
                   0 : 
-                      literals "b"
-              literals ""
+                      literals b
+              literals 

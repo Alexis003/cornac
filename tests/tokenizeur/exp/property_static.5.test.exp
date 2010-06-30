@@ -4,7 +4,7 @@ tests/tokenizeur/scripts/property_static.5.test.php
   code : 
       affectation 
       droite : 
-          property_static 307 "self"::tableau variable $t[literals 'i']->
+          property_static 307 "self"::tableau variable $t[literals i]->
        "=" 
       gauche : 
           literals 0

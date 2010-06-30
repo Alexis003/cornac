@@ -8,7 +8,7 @@ tests/tokenizeur/scripts/functioncall.39.test.php
           appel de fonction : echo: 
               arglist 
               0 : 
-                  literals 'x'
+                  literals x
       1 : 
           rawtext 
           Texte : "311 "  <img src="""
@@ -27,9 +27,9 @@ tests/tokenizeur/scripts/functioncall.39.test.php
                               0 : 
                                   constante (                                  TYPE_DOMAINE )
                               1 : 
-                                  literals "/accueil_graph1_trt.php"
+                                  literals /accueil_graph1_trt.php
                   1 : 
-                      literals "?"
+                      literals ?
                   2 : 
                       variable $chart1URL
       3 : 
@@ -40,4 +40,4 @@ tests/tokenizeur/scripts/functioncall.39.test.php
           appel de fonction : echo: 
               arglist 
               0 : 
-                  literals 'y'
+                  literals y

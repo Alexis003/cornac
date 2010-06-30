@@ -9,9 +9,9 @@ tests/tokenizeur/scripts/logique.23.test.php
               tableau
                   tableau
                       variable $a
-                      literals 'b'
+                      literals b
                   property variable $dliterals e->
-              literals 'f'
+              literals f
       operateur :  "&"
       gauche : 
           property variable $gliterals h->

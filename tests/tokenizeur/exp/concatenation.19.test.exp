@@ -12,35 +12,35 @@ tests/tokenizeur/scripts/concatenation.19.test.php
           0 : 
               tableau
                   variable $i
-                  literals 'a'
+                  literals a
           1 : 
               literals .
           2 : 
               tableau
                   variable $i
-                  literals 'b'
+                  literals b
           3 : 
               literals .
           4 : 
               tableau
                   variable $i
-                  literals 'c'
+                  literals c
           5 : 
               literals .
           6 : 
               tableau
                   variable $i
-                  literals 'd'
+                  literals d
           7 : 
               literals -
           8 : 
               tableau
                   variable $i
-                  literals 'e'
+                  literals e
           9 : 
               tableau
                   variable $i
-                  literals 'f'
+                  literals f
           10 : 
               literals .
           11 : 
@@ -48,6 +48,6 @@ tests/tokenizeur/scripts/concatenation.19.test.php
                   tableau
                       tableau
                           variable $i
-                          literals 'g'
-                      literals 'x'
-                  literals 'x'
+                          literals g
+                      literals x
+                  literals x

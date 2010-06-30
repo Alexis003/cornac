@@ -15,12 +15,12 @@ tests/tokenizeur/scripts/ifthen.33.test.php
                "=" 
               gauche : 
                   method variable $d
-                  appel de methode : functioncall 307 "e" ( arglist(literals "f") ) : 
+                  appel de methode : functioncall 307 "e" ( arglist(literals f) ) : 
                       functioncall e
                       appel de fonction : e: 
                           arglist 
                           0 : 
-                              literals "f"
+                              literals f
        else 
           block 
           0 : 
@@ -30,9 +30,9 @@ tests/tokenizeur/scripts/ifthen.33.test.php
                "=" 
               gauche : 
                   method variable $h
-                  appel de methode : functioncall 307 "e" ( arglist(literals "i") ) : 
+                  appel de methode : functioncall 307 "e" ( arglist(literals i) ) : 
                       functioncall e
                       appel de fonction : e: 
                           arglist 
                           0 : 
-                              literals "i"
+                              literals i

@@ -7,4 +7,4 @@ tests/tokenizeur/scripts/property.7.test.php
       0 : 
           property property method_static 307 "classe"::functioncall 307 "method" ( ( ) ) ->literals property1literals property2->
       1 : 
-          literals '3'
+          literals 3

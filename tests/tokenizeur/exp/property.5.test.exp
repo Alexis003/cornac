@@ -8,4 +8,4 @@ tests/tokenizeur/scripts/property.5.test.php
           variable $a
        "=" 
       gauche : 
-          property variable $bconcatenation literals 'c' . variable $d  ->
+          property variable $bconcatenation literals c . variable $d  ->

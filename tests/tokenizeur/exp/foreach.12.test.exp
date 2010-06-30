@@ -36,8 +36,8 @@ tests/tokenizeur/scripts/foreach.12.test.php
               appel de fonction : str_replace: 
                   arglist 
                   0 : 
-                      literals '?*'
+                      literals ?*
                   1 : 
-                      literals '*'
+                      literals *
                   2 : 
                       variable $x

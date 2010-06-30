@@ -14,26 +14,26 @@ tests/tokenizeur/scripts/ifthen.51.test.php
                   variable $b
                "=" 
               gauche : 
-                  literals "1"
+                  literals 1
        else 
           block 
           0 : 
               ifthen if
               Condition 0) 
                   parentheses 
-                  ( "comparaison variable $c 283 "==" literals "2"" )
+                  ( "comparaison variable $c 283 "==" literals 2" )
                   block 
                   0 : 
                       functioncall echo
                       appel de fonction : echo: 
                           arglist 
                           0 : 
-                              literals "3"
+                              literals 3
                   1 : 
                       ifthen if
                       Condition 0) 
                           parentheses 
-                          ( "comparaison variable $d 283 "==" literals """ )
+                          ( "comparaison variable $d 283 "==" literals " )
                           block 
                           0 : 
                               affectation 
@@ -57,8 +57,8 @@ tests/tokenizeur/scripts/ifthen.51.test.php
                           variable $g
                        "=" 
                       gauche : 
-                          literals "6"
+                          literals 6
               Condition 1) 
                   parentheses 
-                  ( "affectation variable $h  "=" literals "7"" )
+                  ( "affectation variable $h  "=" literals 7" )
                   block 

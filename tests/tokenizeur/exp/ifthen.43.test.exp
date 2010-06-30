@@ -17,10 +17,10 @@ tests/tokenizeur/scripts/ifthen.43.test.php
                           tableau
                               property variable $bliterals c->
                               literals 0
-                          literals "d"
+                          literals d
                   273 ".=" 
                   gauche : 
-                      literals "e"
+                      literals e
       1 : 
           ifthen if
           Condition 0) 
@@ -32,7 +32,7 @@ tests/tokenizeur/scripts/ifthen.43.test.php
                   droite : 
                       tableau
                           property property variable $b->literals cliterals d->
-                          literals "e"
+                          literals e
                   273 ".=" 
                   gauche : 
-                      literals "f"
+                      literals f

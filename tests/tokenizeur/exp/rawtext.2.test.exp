@@ -10,7 +10,7 @@ tests/tokenizeur/scripts/rawtext.2.test.php
               variable $x
            "=" 
           gauche : 
-              literals "a"
+              literals a
       1 : 
           rawtext 
           Texte : "311 "b""
@@ -20,4 +20,4 @@ tests/tokenizeur/scripts/rawtext.2.test.php
               variable $x
            "=" 
           gauche : 
-              literals "c"
+              literals c

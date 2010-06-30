@@ -9,7 +9,7 @@ tests/tokenizeur/scripts/concatenation.22.test.php
        "=" 
       gauche : 
           cdtternaire ?
-          not ! ? concatenation literals 'f' . functioncall variable $g ( arglist(literals 'h') )  . literals 'i'   : literals 'j'
+          not ! ? concatenation literals f . functioncall variable $g ( arglist(literals h) )  . literals i   : literals j
               not !
                   functioncall empty
                   appel de fonction : empty: 
@@ -17,16 +17,16 @@ tests/tokenizeur/scripts/concatenation.22.test.php
                       0 : 
                           tableau
                               variable $b
-                              literals 'd'
+                              literals d
               concatenation 
               0 : 
-                  literals 'f'
+                  literals f
               1 : 
                   functioncall $g
                   appel de fonction : $g: 
                       arglist 
                       0 : 
-                          literals 'h'
+                          literals h
               2 : 
-                  literals 'i'
-              literals 'j'
+                  literals i
+              literals j

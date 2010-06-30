@@ -10,14 +10,14 @@ tests/tokenizeur/scripts/sequence.26.test.php
               variable $a
            "=" 
           gauche : 
-              literals ''
+              literals 
       1 : 
           affectation 
           droite : 
               variable $b
            "=" 
           gauche : 
-              literals 'c'
+              literals c
       2 : 
           _for 
             Init : affectation variable $i  "=" literals 1;
@@ -30,4 +30,4 @@ tests/tokenizeur/scripts/sequence.26.test.php
                       variable $f
                    "=" 
                   gauche : 
-                      literals 'g'
+                      literals g

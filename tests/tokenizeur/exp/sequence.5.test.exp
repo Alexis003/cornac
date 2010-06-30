@@ -29,9 +29,9 @@ tests/tokenizeur/scripts/sequence.5.test.php
               0 : 
                   concatenation 
                   0 : 
-                      literals 'a'
+                      literals a
                   1 : 
-                      literals 'b'
+                      literals b
                   2 : 
                       tableau
                           variable $t

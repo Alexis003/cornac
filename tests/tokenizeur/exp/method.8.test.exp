@@ -25,12 +25,12 @@ tests/tokenizeur/scripts/method.8.test.php
               arglist 
               0 : 
                   method variable $c
-                  appel de methode : functioncall 307 "get" ( arglist(literals 'd') ) : 
+                  appel de methode : functioncall 307 "get" ( arglist(literals d) ) : 
                       functioncall get
                       appel de fonction : get: 
                           arglist 
                           0 : 
-                              literals 'd'
+                              literals d
   rawtext 
   Texte : "311 " TR 
 ""

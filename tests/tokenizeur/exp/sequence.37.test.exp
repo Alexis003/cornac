@@ -25,12 +25,12 @@ Plus d'upgrade au cycle 7
   appel de fonction : f: 
       arglist 
       0 : 
-          literals 'g'
+          literals g
   Token ; ( Affichage par défaut)
   functioncall h
   appel de fonction : h: 
       arglist 
       0 : 
-          literals 'i'
+          literals i
   Token ; ( Affichage par défaut)
   Token ?> ( Affichage par défaut)

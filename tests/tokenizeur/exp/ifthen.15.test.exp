@@ -9,32 +9,32 @@ tests/tokenizeur/scripts/ifthen.15.test.php
           ( "variable $condition1" )
           block 
           0 : 
-              literals 'then1'
+              literals then1
       Condition 1) 
           parentheses 
           ( "variable $condition2" )
           block 
           0 : 
-              literals 'then2'
+              literals then2
       Condition 2) 
           parentheses 
           ( "variable $condition3" )
           block 
           0 : 
-              literals 'then3'
+              literals then3
       Condition 3) 
           parentheses 
           ( "variable $condition4" )
           block 
           0 : 
-              literals 'then4'
+              literals then4
       Condition 4) 
           parentheses 
           ( "variable $condition5" )
           block 
           0 : 
-              literals 'then5'
+              literals then5
        else 
           block 
           0 : 
-              literals 'then6'
+              literals then6

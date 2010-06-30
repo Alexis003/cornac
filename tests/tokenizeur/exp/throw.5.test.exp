@@ -5,4 +5,4 @@ tests/tokenizeur/scripts/throw.5.test.php
       _throw 
           tableau
               variable $x
-              literals 'tableau'
+              literals tableau

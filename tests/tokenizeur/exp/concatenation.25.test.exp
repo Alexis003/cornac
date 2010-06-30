@@ -10,7 +10,7 @@ tests/tokenizeur/scripts/concatenation.25.test.php
       gauche : 
           concatenation 
           0 : 
-              literals '&nbsp;('
+              literals &nbsp;(
           1 : 
               noscream @
                   297 "++"tableau variable $n[variable $boucle] 
@@ -18,4 +18,4 @@ tests/tokenizeur/scripts/concatenation.25.test.php
                           variable $n
                           variable $boucle
           2 : 
-              literals ")"
+              literals )

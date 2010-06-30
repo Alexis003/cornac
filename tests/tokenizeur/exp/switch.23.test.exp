@@ -11,11 +11,11 @@ tests/tokenizeur/scripts/switch.23.test.php
               _case 
                   concatenation 
                   0 : 
-                      literals 'a'
+                      literals a
                   1 : 
-                      literals ':'
+                      literals :
                   2 : 
-                      literals 'b'
+                      literals b
                   block 
                   0 : 
                       affectation 
@@ -38,15 +38,15 @@ tests/tokenizeur/scripts/switch.23.test.php
               _case 
                   concatenation 
                   0 : 
-                      literals 'c'
+                      literals c
                   1 : 
-                      literals ':'
+                      literals :
                   2 : 
-                      literals 'd'
+                      literals d
                   3 : 
-                      literals 'e'
+                      literals e
                   4 : 
-                      literals 'f'
+                      literals f
                   block 
                   0 : 
                       affectation 
@@ -76,11 +76,11 @@ tests/tokenizeur/scripts/switch.23.test.php
               _case 
                   concatenation 
                   0 : 
-                      literals 'e'
+                      literals e
                   1 : 
-                      literals ':'
+                      literals :
                   2 : 
-                      literals 'f'
+                      literals f
                   block 
                   0 : 
                       affectation 

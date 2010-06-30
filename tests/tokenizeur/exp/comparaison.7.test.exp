@@ -5,14 +5,14 @@ tests/tokenizeur/scripts/comparaison.7.test.php
       ifthen if
       Condition 0) 
           parentheses 
-          ( "comparaison property_static 307 "self"::tableau variable $a[literals 'b']  ">" literals 0" )
+          ( "comparaison property_static 307 "self"::tableau variable $a[literals b]  ">" literals 0" )
           block 
           0 : 
               affectation 
               droite : 
                   tableau
                       variable $c
-                      literals 'd'
+                      literals d
                "=" 
               gauche : 
-                  property_static 307 "e"::tableau variable $f[literals 'g']->
+                  property_static 307 "e"::tableau variable $f[literals g]->

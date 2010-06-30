@@ -10,9 +10,9 @@ tests/tokenizeur/scripts/concatenation.21.test.php
       gauche : 
           concatenation 
           0 : 
-              literals "a"
+              literals a
           1 : 
               parentheses 
               ( "operation literals 1  "+" literals 1" )
           2 : 
-              literals " b"
+              literals  b

@@ -20,7 +20,7 @@ tests/tokenizeur/scripts/block.1.test.php
                   appel de fonction : date: 
                       arglist 
                       0 : 
-                          literals "Y"
+                          literals Y
           1 : 
               affectation 
               droite : 
@@ -33,7 +33,7 @@ tests/tokenizeur/scripts/block.1.test.php
                   appel de fonction : date: 
                       arglist 
                       0 : 
-                          literals "m"
+                          literals m
           2 : 
               affectation 
               droite : 
@@ -46,4 +46,4 @@ tests/tokenizeur/scripts/block.1.test.php
                   appel de fonction : date: 
                       arglist 
                       0 : 
-                          literals "j"
+                          literals j

@@ -11,6 +11,6 @@ tests/tokenizeur/scripts/functioncall.24.test.php
               appel de fonction : b: 
                   arglist 
                   0 : 
-                      literals 'a'
+                      literals a
                   1 : 
-                      literals 'b'
+                      literals b

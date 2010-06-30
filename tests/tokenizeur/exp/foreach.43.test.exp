@@ -11,4 +11,4 @@ tests/tokenizeur/scripts/foreach.43.test.php
                   variable $e
               273 ".=" 
               gauche : 
-                  literals "e"
+                  literals e

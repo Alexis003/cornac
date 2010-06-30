@@ -4,7 +4,7 @@ tests/tokenizeur/scripts/method.10.test.php
 
   code : 
       method variable $e
-      appel de methode : functioncall concatenation literals 'namespace1:gt' . literals '3' . literals '4'   ( arglist(literals 1) ) : 
+      appel de methode : functioncall concatenation literals namespace1:gt . literals 3 . literals 4   ( arglist(literals 1) ) : 
           functioncall .
           appel de fonction : .: 
               arglist 

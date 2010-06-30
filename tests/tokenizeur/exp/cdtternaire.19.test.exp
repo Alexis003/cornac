@@ -9,7 +9,7 @@ tests/tokenizeur/scripts/cdtternaire.19.test.php
        "=" 
       gauche : 
           cdtternaire ?
-          functioncall 351 "empty" ( arglist(variable $b) )  ? affectation variable $d 273 ".=" concatenation literals ' ' . variable $e   : affectation variable $d 273 ".=" concatenation literals ' ' . variable $e  
+          functioncall 351 "empty" ( arglist(variable $b) )  ? affectation variable $d 273 ".=" concatenation literals   . variable $e   : affectation variable $d 273 ".=" concatenation literals   . variable $e  
               functioncall empty
               appel de fonction : empty: 
                   arglist 
@@ -22,7 +22,7 @@ tests/tokenizeur/scripts/cdtternaire.19.test.php
               gauche : 
                   concatenation 
                   0 : 
-                      literals ' '
+                      literals  
                   1 : 
                       variable $e
               affectation 
@@ -32,6 +32,6 @@ tests/tokenizeur/scripts/cdtternaire.19.test.php
               gauche : 
                   concatenation 
                   0 : 
-                      literals ' '
+                      literals  
                   1 : 
                       variable $e

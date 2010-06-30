@@ -6,9 +6,9 @@ tests/tokenizeur/scripts/sequence.14.test.php
       sequence 
       0 : 
           inclusion require_once
-              literals 'a.php'
+              literals a.php
       1 : 
-          method method_static 307 "b"::functioncall 307 "c" ( arglist(literals 'd') ) 
+          method method_static 307 "b"::functioncall 307 "c" ( arglist(literals d) ) 
           appel de methode : functioncall 307 "e" ( ( ) ) : 
               functioncall e
               appel de fonction : e: 

@@ -9,7 +9,7 @@ tests/tokenizeur/scripts/return.7.test.php
               ifthen if
               Condition 0) 
                   parentheses 
-                  ( "comparaison tableau variable $a[literals 'fichier'] 283 "==" tableau variable $b[literals 'fichier']" )
+                  ( "comparaison tableau variable $a[literals fichier] 283 "==" tableau variable $b[literals fichier]" )
                   block 
                   0 : 
                       _return 

@@ -9,7 +9,7 @@ tests/tokenizeur/scripts/ifthen.6.test.php
           ( "variable $condition" )
           block 
           0 : 
-              literals "a"
+              literals a
        else 
           ifthen if
           Condition 0) 
@@ -17,8 +17,8 @@ tests/tokenizeur/scripts/ifthen.6.test.php
               ( "variable $condition" )
               block 
               0 : 
-                  literals "b"
+                  literals b
            else 
               block 
               0 : 
-                  literals "c"
+                  literals c

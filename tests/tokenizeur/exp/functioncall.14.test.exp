@@ -7,6 +7,6 @@ tests/tokenizeur/scripts/functioncall.14.test.php
       appel de fonction : echo: 
           arglist 
           0 : 
-              literals "oui"
+              literals oui
           1 : 
               literals 1

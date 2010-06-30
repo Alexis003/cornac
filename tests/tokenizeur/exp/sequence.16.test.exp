@@ -14,9 +14,9 @@ tests/tokenizeur/scripts/sequence.16.test.php
                   inclusion include_once
                       concatenation 
                       0 : 
-                          literals './a'
+                          literals ./a
                       1 : 
-                          literals '/b.inc'
+                          literals /b.inc
            else 
               block 
               0 : 

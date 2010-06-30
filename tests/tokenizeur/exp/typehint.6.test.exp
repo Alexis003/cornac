@@ -10,7 +10,7 @@ tests/tokenizeur/scripts/typehint.6.test.php
       gauche : 
           concatenation 
           0 : 
-              literals 'a: '
+              literals a: 
           1 : 
               functioncall base64_encode
               appel de fonction : base64_encode: 
@@ -34,4 +34,4 @@ tests/tokenizeur/scripts/typehint.6.test.php
                               variable $r
                               constante (                              g )
           2 : 
-              literals "\n"
+              literals \n

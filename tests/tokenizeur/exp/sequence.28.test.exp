@@ -28,10 +28,10 @@ tests/tokenizeur/scripts/sequence.28.test.php
               operateur : 285 "<="
               gauche : 
                   cdtternaire ?
-                  literals 12 ? literals 'c' : literals 'd'
+                  literals 12 ? literals c : literals d
                       literals 12
-                      literals 'c'
-                      literals 'd'
+                      literals c
+                      literals d
       1 : 
           _break 
           Nombre : " "1""

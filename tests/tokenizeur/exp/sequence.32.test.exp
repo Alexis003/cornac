@@ -28,10 +28,10 @@ tests/tokenizeur/scripts/sequence.32.test.php
               appel de fonction : f: 
                   arglist 
                   0 : 
-                      literals 'g'
+                      literals g
       2 : 
           functioncall h
           appel de fonction : h: 
               arglist 
               0 : 
-                  literals 'i'
+                  literals i

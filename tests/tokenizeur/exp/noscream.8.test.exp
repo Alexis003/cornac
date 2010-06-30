@@ -9,12 +9,12 @@ tests/tokenizeur/scripts/noscream.8.test.php
        "=" 
       gauche : 
           cdtternaire ?
-          noscream @ ? literals '' : literals 'bzopen'
+          noscream @ ? literals  : literals bzopen
               noscream @
                   functioncall function_exists
                   appel de fonction : function_exists: 
                       arglist 
                       0 : 
-                          literals 'bzopen'
-              literals ''
-              literals 'bzopen'
+                          literals bzopen
+              literals 
+              literals bzopen

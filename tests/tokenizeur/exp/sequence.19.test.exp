@@ -32,7 +32,7 @@ tests/tokenizeur/scripts/sequence.19.test.php
                           0 : 
                               variable $sort
                           1 : 
-                              literals 'asc'
+                              literals asc
       3 : 
           rawtext 
           Texte : "311 "    return array('""
@@ -53,7 +53,7 @@ tests/tokenizeur/scripts/sequence.19.test.php
               arglist 
               0 : 
                   cdtternaire ?
-                  functioncall 350 "isset" ( arglist(tableau variable $sort[literals 1]) )  ? tableau variable $sort[literals 1] : literals 'asc'
+                  functioncall 350 "isset" ( arglist(tableau variable $sort[literals 1]) )  ? tableau variable $sort[literals 1] : literals asc
                       functioncall isset
                       appel de fonction : isset: 
                           arglist 
@@ -64,7 +64,7 @@ tests/tokenizeur/scripts/sequence.19.test.php
                       tableau
                           variable $sort
                           literals 1
-                      literals 'asc'
+                      literals asc
   rawtext 
   Texte : "311 "');
 ""

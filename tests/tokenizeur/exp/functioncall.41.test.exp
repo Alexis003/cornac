@@ -9,7 +9,7 @@ tests/tokenizeur/scripts/functioncall.41.test.php
           appel de fonction : list: 
               arglist 
               0 : 
-                  property_static 307 "a"::tableau variable $b[literals 'c']->
+                  property_static 307 "a"::tableau variable $b[literals c]->
               1 : 
                   variable $d
        "=" 

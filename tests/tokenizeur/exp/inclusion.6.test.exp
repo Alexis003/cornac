@@ -6,6 +6,6 @@ tests/tokenizeur/scripts/inclusion.6.test.php
       inclusion require_once
           concatenation 
           0 : 
-              literals "literal"
+              literals literal
           1 : 
-              literals "autre"
+              literals autre

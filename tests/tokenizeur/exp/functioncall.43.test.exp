@@ -8,6 +8,6 @@ tests/tokenizeur/scripts/functioncall.43.test.php
           0 : 
               concatenation 
               0 : 
-                  literals '<b>'
+                  literals <b>
               1 : 
-                  literals '</b>'
+                  literals </b>

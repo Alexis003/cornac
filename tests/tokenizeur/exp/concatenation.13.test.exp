@@ -19,10 +19,10 @@ tests/tokenizeur/scripts/concatenation.13.test.php
                                   variable $c
                                   constante (                                  d )
               1 : 
-                  literals 'e'
+                  literals e
               2 : 
                   tableau
                       variable $f
-                      literals 'g'
+                      literals g
               3 : 
-                  literals 'h'
+                  literals h

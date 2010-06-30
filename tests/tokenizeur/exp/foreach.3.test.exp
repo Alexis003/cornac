@@ -6,7 +6,7 @@ tests/tokenizeur/scripts/foreach.3.test.php
       ifthen if
       Condition 0) 
           parentheses 
-          ( "comparaison property tableau variable $_SESSION[literals 'cligraph']->literals nbtuples 283 "==" literals 0" )
+          ( "comparaison property tableau variable $_SESSION[literals cligraph]->literals nbtuples 283 "==" literals 0" )
           block 
           0 : 
               affectation 
@@ -48,17 +48,17 @@ tests/tokenizeur/scripts/foreach.3.test.php
                           0 : 
                               concatenation 
                               0 : 
-                                  literals "<script language='javascript'>calend_valeur_stock[0]["
+                                  literals <script language='javascript'>calend_valeur_stock[0][
                               1 : 
                                   variable $i
                               2 : 
-                                  literals "]=\""
+                                  literals ]=\
                               3 : 
                                   tableau
                                       variable $date_mess_stock
                                       variable $i
                               4 : 
-                                  literals "\";</script>"
+                                  literals \";</script>
                   2 : 
                       variable $i297 "++" 
                           variable $i

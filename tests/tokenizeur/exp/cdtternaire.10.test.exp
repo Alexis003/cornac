@@ -13,8 +13,8 @@ tests/tokenizeur/scripts/cdtternaire.10.test.php
               parentheses 
               ( "cdtternaire ?" )
           1 : 
-              literals ' <code>[-&gt;'
+              literals  <code>[-&gt;
           2 : 
               variable $k
           3 : 
-              literals ']</code>'
+              literals ]</code>

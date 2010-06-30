@@ -8,4 +8,4 @@ tests/tokenizeur/scripts/codephp.14.test.php
           0 : 
               tableau
                   variable $lang
-                  literals 'forum'
+                  literals forum

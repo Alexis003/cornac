@@ -6,7 +6,7 @@ tests/tokenizeur/scripts/tableau.5.test.php
       tableau
           tableau
               variable $GLOBALS
-              literals '_TABLE_CORRESPONDANCE_MENU'
+              literals _TABLE_CORRESPONDANCE_MENU
           tableau
               variable $tb_menu_racc
               operation 

@@ -10,21 +10,21 @@ tests/tokenizeur/scripts/sequence.11.test.php
               variable $a
            "=" 
           gauche : 
-              literals 'a'
+              literals a
       1 : 
           affectation 
           droite : 
               variable $b
            "=" 
           gauche : 
-              literals 'b'
+              literals b
       2 : 
           affectation 
           droite : 
               variable $c
            "=" 
           gauche : 
-              literals 'c'
+              literals c
       3 : 
           functioncall print
           appel de fonction : print: 

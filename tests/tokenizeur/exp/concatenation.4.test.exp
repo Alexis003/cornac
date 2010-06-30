@@ -5,20 +5,20 @@ tests/tokenizeur/scripts/concatenation.4.test.php
   code : 
       concatenation 
       0 : 
-          literals 'a'
+          literals a
       1 : 
-          literals "b"
+          literals b
       2 : 
-          literals 'c'
+          literals c
       3 : 
-          literals 'a'
+          literals a
       4 : 
-          literals "b"
+          literals b
       5 : 
-          literals 'c'
+          literals c
       6 : 
-          literals 'a'
+          literals a
       7 : 
-          literals "b"
+          literals b
       8 : 
-          literals 'c'
+          literals c

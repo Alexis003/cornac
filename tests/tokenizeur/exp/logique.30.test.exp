@@ -22,4 +22,4 @@ tests/tokenizeur/scripts/logique.30.test.php
                   variable $x
               273 ".=" 
               gauche : 
-                  literals 's'
+                  literals s

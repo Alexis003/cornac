@@ -9,9 +9,9 @@ tests/tokenizeur/scripts/signe.10.test.php
           0 : 
               concatenation 
               0 : 
-                  literals "a"
+                  literals a
               1 : 
                   parentheses 
                   ( "operation operation parentheses (operation parentheses (operation variable $b  "-" variable $c)  "*" literals 2)  "+" parentheses (operation literals 3  "-" variable $d)  "+" variable $e" )
               2 : 
-                  literals "f"
+                  literals f

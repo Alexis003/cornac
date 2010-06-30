@@ -9,7 +9,7 @@ tests/tokenizeur/scripts/constante.1.test.php
           appel de fonction : define: 
               arglist 
               0 : 
-                  literals 'x'
+                  literals x
               1 : 
                   literals 1
       1 : 

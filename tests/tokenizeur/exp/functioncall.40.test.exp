@@ -12,7 +12,7 @@ tests/tokenizeur/scripts/functioncall.40.test.php
           gauche : 
               concatenation 
               0 : 
-                  literals 'insert_histo_'
+                  literals insert_histo_
               1 : 
                   variable $type_doc
       1 : 

@@ -9,7 +9,7 @@ tests/tokenizeur/scripts/functioncall.30.test.php
           appel de fonction : define: 
               arglist 
               0 : 
-                  literals 'TYPE_DOC'
+                  literals TYPE_DOC
               1 : 
                   constante (                  true )
       1 : 
@@ -20,10 +20,10 @@ tests/tokenizeur/scripts/functioncall.30.test.php
                   0 : 
                       concatenation 
                       0 : 
-                          literals "tabindex/"
+                          literals tabindex/
                       1 : 
                           constante (                          TYPE_DOC )
                       2 : 
-                          literals ".php"
+                          literals .php
                   1 : 
-                      literals "abs"
+                      literals abs

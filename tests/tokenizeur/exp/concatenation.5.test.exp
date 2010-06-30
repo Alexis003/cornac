@@ -5,6 +5,6 @@ tests/tokenizeur/scripts/concatenation.5.test.php
   code : 
       concatenation 
       0 : 
-          literals 'a'
+          literals a
       1 : 
-          literals "b"
+          literals b

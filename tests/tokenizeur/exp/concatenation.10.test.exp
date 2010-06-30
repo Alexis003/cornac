@@ -11,13 +11,13 @@ tests/tokenizeur/scripts/concatenation.10.test.php
               0 : 
                   concatenation 
                   0 : 
-                      literals '<div style="text-align:right; margin-top:10px;">&copy;2002 - '
+                      literals <div style="text-align:right; margin-top:10px;">&copy;2002 - 
                   1 : 
                       functioncall date
                       appel de fonction : date: 
                           arglist 
                           0 : 
-                              literals "Y"
+                              literals Y
                           1 : 
                               functioncall strtotime
                               appel de fonction : strtotime: 
@@ -25,7 +25,7 @@ tests/tokenizeur/scripts/concatenation.10.test.php
                                   0 : 
                                       variable $PROGRAM_UPDATE
                   2 : 
-                      literals '</div>'
+                      literals </div>
       1 : 
           affectation 
           droite : 

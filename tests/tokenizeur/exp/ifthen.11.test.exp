@@ -9,16 +9,16 @@ tests/tokenizeur/scripts/ifthen.11.test.php
           ( "variable $condition" )
           block 
           0 : 
-              literals "a"
+              literals a
       Condition 1) 
           parentheses 
           ( "variable $condition2" )
           block 
           0 : 
-              literals "b"
+              literals b
       Condition 2) 
           parentheses 
           ( "variable $condition3" )
           block 
           0 : 
-              literals "c"
+              literals c

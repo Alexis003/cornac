@@ -9,7 +9,7 @@ tests/tokenizeur/scripts/switch.20.test.php
           block 
           0 : 
               _case 
-                  literals 'a'
+                  literals a
                   block 
                   0 : 
                       _break 
@@ -22,7 +22,7 @@ tests/tokenizeur/scripts/switch.20.test.php
                       Nombre : " "1""
           2 : 
               _case 
-                  literals 'b'
+                  literals b
                   block 
                   0 : 
                       _break 

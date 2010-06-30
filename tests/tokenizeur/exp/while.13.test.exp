@@ -16,7 +16,7 @@ tests/tokenizeur/scripts/while.13.test.php
               gauche : 
                   concatenation 
                   0 : 
-                      literals ""
+                      literals 
                   1 : 
                       tableau
                           variable $d

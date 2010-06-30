@@ -16,13 +16,13 @@ tests/tokenizeur/scripts/ifthen.16.test.php
               gauche : 
                   concatenation 
                   0 : 
-                      literals " AND acces_ip=\""
+                      literals  AND acces_ip=\
                   1 : 
                       tableau
                           variable $_SERVER
-                          literals 'REMOTE_ADDR'
+                          literals REMOTE_ADDR
                   2 : 
-                      literals "\""
+                      literals \
        else 
           block 
           0 : 
@@ -31,4 +31,4 @@ tests/tokenizeur/scripts/ifthen.16.test.php
                   variable $acces_ip
                "=" 
               gauche : 
-                  literals ""
+                  literals 

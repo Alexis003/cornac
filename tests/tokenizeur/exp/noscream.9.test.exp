@@ -17,6 +17,6 @@ tests/tokenizeur/scripts/noscream.9.test.php
                       0 : 
                           variable $host
                       1 : 
-                          literals 'a'
+                          literals a
                   1 : 
-                      literals 'b'
+                      literals b

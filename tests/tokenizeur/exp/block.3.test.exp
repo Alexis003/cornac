@@ -20,7 +20,7 @@ tests/tokenizeur/scripts/block.3.test.php
                   appel de fonction : date: 
                       arglist 
                       0 : 
-                          literals "Y"
+                          literals Y
           1 : 
               literals 1
           2 : 

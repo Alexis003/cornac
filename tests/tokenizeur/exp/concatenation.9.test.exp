@@ -10,10 +10,10 @@ tests/tokenizeur/scripts/concatenation.9.test.php
       gauche : 
           concatenation 
           0 : 
-              literals "a"
+              literals a
           1 : 
-              literals "b"
+              literals b
           2 : 
               tableau
                   variable $d
-                  literals 'e'
+                  literals e

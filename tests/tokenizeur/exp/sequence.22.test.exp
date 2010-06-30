@@ -16,9 +16,9 @@ tests/tokenizeur/scripts/sequence.22.test.php
           appel de fonction : $errorfn: 
               arglist 
               0 : 
-                  literals 'a'
+                  literals a
               1 : 
                   signe  "-"literals 9
                       literals 9
               2 : 
-                  literals 'a'
+                  literals a

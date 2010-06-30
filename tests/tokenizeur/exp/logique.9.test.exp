@@ -9,7 +9,7 @@ tests/tokenizeur/scripts/logique.9.test.php
           block 
           0 : 
               _case 
-                  literals "facture"
+                  literals facture
                   block 
                   0 : 
                       functioncall echo
@@ -18,7 +18,7 @@ tests/tokenizeur/scripts/logique.9.test.php
                           0 : 
                               tableau
                                   variable $LANG_ACTION
-                                  literals 'dateecheance'
+                                  literals dateecheance
                   1 : 
                       _break 
                       Nombre : " "1""
@@ -28,13 +28,13 @@ tests/tokenizeur/scripts/logique.9.test.php
                   droite : 
                       logique 
                       droite : 
-                          literals "devis"
+                          literals devis
                       operateur : 278 "||"
                       gauche : 
-                          literals "commande"
+                          literals commande
                   operateur : 278 "||"
                   gauche : 
-                      literals "avoir"
+                      literals avoir
                   block 
                   0 : 
                       functioncall echo
@@ -43,7 +43,7 @@ tests/tokenizeur/scripts/logique.9.test.php
                           0 : 
                               tableau
                                   variable $LANG_ACTION
-                                  literals 'limitevalidite'
+                                  literals limitevalidite
                   1 : 
                       _break 
                       Nombre : " "1""

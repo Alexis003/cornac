@@ -12,7 +12,7 @@ tests/tokenizeur/scripts/decalage.8.test.php
           appel de fonction : pack: 
               arglist 
               0 : 
-                  literals 'b'
+                  literals b
               1 : 
                   decalage 
                   droite : 

@@ -12,7 +12,7 @@ tests/tokenizeur/scripts/logique.22.test.php
           appel de fonction : substr: 
               arglist 
               0 : 
-                  literals "a./"
+                  literals a./
               1 : 
                   logique 
                   droite : 

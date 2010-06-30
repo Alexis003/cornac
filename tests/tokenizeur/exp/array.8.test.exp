@@ -12,8 +12,8 @@ tests/tokenizeur/scripts/array.8.test.php
           appel de fonction : array: 
               arglist 
               0 : 
-                  literals 'b' => affectation variable $a  "=" constante true
-                      literals 'b'
+                  literals b => affectation variable $a  "=" constante true
+                      literals b
                       affectation 
                       droite : 
                           variable $a

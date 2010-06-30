@@ -9,7 +9,7 @@ tests/tokenizeur/scripts/switch.19.test.php
           block 
           0 : 
               _case 
-                  literals "a"
+                  literals a
                   block 
                   0 : 
                       affectation 

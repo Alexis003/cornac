@@ -21,10 +21,10 @@ tests/tokenizeur/scripts/functioncall.26.test.php
                                   appel de fonction : 307 "d": 
                                       arglist 
                                       0 : 
-                                          literals '1'
+                                          literals 1
                                       1 : 
-                                          literals '2'
+                                          literals 2
                                       2 : 
-                                          literals '3'
+                                          literals 3
                                       3 : 
-                                          literals '4'
+                                          literals 4

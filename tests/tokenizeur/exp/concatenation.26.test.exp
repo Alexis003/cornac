@@ -13,7 +13,7 @@ tests/tokenizeur/scripts/concatenation.26.test.php
               1 : 
                   tableau
                       variable $GLOBALS
-                      literals 'b'
+                      literals b
               2 : 
                   literals c 
               3 : 

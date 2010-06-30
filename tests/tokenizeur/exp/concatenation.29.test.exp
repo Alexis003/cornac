@@ -22,13 +22,13 @@ tests/tokenizeur/scripts/concatenation.29.test.php
           ifthen if
           Condition 0) 
               parentheses 
-              ( "functioncall 307 "defined" ( arglist(literals 'c') ) " )
+              ( "functioncall 307 "defined" ( arglist(literals c) ) " )
               block 
               0 : 
                   functioncall echo
                   appel de fonction : echo: 
                       arglist 
                       0 : 
-                          literals 'd'
+                          literals d
   rawtext 
   Texte : "311 "E""

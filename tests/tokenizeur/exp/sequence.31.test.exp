@@ -16,6 +16,6 @@ tests/tokenizeur/scripts/sequence.31.test.php
           appel de fonction : define: 
               arglist 
               0 : 
-                  literals 'c'
+                  literals c
               1 : 
                   literals 1

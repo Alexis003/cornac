@@ -9,7 +9,7 @@ tests/tokenizeur/scripts/switch.15.test.php
           block 
           0 : 
               _case 
-                  literals "8"
+                  literals 8
                   block 
                   0 : 
                       affectation 
@@ -17,7 +17,7 @@ tests/tokenizeur/scripts/switch.15.test.php
                           variable $filtre_traite2
                       273 ".=" 
                       gauche : 
-                          literals " demarchage_flag='1' "
+                          literals  demarchage_flag='1' 
                   1 : 
                       _break 
                       Nombre : " "1""

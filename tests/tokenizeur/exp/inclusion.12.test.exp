@@ -6,4 +6,4 @@ tests/tokenizeur/scripts/inclusion.12.test.php
       inclusion include
           tableau
               variable $a
-              literals 'b'
+              literals b

@@ -9,19 +9,19 @@ tests/tokenizeur/scripts/switch.22.test.php
           block 
           0 : 
               _case 
-                  literals 'a'
+                  literals a
                   block 
           1 : 
               _case 
-                  literals 'b'
+                  literals b
                   block 
           2 : 
               _case 
-                  literals 'c'
+                  literals c
                   block 
           3 : 
               _case 
-                  literals 'd'
+                  literals d
                   block 
                   0 : 
                       _break 

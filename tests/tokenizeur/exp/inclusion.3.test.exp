@@ -4,4 +4,4 @@ tests/tokenizeur/scripts/inclusion.3.test.php
 
   code : 
       inclusion include
-          literals "literal"
+          literals literal

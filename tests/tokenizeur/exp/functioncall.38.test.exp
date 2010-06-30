@@ -9,12 +9,12 @@ tests/tokenizeur/scripts/functioncall.38.test.php
           0 : 
               concatenation 
               0 : 
-                  literals 'insert_histo_'
+                  literals insert_histo_
               1 : 
                   variable $table
               2 : 
-                  literals '('
+                  literals (
               3 : 
                   variable $pdt_cle
               4 : 
-                  literals ',1);'
+                  literals ,1);

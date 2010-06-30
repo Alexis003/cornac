@@ -35,7 +35,7 @@ tests/tokenizeur/scripts/ifthen.36.test.php
                                    "=" 
                                   gauche : 
                                       reference &
-                                           new 307 "f" arglist(literals '') 
+                                           new 307 "f" arglist(literals ) 
                            else 
                               block 
                               0 : 

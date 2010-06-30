@@ -9,8 +9,8 @@ tests/tokenizeur/scripts/array.10.test.php
           0 : 
               operation 
               droite : 
-                  literals 'x' => functioncall 307 "a" ( ( ) ) 
-                      literals 'x'
+                  literals x => functioncall 307 "a" ( ( ) ) 
+                      literals x
                       functioncall a
                       appel de fonction : a: 
                           arglist 

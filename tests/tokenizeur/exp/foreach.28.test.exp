@@ -7,9 +7,9 @@ tests/tokenizeur/scripts/foreach.28.test.php
           block 
           0 : 
               method variable $this
-              appel de methode : functioncall 307 "d" ( arglist(literals 'e') ) : 
+              appel de methode : functioncall 307 "d" ( arglist(literals e) ) : 
                   functioncall d
                   appel de fonction : d: 
                       arglist 
                       0 : 
-                          literals 'e'
+                          literals e

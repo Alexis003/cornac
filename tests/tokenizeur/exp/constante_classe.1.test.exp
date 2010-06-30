@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/constante_classe.1.test.php
        class 307 "a"
           block 
           0 : 
-              constante_classe               constante b = literals 'c' 
+              constante_classe               constante b = literals c 
           1 : 
               constante_classe               constante f = literals 1 
           2 : 

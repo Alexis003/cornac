@@ -12,7 +12,7 @@ tests/tokenizeur/scripts/functioncall.35.test.php
                   literals 1
            "=" 
           gauche : 
-              literals 'phpinfo'
+              literals phpinfo
       1 : 
           functioncall $x
           appel de fonction : $x: 

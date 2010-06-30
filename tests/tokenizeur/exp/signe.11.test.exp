@@ -15,8 +15,8 @@ tests/tokenizeur/scripts/signe.11.test.php
                   signe  "-"literals 3
                       literals 3
               1 : 
-                  literals 'last' => signe  "-"literals 1
-                      literals 'last'
+                  literals last => signe  "-"literals 1
+                      literals last
                       signe  "-"literals 1
                           literals 1
               2 : 

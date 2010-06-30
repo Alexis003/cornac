@@ -17,10 +17,10 @@ tests/tokenizeur/scripts/operation.22.test.php
                       variable $a
                       tableau
                           variable $GLOBALS
-                          literals 'callback_sort_by'
+                          literals callback_sort_by
               1 : 
                   tableau
                       variable $b
                       tableau
                           variable $GLOBALS
-                          literals 'callback_sort_by'
+                          literals callback_sort_by

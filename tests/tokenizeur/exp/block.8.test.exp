@@ -12,7 +12,7 @@ tests/tokenizeur/scripts/block.8.test.php
               block 
               0 : 
                   _throw 
-                       new 307 "a" arglist(literals "b", constante_static 307 "c"::constante d) 
+                       new 307 "a" arglist(literals b, constante_static 307 "c"::constante d) 
       1 : 
           affectation 
           droite : 

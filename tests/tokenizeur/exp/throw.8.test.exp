@@ -4,4 +4,4 @@ tests/tokenizeur/scripts/throw.8.test.php
 
   code : 
       _throw 
-           new 307 "Exception" arglist(literals "x") 
+           new 307 "Exception" arglist(literals x) 

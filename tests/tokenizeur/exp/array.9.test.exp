@@ -12,10 +12,10 @@ tests/tokenizeur/scripts/array.9.test.php
           appel de fonction : array: 
               arglist 
               0 : 
-                  literals 'a' => functioncall variable $c ( arglist(literals 'b') ) 
-                      literals 'a'
+                  literals a => functioncall variable $c ( arglist(literals b) ) 
+                      literals a
                       functioncall $c
                       appel de fonction : $c: 
                           arglist 
                           0 : 
-                              literals 'b'
+                              literals b

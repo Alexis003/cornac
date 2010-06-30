@@ -12,4 +12,4 @@ tests/tokenizeur/scripts/logique.41.test.php
       operateur :  "|"
       gauche : 
           parentheses 
-          ( "comparaison tableau variable $a[literals 'b'] 283 "==" literals ''" )
+          ( "comparaison tableau variable $a[literals b] 283 "==" literals " )

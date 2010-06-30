@@ -12,6 +12,6 @@ tests/tokenizeur/scripts/concatenation.24.test.php
           0 : 
               tableau
                   property variable $thisliterals properties->
-                  literals 'prefix'
+                  literals prefix
           1 : 
               property variable $nodeliterals id->

@@ -8,6 +8,6 @@ tests/tokenizeur/scripts/inclusion.8.test.php
           appel de fonction : fct_lien_page_custom: 
               arglist 
               0 : 
-                  literals "fonctions/sysout_agent.php"
+                  literals fonctions/sysout_agent.php
               1 : 
-                  literals "abs"
+                  literals abs

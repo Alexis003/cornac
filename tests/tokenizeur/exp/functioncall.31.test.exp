@@ -7,6 +7,6 @@ tests/tokenizeur/scripts/functioncall.31.test.php
       appel de fonction : define: 
           arglist 
           0 : 
-              literals 'TYPE_DOC'
+              literals TYPE_DOC
           1 : 
               constante (              true )

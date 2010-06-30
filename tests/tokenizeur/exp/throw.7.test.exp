@@ -8,4 +8,4 @@ tests/tokenizeur/scripts/throw.7.test.php
           appel de fonction : f: 
               arglist 
               0 : 
-                  literals "s"
+                  literals s

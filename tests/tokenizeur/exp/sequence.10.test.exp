@@ -10,7 +10,7 @@ tests/tokenizeur/scripts/sequence.10.test.php
               property variable $paginationliterals enregistrement->
            "=" 
           gauche : 
-              property tableau variable $_SESSION[literals 'init_infos']literals nb_pet_liste->
+              property tableau variable $_SESSION[literals init_infos]literals nb_pet_liste->
       1 : 
           affectation 
           droite : 
@@ -19,18 +19,18 @@ tests/tokenizeur/scripts/sequence.10.test.php
           gauche : 
               concatenation 
               0 : 
-                  literals "nom_col"
+                  literals nom_col
               1 : 
                   property variable $paginationliterals col_id->
               2 : 
-                  literals "_9"
+                  literals _9
       2 : 
           affectation 
           droite : 
               property variable $paginationliterals col_sens->
            "=" 
           gauche : 
-              literals "DESC"
+              literals DESC
       3 : 
           method variable $pagination
           appel de methode : functioncall 307 "fct_tri" ( ( ) ) : 
@@ -41,7 +41,7 @@ tests/tokenizeur/scripts/sequence.10.test.php
       4 : 
           logique 
           droite : 
-              method tableau variable $_SESSION[literals 'cligraph']
+              method tableau variable $_SESSION[literals cligraph]
               appel de methode : functioncall 307 "connect" ( ( ) ) : 
                   functioncall connect
                   appel de fonction : connect: 
@@ -53,4 +53,4 @@ tests/tokenizeur/scripts/sequence.10.test.php
               appel de fonction : die: 
                   arglist 
                   0 : 
-                      property tableau variable $_SESSION[literals 'cligraph']literals errormsg->
+                      property tableau variable $_SESSION[literals cligraph]literals errormsg->

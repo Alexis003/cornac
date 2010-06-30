@@ -6,7 +6,7 @@ tests/tokenizeur/scripts/ifthen.38.test.php
       ifthen if
       Condition 0) 
           parentheses 
-          ( "comparaison variable $a 283 "==" literals "b"" )
+          ( "comparaison variable $a 283 "==" literals b" )
           block 
           0 : 
               affectation 

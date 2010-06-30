@@ -9,6 +9,6 @@ tests/tokenizeur/scripts/functioncall.36.test.php
           0 : 
               concatenation 
               0 : 
-                  literals 'a'
+                  literals a
               1 : 
-                  literals 'b'
+                  literals b

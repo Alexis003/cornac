@@ -9,8 +9,8 @@ tests/tokenizeur/scripts/signe.5.test.php
           0 : 
               concatenation 
               0 : 
-                  signe  "-"literals 'a'
-                      literals 'a'
+                  signe  "-"literals a
+                      literals a
               1 : 
-                  signe  "-"literals 'b'
-                      literals 'b'
+                  signe  "-"literals b
+                      literals b

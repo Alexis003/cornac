@@ -4,4 +4,4 @@ tests/tokenizeur/scripts/concatenation.7.test.php
 
   code : 
       parentheses 
-      ( "concatenation literals 'a' . literals 'b'  " )
+      ( "concatenation literals a . literals b  " )

@@ -12,7 +12,7 @@ tests/tokenizeur/scripts/functioncall.44.test.php
           gauche : 
               concatenation 
               0 : 
-                  literals 'b'
+                  literals b
               1 : 
                   variable $c
       1 : 

@@ -16,7 +16,7 @@ tests/tokenizeur/scripts/cdtternaire.13.test.php
                   arglist 
                   0 : 
                       cdtternaire ?
-                      functioncall 350 "isset" ( arglist(variable $a) )  ? literals 'desc' : sequenceliterals 'asc'
+                      functioncall 350 "isset" ( arglist(variable $a) )  ? literals desc : sequenceliterals asc
 rawtext 311 " TR 
 "
 
@@ -25,10 +25,10 @@ rawtext 311 " TR
                               arglist 
                               0 : 
                                   variable $a
-                          literals 'desc'
+                          literals desc
                           sequence 
                           0 : 
-                              literals 'asc'
+                              literals asc
                           1 : 
                               rawtext 
                               Texte : "311 " TR 

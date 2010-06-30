@@ -5,4 +5,4 @@ tests/tokenizeur/scripts/declare.2.test.php
   code : 
       _declare 
          ticks = 
-         encoding = literals 'ISO-8859-1'
+         encoding = literals ISO-8859-1

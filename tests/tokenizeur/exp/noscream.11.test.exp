@@ -6,10 +6,10 @@ tests/tokenizeur/scripts/noscream.11.test.php
       sequence 
       0 : 
           noscream @
-              tableau variable $a[literals 'b']297 "++" 
+              tableau variable $a[literals b]297 "++" 
                   tableau
                       variable $a
-                      literals 'b'
+                      literals b
       1 : 
           noscream @
               variable $i296 "--" 

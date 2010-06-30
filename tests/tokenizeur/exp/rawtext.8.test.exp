@@ -38,7 +38,7 @@ function initinput() {
                       appel de fonction : lang: 
                           arglist 
                           0 : 
-                              literals 'install_in_processed'
+                              literals install_in_processed
           3 : 
               rawtext 
               Texte : "311 "" disabled style="height: 25" id="laststep" onclick="initinput()">

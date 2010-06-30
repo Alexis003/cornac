@@ -20,7 +20,7 @@ tests/tokenizeur/scripts/rawtext.10.test.php
                       appel de fonction : lang: 
                           arglist 
                           0 : 
-                              literals 'forums_edit_perm_formula_or'
+                              literals forums_edit_perm_formula_or
           2 : 
               rawtext 
               Texte : "311 "C""
@@ -45,7 +45,7 @@ tests/tokenizeur/scripts/rawtext.10.test.php
                           0 : 
                               tableau
                                   variable $medal
-                                  literals 'permission'
+                                  literals permission
           6 : 
               rawtext 
               Texte : "311 "F""
@@ -56,7 +56,7 @@ tests/tokenizeur/scripts/rawtext.10.test.php
                   0 : 
                       tableau
                           variable $lang
-                          literals 'creditwizard_current_formula_notice'
+                          literals creditwizard_current_formula_notice
           8 : 
               rawtext 
               Texte : "311 "G""
