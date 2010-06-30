@@ -10,4 +10,4 @@ tests/tokenizeur/scripts/classe.24.test.php
           1 : 
                348 "var"variable $b = signe  "-"literals 1
           2 : 
-               348 "var"variable $c = literals 'c'
+               348 "var"variable $c = literals c
