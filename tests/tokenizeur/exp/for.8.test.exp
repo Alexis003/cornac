@@ -14,4 +14,4 @@ tests/tokenizeur/scripts/for.8.test.php
                   variable $x
                "=" 
               gauche : 
-                  literals 's'
+                  literals s

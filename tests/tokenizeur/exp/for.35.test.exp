@@ -5,15 +5,15 @@ tests/tokenizeur/scripts/for.35.test.php
   code : 
       _for 
         Init : block {affectation variable $i  "=" literals 1
-affectation variable $nb  "=" tableau variable $a[literals 'b'] };
+affectation variable $nb  "=" tableau variable $a[literals b] };
         Fin  : variable $c;
         Incr : preplusplus variable $d296 "--";
           affectation 
           droite : 
-              tableau variable $e[literals 'x'][]
+              tableau variable $e[literals x][]
                   tableau
                       variable $e
-                      literals 'x'
+                      literals x
            "=" 
           gauche : 
               variable $i297 "++" 

@@ -18,18 +18,18 @@ tests/tokenizeur/scripts/for.24.test.php
                                   tableau
                                       property variable $cliterals d->
                                       variable $i
-                                  literals "f"
-                              literals "g"
-                      literals "h"
+                                  literals f
+                              literals g
+                      literals h
                   tableau
                       tableau
                           tableau
                               tableau
                                   property variable $iliterals j->
                                   variable $i
-                              literals "k"
+                              literals k
                           variable $j
-                      literals "l"
+                      literals l
            "=" 
           gauche : 
               tableau
@@ -37,5 +37,5 @@ tests/tokenizeur/scripts/for.24.test.php
                       tableau
                           property variable $pliterals o->
                           variable $i
-                      literals "p"
+                      literals p
                   variable $j

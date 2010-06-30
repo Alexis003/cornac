@@ -14,8 +14,8 @@ tests/tokenizeur/scripts/clevaleur.5.test.php
               0 : 
                   operation 
                   droite : 
-                      literals "bouton0" => literals 1
-                          literals "bouton0"
+                      literals bouton0 => literals 1
+                          literals bouton0
                           literals 1
                   operation :  "+"
                   gauche : 

@@ -14,12 +14,12 @@ tests/tokenizeur/scripts/clevaleur.1.test.php
               0 : 
                   concatenation 
                   0 : 
-                      literals 'root_path' => property tableau variable $_SESSION[literals 'init_infos']->literals doc_root
-                          literals 'root_path'
-                          property tableau variable $_SESSION[literals 'init_infos']literals doc_root->
+                      literals root_path => property tableau variable $_SESSION[literals init_infos]->literals doc_root
+                          literals root_path
+                          property tableau variable $_SESSION[literals init_infos]literals doc_root->
                   1 : 
-                      property tableau variable $_SESSION[literals 'init_infos']literals stockage->
+                      property tableau variable $_SESSION[literals init_infos]literals stockage->
                   2 : 
-                      literals "/images_pdt/"
+                      literals /images_pdt/
                   3 : 
                       variable $pdt_id

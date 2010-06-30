@@ -12,17 +12,17 @@ tests/tokenizeur/scripts/clevaleur.3.test.php
           appel de fonction : array: 
               arglist 
               0 : 
-                  literals "bouton0" => preplusplus variable $nbtab297 "++"
-                      literals "bouton0"
+                  literals bouton0 => preplusplus variable $nbtab297 "++"
+                      literals bouton0
                       297 "++"variable $nbtab 
                           variable $nbtab
               1 : 
-                  literals "bouton1" => preplusplus variable $nbtab297 "++"
-                      literals "bouton1"
+                  literals bouton1 => preplusplus variable $nbtab297 "++"
+                      literals bouton1
                       297 "++"variable $nbtab 
                           variable $nbtab
               2 : 
-                  literals "bouton2" => preplusplus variable $nbtab297 "++"
-                      literals "bouton2"
+                  literals bouton2 => preplusplus variable $nbtab297 "++"
+                      literals bouton2
                       297 "++"variable $nbtab 
                           variable $nbtab
