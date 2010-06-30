@@ -179,3 +179,5 @@ Detect missing elements in classes (like methods, properties, etc)
 
 Add INI in the PHPFilter class of the tokenizer.
 List open-ended inclusions (including files that we don't know about)
+
+GLobals : distinguish statics and globals, and also implicit or explicit one.s
