@@ -136,6 +136,8 @@ $modules = array(
 'classes_unused',
 'classes_undefined',
 'html_tags', 
+'affectations_gpc', 
+
 );
 
 if ($id = array_search('-a', $argv)) {
