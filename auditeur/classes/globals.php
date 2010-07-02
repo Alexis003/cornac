@@ -12,10 +12,9 @@ class globals extends modules {
     }
     
     public function analyse() {
-// variables marquées comme globales avec global
-
         $this->clean_rapport();
         
+        // variable global thanks to the global reserved word
         $requete = <<<SQL
 INSERT INTO <rapport> 
 SELECT NULL, T2.fichier, T2.code AS code, T2.id, '{$this->name}'
@@ -27,7 +26,7 @@ SELECT NULL, T2.fichier, T2.code AS code, T2.id, '{$this->name}'
 SQL;
         $this->exec_query($requete);
         
-// variables globales via $GLOBALS
+// variables globales because in $GLOBALS
        $requete = <<<SQL
 INSERT INTO <rapport> 
 SELECT NULL, T1.fichier, T3.code AS code, T2.id, '{$this->name}'
@@ -44,7 +43,8 @@ SELECT NULL, T1.fichier, T3.code AS code, T2.id, '{$this->name}'
 SQL;
         $this->exec_query($requete);
 
-// variables du main sont automatiquement des globales
+// variables in main are automatically globals
+/*
        $requete = <<<SQL
 INSERT INTO <rapport> 
 SELECT NULL, T1.fichier, T1.code AS code, T1.id, '{$this->name}'
@@ -54,6 +54,7 @@ SELECT NULL, T1.fichier, T1.code AS code, T1.id, '{$this->name}'
         T1.type = 'variable'
 SQL;
         $this->exec_query($requete);
+        */
     }    
     
 }

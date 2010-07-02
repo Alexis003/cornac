@@ -1,8 +1,8 @@
 <?php
 
 class undeffunctions extends modules {
-	protected	$description = 'Liste des défintions de fonctions';
-	protected	$description_en = 'List of functions definition';
+	protected	$description = 'Liste des fonctions sans definitions';
+	protected	$description_en = 'List of undefined functions';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -15,17 +15,14 @@ class undeffunctions extends modules {
 
         $requete = <<<SQL
 INSERT INTO <rapport> 
-   SELECT NULL, T1.fichier, T2.code, T1.id, '{$this->name}'
-   FROM <tokens> T1
-    JOIN <tokens_tags> TT
-        ON T1.id = TT.token_id  
-    JOIN <tokens> T2 
-        ON TT.token_sub_id = T2.id
-    WHERE T1.type='_function'      AND 
-          TT.type = 'name' AND
-          T1.class = '';
+   SELECT NULL, TR1.fichier, TR1.element, TR1.id, '{$this->name}'
+   FROM <rapport> TR1
+   LEFT JOIN <rapport> TR2 
+      ON TR1.element = TR2.element AND TR2.module='deffunctions'
+   WHERE TR1.module='functionscalls' AND
+         TR2.element IS NULL;
 SQL;
-    
+//        print $this->prepare_query($requete);
         $this->exec_query($requete);
 
 	}
