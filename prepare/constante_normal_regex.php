@@ -13,18 +13,16 @@ class constante_normal_regex extends analyseur_regex {
         if (!$t->hasNext()) { return false; }
         if (!$t->hasPrev()) { return false; }
 
-        if ($t->checkClass('Token') && ($t->checkToken(T_STRING)) &&
-            $t->getNext()->checkNotCode(array('(','::','{'/*,'&'*/)) &&
-            $t->getNext()->checkNotToken(T_VARIABLE) && // T_STRING ? 
-            $t->getNext()->checkNotClass(array('variable','affectation')) && 
-            $t->getPrev()->checkNotCode(array('->')) &&
-            $t->getPrev()->checkNotToken(array(T_CLASS))
-            )  {
+        if ($t->checkNotClass('Token')) { return false; } 
+        if ($t->checkNotToken(T_STRING)) { return false; }
+        if ($t->getNext()->checkCode(array('(','::','{'))) { return false; }
+        if ($t->getNext()->checkToken(T_VARIABLE)) { return false; }
+        if ($t->getNext()->checkClass(array('variable','affectation'))) { return false; }
+        if ($t->getPrev()->checkCode(array('->'))) { return false; }
+        if ($t->getPrev()->checkToken(array(T_CLASS))) { return false; }
 
-            mon_log(get_class($t)." => ".__CLASS__);
-            return true; 
-        } 
-        return false;
+        mon_log(get_class($t)." => ".__CLASS__);
+        return true; 
     }
 }
 ?>
