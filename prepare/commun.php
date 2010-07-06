@@ -67,6 +67,29 @@ $EXPORTATEUR['limite'] = 10;
 
 $mid = mysqli_connect($ANALYSEUR['db']['host'],$ANALYSEUR['db']['login'],$ANALYSEUR['db']['password'],$ANALYSEUR['db']['database']);
 
+include('prepare/token.php');
+include('prepare/instruction.php');
+include('prepare/analyseur_regex.php');
+include('prepare/variable.php');
+
+$includes = glob('prepare/*.php');
+foreach($includes as $include) {
+    if ($include == "prepare/instruction.php") { continue; }
+    if ($include == "prepare/token.php") { continue; }
+    if ($include == "prepare/analyseur_regex.php") { continue; }
+//    if ($include == "prepare/ifthenelse_lignesimple_regex.php") { continue; }
+    if ($include == "prepare/variable.php") { continue; }
+//    if ($include == "prepare/token.v1.php") { continue; }
+//    if ($include == "prepare/var_simple_v1_regex.php") { continue; }
+    if ($include == "prepare/token_traite.php") { continue; }
+    if ($include == "prepare/analyseur.php") { continue; }
+//    if ($include == "prepare/monarrayobject.php") { continue; }
+    if ($include == "prepare/commun.php") { continue; }
+    include($include);
+}
+//print_r($includes);
+
+/*
 function __autoload($class_name) {
     if (file_exists('classes/'.$class_name . '.php')) {
         require_once 'classes/'.$class_name . '.php';
@@ -75,7 +98,7 @@ function __autoload($class_name) {
         require_once 'prepare/'.$class_name . '.php';
     }
 }
-
+*/
 function is_crochet(Token $t) {
     $code = $t->getCode($t);
     
