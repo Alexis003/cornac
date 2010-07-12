@@ -20,13 +20,12 @@ class trim_rawtext extends modules {
 INSERT INTO <rapport>
    SELECT NULL, T1.fichier, T1.code,  T1.id, 'parentheses'
    FROM <tokens> T1
-   WHERE T1.type != 'codephp AND
-         T1.droite = 0';
+   WHERE T1.type != 'codephp' AND
+         T1.droite = 0;
 SQL;
     $this->exec_query($requete);
 
 // extraction du dernier? 
-//select * from 
 
 	}
 }
