@@ -183,3 +183,8 @@ List open-ended inclusions (including files that we don't know about)
 Liste of type variable we might guess.
 
 Variable that never gets affected (is this register_globals?)
+Long list of parameters
+Long list of public methods
+Add multi-processing for tokenizeur/auditeur (should be easy, given the task are all concurrent and distinct)
+
+Report of dependance of a method : local variables, global ones, class, constantes, statique. 
