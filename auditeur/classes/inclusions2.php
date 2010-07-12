@@ -41,9 +41,11 @@ SELECT distinct T1.fichier, T2.code, T1.fichier, '{$this->name}'
 SQL;
         $res = $this->exec_query($requete);
 
+        $concat = $this->concat('"inc/"','T4.code',"'/'",'T4.code',"'.inc'");
+        
        $requete = <<<SQL
 INSERT INTO <rapport_dot> 
-  SELECT T1.fichier, REPLACE(CONCAT("inc/",T4.code,'/',T4.code,'.inc'),'"', ''), T1.fichier, '{$this->name}' 
+  SELECT T1.fichier, REPLACE($concat,'"', ''), T1.fichier, '{$this->name}' 
   FROM <tokens> T1
   JOIN <tokens_tags> TT 
     ON TT.token_id = T1.id
