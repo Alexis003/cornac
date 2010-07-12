@@ -2,6 +2,7 @@
 <?php
 
 include('libs/getopts.php');
+include('libs/write_ini_file.php');
 $args = $argv;
 
 if (get_arg($args, '-?')) { help(); }
@@ -17,7 +18,9 @@ if (!is_null($ini)) {
     } elseif (file_exists($ini)) {
         define('INI',$ini);
     } else {
-        define('INI','ini/'.'tokenizeur.ini');
+        $INI = parse_ini_file('ini/'.'cornac.ini', true);
+        write_ini_file($INI,'ini/'.$ini.'.ini'); 
+        define('INI','ini/'.$ini.'.ini');
     }
     $INI = parse_ini_file(INI, true);
 } else {
@@ -25,6 +28,7 @@ if (!is_null($ini)) {
     $INI = array('cornac' => array('destination' => ''));
 }
 $INI['cornac']['ini'] = $ini;
+$INI['cornac']['prefix'] = $ini;
 unset($ini);
 
 $INI['cornac']['origin'] = get_arg_value($args, '-d', null);
@@ -45,6 +49,20 @@ if (!in_array($INI['cornac']['storage'],array('mysql','sqlite'))) {
     help(); 
 }
 
+if (!file_exists($INI['cornac']['destination'])) { 
+    print "Output directory doesn't exist '{$INI['cornac']['destination']}' : update ".INI.".ini\n";
+    help(); 
+}
+
+if (!is_dir($INI['cornac']['destination'])) { 
+    print "Output path '{$INI['cornac']['destination']}' isn't a directory : update ".INI.".ini\n";
+    help(); 
+}
+
+if (!is_writable($INI['cornac']['destination'])) { 
+    print "Output path '{$INI['cornac']['destination']}' isn't writable : update ".INI.".ini\n";
+    help(); 
+}
 
 // validations
 if (!file_exists($INI['cornac']['origin'])) {
@@ -62,6 +80,7 @@ if (realpath($INI['cornac']['origin']) == realpath($INI['cornac']['destination']
     die();
 }
 
+write_ini_file($INI, INI);
 // execution
 print "
 Folder : {$INI['cornac']['origin']} 
@@ -69,11 +88,11 @@ Output : {$INI['cornac']['destination']}\n";
 
 if (!empty($INI['cornac']['ini'])) { $ini = " -I {$INI['cornac']['ini']} "; } else { $ini = ""; }
 
-print shell_exec("./tokenizeur.php -r -d {$INI['cornac']['origin']} -g {$INI['cornac']['storage']},cache $ini "); // @todo : note the log 
+shell_exec("./tokenizeur.php -r -d {$INI['cornac']['origin']} -g {$INI['cornac']['storage']},cache $ini "); // @todo : note the log 
                                                                                         // @sqlite as default ? 
-print shell_exec("cd auditeur; ./auditeur.php $ini -o -d {$INI['cornac']['destination']}");
+shell_exec("cd auditeur; ./auditeur.php $ini -o -d {$INI['cornac']['destination']}");
 // @todo clean audits tables before. shell_exec("rm -rf /tmp/cornac; mkdir {$INI['destination']}");
-print shell_exec("cd auditeur; ./reader.php $ini -F html -o {$INI['cornac']['destination']} ");
+shell_exec("cd auditeur; ./reader.php $ini -F html -o {$INI['cornac']['destination']} ");
 
 print "Done\n";
 
