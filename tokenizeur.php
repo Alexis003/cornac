@@ -6,30 +6,28 @@ ini_set('memory_limit',234217728);
 
 $times = array('debut' => microtime(true));
 include('prepare/commun.php');
-include('prepare/token_traite.php');
 include("prepare/analyseur.php");
 
 // ** Capture du nom de l'application à auditer
-$application = $ANALYSEUR['application'];
+//$application = $ANALYSEUR['application'];
 
 global $FIN; 
 // ** Début du travail de collecte des tokens 
 $FIN['debut'] = microtime(true);
 
-$path = realpath($application);
+//$path = realpath($application);
+
+include('libs/getopts.php');
 
 // @todo : exporter les informations d'options dans une inclusion
-if ($id = array_search( '-h', $argv)) {
-    help();
-}
+$args = $argv;
+$help = get_arg($args, '-?') ;
+if ($help) { help(); }
 
-// lecture du fichier de .INI pour pouvoir l'utiliser comme valeur par défaut.
-if ($id = array_search( '-I', $argv)) {
-    $ini = $argv[$id + 1];
-    
-    unset($argv[$id]);
-    unset($argv[$id + 1]);
-    
+
+// default values, stored in a INI file
+$ini = get_arg_value($args, '-I', null);
+if (!is_null($ini)) {
     global $INI;
     if (file_exists('ini/'.$ini)) {
         define('INI','ini/'.$ini);
@@ -38,53 +36,34 @@ if ($id = array_search( '-I', $argv)) {
     } elseif (file_exists($ini)) {
         define('INI',$ini);
     } else {
-        define('INI','ini/'.'tokenizeur.ini');
+        define('INI','ini/'.'cornac.ini');
     }
+    $INI = parse_ini_file(INI, true);
 } else {
-    define('INI','ini/'.'tokenizeur.ini');
+    define('INI',null);
+    $INI = array();
 }
-
+unset($ini);
 // @todo : que faire si on ne trouve même pas le .ini ? 
-print "Fichier de directives : ".INI."\n";
-global $INI;
-$INI = parse_ini_file(INI, true);
-
+print "Directives files : ".INI."\n";
 
 // lecture des constantes qui peuvent être définies dans le .INI
-if ($id = array_search( '-t', $argv)) {
-    unset($argv[$id]);
-    define('TOKENS',true);
-} else {
-    define('TOKENS',false);
-}
+define('TOKENS',(bool) get_arg($args, '-t'));
+define('TEST'  ,(bool) get_arg($args, '-T'));
+define('STATS' ,(bool) get_arg($args, '-S', false));
+define('VERBOSE', (bool) get_arg($args, '-v'));
 
-if ($id = array_search( '-T', $argv)) {
-    unset($argv[$id]);
-    define('TEST',true);
-} else {
-    define('TEST',false);
-}
-
-if ($id = array_search( '-S', $argv)) {
-    unset($argv[$id]);
-    define('STATS',true);
-} else {
-    define('STATS',false);
-}
-
-// @toto : mettre plusieurs templates en même temps (séparés par des virgules?)
-if ($id = array_search( '-g', $argv)) {
-    $templates = explode(',', $argv[$id + 1]);
+if ($templates = get_arg_value($args, '-g', null)) {
+    $templates = explode(',', $templates);
 
     $templates = array_unique($templates);
     
     foreach ($templates as $i => $template) {
         if (!file_exists('prepare/templates/template.'.$template.'.php')) {
-            print "$id) '$template' n'existe pas.\n";
+            print "$id) '$template' doesn't exist. Ignoring\n";
             unset($templates[$i]);
-//            $template = 'tree';
         } else {
-            print "Utilisation du gabarit ".$template."\n";
+            print "Using template ".$template."\n";
         }
     }
     
@@ -94,8 +73,6 @@ if ($id = array_search( '-g', $argv)) {
     
     
     define('GABARIT',join(',',$templates));
-    unset($argv[$id]);
-    unset($argv[$id + 1]);
 } else {
     define('GABARIT','tree');
     $templates = array('tree');
@@ -106,39 +83,18 @@ foreach ($templates as $id => $template) {
     include('prepare/templates/template.'.$template.'.php');
 }
 
-if ($id = array_search( '-l', $argv)) {
-    unset($argv[$id]);
-    define('LOG',true);
-    print "Log actif\n";
-} else {
-    define('LOG',false);
-}
-
-if ($id = array_search( '-i', $argv)) {
-    $limite = $argv[$id + 1];
-    
-    unset($argv[$id]);
-    unset($argv[$id + 1]);
-    
+define('LOG' ,(bool) get_arg($args, '-l', false));
+$limite = 0 + get_arg_value($args, '-i', 0);
+if ($limite) {
     print "Cycles = $limite\n";
-    
-//    $objects = new arrayIterator(array($fichier => $fichier));
-//    $scriptsPHP = new PHPFilter($objects);
 } else {
     $limite = -1;
 }
 
-if ($id = array_search( '-r', $argv)) {
-    unset($argv[$id]);
-    define('RECURSIVE',true);
-    print "mode recursif\n";
-} else {
-    define('RECURSIVE',false);
-}
+define('RECURSIVE' ,(bool) get_arg($args, '-r', false));
 
-if ($id = array_search( '-d', $argv)) {
-    $dossier = $argv[$id + 1];
-    
+$dossier = get_arg_value($args, '-d', array());
+if (!empty($dossier)) {
     if (substr($dossier, -1) == '/') {
         $dossier = substr($dossier, 0, -1);
     }
@@ -169,44 +125,30 @@ if ($id = array_search( '-d', $argv)) {
             print $commande. "\n";
             print shell_exec($commande);
         }
+        print "Done\n";
         die();
     }
-    
+    print "Done\n";
     die();
-} elseif ($id = array_search( '-f', $argv)) {
-    $fichier = $argv[$id + 1];
-    
-    unset($argv[$id]);
-    unset($argv[$id + 1]);
-    
+} elseif ($fichier = get_arg_value($args, '-f', '')) {
     print "Travail sur le fichier {$fichier} \n";
-    
+
+/* @todo : may be remove this. Good for dev, but useless otherwise    
     if ($id = array_search( '-e', $argv)) {
         unset($argv[$id]);
         
         shell_exec("bbedit $fichier");
     }
-    
+*/
     $objects = new arrayIterator(array($fichier => $fichier));
     $scriptsPHP = $objects;
-//    $scriptsPHP = new PHPFilter($objects);
 
-} elseif ($path !== false) {
-    print "Travail dans le dossier $path \n";
-    // ajouter un système de detection des fichiers
-    $objects = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path), RecursiveIteratorIterator::SELF_FIRST);
-    $scriptsPHP = new PHPFilter($objects);
 } else {
+    print "No files to work on\n";
     help();
 }
 
-if ($id = array_search( '-v', $argv)) {
-    unset($argv[$id]);
-    
-    define('VERBOSE',true);
-} else {
-    define('VERBOSE',false);
-}
+// @section end of options
 
 $preparations = array();
     
@@ -233,9 +175,7 @@ $FIN['fait'] = 0;
 $FIN['trouves'] = 0;
 foreach($scriptsPHP as $name => $object){
     $FIN['trouves']++;
-    if ($TOKENIZEUR['verbose'] == 1) {
-       print $name."\n";
-    }
+    print $name."\n";
     if (!file_exists($name)) { 
         print "$name n'existe pas. Omission\n";
         continue;
@@ -248,7 +188,6 @@ foreach($scriptsPHP as $name => $object){
     //\nNo syntax errors detected in $name
         print "Le script $name n'est pas compilable par PHP\n$exec\n";
         die();
-        
     }
     
     global $fichier;
@@ -271,6 +210,7 @@ foreach($scriptsPHP as $name => $object){
     
     $brut = @token_get_all($code);
     if (count($brut) == 0) {
+        print "No token found. Aborting\n";
         die();
     }
     $nb_tokens_initial = count($brut);
@@ -605,6 +545,7 @@ function help() {
     -S : display internal objects stats
     -t : display tokens produced and quit
     -T : activate test mode
+    -? : this help
 
 TEXT;
     
