@@ -17,10 +17,12 @@ abstract class modules {
     protected  $format = modules::FORMAT_HTMLLIST;
 
     function __construct($mid) {
-        global $prefixe;
+        global $INI;
         
-        if (!isset($prefixe)) {
-           $prefixe = 'tokens';
+        if (empty($INI['cornac']['prefix'])) {
+            $prefixe = 'tokens';
+        } else {
+            $prefixe = $INI['cornac']['prefix'];
         }
         
         
