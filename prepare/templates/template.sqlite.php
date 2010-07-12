@@ -48,30 +48,6 @@ class template_sqlite extends template_db {
                                                           scope    VARCHAR(255),
                                                           class    VARCHAR(255)
                                                           )');
-//        print_r($this->database->errorInfo());
-
-        $this->database->query('DELETE FROM '.$this->table.'_rapport WHERE fichier = "'.$fichier.'"');
-        $this->database->query('CREATE TABLE IF NOT EXISTS '.$this->table.'_rapport 
-  (id       INTEGER PRIMARY KEY   AUTOINCREMENT  , 
-  `fichier` varchar(500) NOT NULL,
-  `element` varchar(500) NOT NULL,
-  `token_id` int unsigned NOT NULL,
-  `module` varchar(50) NOT NULL
-)');
-        
-        $this->database->query('DELETE FROM '.$this->table.'_rapport_dot WHERE cluster = "'.$fichier.'"');
-       $this->database->query('CREATE TABLE IF NOT EXISTS '.$this->table.'_rapport_dot (
-  `a` varchar(255) NOT NULL,
-  `b` varchar(255) NOT NULL,
-  `cluster` varchar(255) NOT NULL DEFAULT \'\',
-  `module` varchar(255) NOT NULL
-)');
-
-        $this->database->query('CREATE TABLE IF NOT EXISTS '.$this->table.'_rapport_module (
-  `module` varchar(255) NOT NULL PRIMARY KEY,
-  `fait` datetime NOT NULL,
-  `format` varchar(255) NOT NULL
-)');
 
         $this->database->query('CREATE TABLE IF NOT EXISTS '.$this->table_tags.' (
   `token_id` int unsigned NOT NULL CONSTRAINT  KEY DEFAULT "0",
@@ -79,20 +55,7 @@ class template_sqlite extends template_db {
   `type` varchar(50) NOT NULL
 )');
 
-/*
-        $this->database->query('delimiter //');
-        $this->database->query('CREATE TRIGGER auto_tag BEFORE DELETE ON `tokens`
-FOR EACH ROW
-BEGIN
-DELETE FROM tokens_tags WHERE token_id = OLD.id OR token_sub_id = OLD.id;
-END;
-//');
-        $this->database->query('delimiter ;');
-        */
         $this->root = $root;
-
     }
-
 }
-
 ?>
