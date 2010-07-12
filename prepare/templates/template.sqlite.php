@@ -20,24 +20,6 @@ class template_sqlite extends template_db {
         }
         
         $this->database->query('DELETE FROM '.$this->table.' WHERE fichier = "'.$fichier.'"');
-/*        $this->database->query('CREATE TABLE IF NOT EXISTS '.$this->table.' (id       INT AUTO_INCREMENT, 
-                                                          droite   INT UNSIGNED, 
-                                                          gauche   INT UNSIGNED,
-                                                          type     CHAR(20),
-                                                          code     VARCHAR(255),
-                                                          fichier  VARCHAR(255) DEFAULT "prec",
-                                                          ligne    INT,
-                                                          scope    VARCHAR(255),
-                                                          class    VARCHAR(255),
-                                                          PRIMARY KEY (`id`),
-                                                          UNIQUE KEY `id` (`id`),
-                                                          KEY `fichier` (`fichier`),
-                                                          KEY `type` (`type`),
-                                                          KEY `droite` (`droite`),
-                                                          KEY `gauche` (`gauche`),
-                                                          KEY `code` (`code`)
-                                                          )');
-*/
         $this->database->query('CREATE TABLE IF NOT EXISTS '.$this->table.' (id       INTEGER PRIMARY KEY AUTOINCREMENT, 
                                                           droite   INT UNSIGNED CONSTRAINT KEY DEFAULT "0",
                                                           gauche   INT UNSIGNED CONSTRAINT KEY DEFAULT "0",

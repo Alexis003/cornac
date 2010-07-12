@@ -21,19 +21,10 @@ class template_hierarchic extends template {
         $class = get_class($noeud);
         $method = "affiche_$class";
 
-/*        
-        if (method_exists($this, $method)) {
-            $this->$method($noeud, $niveau + 1);
-        } else {
-            print "Affichage tree de '".$method."'\n";die;
-        }
-        */
         $this->$method($noeud, $niveau + 1);
         if (!is_null($noeud->getNext())){
             $this->affiche($noeud->getNext(), $niveau);
         }
-        
-        
     }
     
     function affiche_arglist($noeud, $niveau) {

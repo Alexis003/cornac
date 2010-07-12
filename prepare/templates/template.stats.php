@@ -17,8 +17,6 @@ class template_stats extends template {
         
         if (!is_object($noeud)) {
             print "Attention, on tente un affichage d'une variable qui n'est pas un objet dans template.stats\n\n";
-//            debug_print_backtrace();
-//            die();
         }
         $class = get_class($noeud);
         $method = "affiche_$class";
@@ -35,7 +33,6 @@ class template_stats extends template {
                 if (count($this->stats['missing']) == 0) { 
                     unset($this->stats['missing']); 
                 }
-                print_r($this->stats);
             }
         }
     }

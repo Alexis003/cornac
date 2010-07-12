@@ -23,20 +23,23 @@ class block_casedefault_regex extends analyseur_regex {
             if ($var->checkClass(array('_case','_default'))) {
                 $this->args[] = $i;
                 $this->remove[] = $i;
-                if (!$var->hasNext()) { return $t; }
+                
+                if (!$var->hasNext()) { 
+                    return $t; 
+                }
                 $var = $var->getNext();
                 $i++;
                 continue;
             }
 
             if ($var->checkCode('{') ) {
-                // bloc imbriqués ? Alors, on annule tout.
+                // @doc nested blocks? aborting.
                 $this->args = array();
                 $this->remove = array();
                 return false;
             }
 
-            // pas traitable ? On annule tout.
+            // @doc Can't be processed? Just abort
             $this->args = array();
             $this->remove = array();
             return false;

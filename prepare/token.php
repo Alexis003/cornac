@@ -6,7 +6,6 @@ class Token {
     
     static public $root = null;
 
-// 
     protected $token = null;
     protected $code = null;
     protected $ligne = null;
@@ -14,7 +13,7 @@ class Token {
     
     static private $test_id = null;
 
-// configuration
+// configuration @_
     public $structures = null;
 
     public function __construct() {
@@ -159,13 +158,13 @@ class Token {
         $prev = $this->prev;
         
         if (is_null($next)) {
-            // 
+            // @empty_ifelse
         } else {
             $next->setPrev($prev);
         }
 
         if (is_null($prev)) {
-            // 
+            // @empty_ifelse
         } else {
             $prev->setNext($next);
         }
@@ -293,7 +292,7 @@ class Token {
             } elseif ($arg < 0) {
                 $t->removePrev($arg + 1);
             } else {
-                // rien, c'est une erreur
+                // @empty_ifelse this is an error. Should be trapped
             }
         }
 
@@ -404,8 +403,9 @@ class Token {
                 die();
            }
            $classes = array_shift($classes);
+        } else {
+            // @empty_ifself otherwise it is a string
         }
-        // sinon string
         return is_subclass_of($this, $classes);
     }
 
@@ -518,7 +518,7 @@ class Token {
                        'cdtternaire',
                        '_clone',
                        '_declare',
-// NON!                       'variable',
+// @dont Don't put variable in this list    'variable',
                                        );
         if ($and_block) {
             $liste[] = 'block';
@@ -559,9 +559,6 @@ class Token {
         if ($token->checkClass('Token')) {
             $retour = new token_traite($token);
             $retour->replace($token);
- /*       } elseif ($token->checkToken(T_STRING)) {
-            $retour = new constante($token);
-            $retour->replace($token);*/
         } else {
             $retour = $token;
         }

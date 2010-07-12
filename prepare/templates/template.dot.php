@@ -22,7 +22,6 @@ class template_dot extends template {
         if (is_null($filename)) {
             file_put_contents("tokenizeur.dot", "digraph G {\n {$this->dot} \n}");
             print "Sauvé dans tokenizeur.dot\n";
-//            print "digraph G {\n {$this->dot} \n}";
         } else {
             file_put_contents($filename, "digraph G {\n {$this->dot} \n}");
         }
@@ -37,7 +36,7 @@ class template_dot extends template {
         }
         
         if (!is_object($noeud)) {
-//            debug_print_backtrace();
+            print "Found an null reference in ".__METHOD__."\n";
             die();
         }
         $class = get_class($noeud);
@@ -53,7 +52,7 @@ class template_dot extends template {
         }
     }
 ////////////////////////////////////////////////////////////////////////
-// dot function 
+// @section dot function 
 ////////////////////////////////////////////////////////////////////////
     function format_dot_id($id) {
         if (strpos($id, ":") === false) { return $id;}
@@ -81,7 +80,6 @@ class template_dot extends template {
         }
         $labels = join('|', $labels);
         $this->dot .=  $noeud." [shape=record,label=\"{".$title." | {".$labels."}} \"];\n";
-//            <f0> left|<f1> mid\ dle|<f2> right
 
     }
     
@@ -114,7 +112,7 @@ class template_dot extends template {
     }
 
 ////////////////////////////////////////////////////////////////////////
-// dot function 
+// @section dot function 
 ////////////////////////////////////////////////////////////////////////
     function affiche_token_traite($noeud, $niveau) {
         $this->dot_label($noeud->dotId, $noeud->getCode() );
@@ -182,11 +180,7 @@ die("cas de l'argument null ou inexistant");
     }
 
     function affiche__break($noeud, $niveau) {
-/*        $niveaux = $noeud->getNiveaux();
-
-        $x->dotId = $this->getNextId();
-        $this->dot_link($noeud->dotId, $x->dotId);
-        $this->affiche($x, $niveau + 1);            */
+        die(__METHOD__);
     }
 
     function affiche__case($noeud, $niveau) {
@@ -240,7 +234,6 @@ die("cas de l'argument null ou inexistant");
     }
     
     function affiche_codephp($noeud, $niveau) {
-    //le seul autorisé
         if (!isset($noeud->dotId)) {
             $noeud->dotId = $this->getNextId();
         }
@@ -677,10 +670,7 @@ die("cas de l'argument null ou inexistant");
     
     function affiche_Token($noeud, $niveau) {
         $this->dot_label($noeud->dotId, $noeud->getCode() );
-        
-//        $this->dot .=  str_repeat('  ', $niveau).get_class($noeud)." ".$noeud->getCode()." ( Affichage par défaut)\n";
     }
-
 }
 
 ?>

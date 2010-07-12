@@ -52,7 +52,7 @@ class template_db extends template {
     }
     
 ////////////////////////////////////////////////////////////////////////
-// database functions
+// @section database functions
 ////////////////////////////////////////////////////////////////////////
 
     private static $ids = 0;
@@ -121,7 +121,7 @@ class template_db extends template {
     }
 
 ////////////////////////////////////////////////////////////////////////
-// database functions
+// @section database functions
 ////////////////////////////////////////////////////////////////////////
     function affiche_token_traite($noeud, $niveau) {
         $noeud->myId = $this->getNextId();
@@ -171,7 +171,7 @@ class template_db extends template {
             $labels = array();
             foreach($elements as $id => &$e) {
                 if (is_null($e)) {
-                    //rien
+                    // @empty_ifsele rien
                 } else {
                     $this->affiche($e, $niveau + 1);
                 }
@@ -268,7 +268,6 @@ class template_db extends template {
     }
 
     function affiche_codephp($noeud, $niveau) {
-        //le seul autorisé
         if (!isset($noeud->dotId)) {
             $noeud->dotId = $this->getNextId();
         }
@@ -482,7 +481,7 @@ class template_db extends template {
             $tags['static'][] = $this->affiche($m, $niveau + 1);
         }
         $tags['name'][] = $this->affiche($noeud->getName(), $niveau + 1);
-        // récupération du nom de la fonction
+        // @note récupération du nom de la fonction
         $noeud->setCode($noeud->getName()->getCode());
         $tags['args'][] = $this->affiche($noeud->getArgs(), $niveau + 1);
         $tags['block'][] = $this->affiche($noeud->getBlock(), $niveau + 1);
@@ -726,9 +725,6 @@ class template_db extends template {
         $noeud->myId = $this->getNextId();
         $noeud->myDroite = $this->getIntervalleId();
         
-//        $this->affiche($noeud->getObject(), $niveau + 1);
-//        $this->affiche($noeud->getProperty(), $niveau + 1);
-
         $tags = array();
         $tags['object'][] = $this->affiche($noeud->getObject(), $niveau + 1);
         $tags['property'][] = $this->affiche($noeud->getProperty(), $niveau + 1);
@@ -791,7 +787,7 @@ class template_db extends template {
 
         $elements = $noeud->getElements();
         if (count($elements) == 0) {
-            // rien
+            // @empty_ifelse 
         } else {
             $labels = array();
             $id = 0;
@@ -864,14 +860,6 @@ class template_db extends template {
         $noeud->myGauche = $this->getIntervalleId();
         return $this->saveNoeud($noeud);
     }
-
-/*
-    function affiche_token_traite($noeud, $niveau) {
-        print get_class($noeud);
-    
-        print str_repeat('  ', $niveau).$noeud->getCode()." \n";
-    }
-*/
 
     function affiche__try($noeud, $niveau) {
         $noeud->myId = $this->getNextId();

@@ -72,11 +72,6 @@ class var_simple_regex extends analyseur_regex {
 
                             continue;
                         }
-/*
-                        if ($var->getNext()->checkClass(array('_var'))) {
-                            // tout va bien, c'est déjà fait. 
-                            continue;
-                        }*/
                         return false;
                 }
                 

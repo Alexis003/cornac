@@ -6,8 +6,7 @@ class analyseur {
 
     function __construct() {
 
-        $this->structures = array(//'whitespace', 
-//                                  'commentaire',
+        $this->structures = array(
                                   'ifthen',
                                   'literals', 
                                   'variable', 
@@ -15,7 +14,6 @@ class analyseur {
                                   'rawtext', 
                                   'parentheses', 
                                   'affectation', 
-//                                  'instruction', 
                                   '_for',
                                   'sequence', 
                                   'operation', 
@@ -29,7 +27,7 @@ class analyseur {
                                   'block',
                                   'not',
                                   'invert',
-                                  '_function', // function doit passer avant logique
+                                  '_function', // @attention : function must be before logique
                                   'logique',
                                   'preplusplus',
                                   'postplusplus',
@@ -129,12 +127,12 @@ class analyseur {
                 mon_log(get_class($t)." => ".get_class($retour));
                 return $retour; 
             }
-//            return $t;
-        } // else implicite
+        } else {
+            // @empty_ifthen
+        }
         
         $code = $t->getCode();
         if (isset($this->regex[$code])) {
-//            print "$code detecte\n";
             foreach($this->regex[$code] as $nom => $r) {
                 $this->verifs++;
                 
@@ -148,8 +146,10 @@ class analyseur {
                 mon_log(get_class($t)." => ".get_class($retour));
                 return $retour; 
             }
-        } // else implicite
-
+        } else {
+            // @empty_ifthen
+        }
+        
         foreach($this->regex[0] as $nom => $r) {
             if (!$r->check($t)) {
                 unset($r);
@@ -191,7 +191,7 @@ class analyseur {
             } elseif ($arg < 0) {
                 $t->removePrev($arg + 1);
             } else {
-                // rien, c'est une erreur
+                // @empty_ifthen Just ignore this
             }
         }
 
