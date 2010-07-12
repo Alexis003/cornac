@@ -9,7 +9,7 @@ class template_sqlite extends template_db {
         
         global $INI;
         
-        $this->table = $INI['template.sqlite']['table'] ?: 'tokens';
+        $this->table = $INI['cornac']['prefix'] ?: 'tokens';
         $this->table_tags = $this->table.'_tags';
 
         if (isset($INI['sqlite']) && $INI['sqlite']['active'] == true) {

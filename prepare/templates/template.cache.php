@@ -14,10 +14,11 @@ class template_cache extends template {
         parent::__construct();
         
         global $INI;
+        $this->table = $INI['cornac']['prefix'] ?: 'tokens';
+
         
         if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
             $this->database = new pdo($INI['mysql']['dsn'],$INI['mysql']['username'], $INI['mysql']['password']);
-            $this->table = $INI['template.mysql']['table'] ?: 'tokens';
 
             $this->database->query('DELETE FROM '.$this->table.'_cache WHERE fichier = "'.$fichier.'"');
             $this->database->query('CREATE TABLE IF NOT EXISTS '.$this->table.'_cache (
@@ -27,7 +28,6 @@ class template_cache extends template {
                                                           )');
         } elseif (isset($INI['sqlite']) && $INI['sqlite']['active'] == true) {
             $this->database = new pdo($INI['sqlite']['dsn']);
-            $this->table = $INI['template.sqlite']['table'] ?: 'tokens';
 
             $this->database->query('DELETE FROM '.$this->table.'_cache WHERE fichier = "'.$fichier.'"');
             $this->database->query('CREATE TABLE IF NOT EXISTS '.$this->table.'_cache (
