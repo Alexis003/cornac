@@ -2,6 +2,7 @@
 <?php
 
 include('../libs/getopts.php');
+include('../libs/write_ini_file.php');
 
 $args = $argv;
 
@@ -64,6 +65,8 @@ if (isset($INI['cornac']['prefix'])) {
 } else {
     $prefix = 'tokens';
 }
+
+write_ini_file($INI, INI);
 
 // @attention : should also support _dot reports
 $requete = 'SELECT * FROM '.$prefix.'_rapport WHERE module='.$database->quote($INI['reader']['module']);
