@@ -4,17 +4,16 @@ class functioncalls extends modules {
     protected $not = false; 
     protected $functions = array();
 
-	function __construct($mid) {
+    function __construct($mid) {
         parent::__construct($mid);
-//    	$this->name = __CLASS__;
-	}
-	
-	public function analyse() {
-	    if (!is_array($this->functions) || empty($this->functions)) {
-	        print "Aucune fonction fournie pour ".__CLASS__." : annulation du traitement\n";
-	        die();
-	    }
-	    $in = join("','", $this->functions);
+    }
+    
+    public function analyse() {
+        if (!is_array($this->functions) || empty($this->functions)) {
+            print "Aucune fonction fournie pour ".__CLASS__." : annulation du traitement\n";
+            die();
+        }
+        $in = join("','", $this->functions);
         $this->functions = array();
 
         if ($this->not) {
@@ -35,7 +34,7 @@ INSERT INTO <rapport>
     WHERE T1.type='functioncall' AND T2.code $not in ('$in')
 SQL;
         $this->exec_query($requete);
-	}
+    }
 }
 
 ?>
