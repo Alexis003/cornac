@@ -1,6 +1,6 @@
 <?php
 
-
+/*
 global $ANALYSEUR;
 // nom de l'application à tester
 $ANALYSEUR['application']     = 'cligraphcrm_0.991';
@@ -56,7 +56,7 @@ $ANALYSEUR['analyses'] = array(
 global $EXPORTATEUR;
 // configuration pour la production des rapports
 $EXPORTATEUR['limite'] = 10;
-
+*/
 
 /// configuration automatique
 //include('tokens.php');
@@ -65,9 +65,10 @@ $EXPORTATEUR['limite'] = 10;
 //include('classes/oneliners.php');
 //include('classes/native_php_functions.php');
 
-$mid = mysqli_connect($ANALYSEUR['db']['host'],$ANALYSEUR['db']['login'],$ANALYSEUR['db']['password'],$ANALYSEUR['db']['database']);
+//$mid = mysqli_connect($ANALYSEUR['db']['host'],$ANALYSEUR['db']['login'],$ANALYSEUR['db']['password'],$ANALYSEUR['db']['database']);
 
 include('prepare/token.php');
+include('prepare/token_traite.php');
 include('prepare/instruction.php');
 include('prepare/analyseur_regex.php');
 include('prepare/variable.php');
