@@ -614,8 +614,9 @@ TEXT;
 function liste_directories_recursive( $path = '.', $level = 0 ){ 
     global $INI;
 
+    $ignore_dirs = array( 'cgi-bin', '.', '..' ); 
     if (isset($INI['tokenizeur']['ignore_dirs']) && !empty($INI['tokenizeur']['ignore_dirs'])) {
-        $ignore_dirs = array_merge($ignore, explode(',',$INI['tokenizeur']['ignore_dirs']));
+        $ignore_dirs = array_merge($ignore_dirs, explode(',',$INI['tokenizeur']['ignore_dirs']));
     } else {
         $ignore_dirs = array( 'cgi-bin', '.', '..' ); 
     }
@@ -631,8 +632,10 @@ function liste_directories_recursive( $path = '.', $level = 0 ){
         $regex_prefixe = '';
     }
 
-    $dh = opendir( $path ); 
     $retour = array();
+
+    $dh = opendir( $path ); 
+    if (!$dh) {  print "$path\n"; return $retour; }
     while( false !== ( $file = readdir( $dh ) ) ){ 
         if( in_array( $file, $ignore_dirs ) ){ continue; }
         if( is_dir( "$path/$file" ) ){ 
