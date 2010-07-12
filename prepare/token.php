@@ -221,22 +221,7 @@ class Token {
     }
 
     function getNext($n = 0) {
-//        global $id_getNext;
-        
         if (!isset($id_getNext)) {$id_getNext = 1;} else { $id_getNext++; } 
-/*        
-        $fp = fopen('/tmp/getNext.log','a');
-        fwrite($fp, "$id_getNext\t$n\n");
-        fclose($fp);
-        */
-        
-        /*
-        if ($n > 3100) {
-            print_r(xdebug_get_function_stack());        
-            print "\$n est > a 3000 ($n) \n";
-            die();
-        }
-        */
         $n++;
         $retour = $this;
         while($n > 0) {
@@ -246,18 +231,6 @@ class Token {
         }
         
         return $retour;
-        
-        /*
-        
-        if ($n > 0) {
-            if (is_null($retour)) {
-                return NULL;
-            }
-            $retour = $retour->getNext($n - 1);
-        }
-
-        return $retour;
-        */
     }
     
     function __toString() {
