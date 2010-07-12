@@ -2,6 +2,7 @@
 <?php
 
 include('../libs/getopts.php');
+include('../libs/write_ini_file.php');
 
 $args = $argv;
 
@@ -19,7 +20,7 @@ if (!is_null($ini)) {
     } elseif (file_exists($ini)) {
         define('INI',$ini);
     } else {
-        define('INI','../ini/'.'tokenizeur.ini');
+        define('INI','../ini/'.'cornac.ini');
     }
     $INI = parse_ini_file(INI, true);
 } else {
@@ -135,6 +136,7 @@ if ($INI['analyzers'] == 'all' ) {
     }
 } 
 print count($modules)." modules will be treated : ".join(', ', $modules)."\n";
+write_ini_file($INI, INI);
 
 if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
     $database = new pdo($INI['mysql']['dsn'],$INI['mysql']['username'], $INI['mysql']['password']);
@@ -170,8 +172,8 @@ if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
 } elseif (isset($INI['sqlite'])  && $INI['sqlite']['active'] == true) {
     $database = new pdo($INI['sqlite']['dsn']);
     
-//    $database->query('DELETE FROM '.$INI['template.sqlite']['table'].'_rapport WHERE fichier = "'.$fichier.'"');
-    $database->query('CREATE TABLE IF NOT EXISTS '.$INI['template.sqlite']['table'].'_rapport 
+//    $database->query('DELETE FROM '.$INI['cornac']['prefix'].'_rapport WHERE fichier = "'.$fichier.'"');
+    $database->query('CREATE TABLE IF NOT EXISTS '.$INI['cornac']['prefix'].'_rapport 
   (id       INTEGER PRIMARY KEY   AUTOINCREMENT  , 
   `fichier` varchar(500) NOT NULL,
   `element` varchar(500) NOT NULL,
@@ -179,15 +181,15 @@ if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
   `module` varchar(50) NOT NULL
 )');
         
-//    $database->query('DELETE FROM '.$INI['template.sqlite']['table'].'_rapport_dot WHERE cluster = "'.$fichier.'"');
-    $database->query('CREATE TABLE IF NOT EXISTS '.$INI['template.sqlite']['table'].'_rapport_dot (
+//    $database->query('DELETE FROM '.$INI['cornac']['prefix'].'_rapport_dot WHERE cluster = "'.$fichier.'"');
+    $database->query('CREATE TABLE IF NOT EXISTS '.$INI['cornac']['prefix'].'_rapport_dot (
   `a` varchar(255) NOT NULL,
   `b` varchar(255) NOT NULL,
   `cluster` varchar(255) NOT NULL DEFAULT \'\',
   `module` varchar(255) NOT NULL
 )');
 
-    $database->query('CREATE TABLE IF NOT EXISTS '.$INI['template.sqlite']['table'].'_rapport_module (
+    $database->query('CREATE TABLE IF NOT EXISTS '.$INI['cornac']['prefix'].'_rapport_module (
   `module` varchar(255) NOT NULL PRIMARY KEY,
   `fait` datetime NOT NULL,
   `format` varchar(255) NOT NULL
@@ -245,7 +247,7 @@ function analyse_module($module) {
                 print "\n";
             }
         } else {
-            print "Dépendances faites\n";
+            print "Dépendances already processed\n";
         }
     }
     
