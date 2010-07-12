@@ -21,9 +21,11 @@ class doubledefclass extends modules {
 INSERT INTO <rapport> 
 SELECT NULL, fichier, TR.element,  TR.token_id, '{$this->name}'
 FROM <rapport> TR
+ WHERE module='classes' AND
+ TR.element IN (SELECT element FROM <rapport> TR
  WHERE module='classes'
  GROUP BY element 
- HAVING count(*) > 1;
+ HAVING count(*) > 1);
 SQL;
     
         $this->exec_query($requete);
