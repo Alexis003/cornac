@@ -22,7 +22,7 @@ class literals extends token {
     }
     
     function getCode() {
-        if ($this->value[0] == '"' || $this->value[0] == "'") {
+        if (strlen($this->value) && ($this->value[0] == '"' || $this->value[0] == "'")) {
             $this->delimiter = $this->value[0];
             $this->value = trim($this->value, "'\"");
         }
