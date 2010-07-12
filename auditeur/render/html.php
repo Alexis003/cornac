@@ -11,7 +11,7 @@ class Render_html {
 // @todo  : should be centralized somewhere !
         $prefixe = $this->module;
         $this->tables = array('<rapport>' => $prefixe.'_rapport',
-                        '<rapport_scope>' => $prefixe.'_rapport_scope',
+                              '<rapport_scope>' => $prefixe.'_rapport_scope',
                               '<tokens>' => $prefixe.'',
                               '<tokens_tags>' => $prefixe.'_tags',
                               '<rapport_module>' => $prefixe.'_rapport_module',
@@ -27,7 +27,6 @@ class Render_html {
     function render($lines) {
         $requete = "SELECT module FROM {$this->tables['<rapport_module>']} ORDER BY fait DESC ";
         $res = $this->db->query($requete);
-        print_r($this->db->errorInfo());
 
         $html = '';
         while($ligne = $res->fetch()) {
