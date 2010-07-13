@@ -63,8 +63,9 @@ if (!is_writable($INI['cornac']['destination'])) {
     print "Output path '{$INI['cornac']['destination']}' isn't writable : update ".INI.".ini\n";
     help(); 
 }
+$INI['reader']['output'] = $INI['cornac']['destination'];
 
-// validations
+// @notes validations
 if (!file_exists($INI['cornac']['origin'])) {
     print "Source folder '{$INI['cornac']['origin']}' doesn't exist\n";
     die();
@@ -80,6 +81,17 @@ if (realpath($INI['cornac']['origin']) == realpath($INI['cornac']['destination']
     die();
 }
 
+if ($INI['cornac']['storage'] == 'mysql') {
+    $INI['mysql']['active'] = 1;
+    $INI['sqlite']['active'] = 0;
+} elseif ($INI['cornac']['storage'] == 'sqlite') {
+    $INI['mysql']['active'] = 0;
+    $INI['sqlite']['active'] = 1;
+} else {
+    print "Please, storage should be mysql or sqlite\n";
+    die();
+}
+
 write_ini_file($INI, INI);
 // execution
 print "
@@ -88,10 +100,14 @@ Output : {$INI['cornac']['destination']}\n";
 
 if (!empty($INI['cornac']['ini'])) { $ini = " -I {$INI['cornac']['ini']} "; } else { $ini = ""; }
 
+print "Tokenizeur\n";
 shell_exec("./tokenizeur.php -r -d {$INI['cornac']['origin']} -g {$INI['cornac']['storage']},cache $ini "); // @todo : note the log 
-                                                                                        // @sqlite as default ? 
+                                                                                                            // @sqlite as default ? 
+print "Auditeur\n";
 shell_exec("cd auditeur; ./auditeur.php $ini -o -d {$INI['cornac']['destination']}");
 // @todo clean audits tables before. shell_exec("rm -rf /tmp/cornac; mkdir {$INI['destination']}");
+
+print "Export\n";
 shell_exec("cd auditeur; ./reader.php $ini -F html -o {$INI['cornac']['destination']} ");
 
 print "Done\n";
