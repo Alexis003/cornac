@@ -147,8 +147,8 @@ Faire la liste des méthodes/fonctions, constantes/constantes de classes, variab
 Faire une option de nettoyage des bases (par défaut, c'est remis fichier par fichier)
 
 
-methodes appelées
-exceptions lancées
+Called methods
+Exceptions thrown
 fonctions/méthodes lanceuses d'exception
 
 méthodes pas appelées
@@ -188,3 +188,24 @@ Long list of public methods
 Add multi-processing for tokenizeur/auditeur (should be easy, given the task are all concurrent and distinct)
 
 Report of dependance of a method : local variables, global ones, class, constantes, statique. 
+
+Add a log option in cornac/* to 
+Add an option to clean content first
+Check that one can update code with cornac (cleaning old reports)
+
+Have a treemap, showing where are the occurrences (colors?)
+
+Change navigation in menus
+
+Could it be possible to chain results? Atm, one can do it manually, or creating a new analyzer
+Include JMF's style
+
+Move array style to object ? 
+
+Move prepare to classes
+Move auditeur.php to English
+Move auditeur.php to upper directory
+
+Add some more cornac tests
+
+Apply cornac to itself
