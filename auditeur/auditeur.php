@@ -142,7 +142,7 @@ if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
     $database = new pdo($INI['mysql']['dsn'],$INI['mysql']['username'], $INI['mysql']['password']);
 
 //    $database->query('DELETE FROM '.$INI['template.mysql'].'_rapport WHERE fichier = "'.$fichier.'"');
-    $database->query('CREATE TABLE IF NOT EXISTS '.$INI['template.mysql'].'_rapport (
+    $database->query('CREATE TABLE IF NOT EXISTS '.$INI['cornac']['prefix'].'_rapport (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `fichier` varchar(500) NOT NULL,
   `element` varchar(500) NOT NULL,
@@ -154,7 +154,7 @@ if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
 ) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1');
 
 //        $database->query('DELETE FROM '.$INI['template.mysql']['table'].'_rapport_dot WHERE fichier = "'.$fichier.'"');
-        $database->query('CREATE TABLE IF NOT EXISTS '.$INI['template.mysql']['table'].'_rapport_dot (
+        $database->query('CREATE TABLE IF NOT EXISTS '.$INI['cornac']['prefix'].'_rapport_dot (
   `a` varchar(255) NOT NULL,
   `b` varchar(255) NOT NULL,
   `cluster` varchar(255) NOT NULL DEFAULT \'\',
@@ -162,7 +162,7 @@ if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1');
 
 //        $database->query('DELETE FROM '.$INI['template.mysql']['table'].'_rapport_module WHERE fichier = "'.$fichier.'"');
-        $database->query('CREATE TABLE IF NOT EXISTS '.$INI['template.mysql']['table'].'_rapport_module (
+        $database->query('CREATE TABLE IF NOT EXISTS '.$INI['cornac']['prefix'].'_rapport_module (
   `module` varchar(255) NOT NULL,
   `fait` datetime NOT NULL,
   `format` enum("html","dot","gefx") NOT NULL,
