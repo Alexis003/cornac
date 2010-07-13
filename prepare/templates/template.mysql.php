@@ -11,7 +11,7 @@ class template_mysql extends template_db {
         
         global $INI;
         
-        $this->table = $INI['template.mysql']['table'] ?: 'tokens';
+        $this->table = $INI['cornac']['prefix'] ?: 'tokens'; 
         $this->table_tags = $this->table.'_tags';
 
         if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
