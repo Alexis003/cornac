@@ -7,6 +7,10 @@
   */
 function get_arg_value(&$args, $option=null, $default_value=null) {
     if ($id = array_search($option, $args)) {
+        if (!isset($args[$id + 1])) { 
+            unset($args[$id]);
+            return $default_value;
+        }
         $return = $args[$id + 1];
         unset($args[$id]);
         unset($args[$id + 1]);
