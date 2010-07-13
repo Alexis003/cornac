@@ -6,13 +6,12 @@ class sequence_class_regex extends analyseur_regex {
     }
 
     function getTokens() {
-        return array(0);
+        return array(Token::ANY_TOKEN);
     } 
 
     function check($t) {
         if (!$t->hasNext() ) { return false; }
 
-//,'rawtext'
         if (!$t->checkForBlock(true) && $t->checkNotClass(array('codephp'))) { return false; } 
         if (!$t->getNext()->checkForBlock(true) && 
             !$t->getNext()->checkForVariable() &&

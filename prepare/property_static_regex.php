@@ -15,10 +15,10 @@ class property_static_regex extends analyseur_regex {
         if (!$t->hasNext() ) { return false; }
         if ( $t->checkNotToken(T_DOUBLE_COLON)) { return false; }
 
-        if ($t->getNext(1)->checkCode(array(/*'->',*/'[')) &&
-            $t->getNext(2)->checkNotCode(array(/*'->',*/']'))) { return false;}
+        if ($t->getNext(1)->checkCode(array('[')) &&
+            $t->getNext(2)->checkNotCode(array(']'))) { return false;}
 
-        if ($t->getNext(1)->checkCode(array(/*'->',*/'('))) { return false;}
+        if ($t->getNext(1)->checkCode(array('('))) { return false;}
 
         if ( ($t->getPrev()->checkToken(array(T_STRING,T_STATIC)) || 
               $t->getPrev()->checkClass(array('variable','tableau'))) &&

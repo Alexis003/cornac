@@ -6,7 +6,7 @@ class sequence_empty_regex extends analyseur_regex {
     }
 
     function getTokens() {
-        return array(0);
+        return array(Token::ANY_TOKEN);
     }
  
     function check($t) {

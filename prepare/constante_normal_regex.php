@@ -6,7 +6,7 @@ class constante_normal_regex extends analyseur_regex {
     }
 
     function getTokens() {
-        return array(T_STRING,0);
+        return array(T_STRING,Token::ANY_TOKEN);
     }
     
     function check($t) {

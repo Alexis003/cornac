@@ -11,10 +11,7 @@ class interface_normal_regex extends analyseur_regex {
     
     function check($t) {
         if (!$t->hasNext(1)) { return false; }
-
         if ($t->checkNotToken(T_INTERFACE)) { return false; } 
-//        if ($t->getNext()->checkNotClass('block')) { return false; } 
-// peut importe en fait
 
         $this->args = array(1);
         $this->remove = array(1);

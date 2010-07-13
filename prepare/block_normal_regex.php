@@ -32,7 +32,6 @@ class block_normal_regex extends analyseur_regex {
             }
 
             if ($var->checkNotClass(array('block','Token')) && 
-//                !$var->hasNext(1) && 
                 $var->getNext()->checkCode(';')) {
                 $this->args[] = $i;
 
@@ -45,28 +44,30 @@ class block_normal_regex extends analyseur_regex {
             }
 
             if ($var->checkCode('{') ) {
-                // bloc imbriqués ? Alors, on annule tout.
+                // @doc nested blocks? aborting
                 $this->args = array();
                 $this->remove = array();
                 return false;
             }
 
             if ($var->checkCode(';') ) {
-                // un point-virgule qui traine. Bah....
+                // @doc one forgotten semi-colon? ignore it.
                 $this->remove[] = $i;
                 $i++;
-                if (!$var->hasNext()) { return $t; }
+                if (!$var->hasNext()) { 
+                    return $t; 
+                }
                 $var = $var->getNext();
                 continue;
             }
 
-            // pas traitable ? On annule tout.
+            // @doc not understood? Sorry...
             $this->args = array();
             $this->remove = array();
             return false;
         }
         
-        $this->remove[] = $i ; // } final
+        $this->remove[] = $i ; // @note Removing final }
         
         mon_log(get_class($t)." => ".__CLASS__);
         return true;

@@ -13,25 +13,14 @@ class codephp_normal_regex extends analyseur_regex {
         if (!$t->hasNext(1)) { return false; }
 
         if ($t->checkNotToken(T_OPEN_TAG)) { return false; }
+        if ($t->getNext()->checkClass('Token')) { return false; }
+        if ($t->getNext(1)->checkNotToken(T_CLOSE_TAG)) { return false; }
 
-        if ($t->checkToken(T_OPEN_TAG) &&
-            $t->getNext()->checkNotClass('Token') && 
-            $t->getNext(1)->checkToken(T_CLOSE_TAG)) {
-            $this->args = array(1);
-            $this->remove = array(1,2);
+        $this->args = array(1);
+        $this->remove = array(1,2);
 
-/*            
-            if ($t->hasPrev() && $t->getPrev()->checkClass('rawtext')) {
-                $this->args[] = -1;
-                sort($this->args);
-                $this->remove[] = -1;
-                sort($this->remove);
-            }
-            */
-            mon_log(get_class($t)." => ".__CLASS__);
-            return true;
-        } 
-        return false;
+        mon_log(get_class($t)." => ".__CLASS__);
+        return true;
     }
 }
 

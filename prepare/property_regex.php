@@ -6,7 +6,7 @@ class property_regex extends analyseur_regex {
     }
 
     function getTokens() {
-        return array(T_VARIABLE,0);
+        return array(T_VARIABLE,Token::ANY_TOKEN);
     }
     
     function check($t) {

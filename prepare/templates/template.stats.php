@@ -248,17 +248,6 @@ class template_stats extends template {
         }
     }
 
-/*
-    function getKey() {
-        return $this->key;
-    }
-
-    function getValue() {
-        return $this->value;
-    }
-
-    function getBlock() {    }
-*/
     function affiche_functioncall($noeud, $niveau) {
         $this->addStat(__FUNCTION__);
 
@@ -478,7 +467,6 @@ class template_stats extends template {
         print $noeud."".$noeud->getId()."\n";
         $this->addStat(__FUNCTION__);
     }
-
 }
 
 ?>

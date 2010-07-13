@@ -12,7 +12,6 @@ class for_comma2_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasNext(4)) { return false; }
 
-//        if ($t->checkNotToken(array(T_FOR))) { return false; } 
         if ($t->getNext()->checkNotCode(array('('))) { return false; } 
         
         $pos = 0;

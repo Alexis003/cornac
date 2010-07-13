@@ -6,7 +6,7 @@ class typehint_regex extends analyseur_regex {
     }
 
     function getTokens() {
-        return array(0, T_ARRAY, T_STRING);
+        return array(T_ARRAY, T_STRING, Token::ANY_TOKEN);
     }
 
     function check($t) {

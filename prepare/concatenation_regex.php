@@ -6,15 +6,13 @@ class concatenation_regex extends analyseur_regex {
     }
 
     function getTokens() {
-        return array();
+        return array(".");
     }
  
     function check($t) {
         if (!$t->hasNext() ) { return false; }
         if (!$t->hasPrev( 1 )) { return false; }
 
-        if ($t->checkNotOperateur('.') ) { return false; } 
-//        if ($t->checkNotClass('Token') ) { return false; } 
         if ($t->getPrev()->checkClass(array('Token','arglist'))) { return false; }
         if ($t->getPrev(1)->checkOperateur(array('.','->','@','::','++','--'))) { return false; }
         

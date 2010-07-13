@@ -20,7 +20,6 @@ class function_abstract_regex extends analyseur_regex {
         mon_log(get_class($t->getNext())." => literals  (".__CLASS__.")");
         $regex = new modele_regex('literals',array(0), array());
         Token::applyRegex($t->getNext(), 'literals', $regex);
-        // #applyRegex
 
         $this->args = array(1,2,3);
         $this->remove = array(1,2,3);

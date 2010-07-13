@@ -11,7 +11,6 @@ class ifthenelseif_simples_regex extends analyseur_regex {
     
     function check($t) {
         if (!$t->hasNext(1) ) { return false; }
-
         if ($t->getNext()->checkNotClass('parentheses')) { return false; }
 
         if ($t->getNext(1)->checkForBlock(true)) {
@@ -44,7 +43,6 @@ class ifthenelseif_simples_regex extends analyseur_regex {
             return false; 
         } 
         
-//        $t->affiche(0, 3);
         return false;
     }
 }

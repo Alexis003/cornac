@@ -14,7 +14,6 @@ class literals extends token {
         }
 
         if (isset($signe[1])) {
-//            $this->value = trim($this->value,"'\"");
             if ($signe[1]->checkCode("-")){
                 $this->value = -1 * $this->value;
             }

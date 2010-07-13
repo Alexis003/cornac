@@ -19,7 +19,6 @@ class function_reference_regex extends analyseur_regex {
         if ($t->getNext(1)->checkNotToken(T_STRING) && 
             $t->getNext(1)->checkNotClass('literals')) { return false; }
         if ($t->getNext(2)->checkNotClass('arglist')) { return false; }
-//        if ($t->getNext(3)->checkNotClass('block') ) { return false; }
 
         mon_log(get_class($t->getNext(1))." => literals  (".__CLASS__.")");
         $regex = new modele_regex('literals',array(0), array());
@@ -36,7 +35,7 @@ class function_reference_regex extends analyseur_regex {
         } elseif ($t->getNext(3)->checkClass('Token') ) { 
             return false;
         } else {
-            die("Situation inconnue dans ".__METHOD__);
+            die("Unknown situation in ".__METHOD__);
         }
 
         if ($t->hasPrev() && $t->getPrev()->checkToken($this->options)) {

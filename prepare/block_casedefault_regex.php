@@ -6,7 +6,7 @@ class block_casedefault_regex extends analyseur_regex {
     }
 
     function getTokens() {
-        return array(0);
+        return array(Token::ANY_TOKEN);
     }
     
     function check($t) {
@@ -46,7 +46,7 @@ class block_casedefault_regex extends analyseur_regex {
         }
 
         
-        $this->remove[] = $i ; // } final
+        $this->remove[] = $i ; // @note suppression du } final
 
         mon_log(get_class($t)." => ".__CLASS__);
         return true;

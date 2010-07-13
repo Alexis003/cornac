@@ -10,7 +10,6 @@ class opappend_regex extends analyseur_regex {
     }
     
     function check($t) {
-//        if (!$t->hasNext(1)) { return false; }
         if (!$t->hasPrev(1)) { return false; }
         
         if ($t->hasPrev(1) && $t->getPrev(1)->checkCode(array('::','->'))) { return false; }

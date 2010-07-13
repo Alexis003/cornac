@@ -13,9 +13,10 @@ class clone_normal_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasNext()) { return false; }
 
-        if ($t->checkToken(T_CLONE) &&
-            $t->getNext()->checkClass(array('variable','tableau','property','property_static','method','method_static','functioncall')) &&
-//            $t->getNext(1)->checkCode(array(';'))
+        if ($t->getNext()->checkClass(array('variable','tableau',
+                                            'property','property_static',
+                                            'method','method_static',
+                                            'functioncall')) &&
                 $t->getNext(1)->checkEndInstruction()
             ) {
 

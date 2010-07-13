@@ -16,6 +16,8 @@ class Token {
 // configuration @_
     public $structures = null;
 
+    const ANY_TOKEN = 0;
+    
     public function __construct() {
 
     }
