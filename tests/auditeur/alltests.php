@@ -34,6 +34,10 @@ $tests = array(
 'class.html_tags.test.php',
 'class.affectations_gpc.test.php',
 'class.undeffunctions.test.php',
+'class.classes_nb_methods.test.php',
+'class.variablesvariables.test.php',
+'class.unused_properties.test.php',
+'class.undefined_properties.test.php',
 // Prochain tests
 );
 

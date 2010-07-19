@@ -37,7 +37,7 @@ SHELL;
 
         $shell = <<<SHELL
 cd ../../auditeur
-php lecture_module.php -I testsunitaires -p tu -a {$this->name} -f ./tests/auditeur/scripts/{$this->name}.php
+./reader.php -I testsunitaires -a {$this->name} -f ./tests/auditeur/scripts/{$this->name}.php
 SHELL;
 
         $retour = shell_exec($shell);
@@ -79,10 +79,12 @@ SHELL;
 
         $shell = <<<SHELL
 cd ../../auditeur
-php lecture_module.php -I tu -p tu -a {$this->name} -f ./tests/auditeur/scripts/{$this->name}.php
+./reader.php -I testsunitaires -F xml -a {$this->name} -f ./tests/auditeur/scripts/{$this->name}.php
 SHELL;
 
         $retour = shell_exec($shell);
+        $this->assertTrue(!empty($retour),'reader is empty');
+        $this->assertTrue(strpos($retour, 'Usage : ') === false);
         $sx = simplexml_load_string($retour);
         
         file_put_contents('log/'.$this->name.'.log', $retour);
