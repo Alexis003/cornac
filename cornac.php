@@ -31,7 +31,7 @@ $INI['cornac']['ini'] = $ini;
 $INI['cornac']['prefix'] = $ini;
 unset($ini);
 
-$INI['cornac']['origin'] = get_arg_value($args, '-d', null);
+$INI['cornac']['origin'] = get_arg_value($args, '-d', $INI['cornac']['origin']);
 if (is_null($INI['cornac']['origin'])) { 
     print "Origin folder is missing : option -d\n";
     help(); 
