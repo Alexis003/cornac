@@ -209,3 +209,9 @@ Move auditeur.php to upper directory
 Add some more cornac tests
 
 Apply cornac to itself
+
+Fix unused_args : display full function signature
+Gather regex by type : function/method, class, file, anywhere. 
+
+Gather files including something else than class, function or global.... 
+undefined properties used (in class) : must support hierarchy too.
