@@ -7,7 +7,9 @@ class typehint extends token {
     function __construct($entree = null) {
         parent::__construct(array());
         
-        if (count($entree) != 2) { die("pb dans le nombre d'argument de ".__METHOD__);}
+        if (count($entree) != 2) { 
+            $this->stop_on_error("Number of argument is wrong");
+        }
         
         $this->type = $this->make_token_traite($entree[0]);
         $this->nom = $entree[1];

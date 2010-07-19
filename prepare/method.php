@@ -1,16 +1,17 @@
 <?php
 
 class method extends instruction {
-
-    function __construct($objet) {
+    private $objet = null;
+    private $method = null;
+    
+    function __construct($in) {
         parent::__construct(array());
         
-        if (is_array($objet)) {
-            $this->objet = $objet[0];
-            
-            $this->method = $objet[1];
+        if (is_array($in)) {
+            $this->objet = $in[0];
+            $this->method = $in[1];
         } else {
-            die('Appel de method avec deux arguments? '. join(', ',func_get_args()));
+            $this->stop_on_error( 'Wrong type of argument');
         }
     }
 

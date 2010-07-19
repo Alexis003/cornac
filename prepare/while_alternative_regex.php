@@ -45,21 +45,21 @@ class while_alternative_regex extends analyseur_regex {
             }
 
             if ($var->checkToken(T_WHILE) ) {
-                // while imbriqués ? Alors, on annule tout.
+                // @doc nested while ? we abort
                 $args = array();
                 $remove = array();
                 return false;
             }
 
             if ($var->checkOperateur(';') ) {
-                // un point-virgule qui traine. Bah....
+                // @doc alone semicolon : just eat it up
                 $remove[] = $pos;
                 $pos++;
                 $var = $var->getNext();
                 continue;
             }
 
-            // pas traitable ? On annule tout.
+            // @doc Not processed? Then, we abort
             return false;
         }
         

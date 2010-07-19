@@ -13,7 +13,7 @@ class operation extends instruction {
             $this->operation = $this->make_token_traite($entree[1]);
             $this->gauche = $entree[2];
         } else {
-            die("On ne devrait pas arriver ici : ".__CLASS__);
+            $this->stop_on_error("We shouldn't reach here");
         }
     }
 
@@ -44,7 +44,7 @@ class operation extends instruction {
                      'operation_addition_regex');
     }
     
-    function getToken() { return 0; }
+    function getToken() { return array(Token::ANY_TOKEN); }
 }
 
 ?>

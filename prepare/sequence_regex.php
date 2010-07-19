@@ -49,7 +49,6 @@ class sequence_regex extends analyseur_regex {
             
             while ($var->checkSubClass('instruction')) {
                    $this->args[]    = $pos ;
-
                    $this->remove[]  = $pos;
                    
                    $pos += 1;
@@ -79,7 +78,7 @@ class sequence_regex extends analyseur_regex {
                 $var->checkForLogical() ||
                 $var->checkForAssignation() ||
                 $var->checkClass('arglist'))) {
-
+                // @doc This is not a sequence, as this operator finally has priority
                 $this->args = array();
                 $this->remove = array();
                 return false;
@@ -87,17 +86,20 @@ class sequence_regex extends analyseur_regex {
                 $var->getNext()->checkCode(array(',','->','[','(',',')) ||
                 $var->getNext()->checkForAssignation() ||
                 $var->getNext()->checkClass('arglist'))) {
+                // @doc This is not a sequence, as another operator after has priority
 
                 $this->args = array();
                 $this->remove = array();
                 return false;
             } elseif ($var->checkCode(')')) {
-                // on est dans un for!
+                // @doc This looks like a for loop! 
                 return false;
             } elseif (count($this->args) > 0) {
+                // @doc OK we are good now
                 mon_log(get_class($t)." => ".__CLASS__);
                 return true; 
             } else {
+                // @doc Not processed? aborting. 
                 $this->args = array();
                 $this->remove = array();
                 return false;

@@ -13,14 +13,13 @@ class sequence_cdr_regex extends analyseur_regex {
         if (!$t->hasNext() ) { return false; }
         if (!$t->hasPrev() ) { return false; }
         
-        //'rawtext',
         if ($t->getPrev()->checkNotClass(array('sequence'))) { return false; }
         if ($t->getNext()->checkNotClass(array('sequence'))) { return false; }
 
         $regex = new modele_regex('sequence',array(-2, 0), array(-2));
         Token::applyRegex($t->getNext(), 'sequence', $regex);
 
-        mon_log(get_class($t)." => rattrappe un rawtext (".__CLASS__.")");
+        mon_log(get_class($t)." => spot a rawtext (".__CLASS__.")");
         return false; 
     }
 }

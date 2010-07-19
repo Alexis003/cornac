@@ -567,6 +567,13 @@ class Token {
         
         return $retour;
     }
+    
+    function stop_on_error($message) {
+        $bt = debug_backtrace();
+        print "Message : $message\n";
+        print_r($bt[0]);
+        die();
+    }
 }
 
 function affiche_entree($entree) {
