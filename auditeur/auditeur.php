@@ -72,7 +72,7 @@ $modules = array(
 'literals',
 'method_special',
 'methodscall',
-'modules_used',
+//'modules_used', @_ Removed, double with php_modules
 'mssql_functions',
 'mysql_functions',
 'mysqli_functions',
@@ -113,14 +113,16 @@ $modules = array(
 'html_tags', 
 //'affectations_gpc', 
 'classes_nb_methods',
-
+'unused_properties',
+'undefined_properties',
 );
 
 $INI['analyzers'] = get_arg_value($args, '-a', 'all');
 if ($INI['analyzers'] == 'all' ) {
  // default : all modules
 } else {
-    $m = explode(',', $args[$id + 1]);
+    var_dump($INI['analyzers']);
+    $m = explode(',', $INI['analyzers']);
 
     $diff = array_diff($m , $modules);
     if (count($diff) > 0) {
