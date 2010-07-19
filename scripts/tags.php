@@ -32,9 +32,16 @@ $comments = array();
 foreach($liste as $fichier) {
     $php = file_get_contents($fichier);
     $tokens = token_get_all($php);
+    $comments_this_file = 0;
     foreach($tokens as $token) {
         if (is_array($token) && $token[0] == T_COMMENT) {
+            $comments_this_file++;
             $comment = remove_delimiter($token[1]);
+
+            // comment used as presentation delimiter (------, ////////, ========)
+            if (preg_match_all('/^(.)\1*$/is', $comment, $r)) { 
+                continue;
+            }
             
             if (preg_match_all('/(@[a-zA-Z0-9_\-]+)/is', $comment, $r)) {
                 $token['tags'] = $r[1];
@@ -45,17 +52,26 @@ foreach($liste as $fichier) {
             } else {
                 $token['tags'] = array('@no_tag');
             }
-                $token['comment'] = preg_replace('/(@[a-zA-Z0-9_\-]+)/is','', $comment);
-                $token['fichier'] = $fichier;
-                unset($token[0]);
-                $token['ligne'] = $token[2];
-                unset($token[2]);
-                $token['raw'] = $comment;
-                unset($token[1]);
-                
-                $comments[] = $token;
+
+            $token['comment'] = preg_replace('/(@[a-zA-Z0-9_\-]+)/is','', $comment);
+            $token['fichier'] = $fichier;
+            unset($token[0]);
+            $token['ligne'] = $token[2];
+            unset($token[2]);
+            $token['raw'] = $comment;
+            unset($token[1]);
+            
+            $comments[] = $token;
         }
     }
+
+    if ($comments_this_file == 0) {
+        $comments[] = array('fichier' => $fichier,
+                            'tags' => array('@no_comment_in_file'),
+                            'comment' => '',);
+    }
+
+    
 }
 
 chdir(dirname(__FILE__));
