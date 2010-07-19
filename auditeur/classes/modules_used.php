@@ -21,7 +21,6 @@ class modules_used extends modules {
         $requete = <<<SQL
 SELECT DISTINCT LOWER(element) FROM <rapport> WHERE module='php_functions';
 SQL;
-
         $res = $this->exec_query($requete);
         
         $liste = $res->FetchAll(PDO::FETCH_COLUMN);
