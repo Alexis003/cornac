@@ -12,7 +12,7 @@ class functioncall_sansparentheses_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasNext(1) ) { return false; }
         
-        if ($t->checkToken(array( T_PRINT, T_EXIT)) &&  //, T_ECHO
+        if ($t->checkToken(array( T_PRINT, T_EXIT)) && 
             $t->getNext()->checkNotClass(array('Token','arglist'))   && 
             $t->getNext(1)->checkEndInstruction()
             )

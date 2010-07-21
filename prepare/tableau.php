@@ -2,15 +2,14 @@
 
 class tableau extends variable {
 
-    function __construct($variable, $index = null) {
-        parent::__construct(array());
-
+    function __construct($variable) {
+        parent::__construct();
+        
         if (is_array($variable)) {
             $this->variable = $variable[0];
             $this->index = $variable[1];
         } else {
-            $this->variable = $variable;
-            $this->index = $index;
+            die('No way we end up here : '.__METHOD__);
         }
     }
         

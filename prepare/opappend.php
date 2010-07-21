@@ -7,6 +7,7 @@ class opappend extends instruction {
         parent::__construct(array());
         
         $this->variable = $variable[0];
+        $this->setLine($this->variable->getLine());
     }
 
     function __toString() {

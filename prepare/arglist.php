@@ -15,6 +15,9 @@ class arglist extends token {
                 $this->list[] = $l;
             }
         }
+        if (isset($this->list[0])) {
+            $this->setLine($this->list[0]->getLine());
+        }
     }
 
     function __toString() {

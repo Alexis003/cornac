@@ -7,6 +7,7 @@ class parentheses extends instruction {
         parent::__construct(array());
         
         $this->contenu = $parentheses[0];
+        $this->setLine($this->contenu->getLine());
     }
 
     function __toString() {

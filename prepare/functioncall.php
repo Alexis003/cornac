@@ -21,6 +21,7 @@ class functioncall extends instruction {
             $this->args = $entree[1];
         } else {
             $this->args = new arglist(array( null ));
+            $this->args->setLine($entree[0]->getLine());
         }
     }
 

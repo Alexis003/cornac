@@ -5,18 +5,22 @@ class variable extends token {
 
     function __construct($entree = null) {
         parent::__construct(array());
-        
-        if (empty($entree)) {
-            $this->nom = null;
-        } elseif(count($entree) == 1) {
+
+        if (is_null($entree)) { // @note  coming from class tableau
+            return ;
+        }
+
+        if (count($entree) == 1) {
             if ($entree[0]->checkClass('Token')) {
                 $this->nom = $entree[0]->getCode();
             } else {
                 $this->nom = $entree[0];
             }
-        } elseif(count($entree) == 2) {
+            $this->setLine($entree[0]->getLine());
+        } else {
           $this->nom = $entree[1];
           $this->code = $this->nom->getCode();
+          $this->setLine($this->nom->getLine());
         }
     }
 

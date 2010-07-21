@@ -44,7 +44,7 @@ class operation extends instruction {
                      'operation_addition_regex');
     }
     
-    function getToken() { return array(Token::ANY_TOKEN); }
+    function getToken() { return Token::ANY_TOKEN; }
 }
 
 ?>

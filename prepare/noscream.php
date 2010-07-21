@@ -7,6 +7,7 @@ class noscream extends instruction {
         parent::__construct(array());
         
         $this->expression = $expression[0];
+        $this->setLine($this->expression->getLine());
     }
 
     function __toString() {

@@ -8,7 +8,7 @@ class Token {
 
     protected $token = null;
     protected $code = null;
-    protected $ligne = null;
+    protected $line = -1;
     protected $id = null;
     
     static private $test_id = null;
@@ -53,10 +53,6 @@ class Token {
         return $this->id;
     }
 
-    function getLigne() {
-        return $this->ligne;
-    }
-
     function getCode() {
         return $this->code;
     }
@@ -65,7 +61,7 @@ class Token {
         if (isset($this->line)) {
             return $this->line;
         } else {
-            return NULL;
+            return "NULL";
         
         }
     }
@@ -262,6 +258,7 @@ class Token {
         $retour = new token_traite($clone);
         $retour->replace($clone);
         $retour->setToken($entree->getToken());
+        $retour->setLine($entree->getLine());
         
         return $retour;
     }

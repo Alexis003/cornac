@@ -27,8 +27,10 @@ class affectation extends instruction {
             }
 
             $this->droite = $entree[0];
+            $entree[1]->setLine($entree[0]->getLine());
             $this->operateur = $this->make_token_traite($entree[1]);
             $this->gauche = $entree[2];
+            $this->setLine($this->droite->getLine());
         } else {
             die(__CLASS__." a recu des arguments bizarres dans ".__METHOD__);
         }

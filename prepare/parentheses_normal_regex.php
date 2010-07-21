@@ -22,7 +22,7 @@ class parentheses_normal_regex extends analyseur_regex {
 
         if ($t->getPrev()->checkFunction() ) { 
             if ($t->getPrev()->checkCode('echo')) {
-                // on peut continuer, c'est possible 
+                // @note this is possible, we shall go on
             } else {
                 return false; 
             }

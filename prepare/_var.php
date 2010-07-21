@@ -33,7 +33,7 @@ class _var extends instruction {
                 $this->variable[] = $e->getVariable();
                 $this->init[] = $e->getValeur();        
             } else {
-                die(" Classe non gérée par ".__CLASS__." : ".get_class($e)." $e $id\n");
+                die(" Unexpected class for ".__CLASS__." : ".get_class($e)." $e $id\n");
             }
         }
     }
@@ -84,8 +84,7 @@ class _var extends instruction {
 
     function getRegex() {
         return array(
-    'var_simple_regex',
-//    'var_init_regex',
+                      'var_simple_regex',
                     );
     }
 }

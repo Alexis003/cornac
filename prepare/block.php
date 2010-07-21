@@ -19,6 +19,9 @@ class block extends instruction {
                 $this->list[] = $l;
             }
          }
+         if (isset($this->list[0])) {
+             $this->setLine($this->list[0]->getLine());
+         }
     }
 
     function __toString() {

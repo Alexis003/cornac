@@ -12,7 +12,7 @@ class arglist_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasPrev(  )) { return false; }
 
-        // pour que ce soit un appel de fonction, il faut ca avant. 
+        // @note for it to be a function call, one need all this before
         if ($t->getPrev()->checkNotFunction() &&
             $t->getPrev()->checkNotClass(array('variable','tableau')) &&
             $t->getPrev()->checkNotCode('}')) { return false;}

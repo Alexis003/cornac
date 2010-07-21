@@ -143,6 +143,7 @@ class analyseur {
                 }
     
                 $retour = analyseur::applyRegex($t, $this->tokens[$nom], $r);
+                if ($retour->getLine() == -1) { print $t->getLine()."\n"; print $retour."\n"; die(__METHOD__."\n"); }
                 mon_log(get_class($t)." => ".get_class($retour));
                 return $retour; 
             }
