@@ -31,6 +31,7 @@ class template_mysql extends template_db {
                                                           ligne    INT,
                                                           scope    VARCHAR(255),
                                                           class    VARCHAR(255),
+                                                          level    TINYINT UNSIGNED,
                                                           PRIMARY KEY (`id`),
                                                           UNIQUE KEY `id` (`id`),
                                                           KEY `fichier` (`fichier`),

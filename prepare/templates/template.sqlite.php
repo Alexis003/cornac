@@ -28,7 +28,8 @@ class template_sqlite extends template_db {
                                                           fichier  VARCHAR(255) CONSTRAINT KEY DEFAULT "prec",
                                                           ligne    INT,
                                                           scope    VARCHAR(255),
-                                                          class    VARCHAR(255)
+                                                          class    VARCHAR(255),
+                                                          level    INT UNSIGNED
                                                           )');
 
         $this->database->query('CREATE TABLE IF NOT EXISTS '.$this->table_tags.' (
