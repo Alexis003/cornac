@@ -50,8 +50,10 @@ if (!in_array($INI['cornac']['storage'],array('mysql','sqlite'))) {
 }
 
 if (!file_exists($INI['cornac']['destination'])) { 
-    print "Output directory doesn't exist '{$INI['cornac']['destination']}' : update ".INI.".ini\n";
-    help(); 
+    if (!mkdir($INI['cornac']['destination'])) {
+        print "Output directory doesn't exist '{$INI['cornac']['destination']}' : update ".INI.".ini\n";
+        help(); 
+    }
 }
 
 if (!is_dir($INI['cornac']['destination'])) { 
