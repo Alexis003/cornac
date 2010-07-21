@@ -11,7 +11,7 @@ if ($help) { help(); }
 
 // default values, stored in a INI file
 $ini = get_arg_value($args, '-I', null);
-if (!is_null($ini)) {
+if (!empty($ini)) {
     global $INI;
     if (file_exists('../ini/'.$ini)) {
         define('INI','../ini/'.$ini);
@@ -25,7 +25,7 @@ if (!is_null($ini)) {
     $INI = parse_ini_file(INI, true);
 } else {
     define('INI',null);
-    $INI = array();
+    $INI = array('analyzers' => 'all');
 }
 unset($ini);
 
@@ -72,7 +72,7 @@ $modules = array(
 'literals',
 'method_special',
 'methodscall',
-//'modules_used', @_ Removed, double with php_modules
+'multi_def_files', 
 'mssql_functions',
 'mysql_functions',
 'mysqli_functions',
@@ -121,7 +121,6 @@ $INI['analyzers'] = get_arg_value($args, '-a', 'all');
 if ($INI['analyzers'] == 'all' ) {
  // default : all modules
 } else {
-    var_dump($INI['analyzers']);
     $m = explode(',', $INI['analyzers']);
 
     $diff = array_diff($m , $modules);
@@ -138,7 +137,9 @@ if ($INI['analyzers'] == 'all' ) {
     }
 } 
 print count($modules)." modules will be treated : ".join(', ', $modules)."\n";
-write_ini_file($INI, INI);
+if (INI) {
+    write_ini_file($INI, INI);
+}
 
 if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
     $database = new pdo($INI['mysql']['dsn'],$INI['mysql']['username'], $INI['mysql']['password']);
