@@ -1,26 +1,17 @@
-Ajouter une LICENCE, README et INSTALLATION
-Finir les tests unitaires de l'auditeur
+Add more unit tests for the auditeur (check track.php)
 Move to English (messages, names...)
-Tester la couverture de code
-Passer sur SQLITE
-Mettre les dictionnaires en fichiers .ini ou en bases SQLite (ou autres)
-Comment inclure les applications de références? (TAR)
-Pouvoir utiliser un autre php que le PHP système
+Check for code coverage
+Add options for auditeurs analyzers (.ini for the main, or sqlite's db, and also dictionnaries)
+Be able to use another PHP than the system one (specify PHP path?)
 
-Pouvoir relire les objets depuis MySQL
 Faire une interface fluide pour construire les requêtes SQL
 Avoir des rapports intermédiaires rapides (nouveaux tags?)
-Passer la liste chaînée en SPL
-Avancer les tests unitaires pour l'auditeur
+Move the chained list to SPL
 
-Accumuler les résultats 
-Avoir une vue pour l'auditeur (export HTML, PDF, ODT)
-Pouvoir paraleliser les analyses de code (gearman? une liste de fichier en base? Faire les fichiers récents ou qui n'ont pas été finis.. )
+Export from auditeur to format (PDF, HTML, XML, JSON, CSV, SQLITE, ODT...)
+Make analyses paralelle (gearman or DB task list? Faire les fichiers récents ou qui n'ont pas été finis.. )
 
-Noter le délimiteur des litéraux et le retirer de la valeur
-Mettre toutes les méthodes en anglais
-Ajouter une licence dans tous les fichiers
-
+Add a licence warning in every file
 
 Mettre un verificateur automatique de hasPrev et hasNext dans analyseur
 Faire un log d'utilité des tests
@@ -38,16 +29,7 @@ avoir une fonction qui 'prèfere' certain token, une fois qu'une classe a été 
 prévoir un système pour modifier les conditions automatiquement, et voir si on peut en retirer / ajouter sans que cela pertrube les tests.
 
 Convertir les constructeurs à $entree, et vérifier leur nombre à chaque fois. 
-Ajouter des messages d'erreurs significatifs (actuellement, des DIE avec message en dure)
-
-Migrer la liste chaînée vers la SPL 
-
-Ajouter mon propre code dans reference.sh
-Ajouter elgg et OBM
-
-Pouvoir désactiver un token (suppréssion par défaut, si pas compris? )
-
-
+Upgrade error messages (Still, too often dies)
 
 autres idées : 
 SImplifier le code, pour l'exprimer sous la forme de liens : entrant, combiné, sortant
@@ -64,7 +46,9 @@ Extraire le core d'un script (sans les définition, classes et fonctions)
 Extraire les affectations de variables (une a l'autre)
 Extraire les variables d'entrée et celles de sorties.
 utilisation des super globales (affectations, passages en paramètre, etc).
-identifications des variables de register globale
+Identify register_globals variable (aka, undefinied variables in global)
+Identify variables initialisations
+Add foreach/list in 
 Repérer le code PHP adns les commentaires
 Repérer le code SQL ou HTML dans les chaînes
 Extraire les interferances entre les noms (variables, constantes, fonctions, classes, HTML, SQL).
@@ -72,7 +56,9 @@ Extraire les foreach simples (un ou deux lignes) : c'est souvent des opérations
 
 Tokens : trouver le début de l'instruction.
 
-Repérer les regex utilisées
+Check for unused regex (from tokenizeur)
+
+apply tagged comments in auditeur
 
 Faire des tests unitaires sur les fonctions de soutien token_*
 Calculer le contexte courant (nom de la classe, fonction ou global)
@@ -146,14 +132,6 @@ faire la liste des classes et des méthodes (inventaire)
 Faire la liste des méthodes/fonctions, constantes/constantes de classes, variable/propriétés
 Faire une option de nettoyage des bases (par défaut, c'est remis fichier par fichier)
 
-
-Called methods
-Exceptions thrown
-fonctions/méthodes lanceuses d'exception
-
-méthodes pas appelées
-propriétés pas appelées
-
 Extraire les abstracts des arguments inutilisés
 
 Manage manual feedback (from where? Web? )
@@ -207,11 +185,17 @@ Move auditeur.php to English
 Move auditeur.php to upper directory
 
 Add some more cornac tests
-
 Apply cornac to itself
 
-Fix unused_args : display full function signature
 Gather regex by type : function/method, class, file, anywhere. 
 
 Gather files including something else than class, function or global.... 
 undefined properties used (in class) : must support hierarchy too.
+
+add file restriction in the cornac.ini file
+
+Add support for a version of Cornac (checking for config files, tables configurations, etc.)
+
+Make auditeur i18n easily (export in external file, auto-adding new titles)
+
+Add a log to check SQL length and optimize the bad queries 
