@@ -17,6 +17,25 @@ class undefined_properties extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
+        $requete = <<<SQL
+DROP TABLE IF EXISTS undefined_properties
+SQL;
+        $this->exec_query($requete);
+
+        $requete = <<<SQL
+CREATE TABLE undefined_properties
+            SELECT DISTINCT right(code, length(code) - 1) as code, class FROM <tokens> 
+            WHERE scope='global'  AND 
+                  type ='variable'
+SQL;
+        $this->exec_query($requete);
+
+        $requete = <<<SQL
+ALTER TABLE undefined_properties ADD UNIQUE (code, class)
+SQL;
+        $this->exec_query($requete);
+
+
 
 // @note only works on the same classe. Doesn't take into account hierarchy
         $requete = <<<SQL
@@ -26,17 +45,21 @@ INSERT INTO <rapport>
    JOIN <tokens> T2
      ON T2.fichier = T1.fichier AND 
         T2.droite BETWEEN T1.droite AND T1.gauche
-    WHERE T1.scope!='global'  AND 
+   LEFT JOIN undefined_properties 
+     ON undefined_properties.code = T2.code AND
+        undefined_properties.class = T2.class 
+   WHERE T1.scope!='global'  AND 
           T1.type ='property' AND 
           T2.type='literals'  AND 
-          CONCAT('$',T2.code) NOT IN (
-            SELECT code FROM <tokens> 
-            WHERE class=T1.class  AND 
-                  scope='global'  AND 
-                  type ='variable'
-          )
+          undefined_properties.code IS NULL
 SQL;
         $this->exec_query($requete);
+
+        $requete = <<<SQL
+DROP TABLE undefined_properties
+SQL;
+        $this->exec_query($requete);
+
 	}
 	
 }
