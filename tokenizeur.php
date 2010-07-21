@@ -223,6 +223,7 @@ foreach($scriptsPHP as $name => $object){
     
     $root = new Token();
     $suite = null;
+    $ligne = 0;
     
     foreach($brut as $id => $b) {
         $t = new Token();
@@ -232,8 +233,10 @@ foreach($scriptsPHP as $name => $object){
             $t->setToken($b[0]);
             $t->setCode($b[1]);
             $t->setLine($b[2]);
+            $ligne = $b[2];
         } else {
             $t->setCode($b);
+            $t->setLine($ligne);
         }
         
         if (is_null($suite)) {
