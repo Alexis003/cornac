@@ -18,7 +18,8 @@ class Analyseur_Framework_TestCase  extends PHPUnit_Framework_TestCase {
         $exp = str_replace('scripts/scripts/','scripts/', $exp);
 
         $retour = preg_replace("/Fichier de directives : .*?\n/is",'', $retour);
-
+        $retour = preg_replace("/Directives files : .*?\n/is",'', $retour);
+        
         $this->assertEquals($retour, $exp);        
     }
 
