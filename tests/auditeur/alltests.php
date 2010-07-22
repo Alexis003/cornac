@@ -38,6 +38,7 @@ $tests = array(
 'class.variablesvariables.test.php',
 'class.unused_properties.test.php',
 'class.undefined_properties.test.php',
+'class.block_of_call.test.php',
 // Prochain tests
 );
 
