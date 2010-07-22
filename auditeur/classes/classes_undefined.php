@@ -8,7 +8,6 @@ class classes_undefined extends modules {
         parent::__construct($mid);
         
     	$this->name = __CLASS__;
-    	$this->functions = array();
 	}
 
 	function dependsOn() {
@@ -27,7 +26,7 @@ SELECT NULL, TR1.fichier, TR1.element AS code, TR1.id, '{$this->name}'
     WHERE TR1.module = '_new' AND TR2.element IS NULL
 SQL;
 
-// excluding PHP classes ? 
+// @todo excluding PHP classes ? 
 //AND    TR1.element NOT IN ('$in');
         $this->exec_query($requete);
         return ;

@@ -1,17 +1,11 @@
 <?php
 
 class tableaux_gpc_seuls extends modules {
-	protected	$inverse = true;
-	protected	$name = 'Classe sans nom';
-	protected	$functions = array();
-	protected	$not = false;
-
 	protected	$description = 'Liste des tableaux et de leur usage';
 	protected	$description_en = 'Variables being used';
 
 	function __construct($mid) {
         parent::__construct($mid);
-    	$this->name = __CLASS__;
 	}
 	
 	public function analyse() {

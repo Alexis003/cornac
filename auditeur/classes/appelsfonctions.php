@@ -9,7 +9,6 @@ class appelsfonctions extends modules {
         
         $this->format = modules::FORMAT_DOT;
     	$this->name = __CLASS__;
-    	$this->functions = array();
 	}
 	
 	public function analyse() {
@@ -174,6 +173,30 @@ where
  T1.type='method' ;
 
     
+    */
+    
+    /*
+    extrait les fonctions
+    SELECT T5.code, T4.code, T1.fichier
+FROM tu T1
+JOIN tu_tags TT1
+    ON T1.id = TT1.token_id AND TT1.type='block'
+JOIN tu T2
+    ON T2.id = TT1.token_sub_id AND T1.fichier =T2.fichier
+JOIN tu T3
+    ON T3.fichier = T1.fichier AND 
+    T3.droite BETWEEN T2.droite AND T2.gauche AND 
+    T3.type='functioncall'
+JOIN tu_tags TT2
+    ON T3.id = TT2.token_id AND TT2.type='fonction'
+JOIN tu T4
+    ON T4.id = TT2.token_sub_id AND T1.fichier =T4.fichier
+JOIN tu_tags TT3
+    ON T1.id = TT3.token_id AND TT3.type='name'
+JOIN tu T5
+    ON T5.id = TT3.token_sub_id AND T1.fichier =T5.fichier
+WHERE T1.type = '_function'; 
+
     */
     
     }

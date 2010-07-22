@@ -1,10 +1,6 @@
 <?php
 
 class variablesvariables extends modules {
-	protected	$inverse = true;
-	protected	$name = 'Classe sans nom';
-	protected	$functions = array();
-
 	protected	$description = 'Liste des variables variables';
 	protected	$description_en = 'Variables variables being used';
 

@@ -1,11 +1,6 @@
 <?php
 
 class tableaux_gpc extends modules {
-	protected	$inverse = true;
-	protected	$name = 'Classe sans nom';
-	protected	$functions = array();
-	protected	$not = false;
-
 	protected	$description = 'Liste des tableaux et de leur usage';
 	protected	$description_en = 'Variables being used';
 
@@ -23,7 +18,7 @@ class tableaux_gpc extends modules {
         
         $this->clean_rapport();
 
-// cas simple : variable -> method
+// @note : simple situation : variable -> method
         $requete = <<<SQL
 INSERT INTO <rapport>
     SELECT NULL, T1.fichier, TC.code AS code, T1.id, '{$this->name}'

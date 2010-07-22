@@ -29,7 +29,7 @@ T3.droite between T2.droite AND T2.gauche
 JOIN <tokens_cache> TC
   ON TC.id = T3.id
 WHERE T1.fichier like "%affectations_gpc%" and T1.type = 'affectation' AND
-TC.code REGEXP BINARY '^\\\\\$(_GET|_POST|_COOKIE|_REQUEST|_ENV|_FILES|_SERVER|HTTP_GET_VARS|HTTP_POST_VARS)';
+TC.code REGEXP '^\\\\\$(_GET|_POST|_COOKIE|_REQUEST|_ENV|_FILES|_SERVER|HTTP_GET_VARS|HTTP_POST_VARS)';
 SQL;
         $this->exec_query($requete);
 
@@ -53,7 +53,7 @@ JOIN <tokens_cache> TC
   ON TC.id = T3.id
 WHERE T1.fichier like "%affectations_gpc%" and T1.type = 'affectation' AND
 (T4.type IS NULL OR T4.type != 'tableau') AND 
-TC.code REGEXP BINARY '^\\\\\$(_GET|_POST|_COOKIE|_REQUEST|_ENV|_FILES|_SERVER|HTTP_GET_VARS|HTTP_POST_VARS)';
+TC.code REGEXP '^\\\\\$(_GET|_POST|_COOKIE|_REQUEST|_ENV|_FILES|_SERVER|HTTP_GET_VARS|HTTP_POST_VARS)';
 SQL;
         $this->exec_query($requete);
     }

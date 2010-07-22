@@ -1,17 +1,11 @@
 <?php
 
 class tableaux extends modules {
-	protected	$inverse = true;
-	protected	$name = 'Classe sans nom';
-	protected	$functions = array();
-	protected	$not = false;
-
 	protected	$description = 'Liste des tableaux et de leur usage';
 	protected	$description_en = 'Variables being used';
 
 	function __construct($mid) {
         parent::__construct($mid);
-    	$this->name = __CLASS__;
 	}
 	
 	public function analyse() {
@@ -23,7 +17,7 @@ class tableaux extends modules {
         
         $this->clean_rapport();
 
-// cas simple : variable -> method
+// @note simple situation : variable -> index
         $requete = <<<SQL
 INSERT INTO <rapport> 
 SELECT NULL, T1.fichier, T2.code AS code, T1.id, '{$this->name}'

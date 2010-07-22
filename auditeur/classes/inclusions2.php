@@ -9,7 +9,6 @@ class inclusions2 extends modules {
         
         $this->format = modules::FORMAT_DOT;
     	$this->name = __CLASS__;
-    	$this->functions = array();
 	}
 	
 	public function analyse() {

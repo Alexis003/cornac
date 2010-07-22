@@ -1,10 +1,6 @@
 <?php
 
 class undefined_properties extends modules {
-	protected	$inverse = true;
-	protected	$name = 'Classe sans nom';
-	protected	$functions = array();
-
 	protected	$description = 'Liste des propriétés utilisées mais pas définies';
 	protected	$description_en = 'List of used properties, that has no definition';
 

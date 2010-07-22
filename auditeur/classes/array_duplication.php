@@ -27,41 +27,4 @@ SQL;
 
 	}
 }
-
-
-/*
-foreach.tableau != foreach.block.tableau
-
-=> foreach.key = foreach.block.tableau.index
-select T1.id, T1.type, T2.id, T2.code from tu T1
-  join tu_tags TT
-    ON TT.token_id = T1.id AND TT.type='key'
-  join tu T2
-    ON T1.fichier = T2.fichier AND TT.token_sub_id=T2.id
-where T1.type = '_foreach' AND T1.fichier = './tests/auditeur/scripts/array_duplication.php';
-
-=> foreach.value
-select T1.id, T1.type, T2.id, T2.code from tu T1
-  join tu_tags TT
-    ON TT.token_id = T1.id AND TT.type='value'
-  join tu T2
-    ON T1.fichier = T2.fichier AND TT.token_sub_id=T2.id
-where T1.type = '_foreach' AND T1.fichier = './tests/auditeur/scripts/array_duplication.php';
-
-
-select * from tu T1 where T1.type='affectation' AND T1.fichier = './tests/auditeur/scripts/array_duplication.php' ;
-
-
-=> foreach.valeur = foreach.block.affectation.gauche.index
-
-select T1.id, T1.type, T2.id, T2.code from tu T1
-  join tu_tags TT
-    ON TT.token_id = T1.id AND TT.type='key'
-  join tu T2
-    ON T1.fichier = T2.fichier AND TT.token_sub_id=T2.id
-where T1.fichier = './tests/auditeur/scripts/array_duplication.php';
-
-Suivre les variables? Tags next et prev
-
-*/
 ?>

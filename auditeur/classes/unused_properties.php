@@ -1,17 +1,11 @@
 <?php
 
 class unused_properties extends modules {
-	protected	$inverse = true;
-	protected	$name = 'Classe sans nom';
-	protected	$functions = array();
-
 	protected	$description = 'Liste des propriétés definies mais pas utilisées';
 	protected	$description_en = 'List of used properties, that has no definition';
 
     function __construct($mid) {
         parent::__construct($mid);
-        
-    	$this->name = __CLASS__;
     }
 
 	public function analyse() {

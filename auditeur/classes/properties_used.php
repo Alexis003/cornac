@@ -8,14 +8,13 @@ class properties_used extends modules {
         parent::__construct($mid);
         
     	$this->name = __CLASS__;
-    	$this->functions = array();
 	}
 	
 	public function analyse() {
         $this->clean_rapport();
 
         $concat = $this->concat("T2.class","'->'","T3.code");
-// this are the properties used within the class : we rely on $this
+// @note this are the properties used within the class : we rely on $this
         $requete = <<<SQL
 INSERT INTO <rapport> 
 SELECT NULL, T1.fichier, $concat AS code, T2.id, '{$this->name}' 
@@ -33,7 +32,7 @@ SQL;
         $this->exec_query($requete);
 
 
-// this are the other properties used within the class : we don't know what to do now 
+// @note this are the other properties used within the class : we don't know what to do now 
         $concat = $this->concat("T2.code","'->'","T3.code"); 
 
         $requete = <<<SQL

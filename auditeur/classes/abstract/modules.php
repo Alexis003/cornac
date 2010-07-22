@@ -275,5 +275,10 @@ SQL;
             die();
         }
     }
+
+    function disabled() {
+        print "Module '{$this->name}' is disabled\n";
+        return;
+    }
 }
 ?>

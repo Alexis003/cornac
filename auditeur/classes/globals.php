@@ -8,7 +8,6 @@ class globals extends modules {
         parent::__construct($mid);
         
         $this->name = __CLASS__;
-        $this->functions = array();
     }
     
     public function analyse() {

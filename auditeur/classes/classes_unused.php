@@ -8,7 +8,6 @@ class classes_unused extends modules {
         parent::__construct($mid);
         
     	$this->name = __CLASS__;
-    	$this->functions = array();
 	}
 
 	function dependsOn() {

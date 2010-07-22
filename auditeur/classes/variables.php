@@ -1,9 +1,6 @@
 <?php
 
 class variables extends typecalls {
-	protected	$inverse = true;
-	protected	$functions = array();
-
 	protected	$description = 'Liste des variables et de leur usage';
 	protected	$description_en = 'Variables being used';
 

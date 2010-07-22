@@ -1,10 +1,6 @@
 <?php
 
 class literals extends typecalls {
-	protected	$inverse = true;
-	protected	$name = 'Classe sans nom';
-	protected	$functions = array();
-
 	protected	$description = 'Liste des literaux et de leur usage';
 	protected	$description_en = 'Literals being used';
 

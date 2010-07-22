@@ -8,7 +8,6 @@ class properties_defined extends modules {
         parent::__construct($mid);
         
     	$this->name = __CLASS__;
-    	$this->functions = array();
 	}
 	
 	public function analyse() {
@@ -27,7 +26,7 @@ WHERE T1.class != 'global' AND T1.type='_var';
 SQL;
         $this->exec_query($requete);
 
-    // @todo supporter les méthodes / classes
+    // @todo support methods and classes
     
     }
 }
