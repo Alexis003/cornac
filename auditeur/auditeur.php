@@ -115,6 +115,9 @@ $modules = array(
 'classes_nb_methods',
 'unused_properties',
 'undefined_properties',
+'indenting',
+'block_of_call',
+'variables_relations',
 );
 
 $INI['analyzers'] = get_arg_value($args, '-a', 'all');
