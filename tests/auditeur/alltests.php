@@ -43,6 +43,7 @@ $tests = array(
 'class.arglist_def.test.php',
 'class.arglist_disc.test.php',
 'class.multi_def_files.test.php',
+'class.php_classes.test.php',
 
 // Prochain tests
 );
