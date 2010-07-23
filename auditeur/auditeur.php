@@ -122,6 +122,7 @@ $modules = array(
 'arglist_call',
 'arglist_disc',
 'variables_one_letter',
+'php_classes',
 );
 
 $INI['analyzers'] = get_arg_value($args, '-a', 'all');

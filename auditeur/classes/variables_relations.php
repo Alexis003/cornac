@@ -16,11 +16,6 @@ class variables_relations extends modules {
 
 // @todo : this should be done context by context. How can I do that? 
         
-//        $this->disabled();
-//        return;
-
-// this will take care of direct instantiation classes 
-// IN will take care of extensions
         $requete = <<<SQL
 INSERT INTO <rapport_dot> 
   SELECT  T4.code, T2.code, CONCAT(T1.class,'::',T1.scope), '{$this->name}' 

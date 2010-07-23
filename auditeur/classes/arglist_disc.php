@@ -16,8 +16,6 @@ class arglist_disc extends modules {
 
 	public function analyse() {
         $this->clean_rapport();
-// @todo what happends when there is an argument with default value? 
-
         $requete = <<<SQL
 INSERT INTO <rapport> 
 SELECT NULL, TR1.fichier, TR1.element AS code, TR1.id, '{$this->name}'
@@ -29,8 +27,6 @@ LEFT JOIN <rapport> TR2
     WHERE TR1.module = 'arglist_call' AND TR2.element IS NULL;
 
 SQL;
-        print $this->prepare_query($requete);
-        
         $this->exec_query($requete);
 
         return ;

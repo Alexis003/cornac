@@ -17,8 +17,6 @@ class classes_unused extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
-// this will take care of direct instantiation classes 
-// IN will take care of extensions
         $requete = <<<SQL
 INSERT INTO <rapport> 
 SELECT NULL, TR1.fichier, TR1.element AS code, TR1.id, '{$this->name}'

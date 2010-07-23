@@ -13,8 +13,6 @@ class arglist_call extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
-// this will take care of direct instantiation classes 
-// IN will take care of extensions
         $requete = <<<SQL
 INSERT INTO <rapport> 
 SELECT NULL, T1.fichier, CONCAT(T2.code,'(', count(*),' args)') AS code, T1.id, '{$this->name}'
