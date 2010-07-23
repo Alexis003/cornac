@@ -32,13 +32,18 @@ $tests = array(
 //'class.inclusions2.test.php',
 'class.statiques.test.php',
 'class.html_tags.test.php',
-'class.affectations_gpc.test.php',
+//'class.affectations_gpc.test.php',
 'class.undeffunctions.test.php',
 'class.classes_nb_methods.test.php',
 'class.variablesvariables.test.php',
 'class.unused_properties.test.php',
 'class.undefined_properties.test.php',
 'class.block_of_call.test.php',
+'class.arglist_call.test.php',
+'class.arglist_def.test.php',
+'class.arglist_disc.test.php',
+'class.multi_def_files.test.php',
+
 // Prochain tests
 );
 

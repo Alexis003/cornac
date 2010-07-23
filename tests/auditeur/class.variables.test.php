@@ -5,8 +5,8 @@ class Variables_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
         $this->name = 'variables';
-        $this->attendus = array('$a','$b','$c','$d','$e');
-        $this->inattendus = array('$z');
+        $this->attendus = array('$a','$b','$c','$d','$e','$y', '$or', '$x', '$$or', '$$or2', '$or2');
+        $this->inattendus = array('$z','$');
         
         parent::generic_test();
     }

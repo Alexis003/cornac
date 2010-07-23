@@ -6,9 +6,8 @@ class multi_def_files_Test extends Auditeur_Framework_TestCase
     public function testVariables()  { 
         $this->name = 'multi_def_files';
         $this->attendus = array('scope_class::__construct', 
-                                '::scope_function',
-                                '::global');
-        $this->inattendus = array('scope_class::global',);
+                                '::scope_function');
+        $this->inattendus = array('scope_class::global','::global');
         
         parent::generic_test();
     }
