@@ -15,7 +15,7 @@ class multi_def_files extends modules {
 
 	    $requete = <<<SQL
     CREATE TEMPORARY TABLE multi_def_files
-    SELECT fichier FROM <tokens> 
+    SELECT DISTINCT fichier FROM <tokens> 
         GROUP BY concat(class,'::', scope) 
         HAVING COUNT(*) > 1
 SQL;
@@ -27,8 +27,8 @@ INSERT INTO <rapport>
     FROM <tokens> T1
     JOIN multi_def_files ON
         T1.fichier = multi_def_files.fichier
-    WHERE T1.class != '' AND T1.scope != 'global'
-    GROUP BY T1.fichier
+    WHERE T1.scope != 'global'
+    GROUP BY T1.fichier, concat(T1.class,'::', T1.scope)
 SQL;
         $res = $this->exec_query($requete);
 

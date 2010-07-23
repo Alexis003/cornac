@@ -111,13 +111,16 @@ $modules = array(
 'classes_unused',
 'classes_undefined',
 'html_tags', 
-//'affectations_gpc', 
+//'affectations_gpc', @_
 'classes_nb_methods',
 'unused_properties',
 'undefined_properties',
 'indenting',
 'block_of_call',
 'variables_relations',
+'arglist_def',
+'arglist_call',
+'arglist_disc',
 );
 
 $INI['analyzers'] = get_arg_value($args, '-a', 'all');
