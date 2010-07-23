@@ -121,6 +121,7 @@ $modules = array(
 'arglist_def',
 'arglist_call',
 'arglist_disc',
+'variables_one_letter',
 );
 
 $INI['analyzers'] = get_arg_value($args, '-a', 'all');
@@ -249,9 +250,14 @@ function analyse_module($module) {
                 if ($INI['dependences']) {
                     analyse_module($m);
                 } else {
-                    print " omitted ";
-                    // @todo check if dependances are there or not. 
-                    // @todo if not, they should be done, of course!
+                    $res = $database->query('SELECT * FROM phpmyadmin_rapport_module WHERE module="'.$m.'"');
+                    $row = $res->fetch();
+                    if (!isset($row['module'])) {
+                        analyse_module($m);
+                        print " done ";
+                    } else {
+                        print " omitted ";
+                    }
                 }
                 print "\n";
             }
