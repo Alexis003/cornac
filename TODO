@@ -11,7 +11,7 @@ Move the chained list to SPL
 Export from auditeur to format (PDF, HTML, XML, JSON, CSV, SQLITE, ODT...)
 Make analyses paralelle (gearman or DB task list? Faire les fichiers récents ou qui n'ont pas été finis.. )
 
-Add a licence warning in every file
+Add a licence in every file
 
 Mettre un verificateur automatique de hasPrev et hasNext dans analyseur
 Faire un log d'utilité des tests
@@ -132,8 +132,6 @@ faire la liste des classes et des méthodes (inventaire)
 Faire la liste des méthodes/fonctions, constantes/constantes de classes, variable/propriétés
 Faire une option de nettoyage des bases (par défaut, c'est remis fichier par fichier)
 
-Extraire les abstracts des arguments inutilisés
-
 Manage manual feedback (from where? Web? )
 Add levels of nesting : class, function, method, if/switch/loop/block 
 Identifier les types de données quand c'est possible (intval, new, etc...)
@@ -201,5 +199,8 @@ Make auditeur i18n easily (export in external file, auto-adding new titles)
 
 Add a log to check SQL length and optimize the bad queries 
 
-Long functions
-Compromised variables
+Long functions (number of tokens, number of lines...)
+Compromised variables (the one affected with values from GPC)
+
+Identify variables that where not initialized (less args, less foreach)
+Handle files with ' ' space in tokenizeur.php
