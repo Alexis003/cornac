@@ -111,7 +111,7 @@ if (!empty($dossier)) {
     
     foreach($fichiers as $fichier) {
         print "./tokenizeur.php -f $fichier -g ".GABARIT. ""." -I ".INI."\n";
-        print shell_exec("./tokenizeur.php  -T -i -1 -f $fichier -g ".GABARIT. " "." -I ".INI);
+        print shell_exec("./tokenizeur.php  -T -i -1 -f \"".escapeshellarg($fichier)."\" -g ".GABARIT. " "." -I ".INI);
     }
     
     if (RECURSIVE) {
@@ -177,16 +177,14 @@ foreach($scriptsPHP as $name => $object){
     $FIN['trouves']++;
     print $name."\n";
     if (!file_exists($name)) { 
-        print "$name n'existe pas. Omission\n";
+        print "'$name' doesn't exist. Aborting\n";
         continue;
     }
 
-//
-// 4177 est le error_reporting de  E_COMPILE_ERROR|E_RECOVERABLE_ERROR|E_ERROR|E_CORE_ERROR (erreurs de compilations seules)
-    $exec = shell_exec('php -d short_open_tag=1 -d error_reporting=4177  -l '.$name); // masque trop les erreurs -d error_reporting=4177 
+// @doc 4177 is error_reporting for  E_COMPILE_ERROR|E_RECOVERABLE_ERROR|E_ERROR|E_CORE_ERROR (compilations error only)
+    $exec = shell_exec('php -d short_open_tag=1 -d error_reporting=4177  -l '.escapeshellarg($fichier).' '); 
     if (trim($exec) != 'No syntax errors detected in '.$name) {
-    //\nNo syntax errors detected in $name
-        print "Le script $name n'est pas compilable par PHP\n$exec\n";
+        print "Script \"$name\" can't be compiled by PHP\n$exec\n";
         die();
     }
     
@@ -201,11 +199,11 @@ foreach($scriptsPHP as $name => $object){
     
     if ($c = preg_match_all('/<\\?(?!php)(\w?\s)/is', $code, $r) ) { 
         if (VERBOSE) {
-            print "$c corrections de balises ouvrantes\n";
+            print "Fixing $c opening tags\n";
         }
         $code = preg_replace('/<\\?(?!php)(\w?\s)/is', '<?php'." ".'\1', $code);
     }
-    // trop simple, mais devrait marcher sauf pour des binaires (et encore...)
+    // @todo this is too simple, but it works until now (binary, beware!)
     $code = str_replace('<?=', '<?php echo ', $code);
     
     $brut = @token_get_all($code);
