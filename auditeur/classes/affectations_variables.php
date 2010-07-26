@@ -13,7 +13,7 @@ class affectations_variables extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
-// variables simples        
+// @note simple variables
         $requete = <<<SQL
 INSERT INTO <rapport> 
 SELECT NULL, T1.fichier, T2.code, T1.id,'{$this->name}'  
@@ -24,7 +24,7 @@ WHERE T1.type = 'affectation'  AND T2.type = 'variable'
 SQL;
         $this->exec_query($requete);    
 
-// tableaux
+// @note array
         $requete = <<<SQL
 INSERT INTO <rapport> 
 SELECT NULL, T1.fichier, T3.code, T1.id,'{$this->name}'  
@@ -37,7 +37,7 @@ WHERE T1.type = 'affectation'  AND T2.type = 'tableau'
 SQL;
         $this->exec_query($requete);    
 
-// propriete
+// @note property
         $requete = <<<SQL
 INSERT INTO <rapport> 
 SELECT NULL, T1.fichier, T2.code, T1.id,'{$this->name}'  
@@ -48,7 +48,7 @@ WHERE T1.type = 'affectation'  AND T2.type = 'property'
 SQL;
         $this->exec_query($requete);    
 
-// propriete statique
+// @note  static property
         $requete = <<<SQL
 INSERT INTO <rapport> 
 SELECT NULL, T1.fichier, T3.code, T1.id,'{$this->name}'  
@@ -63,8 +63,7 @@ WHERE T1.type = 'affectation'  AND T2.type = 'property_static'
 SQL;
         $this->exec_query($requete);    
 
-// cas de list()
-
+// @note list() case
         $requete = <<<SQL
 INSERT INTO <rapport> 
 SELECT NULL, T1.fichier, T4.code, T1.id,'{$this->name}'  
@@ -76,6 +75,20 @@ JOIN <tokens> T3
 JOIN <tokens> T4
     ON T1.fichier = T4.fichier AND T4.droite BETWEEN T2.droite AND T2.gauche AND T4.type = 'variable'
 WHERE T1.type = 'affectation' 
+SQL;
+        $this->exec_query($requete);    
+
+// @note foreach() case
+        $requete = <<<SQL
+INSERT INTO <rapport> 
+SELECT NULL, T1.fichier, T2.code, T1.id,'{$this->name}'  
+FROM <tokens> T1
+JOIN <tokens_tags> TT1
+    ON TT1.token_id = T1.id AND TT1.type IN ('value','key')
+JOIN <tokens> T2
+    ON T1.fichier = T2.fichier AND TT1.token_sub_id = T2.id
+WHERE T1.type = '_foreach'
+LIMIT 12;
 SQL;
         $this->exec_query($requete);    
     }

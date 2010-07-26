@@ -123,6 +123,13 @@ $modules = array(
 'arglist_disc',
 'variables_one_letter',
 'php_classes',
+'upload_functions',
+'concatenation_gpc',
+'affectations_direct_gpc',
+'affectations_literals',
+'concatenation_gpc',
+'upload_functions',
+'variables_unaffected',
 );
 
 $INI['analyzers'] = get_arg_value($args, '-a', 'all');
