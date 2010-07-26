@@ -44,7 +44,11 @@ $tests = array(
 'class.arglist_disc.test.php',
 'class.multi_def_files.test.php',
 'class.php_classes.test.php',
-
+'class.affectations_direct_gpc.test.php',
+'class.affectations_literals.test.php',
+'class.concatenation_gpc.test.php',
+'class.upload_functions.test.php',
+'class.variables_unaffected.test.php',
 // Prochain tests
 );
 
