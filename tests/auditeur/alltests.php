@@ -49,6 +49,8 @@ $tests = array(
 'class.concatenation_gpc.test.php',
 'class.upload_functions.test.php',
 'class.variables_unaffected.test.php',
+'class.dangerous_combinaisons.test.php',
+'class.gpc_affectations.test.php',
 // Prochain tests
 );
 
