@@ -3,7 +3,7 @@ include_once('Analyseur_Framework_TestCase.php');
 
 class For_Test extends Analyseur_Framework_TestCase
 {
-    /* 35 methodes */
+    /* 36 methodes */
     public function testFor1()  { $this->generic_test('for.1'); }
     public function testFor2()  { $this->generic_test('for.2'); }
     public function testFor3()  { $this->generic_test('for.3'); }
@@ -39,6 +39,7 @@ class For_Test extends Analyseur_Framework_TestCase
     public function testFor33()  { $this->generic_test('for.33'); }
     public function testFor34()  { $this->generic_test('for.34'); }
     public function testFor35()  { $this->generic_test('for.35'); }
+    public function testFor36()  { $this->generic_test('for.36'); }
 
 }
 

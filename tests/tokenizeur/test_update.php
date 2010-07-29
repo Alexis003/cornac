@@ -43,6 +43,8 @@ foreach($args as $arg) {
       $fichier = "exp/".$arg.".test.exp";
       $exp = file_get_contents($fichier);
       $exp = str_replace("Fichier de directives : ini/tokenizeur.ini\n", '', $exp);
+      $exp = str_replace("Directives files : \n", '', $exp);
+
       file_put_contents($fichier, $exp);
     } else {
       shell_exec("bbedit ./exp/".$arg.".test.exp");
