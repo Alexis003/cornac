@@ -130,6 +130,8 @@ $modules = array(
 'concatenation_gpc',
 'upload_functions',
 'variables_unaffected',
+'gpc_affectations',
+'dangerous_combinaisons',
 );
 
 $INI['analyzers'] = get_arg_value($args, '-a', 'all');
@@ -258,7 +260,7 @@ function analyse_module($module) {
                 if ($INI['dependences']) {
                     analyse_module($m);
                 } else {
-                    $res = $database->query('SELECT * FROM phpmyadmin_rapport_module WHERE module="'.$m.'"');
+                    $res = $database->query('SELECT * FROM '.$INI['cornac']['prefix'].'_rapport_module WHERE module="'.$m.'"');
                     $row = $res->fetch();
                     if (!isset($row['module'])) {
                         analyse_module($m);

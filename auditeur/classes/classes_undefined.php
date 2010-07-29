@@ -17,15 +17,19 @@ class classes_undefined extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
+        $in = "'".join("','", modules::getPHPClasses())."'";
         $requete = <<<SQL
 INSERT INTO <rapport> 
 SELECT NULL, TR1.fichier, TR1.element AS code, TR1.id, '{$this->name}'
     FROM <rapport>  TR1
     LEFT JOIN <rapport>  TR2 
     ON TR1.element = TR2.element AND TR2.module='classes' 
-    WHERE TR1.module = '_new' AND TR2.element IS NULL
+    WHERE TR1.module = '_new' AND 
+          TR2.element IS NULL AND
+          TR1.element NOT IN ($in)
 SQL;
 
+        print $this->prepare_query($requete);
 // @todo excluding PHP classes ? 
 //AND    TR1.element NOT IN ('$in');
         $this->exec_query($requete);
