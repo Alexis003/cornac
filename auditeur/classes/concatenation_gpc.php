@@ -14,6 +14,7 @@ class concatenation_gpc extends modules {
         $this->clean_rapport();
         
         $concat = $this->concat('class','"::"','scope');
+        $gpc_regexp = '(\\\\'.join('|\\\\',modules::getPHPGPC()).')';
 	    $requete = <<<SQL
 INSERT INTO <rapport>
     SELECT NULL, T1.fichier, T2.code, T1.id, '{$this->name}'
@@ -21,7 +22,7 @@ INSERT INTO <rapport>
     JOIN <tokens> T2
     ON T1.fichier= T2.fichier AND 
         T2.type='variable' AND 
-        T2.code REGEXP '^\\\\\$(_GET|_POST|_COOKIE|_REQUEST|_ENV|_FILES|_SERVER|HTTP_GET_VARS|HTTP_POST_VARS)'
+        T2.code REGEXP '^$gpc_regexp'
     WHERE T1.type='concatenation'
 
 SQL;

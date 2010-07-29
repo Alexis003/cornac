@@ -270,6 +270,16 @@ SQL;
         return $classes;
     }
     
+    static public function getPHPGPC() {
+        return array('$_GET','$_POST','$_COOKIE','$_REQUEST','$_FILES','$_SESSION',
+                     '$HTTP_GET_VARS','$HTTP_POST_VARS','$HTTP_COOKIE_VARS','$HTTP_FILES_VARS', '$HTTP_SESSION_VARS',
+                     '$HTTP_RAW_POST_DATA',
+                     '$_ENV','$_SERVER',
+                     '$HTTP_ENV_VARS','$HTTP_SERVER_VARS',
+                     '$http_response_header','$php_errormsg','$argv','$argc',);
+    }
+
+
     static public function getPHPStandardFunctions() {
         // @todo this depends on PHP used for exécution : we should extract this somewhere else
 	    $language_structures = array('echo','print','die','exit','isset','empty','array','list','unset','eval');
