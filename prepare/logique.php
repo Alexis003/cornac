@@ -13,7 +13,7 @@ class logique extends instruction {
             $this->operateur = $this->make_token_traite($entree[1]);
             $this->gauche = $entree[2];
         } else {
-            die("entre doit être un tableau dans ".__METHOD__);
+            $this->stop_on_error("Must receive an array as argument : ".count($entree)." received\n");
         }
     }
 

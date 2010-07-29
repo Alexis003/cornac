@@ -34,7 +34,8 @@ class constante_classe_regex extends analyseur_regex {
                             Token::applyRegex($repl, 'constante_classe', $regex);
                             continue;
                         }
-                        die(__CLASS__."else!!\n");
+                    // @note if we reach here, there is a problem
+                    return false;
                 }
                 
                 if ( $var->checkCode(';')) {

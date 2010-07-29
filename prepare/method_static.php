@@ -11,7 +11,7 @@ class method_static extends instruction {
             $this->class = $this->make_token_traite($entree[0]);
             $this->method = $entree[1];
         } else {
-            die('Appel de method avec deux arguments? '. join(', ',func_get_args()));
+            $this->stop_on_error('Bad call of '.__METHOD__." ".join(', ',func_get_args()));
         }
     }
 

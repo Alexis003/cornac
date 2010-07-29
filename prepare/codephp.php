@@ -11,7 +11,7 @@ class codephp extends instruction {
         } else {
             $this->php_code =  $entree[0];
             if (count($entree) > 1) {
-                die("Des elements de entree sont perdu!\n".__METHOD__."\n");
+                $this->stop_on_error("We lost some elements in ".__METHOD__);
             }
         }
     }

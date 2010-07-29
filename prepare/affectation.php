@@ -23,7 +23,7 @@ class affectation extends instruction {
             }
 
             if (count($entree) != 3) {
-                die("Affectation avec un nombre de valeurs inapproprié\n");
+                $this->stop_on_error("Affectation with unexpected number of valudes : ".count($entree)." received\n");
             }
 
             $this->droite = $entree[0];
@@ -32,7 +32,7 @@ class affectation extends instruction {
             $this->gauche = $entree[2];
             $this->setLine($this->droite->getLine());
         } else {
-            die(__CLASS__." a recu des arguments bizarres dans ".__METHOD__);
+            $this->stop_on_error("Affectation received strange number of values : ".count($entree)." received\n");
         }
     }
 

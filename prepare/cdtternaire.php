@@ -15,7 +15,7 @@ class cdtternaire extends instruction {
             $this->vraie     = $entree[1];
             $this->faux      = $entree[2];
         } else {
-            die("Mauvais nombre d'entree dans ".__CLASS__);
+            $this->stop_on_error("Wrong number of arguments  : '".count($entree)."' in ".__METHOD__);
         }
     }
 

@@ -15,10 +15,10 @@ class _for extends instruction {
             $this->init = $entree[0];
         }
 
-// on gère block immédiatement
+        // @note immediate processing of block
         $this->block = array_pop($entree);
 
-        if (get_class($entree[1]) == 'sequence' && $entree[2]->checkCode(')')) {
+        if ($entree[1]->checkClass('sequence') && $entree[2]->checkCode(')')) {
             $x = $entree[1]->getElements();
             if (count($x) == 2) { 
                 $this->fin = $x[0];
@@ -29,7 +29,7 @@ class _for extends instruction {
                 $this->fin = $x[0];
                 // puis on continue comme d'hab, increment est dans entree[2];
             } else {
-                die("Cette séquence ne doit contenir 1 ou 2 elements et non pas ".count($x)."!");
+                $this->stop_on_error("Wrong number of elements  : '".count($x)."' in ".__METHOD__);
             }
         } elseif ($entree[1]->getCode() == ';') {
             $this->fin = null;

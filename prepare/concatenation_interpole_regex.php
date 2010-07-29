@@ -33,7 +33,7 @@ class concatenation_interpole_regex extends analyseur_regex {
         } elseif ($t->checkClass('rawtext') ) {
             return false; 
         } else {
-            die($t."\n"."Can't reach here ".__METHOD__);
+            $this->stop_on_error($t."\n"."Can't reach here ".__METHOD__);
         }
 
         $var = $t->getNext(); 

@@ -87,10 +87,8 @@ class _class extends instruction {
     }
 
     function getRegex() {
-        return array(
-    'class_simple_regex',
-//    'for_sequence_regex',
-);
+        return array( 'class_simple_regex',
+                    );
     }
 }
 

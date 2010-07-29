@@ -30,7 +30,7 @@ class Token {
             }
         }
         print_r(xdebug_get_function_stack());        
-        die("$method est une méthode inconnue!\n");
+        die("$method is unknown method!\n");
     }
      
     function setId($id) {
@@ -109,9 +109,8 @@ class Token {
             
             $this->next = $t;
             $t->setNext($next);
-        
         } else {
-            die("Impossible d'insérer ce type ($type). Doit être after ou before");
+            die("Can't insert this type : $type. Must be 'after' or 'before'");
         } 
     }
 
@@ -397,13 +396,9 @@ class Token {
 
     public function checkSubclass($classes) {
         if (is_array($classes)) {
-           if (count($classes) > 1) {
-                print "finir subclass\n";
-                die();
-           }
            $classes = array_shift($classes);
         } else {
-            // @empty_ifself otherwise it is a string
+            // @empty_ifelse otherwise it is a string
         }
         return is_subclass_of($this, $classes);
     }

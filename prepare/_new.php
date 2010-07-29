@@ -34,7 +34,7 @@ class _new extends instruction {
                 $this->args = $entree[1];
             }
         } else {
-            die( "Tentative de création d'un objet avec un type inapproprié '".get_class($constructeur)."' dans ".__FILE__."\n");
+            $this->stop_on_error("Unexpected class received : '".get_class($constructeur)."' in ".__METHOD__);
         }
     }
 

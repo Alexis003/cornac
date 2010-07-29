@@ -31,7 +31,8 @@ class global_simple_regex extends analyseur_regex {
                             Token::applyRegex($repl, '_global', $regex);
                             continue;
                         }
-                        die(__CLASS__."else!!\n");
+                    // @note if we reach here, then something is wrong
+                    return false;
                 }
                 
                 if ( $var->checkCode(';')) {

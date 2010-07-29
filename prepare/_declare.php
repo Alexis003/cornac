@@ -10,22 +10,28 @@ class _declare extends instruction {
         
         if ($entree[count($entree) - 1]->checkClass('block')) {
             $this->block = array_pop($entree);
+        } else {
+            // @empty_else
         }
+        
         if ($entree[0]->checkClass('parentheses')) {
-            // on attend un arginit
+            // @doc we expect no initialisation 
             if (!$this->set(strtolower($entree[0]->getContenu()->getVariable()->getCode()), 
                             $entree[0]->getContenu()->getValeur())) {
-                die($entree[0]->getContenu()->getVariable()." est inconnue dans ".__METHOD__."\n");
+                $this->stop_on_error(($entree[0]->getContenu()->getVariable()." is unknown in ".__METHOD__."\n");
             }
         } elseif ($entree[0]->checkClass('arginit')) {
+            // @doc we expect an initialisation 
             if (!$this->set(strtolower($entree[0]->getVariable()->getCode()), 
                             $entree[0]->getValeur())) {
-                die($entree[0]->getVariable()." est inconnue dans ".__METHOD__."\n");
+                $this->stop_on_error(($entree[0]->getVariable()." is unknown in ".__METHOD__."\n");
             }
             if (!$this->set(strtolower($entree[1]->getVariable()->getCode()), 
                             $entree[1]->getValeur())) {
-                die($entree[1]->getVariable()." est inconnue dans ".__METHOD__."\n");
+                stop_on_error($entree[1]->getVariable()." is unknown in ".__METHOD__."\n");
             }
+        } else {
+            $this->stop_on_error("Entree is of unexpected class ".get_class($entree[0])." in ".__METHOD__."\n");
         }
     }
     

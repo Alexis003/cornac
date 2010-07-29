@@ -38,7 +38,7 @@ class _function extends instruction {
                 continue;
             }
             
-            die("On ne devrait pas arriver ici : ".__CLASS__);
+            $this->stop_on_error("On ne devrait pas arriver ici : ".__CLASS__);
         }
 
         if (count($entree) == 3) {
@@ -51,7 +51,7 @@ class _function extends instruction {
             $this->args = $entree[2];
             $this->block = $entree[3];
         } else {
-            die("Nombre d'arguments inconvenant pour ".__METHOD__." : ". count($entree)." obtenus au lieu de 3 ou 4 demandé");
+            $this->stop_on_error("Wrong number of arguments  : '".count($entree)."' in ".__METHOD__);
         }
         
         if ($this->block->getCode() == ';') {

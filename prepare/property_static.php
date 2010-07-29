@@ -11,7 +11,7 @@ class property_static extends token {
             $this->class = $this->make_token_traite($entree[0]);
             $this->property = $entree[1];
         } else {
-            die('Appel de constant avec deux arguments? '. join(', ',func_get_args()));
+            $this->stop_on_error("Wrong number of arguments  : '".count($entree)."' in ".__METHOD__);
         }
     }
 

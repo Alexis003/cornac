@@ -15,7 +15,7 @@ class _var extends instruction {
             } elseif ($entree[0]->checkToken(array(T_STATIC))) {
                 $this->_static = $this->make_token_traite($entree[0]);
             } else {
-                die( " Classe d'attribut non gérée par ".__CLASS__." : ".get_class($entree[0])."\n");
+                $this->stop_on_error("Unknown attribute class : ".count($entree)." in ".__METHOD__);
             }
 
             unset($entree[0]);
@@ -33,7 +33,7 @@ class _var extends instruction {
                 $this->variable[] = $e->getVariable();
                 $this->init[] = $e->getValeur();        
             } else {
-                die(" Unexpected class for ".__CLASS__." : ".get_class($e)." $e $id\n");
+                $this->stop_on_error(" Unexpected class for ".__CLASS__." : ".get_class($e)." $e $id in ".__METHOD__);
             }
         }
     }

@@ -1,6 +1,8 @@
 <?php
 
 class tableau extends variable {
+    protected $variable = null;
+    protected $index = null;
 
     function __construct($variable) {
         parent::__construct();
@@ -9,7 +11,7 @@ class tableau extends variable {
             $this->variable = $variable[0];
             $this->index = $variable[1];
         } else {
-            die('No way we end up here : '.__METHOD__);
+            $this->stop_on_error('No way we end up here : '.__METHOD__);
         }
     }
         

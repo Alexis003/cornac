@@ -11,7 +11,7 @@ class constante_classe extends token {
             $this->name = $entree[0];
             $this->constante = $entree[1];
         } else {
-            die('Appel de constant avec deux arguments? '. join(', ',func_get_args()));
+            $this->stop_on_error("Wrong number of arguments  : '".count($entree)."' in ".__METHOD__);
         }
     }
 

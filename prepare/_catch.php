@@ -13,7 +13,7 @@ class _catch extends instruction {
             $this->exception = $this->make_token_traite($entree[0]);
             $this->variable  = $entree[1];
         } else {
-            die(__CLASS__." n'a pas recu le bon nombre d'arguments (".count($entree)." au lieu de 3)\n");
+            $this->stop_on_error("Unexpected number of arguments received : (".count($entree)." instead of 3) in ".__METHOD__);
         }
     }
 

@@ -13,7 +13,7 @@ class comparaison extends instruction {
             $this->operateur = $this->make_token_traite($entree[1]);
             $this->gauche = $entree[2];
         } else {
-            die("Nombre d'arguments pour ".__CLASS__." incompris : ".count($entree)." au lieu de 3\n");
+            $this->stop_on_error("Wrong number of arguments  : '".count($entree)."' in ".__METHOD__);
         }
     }
 

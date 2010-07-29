@@ -22,7 +22,7 @@ class _case extends instruction {
                 $this->block     = new block();
             }
         } else {
-            die("Mauvais cas de ".__CLASS__." '".$expression[0]."'");
+            $this->stop_on_error("Unexpected TOKEN received : '".$expression[0]->getToken()."' in ".__METHOD__);
         }
     }
 
