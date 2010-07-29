@@ -112,7 +112,7 @@ class for_simple_regex extends analyseur_regex {
         
         if ($t->getNext($pos)->checkForBlock(true) && 
             (is_null($t->getNext($pos + 1)) ||
-             $t->getNext($pos + 1)->checkNotCode(array('(','->','::','[')))) {
+             $t->getNext($pos + 1)->checkNotCode(array('(','->','::','=','[')))) {
               $args[] = $pos + 1;
               $remove[] = $pos + 1;
 
