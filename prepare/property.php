@@ -19,7 +19,7 @@ class property extends token {
             
             $this->property = $entree[1];
         } else {
-            $this->stop_on_error(("Bad number of parameters in ".__METHOD__);
+            $this->stop_on_error("Bad number of parameters in ".__METHOD__);
         }
     }
 
