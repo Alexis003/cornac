@@ -27,6 +27,7 @@ $tests = array(
 'class.doubledeffunctions.test.php',
 'class.doubledefclass.test.php',
 'class.inclusions.test.php',
+'class.inclusions_test.test.php',
 'class.statiques.test.php',
 'class.html_tags.test.php',
 'class.undeffunctions.test.php',
