@@ -21,6 +21,12 @@ if ($dir = get_arg_value($args, '-D', '.')) {
 
 chdir($dir);
 
+$OPTIONS = parse_ini_file("tags.ini");
+if (!isset($OPTIONS['limit']) || $OPTIONS['limit'] == 0) { 
+    // @note big value as default
+    $OPTIONS['limit'] = 10000000; 
+}
+
 $liste = Liste_directories_recursive('.');
 
 // @question : qoui?
@@ -37,7 +43,7 @@ foreach($liste as $fichier) {
         if (is_array($token) && $token[0] == T_COMMENT) {
             $comments_this_file++;
             $comment = remove_delimiter($token[1]);
-
+            
             // comment used as presentation delimiter (------, ////////, ========)
             if (preg_match_all('/^(.)\1*$/is', $comment, $r)) { 
                 continue;
@@ -53,7 +59,21 @@ foreach($liste as $fichier) {
                 $token['tags'] = array('@no_tag');
             }
 
+            // @note : identifying code in comments
+            // @todo make this code better : it is not easy to spot PHP code in comments, token_get_all is not sufficent
+            if (strpos($comment, ';')) {
+                $code_php = '<?php '.$comment.' ?>';
+                $t = token_get_all($code_php);
+                if (count($t) != 0) {
+                    $token['tags'][] = '@php_code';
+                }
+            }
+
+            // @doc clean comment 
+            // @note remove all tokens from the comment
             $token['comment'] = preg_replace('/(@[a-zA-Z0-9_\-]+)/is','', $comment);
+            // @note remove white space and : from comment
+            $token['comment'] = trim($token['comment'], ' :');
             $token['fichier'] = $fichier;
             unset($token[0]);
             $token['ligne'] = $token[2];
@@ -80,8 +100,6 @@ export_html($comments);
 export_tags_html($comments);
 export_csv($comments);
 
-//print_r($tags);
-//print_r($fichiers);
 die();
 
 function export_csv($comments) {
@@ -95,7 +113,6 @@ function export_csv($comments) {
         fputcsv($fp, $comment);
     }
     fclose($fp);  
-//    print file_put_contents('tags.csv', $html)." octets écrits\n";
 }
 
 function export_html($comments) {
@@ -119,10 +136,17 @@ HTML;
     foreach($fichiers as $fichier => $commentaires) {
         $html .= "<tr><td colspan=\"3\"><a name=\"".make_anchor($fichier)."\"><b>".htmlentities($fichier)."</b></td></tr>\n";
         foreach ($commentaires as $id => $commentaire) {
+            $tags = "";
+            
+            foreach($commentaire['tags'] as $tag) {
+                $tags .= "<a href=\"tags.html#".make_anchor($tag)."\">".htmlentities($tag)."</a>, ";
+            }
+            $tags = substr($tags, 0, -2);
+            
             $html .= "<tr>
     <td>$id)</td>
     <td>".htmlentities($commentaire['comment'])."</td>
-    <td><a href=\"tags.html#".make_anchor($commentaire['tags'][0])."\">".htmlentities($commentaire['tags'][0])."</a></td>    
+    <td>$tags</td>    
     </tr>\n";
         }
     }
@@ -172,6 +196,7 @@ HTML;
 
     print file_put_contents('tags.html', $html)." octets écrits\n";
 }
+
 function remove_delimiter($comment) {
     $comment = trim($comment);
     
@@ -203,20 +228,31 @@ if (SHOW_EXTS) { display($exts); }
 //print count($liste)." fichiers distincts\n";
 
 function liste_directories_recursive( $path = '.', $level = 0 ){ 
-    $ignore = array( 'cgi-bin', '.', '..' ); 
+    global $OPTIONS;
+    $ignore_dirs = array_merge(array( 'cgi-bin', '.', '..' ), $OPTIONS['ignore_dirs']); 
 
     $dh = opendir( $path ); 
     if (!is_resource($dh)) { return array(); }
     $retour = array();
-    while( false !== ( $file = readdir( $dh ) ) ){ 
-        if( !in_array( $file, $ignore ) && $file[0] != '.'){ 
-            if( is_dir( "$path/$file" ) ){ 
-                $r = Liste_directories_recursive( "$path/$file", ($level+1) ); 
-                $retour = array_merge($retour, $r);
-            } else { 
-                $retour[] = "$path/$file";
-            } 
-        } 
+    while( false !== ( $file = readdir( $dh ) ) ) { 
+        if( $file[0] == '.'                ){ continue; }
+
+        if( is_dir( "$path/$file" ) ){ 
+            if( in_array( $file, $ignore_dirs )){ continue; }
+            $r = Liste_directories_recursive( "$path/$file", ($level+1) ); 
+            $retour = array_merge($retour, $r);
+        } else { 
+            $details = pathinfo($file);
+            if (!isset($details['extension'])){
+                $details['extension'] = '';
+            }
+            if (in_array($details['extension'], $OPTIONS['ignore_ext'])) { continue; }
+        
+            $retour[] = "$path/$file";
+        }
+        if ($OPTIONS['limit'] > 0 && count($retour) >= $OPTIONS['limit']) {
+            return $retour;
+        }
     } 
      
     closedir( $dh ); 
