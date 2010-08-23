@@ -5,7 +5,7 @@
     $rows = $res->fetchAll();
     
     foreach($rows as &$row) {
-        $row['element'] = "<a href=\"index.php?module=".$row['element']."\">".$row['element']."</a>";
+        $row['element'] = "<a href=\"index.php?module=".$row['element']."\">".$translations[$row['element']]['title']."</a>";
     }
     
     print get_html($rows);

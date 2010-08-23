@@ -3,14 +3,16 @@
 $mysql = new pdo('mysql:dbname=analyseur;host=127.0.0.1','root','');
 $prefixe = 'phpmyadmin';
     
-        $tables = array('<rapport>' => $prefixe.'_rapport',
-                        '<rapport_scope>' => $prefixe.'_rapport_scope',
-                        '<tokens>' => $prefixe.'',
-                        '<tokens_tags>' => $prefixe.'_tags',
-                        '<rapport_module>' => $prefixe.'_rapport_module',
-                        '<rapport_dot>' => $prefixe.'_rapport_dot',
-                       );
+$tables = array('<rapport>' => $prefixe.'_rapport',
+                '<rapport_scope>' => $prefixe.'_rapport_scope',
+                '<tokens>' => $prefixe.'',
+                '<tokens_tags>' => $prefixe.'_tags',
+                '<rapport_module>' => $prefixe.'_rapport_module',
+                '<rapport_dot>' => $prefixe.'_rapport_dot',
+                );
 
+
+$translations = parse_ini_file('../dict/translations.'.$_COOKIE['langue'].'.ini', true);
 
 if (!isset($_GET['module'])) {
     $format = 'html';
@@ -49,7 +51,8 @@ if (!isset($_GET['module'])) {
             $entete .= "<li><a href=\"index.php?module={$_GET['module']}&type=$titre\">$c</a></li>";
         }
     }
-    $entete = "<ul>$entete</ul>\n";
+    $entete = "<table   ><tr><td><ul>$entete</ul></td>\n";
+    $entete .= "<td><strong>{$translations[$_GET['module']]['title']}</strong><br />{$translations[$_GET['module']]['description']}</td></tr></table>\n";
 
 if ($format == 'dot' && !isset($cas['dot'][@$_GET['type']])) {
         print_entete($prefixe);
@@ -91,15 +94,6 @@ switch(@$_GET['type']) {
 
 XML;
         }
-        /*
-                    <node id="0" label="Gephi">
-                <attvalues>
-                    <attvalue for="0" value="http://gephi.org"/>
-                    <attvalue for="1" value="1"/>
-                </attvalues>
-            </node>
-
-        */
         
         $liste_edges = '';
         foreach($edges as $id => $node) {

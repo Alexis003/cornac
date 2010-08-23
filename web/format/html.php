@@ -76,6 +76,10 @@ HTML;
 
 function print_pieddepage($prefixe='Sans Nom') {
     return <<<HTML
+    <p>
+    <a href="#" onClick="javascript:document.cookie = 'langue=fr';window.location.reload();">fr</a> - 
+    <a href="#" onClick="javascript:document.cookie = 'langue=en';window.location.reload();">en</a>
+    </p>
     </body>
 </html>
 HTML;
