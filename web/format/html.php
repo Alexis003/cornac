@@ -58,7 +58,7 @@ function print_entete($prefixe='Sans Nom') {
  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
  <script type="text/javascript" src="site.js"></script>
  <style type="text/css" media="all">
-  @import url("./site.css");
+  @import url("./css/site.css");
  </style>
 </head>
 <body>

@@ -1,11 +1,13 @@
 <?php
-        $requete = "
-            SELECT concat(CR.fichier, ': <br /><b>', class,'->', scope,'</b>') as class, element, COUNT(*) AS nb 
+        $requete = <<<SQL
+            SELECT CONCAT(if (class = '', 'global',class) ,'::', scope) AS class, element, COUNT(*) AS nb 
             FROM {$tables['<rapport>']} CR
             JOIN {$tables['<tokens>']} T1
                 ON CR.token_id = T1.id
                 WHERE module='{$_GET['module']}' 
-            GROUP BY concat(CR.fichier, class , scope), element";
+            GROUP BY CONCAT(class , scope), element
+            ORDER BY CONCAT(if (class = '', 'global',class) ,'::', scope)
+SQL;
         $res = $mysql->query($requete);
 
         $rows = array();
