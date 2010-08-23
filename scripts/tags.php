@@ -69,6 +69,12 @@ foreach($liste as $fichier) {
                 }
             }
 
+            // @note : identifying bad words in comments
+            $regex = join('|', $OPTIONS['smell_words']);
+            if (preg_match('/\b('.$regex.')\b/is', $comment, $r)) {
+               $token['tags'][] = '@smell_words';
+            }
+
             // @doc clean comment 
             // @note remove all tokens from the comment
             $token['comment'] = preg_replace('/(@[a-zA-Z0-9_\-]+)/is','', $comment);
@@ -90,8 +96,6 @@ foreach($liste as $fichier) {
                             'tags' => array('@no_comment_in_file'),
                             'comment' => '',);
     }
-
-    
 }
 
 chdir(dirname(__FILE__));
