@@ -93,8 +93,12 @@ abstract class modules {
     }
 
     function sauve() {
+        if (!isset($this->name)) {
+            print "This class has no name (not even the default name!)\n";
+            return false;
+        }
         if ($this->name == __CLASS__) { 
-            print "Une classe qui n'a pas donné son nom\n";
+            print "This class has no name (the default name!)\n";
             return false;
         }
         
@@ -248,18 +252,21 @@ SQL;
     
     static public function getPHPFunctions() {
         // @todo this depends on PHP used for exécution : we should extract this somewhere else
-  	    $functions = get_defined_functions();
-	    $extras = array('echo','print','die','exit','isset','empty','array','list','unset','eval');
-	    return array_merge($functions['internal'], $extras);
+        $ini = parse_ini_file('../dict/functions2ext.ini', false);
+    
+        $extras = array('echo','print','die','exit','isset','empty','array','list','unset','eval','dl');
+
+        return array_merge($ini['function'], $extras);
     }
     
     static public function getPHPExtensions() {
-        // @todo this depends on PHP used for exécution : we should extract this somewhere else
-        return get_loaded_extensions();
+        $ini = parse_ini_file('../dict/functions2ext.ini', true);
+        
+        $exts = array_keys($ini);
+        return $exts;
     }
 
     static public function getPHPClasses() {
-        // @todo this depends on PHP used for exécution : we should extract this somewhere else
         $classes = parse_ini_file('../dict/class2ext.ini', false);
         return $classes['classes'];
     }

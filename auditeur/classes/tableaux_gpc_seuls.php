@@ -6,15 +6,11 @@ class tableaux_gpc_seuls extends modules {
 
 	function __construct($mid) {
         parent::__construct($mid);
+
+        $this->name = __CLASS__;
 	}
 	
 	public function analyse() {
-        if ($this->not) {
-            $not = ' not ';
-        } else {
-            $not = '';
-        }
-        
         $this->clean_rapport();
 
 // cas simple : variable -> method
