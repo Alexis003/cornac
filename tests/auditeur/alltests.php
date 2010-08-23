@@ -12,13 +12,11 @@ $tests = array(
 'class.method_special.test.php',
 'class.globals.test.php',
 'class.iffectations.test.php',
-'class.functions_undefined.test.php',
 'class.functions_unused.test.php',
 'class.classes.test.php',
 'class.arobases.test.php',
 'class.properties_defined.test.php',
 'class.properties_used.test.php',
-//'class.array_duplication.test.php',
 'class.classes_undefined.test.php',
 'class.classes_unused.test.php',
 'class.php_modules.test.php',
@@ -29,10 +27,8 @@ $tests = array(
 'class.doubledeffunctions.test.php',
 'class.doubledefclass.test.php',
 'class.inclusions.test.php',
-//'class.inclusions2.test.php',
 'class.statiques.test.php',
 'class.html_tags.test.php',
-//'class.affectations_gpc.test.php',
 'class.undeffunctions.test.php',
 'class.classes_nb_methods.test.php',
 'class.variablesvariables.test.php',
@@ -68,39 +64,6 @@ foreach($tests as $i => $test ) {
         print "Impossible de trouver la classe de test dans '$fichier'\n";
         die();
     }
-    
-    /*
-    $class = $r[1];
-    $methods = get_class_methods($class);
-    $methods = preg_grep('$^test$', $methods);
-
-    preg_match('$test(.*)(\d+)$', $methods[0], $r);
-    $nom = strtolower($r[1]);
-    
-    foreach($methods as $id => $method) {
-        $methods[$id] = preg_replace('$\D+$', '', $method);
-    }
-    
-    $lestests = glob('scripts/'.$nom.'.*');
-    
-    foreach($lestests as $id => $test) {
-        $script = preg_replace('$\D+$', '', $test);
-        
-        if (!in_array($script, $methods)) {
-            print "Il manque une méthode pour le script $script de $nom\n";
-        }
-    }
-
-    $lestests = glob('exp/'.$nom.'.*');
-    
-    foreach($lestests as $id => $test) {
-        $script = preg_replace('$\D+$', '', $test);
-        
-        if (!in_array($script, $methods)) {
-            print "Il manque une méthode pour l'attendu $script de $nom\n";
-        }
-    }
-    */
 }
  
 class Framework_AllTests
@@ -112,9 +75,9 @@ class Framework_AllTests
          global $tests;
          
          foreach($tests as $test) {
-             $test = substr($test, 6); // exist le class.
-             $test = substr($test, 0, -4); // exist le .php
-             $test = str_replace('.','_', $test); // exit le .
+             $test = substr($test, 6); // @doc remove class.
+             $test = substr($test, 0, -4); // @doc remove .php
+             $test = str_replace('.','_', $test); // @doc remove .
              $test = ucwords($test);
              $test = str_replace('_test','_Test', $test);
              
