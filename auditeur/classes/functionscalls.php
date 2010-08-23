@@ -1,7 +1,7 @@
 <?php
 
 class functionscalls extends modules {
-    protected $not = false; 
+    protected $description = "Liste des appels de fonctions"; 
 
 	function __construct($mid) {
         parent::__construct($mid);

@@ -1,7 +1,7 @@
 <?php
 
 class methodscall extends modules {
-    protected $not = false; 
+    protected $description = "Liste des appels de méthodes";
 
 	function __construct($mid) {
         parent::__construct($mid);

@@ -42,15 +42,17 @@ abstract class modules {
     abstract function analyse();
 
     function getdescription() {
-        if (isset($this->description_en)) {
-            return $this->description_en ;
-        } elseif (isset($this->description)) {
-            return $this->description ;
-        } else {
-            return "Description : ".__CLASS__ ;    
-        }
+        return $this->description;
     }
 
+    function gettitle() {
+        if (isset($this->title)) {
+            return $this->title;
+        } else {
+            return $this->description.' (old way) ';
+        }
+    }
+    
     function getnombre() {
         return $this->occurrences;
     } 

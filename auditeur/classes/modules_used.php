@@ -1,8 +1,9 @@
 <?php
 
 class modules_used extends modules {
-    protected $not = false; 
-
+    protected $description = "List des modules PHP utilisés";
+    protected $description_en = "PHP module being used";
+    
 	function __construct($mid) {
         parent::__construct($mid);
     	$this->name = __CLASS__;

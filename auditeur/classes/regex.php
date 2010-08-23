@@ -1,7 +1,9 @@
 <?php
 
 class regex extends modules {
-	protected	$description = 'Liste des regex utilisées';
+	protected	$description = 'Liste des expressions rationnelles identifiées dans le code.';
+	protected	$title = 'Liste des regex utilisées';
+	
 	protected	$description_en = 'List of regex';
 
 	function __construct($mid) {

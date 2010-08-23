@@ -1,7 +1,7 @@
 <?php
 
 class functions_unused extends modules {
-    protected $not = false; 
+    protected $description = 'Liste des fonctions non utilisées'; 
 
 	function __construct($mid) {
         parent::__construct($mid);

@@ -1,8 +1,8 @@
 <?php
 
 class php_functions extends functioncalls {
-	protected	$description = 'Liste des fonctions PHP';
-	protected	$description_en = 'List of PHP functions';
+	protected	$title = 'Liste des fonctions PHP';
+	protected	$description = 'Liste des différentes fonctions PHP utilisées dans l\'application, avec leur fréquence';
 
 	function __construct($mid) {
         parent::__construct($mid);

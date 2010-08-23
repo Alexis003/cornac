@@ -1,6 +1,6 @@
 <?php
 
-class zfAction extends modules {
+class squelette extends modules {
 	protected	$description = 'Liste des fonctions méthodes de contrôleur pour le ZF (*Action)';
 	protected	$description_en = 'List of action method from controlers in ZF ';
 
