@@ -107,7 +107,7 @@ shell_exec("./tokenizeur.php -r -d {$INI['cornac']['origin']} -g {$INI['cornac']
                                                                                                             // @sqlite as default ? 
 print "Auditeur\n";
 shell_exec("cd auditeur; ./auditeur.php $ini -o -d {$INI['cornac']['destination']}");
-// @todo clean audits tables before. shell_exec("rm -rf /tmp/cornac; mkdir {$INI['destination']}");
+// @todo clean audits tables before. 
 
 print "Export\n";
 shell_exec("cd auditeur; ./reader.php $ini -F html -o {$INI['cornac']['destination']} ");
