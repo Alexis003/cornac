@@ -46,7 +46,7 @@ class for_simple_regex extends analyseur_regex {
             $remove[] = $pos + 1  + 1;
             
             $pos += 2;
-        } else { // NotToken puis ;
+        } else { // @doc Not a Token followed by ;, we ignore
             return false;
         }
 
@@ -76,7 +76,7 @@ class for_simple_regex extends analyseur_regex {
             $remove[] = $pos + 1  + 1;
             
             $pos += 2;
-        } else { // NotToken puis ;
+        } else { // @doc Not a Token followed by ;, we ignore
             return false;
         }
 
@@ -98,7 +98,7 @@ class for_simple_regex extends analyseur_regex {
             $remove[] = $pos + 1  + 1;
             
             $pos += 2;
-        } else { // NotToken puis ;
+        } else { // @doc Not a Token followed by ;, we ignore
             return false;
         } 
 
@@ -107,7 +107,7 @@ class for_simple_regex extends analyseur_regex {
             Token::applyRegex($t->getNext($pos), 'block', $regex);
 
             mon_log(get_class($t)." => block (position $pos) (from ; ) (".__CLASS__.")");            
-            // pas de return, on continue
+            // @note no return, we carry on
         }
         
         if ($t->getNext($pos)->checkForBlock(true) && 

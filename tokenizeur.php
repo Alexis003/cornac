@@ -1,6 +1,6 @@
 #!/usr/bin/php 
 <?php
-//-d xdebug.profiler_enable=On
+// @fer -d xdebug.profiler_enable=On
 
 ini_set('memory_limit',234217728);
 
@@ -8,14 +8,11 @@ $times = array('debut' => microtime(true));
 include('prepare/commun.php');
 include("prepare/analyseur.php");
 
-// ** Capture du nom de l'application à auditer
-//$application = $ANALYSEUR['application'];
+// @doc Reading the name of the processed application
 
 global $FIN; 
-// ** Début du travail de collecte des tokens 
+// Collecting tokens
 $FIN['debut'] = microtime(true);
-
-//$path = realpath($application);
 
 include('libs/getopts.php');
 
@@ -25,7 +22,7 @@ $help = get_arg($args, '-?') ;
 if ($help) { help(); }
 
 
-// default values, stored in a INI file
+// @doc default values, stored in a INI file
 $ini = get_arg_value($args, '-I', null);
 if (!is_null($ini)) {
     global $INI;
@@ -44,10 +41,10 @@ if (!is_null($ini)) {
     $INI = array();
 }
 unset($ini);
-// @todo : que faire si on ne trouve même pas le .ini ? 
+// @todo : what happens if we can't find the .INI ?
 print "Directives files : ".INI."\n";
 
-// lecture des constantes qui peuvent être définies dans le .INI
+// @doc Reading constantes that are in the .INI
 define('TOKENS',(bool) get_arg($args, '-t'));
 define('TEST'  ,(bool) get_arg($args, '-T'));
 define('STATS' ,(bool) get_arg($args, '-S', false));
@@ -131,15 +128,8 @@ if (!empty($dossier)) {
     print "Done\n";
     die();
 } elseif ($fichier = get_arg_value($args, '-f', '')) {
-    print "Travail sur le fichier {$fichier} \n";
+    print "Working on file  '{$fichier}' \n";
 
-/* @todo : may be remove this. Good for dev, but useless otherwise    
-    if ($id = array_search( '-e', $argv)) {
-        unset($argv[$id]);
-        
-        shell_exec("bbedit $fichier");
-    }
-*/
     $objects = new arrayIterator(array($fichier => $fichier));
     $scriptsPHP = $objects;
 
@@ -193,9 +183,9 @@ foreach($scriptsPHP as $name => $object){
 
     $code = file_get_contents($name);
     
-    // il faut laisser les <?php et <?xml (et autres) intacts
-    // il faut aussi laisser les <?R& (\w\W), qui sont du binaires et pas une PI
-    // il faut prendre les <?\s 
+    // @doc one must leave <?php and <?xml untouched
+    // @doc one must also leave <?R& (\w\W), which are binary, not PI
+    // @note only take into account <?\s 
     
     if ($c = preg_match_all('/<\\?(?!php)(\w?\s)/is', $code, $r) ) { 
         if (VERBOSE) {
@@ -255,7 +245,7 @@ foreach($scriptsPHP as $name => $object){
         $t = commentaire::factory($t);
         
         if ($t->getId() == 0 && $t != $root) {
-            mon_log("Nouveau Root : ".$t."");
+            mon_log("New root : ".$t."");
             $root = $t;
         }
 
@@ -287,7 +277,7 @@ foreach($scriptsPHP as $name => $object){
             $t = $analyseur->upgrade($t);
             if (get_class($t) == 'Token') { $nb_tokens_courant++; }
             if ($t->getId() == 0 && $t != $root) {
-                mon_log("Nouveau Root : ".$t."");
+                mon_log("New root : ".$t."");
                 $root = $t;
             }
 
@@ -300,7 +290,7 @@ foreach($scriptsPHP as $name => $object){
            }
         } while ($t = $t->getNext());
         
-        mon_log("Token qui restent : ".$nb_tokens_courant."");
+        mon_log("Remaining tokens : ".$nb_tokens_courant."");
         
         if ($nb_tokens_courant == 0) {
             break 1;
@@ -310,7 +300,7 @@ foreach($scriptsPHP as $name => $object){
             $nb_tokens_courant == $nb_tokens_precedent[1] &&
             $nb_tokens_courant == $nb_tokens_precedent[2]
             ) { 
-            print "Plus d'upgrade au cycle $i \n";
+            print "No more update at cycle #$i \n";
 
             break 1;
         }
@@ -325,16 +315,16 @@ foreach($scriptsPHP as $name => $object){
         if ($nb_tokens_courant == 0) {
             print "OK\n";
         } else {
-            print "Il reste $nb_tokens_courant tokens à traiter\n";
+            print "$nb_tokens_courant remain to be processed\n";
         }
         die();
     }
 
     if (VERBOSE) {
         if ($nb_tokens_courant == 0) {
-            print "Tous les tokens ont été traités\n";
+            print "Some tokens were not processed\n";
         } else {
-            print "Il reste $nb_tokens_courant tokens à traiter\n";
+            print "$nb_tokens_courant remain to be processed\n";
         }
     }
 
@@ -360,7 +350,7 @@ foreach($scriptsPHP as $name => $object){
         $template = new template_stats($root);
         $template->affiche();
         
-        print $analyseur->verifs." verifications ont ete tentees\n";
+        print $analyseur->verifs." checks were made\n";
         $stats = array_count_values($analyseur->rates);
         asort($stats);
         print_r($stats);
@@ -406,9 +396,9 @@ function termine() {
     $fin = microtime(true);
     
     print "================================================\n";
-    print "Duree : ".number_format(($fin - $FIN['debut']), 2)." s\n";
-    print "Fichiers traités : ".$FIN['fait']." \n";
-    print "Fichiers trouvés : ".$FIN['trouves']." \n";
+    print "Duration : ".number_format(($fin - $FIN['debut']), 2)." s\n";
+    print "Processed files : ".$FIN['fait']." \n";
+    print "Found files : ".$FIN['trouves']." \n";
     die();
 }
 

@@ -16,7 +16,7 @@ class constante extends instruction {
     }
 
     function neutralise() {
-//        $this->name;
+    // @doc nothing to neutrize
     }
 
     function getRegex(){

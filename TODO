@@ -84,6 +84,12 @@ Add web site's index.php in github
 Identify looooong literals
 add 'variable' as a scope, so that we can actually work context by context
 
+String by delimiter (especially <<< )
+
+Detect dead code due to early return
+detect infinite loop (for, while)
+detect impossible condition (if (false), ...)
+
 PHP configuration function usage
 
 Add the 'web' version on github.
@@ -139,8 +145,20 @@ Be able to search for a string, whatever the analyzer (intersect analyzers resul
 
 Extract array's lists (long list of values in arrays)
 
+[web]
+export to dot
+export to gephi
+export to .ods
+export to .csv
+export to .yaml
+
 [tags]
 export data into dabase for easier templating
 Make the export a lot more sexy
 apply tagged comments in auditeur
 export @TODO into a file
+add a tag cloud (global, by file)
+group by comment (same comment, in different files)
+spot spelling mistakes
+spot bad language 
+display special analyse separatly from normal tagging
