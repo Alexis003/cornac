@@ -10,12 +10,6 @@ class tableaux_gpc extends modules {
 	}
 	
 	public function analyse() {
-        if ($this->not) {
-            $not = ' not ';
-        } else {
-            $not = '';
-        }
-        
         $this->clean_rapport();
 
 // @note : simple situation : variable -> method
