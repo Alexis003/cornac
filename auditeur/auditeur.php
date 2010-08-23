@@ -66,6 +66,7 @@ $modules = array(
 'ifsanselse',
 'image_functions',
 'inclusions',
+'inclusions_path',
 'inclusions2',
 'ldap_functions',
 'literals',
