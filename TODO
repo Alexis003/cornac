@@ -145,6 +145,12 @@ Be able to search for a string, whatever the analyzer (intersect analyzers resul
 
 Extract array's lists (long list of values in arrays)
 
+functions (and files) that emit text (print, var_dump, raw text...)
+
+methods/files/classes that misses some code.
+
+List of duplicate literals
+
 [web]
 export to dot
 export to gephi
@@ -162,3 +168,4 @@ group by comment (same comment, in different files)
 spot spelling mistakes
 spot bad language 
 display special analyse separatly from normal tagging
+Make better display 
