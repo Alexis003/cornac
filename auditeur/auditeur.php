@@ -57,7 +57,6 @@ $modules = array(
 'file_functions',
 'filter_functions',
 'functions_frequency',
-'functions_undefined',
 'functions_unused',
 'functionscalls',
 'globals',
