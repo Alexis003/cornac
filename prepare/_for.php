@@ -27,7 +27,7 @@ class _for extends instruction {
                 return;
             } elseif (count($x) == 1) {
                 $this->fin = $x[0];
-                // puis on continue comme d'hab, increment est dans entree[2];
+                // @for_translation puis on continue comme d'hab, increment est dans entree[2];
             } else {
                 $this->stop_on_error("Wrong number of elements  : '".count($x)."' in ".__METHOD__);
             }
