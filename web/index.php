@@ -34,8 +34,7 @@ if (!isset($_GET['module'])) {
                  'scope-freq' => 'Frequence par methode',
                  'occurrences-freq' => 'Occurrences, par fréquence',
                  'occurrences-element' => 'Occurrences, par ordre alphabetique',
-                 'occurrence-fichier' => 'Liste des fichiers d\'apparition de chaque occurrence',
-                 'json' => 'JSON array',
+                 'occurrence-fichier' => 'Liste des fichiers d\'apparition de chaque occurrence'
                  
                  );
     $cas['dot'] = array('dot'  => 'format DOT',
@@ -45,11 +44,12 @@ if (!isset($_GET['module'])) {
     $entete = '';
     foreach($cas[$format] as $titre => $c) {
         if (@$_GET['type'] == $titre) {
-            $entete .= " - <b>$c</b>";
+            $entete .= "<li><b>$c</b> (<a href=\"index.php?module={$_GET['module']}&type=$titre&format=json\">json</a> - <a href=\"index.php?module={$_GET['module']}&type=$titre&format=xml\">xml</a>)</li>";
         } else {
-            $entete .= " - <a href=\"index.php?module={$_GET['module']}&type=$titre\">$c</a>";
+            $entete .= "<li><a href=\"index.php?module={$_GET['module']}&type=$titre\">$c</a></li>";
         }
     }
+    $entete = "<ul>$entete</ul>\n";
 
 if ($format == 'dot' && !isset($cas['dot'][@$_GET['type']])) {
         print_entete($prefixe);
@@ -61,23 +61,6 @@ if ($format == 'dot' && !isset($cas['dot'][@$_GET['type']])) {
 
     
 switch(@$_GET['type']) {
-    case 'json' : 
-        $requete = "SELECT element, fichier,module,5,6,7 FROM {$tables['<rapport>']} WHERE module='{$_GET['module']}' LIMIT 200";
-        $res = $mysql->query($requete);
-        
-        $lignes = array();
-        while( $ligne = $res->fetch()) {
-            $lignes[] = array_values($ligne);
-        }
-
-        
-        print "onLibraryLoad(";
-        print json_encode($lignes);
-        print ");";
-
-        die();
-        break;
-
     case 'gexf' : 
 
         $requete = "SELECT a, b, cluster FROM {$tables['<rapport_dot>']} WHERE module='{$_GET['module']}'";
@@ -186,40 +169,58 @@ size=\"8,6\"; ratio=fill; node[fontsize=24];
         break;
 
     case 'occurrence-fichier' :
-        $format = 'html';
+        $format = get_format();
         include("format/$format.php");
         include('include/file_occurrences.php');
         break;
         
     case 'fichier-freq' :
-        $format = 'html';
+        $format = get_format();
         include("format/$format.php");
         include('include/file_frequency.php');
         break;
 
     case 'scope-freq' :
-        $format = 'html';
+        $format = get_format();
         include("format/$format.php");
         include('include/scope_frequency.php');
         break;
 
     case 'classe-freq' :
-        $format = 'html';
+        $format = get_format();
         include("format/$format.php");
         include('include/class_frequency.php');
         break;
         
     case 'occurrences-freq' :
-        $format = 'html';
+        $format = get_format();
         include("format/$format.php");
         include('include/occurrence_frequency.php');
         break;
 
     case 'occurrences-element' :
     default : 
-        $format = 'html';
+        $format = get_format();
         include("format/$format.php");
         include('include/default.php');
         break;
+}
+
+function get_format($default = 'html') {
+    if (isset($_GET['format'])) {
+        if (in_array($_GET['format'], array('json','html','xml'))) {
+            return $_GET['format'];
+        } else {
+            return $default;
+        }
+    } elseif (isset($_POST['format'])) {
+        if (in_array($_POST['format'], array('json','html','xml'))) {
+            return $_POST['format'];
+        } else {
+            return $default;
+        }
+    } else {
+        return $default;
+    }
 }
 ?>

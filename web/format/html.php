@@ -1,16 +1,22 @@
 <?php
 
 function get_html($lines) {
-        $total = count($lines);
+        $distinct = count($lines);
+        $total = 0;
         
-        $html = '<table border="0" cellpadding="3" width="600">';
-        $html .= '<tr><td class="h">Total</td><td class="h">'.$total.'</td></tr>';
-
+        $html = '';
         foreach($lines as $line) {
             $ligne['element'] = htmlentities($line['element']);
             $html .= '<tr><td class="e">'.$line['element'].'</td><td class="v">'.$line['nb'].'</td></tr>';
+            $total += $line['nb'];
         }
+
+        $html = '<table border="0" cellpadding="3" width="600">'.
+                '<tr><td class="h">Total</td><td class="h">'.$total.'</td></tr>'.
+                '<tr><td class="h">Distinct</td><td class="h">'.$distinct.'</td></tr>'.$html;
+
         $html .= '<tr><td class="h">Total</td><td class="h">'.$total.'</td></tr>';
+        $html .= '<tr><td class="h">Distinct</td><td class="h">'.$distinct.'</td></tr>';
         $html .= "</table>";
 
         global $prefixe;
