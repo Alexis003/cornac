@@ -1,183 +1,7 @@
-Add more unit tests for the auditeur (check track.php)
-Move to English (messages, names...)
-Check for code coverage
-Add options for auditeurs analyzers (.ini for the main, or sqlite's db, and also dictionnaries)
-Be able to use another PHP than the system one (specify PHP path?)
-
-Faire une interface fluide pour construire les requêtes SQL
-Avoir des rapports intermédiaires rapides (nouveaux tags?)
-Move the chained list to SPL
-
-Export from auditeur to format (PDF, HTML, XML, JSON, CSV, SQLITE, ODT...)
-Make analyses paralelle (gearman or DB task list? Faire les fichiers récents ou qui n'ont pas été finis.. )
-
-Add a licence in every file
-
-Mettre un verificateur automatique de hasPrev et hasNext dans analyseur
-Faire un log d'utilité des tests
-
-retirer l'utilisation des getNext() dans les regex
-Utiliser un getNext() avec cache dans applyRegex
-Compter les GetNext et getPrev dans les stats
-
-appliquer immédiatement les litéraux pour ne pas faire un double passage
-
-mettre les code comme les tokens pour moreceler encore plus les recherches
-
-avoir une fonction qui 'prèfere' certain token, une fois qu'une classe a été ouverte
-
-prévoir un système pour modifier les conditions automatiquement, et voir si on peut en retirer / ajouter sans que cela pertrube les tests.
-
-Convertir les constructeurs à $entree, et vérifier leur nombre à chaque fois. 
-Upgrade error messages (Still, too often dies)
-
-autres idées : 
-SImplifier le code, pour l'exprimer sous la forme de liens : entrant, combiné, sortant
-définition des fonctions/classes
-utilisation des fonctions et classes
-utilisations des globales
-query, protection, 
-
-Faire des statistiques globales sur toute l'application
-
-Faire des stats inversées (variables par fichiers, et fichiers par variables)
-
-Extraire le core d'un script (sans les définition, classes et fonctions)
-Extraire les affectations de variables (une a l'autre)
-Extraire les variables d'entrée et celles de sorties.
-utilisation des super globales (affectations, passages en paramètre, etc).
-Identify register_globals variable (aka, undefinied variables in global)
-Identify variables initialisations
-Add foreach/list in 
-Repérer le code PHP adns les commentaires
-Repérer le code SQL ou HTML dans les chaînes
-Extraire les interferances entre les noms (variables, constantes, fonctions, classes, HTML, SQL).
-Extraire les foreach simples (un ou deux lignes) : c'est souvent des opérations élémentaires de rattrappage d'une situation.
-
-Tokens : trouver le début de l'instruction.
-
-Check for unused regex (from tokenizeur)
-
-apply tagged comments in auditeur
-
-Faire des tests unitaires sur les fonctions de soutien token_*
-Calculer le contexte courant (nom de la classe, fonction ou global)
-Calculer le numéro d'instruction (sortir un arbre d'exécution?)
-
-Faire un affichage par cle et par valeur de chaque tableau (cle => valeur). 
-
-produire un arbre d'appel des fonctions (quelle fonction appelle quelle autre), et passer le tout à graphviz
-
-Recherche d'une chaîne spéciale, indépendemment des tokens
-    Capitalisation des valeurs trouvées (via une base? ) 
-    Sélection de différents types de token trouvés
-
-
-
-+ (XT)ML protection function usage
-+ (XT)ML unprotection function usage
-[+] @ operator usage
-+ Comments usage
-[+] Constante usage
-[+] Constants defintions (define(X, 2);)
-[+] Debugging functions usage
-[+] echo and print usage
-[+] eval() usage
-[+] File inclusions
-[+] Global variable usage
-[+] header() usage
-+ Liste of classes definition
-[+] Liste of empty function definition
-[+] Liste of function definition
-+ Massive variable creation
-[+] native function for dir manipulation
-[+] native function for file manipulation
-+ Nested loops
-+ PHP configuration function usage
-[+] PHP native function usage
-+ Regex usage (pcre, ereg)
-+ Script interruption with (die, exit)
-+ Script mail usage
-+ SQL queries lists
-+ SQL queries protections
-[+] Superglobal variables usage
-+ System function usage (exec, shell_exec, system)
-+ Upper case variables
-+ URL manipulations
-+ User functions usage
-[+] Utilisation des fonctions de gestion de fichiers
-[+] Variable affectations (type : $x = 2;)
-[+] variable variables usage
-+ Variables being used
-
-
-Stats (juste les nombres d'occurrences par elements)
-stats par fichier (nombre d'elements par fichier)
-par element, fichiers impliqués
-par fichier, elements présents
-
-Faire la fiche d'une fonction :
-entrée (global, statiques, membres)
-sortie (return)
-local (variables)
-
-
-
-Pouvoir cocher les elements qui ont été validés manuellement (ajouter une colonne, et un tick dans l'interface, MAJ des informations)
-Faire une répartition par fichier (actuel), par classe, par scope. 
-avoir une option -log pour exporter dans un fichier de log
-
-Faire la liste des dépendences entre les rapports (certains ont besoin des autres)
-faire la liste des classes et des méthodes (inventaire)
-Faire la liste des méthodes/fonctions, constantes/constantes de classes, variable/propriétés
-Faire une option de nettoyage des bases (par défaut, c'est remis fichier par fichier)
-
-Manage manual feedback (from where? Web? )
-Add levels of nesting : class, function, method, if/switch/loop/block 
-Identifier les types de données quand c'est possible (intval, new, etc...)
-
-Automatically note configuration in .INI from tokenizeur/auditeur if .ini doen't exist (easy creation)
-merge all .ini in one
-make the web publication a simple include
-find a nice display for auditeur export in HTML/Web version
-See how cache template must be used with mysql/sqlite
-
-Merge todos from auditeur and tokenizeur in one. 
-
-Make the comment analyzer, to gather suggestion from code (@todo, @question, @.? )
-Add an option for the tokenizeur to clean the tables before working (default : append new files). 
-Stop script when option is unrecognized (all of them);
-Display dots when parsing the file (tokenizer)
-Display dots when processing analyzers (auditeur)
-
-Detect multiple definitions of functions/classes (things that should be there only once : how can we process that then?)
-Detect missing elements in classes (like methods, properties, etc)
-Make a array of function (are they defined? at what level?)
-
-Add INI in the PHPFilter class of the tokenizer.
-List open-ended inclusions (including files that we don't know about)
-
-Liste of type variable we might guess.
-
-Variable that never gets affected (is this register_globals?)
-Long list of parameters (called or defined...)
-Long list of public methods
-Add multi-processing for tokenizeur/auditeur (should be easy, given the task are all concurrent and distinct)
-
-Report of dependance of a method : local variables, global ones, class, constantes, statique. 
-
-Add a log option in cornac/* to 
-Add an option to clean content first
-Check that one can update code with cornac (cleaning old reports)
-
-Have a treemap, showing where are the occurrences (colors?)
-
-Change navigation in menus
-
-Could it be possible to chain results? Atm, one can do it manually, or creating a new analyzer
-Include JMF's style
-
-Move array style to object ? 
+[cornac]
+Handle files with ' ' space in tokenizeur.php
+Add support for a version of Cornac (checking for config files, tables configurations, etc.)
+add file restriction in the cornac.ini file
 
 Move prepare to classes
 Move auditeur.php to English
@@ -185,22 +9,138 @@ Move auditeur.php to upper directory
 
 Add some more cornac tests
 Apply cornac to itself
+Move array style to object ? 
 
-Gather regex by type : function/method, class, file, anywhere. 
+Upgrade error messages (Still, too often dies)
 
-Gather files including something else than class, function or global.... 
-undefined properties used (in class) : must support hierarchy too.
+Add a log option in cornac/* to 
+Add an option to clean content first
+Check that one can update code with cornac (cleaning old reports)
 
-add file restriction in the cornac.ini file
+Add multi-processing for tokenizeur/auditeur (should be easy, given the task are all concurrent and distinct)
+Be able to use another PHP than the system one (specify PHP path?)
+Have fast in-progress report (report built while tokenizeur is working...)
+Make analyses paralelle (gearman or DB task list? Faire les fichiers récents ou qui n'ont pas été finis.. )
 
-Add support for a version of Cornac (checking for config files, tables configurations, etc.)
+Add more unit tests for the auditeur (check track.php)
+Move to English (messages, names...)
+Check for code coverage
 
+Move the chained list to SPL
+Move the analyze into SQL only ? (That would be too slow, because of the disk)
+
+Add a licence warning in every code source
+
+Stop script when option is unrecognized (any of them);
+Display dots when parsing the file (tokenizer)
+Display dots when processing analyzers (auditeur)
+
+[tokenizeur]
+Could it be possible to chain results? Atm, one can do it manually, or creating a new analyzer
+Use JMF's style
+
+Add an option for the tokenizeur to clean the tables before working (default : append new files). 
+
+Add support for comments
+
+See how cache template must be used with mysql/sqlite
+Sqlite is currently not up to date with mysql template
+
+Limit usage of getNext() in regex
+Add a cache for getNext() (case of applyRegex?)
+Count GetNext and getPrev for stats
+
+For each tokem note scope, class, method, variable, array, fichier
+Add -log option to log information in a log file
+
+[auditeur]
+Add a log to check SQL length and optimize the bad queries 
 Make auditeur i18n easily (export in external file, auto-adding new titles)
 
-Add a log to check SQL length and optimize the bad queries 
+Have a treemap, showing where are the occurrences (colors?)
+Change navigation in menus
+
+Gather analyzers by type : function/method, class, file, overall (global) : we can then adapt output, and also, decide if a change in code impact this analyzer. 
+
+Add options for auditeurs analyzers (.ini for the main, or sqlite's db, and also dictionnaries)
+
+Export from auditeur to other format (PDF, HTML, XML, JSON, CSV, SQLITE, ODT...)
+
+Support manage manual feedback (from where? Web/Intranet ? )
+
+export analyzers dependencies in a graph
+
+make the web publication one simple include
+find a nice display for auditeur export in HTML/Web version
+
+Add one main figure for each analyzers (count of info)
+Have a property that tells if an analyzers is public or not
+
+Have ratio calculated on top of analyzers (TDB)
+
+Add web site's index.php in github
+
+[analysers ideas]
+Identify looooong literals
+add 'variable' as a scope, so that we can actually work context by context
+
+PHP configuration function usage
+
+Add the 'web' version on github.
+check for case without break
+useless lines (like 1; array(); etc.)
+Identify variables that where not initialized (less args, less foreach)
 
 Long functions (number of tokens, number of lines...)
 Compromised variables (the one affected with values from GPC)
 
-Identify variables that where not initialized (less args, less foreach)
-Handle files with ' ' space in tokenizeur.php
+Gather files including something else than class, function or global.... 
+undefined properties used (in class) : must support hierarchy too.
+
+Note variable type, when it is possible (intval, new, etc...)
+
+Liste of type variable we might guess.
+Variable that never gets affected (is this register_globals?)
+Long list of parameters (called or defined...)
+Long list of public methods
+
+List open-ended inclusions (including files that we don't know about)
+
+Report of dependance of a method : local variables, global ones, class, constantes, statique. 
+
+Detect multiple definitions of functions/classes (things that should be there only once : how can we process that then?)
+Detect missing elements in classes (like methods, properties, etc)
+Make a array of function (are they defined? at what level?)
+
+Make a map of a function : in, out, dependances
++ in (global, statiques, membres)
++ out (return)
++ local (variables)
++ dependances (constants, functions, classes...)
+
+Make a function call tree (which function calls which)
+
+Check for unused regex (from tokenizeur)
+
+Regex usage (pcre, ereg)
+Script mail usage
+SQL queries lists
+SQL queries protections
+Upper case variables
+URL manipulations
+
+Spot PHP code in comments
+Note interferences between names (variables, constantes, fonctions, classes, HTML, SQL).
+Spot one lined loops (1 or 2 lines) : often, this is simple operation that will be done some other way
+
+Gather all index used in an array (how to check 2 arrays are the same?)
+
+Be able to search for a string, whatever the analyzer (intersect analyzers result and see what is is common)
+
+Extract array's lists (long list of values in arrays)
+
+[tags]
+export data into dabase for easier templating
+Make the export a lot more sexy
+apply tagged comments in auditeur
+export @TODO into a file
