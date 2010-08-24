@@ -1,8 +1,8 @@
 <?php
 
-class variables_one_letter extends modules {
-	protected	$description = 'Liste des variables avec une seule lettre';
-	protected	$description_en = 'List of variables names with only one letter';
+class variables_lots_of_letter extends modules { 
+	protected	$description = 'Nom de variables avec trop de lettres (> 20)';
+	protected	$description_en = 'Variable names with too many letters (> 20)';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -19,9 +19,9 @@ class variables_one_letter extends modules {
 
         $requete = <<<SQL
 INSERT INTO <rapport> 
-SELECT NULL, TR1.fichier, TR1.element, TR1.id, '{$this->name}'
+SELECT NULL, TR1.fichier, CONCAT(TR1.element, ' (', LENGTH(TR1.element),' chars)' ), TR1.id, '{$this->name}'
 FROM <rapport> TR1
-WHERE TR1.module = 'variables' AND LENGTH(REPLACE(TR1.element, '$','')) = 1
+WHERE TR1.module = 'variables' AND LENGTH(REPLACE(TR1.element, '$','')) > 19
 GROUP BY BINARY TR1.id;
 SQL;
         $this->exec_query($requete);

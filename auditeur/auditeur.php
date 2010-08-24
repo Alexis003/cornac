@@ -122,6 +122,7 @@ $modules = array(
 'arglist_call',
 'arglist_disc',
 'variables_one_letter',
+'variables_lots_of_letter',
 'php_classes',
 'upload_functions',
 'concatenation_gpc',
