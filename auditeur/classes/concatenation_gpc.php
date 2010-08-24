@@ -22,6 +22,7 @@ INSERT INTO <rapport>
     JOIN <tokens> T2
     ON T1.fichier= T2.fichier AND 
         T2.type='variable' AND 
+        T2.droite BETWEEN T1.droite AND T1.gauche AND
         T2.code REGEXP '^$gpc_regexp'
     WHERE T1.type='concatenation'
 
