@@ -26,7 +26,7 @@ class template_mysql extends template_db {
                                                           droite   INT UNSIGNED, 
                                                           gauche   INT UNSIGNED,
                                                           type     CHAR(20),
-                                                          code     VARCHAR(255),
+                                                          code     VARCHAR(10000),
                                                           fichier  VARCHAR(255) DEFAULT "prec",
                                                           ligne    INT,
                                                           scope    VARCHAR(255),
@@ -39,7 +39,7 @@ class template_mysql extends template_db {
                                                           KEY `droite` (`droite`),
                                                           KEY `gauche` (`gauche`),
                                                           KEY `code` (`code`)
-                                                          )');
+                                                          ) ENGINE=MyISAM DEFAULT CHARSET=latin1');
 
         $this->database->query('DELETE FROM '.$this->table_tags.' WHERE fichier = "'.$fichier.'"');
         $this->database->query('CREATE TABLE IF NOT EXISTS '.$this->table_tags.' (
