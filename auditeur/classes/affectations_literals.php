@@ -30,7 +30,6 @@ WHERE T1.type = 'affectation'
 GROUP BY T1.id
 HAVING SUM(IF(T3.type = 'variable', 1,0)) = 0
 SQL;
-        print $this->prepare_query($requete);
         $this->exec_query($requete);    
     }
 }
