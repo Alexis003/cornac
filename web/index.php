@@ -1,7 +1,7 @@
 <?php
 
 $mysql = new pdo('mysql:dbname=analyseur;host=127.0.0.1','root','');
-$prefixe = 'phpmyadmin';
+$prefixe = 'dotclear';
     
 $tables = array('<rapport>' => $prefixe.'_rapport',
                 '<rapport_scope>' => $prefixe.'_rapport_scope',
@@ -11,8 +11,12 @@ $tables = array('<rapport>' => $prefixe.'_rapport',
                 '<rapport_dot>' => $prefixe.'_rapport_dot',
                 );
 
-
-$translations = parse_ini_file('../dict/translations.'.$_COOKIE['langue'].'.ini', true);
+if (isset($_COOKIE['langue']) && in_array($_COOKIE['langue'], array('fr','en'))) {
+    $translations = parse_ini_file('../dict/translations.'.$_COOKIE['langue'].'.ini', true);
+} else {
+    $translations = parse_ini_file('../dict/translations.en.ini', true);
+    setcookie('langue','fr');
+}
 
 if (!isset($_GET['module'])) {
     $format = 'html';

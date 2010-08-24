@@ -6,7 +6,7 @@ function get_html($lines) {
         
         $html = '';
         foreach($lines as $line) {
-            $ligne['element'] = htmlentities($line['element']);
+            $line['element'] = htmlentities($line['element'], ENT_COMPAT, 'UTF-8');
             $html .= '<tr><td class="e">'.$line['element'].'</td><td class="v">'.$line['nb'].'</td></tr>';
             $total += $line['nb'];
         }
