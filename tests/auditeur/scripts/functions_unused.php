@@ -5,8 +5,12 @@ defined_and_used();
 
 function defined_but_not_used() {}
 
-// fontion PHP, doit être ignorée
+// PHP functions, must be ignored
 eval("");
 unset($x);
+
+// defined, but used by new. Must be ignored
+function __autoload($class) {
+}
 
 ?>
