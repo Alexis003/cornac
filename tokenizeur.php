@@ -575,7 +575,6 @@ function liste_directories_recursive( $path = '.', $level = 0 ){
             $retour = array_merge($retour, $r);
         } else { 
             if ($regex_suffixe && preg_match($regex_suffixe, $file)) { continue; }
-            if ($regex_suffixe && preg_match($regex_prefixe, $file)) { continue; }
             $retour[] = "$path/$file";
         } 
     } 
