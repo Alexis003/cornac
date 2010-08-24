@@ -19,7 +19,7 @@ SQL;
         $this->exec_query($requete);
 
         $requete = <<<SQL
-CREATE TABLE undefined_properties
+CREATE TEMPORARY TABLE {$this->name}_tmp
             SELECT DISTINCT right(code, length(code) - 1) as code, class FROM <tokens> 
             WHERE scope='global'  AND 
                   type ='variable'
@@ -27,7 +27,7 @@ SQL;
         $this->exec_query($requete);
 
         $requete = <<<SQL
-ALTER TABLE undefined_properties ADD UNIQUE (code, class)
+ALTER TABLE {$this->name}_tmp ADD UNIQUE (code(500), class)
 SQL;
         $this->exec_query($requete);
 
@@ -41,18 +41,13 @@ INSERT INTO <rapport>
    JOIN <tokens> T2
      ON T2.fichier = T1.fichier AND 
         T2.droite BETWEEN T1.droite AND T1.gauche
-   LEFT JOIN undefined_properties 
-     ON undefined_properties.code = T2.code AND
-        undefined_properties.class = T2.class 
+   LEFT JOIN {$this->name}_tmp TMP 
+     ON TMP.code = T2.code AND
+        TMP.class = T2.class 
    WHERE T1.scope!='global'  AND 
           T1.type ='property' AND 
           T2.type='literals'  AND 
-          undefined_properties.code IS NULL
-SQL;
-        $this->exec_query($requete);
-
-        $requete = <<<SQL
-DROP TABLE undefined_properties
+          TMP.code IS NULL
 SQL;
         $this->exec_query($requete);
 
