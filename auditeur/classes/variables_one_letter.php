@@ -24,7 +24,7 @@ FROM <rapport> TR1
 WHERE TR1.module = 'variables' AND LENGTH(REPLACE(TR1.element, '$','')) = 1
 GROUP BY BINARY TR1.id;
 SQL;
-        $this->exec_requete($requete);
+        $this->exec_query($requete);
 
         return ;
 	}

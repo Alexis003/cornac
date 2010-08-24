@@ -5,8 +5,11 @@ function get_html($lines) {
         $total = 0;
         
         $html = '';
-        foreach($lines as $line) {
+        foreach($lines as $id => $line) {
             $line['element'] = htmlentities($line['element'], ENT_COMPAT, 'UTF-8');
+            if (isset($line['link'])) {
+                $line['element'] = "<a href=\"{$line['link']}\" title = \"{$line['element']}\">".$line['element']."</a>";
+            }
             $html .= '<tr><td class="e">'.$line['element'].'</td><td class="v">'.$line['nb'].'</td></tr>';
             $total += $line['nb'];
         }

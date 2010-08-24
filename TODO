@@ -152,8 +152,6 @@ functions (and files) that emit text (print, var_dump, raw text...)
 
 methods/files/classes that misses some code.
 
-List of duplicate literals
-
 [web]
 export to dot
 export to gephi
@@ -174,15 +172,12 @@ display special analyse separatly from normal tagging
 Make better display 
 
 
+/// to dispatch
+
 classes_undefined : cas de la valeur vide sur dotclear
-ajouter tidy
 Identifier les conflit de noms avec des exntesions ou des bibliothèes PHP
-Concatenations de GPC : a verifier 
-variables_one_letter : check for casse
-manque pg_sql comme extension
-fonctions vides : ignore les classes abstraites, interfaces ou les classes dérivées
+fonctions vides : ignore les classes abstraites, interfaces ou les classes dérivées 
 détecter les foncontions en double, avec le même code ! 
-fonctions non utilisées ; ignorer autoload
 $:: globals
 inclusions_path : a revoir entièrement : le contenu n'est psa le bon
 attention aux proriétés : sur variable ou sur méthode. 
