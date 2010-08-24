@@ -24,6 +24,9 @@ if (!is_null($ini)) {
     } elseif (file_exists($ini)) {
         define('INI',$ini);
     } else {
+        if (!file_exists('../ini/'.'tokenizeur.ini')) {
+            die("No configuration file available ($ini nor tokenizeur.ini)\n");
+        }
         define('INI','../ini/'.'tokenizeur.ini');
     }
     $INI = parse_ini_file(INI, true);
@@ -35,7 +38,7 @@ unset($ini);
 
 $INI['reader']['dependences'] = (bool) get_arg_value($args, '-d', false);
 $INI['reader']['module'] = get_arg_value($args, '-a', @$INI['reader']['module']);
-$INI['reader']['file']   = get_arg_value($args, '-f', @$INI['reader']['file']  );
+$INI['reader']['file']   = get_arg_value($args, '-f', ''  );
 $INI['reader']['output'] = get_arg_value($args, '-o', @$INI['reader']['output']);
 $INI['reader']['format'] = get_arg_value($args, '-F', @$INI['reader']['format']);
 
