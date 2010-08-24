@@ -1,8 +1,8 @@
 <?php
 
 class variables extends modules {
-	protected	$description = 'Liste des variables et de leur usage';
-	protected	$description_en = 'Variables being used';
+	protected	$title = 'Variables';
+	protected	$description = 'Liste des variables utilisées dans l\'application';
 
     function __construct($mid) {
         parent::__construct($mid);

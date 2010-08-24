@@ -1,8 +1,8 @@
 <?php
 
 class variables_one_letter extends modules {
-	protected	$description = 'Liste des variables avec une seule lettre';
-	protected	$description_en = 'List of variables names with only one letter';
+	protected	$title = 'Variables une lettre';
+	protected	$description = 'Liste des variables dont le nom est une seule lettre';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -24,7 +24,7 @@ FROM <rapport> TR1
 WHERE TR1.module = 'variables' AND LENGTH(REPLACE(TR1.element, '$','')) = 1
 GROUP BY BINARY TR1.id;
 SQL;
-        $this->exec_query($requete);
+        $this->exec_requete($requete);
 
         return ;
 	}
