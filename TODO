@@ -1,3 +1,6 @@
+Check fudforum binary protector (install.php)
+Merge TODO from auditeur.
+
 [cornac]
 Handle files with ' ' space in tokenizeur.php
 Add support for a version of Cornac (checking for config files, tables configurations, etc.)
@@ -169,3 +172,17 @@ spot spelling mistakes
 spot bad language 
 display special analyse separatly from normal tagging
 Make better display 
+
+
+classes_undefined : cas de la valeur vide sur dotclear
+ajouter tidy
+Identifier les conflit de noms avec des exntesions ou des bibliothèes PHP
+Concatenations de GPC : a verifier 
+variables_one_letter : check for casse
+manque pg_sql comme extension
+fonctions vides : ignore les classes abstraites, interfaces ou les classes dérivées
+détecter les foncontions en double, avec le même code ! 
+fonctions non utilisées ; ignorer autoload
+$:: globals
+inclusions_path : a revoir entièrement : le contenu n'est psa le bon
+attention aux proriétés : sur variable ou sur méthode. 
