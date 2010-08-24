@@ -1,8 +1,8 @@
 <?php
 
 class arglist_disc extends modules {
+	protected	$title = "Appels de fonction avec trop d'arguments";
 	protected	$description = 'Liste des appels de fonctions avec trop d\'arguments';
-	protected	$description_en = 'List of too much argumented functions';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -16,7 +16,7 @@ class arglist_disc extends modules {
 
 	public function analyse() {
         $this->clean_rapport();
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport> 
 SELECT NULL, TR1.fichier, TR1.element AS code, TR1.id, '{$this->name}'
 FROM <rapport> TR1
@@ -27,7 +27,7 @@ LEFT JOIN <rapport> TR2
     WHERE TR1.module = 'arglist_call' AND TR2.element IS NULL;
 
 SQL;
-        $this->exec_query($requete);
+        $this->exec_query($query);
 
         return ;
 	}
