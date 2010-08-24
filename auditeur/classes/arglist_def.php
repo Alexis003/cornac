@@ -59,6 +59,7 @@ GROUP BY T1.id
 HAVING optional > 0
 ;
 SQL;
+//                print $this->prepare_query($requete);
         $res = $this->exec_query($requete);
         
         while($row = $res->fetch()) {
