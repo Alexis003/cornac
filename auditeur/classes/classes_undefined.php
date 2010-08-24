@@ -29,8 +29,7 @@ SELECT NULL, TR1.fichier, TR1.element AS code, TR1.id, '{$this->name}'
           TR1.element NOT IN ($in)
 SQL;
 
-        print $this->prepare_query($requete);
-// @todo excluding PHP classes ? 
+// @todo excluding standard PHP classes ? 
 //AND    TR1.element NOT IN ('$in');
         $this->exec_query($requete);
         return ;
