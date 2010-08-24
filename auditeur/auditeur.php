@@ -133,6 +133,8 @@ $modules = array(
 'variables_unaffected',
 'gpc_affectations',
 'dangerous_combinaisons',
+'literals_reused',
+'literals_long',
 );
 
 $INI['analyzers'] = get_arg_value($args, '-a', 'all');
@@ -162,11 +164,12 @@ if (INI) {
 if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
     $database = new pdo($INI['mysql']['dsn'],$INI['mysql']['username'], $INI['mysql']['password']);
 
-//    $database->query('DELETE FROM '.$INI['template.mysql'].'_rapport WHERE fichier = "'.$fichier.'"');
+// @todo : drop old tables?   $database->query('DELETE FROM '.$INI['template.mysql'].'_rapport WHERE fichier = "'.$fichier.'"');
+// @note element column size should match the code column in <tokens>
     $database->query('CREATE TABLE IF NOT EXISTS '.$INI['cornac']['prefix'].'_rapport (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `fichier` varchar(500) NOT NULL,
-  `element` varchar(500) NOT NULL,
+  `element` varchar(10000) NOT NULL,
   `token_id` int(10) unsigned NOT NULL,
   `module` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
@@ -174,7 +177,7 @@ if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
   KEY `module` (`module`)
 ) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1');
 
-//        $database->query('DELETE FROM '.$INI['template.mysql']['table'].'_rapport_dot WHERE fichier = "'.$fichier.'"');
+// @todo : drop old tables?        $database->query('DELETE FROM '.$INI['template.mysql']['table'].'_rapport_dot WHERE fichier = "'.$fichier.'"');
         $database->query('CREATE TABLE IF NOT EXISTS '.$INI['cornac']['prefix'].'_rapport_dot (
   `a` varchar(255) NOT NULL,
   `b` varchar(255) NOT NULL,
@@ -182,7 +185,7 @@ if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
   `module` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1');
 
-//        $database->query('DELETE FROM '.$INI['template.mysql']['table'].'_rapport_module WHERE fichier = "'.$fichier.'"');
+// @todo : drop old tables?        $database->query('DELETE FROM '.$INI['template.mysql']['table'].'_rapport_module WHERE fichier = "'.$fichier.'"');
         $database->query('CREATE TABLE IF NOT EXISTS '.$INI['cornac']['prefix'].'_rapport_module (
   `module` varchar(255) NOT NULL,
   `fait` datetime NOT NULL,
@@ -197,7 +200,7 @@ if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
     $database->query('CREATE TABLE IF NOT EXISTS '.$INI['cornac']['prefix'].'_rapport 
   (id       INTEGER PRIMARY KEY   AUTOINCREMENT  , 
   `fichier` varchar(500) NOT NULL,
-  `element` varchar(500) NOT NULL,
+  `element` varchar(10000) NOT NULL,
   `token_id` int unsigned NOT NULL,
   `module` varchar(50) NOT NULL
 )');
