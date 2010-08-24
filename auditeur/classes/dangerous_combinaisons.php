@@ -21,14 +21,17 @@ class dangerous_combinaisons extends modules {
 
         foreach ($combinaisons as $nom => $combinaison) {
             $in = "'".join("','", $combinaison['combinaison'])."'";
-            $requete = <<<SQL
+            $count = count($combinaison['combinaison']);
+            // @todo : this shouldn't be sufficient. One must work on distinct occurences... may be a sub query will do
+
+            $query = <<<SQL
 INSERT INTO <rapport> 
     SELECT NULL, T1.fichier, '$nom', T1.code, '{$this->name}'
     FROM <tokens> T1
     GROUP BY fichier
-    HAVING SUM(IF (code IN ($in), 1, 0)) > 1
+    HAVING SUM(IF (code IN ($in), 1, 0)) >= $count
 SQL;
-            $this->exec_query($requete);
+            $this->exec_query($query);
         }
         return ;
 	}
