@@ -1,8 +1,8 @@
 <?php
 
 class zfGetGPC extends modules {
-	protected	$description = 'Liste des méthodes qui lisent la requete';
-	protected	$description_en = 'List of method that read the request';
+	protected	$title = 'ZF : acces aux variables entrantes';
+	protected	$description = 'Liste des utilisations des méthodes du ZF qui permettent d\'accéder aux variables entrantes.';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -13,7 +13,7 @@ class zfGetGPC extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
-	    $requete = <<<SQL
+	    $query = <<<SQL
 INSERT INTO <rapport>
 SELECT NULL, T1.fichier, T1.code, T1.id, '{$this->name}' 
     FROM <tokens> T1
@@ -25,7 +25,7 @@ SELECT NULL, T1.fichier, T1.code, T1.id, '{$this->name}'
     ;
 SQL;
 
-    $this->exec_query($requete);
+    $this->exec_query($query);
 	}
 }
 
