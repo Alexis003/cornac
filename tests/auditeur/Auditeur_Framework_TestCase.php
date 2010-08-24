@@ -41,9 +41,10 @@ cd ../../auditeur
 SHELL;
 
         $retour = shell_exec($shell);
-        $sx = simplexml_load_string($retour);
-        
         file_put_contents('log/'.$this->name.'.log', $retour);
+        // @note first log, then process.
+        
+        $sx = simplexml_load_string($retour);
         
         $elements = array();
         foreach($sx as $element) {

@@ -18,4 +18,3 @@ class Constantes_Test extends Auditeur_Framework_TestCase
 }
 
 ?>
-

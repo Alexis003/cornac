@@ -13,4 +13,3 @@ class upload_functions_Test extends Auditeur_Framework_TestCase
 }
 
 ?>
-

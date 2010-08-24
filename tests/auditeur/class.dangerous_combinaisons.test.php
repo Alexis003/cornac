@@ -5,8 +5,8 @@ class dangerous_combinaisons_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
         $this->name = 'dangerous_combinaisons';
-        $this->attendus = array('worm');
-        $this->inattendus = array( );
+        $this->attendus = array('worm_post');
+        $this->inattendus = array('worm_get','worm_request' );
         
         parent::generic_test();
     }

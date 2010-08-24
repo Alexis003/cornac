@@ -1,7 +1,6 @@
 <?php
 
 function arglist_def_2($x, $y) {}
-
 arglist_def_2(1,2);
 arglist_def_2(1,2,3);
 

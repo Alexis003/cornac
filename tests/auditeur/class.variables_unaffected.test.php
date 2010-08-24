@@ -13,4 +13,3 @@ class variables_unaffected_Test extends Auditeur_Framework_TestCase
 }
 
 ?>
-
