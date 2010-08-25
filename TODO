@@ -1,6 +1,8 @@
 Check fudforum binary protector (install.php)
 Merge TODO from auditeur.
 
+Spin off .ods builder 
+
 [cornac]
 Handle files with ' ' space in tokenizeur.php
 Add support for a version of Cornac (checking for config files, tables configurations, etc.)
@@ -151,6 +153,12 @@ Extract array's lists (long list of values in arrays)
 functions (and files) that emit text (print, var_dump, raw text...)
 
 methods/files/classes that misses some code.
+
+Spot GPC assigned to variable, then used in concatenation (security...)
+Spot library dependencies, espcially PEAR. 
+
+[auditeur]
+export to html : should match the interactive web version
 
 [web]
 export to dot
