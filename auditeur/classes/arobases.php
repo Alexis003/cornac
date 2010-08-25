@@ -13,7 +13,7 @@ class arobases extends modules {
     public function analyse() {
         $this->clean_rapport();
 
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport> 
 SELECT NULL, TC.fichier, TC.code AS code, T1.id, '{$this->name}'
     FROM <tokens> T1
@@ -21,7 +21,7 @@ SELECT NULL, TC.fichier, TC.code AS code, T1.id, '{$this->name}'
     ON T1.id = TC.id 
     WHERE T1.type='noscream' 
 SQL;
-        $this->exec_query($requete);
+        $this->exec_query($query);
     }
 }
 

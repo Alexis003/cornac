@@ -13,7 +13,7 @@ class inclusions_path extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport>
     SELECT NULL, T1.fichier, IFNULL(TC.code, T2.code) AS element, T1.id, '{$this->name}'
         FROM <tokens> T1
@@ -24,7 +24,7 @@ INSERT INTO <rapport>
             ON TC.id = T2.id
     WHERE T1.type='inclusion'
 SQL;
-        $this->exec_query($requete);
+        $this->exec_query($query);
 	}
 }
 ?>

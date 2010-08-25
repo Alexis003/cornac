@@ -13,7 +13,7 @@ class iffectations extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
-	    $requete = <<<SQL
+	    $query = <<<SQL
 INSERT INTO <rapport>
    SELECT NULL, T1.fichier, TC.code, T1.id, '{$this->name}'
 FROM <tokens> T1
@@ -30,7 +30,7 @@ JOIN <tokens>_cache TC
         T3.type = 'affectation' AND
         T1.fichier = './tests/auditeur/scripts/iffectations.php';
 SQL;
-        $this->exec_query($requete);
+        $this->exec_query($query);
 	}
 }
 

@@ -16,7 +16,7 @@ class block_of_call extends modules {
 // @todo : inclusions to be handler later
 // @todo           LEFT(TC1.code, GREATEST(LOCATE('(', TC1.code), LOCATE(' ', TC1.code))) = LEFT(TC3.code, GREATEST(LOCATE('(', TC3.code), LOCATE(' ', TC3.code)))
 
-        $requete = <<<SQL
+        $query = <<<SQL
 SELECT T1.id AS id1, T2.id AS id2, T3.id AS id3, T1.droite, T3.gauche, TC1.code AS code1, TC2.code AS code2, TC3.code AS code3, T1.fichier, LEFT(TC1.code, LOCATE('(', TC1.code) ) AS code
     FROM <tokens> T1
     JOIN <tokens> T2 
@@ -35,7 +35,7 @@ SELECT T1.id AS id1, T2.id AS id2, T3.id AS id3, T1.droite, T3.gauche, TC1.code 
           LEFT(TC1.code, LOCATE('(', TC1.code)) = LEFT(TC3.code, LOCATE('(', TC3.code) )
     ORDER BY T1.id
 SQL;
-        $res = $this->exec_query($requete);
+        $res = $this->exec_query($query);
         $resultats = array();
         $already = array();
         
@@ -54,7 +54,7 @@ SQL;
 
            $id = $ligne['id3'];
            while ($id > 0) {
-               $requete2 = <<<SQL
+               $query2 = <<<SQL
 SELECT T2.id, T1.droite, T1.type, T2.type, TC2.code AS code, T1.fichier
     FROM <tokens> T1
     LEFT JOIN <tokens> T2 
@@ -66,7 +66,7 @@ SELECT T2.id, T1.droite, T1.type, T2.type, TC2.code AS code, T1.fichier
           '{$ligne['code']}' = LEFT(TC2.code, LOCATE('(', TC2.code) )
     LIMIT 12;
 SQL;
-                $res2 = $this->exec_query($requete2);
+                $res2 = $this->exec_query($query2);
                 if ($ligne2 = $res2->fetch()) {
                    $already[$ligne2['id']] = $ligne['fichier'];
                     $resultats[$ligne['id1']][$ligne2['id']] = $ligne2['code'];
@@ -80,12 +80,12 @@ SQL;
         foreach($resultats as $resultat) {
             list($id, $code) = each($resultat);
             $code = join("\n", $resultat);
-            $requete = <<<SQL
+            $query = <<<SQL
 INSERT INTO <rapport> VALUES 
 (NULL, '{$already[$id]}','$code','$id', '{$this->name}' )
 SQL;
 
-            $this->exec_query($requete);
+            $this->exec_query($query);
         }
 
 	}

@@ -14,7 +14,7 @@ class classes_nb_methods extends modules {
         $this->clean_rapport();
         
         $concat = $this->concat('class','"::"','scope');
-	    $requete = <<<SQL
+	    $query = <<<SQL
 INSERT INTO <rapport>
    SELECT NULL, T1.fichier, $concat AS code, T1.id, '{$this->name}'
     FROM <tokens> T1 
@@ -23,7 +23,7 @@ INSERT INTO <rapport>
           T1.code = T1.scope
 
 SQL;
-        $this->exec_query($requete);
+        $this->exec_query($query);
 
 	    return;
 	}

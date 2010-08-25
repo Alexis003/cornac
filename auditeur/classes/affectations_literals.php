@@ -14,7 +14,7 @@ class affectations_literals extends modules {
         $this->clean_rapport();
 
 // @note affectations that have no variables on the right side (properties, references, list(), noscream...)
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport> 
 SELECT NULL, T1.fichier, TC.code, T1.id,  '{$this->name}'  
 FROM <tokens> T1
@@ -30,7 +30,7 @@ WHERE T1.type = 'affectation'
 GROUP BY T1.id
 HAVING SUM(IF(T3.type = 'variable', 1,0)) = 0
 SQL;
-        $this->exec_query($requete);    
+        $this->exec_query($query);    
     }
 }
 

@@ -17,14 +17,14 @@ class variables_lots_of_letter extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport> 
 SELECT NULL, TR1.fichier, CONCAT(TR1.element, ' (', LENGTH(TR1.element),' chars)' ), TR1.id, '{$this->name}'
 FROM <rapport> TR1
 WHERE TR1.module = 'variables' AND LENGTH(REPLACE(TR1.element, '$','')) > 19
 GROUP BY BINARY TR1.id;
 SQL;
-        $this->exec_query($requete);
+        $this->exec_query($query);
 
         return ;
 	}

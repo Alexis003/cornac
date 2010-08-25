@@ -24,7 +24,7 @@ class indenting extends modules {
 | 1754897 |        2 | ifthen,ifthen                                                |
 
 */
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport> 
 SELECT NULL, N.fichier, GROUP_CONCAT(P.type ORDER BY P.droite) AS code, N.id, '{$this->name}'
 FROM <tokens> N, <tokens> P 
@@ -34,7 +34,7 @@ WHERE N.type IN ('ifthen','_class','_function','_while','_dowhile','_foreach','_
       P.type IN ('ifthen','_class','_function','_while','_dowhile','_foreach','_case','_for','_switch')
       GROUP BY N.id
 SQL;
-        $this->exec_query($requete);
+        $this->exec_query($query);
 
         return ;
 	}

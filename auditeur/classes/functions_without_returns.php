@@ -14,7 +14,7 @@ class functions_without_returns extends noms {
         $this->clean_rapport();
 
 // @note for methods
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport>
    SELECT NULL, T1.fichier, CONCAT(T1.class,'::', T1.scope), T1.id, '{$this->name}'
    FROM <tokens> T1
@@ -23,10 +23,10 @@ INSERT INTO <rapport>
    GROUP BY class, scope 
    HAVING SUM(if(type='_return', 1, 0)) = 0;
 SQL;
-        $this->exec_query($requete);
+        $this->exec_query($query);
 
 // @note for functions
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport>
    SELECT NULL, T1.fichier, CONCAT(T1.class,'::', T1.scope), T1.id, '{$this->name}'
    FROM <tokens> T1
@@ -34,7 +34,7 @@ INSERT INTO <rapport>
    GROUP BY class, scope 
    HAVING SUM(if(type='_return', 1, 0)) = 0;
 SQL;
-        $this->exec_query($requete);
+        $this->exec_query($query);
         
         return; 
 	}

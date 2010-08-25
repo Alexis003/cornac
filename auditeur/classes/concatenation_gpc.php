@@ -15,7 +15,7 @@ class concatenation_gpc extends modules {
         
         $concat = $this->concat('class','"::"','scope');
         $gpc_regexp = '(\\\\'.join('|\\\\',modules::getPHPGPC()).')';
-	    $requete = <<<SQL
+	    $query = <<<SQL
 INSERT INTO <rapport>
     SELECT NULL, T1.fichier, T2.code, T1.id, '{$this->name}'
     FROM <tokens> T1
@@ -27,7 +27,7 @@ INSERT INTO <rapport>
     WHERE T1.type='concatenation'
 
 SQL;
-        $this->exec_query($requete);
+        $this->exec_query($query);
 
 	    return;
 	}

@@ -14,7 +14,7 @@ class ifsanselse extends modules {
         $this->clean_rapport();
 
         $concat = $this->concat("T2.class","'->'","T2.code");
-	    $requete = <<<SQL
+	    $query = <<<SQL
 INSERT INTO <rapport>
    SELECT NULL, T1.fichier, SUM(TT.type = 'else')  AS elsee, T1.id, '{$this->name}'
     FROM <tokens> T1
@@ -24,7 +24,7 @@ INSERT INTO <rapport>
     GROUP by fichier, droite
     HAVING elsee = 0;
 SQL;
-        $this->exec_query($requete);
+        $this->exec_query($query);
 	}
 }
 

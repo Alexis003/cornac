@@ -17,7 +17,7 @@ class doubledeffunctions extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport> 
 SELECT NULL, fichier, TR.element,  TR.token_id, '{$this->name}'
 FROM <rapport> TR
@@ -26,7 +26,7 @@ FROM <rapport> TR
  HAVING count(*) > 1;
 SQL;
     
-        $this->exec_query($requete);
+        $this->exec_query($query);
 
 	}
 }

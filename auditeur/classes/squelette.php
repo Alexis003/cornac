@@ -13,7 +13,7 @@ class squelette extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
-	    $requete = <<<SQL
+	    $query = <<<SQL
 INSERT INTO <rapport>
 SELECT NULL, T1.fichier, T1.code, T1.id, '{$this->name}' 
     FROM <tokens> T1
@@ -24,7 +24,7 @@ SELECT NULL, T1.fichier, T1.code, T1.id, '{$this->name}'
         AND TT.type = 'name'
     ;
 SQL;
-    $this->exec_query($requete);
+    $this->exec_query($query);
 	}
 }
 

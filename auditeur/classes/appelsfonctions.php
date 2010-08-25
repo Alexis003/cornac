@@ -16,7 +16,7 @@ class appelsfonctions extends modules {
         
         $in = join("', '", modules::getPHPFunctions());
 /*
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport_dot> 
 SELECT distinct T5.code, T3.code,T1.fichier, '{$this->name}'
 FROM <tokens> T1
@@ -38,11 +38,11 @@ WHERE T1.type='_function'  AND
       T3.code NOT IN ('$in');
 SQL;
         die();
-        $this->exec_query($requete);
+        $this->exec_query($query);
 */
     $concat1 = $this->concat("T1.class","'->'","T1.scope");
     $concat2 = $this->concat("T3.code","'->'","T4.code");
-    $requete = <<<SQL
+    $query = <<<SQL
 INSERT INTO <rapport_dot> 
 SELECT $concat1, $concat2, T1.fichier, '{$this->name}'
   from <tokens> T1
@@ -58,11 +58,11 @@ SELECT $concat1, $concat2, T1.fichier, '{$this->name}'
 where 
  T1.type='method_static' ;
 SQL;
-        $res = $this->exec_query($requete);
+        $res = $this->exec_query($query);
 
         $concat1 = $this->concat("T1.class","'->'","T1.scope");
         $concat2 = $this->concat("T1.class","'->'","T4.code");
-$requete = <<<SQL
+$query = <<<SQL
 INSERT INTO <rapport_dot> 
 SELECT $concat1, $concat2, T1.fichier, '{$this->name}'
   from <tokens> T1
@@ -78,9 +78,9 @@ SELECT $concat1, $concat2, T1.fichier, '{$this->name}'
 where 
  T1.type='method' ;
 SQL;
-        $res = $this->exec_query($requete);
+        $res = $this->exec_query($query);
 
-$requete = <<<SQL
+$query = <<<SQL
 SELECT T4.code AS methode, T1.class as classe
   from <tokens> T1
   join <tokens_cache> T2 
@@ -95,12 +95,12 @@ SELECT T4.code AS methode, T1.class as classe
 where 
  T1.type='method' ;
 SQL;
-        $res = $this->exec_query($requete);
+        $res = $this->exec_query($query);
         
         $erreurs = 0;
         $total = 0;
         while($ligne = $res->fetch(PDO::FETCH_ASSOC)) {
-$requete = <<<SQL
+$query = <<<SQL
 SELECT T1.element
   from <rapport> T1
 where 
@@ -110,12 +110,12 @@ where
 
  ;
 SQL;
-            $res2 = $this->exec_query($requete);            
+            $res2 = $this->exec_query($query);            
             
             if ($res2->rowCount() == 0) {
             /*
                 print_r($ligne);
-                print $this->prepare_query($requete);
+                print $this->prepare_query($query);
                 print_r($res2->fetchall());
                 */
                 $erreurs++;

@@ -13,7 +13,7 @@ class tableaux_gpc extends modules {
         $this->clean_rapport();
 
 // @note : simple situation : variable -> method
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport>
     SELECT NULL, T1.fichier, TC.code AS code, T1.id, '{$this->name}'
     FROM <tokens> T1 
@@ -22,7 +22,7 @@ INSERT INTO <rapport>
     WHERE T1.type="tableau" AND
           T2.code IN ('\$_GET','\$_SERVER','\$GLOBALS','\$_POST','\$_REQUEST','\$_ENV','\$_COOKIE','\$_SESSION')
 SQL;
-        $this->exec_query($requete);
+        $this->exec_query($query);
 
 
 	}

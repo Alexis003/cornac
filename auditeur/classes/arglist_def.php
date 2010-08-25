@@ -14,7 +14,7 @@ class arglist_def extends modules {
         $this->clean_rapport();
 
 // @doc this query search for the minimum argument to send a function/method
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport> 
 SELECT NULL, T1.fichier, CONCAT(T2.code,'(', count(*),' args)') AS code, T1.id, '{$this->name}'
 FROM <tokens> T1
@@ -33,10 +33,10 @@ JOIN <tokens> T4
 WHERE T1.type = '_function'
 GROUP BY T1.id;
 SQL;
-        $this->exec_query($requete);
+        $this->exec_query($query);
 
 // @doc this query search for variable number of argument
-        $requete = <<<SQL
+        $query = <<<SQL
 SELECT NULL, T1.fichier, 
        SUM(IF(T4.type='variable',1,0)) AS compulsory, 
        SUM(IF(T4.type='arginit',1,0)) AS optional, 
@@ -59,17 +59,17 @@ GROUP BY T1.id
 HAVING optional > 0
 ;
 SQL;
-//                print $this->prepare_query($requete);
-        $res = $this->exec_query($requete);
+//                print $this->prepare_query($query);
+        $res = $this->exec_query($query);
         
         while($row = $res->fetch()) {
             for($i = 0; $i < $row['optional']; $i++) {
                 $nb = $row['compulsory'] + $i + 1;
-                $requete = <<<SQL
+                $query = <<<SQL
 INSERT INTO <rapport> 
 SELECT NULL, '{$row['fichier']}', CONCAT('{$row['code']}','(', $nb ,' args)'), '{$row['id']}', '{$this->name}'
 SQL;
-                $this->exec_query($requete);
+                $this->exec_query($query);
             }
         }
         return ;

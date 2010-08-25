@@ -13,15 +13,15 @@ class multi_def_files extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
-	    $requete = <<<SQL
+	    $query = <<<SQL
     CREATE TEMPORARY TABLE multi_def_files
     SELECT DISTINCT fichier FROM <tokens> 
         GROUP BY concat(class,'::', scope) 
         HAVING COUNT(*) > 1
 SQL;
-        $res = $this->exec_query($requete);
+        $res = $this->exec_query($query);
     
-	    $requete = <<<SQL
+	    $query = <<<SQL
 INSERT INTO <rapport> 
     SELECT NULL, T1.fichier, concat(T1.class,'::', T1.scope), 0,  '{$this->name}' 
     FROM <tokens> T1
@@ -30,12 +30,12 @@ INSERT INTO <rapport>
     WHERE T1.scope != 'global'
     GROUP BY T1.fichier, concat(T1.class,'::', T1.scope)
 SQL;
-        $res = $this->exec_query($requete);
+        $res = $this->exec_query($query);
 
-	    $requete = <<<SQL
+	    $query = <<<SQL
 DROP TABLE multi_def_files
 SQL;
-        $res = $this->exec_query($requete);
+        $res = $this->exec_query($query);
     }
 }
 

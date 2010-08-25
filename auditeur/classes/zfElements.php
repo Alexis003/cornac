@@ -21,7 +21,7 @@ class zfElements extends modules {
                          'Zend_Form_Element_Submit');
         
         $in = join("', '", $classes);
-	    $requete = <<<SQL
+	    $query = <<<SQL
 SELECT T1.droite, T1.gauche, T1.fichier , T1.id, T2.code
 FROM <tokens> T1
     JOIN <tokens> T2
@@ -31,13 +31,13 @@ FROM <tokens> T1
 ;
 SQL;
 
-    $res = $this->exec_query($requete);
+    $res = $this->exec_query($query);
     
     while($ligne = $res->fetch()) {
         $droite = $ligne['gauche'] + 1;
         $trouve = false;
         while(!$trouve) {
-	        $requete = <<<SQL
+	        $query = <<<SQL
 SELECT T1.droite, T1.gauche, T1.fichier, SUM(if (T2.code='addElement', 1, 0)) AS addElement
 FROM <tokens> T1
     JOIN <tokens> T2
@@ -49,7 +49,7 @@ FROM <tokens> T1
 ;
 SQL;
 
-            $res2 = $this->exec_query($requete);
+            $res2 = $this->exec_query($query);
             $ligne2 = $res2->fetch();
             
             $trouve = $ligne2['addElement'] != 0;
@@ -57,18 +57,18 @@ SQL;
         
         }
         
-        $requete = <<<SQL
+        $query = <<<SQL
 SELECT sum(if (T1.code IN ('addValidator','addFilter'), 1, 0)) AS addValidator, T1.fichier 
     FROM <tokens> T1 
     WHERE fichier = '{$ligne['fichier']}' AND droite BETWEEN {$ligne['droite']} AND {$ligne2['gauche']}
 SQL;
-        $res2 = $this->exec_query($requete);
+        $res2 = $this->exec_query($query);
         $ligne2 = $res2->fetch();
         
-	    $requete = <<<SQL
+	    $query = <<<SQL
 INSERT INTO <rapport> VALUES (0, '{$ligne2['fichier']}', '{$ligne['code']} : {$ligne2['addValidator']}' , {$ligne['id']}, '{$this->name}' );
 SQL;
-        $this->exec_query($requete);
+        $this->exec_query($query);
         }
 	}
 }

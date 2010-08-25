@@ -13,28 +13,28 @@ class undefined_properties extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
-        $requete = <<<SQL
+        $query = <<<SQL
 DROP TABLE IF EXISTS undefined_properties
 SQL;
-        $this->exec_query($requete);
+        $this->exec_query($query);
 
-        $requete = <<<SQL
+        $query = <<<SQL
 CREATE TEMPORARY TABLE {$this->name}_tmp
             SELECT DISTINCT right(code, length(code) - 1) as code, class FROM <tokens> 
             WHERE scope='global'  AND 
                   type ='variable'
 SQL;
-        $this->exec_query($requete);
+        $this->exec_query($query);
 
-        $requete = <<<SQL
+        $query = <<<SQL
 ALTER TABLE {$this->name}_tmp ADD UNIQUE (code(500), class)
 SQL;
-        $this->exec_query($requete);
+        $this->exec_query($query);
 
 
 
 // @note only works on the same classe. Doesn't take into account hierarchy
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport> 
    SELECT NULL, T1.fichier, T2.code AS code, T1.id, '{$this->name}'
    FROM <tokens> T1
@@ -49,7 +49,7 @@ INSERT INTO <rapport>
           T2.type='literals'  AND 
           TMP.code IS NULL
 SQL;
-        $this->exec_query($requete);
+        $this->exec_query($query);
 
 	}
 	

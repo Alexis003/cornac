@@ -20,18 +20,18 @@ class php_modules extends modules {
         $this->functions = modules::getPHPFunctions();
 	    
 	    // @section : searching via functions usage
-	    $requete = <<<SQL
+	    $query = <<<SQL
 INSERT INTO <rapport>
 SELECT NULL, fichier, element, token_id, '{$this->name}' 
 FROM <rapport> 
 WHERE module = 'php_functions'
 SQL;
-	    $res = $this->exec_query($requete);
+	    $res = $this->exec_query($query);
 
-	    $requete = <<<SQL
+	    $query = <<<SQL
 SELECT DISTINCT element FROM <rapport> WHERE module = '{$this->name}'
 SQL;
-	    $res = $this->exec_query($requete);
+	    $res = $this->exec_query($query);
 
         $fonctions = array();
         while($ligne = $res->fetchColumn()) {
@@ -52,12 +52,12 @@ SQL;
             $liste = array_intersect($functions, $fonctions);
             if (count($liste) > 0) {
                 $in = join("','", $liste);
-                $requete = <<<SQL
+                $query = <<<SQL
 UPDATE <rapport> SET element = '$ext' 
     WHERE module = '{$this->name}' AND element in ( '$in')
     
 SQL;
-                $res = $this->exec_query($requete);
+                $res = $this->exec_query($query);
                 $fonctions = array_diff($fonctions, $liste);
             }
             unset($liste);
@@ -67,11 +67,11 @@ SQL;
         $liste = array_intersect($functions, $fonctions);
         if (count($liste) > 0) {
             $in = join("','", $liste);
-            $requete = <<<SQL
+            $query = <<<SQL
 UPDATE <rapport> SET element = 'standard' 
 WHERE module = '{$this->name}' AND element in ( '$in')
 SQL;
-            $res = $this->exec_query($requete);
+            $res = $this->exec_query($query);
             $fonctions = array_diff($fonctions, $liste);
         }
 
@@ -79,18 +79,18 @@ SQL;
 
 
 	    // @section : searching via classes usage
-	    $requete = <<<SQL
+	    $query = <<<SQL
 INSERT INTO <rapport>
 SELECT NULL, fichier, element, token_id, '{$this->name}_tmp' 
 FROM <rapport> 
 WHERE module = 'php_classes'
 SQL;
-	    $res = $this->exec_query($requete);
+	    $res = $this->exec_query($query);
 
-	    $requete = <<<SQL
+	    $query = <<<SQL
 SELECT DISTINCT element FROM <rapport> WHERE module = '{$this->name}_tmp'
 SQL;
-	    $res = $this->exec_query($requete);
+	    $res = $this->exec_query($query);
 
         $classes = array();
         while($ligne = $res->fetchColumn()) {
@@ -109,12 +109,12 @@ SQL;
             $liste = array_intersect($classes, $ext_classes['classes']);
             if (count($liste) > 0) {
                 $in = join("', '", $liste);
-        	    $requete = <<<SQL
+        	    $query = <<<SQL
 UPDATE <rapport> SET element = '$ext',
                      module='{$this->name}'
     WHERE module = '{$this->name}_tmp' AND element in ( '$in')
 SQL;
-        	    $res = $this->exec_query($requete);
+        	    $res = $this->exec_query($query);
             }
 
             $classes = array_diff($classes, $liste);
@@ -122,10 +122,10 @@ SQL;
         }
 
         if (count($classes) > 0) {
-print            $requete = <<<SQL
+print            $query = <<<SQL
 DELETE FROM <rapport> WHERE module = '{$this->name}_tmp'
 SQL;
-   	        $res = $this->exec_query($requete);
+   	        $res = $this->exec_query($query);
    	    }
 	}
 

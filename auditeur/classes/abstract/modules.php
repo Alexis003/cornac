@@ -201,30 +201,30 @@ $subgraph
     return $retour;
 }
 
-    function print_query($requete) {
-        print $this->prepare_query($requete)."\n";
+    function print_query($query) {
+        print $this->prepare_query($query)."\n";
         die();
     }
 
-    function prepare_query($requete) {
-        $requete = str_replace(array_keys($this->tables), array_values($this->tables), $requete);
+    function prepare_query($query) {
+        $query = str_replace(array_keys($this->tables), array_values($this->tables), $query);
         
-        if (preg_match_all('/<\w+>/', $requete, $r)) {
+        if (preg_match_all('/<\w+>/', $query, $r)) {
             print "Il reste des tables à analyser : ".join(', ', $r[0]);
         }
         
-        return $requete;
+        return $query;
     }
     
-    function exec_query($requete) {
-        $requete = $this->prepare_query($requete);
+    function exec_query($query) {
+        $query = $this->prepare_query($query);
         
-        $res = $this->mid->query($requete);
+        $res = $this->mid->query($query);
         $erreur = $this->mid->errorInfo();
         
         if ($erreur[2]) {
             print_r($erreur);
-            print $requete;
+            print $query;
             die();
         }
 
@@ -236,20 +236,20 @@ $subgraph
     }
     
     function clean_rapport() {
-        $requete = <<<SQL
+        $query = <<<SQL
 DELETE FROM <rapport> WHERE module='{$this->name}'
 SQL;
-        $this->exec_query($requete);
+        $this->exec_query($query);
 
-        $requete = <<<SQL
+        $query = <<<SQL
 DELETE FROM <rapport_dot> WHERE module='{$this->name}'
 SQL;
-        $this->exec_query($requete);
+        $this->exec_query($query);
 
-        $requete = <<<SQL
+        $query = <<<SQL
 DELETE FROM <rapport_module> WHERE module='{$this->name}'
 SQL;
-        $this->exec_query($requete);
+        $this->exec_query($query);
     }
     
     static public function getPHPFunctions() {

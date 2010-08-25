@@ -18,7 +18,7 @@ class classes_undefined extends modules {
         $this->clean_rapport();
 
         $in = "'".join("','", modules::getPHPClasses())."'";
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport> 
 SELECT NULL, TR1.fichier, TR1.element AS code, TR1.id, '{$this->name}'
     FROM <rapport>  TR1
@@ -31,7 +31,7 @@ SQL;
 
 // @todo excluding standard PHP classes ? 
 //AND    TR1.element NOT IN ('$in');
-        $this->exec_query($requete);
+        $this->exec_query($query);
         return ;
 	}
 }

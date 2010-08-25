@@ -13,15 +13,15 @@ class inclusions extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport>
    SELECT NULL, T1.fichier, T1.code, T1.id, '{$this->name}'
    FROM <tokens>  T1
    WHERE T1.type = 'inclusion';
 SQL;
-        $this->exec_query($requete);
+        $this->exec_query($query);
 
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport>
   SELECT NULL, T1.fichier, T2.code, T1.id, '{$this->name}'
   FROM <tokens> T1
@@ -33,7 +33,7 @@ INSERT INTO <rapport>
        TT.type='fonction' 
        AND T2.code='loadLibrary'
 SQL;
-        $this->exec_query($requete);
+        $this->exec_query($query);
 
 	}
 }

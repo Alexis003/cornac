@@ -19,7 +19,7 @@ class php_classes extends functioncalls {
 
 	    $in = join("', '", modules::getPHPClasses());
 
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport> 
     SELECT NULL, T1.fichier, T2.code AS code, T1.id, '{$this->name}'
     FROM <tokens> T1 
@@ -29,7 +29,7 @@ INSERT INTO <rapport>
     WHERE T1.type='_new' AND 
           T2.code IN ('$in')
 SQL;
-        $this->exec_query($requete);
+        $this->exec_query($query);
     }
 }
 

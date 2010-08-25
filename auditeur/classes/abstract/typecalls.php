@@ -16,17 +16,17 @@ class typecalls extends modules {
 
         $this->clean_rapport();
 
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport>
     SELECT NULL, T1.fichier, T1.code AS code, T1.id, '{$this->name}'
     FROM <tokens> T1 
     WHERE T1.type IN ('$in')
 SQL;
         if (!is_null($this->code) && is_array($this->code) && count($this->code) > 0) {
-            $requete .= " AND T1.code in ('".join("', '", $this->code)."')";
+            $query .= " AND T1.code in ('".join("', '", $this->code)."')";
         }
 
-        $this->exec_query($requete);
+        $this->exec_query($query);
 	}
 }
 

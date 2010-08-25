@@ -13,7 +13,7 @@ class arglist_call extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport> 
 SELECT NULL, T1.fichier, CONCAT(T2.code,'(', count(*),' args)') AS code, T1.id, '{$this->name}'
 FROM <tokens> T1
@@ -30,7 +30,7 @@ JOIN <tokens> T4
 WHERE T1.type = 'functioncall'
 GROUP BY T1.id;
 SQL;
-        $this->exec_query($requete);
+        $this->exec_query($query);
 
         return ;
 	}

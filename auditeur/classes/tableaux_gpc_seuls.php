@@ -14,7 +14,7 @@ class tableaux_gpc_seuls extends modules {
         $this->clean_rapport();
 
 // cas simple : variable -> method
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport>
     SELECT NULL, T1.fichier, T1.code AS code, T1.id, '{$this->name}'
     FROM <tokens> T1 
@@ -24,7 +24,7 @@ INSERT INTO <rapport>
            AND T2.type != 'tableau'
 SQL;
 
-        $this->exec_query($requete);
+        $this->exec_query($query);
 
 
 	}

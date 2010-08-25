@@ -11,13 +11,13 @@ class variables extends modules {
     }
 
 	public function analyse() {
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport>
     SELECT NULL, T1.fichier, T1.code AS code, T1.id, '{$this->name}'
     FROM <tokens> T1 
     WHERE T1.type = 'variable' AND T1.code != '$'
 SQL;
-	$this->exec_query($requete);
+	$this->exec_query($query);
 	
 	}
 }

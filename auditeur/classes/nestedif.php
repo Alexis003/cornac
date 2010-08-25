@@ -14,7 +14,7 @@ class nestedif extends modules {
         $this->clean_rapport();
 
         $concat = $this->concat("T1.type","'->'","T2.type");
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport>
 SELECT NULL, T1.fichier, $concat, T1.id, '{$this->name}' 
     FROM <tokens> T1
@@ -25,7 +25,7 @@ SELECT NULL, T1.fichier, $concat, T1.id, '{$this->name}'
     HAVING COUNT(*) > 1
 SQL;
 
-        $this->exec_query($requete);
+        $this->exec_query($query);
 
 	}
 }

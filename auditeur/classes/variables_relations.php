@@ -16,7 +16,7 @@ class variables_relations extends modules {
 
 // @todo : this should be done context by context. How can I do that? 
         
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport_dot> 
   SELECT  T4.code, T2.code, CONCAT(T1.class,'::',T1.scope), '{$this->name}' 
 FROM <tokens> T1
@@ -32,8 +32,8 @@ JOIN <tokens> T4
     ON T4.fichier = T1.fichier AND T4.droite BETWEEN T3.droite AND T3.gauche AND T4.type='variable'
 WHERE T1.type = 'affectation'; 
 SQL;
-
-        $this->exec_query($requete);
+        print $this->prepare_query($query);
+        $this->exec_query($query);
 
         return ;
 	}

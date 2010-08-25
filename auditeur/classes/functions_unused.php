@@ -15,7 +15,7 @@ class functions_unused extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport> 
 SELECT NULL, TR1.fichier, TR1.element AS code, TR1.id, '{$this->name}'
     FROM <rapport>  TR1
@@ -25,7 +25,7 @@ SELECT NULL, TR1.fichier, TR1.element AS code, TR1.id, '{$this->name}'
           TR2.module IS NULL AND
           TR1.element NOT IN ('__autoload')
 SQL;
-        $this->exec_query($requete);
+        $this->exec_query($query);
 	}
 }
 

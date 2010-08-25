@@ -14,7 +14,7 @@ class inclusions2 extends modules {
 	public function analyse() {
         $this->clean_rapport();
         
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport_dot> 
 SELECT distinct T1.fichier, T3.code,T1.fichier, '{$this->name}'
 FROM <tokens> T1
@@ -26,9 +26,9 @@ FROM <tokens> T1
           AND T3.fichier = T2.fichier
 	    WHERE T1.type='inclusion'
 SQL;
-        $res = $this->exec_query($requete);
+        $res = $this->exec_query($query);
         
-       $requete = <<<SQL
+       $query = <<<SQL
 INSERT INTO <rapport_dot> 
 SELECT distinct T1.fichier, T2.code, T1.fichier, '{$this->name}'
     FROM <tokens> T1
@@ -38,11 +38,11 @@ SELECT distinct T1.fichier, T2.code, T1.fichier, '{$this->name}'
 	    WHERE T1.type='inclusion' AND
 	          T2.type in ('literals','variable');
 SQL;
-        $res = $this->exec_query($requete);
+        $res = $this->exec_query($query);
 
         $concat = $this->concat('"inc/"','T4.code',"'/'",'T4.code',"'.inc'");
         
-       $requete = <<<SQL
+       $query = <<<SQL
 INSERT INTO <rapport_dot> 
   SELECT T1.fichier, REPLACE($concat,'"', ''), T1.fichier, '{$this->name}' 
   FROM <tokens> T1
@@ -58,13 +58,13 @@ INSERT INTO <rapport_dot>
     ON T1.fichier = T4.fichier and T4.type='literals' AND T4.droite between T3.droite and T3.gauche
   WHERE T1.type='functioncall';
 SQL;
-        $res = $this->exec_query($requete);
+        $res = $this->exec_query($query);
 
        include_once('../libs/path_normaliser.php');
-       $requete = <<<SQL
+       $query = <<<SQL
 SELECT * FROM <rapport_dot> WHERE module='{$this->name}'
 SQL;
-        $res = $this->exec_query($requete);
+        $res = $this->exec_query($query);
 
     while($ligne = $res->fetch()) {
         $ligne['b'] = str_replace( array("\"", "'"), array('',''), $ligne['b']);
@@ -93,27 +93,27 @@ SQL;
         $ligne['b'] = addslashes($ligne['b']);
         $ligne[1] = addslashes($ligne[1]);
 
-       $requete = <<<SQL
+       $query = <<<SQL
 UPDATE <rapport_dot>
    SET b = '{$ligne['b']}'
 WHERE module='{$this->name}' AND 
       b = '{$ligne[1]}' AND
       a = '{$ligne['a']}'
 SQL;
-        $this->exec_query($requete);
+        $this->exec_query($query);
 //        print '.';
         
     }
 
 /*
-       $requete = <<<SQL
+       $query = <<<SQL
 UPDATE <rapport_dot> 
     SET a = REPLACE(a, './References/24hmans/', ''),
         b = REPLACE(b, './References/24hmans/', '')
     WHERE module='{$this->name}'
 SQL;
 
-        $res = $this->exec_query($requete);
+        $res = $this->exec_query($query);
 */
 /*
 

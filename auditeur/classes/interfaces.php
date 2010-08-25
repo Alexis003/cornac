@@ -13,13 +13,13 @@ class interfaces extends noms {
 	public function analyse() {
         $this->clean_rapport();
 
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport>
    SELECT NULL, T1.fichier, T1.class, T1.id, '{$this->name}'
    FROM <tokens> T1
    WHERE T1.type = '_interface'
 SQL;
-        $this->exec_query($requete);
+        $this->exec_query($query);
         
         return; 
 	}

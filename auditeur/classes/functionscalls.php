@@ -14,7 +14,7 @@ class functionscalls extends modules {
 	    $total = modules::getPHPFunctions();
 	    $in = join("', '", $total);
 
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport> 
 SELECT NULL, T1.fichier, T2.code AS code, T1.id, '{$this->name}'
   FROM <tokens> T1
@@ -29,7 +29,7 @@ where
 T2.code NOT IN ('$in')
 SQL;
 
-        $this->exec_query($requete);
+        $this->exec_query($query);
 	}
 }
 

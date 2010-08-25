@@ -18,7 +18,7 @@ class literals_reused extends modules {
         $this->clean_rapport();
 
 // @note temporary table, so has to avoid concurrency conflict
-        $requete = <<<SQL
+        $query = <<<SQL
 CREATE TEMPORARY TABLE {$this->name}_TMP 
 SELECT TRIM(code) AS code
     FROM <tokens> TR1
@@ -27,9 +27,9 @@ SELECT TRIM(code) AS code
     GROUP BY BINARY TRIM(code) 
     HAVING COUNT(*) > 1
 SQL;
-        $this->exec_query($requete);
+        $this->exec_query($query);
 
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport> 
 SELECT NULL, TR1.fichier, TRIM(TR1.code), TR1.id, '{$this->name}'
     FROM <tokens> TR1
@@ -37,7 +37,7 @@ SELECT NULL, TR1.fichier, TRIM(TR1.code), TR1.id, '{$this->name}'
         ON TR1.type = 'literals' AND 
            TMP.code = TRIM(TR1.code) 
 SQL;
-        $this->exec_query($requete);
+        $this->exec_query($query);
 
         return ;
 	}

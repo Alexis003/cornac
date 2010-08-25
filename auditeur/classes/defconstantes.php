@@ -14,7 +14,7 @@ class defconstantes extends modules {
 	public function analyse() {
         $this->clean_rapport();
         
-	    $requete = <<<SQL
+	    $query = <<<SQL
 INSERT INTO <rapport>
 SELECT NULL, T1.fichier, T3.code, T3.id, '{$this->name}'
     FROM <tokens> T1
@@ -27,7 +27,7 @@ SELECT NULL, T1.fichier, T3.code, T3.id, '{$this->name}'
     WHERE T1.type='functioncall' AND
           T2.code = 'define';
 SQL;
-        $this->exec_query($requete);
+        $this->exec_query($query);
 
 	}
 }

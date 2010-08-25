@@ -16,14 +16,14 @@ class trim_rawtext extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport>
    SELECT NULL, T1.fichier, T1.code,  T1.id, 'parentheses'
    FROM <tokens> T1
    WHERE T1.type != 'codephp' AND
          T1.droite = 0;
 SQL;
-    $this->exec_query($requete);
+    $this->exec_query($query);
 
 // extraction du dernier? 
 

@@ -13,7 +13,7 @@ class undeffunctions extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport> 
    SELECT NULL, TR1.fichier, TR1.element, TR1.id, '{$this->name}'
    FROM <rapport> TR1
@@ -22,8 +22,8 @@ INSERT INTO <rapport>
    WHERE TR1.module='functionscalls' AND
          TR2.element IS NULL;
 SQL;
-//        print $this->prepare_query($requete);
-        $this->exec_query($requete);
+//        print $this->prepare_query($query);
+        $this->exec_query($query);
 
 	}
 }

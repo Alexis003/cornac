@@ -15,7 +15,7 @@ class properties_used extends modules {
 
         $concat = $this->concat("T2.class","'->'","T3.code");
 // @note this are the properties used within the class : we rely on $this
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport> 
 SELECT NULL, T1.fichier, $concat AS code, T2.id, '{$this->name}' 
 FROM <tokens> T1
@@ -29,13 +29,13 @@ FROM <tokens> T1
     ON T1.fichier = T3.fichier AND TT2.token_sub_id = T3.id
   WHERE T1.type='property';
 SQL;
-        $this->exec_query($requete);
+        $this->exec_query($query);
 
 
 // @note this are the other properties used within the class : we don't know what to do now 
         $concat = $this->concat("T2.code","'->'","T3.code"); 
 
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport> 
 SELECT NULL, T1.fichier, $concat AS code, T2.id, '{$this->name}' 
 FROM <tokens> T1
@@ -49,7 +49,7 @@ FROM <tokens> T1
     ON T1.fichier = T3.fichier AND TT2.token_sub_id = T3.id
   WHERE T1.type='property';
 SQL;
-        $this->exec_query($requete);
+        $this->exec_query($query);
     
     }
 }

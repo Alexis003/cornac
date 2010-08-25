@@ -15,7 +15,7 @@ class regex extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport>
    SELECT NULL, T1.fichier, T2.code, T1.id, '{$this->name}'
    FROM <tokens> T1
@@ -24,7 +24,7 @@ INSERT INTO <rapport>
       T2.droite = T1.droite + 3
    WHERE T1.code in ('preg_match','preg_replace','preg_replace_callback','preg_match_all')
 SQL;
-        $this->exec_query($requete);
+        $this->exec_query($query);
 
 	}
 }

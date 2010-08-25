@@ -19,10 +19,10 @@ class modules_used extends modules {
         $this->clean_rapport();
 
 // cas simple : variable -> method
-        $requete = <<<SQL
+        $query = <<<SQL
 SELECT DISTINCT LOWER(element) FROM <rapport> WHERE module='php_functions';
 SQL;
-        $res = $this->exec_query($requete);
+        $res = $this->exec_query($query);
         
         $liste = $res->FetchAll(PDO::FETCH_COLUMN);
         
@@ -33,12 +33,12 @@ SQL;
             $f = array_intersect($liste, $funcs);
             if (count($f) > 0) {
                 $in = join("', '", $f);
-                $requete = <<<SQL
+                $query = <<<SQL
 INSERT INTO <rapport> 
 SELECT NULL, fichier, '$ext', id, '{$this->name}' FROM <rapport> 
 WHERE element IN ('$in')
 SQL;
-                $this->exec_query($requete);
+                $this->exec_query($query);
 
                 $liste = array_diff($liste, $f);
                 if (count($liste) == 0) { return ; }
@@ -46,12 +46,12 @@ SQL;
         }
 
         $in = join("', '", $liste);
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport> 
 SELECT NULL, fichier, 'inconnu', id, '{$this->name}' FROM <rapport> 
 WHERE element IN ('$in')
 SQL;
-        $this->exec_query($requete);
+        $this->exec_query($query);
 	}
 }
 

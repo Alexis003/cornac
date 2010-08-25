@@ -14,7 +14,7 @@ class classes_hierarchie extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport_dot> 
     SELECT distinct T2.code, T2.class,'', '{$this->name}'
     FROM <tokens_tags> TT
@@ -23,7 +23,7 @@ INSERT INTO <rapport_dot>
     WHERE TT.type = 'extends';
 SQL;
     
-        $this->exec_query($requete);
+        $this->exec_query($query);
     }
 }
 

@@ -14,7 +14,7 @@ class proprietes_publiques extends modules {
         $this->clean_rapport();
 
         $concat = $this->concat("T1.code", "'->'", "T2.code");
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport> 
    SELECT NULL, T1.fichier, $concat, T1.id,  '{$this->name}'
 FROM <tokens> T1 
@@ -24,7 +24,7 @@ JOIN <tokens> T2
 ON T1.fichier = T2.fichier AND TT.token_sub_id = T2.id  
 WHERE T1.type = 'property' AND T1.code != '\$this'
 SQL;
-        $this->exec_query($requete);
+        $this->exec_query($query);
 
     // @todo supporter les méthodes / classes
     

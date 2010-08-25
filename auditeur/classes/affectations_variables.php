@@ -14,7 +14,7 @@ class affectations_variables extends modules {
         $this->clean_rapport();
 
 // @note simple variables
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport> 
 SELECT NULL, T1.fichier, T2.code, T1.id,'{$this->name}'  
 FROM <tokens> T1
@@ -22,10 +22,10 @@ JOIN <tokens> T2
     ON T1.fichier = T2.fichier AND T2.droite = T1.droite + 1
 WHERE T1.type = 'affectation'  AND T2.type = 'variable'
 SQL;
-        $this->exec_query($requete);    
+        $this->exec_query($query);    
 
 // @note array
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport> 
 SELECT NULL, T1.fichier, T3.code, T1.id,'{$this->name}'  
 FROM <tokens> T1
@@ -35,10 +35,10 @@ JOIN <tokens> T3
     ON T1.fichier = T3.fichier AND T3.droite = T1.droite + 2
 WHERE T1.type = 'affectation'  AND T2.type = 'tableau'
 SQL;
-        $this->exec_query($requete);    
+        $this->exec_query($query);    
 
 // @note property
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport> 
 SELECT NULL, T1.fichier, T2.code, T1.id,'{$this->name}'  
 FROM <tokens> T1
@@ -46,10 +46,10 @@ JOIN <tokens> T2
     ON T1.fichier = T2.fichier AND T2.droite = T1.droite + 1
 WHERE T1.type = 'affectation'  AND T2.type = 'property'
 SQL;
-        $this->exec_query($requete);    
+        $this->exec_query($query);    
 
 // @note  static property
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport> 
 SELECT NULL, T1.fichier, T3.code, T1.id,'{$this->name}'  
 FROM <tokens> T1
@@ -61,10 +61,10 @@ JOIN <tokens> T3
     ON T1.fichier = T3.fichier AND T3.id = TT.token_sub_id
 WHERE T1.type = 'affectation'  AND T2.type = 'property_static'
 SQL;
-        $this->exec_query($requete);    
+        $this->exec_query($query);    
 
 // @note list() case
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport> 
 SELECT NULL, T1.fichier, T4.code, T1.id,'{$this->name}'  
 FROM <tokens> T1
@@ -76,10 +76,10 @@ JOIN <tokens> T4
     ON T1.fichier = T4.fichier AND T4.droite BETWEEN T2.droite AND T2.gauche AND T4.type = 'variable'
 WHERE T1.type = 'affectation' 
 SQL;
-        $this->exec_query($requete);    
+        $this->exec_query($query);    
 
 // @note foreach() case
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport> 
 SELECT NULL, T1.fichier, T2.code, T1.id,'{$this->name}'  
 FROM <tokens> T1
@@ -90,7 +90,7 @@ JOIN <tokens> T2
 WHERE T1.type = '_foreach'
 LIMIT 12;
 SQL;
-        $this->exec_query($requete);    
+        $this->exec_query($query);    
     }
 }
 

@@ -11,7 +11,7 @@ class methodscall extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport> 
 SELECT NULL, T1.fichier, T2.code AS code, T1.id, 'methodscall'
   from <tokens> T1
@@ -21,7 +21,7 @@ where
  T1.type='method'
 SQL;
 
-        $this->exec_query($requete);
+        $this->exec_query($query);
 
 
 	}

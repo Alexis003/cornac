@@ -14,7 +14,7 @@ class method_special extends modules {
         $this->clean_rapport();
 
         $concat = $this->concat("T1.class","'->'","T1.scope");
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport>
 SELECT NULL, T1.fichier, $concat, T1.id, '{$this->name}' 
 FROM <tokens> T1
@@ -28,9 +28,9 @@ WHERE scope IN ( '__construct','__toString','__destruct',
 GROUP BY fichier, class, scope;
 
 SQL;
-    $this->exec_query($requete);
+    $this->exec_query($query);
 
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport>
 SELECT NULL, T1.fichier, T1.scope, T1.id, '{$this->name}' 
 FROM <tokens> T1
@@ -38,7 +38,7 @@ WHERE scope IN ( '__autoload' ) AND T1.type='_function'
 GROUP BY scope;
 
 SQL;
-        $this->exec_query($requete);
+        $this->exec_query($query);
 	}
 }
 

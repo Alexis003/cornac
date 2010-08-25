@@ -14,7 +14,7 @@ class globals extends modules {
         $this->clean_rapport();
         
         // variable global thanks to the global reserved word
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport> 
 SELECT NULL, T2.fichier, T2.code AS code, T2.id, '{$this->name}'
     FROM <tokens> T1
@@ -23,10 +23,10 @@ SELECT NULL, T2.fichier, T2.code AS code, T2.id, '{$this->name}'
            T1.fichier = T2.fichier
     WHERE T1.type='_global' 
 SQL;
-        $this->exec_query($requete);
+        $this->exec_query($query);
         
 // variables globales because in $GLOBALS
-       $requete = <<<SQL
+       $query = <<<SQL
 INSERT INTO <rapport> 
 SELECT NULL, T1.fichier, T3.code AS code, T2.id, '{$this->name}'
     FROM <tokens> T1
@@ -40,11 +40,11 @@ SELECT NULL, T1.fichier, T3.code AS code, T2.id, '{$this->name}'
           T1.type = 'tableau' AND
           T2.code = '\$GLOBALS';
 SQL;
-        $this->exec_query($requete);
+        $this->exec_query($query);
 
 // variables in main are automatically globals
 /*
-       $requete = <<<SQL
+       $query = <<<SQL
 INSERT INTO <rapport> 
 SELECT NULL, T1.fichier, T1.code AS code, T1.id, '{$this->name}'
     FROM <tokens> T1
@@ -52,7 +52,7 @@ SELECT NULL, T1.fichier, T1.code AS code, T1.id, '{$this->name}'
         T1.scope = 'global' AND
         T1.type = 'variable'
 SQL;
-        $this->exec_query($requete);
+        $this->exec_query($query);
         */
     }    
     

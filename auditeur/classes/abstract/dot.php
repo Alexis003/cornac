@@ -13,7 +13,7 @@ class dot extends modules {
 
         $this->clean_rapport();
 
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport> 
    SELECT T1.fichier, T2.code, T1.id, '{$this->name}'
    FROM <tokens> T1
@@ -25,7 +25,7 @@ INSERT INTO <rapport>
           TT.type = '$type_tag';
 SQL;
 
-        $this->exec_query($requete);
+        $this->exec_query($query);
     }
 }
 

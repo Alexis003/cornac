@@ -17,14 +17,14 @@ class literals_long extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport> 
 SELECT NULL, TR1.fichier, TRIM(code), TR1.id, '{$this->name}'
     FROM <tokens> TR1
     WHERE type = 'literals' AND
           LENGTH(code) > 1024
 SQL;
-        $this->exec_query($requete);
+        $this->exec_query($query);
 
         return ;
 	}

@@ -11,14 +11,14 @@ class rendu {
         $this->fichier = $fichier;
         $sql_fichier = $this->mid->quote($fichier);
 
-        $requete = <<<SQL
+        $query = <<<SQL
 SELECT * FROM rd
 WHERE droite >= $droite AND 
       gauche <= $gauche AND 
       fichier = $sql_fichier 
 ORDER BY droite
 SQL;
-        $res = $this->mid->query($requete);
+        $res = $this->mid->query($query);
         
         $this->lignes = array();
         while($ligne = $res->fetch(PDO::FETCH_ASSOC)) {
@@ -29,7 +29,7 @@ SQL;
         }
         
         if (!isset($debut)) {
-            print "$droite $gauche, $fichier\n$requete\n";
+            print "$droite $gauche, $fichier\n$query\n";
             return '';
             die();
         }

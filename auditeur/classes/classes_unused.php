@@ -17,7 +17,7 @@ class classes_unused extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
-        $requete = <<<SQL
+        $query = <<<SQL
 INSERT INTO <rapport> 
 SELECT NULL, TR1.fichier, TR1.element AS code, TR1.id, '{$this->name}'
     FROM <rapport>  TR1
@@ -25,29 +25,29 @@ SELECT NULL, TR1.fichier, TR1.element AS code, TR1.id, '{$this->name}'
     ON TR1.element = TR2.element AND TR2.module='_new' 
     WHERE TR1.module = 'classes' AND TR2.module IS NULL
 SQL;
-        $this->exec_query($requete);
+        $this->exec_query($query);
 
 // we need to check extensions : we have them in the dot rapport, from classes_hierarchie
-        $requete = <<<SQL
+        $query = <<<SQL
 SELECT TRD.a
     FROM <rapport>  TR1
     JOIN <rapport_dot> TRD
       ON TRD.b = TR1.element
     WHERE TR1.module = '_new' AND TRD.module = 'classes_hierarchie'
 SQL;
-        $res = $this->exec_query($requete);
+        $res = $this->exec_query($query);
         $extensions = $res->fetchAll(PDO::FETCH_COLUMN,0);
         $in = join("', '", $extensions);
 
 
-        $requete = <<<SQL
+        $query = <<<SQL
 DELETE FROM <rapport> 
     WHERE module='{$this->name}' AND element IN ('$in')
 SQL;
-        $res = $this->exec_query($requete);
+        $res = $this->exec_query($query);
 
 // same as above, but with 2 levels for extensions
-        $requete = <<<SQL
+        $query = <<<SQL
 SELECT TRD2.a
     FROM <rapport>  TR1
     JOIN <rapport_dot> TRD1
@@ -59,19 +59,19 @@ SELECT TRD2.a
           TRD2.module = 'classes_hierarchie'
 SQL;
 
-        $res = $this->exec_query($requete);
+        $res = $this->exec_query($query);
         $extensions = $res->fetchAll(PDO::FETCH_COLUMN,0);
         $in = join("', '", $extensions);
 
 
-        $requete = <<<SQL
+        $query = <<<SQL
 DELETE FROM <rapport> 
     WHERE module='{$this->name}' AND element IN ('$in')
 SQL;
-        $res = $this->exec_query($requete);
+        $res = $this->exec_query($query);
 
 // same as above, but with 3 levels for extensions
-        $requete = <<<SQL
+        $query = <<<SQL
 SELECT TRD3.a
     FROM <rapport>  TR1
     JOIN <rapport_dot> TRD1
@@ -86,19 +86,19 @@ SELECT TRD3.a
           TRD3.module = 'classes_hierarchie'          
 SQL;
 
-        $res = $this->exec_query($requete);
+        $res = $this->exec_query($query);
         $extensions = $res->fetchAll(PDO::FETCH_COLUMN,0);
         $in = join("', '", $extensions);
 
 
-        $requete = <<<SQL
+        $query = <<<SQL
 DELETE FROM <rapport> 
     WHERE module='{$this->name}' AND element IN ('$in')
 SQL;
-        $res = $this->exec_query($requete);
+        $res = $this->exec_query($query);
 
 // same as above, but with 4 levels for extensions
-        $requete = <<<SQL
+        $query = <<<SQL
 SELECT TRD4.a
     FROM <rapport>  TR1
     JOIN <rapport_dot> TRD1
@@ -115,16 +115,16 @@ SELECT TRD4.a
           TRD3.module = 'classes_hierarchie' AND 
           TRD4.module = 'classes_hierarchie'          
 SQL;
-        $res = $this->exec_query($requete);
+        $res = $this->exec_query($query);
         $extensions = $res->fetchAll(PDO::FETCH_COLUMN,0);
         $in = join("', '", $extensions);
 
 
-        $requete = <<<SQL
+        $query = <<<SQL
 DELETE FROM <rapport> 
     WHERE module='{$this->name}' AND element IN ('$in')
 SQL;
-        $res = $this->exec_query($requete);
+        $res = $this->exec_query($query);
 
 // may we need some more, or a while loop ...
 
