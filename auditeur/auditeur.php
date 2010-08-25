@@ -135,6 +135,9 @@ $modules = array(
 'dangerous_combinaisons',
 'literals_reused',
 'literals_long',
+'interfaces',
+'functions_without_returns',
+
 );
 
 $INI['analyzers'] = get_arg_value($args, '-a', 'all');
