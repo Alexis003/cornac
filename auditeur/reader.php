@@ -72,11 +72,11 @@ if (isset($INI['cornac']['prefix'])) {
 write_ini_file($INI, INI);
 
 // @attention : should also support _dot reports
-$requete = 'SELECT * FROM '.$prefix.'_rapport WHERE module='.$database->quote($INI['reader']['module']);
+$query = 'SELECT * FROM '.$prefix.'_rapport WHERE module='.$database->quote($INI['reader']['module']);
 if (!empty($INI['reader']['file'])) {
-    $requete .= ' AND fichier='.$database->quote($INI['reader']['file']);
+    $query .= ' AND fichier='.$database->quote($INI['reader']['file']);
 }
-$res = $database->query($requete);
+$res = $database->query($query);
 
 // @attention : should support -s for summaries. 
 
