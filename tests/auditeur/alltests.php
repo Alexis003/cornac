@@ -49,6 +49,8 @@ $tests = array(
 'class.dangerous_combinaisons.test.php',
 'class.gpc_affectations.test.php',
 'class.variables_one_letter.test.php',
+'class.interfaces.test.php',
+'class.functions_without_returns.test.php',
 // Prochain tests
 );
 
