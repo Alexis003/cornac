@@ -1,8 +1,8 @@
 <?php
 
 class nestedif extends modules {
+	protected	$description = 'If imbriqués';
 	protected	$description = 'Liste des if';
-	protected	$description_en = 'List of if';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -26,7 +26,7 @@ SELECT NULL, T1.fichier, $concat, T1.id, '{$this->name}'
 SQL;
 
         $this->exec_query($query);
-
+        return true;
 	}
 }
 

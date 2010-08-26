@@ -1,8 +1,8 @@
 <?php
 
 class variables_relations extends modules {
+	protected	$title = 'Liens entre variables';
 	protected	$description = 'Lien entre les variables';
-	protected	$description_en = 'Link between variables';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -15,7 +15,7 @@ class variables_relations extends modules {
         $this->clean_rapport();
 
 // @todo : this should be done context by context. How can I do that? 
-        
+// @note I need another table for this        
         $query = <<<SQL
 INSERT INTO <rapport_dot> 
   SELECT  T4.code, T2.code, CONCAT(T1.class,'::',T1.scope), '{$this->name}' 
@@ -34,7 +34,7 @@ WHERE T1.type = 'affectation';
 SQL;
         $this->exec_query($query);
 
-        return ;
+        return true;
 	}
 }
 

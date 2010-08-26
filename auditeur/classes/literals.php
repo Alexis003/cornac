@@ -1,8 +1,8 @@
 <?php
 
 class literals extends typecalls {
-	protected	$description = 'Liste des literaux et de leur usage';
-	protected	$description_en = 'Literals being used';
+	protected	$title = 'Litéraux';
+	protected	$description = 'Liste des literaux et de leur usage (chaînes (guillemets, heredoc), nombres)';
 
     function __construct($mid) {
         parent::__construct($mid);
@@ -13,6 +13,8 @@ class literals extends typecalls {
 	public function analyse() {
 	    $this->type = 'literals';
 	    parent::analyse();
+	    
+	    return true;
 	}
 	
 }

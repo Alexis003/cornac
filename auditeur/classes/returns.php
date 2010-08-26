@@ -1,8 +1,8 @@
 <?php
 
 class returns extends modules {
-	protected	$description = 'Liste des fonctions méthodes de contrôleur pour le ZF (*Action)';
-	protected	$description_en = 'List of action method from controlers in ZF ';
+	protected	$title = 'Returns';
+	protected	$description = 'Liste des utilisations de la commande return';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -22,7 +22,9 @@ WHERE scope NOT IN ( '__construct','__destruct','__set','__get','__call','__clon
  AND scope != class AND (class != 'global' AND scope != 'global')
 GROUP BY fichier, class, scope 
 SQL;
-    $this->exec_query($query);
+        $this->exec_query($query);
+
+        return true;
 	}
 }
 

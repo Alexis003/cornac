@@ -1,7 +1,7 @@
 <?php
 
 class variables_one_letter extends modules {
-	protected	$title = 'Variables une lettre';
+	protected	$title = 'Variables d\'une seule lettre';
 	protected	$description = 'Liste des variables dont le nom est une seule lettre';
 
 	function __construct($mid) {
@@ -26,7 +26,7 @@ GROUP BY BINARY TR1.id;
 SQL;
         $this->exec_query($query);
 
-        return ;
+        return true;
 	}
 }
 

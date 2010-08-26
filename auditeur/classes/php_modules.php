@@ -1,8 +1,8 @@
 <?php
 
 class php_modules extends modules {
+	protected	$title = 'Extensions PHP nécessaires';
 	protected	$description = 'Liste des modules PHP utilisés';
-	protected	$description_en = 'PHP modules being used';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -128,7 +128,8 @@ SQL;
    	        $res = $this->exec_query($query);
    	    }
 	}
-
+    
+    return true;
 }
 
 ?>

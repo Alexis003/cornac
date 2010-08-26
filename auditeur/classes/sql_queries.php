@@ -1,8 +1,8 @@
 <?php
 
 class sql_queries extends noms {
+	protected	$title = 'Requêtes SQL';
 	protected	$description = 'Liste des requêtes SQL dans le texte';
-	protected	$description_en = 'List of SQL queries';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -33,7 +33,7 @@ INSERT INTO <rapport>
 SQL;
 
         $this->exec_query($query);
-        return;
+        return true;
 	}
 }
 

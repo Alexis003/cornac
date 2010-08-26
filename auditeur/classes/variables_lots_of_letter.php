@@ -1,8 +1,8 @@
 <?php
 
 class variables_lots_of_letter extends modules { 
+	protected	$title = 'Long variable';
 	protected	$description = 'Nom de variables avec trop de lettres (> 20)';
-	protected	$description_en = 'Variable names with too many letters (> 20)';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -26,7 +26,7 @@ GROUP BY BINARY TR1.id;
 SQL;
         $this->exec_query($query);
 
-        return ;
+        return true;
 	}
 }
 
