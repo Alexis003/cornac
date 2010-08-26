@@ -34,7 +34,7 @@ TC.code REGEXP '^$gpc_regexp';
 SQL;
         $this->exec_query($query);
 
-        return; 
+        return true; 
         // @todo finish this one
 // @note full arrays,  not just variables
         $query = <<<SQL

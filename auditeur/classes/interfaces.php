@@ -21,7 +21,7 @@ INSERT INTO <rapport>
 SQL;
         $this->exec_query($query);
         
-        return; 
+        return true; 
 	}
 }
 

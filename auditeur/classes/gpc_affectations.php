@@ -1,8 +1,8 @@
 <?php
 
 class gpc_affectations extends modules {
-	protected	$description = 'Liste des variables GPC qui sont affectées';
-	protected	$description_en = 'List of GPC variables that are being assigned';
+	protected	$title = 'Assignations de GPC';
+	protected	$description = 'Liste des variables GPC qui se voient assigné une valeur (mauvaise pratique)';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -28,7 +28,7 @@ WHERE TR1.module = 'affectations_variables' AND
 SQL;
         $this->exec_query($query);
 
-        return ;
+        return true;
 	}
 }
 

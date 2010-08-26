@@ -1,8 +1,8 @@
 <?php
 
 class concatenation_gpc extends modules {
-	protected	$description = 'Concatenation utilisant un GPC';
-	protected	$description_en = 'Concatenation using a GPC variable';
+	protected	$title = 'Concatenation de variables GPC';
+	protected	$description = 'Concatenation utilisant une des variables GPC (sécurité!)';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -29,7 +29,7 @@ INSERT INTO <rapport>
 SQL;
         $this->exec_query($query);
 
-	    return;
+	    return true;
 	}
 }
 

@@ -1,8 +1,9 @@
 <?php
 
 class indenting extends modules {
-	protected	$description = 'Liste des niveaux d\'indentation';
-	protected	$description_en = 'List of indentation levels';
+	protected	$title = 'Indentations';
+	protected	$description = 'Liste des niveaux d\'indentation nécessaires : les classes, fonctions, boucles et switch imposent généralement une indentation. Voici la liste des niveaux qui devraient être nécessaires, et la structure qui les impose.';
+
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -36,7 +37,7 @@ WHERE N.type IN ('ifthen','_class','_function','_while','_dowhile','_foreach','_
 SQL;
         $this->exec_query($query);
 
-        return ;
+        return true;
 	}
 }
 

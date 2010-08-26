@@ -1,8 +1,8 @@
 <?php
 
 class classes_unused extends modules {
+	protected	$title = 'Classes inutilisées';
 	protected	$description = 'Liste des classes qui ne sont pas utilisées';
-	protected	$description_en = 'List of unused classes';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -128,7 +128,7 @@ SQL;
 
 // @attention may we need some more queries, with more joins, or a clever while loop. Up to now, it's sufficient
 
-        return ;
+        return true;
 	}
 }
 

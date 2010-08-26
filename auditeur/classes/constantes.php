@@ -1,11 +1,8 @@
 <?php
 
 class constantes extends typecalls {
-	protected	$inverse = true;
-	protected	$name = 'Classe sans nom';
-
-	protected	$description = 'Liste des constantes et de leur usage';
-	protected	$description_en = 'Constantes being used';
+	protected	$title = 'Constantes';
+	protected	$description = 'Liste des constantes utilisées';
 
     function __construct($mid) {
         parent::__construct($mid);
@@ -16,7 +13,7 @@ class constantes extends typecalls {
 	public function analyse() {
 	    $this->type = array('constante', 'constante_magique');
 	    parent::analyse();
-	    return;
+	    return true;
 	}
 	
 }

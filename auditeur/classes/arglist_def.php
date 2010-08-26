@@ -1,8 +1,8 @@
 <?php
 
 class arglist_def extends modules {
+	protected	$title = 'Arguments définis';
 	protected	$description = 'Liste des arguments par definitions de fonctions';
-	protected	$description_en = 'List of argument for defined functions';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -72,7 +72,7 @@ SQL;
                 $this->exec_query($query);
             }
         }
-        return ;
+        return true;
     }
 }
 

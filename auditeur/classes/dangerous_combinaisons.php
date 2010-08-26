@@ -1,8 +1,8 @@
 <?php
 
 class dangerous_combinaisons extends modules {
-	protected	$description = 'Liste de fichiers ayant des combinaisons dangereuses d\'elements';
-	protected	$description_en = 'List of files that combine several dangerous tokens';
+	protected	$title = 'Combinaisons dangereuses';
+	protected	$description = 'Liste de fichiers ayant des combinaisons dangereuses d\'elements (ex. $_POST et shell_exec).';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -33,7 +33,7 @@ INSERT INTO <rapport>
 SQL;
             $this->exec_query($query);
         }
-        return ;
+        return true;
 	}
 }
 

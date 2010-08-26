@@ -127,9 +127,8 @@ DELETE FROM <rapport> WHERE module = '{$this->name}_tmp'
 SQL;
    	        $res = $this->exec_query($query);
    	    }
+        return true;
 	}
-    
-    return true;
 }
 
 ?>

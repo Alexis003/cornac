@@ -1,8 +1,8 @@
 <?php
 
 class arglist_call extends modules {
+	protected	$title = 'Arguments utilisés';
 	protected	$description = 'Liste des arguments par appel de fonction';
-	protected	$description_en = 'List of argument for called functions';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -32,7 +32,7 @@ GROUP BY T1.id;
 SQL;
         $this->exec_query($query);
 
-        return ;
+        return true;
 	}
 }
 

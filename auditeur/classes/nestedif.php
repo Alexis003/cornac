@@ -1,7 +1,7 @@
 <?php
 
 class nestedif extends modules {
-	protected	$description = 'If imbriqués';
+	protected	$title = 'If imbriqués';
 	protected	$description = 'Liste des if';
 
 	function __construct($mid) {

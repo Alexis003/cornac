@@ -1,8 +1,8 @@
 <?php
 
 class php_classes extends functioncalls {
-	protected	$description = 'Liste des classes PHP';
-	protected	$description_en = 'List of PHP classes';
+	protected	$description = 'Liste des classes PHP utilisées';
+	protected	$title = 'Classes PHP';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -30,6 +30,8 @@ INSERT INTO <rapport>
           T2.code IN ('$in')
 SQL;
         $this->exec_query($query);
+        
+        return true;
     }
 }
 

@@ -26,7 +26,7 @@ SELECT NULL, TR1.fichier, TRIM(code), TR1.id, '{$this->name}'
 SQL;
         $this->exec_query($query);
 
-        return ;
+        return true;
 	}
 }
 
