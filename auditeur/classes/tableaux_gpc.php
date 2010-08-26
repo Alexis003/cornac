@@ -1,8 +1,8 @@
 <?php
 
 class tableaux_gpc extends modules {
-	protected	$description = 'Liste des tableaux et de leur usage';
-	protected	$description_en = 'Variables being used';
+	protected	$title = 'Tableaux et leur index';
+	protected	$description = 'Liste des tableaux et de leur usage, avec leurs index';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -24,9 +24,8 @@ INSERT INTO <rapport>
 SQL;
         $this->exec_query($query);
 
-
+        return true;
 	}
-	
 }
 
 ?>

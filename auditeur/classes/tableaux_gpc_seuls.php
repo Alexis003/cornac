@@ -1,8 +1,8 @@
 <?php
 
 class tableaux_gpc_seuls extends modules {
-	protected	$description = 'Liste des tableaux et de leur usage';
-	protected	$description_en = 'Variables being used';
+	protected	$title = 'Tableaux GPC';
+	protected	$description = 'Liste des tableaux spéciaux de PHP';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -13,7 +13,7 @@ class tableaux_gpc_seuls extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
-// cas simple : variable -> method
+// @note cas simple : variable -> method
         $query = <<<SQL
 INSERT INTO <rapport>
     SELECT NULL, T1.fichier, T1.code AS code, T1.id, '{$this->name}'
@@ -23,12 +23,10 @@ INSERT INTO <rapport>
           T1.code IN ('\$_GET','\$_SERVER','\$GLOBALS','\$_POST','\$_REQUEST','\$_ENV','\$_COOKIE','\$_SESSION')
            AND T2.type != 'tableau'
 SQL;
-
         $this->exec_query($query);
 
-
+        return true;
 	}
-	
 }
 
 ?>

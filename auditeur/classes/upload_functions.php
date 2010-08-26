@@ -1,8 +1,8 @@
 <?php
 
 class upload_functions extends functioncalls {
-	protected	$description = 'Liste des fonctions de fichiers';
-	protected	$description_en = 'usage of file functions';
+	protected	$title = 'Fonctions d\'upload';
+	protected	$description = 'Liste des fonctions utilisées lors de l\'upload d\'un fichier';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -13,6 +13,8 @@ class upload_functions extends functioncalls {
 	public function analyse() {
 	    $this->functions = array('move_uploaded_file','is_uploaded_file','rename','copy');
 	    parent::analyse();
+	    
+	    return true;
 	}
 }
 

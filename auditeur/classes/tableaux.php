@@ -1,8 +1,8 @@
 <?php
 
 class tableaux extends modules {
-	protected	$description = 'Liste des tableaux et de leur usage';
-	protected	$description_en = 'Variables being used';
+	protected	$title = 'Tableaux';
+	protected	$description = 'Liste des tableaux (array) utilisés';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -25,9 +25,8 @@ WHERE
 SQL;
         $this->exec_query($query);
 
-
+        return true;
 	}
-	
 }
 
 ?>

@@ -1,8 +1,8 @@
 <?php
 
 class classes extends noms {
-	protected	$description = 'Liste des classes et de leurs extensions';
-	protected	$description_en = 'List of classes et its extensions';
+	protected	$title = 'Classes';
+	protected	$description = 'Liste des classes définies dans l\'application';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -15,7 +15,7 @@ class classes extends noms {
 	    $this->noms['type_tags'] = 'name';
 	    
 	    parent::analyse();
-	    return;
+	    return true;
 	}
 }
 

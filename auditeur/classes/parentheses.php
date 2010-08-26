@@ -1,8 +1,8 @@
 <?php
 
 class parentheses extends modules {
-    protected    $description = 'Utilisation des parentheses';
-    protected    $description_en = 'Usage of ()';
+    protected    $title = 'Parentheses';
+    protected    $description = 'Utilisation des parenthèses';
 
     function __construct($mid) {
         parent::__construct($mid);
@@ -21,8 +21,9 @@ INSERT INTO <rapport>
    ON T1.id = T2.id
    WHERE T1.type = 'parentheses';
 SQL;
-    $this->exec_query($query);
+        $this->exec_query($query);
+
+        return true;
     }
 }
-
 ?>
