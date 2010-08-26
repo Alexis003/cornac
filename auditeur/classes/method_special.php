@@ -34,8 +34,7 @@ SQL;
 INSERT INTO <rapport>
 SELECT NULL, T1.fichier, T1.scope, T1.id, '{$this->name}' 
 FROM <tokens> T1
-WHERE scope IN ( '__autoload' ) AND T1.type='_function'
-GROUP BY scope;
+WHERE scope IN ( '__autoload' ) AND T1.type='_function';
 
 SQL;
         $this->exec_query($query);
