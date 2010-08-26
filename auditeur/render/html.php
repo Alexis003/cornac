@@ -25,8 +25,8 @@ class Render_html {
     }
     
     function render($lines) {
-        $requete = "SELECT module FROM {$this->tables['<rapport_module>']} ORDER BY fait DESC ";
-        $res = $this->db->query($requete);
+        $query = "SELECT module FROM {$this->tables['<rapport_module>']} ORDER BY fait DESC ";
+        $res = $this->db->query($query);
 
         $html = '';
         while($ligne = $res->fetch()) {
@@ -49,8 +49,8 @@ class Render_html {
     }
 
     function render_index($analyzer) {
-        $requete = "SELECT element, COUNT(*) AS nb FROM {$this->tables['<rapport>']} WHERE module='{$analyzer}' GROUP BY element ORDER BY element";
-        $res = $this->db->query($requete);
+        $query = "SELECT element, COUNT(*) AS nb FROM {$this->tables['<rapport>']} WHERE module='{$analyzer}' GROUP BY element ORDER BY element";
+        $res = $this->db->query($query);
         
         $html = '';
         $total = 0;
@@ -70,8 +70,8 @@ class Render_html {
     }
 
     function render_classe_freq($analyzer) {
-        $requete = "SELECT fichier, element, COUNT(*) AS nb FROM {$this->tables['<rapport>']} WHERE module='{$analyzer}' GROUP BY fichier, element ORDER BY nb DESC";
-        $res = $this->db->query($requete);
+        $query = "SELECT fichier, element, COUNT(*) AS nb FROM {$this->tables['<rapport>']} WHERE module='{$analyzer}' GROUP BY fichier, element ORDER BY nb DESC";
+        $res = $this->db->query($query);
 
         $html = '';
         $total = 0;
@@ -95,8 +95,8 @@ class Render_html {
     }
 
     function render_fichier_freq($analyzer) {
-        $requete = "SELECT fichier, element, COUNT(*) AS nb FROM {$this->tables['<rapport>']} WHERE module='{$analyzer}' GROUP BY fichier, element ORDER BY nb DESC";
-        $res = $this->db->query($requete);
+        $query = "SELECT fichier, element, COUNT(*) AS nb FROM {$this->tables['<rapport>']} WHERE module='{$analyzer}' GROUP BY fichier, element ORDER BY nb DESC";
+        $res = $this->db->query($query);
 
         $html = '';
         $total = 0;
@@ -120,8 +120,8 @@ class Render_html {
     }
     
     function render_occurrences_freq($analyzer) {
-        $requete = "SELECT element, COUNT(*) AS nb FROM {$this->tables['<rapport>']} WHERE module='{$analyzer}' GROUP BY element ORDER BY nb DESC";
-        $res = $this->db->query($requete);
+        $query = "SELECT element, COUNT(*) AS nb FROM {$this->tables['<rapport>']} WHERE module='{$analyzer}' GROUP BY element ORDER BY nb DESC";
+        $res = $this->db->query($query);
         
         $html = '';
         $total = 0;
@@ -139,8 +139,8 @@ class Render_html {
     }
     
     function render_occurrence_fichier($analyzer) {
-        $requete = "SELECT element, fichier FROM {$this->tables['<rapport>']} WHERE module='{$analyzer}' GROUP BY element, fichier";
-        $res = $this->db->query($requete);
+        $query = "SELECT element, fichier FROM {$this->tables['<rapport>']} WHERE module='{$analyzer}' GROUP BY element, fichier";
+        $res = $this->db->query($query);
         
         $html = '';
         $lignes = array();
@@ -162,14 +162,14 @@ class Render_html {
     }
     
     function render_scope_freq($analyzer) {
-        $requete = "
+        $query = "
             SELECT concat(CR.fichier, ': <br /><b>', class,'->', scope,'</b>') as class, element, COUNT(*) AS nb 
             FROM {$this->tables['<rapport>']} CR
             JOIN {$this->tables['<tokens>']} T1
                 ON CR.token_id = T1.id
                 WHERE module='{$analyzer}' 
             GROUP BY concat(CR.fichier, class , scope), element";
-        $res = $this->db->query($requete);
+        $res = $this->db->query($query);
 
         if ($res) {
             $html = '';
@@ -211,8 +211,8 @@ if (!isset($_GET['module'])) {
     die();
 }
 
-    $requete = "SELECT * FROM {$tables['<rapport_module>']} WHERE module=".$mysql->quote($_GET['module'])." ";
-    $res = $mysql->query($requete);
+    $query = "SELECT * FROM {$tables['<rapport_module>']} WHERE module=".$mysql->quote($_GET['module'])." ";
+    $res = $mysql->query($query);
     
     $ligne = $res->fetch();
     $format = $ligne['format'];
@@ -230,8 +230,8 @@ if (!isset($_GET['module'])) {
 switch(@$_GET['type']) {
     case 'gexf' : 
 
-        $requete = "SELECT a, b, cluster FROM {$tables['<rapport_dot>']} WHERE module='{$_GET['module']}'";
-        $res = $mysql->query($requete);
+        $query = "SELECT a, b, cluster FROM {$tables['<rapport_dot>']} WHERE module='{$_GET['module']}'";
+        $res = $mysql->query($query);
 
         $nodes = array();
         $edges = array();
@@ -300,8 +300,8 @@ XML;
         break;
 
     case 'dot' :
-        $requete = "SELECT a, b, cluster FROM {$tables['<rapport_dot>']} WHERE module='{$_GET['module']}'";
-        $res = $mysql->query($requete);
+        $query = "SELECT a, b, cluster FROM {$tables['<rapport_dot>']} WHERE module='{$_GET['module']}'";
+        $res = $mysql->query($query);
         
         $dot =  "digraph G {
 size=\"8,6\"; ratio=fill; node[fontsize=24];
