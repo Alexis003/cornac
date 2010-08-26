@@ -1,8 +1,8 @@
 <?php
 
 class undeffunctions extends modules {
-	protected	$description = 'Liste des fonctions sans definitions';
-	protected	$description_en = 'List of undefined functions';
+	protected	$title = 'Fonctions non définies';
+	protected	$description = 'Liste des fonctions sans définition ni déclaration : elles peuvent manquer, ou bien être natives à PHP';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -22,9 +22,9 @@ INSERT INTO <rapport>
    WHERE TR1.module='functionscalls' AND
          TR2.element IS NULL;
 SQL;
-//        print $this->prepare_query($query);
         $this->exec_query($query);
 
+        return true;
 	}
 }
 

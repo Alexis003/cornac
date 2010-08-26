@@ -1,8 +1,8 @@
 <?php
 
 class image_functions extends functioncalls {
-	protected	$description = 'Liste des fonctions de dossier';
-	protected	$description_en = 'usage of directory functions';
+	protected	$title = 'Fonctions d\'images';
+	protected	$description = 'Liste des fonctions de l\'extension de gd de PHP';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -13,6 +13,8 @@ class image_functions extends functioncalls {
 	public function analyse() {
 	    $this->functions = get_extension_funcs("gd");
 	    parent::analyse();
+	    
+	    return true;
 	}
 }
 

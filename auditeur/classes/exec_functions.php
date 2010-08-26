@@ -1,8 +1,8 @@
 <?php
 
 class exec_functions extends functioncalls {
-	protected	$description = 'Liste des fonctions d execution shell';
-	protected	$description_en = 'usage of exec functions';
+	protected	$title = 'Fonctions de ligne de commande';
+	protected	$description = 'Liste des fonctions de l\'extension de exec de PHP';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -11,8 +11,13 @@ class exec_functions extends functioncalls {
 	}
 	
 	public function analyse() {
-	    $this->functions = array('exec','shell_exec','passthru', 'system');
+	    $this->functions = array('exec',
+	                             'shell_exec',
+	                             'passthru', 
+	                             'system');
 	    parent::analyse();
+	    
+	    return true;
 	}
 }
 

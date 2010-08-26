@@ -1,8 +1,8 @@
 <?php
 
 class filter_functions extends functioncalls {
-	protected	$description = 'Liste des fonctions de dossier';
-	protected	$description_en = 'usage of directory functions';
+	protected	$title = 'Fonctions de filter';
+	protected	$description = 'Liste des fonctions de l\'extension de filter de PHP';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -11,8 +11,17 @@ class filter_functions extends functioncalls {
 	}
 	
 	public function analyse() {
-	    $this->functions = get_extension_funcs("filter");
+	    $this->functions = array(   'filter_input',
+                                    'filter_var',
+                                    'filter_input_array',
+                                    'filter_var_array',
+                                    'filter_list',
+                                    'filter_has_var',
+                                    'filter_id',
+	    );
 	    parent::analyse();
+	    
+	    return true;
 	}
 }
 
