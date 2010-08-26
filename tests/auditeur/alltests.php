@@ -51,6 +51,8 @@ $tests = array(
 'class.variables_one_letter.test.php',
 'class.interfaces.test.php',
 'class.functions_without_returns.test.php',
+'class.session_variables.test.php ',
+'class.gpc_variables.test.php ',
 // Prochain tests
 );
 
