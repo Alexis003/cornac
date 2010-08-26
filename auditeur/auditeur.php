@@ -94,7 +94,6 @@ $modules = array(
 'tableaux_gpc',
 'tableaux_gpc_seuls',
 'thrown',
-'trim_rawtext',
 'undeffunctions',
 'unused_args',
 'vardump',
