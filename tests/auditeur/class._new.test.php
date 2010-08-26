@@ -5,8 +5,8 @@ class _New_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
         $this->name = '_new';
-        $this->attendus = array('$a','$asp','StdClass', 'classe_sans_parenthese');
-        $this->inattendus = array('$x');
+        $this->attendus = array('$a','$asp','StdClass', 'classe_sans_parenthese','z');
+        $this->inattendus = array('$x','$z');
         
         parent::generic_test();
     }

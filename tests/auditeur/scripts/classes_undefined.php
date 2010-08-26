@@ -12,4 +12,6 @@ $z = new z();
 
 $v = new $w;
 
+$w = new $request[3]($x);
+
 ?>
