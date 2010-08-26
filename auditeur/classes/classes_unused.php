@@ -27,7 +27,7 @@ SELECT NULL, TR1.fichier, TR1.element AS code, TR1.id, '{$this->name}'
 SQL;
         $this->exec_query($query);
 
-// we need to check extensions : we have them in the dot rapport, from classes_hierarchie
+// @note we need to check extensions : we have them in the dot rapport, from classes_hierarchie
         $query = <<<SQL
 SELECT TRD.a
     FROM <rapport>  TR1
@@ -46,7 +46,7 @@ DELETE FROM <rapport>
 SQL;
         $res = $this->exec_query($query);
 
-// same as above, but with 2 levels for extensions
+// @note same as above, but with 2 levels for extensions
         $query = <<<SQL
 SELECT TRD2.a
     FROM <rapport>  TR1
@@ -70,7 +70,7 @@ DELETE FROM <rapport>
 SQL;
         $res = $this->exec_query($query);
 
-// same as above, but with 3 levels for extensions
+// @note same as above, but with 3 levels for extensions
         $query = <<<SQL
 SELECT TRD3.a
     FROM <rapport>  TR1
@@ -97,7 +97,7 @@ DELETE FROM <rapport>
 SQL;
         $res = $this->exec_query($query);
 
-// same as above, but with 4 levels for extensions
+// @note same as above, but with 4 levels for extensions
         $query = <<<SQL
 SELECT TRD4.a
     FROM <rapport>  TR1
@@ -126,7 +126,7 @@ DELETE FROM <rapport>
 SQL;
         $res = $this->exec_query($query);
 
-// may we need some more, or a while loop ...
+// @attention may we need some more queries, with more joins, or a clever while loop. Up to now, it's sufficient
 
         return ;
 	}

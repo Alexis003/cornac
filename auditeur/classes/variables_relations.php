@@ -32,7 +32,6 @@ JOIN <tokens> T4
     ON T4.fichier = T1.fichier AND T4.droite BETWEEN T3.droite AND T3.gauche AND T4.type='variable'
 WHERE T1.type = 'affectation'; 
 SQL;
-        print $this->prepare_query($query);
         $this->exec_query($query);
 
         return ;
