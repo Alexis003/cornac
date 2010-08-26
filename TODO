@@ -2,8 +2,11 @@ Check fudforum binary protector (install.php)
 Merge TODO from auditeur.
 
 Spin off .ods builder 
+Finish translations of analyzers's title and description
+Make the english version
 
 [cornac]
+spot popular libraries, and avoid them (tinyMCE, phpmailer, fpdf, ...)
 Add a log to show progress
 Handle files with ' ' space in tokenizeur.php
 Add support for a version of Cornac (checking for config files, tables configurations, etc.)
@@ -156,7 +159,9 @@ functions (and files) that emit text (print, var_dump, raw text...)
 methods/files/classes that misses some code.
 
 Spot GPC assigned to variable, then used in concatenation (security...)
-Spot library dependencies, espcially PEAR. 
+Spot library dependencies, espcially PEAR, phpmailer, tinyMCE. 
+
+
 
 [auditeur]
 export to html : should match the interactive web version
@@ -164,7 +169,6 @@ export to html : should match the interactive web version
 [web]
 export to dot
 export to gephi
-export to .ods
 export to .csv
 export to .yaml
 
@@ -181,7 +185,6 @@ display special analyse separatly from normal tagging
 Make better display 
 
 [inventaire]
-list GPC variables read (and sessions, and globals)
 regex
 sql requests
 
