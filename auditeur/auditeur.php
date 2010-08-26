@@ -137,6 +137,8 @@ $modules = array(
 'literals_long',
 'interfaces',
 'functions_without_returns',
+'session_variables',
+'gpc_variables',
 
 );
 
