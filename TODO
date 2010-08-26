@@ -4,6 +4,7 @@ Merge TODO from auditeur.
 Spin off .ods builder 
 
 [cornac]
+Add a log to show progress
 Handle files with ' ' space in tokenizeur.php
 Add support for a version of Cornac (checking for config files, tables configurations, etc.)
 add file restriction in the cornac.ini file
@@ -179,6 +180,10 @@ spot bad language
 display special analyse separatly from normal tagging
 Make better display 
 
+[inventaire]
+list GPC variables read (and sessions, and globals)
+regex
+sql requests
 
 /// to dispatch
 
