@@ -6,7 +6,7 @@ class inclusions_path_Test extends Auditeur_Framework_TestCase
     public function testVariables()  { 
         $this->name = 'inclusions_path';
         $this->attendus = array('inclusion.php',
-                                '$this->inclusion()'
+                                '$this->inclusion()',
                                 'PATH.$fichier'
                                 );
         $this->inattendus = array();

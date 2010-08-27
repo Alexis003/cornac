@@ -27,7 +27,6 @@ $tests = array(
 'class.doubledeffunctions.test.php',
 'class.doubledefclass.test.php',
 'class.inclusions.test.php',
-'class.inclusions_test.test.php',
 'class.statiques.test.php',
 'class.html_tags.test.php',
 'class.undeffunctions.test.php',
@@ -51,25 +50,36 @@ $tests = array(
 'class.variables_one_letter.test.php',
 'class.interfaces.test.php',
 'class.functions_without_returns.test.php',
-'class.session_variables.test.php ',
-'class.gpc_variables.test.php ',
+'class.session_variables.test.php',
+'class.gpc_variables.test.php',
+// 'class.inclusions2.test.php',  @todo tests with dot format will come later
+'class.inclusions_path.test.php',
+'class.literals_long.test.php',
+'class.literals_reused.test.php',
+'class.tableaux.test.php',
 // Prochain tests
 );
 
 foreach($tests as $i => $test ) {
-    $fichier = $test;
-    if (!file_exists($fichier)) {
+    $file = trim($test); // @note precaution. I happened to leave some white space 
+    if (!file_exists($file)) {
         unset($tests[$i]); 
-        print "Tests $test introuvable (pas de fichier $fichier) : omis\n";
+        print "Test file '$test' not available : omitted\n";
         continue;
     }
-    require (dirname(__FILE__)."/".$fichier);
+    require (dirname(__FILE__)."/".$file);
     
-    $code = file_get_contents(dirname(__FILE__)."/".$fichier);
+    $code = file_get_contents(dirname(__FILE__)."/".$file);
     if (!preg_match('$class (.*?_Test) $', $code, $r)) {
-        print "Impossible de trouver la classe de test dans '$fichier'\n";
+        print "Couldn't find the test class in file '$file'\n";
         die();
     }
+    
+    $script = substr($file, 6, -9); 
+    if (!file_exists("scripts/$script.php")) {
+        print "Couldn't find the script file $script for the test in file '$file'\n";
+        die();
+    };
 }
  
 class Framework_AllTests
