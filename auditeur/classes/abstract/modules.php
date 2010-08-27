@@ -37,6 +37,8 @@ abstract class modules {
                               '<rapport_module>' => $prefixe.'_rapport_module',
                               '<rapport_dot>' => $prefixe.'_rapport_dot',
                             );
+
+       $this->name = get_class($this);
     }
     
     abstract function analyse();

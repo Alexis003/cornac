@@ -78,7 +78,6 @@ $modules = array(
 'mysqli_functions',
 'nestedif',
 'nestedloops',
-'nonphp_functions',
 'parentheses',
 'php_functions',
 'php_modules',

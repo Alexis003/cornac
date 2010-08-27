@@ -6,8 +6,6 @@ class inclusions_path extends modules {
 
 	function __construct($mid) {
         parent::__construct($mid);
-        
-    	$this->name = __CLASS__;
 	}
 	
 	public function analyse() {
@@ -20,7 +18,7 @@ INSERT INTO <rapport>
         JOIN <tokens> T2
             ON T1.fichier = T2.fichier AND
                T2.droite = T1.droite + 1
-        LEFT JOIN phpmyadmin_cache TC
+        LEFT JOIN <tokens_cache> TC
             ON TC.id = T2.id
     WHERE T1.type='inclusion'
 SQL;
