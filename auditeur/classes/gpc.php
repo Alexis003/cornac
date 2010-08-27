@@ -1,11 +1,8 @@
 <?php
 
 class gpc extends typecalls {
-	protected	$inverse = true;
-	protected	$name = 'Classe sans nom';
-
-	protected	$description = 'Liste des variables et de leur usage';
-	protected	$description_en = 'Variables being used';
+	protected	$description = 'Liste des variables superglobales et leur usage';
+	protected	$title = 'Superglobales';
 
     function __construct($mid) {
         parent::__construct($mid);

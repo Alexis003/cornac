@@ -1,8 +1,8 @@
 <?php
 
 class inclusions extends modules {
-	protected	$description = 'Liste des inclusions';
-	protected	$description_en = 'Where files are included';
+	protected	$title = 'Inclusions';
+	protected	$description = 'Liste des inclusions (fonctions utilisées)';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -35,6 +35,7 @@ INSERT INTO <rapport>
 SQL;
         $this->exec_query($query);
 
+        return true;
 	}
 }
 

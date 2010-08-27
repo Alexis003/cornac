@@ -1,8 +1,8 @@
 <?php
 
 class zfAction extends modules {
+	protected	$title = 'Actions Zend';
 	protected	$description = 'Liste des fonctions méthodes de contrôleur pour le ZF (*Action)';
-	protected	$description_en = 'List of action method from controlers in ZF ';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -24,7 +24,9 @@ SELECT NULL, T1.fichier, T1.code, T1.id, '{$this->name}'
         AND TT.type = 'name'
     ;
 SQL;
-    $this->exec_query($query);
+        $this->exec_query($query);
+        
+        return true;
 	}
 }
 

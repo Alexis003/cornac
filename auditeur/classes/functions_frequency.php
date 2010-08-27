@@ -1,8 +1,8 @@
 <?php
 
 class functions_frequency extends noms {
+	protected	$title = 'Fréquence des fonctions';
 	protected	$description = 'Liste des appels de fonctions';
-	protected	$description_en = 'Frequence of functions usage';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -15,6 +15,8 @@ class functions_frequency extends noms {
 	    $this->noms['type_tags'] = 'fonction';
 	    
 	    parent::analyse();
+	    
+	    return true;
 	}
 }
 

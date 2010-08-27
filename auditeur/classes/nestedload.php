@@ -1,8 +1,8 @@
 <?php
 
 class nestedload extends modules {
-	protected	$description = 'Liste des boucles contenant un appel de fonctin lourd';
-	protected	$description_en = 'List of classes et its extensions';
+	protected	$title = 'Boucles chargées';
+	protected	$description = 'Liste des boucles contenant un appel de fonction lourd';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -25,7 +25,8 @@ SELECT NULL, T1.fichier, T2.code, T1.id, '{$this->name}'
 SQL;
 
         $this->exec_query($query);
-
+        
+        return true;
 	}
 }
 

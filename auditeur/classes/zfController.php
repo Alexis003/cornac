@@ -1,8 +1,8 @@
 <?php
 
 class zfController extends modules {
+	protected	$title = 'Controleurs ZF';
 	protected	$description = 'Liste des fonctions méthodes de contrôleur pour le ZF (*Action)';
-	protected	$description_en = 'List of action method from controlers in ZF ';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -28,7 +28,9 @@ WHERE T1.type = '_function' AND
 T2.code like "%action"
 ORDER BY T2.class, T2.code;
 SQL;
-    $this->exec_query($query);
+        $this->exec_query($query);
+        
+        return true;
 	}
 }
 

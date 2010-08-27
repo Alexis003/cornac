@@ -2,7 +2,7 @@
 
 class evals extends functioncalls {
 	protected	$description = 'Liste des utilisations de eval';
-	protected	$description_en = 'Where eval function are being used';
+	protected	$title = 'Eval';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -13,6 +13,8 @@ class evals extends functioncalls {
 	public function analyse() {
         $this->functions = array('eval');
         parent::analyse();
+        
+        return true;
 	}
 }
 

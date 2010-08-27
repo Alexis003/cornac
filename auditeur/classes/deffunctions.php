@@ -1,8 +1,8 @@
 <?php
 
 class deffunctions extends modules {
+	protected	$title = 'Définitions de fonctions';
 	protected	$description = 'Liste des défintions de fonctions';
-	protected	$description_en = 'List of functions definition';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -27,7 +27,7 @@ INSERT INTO <rapport>
 SQL;
     
         $this->exec_query($query);
-
+        return false;
 	}
 }
 

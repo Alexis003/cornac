@@ -1,8 +1,8 @@
 <?php
 
 class affectations_variables extends modules {
+	protected	$title = 'Variables affectées';
 	protected	$description = 'Noms des variables affectées dans l\'application';
-	protected	$description_en = 'Name of the variables that are actually assigned within the application';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -91,6 +91,8 @@ WHERE T1.type = '_foreach'
 LIMIT 12;
 SQL;
         $this->exec_query($query);    
+        
+        return true;
     }
 }
 

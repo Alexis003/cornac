@@ -1,8 +1,8 @@
 <?php
 
 class undefined_properties extends modules {
+	protected	$title = 'Propriétés non utilisées';
 	protected	$description = 'Liste des propriétés utilisées mais pas définies';
-	protected	$description_en = 'List of used properties, that has no definition';
 
     function __construct($mid) {
         parent::__construct($mid);

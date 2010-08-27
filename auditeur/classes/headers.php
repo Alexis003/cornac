@@ -1,8 +1,8 @@
 <?php
 
 class headers extends functioncalls {
+	protected	$title = 'headers et setcookie';
 	protected	$description = 'Liste des émissions d\'entêtes HTTP';
-	protected	$description_en = 'HTTP header emitting functions';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -13,6 +13,8 @@ class headers extends functioncalls {
 	public function analyse() {
         $this->functions = array('header','setcookie','setrawcookie');
         parent::analyse();
+        
+        return true;
 	}
 }
 

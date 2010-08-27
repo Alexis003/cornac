@@ -1,8 +1,8 @@
 <?php
 
 class affectations_gpc extends modules {
+	protected	$title = 'Assignation des variables GPC';
 	protected	$description = 'Affectations des variables GPC (pb de sécurité)';
-	protected	$description_en = 'Assigning GPC vars (security to check)';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -58,6 +58,8 @@ WHERE T1.fichier like "%affectations_gpc%" and T1.type = 'affectation' AND
 TC.code REGEXP '^$gpc_regexp';
 SQL;
         $this->exec_query($query);
+        
+        return true;
     }
 }
 

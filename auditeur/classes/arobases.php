@@ -1,8 +1,8 @@
 <?php
 
 class arobases extends modules {
-    protected    $description = 'Utilisation des arobases';
-    protected    $description_en = 'Usage of @';
+    protected    $description = 'Arobases';
+    protected    $title = 'Utilisateur de l\'opérateur @ dans le code';
 
     function __construct($mid) {
         parent::__construct($mid);
@@ -22,6 +22,8 @@ SELECT NULL, TC.fichier, TC.code AS code, T1.id, '{$this->name}'
     WHERE T1.type='noscream' 
 SQL;
         $this->exec_query($query);
+        
+        return true;
     }
 }
 

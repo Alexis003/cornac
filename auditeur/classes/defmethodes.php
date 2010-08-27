@@ -1,8 +1,8 @@
 <?php
 
 class defmethodes extends modules {
+	protected	$title = 'Définitions de méthodes';
 	protected	$description = 'Liste des défintions de methodes';
-	protected	$description_en = 'List of functions definition';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -28,7 +28,7 @@ INSERT INTO <rapport>
 SQL;
 
         $this->exec_query($query);
-
+        return true;
 	}
 }
 

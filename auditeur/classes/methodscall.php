@@ -1,6 +1,7 @@
 <?php
 
 class methodscall extends modules {
+    protected $title = "Méthodes appelées";
     protected $description = "Liste des appels de méthodes";
 
 	function __construct($mid) {
@@ -12,18 +13,18 @@ class methodscall extends modules {
         $this->clean_rapport();
 
         $query = <<<SQL
-INSERT INTO <rapport> 
-SELECT NULL, T1.fichier, T2.code AS code, T1.id, 'methodscall'
-  from <tokens> T1
-  join <tokens_cache> T2 
-    on T1.id = T2.id
-where 
- T1.type='method'
+INSERT INTO <rapport>
+    SELECT NULL, T1.fichier, T2.code AS code, T1.id, 'methodscall'
+        FROM <tokens> T1
+        JOIN <tokens_cache> T2 
+            ON T1.id = T2.id
+        WHERE
+            T1.type='method'
 SQL;
 
         $this->exec_query($query);
 
-
+        return true;
 	}
 }
 

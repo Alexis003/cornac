@@ -1,8 +1,8 @@
 <?php
 
 class inclusions_path extends modules {
-	protected	$description = 'Liste des chemins d\inclusions';
-	protected	$description_en = 'List of inclusion paths';
+	protected	$title = 'Chemin d\'inclusion';
+	protected	$description = 'Liste des chemins d\inclusions utilisés (hors __autoload)';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -25,6 +25,8 @@ INSERT INTO <rapport>
     WHERE T1.type='inclusion'
 SQL;
         $this->exec_query($query);
+        
+        return true;
 	}
 }
 ?>

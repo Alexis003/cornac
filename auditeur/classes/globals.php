@@ -1,8 +1,8 @@
 <?php
 
 class globals extends modules {
+    protected    $title = 'Globales';
     protected    $description = 'Liste des variables globales utilisées';
-    protected    $description_en = 'Global variable list';
 
     function __construct($mid) {
         parent::__construct($mid);
@@ -13,7 +13,7 @@ class globals extends modules {
     public function analyse() {
         $this->clean_rapport();
         
-        // variable global thanks to the global reserved word
+        // @note variable global thanks to the global reserved word
         $query = <<<SQL
 INSERT INTO <rapport> 
 SELECT NULL, T2.fichier, T2.code AS code, T2.id, '{$this->name}'
@@ -25,7 +25,7 @@ SELECT NULL, T2.fichier, T2.code AS code, T2.id, '{$this->name}'
 SQL;
         $this->exec_query($query);
         
-// variables globales because in $GLOBALS
+        // @note variables globales because in $GLOBALS
        $query = <<<SQL
 INSERT INTO <rapport> 
 SELECT NULL, T1.fichier, T3.code AS code, T2.id, '{$this->name}'
@@ -41,19 +41,8 @@ SELECT NULL, T1.fichier, T3.code AS code, T2.id, '{$this->name}'
           T2.code = '\$GLOBALS';
 SQL;
         $this->exec_query($query);
-
-// variables in main are automatically globals
-/*
-       $query = <<<SQL
-INSERT INTO <rapport> 
-SELECT NULL, T1.fichier, T1.code AS code, T1.id, '{$this->name}'
-    FROM <tokens> T1
-    WHERE 
-        T1.scope = 'global' AND
-        T1.type = 'variable'
-SQL;
-        $this->exec_query($query);
-        */
+        
+        return true;
     }    
     
 }

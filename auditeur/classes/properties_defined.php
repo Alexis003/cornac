@@ -1,8 +1,8 @@
 <?php
 
 class properties_defined extends modules {
+	protected	$title = 'Propriétés définies';
 	protected	$description = 'Propriétés définies par une classe';
-	protected	$description_en = 'Defined properties by a class';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -26,8 +26,8 @@ WHERE T1.class != 'global' AND T1.type='_var';
 SQL;
         $this->exec_query($query);
 
+        return true;
     // @todo support methods and classes
-    
     }
 }
 

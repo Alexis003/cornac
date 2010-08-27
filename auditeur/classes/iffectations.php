@@ -1,8 +1,8 @@
 <?php
 
 class iffectations extends modules {
+	protected	$title = 'Affectations dans un if';
 	protected	$description = 'Affectation dans un if';
-	protected	$description_en = 'Affectation within a if';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -31,6 +31,8 @@ JOIN <tokens>_cache TC
         T1.fichier = './tests/auditeur/scripts/iffectations.php';
 SQL;
         $this->exec_query($query);
+        
+        return true;
 	}
 }
 

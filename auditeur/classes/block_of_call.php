@@ -1,8 +1,8 @@
 <?php
 
 class block_of_call extends modules {
+	protected	$title = 'Blocs d\'appels';
 	protected	$description = 'Identifie une liste d\'appels successifs à la même fonction';
-	protected	$description_en = 'Spot several call to the same function';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -88,6 +88,7 @@ SQL;
             $this->exec_query($query);
         }
 
+        return true;
 	}
 }
 

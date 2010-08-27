@@ -1,8 +1,8 @@
 <?php
 
 class properties_used extends modules {
+	protected	$title = 'Propriétés utilisées';
 	protected	$description = 'Propriétés utilisées par une classe';
-	protected	$description_en = 'Used properties';
 
 	function __construct($mid) {
         parent::__construct($mid);

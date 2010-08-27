@@ -1,8 +1,8 @@
 <?php
 
 class affectations_direct_gpc extends modules {
+	protected	$title = 'Assignation GPC';
 	protected	$description = 'Affectations des variables GPC (pb de sécurité)';
-	protected	$description_en = 'Assigning GPC vars (security to check)';
 
 	function __construct($mid) {
         parent::__construct($mid);

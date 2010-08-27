@@ -1,8 +1,8 @@
 <?php
 
 class doubledeffunctions extends modules {
+	protected	$title = 'Défintions de fonctions en double';
 	protected	$description = 'Liste des défintions doubles de fonctions';
-	protected	$description_en = 'List of double function definitions';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -27,7 +27,7 @@ FROM <rapport> TR
 SQL;
     
         $this->exec_query($query);
-
+        return true;
 	}
 }
 

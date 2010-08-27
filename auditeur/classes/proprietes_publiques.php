@@ -1,8 +1,8 @@
 <?php
 
 class proprietes_publiques extends modules {
-	protected	$description = 'Appels d\'une fonction par une autre';
-	protected	$description_en = 'Function call through the code';
+	protected	$description = 'Liste des propriétés publiques';
+	protected	$title = 'Propriétés publiques';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -28,6 +28,7 @@ SQL;
 
     // @todo supporter les méthodes / classes
     
+        return true;
     }
 }
 

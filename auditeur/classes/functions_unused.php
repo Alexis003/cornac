@@ -1,6 +1,7 @@
 <?php
 
 class functions_unused extends modules {
+    protected $title = 'Fonctions non utilisées'; 
     protected $description = 'Liste des fonctions non utilisées'; 
 
 	function __construct($mid) {
@@ -26,6 +27,7 @@ SELECT NULL, TR1.fichier, TR1.element AS code, TR1.id, '{$this->name}'
           TR1.element NOT IN ('__autoload')
 SQL;
         $this->exec_query($query);
+        return true;
 	}
 }
 

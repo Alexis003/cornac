@@ -1,8 +1,8 @@
 <?php
 
 class affectations_literals extends modules {
+	protected	$title = 'Assignations de litéraux';
 	protected	$description = 'Affectations de valeurs literales';
-	protected	$description_en = 'Literals values assignations';
 
 	function __construct($mid) {
         parent::__construct($mid);

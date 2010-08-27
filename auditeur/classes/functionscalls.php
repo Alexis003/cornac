@@ -2,6 +2,7 @@
 
 class functionscalls extends modules {
     protected $description = "Liste des appels de fonctions"; 
+    protected $title = "Appels de fonctions"; 
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -30,6 +31,7 @@ T2.code NOT IN ('$in')
 SQL;
 
         $this->exec_query($query);
+        return true;
 	}
 }
 

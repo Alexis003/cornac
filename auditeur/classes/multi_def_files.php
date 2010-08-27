@@ -1,8 +1,8 @@
 <?php
 
 class multi_def_files extends modules {
+	protected	$title = 'Fichiers muli-déclarations';
 	protected	$description = 'Fichier définissant plusieurs structures';
-	protected	$description_en = 'Files defining several structures (classes or functions)';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -36,6 +36,8 @@ SQL;
 DROP TABLE multi_def_files
 SQL;
         $res = $this->exec_query($query);
+        
+        return true;
     }
 }
 

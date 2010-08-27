@@ -1,8 +1,8 @@
 <?php
 
 class ifsanselse extends modules {
+	protected	$title = 'if sans else';
 	protected	$description = 'Liste des if sans else';
-	protected	$description_en = 'if without else';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -25,6 +25,8 @@ INSERT INTO <rapport>
     HAVING elsee = 0;
 SQL;
         $this->exec_query($query);
+        
+        return true;
 	}
 }
 

@@ -1,8 +1,8 @@
 <?php
 
 class statiques extends modules {
+	protected	$title = 'Statiques';
 	protected	$description = 'Liste des statiques (methodes, classes et propriétés)';
-	protected	$description_en = 'Static structures being used';
 
     function __construct($mid) {
         parent::__construct($mid);
@@ -21,7 +21,9 @@ INSERT INTO <rapport>
         ON TC.id = T1.id 
    WHERE type IN ('method_static','property_static','constante_static')
 SQL;
-    $this->exec_query($query);
+        $this->exec_query($query);
+        
+        return true;
 	}
 	
 }

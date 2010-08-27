@@ -1,8 +1,8 @@
 <?php
 
 class zfElements extends modules {
+	protected	$title = 'Element ZF non validés';
 	protected	$description = 'Liste des elements de formulaire qui ne sont pas validés!';
-	protected	$description_en = 'List of ZF elements that are not validated';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -70,6 +70,8 @@ INSERT INTO <rapport> VALUES (0, '{$ligne2['fichier']}', '{$ligne['code']} : {$l
 SQL;
         $this->exec_query($query);
         }
+        
+        return true;
 	}
 }
 

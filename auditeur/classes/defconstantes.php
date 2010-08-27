@@ -1,8 +1,8 @@
 <?php
 
 class defconstantes extends modules {
+	protected	$title = 'Constantes';
 	protected	$description = 'Liste des défintions de constantes';
-	protected	$description_en = 'List of constante definition';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -29,6 +29,7 @@ SELECT NULL, T1.fichier, T3.code, T3.id, '{$this->name}'
 SQL;
         $this->exec_query($query);
 
+        return true;
 	}
 }
 
