@@ -1,7 +1,7 @@
 <?php
 
 $mysql = new pdo('mysql:dbname=analyseur;host=127.0.0.1','root','');
-$prefixe = 'dotclear';
+$prefixe = 'ach';
     
 $tables = array('<rapport>' => $prefixe.'_rapport',
                 '<rapport_scope>' => $prefixe.'_rapport_scope',
