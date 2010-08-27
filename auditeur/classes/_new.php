@@ -1,7 +1,7 @@
 <?php
 
 class _new extends modules {
-	protected	$title = 'new';
+	protected	$title = 'New';
 	protected	$description = 'Liste des utilisations de l\'opérateur';
 
 	function __construct($mid) {

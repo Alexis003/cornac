@@ -1,7 +1,7 @@
 <?php
 
 class headers extends functioncalls {
-	protected	$title = 'headers et setcookie';
+	protected	$title = 'Headers et setcookie';
 	protected	$description = 'Liste des émissions d\'entêtes HTTP';
 
 	function __construct($mid) {

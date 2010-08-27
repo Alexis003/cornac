@@ -1,7 +1,7 @@
 <?php
 
 class variablesvariables extends modules {
-	protected	$title = 'variables variables';
+	protected	$title = 'Variables variables';
 	protected	$description = 'Liste des variables variables utilisées';
 
     function __construct($mid) {

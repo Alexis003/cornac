@@ -1,7 +1,7 @@
 <?php
 
 class ifsanselse extends modules {
-	protected	$title = 'if sans else';
+	protected	$title = 'If sans else';
 	protected	$description = 'Liste des if sans else';
 
 	function __construct($mid) {
