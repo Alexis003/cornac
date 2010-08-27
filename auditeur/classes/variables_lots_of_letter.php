@@ -6,8 +6,6 @@ class variables_lots_of_letter extends modules {
 
 	function __construct($mid) {
         parent::__construct($mid);
-        
-    	$this->name = __CLASS__;
 	}
 
 	function dependsOn() {

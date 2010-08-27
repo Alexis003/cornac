@@ -6,8 +6,6 @@ class gpc_affectations extends modules {
 
 	function __construct($mid) {
         parent::__construct($mid);
-        
-    	$this->name = __CLASS__;
 	}
 
 	function dependsOn() {

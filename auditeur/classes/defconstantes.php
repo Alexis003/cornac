@@ -6,8 +6,6 @@ class defconstantes extends modules {
 
 	function __construct($mid) {
         parent::__construct($mid);
-        
-    	$this->name = __CLASS__;
     	$this->format = modules::FORMAT_HTMLLIST;
 	}
 	

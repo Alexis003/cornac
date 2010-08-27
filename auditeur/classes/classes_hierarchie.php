@@ -8,7 +8,6 @@ class classes_hierarchie extends modules {
         parent::__construct($mid);
         
         $this->format = modules::FORMAT_DOT;
-    	$this->name = __CLASS__;
 	}
 	
 	public function analyse() {

@@ -6,8 +6,6 @@ class functions_frequency extends noms {
 
 	function __construct($mid) {
         parent::__construct($mid);
-        
-    	$this->name = __CLASS__;
 	}
 	
 	public function analyse() {

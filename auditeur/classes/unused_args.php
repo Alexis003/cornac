@@ -6,8 +6,6 @@ class unused_args extends modules {
 
 	function __construct($mid) {
         parent::__construct($mid);
-        
-    	$this->name = __CLASS__;
 	}
 	
 	public function analyse() {
