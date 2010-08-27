@@ -1,6 +1,8 @@
 Check fudforum binary protector (install.php)
 Merge TODO from auditeur.
 
+Move __CLASS__ to getclass($this);
+
 Spin off .ods builder 
 Finish translations of analyzers's title and description
 Make the english version
@@ -197,3 +199,18 @@ détecter les foncontions en double, avec le même code !
 $:: globals
 inclusions_path : a revoir entièrement : le contenu n'est psa le bon
 attention aux proriétés : sur variable ou sur méthode. 
+
+nusoap
+
+variables utilisées : retirer les globales, et ignorer le scope 'global' dans les classes
+Liste des blanches pour les eval (surveiller la valeur de retour)
+block d'appels ; a revoir
+pas de résultat == pas dans le sommaire!!
+regex vide!
+Découper les scripts/contextes/dossiers en fonction de controleur (aka _GET), modele (rien) ou template (html).
+chemins d'inclusions
+Multi-def : ignorer les fichiers en classe uniquement
+
+Liste de fichiers
+Cookies
+variables de configuration
