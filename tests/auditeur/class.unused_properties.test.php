@@ -4,7 +4,6 @@ include_once('Auditeur_Framework_TestCase.php');
 class unused_properties_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
-        $this->name = 'unused_properties';
         $this->attendus = array('$public_defined_inited_unused',
                                 '$protected_defined_inited_unused',
                                 '$private_defined_inited_unused',

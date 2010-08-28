@@ -1,5 +1,4 @@
 <?php
-//ini_set('include_path', ".:".dirname(__FILE__));
 
 require_once 'PHPUnit/Framework.php'; 
 
@@ -57,6 +56,7 @@ $tests = array(
 'class.literals_long.test.php',
 'class.literals_reused.test.php',
 'class.tableaux.test.php',
+'class.vardump.test.php',
 // Prochain tests
 );
 

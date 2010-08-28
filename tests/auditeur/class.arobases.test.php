@@ -4,7 +4,6 @@ include_once('Auditeur_Framework_TestCase.php');
 class arobases_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
-        $this->name = 'arobases';
         $this->attendus = array(
         '@$x','@$a->prop','@new StdClass()','@substr(1, 1, 1)','@1',
         );

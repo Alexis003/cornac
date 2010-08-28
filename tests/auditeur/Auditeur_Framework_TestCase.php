@@ -19,29 +19,30 @@ SHELL;
 }
 
 class Auditeur_Framework_TestCase  extends PHPUnit_Framework_TestCase {
-    protected $name="Auditeur_Framework_TestCase";
+    protected $prefix="Auditeur_Framework_TestCase";
 
     function __construct() {
+        $this->prefix = substr(get_class($this), 0, -5);
     }
     
     protected function generic_test() {
         $shell = <<<SHELL
-php -l ./scripts/{$this->name}.php
+php -l ./scripts/{$this->prefix}.php
 SHELL;
 
         $retour = shell_exec($shell);
-        if ($retour != "No syntax errors detected in ./scripts/".$this->name.".php
+        if ($retour != "No syntax errors detected in ./scripts/".$this->prefix.".php
 ") {
-            $this->assertFalse(true, " le script scripts/".$this->name.".php ne compile pas\n");
+            $this->assertFalse(true, " le script scripts/".$this->prefix.".php ne compile pas\n");
 }
 
         $shell = <<<SHELL
 cd ../../auditeur
-./reader.php -I testsunitaires -a {$this->name} -f ./tests/auditeur/scripts/{$this->name}.php
+./reader.php -I testsunitaires -a {$this->prefix} -f ./tests/auditeur/scripts/{$this->prefix}.php
 SHELL;
 
         $retour = shell_exec($shell);
-        file_put_contents('log/'.$this->name.'.log', $retour);
+        file_put_contents('log/'.$this->prefix.'.log', $retour);
         // @note first log, then process.
         
         $sx = simplexml_load_string($retour);
@@ -68,19 +69,19 @@ SHELL;
 
     protected function generic_counted_test() {
         $shell = <<<SHELL
-php -l ./scripts/{$this->name}.php
+php -l ./scripts/{$this->prefix}.php
 SHELL;
 
         $retour = shell_exec($shell);
-        if ($retour != "No syntax errors detected in ./scripts/".$this->name.".php
+        if ($retour != "No syntax errors detected in ./scripts/".$this->prefix.".php
 ") {
             print $retour; 
-            $this->assertFalse(true, " le script scripts/".$this->name.".php ne compile pas\n");
+            $this->assertFalse(true, " le script scripts/".$this->prefix.".php ne compile pas\n");
 }
 
         $shell = <<<SHELL
 cd ../../auditeur
-./reader.php -I testsunitaires -F xml -a {$this->name} -f ./tests/auditeur/scripts/{$this->name}.php
+./reader.php -I testsunitaires -F xml -a {$this->prefix} -f ./tests/auditeur/scripts/{$this->prefix}.php
 SHELL;
 
         $retour = shell_exec($shell);
@@ -88,7 +89,7 @@ SHELL;
         $this->assertTrue(strpos($retour, 'Usage : ') === false);
         $sx = simplexml_load_string($retour);
         
-        file_put_contents('log/'.$this->name.'.log', $retour);
+        file_put_contents('log/'.$this->prefix.'.log', $retour);
         
         $elements = array();
         foreach($sx as $element) {
