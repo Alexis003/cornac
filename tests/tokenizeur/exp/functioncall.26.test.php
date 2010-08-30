@@ -1,4 +1,4 @@
-Travail sur le fichier tests/tokenizeur/scripts/functioncall.26.test.php 
+Working on file 'tests/tokenizeur/scripts/functioncall.26.test.php'
 tests/tokenizeur/scripts/functioncall.26.test.php
   codephp <?php
 
