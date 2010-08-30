@@ -103,22 +103,21 @@ if (!empty($dossier)) {
 
     print "Travail sur le dossier {$dossier} \n";
     
-    $fichiers = glob($dossier.'/*.php');
-    $fichiers = array_slice($fichiers, 1, 1);
+    $files = glob($dossier.'/*.php');
+    $files = array_slice($files, 1, 1);
     
-    foreach($fichiers as $fichier) {
-        print "./tokenizeur.php -f $fichier -g ".GABARIT. ""." -I ".INI."\n";
-        print shell_exec("./tokenizeur.php  -T -i -1 -f \"".escapeshellarg($fichier)."\" -g ".GABARIT. " "." -I ".INI);
+    foreach($files as $file) {
+        print shell_exec("./tokenizeur.php  -T -i -1 -f \"".escapeshellarg($file)."\" -g ".GABARIT. " "." -I ".INI);
     }
     
     if (RECURSIVE) {
-        $fichiers = liste_directories_recursive($dossier);
+        $files = liste_directories_recursive($dossier);
 
-        foreach($fichiers as $fichier) {
-            $code = file_get_contents($fichier);
+        foreach($files as $file) {
+            $code = file_get_contents($file);
             if (strpos($code, '<?') === false) { continue; }
             
-            $commande = "./tokenizeur.php -f $fichier -g ".GABARIT." -I ".INI;
+            $commande = "./tokenizeur.php -f ".escapeshellarg($file)." -g ".GABARIT." -I ".INI;
             print $commande. "\n";
             print shell_exec($commande);
         }
@@ -127,10 +126,10 @@ if (!empty($dossier)) {
     }
     print "Done\n";
     die();
-} elseif ($fichier = get_arg_value($args, '-f', '')) {
-    print "Working on file  '{$fichier}' \n";
+} elseif ($file = get_arg_value($args, '-f', '')) {
+    print "Working on file '{$file}'\n";
 
-    $objects = new arrayIterator(array($fichier => $fichier));
+    $objects = new arrayIterator(array($file => $file));
     $scriptsPHP = $objects;
 
 } else {
@@ -172,14 +171,14 @@ foreach($scriptsPHP as $name => $object){
     }
 
 // @doc 4177 is error_reporting for  E_COMPILE_ERROR|E_RECOVERABLE_ERROR|E_ERROR|E_CORE_ERROR (compilations error only)
-    $exec = shell_exec('php -d short_open_tag=1 -d error_reporting=4177  -l '.escapeshellarg($fichier).' '); 
+    $exec = shell_exec('php -d short_open_tag=1 -d error_reporting=4177  -l '.escapeshellarg($file).' '); 
     if (trim($exec) != 'No syntax errors detected in '.$name) {
         print "Script \"$name\" can't be compiled by PHP\n$exec\n";
         die();
     }
     
-    global $fichier;
-    $fichier = $name;
+    global $file;
+    $file = $name;
 
     $code = file_get_contents($name);
     
@@ -251,7 +250,7 @@ foreach($scriptsPHP as $name => $object){
 
         if (VERBOSE) {
             print "$i) ".$t->getCode()."---- \n";
-            $template = getTemplate($root, $fichier, 'tree');
+            $template = getTemplate($root, $file, 'tree');
             $template['tree']->affiche();
             unset($template);
             print "$i) ".$t->getCode()."---- \n";
@@ -283,7 +282,7 @@ foreach($scriptsPHP as $name => $object){
 
             if (VERBOSE) {
                 print "$i) ".$t->getCode()."---- \n";
-                $template = getTemplate($root, $fichier, 'tree');
+                $template = getTemplate($root, $file, 'tree');
                 $template['tree']->affiche();
                 unset($template);
                 print "$i) ".$t->getCode()."---- \n";
@@ -339,7 +338,7 @@ foreach($scriptsPHP as $name => $object){
         $id++;
     }
    
-    $templates = getTemplate($root, $fichier);
+    $templates = getTemplate($root, $file);
     foreach($templates as $template) {
         $template->affiche();
         $template->save();
@@ -368,11 +367,11 @@ foreach($times as $key => $valeur) {
 mon_die();
 
 function mon_die() {
-    global $nb_tokens_courant, $nb_tokens_initial, $fichier, $times, $nb_cycles_final, $limite ;
+    global $nb_tokens_courant, $nb_tokens_initial, $file, $times, $nb_cycles_final, $limite ;
     
     $message = array();
     $message['date'] = date('r');
-    $message['fichier'] = $fichier;
+    $message['file'] = $file;
     $message['tokens'] = $nb_tokens_initial;
     $message['reste'] = $nb_tokens_courant;
     $message['nb_cycles'] = $nb_cycles_final;
@@ -416,8 +415,8 @@ class PHPFilter extends FilterIterator
     public function accept()
     {
     	$this->nb++;
-        $fichier = $this->getInnerIterator()->current();
-        $details = pathinfo($fichier);
+        $file = $this->getInnerIterator()->current();
+        $details = pathinfo($file);
         
         if( strpos($details['dirname'].'/', '/fckeditor/') !== false) {
             return false;
@@ -507,7 +506,7 @@ function mon_log($message) {
     fwrite($LOG, date('r')."\t$message\r");
 }
 
-function getTemplate($racine, $fichier, $gabarit = null) {
+function getTemplate($racine, $file, $gabarit = null) {
     if (is_null($gabarit)) {
         $gabarit = GABARIT;
     }
@@ -516,7 +515,7 @@ function getTemplate($racine, $fichier, $gabarit = null) {
     $retour = array();
     foreach($templates as $template) {
         $classe  = "template_".$template;
-        $retour[$template] = new $classe($racine, $fichier);
+        $retour[$template] = new $classe($racine, $file);
     }
     return $retour;
 }
