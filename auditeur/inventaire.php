@@ -172,7 +172,7 @@ $files = rglob('skel/*');
 
 foreach($files as $file) {
     if ($file == 'content.xml') {continue; }
-    if ($file == 'content.original.xml') {continue; }
+
     $destination = "".str_replace("skel/",'',$file);
     if (substr($file, -1) == '/') {
         $zip->addEmptyDir(substr($destination, 0, -1));    

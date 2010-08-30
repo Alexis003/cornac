@@ -137,7 +137,7 @@ $modules = array(
 'functions_without_returns',
 'session_variables',
 'gpc_variables',
-
+// new analyzers
 );
 
 $INI['analyzers'] = get_arg_value($args, '-a', 'all');
