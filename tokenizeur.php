@@ -546,23 +546,29 @@ TEXT;
 function liste_directories_recursive( $path = '.', $level = 0 ){ 
     global $INI;
 
-    $ignore_dirs = array( 'cgi-bin', '.', '..' ); 
+    $ignore_dirs = array( 'cgi-bin', '.', '..',
+                          'CVS','.svn','.git', // @todo : mercurial? other vcs's special folder : please add 
+                          'adodb','fpdf','fckeditor','incutio','lightbox','nusoap','odtphp','pear','phpthumb','phputf8','scriptaculous','simpletest','smarty','spyc','tiny_mce','tinymce','Zend'); 
     if (isset($INI['tokenizeur']['ignore_dirs']) && !empty($INI['tokenizeur']['ignore_dirs'])) {
         $ignore_dirs = array_merge($ignore_dirs, explode(',',$INI['tokenizeur']['ignore_dirs']));
     } else {
-        $ignore_dirs = array( 'cgi-bin', '.', '..' ); 
+        // @emptyelse
     }
     
     if (isset($INI['tokenizeur']['ignore_suffixe']) && !empty($INI['tokenizeur']['ignore_suffixe'])) {
-        $regex_suffixe = '/('.str_replace(',','|',  preg_quote($INI['tokenizeur']['ignore_suffixe'])).')$/';
+        print preg_quote($INI['tokenizeur']['ignore_suffixe'])."\n";
+        $regex_suffixe = str_replace(',','|',  preg_quote($INI['tokenizeur']['ignore_suffixe']));
     } else {
-        $regex_suffixe = '';
+        $regex_suffixe = array('.gif','.jpg','.jpeg','.xsl','.css','.js','.png');
     }
+    $regex_suffixe = '/('.join('|', $regex_suffixe).')$/';
+
     if (isset($INI['tokenizeur']['ignore_prefixe']) && !empty($INI['tokenizeur']['ignore_prefixe'])) {
-        $regex_prefixe = '/('.str_replace(',','|',  preg_quote($INI['tokenizeur']['ignore_prefixe'])).')$/';
+        $regex_prefixe = str_replace(',','|',  preg_quote($INI['tokenizeur']['ignore_prefixe']));
     } else {
-        $regex_prefixe = '';
+        $regex_prefixe = array('\\.');
     }
+    $regex_prefixe = '/^('.join('|', $regex_prefixe).')/';
 
     $retour = array();
 
@@ -574,7 +580,12 @@ function liste_directories_recursive( $path = '.', $level = 0 ){
             $r = liste_directories_recursive( "$path/$file", ($level+1) ); 
             $retour = array_merge($retour, $r);
         } else { 
+            // @doc remove matching suffixe (aka, extensions)
             if ($regex_suffixe && preg_match($regex_suffixe, $file)) { continue; }
+            // @doc remove matching prefixe (., probably)
+            if ($regex_prefixe && preg_match($regex_prefixe, $file)) { continue; }
+            
+            // @doc The rest is accepted, until we find a PHP tag in it (see later)
             $retour[] = "$path/$file";
         } 
     } 
