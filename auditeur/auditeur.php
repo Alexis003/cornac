@@ -138,6 +138,7 @@ $modules = array(
 'session_variables',
 'gpc_variables',
 'mvc',
+'globals_link',
 // new analyzers
 );
 

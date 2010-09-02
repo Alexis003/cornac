@@ -54,10 +54,8 @@ if (empty($INI['reader']['format'])) {
 
 if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
     $database = new pdo($INI['mysql']['dsn'],$INI['mysql']['username'], $INI['mysql']['password']);
-//    print "MySQL\n";
 } elseif (isset($INI['sqlite'])  && $INI['sqlite']['active'] == true) {
     $database = new pdo($INI['sqlite']['dsn']);
-//    print "sqlite\n";
 } else {
     print "No database configuration provided (no mysql, no sqlite)\n";
     die();
@@ -71,10 +69,29 @@ if (isset($INI['cornac']['prefix'])) {
 
 write_ini_file($INI, INI);
 
-// @attention : should also support _dot reports
-$query = 'SELECT * FROM '.$prefix.'_rapport WHERE module='.$database->quote($INI['reader']['module']);
-if (!empty($INI['reader']['file'])) {
-    $query .= ' AND fichier='.$database->quote($INI['reader']['file']);
+$query = 'SELECT * FROM '.$prefix.'_rapport_module WHERE module='.$database->quote($INI['reader']['module']);
+$res = $database->query($query);
+$row = $res->fetch();
+unset($res);
+
+if (!$row) {
+    print "No module with name '{$INI['reader']['module']}'. Aborting\n";
+    die();
+} elseif ($row['format'] == 'html') {
+    // @attention : should also support _dot reports
+    $query = 'SELECT * FROM '.$prefix.'_rapport WHERE module='.$database->quote($INI['reader']['module']);
+    if (!empty($INI['reader']['file'])) {
+        $query .= ' AND fichier='.$database->quote($INI['reader']['file']);
+    }
+} elseif ($row['format'] == 'dot') {
+    // @attention : should also support _dot reports
+    $query = 'SELECT * FROM '.$prefix.'_rapport_dot WHERE module='.$database->quote($INI['reader']['module']);
+    if (!empty($INI['reader']['file'])) {
+        $query .= ' AND fichier='.$database->quote($INI['reader']['file']);
+    }
+} else {
+    print "Format '{$row['format']}' is not understood. Aborting\n";
+    die();
 }
 $res = $database->query($query);
 
