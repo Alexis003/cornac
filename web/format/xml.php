@@ -1,6 +1,6 @@
 <?php
 
-function get_html($lines) {
+function get_html_check($lines) {
         $xml = '<xml>
 ';
         foreach($lines as $line) {

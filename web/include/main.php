@@ -1,5 +1,11 @@
 <?php
-    $query = "SELECT module as element, count(distinct element) AS nb FROM {$tables['<rapport>']} GROUP BY module";
+print    $query = "SELECT ML.module AS element, 
+                     COUNT(RL.id) AS nb, 
+                     COUNT(RL.id) - SUM(checked) AS todo 
+                 FROM {$tables['<rapport>']}_module ML
+                 LEFT JOIN {$tables['<rapport>']} RL
+                    ON ML.module = RL.module
+                 GROUP BY ML.module";
     $res = $mysql->query($query);
 
     $rows = $res->fetchAll();
@@ -11,7 +17,7 @@
     
     usort($rows, 'cmp');
     
-    print get_html($rows);
+    print get_html_manual($rows);
 
     function cmp($a, $b) {
         if ($a['element'] == $b['element']) {

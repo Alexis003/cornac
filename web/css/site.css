@@ -17,3 +17,5 @@ h2 {font-size: 125%;}
 i {color: #666666; background-color: #cccccc;}
 img {float: right; border: 0px;}
 hr {width: 600px; background-color: #cccccc; border: 0px; height: 1px; color: #000000;}
+
+.checked {background-color: #a0a0a0; font-weight: bold; color: #000000;}
