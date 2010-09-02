@@ -32,8 +32,6 @@ $liste = Liste_directories_recursive('.');
 // @question : qoui?
 # @autre : non?
 
-//$liste = array('./tags.php');
-//$fichiers = $tags = array();
 $comments = array();
 foreach($liste as $fichier) {
     $php = file_get_contents($fichier);
