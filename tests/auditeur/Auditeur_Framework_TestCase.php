@@ -6,7 +6,7 @@ require_once 'PHPUnit/Framework.php';
 
 $debut = microtime(true);
 if (in_array('-f', $args)) {
-    print "\nAnalyse des nouveaux fichiers\n";
+    print "\nFull analysis of test files\n";
     $shell = <<<SHELL
 cd ../..
 ./tokenizeur.php -r -d ./tests/auditeur/scripts/ -g mysql,cache -I testsunitaires
@@ -15,7 +15,18 @@ cd auditeur
 SHELL;
     $retour = shell_exec($shell);
     $fin = microtime(true);
-    print "  Faite (".number_format(($fin - $debut), 2)." s)\n";
+    print "  Done (".number_format(($fin - $debut), 2)." s)\n";
+}
+
+if (in_array('-a', $args)) {
+    print "\nFull update of auditeur's tasks (No tokenizeur used)\n";
+    $shell = <<<SHELL
+cd ../../auditeur
+./auditeur.php -d -p tu -I testsunitaires
+SHELL;
+    $retour = shell_exec($shell);
+    $fin = microtime(true);
+    print "  Done (".number_format(($fin - $debut), 2)." s)\n";
 }
 
 class Auditeur_Framework_TestCase  extends PHPUnit_Framework_TestCase {
@@ -33,7 +44,7 @@ SHELL;
         $retour = shell_exec($shell);
         if ($retour != "No syntax errors detected in ./scripts/".$this->prefix.".php
 ") {
-            $this->assertFalse(true, " le script scripts/".$this->prefix.".php ne compile pas\n");
+            $this->assertFalse(true, "Script scripts/".$this->prefix.".php doesn't compile\n");
 }
 
         $shell = <<<SHELL
@@ -76,7 +87,7 @@ SHELL;
         if ($retour != "No syntax errors detected in ./scripts/".$this->prefix.".php
 ") {
             print $retour; 
-            $this->assertFalse(true, " le script scripts/".$this->prefix.".php ne compile pas\n");
+            $this->assertFalse(true, "Script scripts/".$this->prefix.".php doesn't compile\n");
 }
 
         $shell = <<<SHELL
