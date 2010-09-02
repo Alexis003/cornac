@@ -68,7 +68,7 @@ class template_db extends template {
     }
 
     function saveNoeud($noeud, $niveau) {
-        global $fichier;
+        global $file;
         
         if (($noeud->getline() + 0) > 0) {
             $this->ligne = $noeud->getline() + 0;
@@ -80,13 +80,12 @@ class template_db extends template {
              '".$noeud->myGauche."',
              '".get_class($noeud)."',
              ".$this->database->quote($noeud->getCode()).",
-             '$fichier',
+             '$file',
              ". $noeud->getLine() .",
              '". $this->scope ."',
              '". $this->class ."',
              '". $niveau ."'
              )";
-             
 
         $this->database->query($requete);
         if ($this->database->errorCode() != 0) {

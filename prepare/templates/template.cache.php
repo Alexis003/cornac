@@ -89,13 +89,13 @@ class template_cache extends template {
 // database functions
 ////////////////////////////////////////////////////////////////////////
     function saveNoeud($noeud) {
-        global $fichier;
+        global $file;
         
         $requete = "INSERT INTO {$this->table}_cache VALUES 
             (
              '".$noeud->database_id."',
              ".$this->database->quote($noeud->cache).",
-             ".$this->database->quote($fichier)."
+             ".$this->database->quote($file)."
              )";
              
 
