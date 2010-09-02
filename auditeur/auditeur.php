@@ -137,6 +137,7 @@ $modules = array(
 'functions_without_returns',
 'session_variables',
 'gpc_variables',
+'mvc',
 // new analyzers
 );
 
