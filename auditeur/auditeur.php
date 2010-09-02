@@ -176,6 +176,7 @@ if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
   `element` varchar(10000) NOT NULL,
   `token_id` int(10) unsigned NOT NULL,
   `module` varchar(50) NOT NULL,
+  `checked` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `element` (`element`),
   KEY `module` (`module`)
