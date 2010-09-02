@@ -1,7 +1,7 @@
 <?php
 
 class mssql_functions extends functioncalls {
-	protected	$title = 'Constantes';
+	protected	$title = 'Fonctions MSSQL';
 	protected	$description = 'Liste des fonctions mssql';
 
 	function __construct($mid) {

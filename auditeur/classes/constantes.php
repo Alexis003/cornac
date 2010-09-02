@@ -1,7 +1,7 @@
 <?php
 
 class constantes extends typecalls {
-	protected	$title = 'Constantes';
+	protected	$title = 'Constantes (usage)';
 	protected	$description = 'Liste des constantes utilisées';
 
     function __construct($mid) {

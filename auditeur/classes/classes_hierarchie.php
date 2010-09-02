@@ -1,8 +1,8 @@
 <?php
 
 class classes_hierarchie extends modules {
-	protected	$description = 'Classe hierarchie';
-	protected	$description_en = 'List of classes et its extensions';
+	protected	$title = 'Hiérarchie des classes';
+	protected	$description = 'Hierarchie de classe';
 
 	function __construct($mid) {
         parent::__construct($mid);

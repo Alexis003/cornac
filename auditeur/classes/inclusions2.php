@@ -1,8 +1,8 @@
 <?php
 
 class inclusions2 extends modules {
-	protected	$description = 'Liste des inclusions vers dot';
-	protected	$description_en = 'Where files are included to dot';
+	protected	$title = 'Réseau d\'inclusions';
+	protected	$description = 'Liste des dépendances d\'inclusions entre les fichiers';
 
 	function __construct($mid) {
         parent::__construct($mid);
