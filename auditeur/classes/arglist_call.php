@@ -13,7 +13,7 @@ class arglist_call extends modules {
 
         $query = <<<SQL
 INSERT INTO <rapport> 
-SELECT NULL, T1.fichier, CONCAT(T2.code,'(', count(*),' args)') AS code, T1.id, '{$this->name}'
+SELECT NULL, T1.fichier, CONCAT(T2.code,'(', count(*),' args)') AS code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens_tags> TT1
     ON T1.id = TT1.token_id AND TT1.type = 'fonction'

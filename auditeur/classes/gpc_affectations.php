@@ -19,7 +19,7 @@ class gpc_affectations extends modules {
 
         $query = <<<SQL
 INSERT INTO <rapport> 
-SELECT NULL, TR1.fichier, TR1.element, TR1.id, '{$this->name}'
+SELECT NULL, TR1.fichier, TR1.element, TR1.id, '{$this->name}', 0
 FROM <rapport> TR1
 WHERE TR1.module = 'affectations_variables' AND 
       TR1.element REGEXP '^$gpc_regexp'

@@ -18,7 +18,7 @@ class appelsfonctions extends modules {
         $concat2 = $this->concat("T3.code","'->'","T4.code");
         $query = <<<SQL
 INSERT INTO <rapport_dot> 
-SELECT $concat1, $concat2, T1.fichier, '{$this->name}'
+SELECT $concat1, $concat2, T1.fichier, '{$this->name}', 0
   from <tokens> T1
   join <tokens_cache> T2 
     on T1.id = T2.id
@@ -38,7 +38,7 @@ SQL;
         $concat2 = $this->concat("T1.class","'->'","T4.code");
         $query = <<<SQL
 INSERT INTO <rapport_dot> 
-SELECT $concat1, $concat2, T1.fichier, '{$this->name}'
+SELECT $concat1, $concat2, T1.fichier, '{$this->name}', 0
   from <tokens> T1
   join <tokens_cache> T2 
     on T1.id = T2.id

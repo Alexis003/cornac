@@ -14,7 +14,7 @@ class functions_without_returns extends noms {
 // @note for methods
         $query = <<<SQL
 INSERT INTO <rapport>
-   SELECT NULL, T1.fichier, CONCAT(T1.class,'::', T1.scope), T1.id, '{$this->name}'
+   SELECT NULL, T1.fichier, CONCAT(T1.class,'::', T1.scope), T1.id, '{$this->name}', 0
    FROM <tokens> T1
    WHERE T1.class != '' AND
          T1.scope!='global'
@@ -26,7 +26,7 @@ SQL;
 // @note for functions
         $query = <<<SQL
 INSERT INTO <rapport>
-   SELECT NULL, T1.fichier, CONCAT(T1.class,'::', T1.scope), T1.id, '{$this->name}'
+   SELECT NULL, T1.fichier, CONCAT(T1.class,'::', T1.scope), T1.id, '{$this->name}', 0
    FROM <tokens> T1
    WHERE T1.class = '' 
    GROUP BY class, scope 

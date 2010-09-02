@@ -13,7 +13,7 @@ class zfAction extends modules {
 
 	    $query = <<<SQL
 INSERT INTO <rapport>
-SELECT NULL, T1.fichier, T1.code, T1.id, '{$this->name}' 
+SELECT NULL, T1.fichier, T1.code, T1.id, '{$this->name}', 0
     FROM <tokens> T1
     JOIN  <tokens_tags> TT
         ON TT.token_sub_id = T1.id

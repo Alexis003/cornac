@@ -14,7 +14,7 @@ class method_special extends modules {
         $concat = $this->concat("T1.class","'->'","T1.scope");
         $query = <<<SQL
 INSERT INTO <rapport>
-    SELECT NULL, T1.fichier, $concat, T1.id, '{$this->name}' 
+    SELECT NULL, T1.fichier, $concat, T1.id, '{$this->name}' , 0
         FROM <tokens> T1
         WHERE scope IN ( '__construct','__toString','__destruct',
                          '__set','__get','__call','__callStatic',
@@ -30,7 +30,7 @@ SQL;
 
         $query = <<<SQL
 INSERT INTO <rapport>
-    SELECT NULL, T1.fichier, T1.scope, T1.id, '{$this->name}' 
+    SELECT NULL, T1.fichier, T1.scope, T1.id, '{$this->name}' , 0
         FROM <tokens> T1
         WHERE 
             scope IN ( '__autoload' ) AND 

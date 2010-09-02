@@ -14,7 +14,7 @@ class defconstantes extends modules {
         
 	    $query = <<<SQL
 INSERT INTO <rapport>
-SELECT NULL, T1.fichier, T3.code, T3.id, '{$this->name}'
+SELECT NULL, T1.fichier, T3.code, T3.id, '{$this->name}', 0
     FROM <tokens> T1
     JOIN <tokens> T2
     ON T1.droite + 1 = T2.droite

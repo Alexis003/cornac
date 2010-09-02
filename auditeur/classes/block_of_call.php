@@ -80,7 +80,7 @@ SQL;
             $code = join("\n", $resultat);
             $query = <<<SQL
 INSERT INTO <rapport> VALUES 
-(NULL, '{$already[$id]}','$code','$id', '{$this->name}' )
+(NULL, '{$already[$id]}','$code','$id', '{$this->name}', 0 )
 SQL;
 
             $this->exec_query($query);

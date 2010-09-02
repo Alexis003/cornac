@@ -21,7 +21,7 @@ SQL;
     
 	    $query = <<<SQL
 INSERT INTO <rapport> 
-    SELECT NULL, T1.fichier, concat(T1.class,'::', T1.scope), 0,  '{$this->name}' 
+    SELECT NULL, T1.fichier, concat(T1.class,'::', T1.scope), 0,  '{$this->name}', 0
     FROM <tokens> T1
     JOIN multi_def_files ON
         T1.fichier = multi_def_files.fichier

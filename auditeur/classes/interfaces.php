@@ -13,7 +13,7 @@ class interfaces extends noms {
 
         $query = <<<SQL
 INSERT INTO <rapport>
-   SELECT NULL, T1.fichier, T1.class, T1.id, '{$this->name}'
+   SELECT NULL, T1.fichier, T1.class, T1.id, '{$this->name}', 0
    FROM <tokens> T1
    WHERE T1.type = '_interface'
 SQL;

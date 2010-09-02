@@ -15,7 +15,7 @@ class properties_used extends modules {
 // @note this are the properties used within the class : we rely on $this
         $query = <<<SQL
 INSERT INTO <rapport> 
-SELECT NULL, T1.fichier, $concat AS code, T2.id, '{$this->name}' 
+SELECT NULL, T1.fichier, $concat AS code, T2.id, '{$this->name}', 0 
 FROM <tokens> T1
   JOIN <tokens_tags> TT 
     ON TT.token_id = T1.id AND TT.type='object' 
@@ -35,7 +35,7 @@ SQL;
 
         $query = <<<SQL
 INSERT INTO <rapport> 
-SELECT NULL, T1.fichier, $concat AS code, T2.id, '{$this->name}' 
+SELECT NULL, T1.fichier, $concat AS code, T2.id, '{$this->name}' , 0
 FROM <tokens> T1
   JOIN <tokens_tags> TT 
     ON TT.token_id = T1.id AND TT.type='object' 

@@ -17,7 +17,7 @@ class literals_long extends modules {
 
         $query = <<<SQL
 INSERT INTO <rapport> 
-SELECT NULL, TR1.fichier, TRIM(code), TR1.id, '{$this->name}'
+SELECT NULL, TR1.fichier, TRIM(code), TR1.id, '{$this->name}', 0
     FROM <tokens> TR1
     WHERE type = 'literals' AND
           LENGTH(code) > 1024

@@ -64,7 +64,8 @@ SQL;
         $ligne2 = $res2->fetch();
         
 	    $query = <<<SQL
-INSERT INTO <rapport> VALUES (0, '{$ligne2['fichier']}', '{$ligne['code']} : {$ligne2['addValidator']}' , {$ligne['id']}, '{$this->name}' );
+INSERT INTO <rapport> VALUES 
+    (0, '{$ligne2['fichier']}', '{$ligne['code']} : {$ligne2['addValidator']}' , {$ligne['id']}, '{$this->name}', 0 );
 SQL;
         $this->exec_query($query);
         }

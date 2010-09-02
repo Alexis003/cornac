@@ -57,7 +57,7 @@ SQL;
               $vars = join(', ', $ligne);
         
               $query = <<<SQL
-INSERT INTO <rapport> VALUES ( 0, '$fichier', '$signature', $id, '{$this->name}' )
+INSERT INTO <rapport> VALUES ( 0, '$fichier', '$signature', $id, '{$this->name}', 0 )
 SQL;
               $this->exec_query($query);
           }

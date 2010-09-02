@@ -14,7 +14,7 @@ class returns extends modules {
         $concat = $this->concat("sum(type='_return')", "' returns'");
         $query = <<<SQL
 INSERT INTO <rapport>
-SELECT NULL, T1.fichier, $concat, T1.id, '{$this->name}' 
+SELECT NULL, T1.fichier, $concat, T1.id, '{$this->name}' , 0
 FROM <tokens> T1
 WHERE scope NOT IN ( '__construct','__destruct','__set','__get','__call','__clone','__toString','__wakeup','__sleep') 
  AND scope != class AND (class != 'global' AND scope != 'global')

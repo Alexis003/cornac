@@ -14,7 +14,7 @@ class globals extends modules {
         // @note variable global thanks to the global reserved word
         $query = <<<SQL
 INSERT INTO <rapport> 
-SELECT NULL, T2.fichier, T2.code AS code, T2.id, '{$this->name}'
+SELECT NULL, T2.fichier, T2.code AS code, T2.id, '{$this->name}', 0
     FROM <tokens> T1
     JOIN <tokens> T2 
         ON T1.droite + 1 = T2.droite AND
@@ -26,7 +26,7 @@ SQL;
         // @note variables globales because in $GLOBALS
        $query = <<<SQL
 INSERT INTO <rapport> 
-SELECT NULL, T1.fichier, T3.code AS code, T2.id, '{$this->name}'
+SELECT NULL, T1.fichier, T3.code AS code, T2.id, '{$this->name}', 0
     FROM <tokens> T1
     JOIN <tokens> T2 
         ON T1.droite + 1 = T2.droite AND

@@ -34,7 +34,7 @@ SQL;
 // @note only works on the same classe. Doesn't take into account hierarchy
         $query = <<<SQL
 INSERT INTO <rapport> 
-   SELECT NULL, T1.fichier, T2.code AS code, T1.id, '{$this->name}'
+   SELECT NULL, T1.fichier, T2.code AS code, T1.id, '{$this->name}', 0
    FROM <tokens> T1
    JOIN <tokens> T2
      ON T2.fichier = T1.fichier AND 

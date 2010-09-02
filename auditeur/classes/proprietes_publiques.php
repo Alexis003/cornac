@@ -14,7 +14,7 @@ class proprietes_publiques extends modules {
         $concat = $this->concat("T1.code", "'->'", "T2.code");
         $query = <<<SQL
 INSERT INTO <rapport> 
-   SELECT NULL, T1.fichier, $concat, T1.id,  '{$this->name}'
+   SELECT NULL, T1.fichier, $concat, T1.id,  '{$this->name}', 0
 FROM <tokens> T1 
 JOIN <tokens_tags> TT 
   ON T1.id = TT.token_id AND TT.type = 'propriete' 

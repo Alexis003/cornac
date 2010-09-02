@@ -14,7 +14,7 @@ class nestedif extends modules {
         $concat = $this->concat("T1.type","'->'","T2.type");
         $query = <<<SQL
 INSERT INTO <rapport>
-SELECT NULL, T1.fichier, $concat, T1.id, '{$this->name}' 
+SELECT NULL, T1.fichier, $concat, T1.id, '{$this->name}' , 0
     FROM <tokens> T1
     JOIN <tokens> T2
         ON T1.fichier = T2.fichier AND T2.droite BETWEEN T1.droite AND T1.gauche

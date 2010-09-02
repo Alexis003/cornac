@@ -14,7 +14,7 @@ class affectations_literals extends modules {
 // @note affectations that have no variables on the right side (properties, references, list(), noscream...)
         $query = <<<SQL
 INSERT INTO <rapport> 
-SELECT NULL, T1.fichier, TC.code, T1.id,  '{$this->name}'  
+SELECT NULL, T1.fichier, TC.code, T1.id,  '{$this->name}' , 0 
 FROM <tokens> T1
 JOIN <tokens_tags> TT1
 ON T1.id = TT1.token_id AND TT1.type='right'

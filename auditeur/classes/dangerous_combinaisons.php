@@ -24,7 +24,7 @@ class dangerous_combinaisons extends modules {
 
             $query = <<<SQL
 INSERT INTO <rapport> 
-    SELECT NULL, T1.fichier, '$nom', T1.code, '{$this->name}'
+    SELECT NULL, T1.fichier, '$nom', T1.code, '{$this->name}', 0
     FROM <tokens> T1
     GROUP BY fichier
     HAVING SUM(IF (code IN ($in), 1, 0)) >= $count

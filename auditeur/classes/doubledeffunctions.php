@@ -17,7 +17,7 @@ class doubledeffunctions extends modules {
 
         $query = <<<SQL
 INSERT INTO <rapport> 
-SELECT NULL, fichier, TR.element,  TR.token_id, '{$this->name}'
+SELECT NULL, fichier, TR.element,  TR.token_id, '{$this->name}', 0
 FROM <rapport> TR
  WHERE module='deffunctions'
  GROUP BY element 

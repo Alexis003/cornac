@@ -15,7 +15,7 @@ class affectations_direct_gpc extends modules {
 // @note variables, not whole arrays
         $query = <<<SQL
 INSERT INTO <rapport> 
-SELECT NULL, T1.fichier, TC.code, T1.id,'{$this->name}'  
+SELECT NULL, T1.fichier, TC.code, T1.id,'{$this->name}'  , 0
 FROM <tokens> T1  
     JOIN <tokens_tags> TT
 ON T1.id = TT.token_id AND TT.type='right'
@@ -37,7 +37,7 @@ SQL;
 // @note full arrays,  not just variables
         $query = <<<SQL
 INSERT INTO <rapport> 
-SELECT NULL, T1.fichier, TC.code, T1.id,'{$this->name}'  
+SELECT NULL, T1.fichier, TC.code, T1.id,'{$this->name}'  , 0
 FROM <tokens> T1  
     JOIN <tokens_tags> TT
 ON T1.id = TT.token_id AND TT.type='right'

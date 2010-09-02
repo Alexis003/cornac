@@ -14,7 +14,7 @@ class zfController extends modules {
         $concat = $this->concat("T2.class", "'->'","T2.code");
 	    $query = <<<SQL
 INSERT INTO <rapport>
-SELECT NULL, T1.fichier, $concat as code, T1.id, '{$this->name}' 
+SELECT NULL, T1.fichier, $concat as code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens_tags> TT 
 ON T1.id = TT.token_id AND

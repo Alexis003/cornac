@@ -14,7 +14,7 @@ class arglist_def extends modules {
 // @doc this query search for the minimum argument to send a function/method
         $query = <<<SQL
 INSERT INTO <rapport> 
-SELECT NULL, T1.fichier, CONCAT(T2.code,'(', count(*),' args)') AS code, T1.id, '{$this->name}'
+SELECT NULL, T1.fichier, CONCAT(T2.code,'(', count(*),' args)') AS code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens_tags> TT1
     ON T1.id = TT1.token_id AND TT1.type = 'name'
@@ -65,7 +65,7 @@ SQL;
                 $nb = $row['compulsory'] + $i + 1;
                 $query = <<<SQL
 INSERT INTO <rapport> 
-SELECT NULL, '{$row['fichier']}', CONCAT('{$row['code']}','(', $nb ,' args)'), '{$row['id']}', '{$this->name}'
+SELECT NULL, '{$row['fichier']}', CONCAT('{$row['code']}','(', $nb ,' args)'), '{$row['id']}', '{$this->name}', 0
 SQL;
                 $this->exec_query($query);
             }

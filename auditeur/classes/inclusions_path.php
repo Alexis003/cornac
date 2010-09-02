@@ -13,7 +13,7 @@ class inclusions_path extends modules {
 
         $query = <<<SQL
 INSERT INTO <rapport>
-    SELECT NULL, T1.fichier, IFNULL(TC.code, T2.code) AS element, T1.id, '{$this->name}'
+    SELECT NULL, T1.fichier, IFNULL(TC.code, T2.code) AS element, T1.id, '{$this->name}', 0
         FROM <tokens> T1
         JOIN <tokens> T2
             ON T1.fichier = T2.fichier AND

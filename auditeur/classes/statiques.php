@@ -13,7 +13,7 @@ class statiques extends modules {
 
         $query = <<<SQL
 INSERT INTO <rapport>
-   SELECT NULL, T1.fichier, TC.code,  T1.id, '{$this->name}'
+   SELECT NULL, T1.fichier, TC.code,  T1.id, '{$this->name}', 0
    FROM <tokens> T1
    JOIN <tokens_cache> TC
         ON TC.id = T1.id 
