@@ -1,5 +1,5 @@
 <?php
-print    $query = "SELECT ML.module AS element, 
+    $query = "SELECT ML.module AS element, 
                      COUNT(RL.id) AS nb, 
                      COUNT(RL.id) - SUM(checked) AS todo 
                  FROM {$tables['<rapport>']}_module ML
