@@ -91,6 +91,8 @@ Have a property that tells if an analyzers is public or not
 
 Have ratio calculated on top of analyzers (TDB)
 
+Support dot format for testing
+
 [analysers ideas]
 Identify looooong literals
 add 'variable' as a scope, so that we can actually work context by context
