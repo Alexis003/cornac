@@ -8,9 +8,7 @@ Finish translations of analyzers's title and description
 Make the english version
 
 [cornac]
-spot popular libraries, and avoid them (tinyMCE, phpmailer, fpdf, ...)
 Add a log to show progress
-Handle files with ' ' space in tokenizeur.php
 Add support for a version of Cornac (checking for config files, tables configurations, etc.)
 add file restriction in the cornac.ini file
 
@@ -46,9 +44,13 @@ Stop script when option is unrecognized (any of them);
 Display dots when parsing the file (tokenizer)
 Display dots when processing analyzers (auditeur)
 
+Add a file lister, that will also display ignored files from tokenizeur (export current function to external scripts/)
+
 [tokenizeur]
 Could it be possible to chain results? Atm, one can do it manually, or creating a new analyzer
 Use JMF's style
+
+Make a function call tree (which function calls which)
 
 Add an option for the tokenizeur to clean the tables before working (default : append new files). 
 
@@ -89,8 +91,6 @@ Have a property that tells if an analyzers is public or not
 
 Have ratio calculated on top of analyzers (TDB)
 
-Add web site's index.php in github
-
 [analysers ideas]
 Identify looooong literals
 add 'variable' as a scope, so that we can actually work context by context
@@ -103,7 +103,6 @@ detect impossible condition (if (false), ...)
 
 PHP configuration function usage
 
-Add the 'web' version on github.
 check for case without break
 useless lines (like 1; array(); etc.)
 Identify variables that where not initialized (less args, less foreach)
@@ -135,8 +134,6 @@ Make a map of a function : in, out, dependances
 + local (variables)
 + dependances (constants, functions, classes...)
 
-Make a function call tree (which function calls which)
-
 Check for unused regex (from tokenizeur)
 
 Regex usage (pcre, ereg)
@@ -163,7 +160,11 @@ methods/files/classes that misses some code.
 Spot GPC assigned to variable, then used in concatenation (security...)
 Spot library dependencies, espcially PEAR, phpmailer, tinyMCE. 
 
+Qualify scripts/contextes/folders as being controler (aka _GET, include), model (database) ou template (html, pdf, echo...).
+Check that above characteristics are at the right place (by folder, by framework...)
 
+Support some framework : drupal, joomla, zend, symfony, magento
+    Support for : templating, modele, controler, usage of internals recommanded libraries
 
 [auditeur]
 export to html : should match the interactive web version
@@ -173,6 +174,8 @@ export to dot
 export to gephi
 export to .csv
 export to .yaml
+
+What to do when one (un)check a group of element, when the group is not homogenous : currently, toggle invert the values, and it is not easy to understand
 
 [tags]
 export data into dabase for easier templating
@@ -189,9 +192,13 @@ Make better display
 [inventaire]
 regex
 sql requests
+File list
+Cookies
+Configuration variables
 
-/// to dispatch
 
+/// to be sorted
+[fixes]
 classes_undefined : cas de la valeur vide sur dotclear
 Identifier les conflit de noms avec des exntesions ou des bibliothèes PHP
 fonctions vides : ignore les classes abstraites, interfaces ou les classes dérivées 
@@ -200,17 +207,11 @@ $:: globals
 inclusions_path : a revoir entièrement : le contenu n'est psa le bon
 attention aux proriétés : sur variable ou sur méthode. 
 
-nusoap
-
 variables utilisées : retirer les globales, et ignorer le scope 'global' dans les classes
 Liste des blanches pour les eval (surveiller la valeur de retour)
 block d'appels ; a revoir
 pas de résultat == pas dans le sommaire!!
-regex vide!
-Découper les scripts/contextes/dossiers en fonction de controleur (aka _GET), modele (rien) ou template (html).
+regex vide! : quel sens?
 chemins d'inclusions
-Multi-def : ignorer les fichiers en classe uniquement
+Multi-def : ignorer les fichiers en fonctions uniquement (différents contextes, pas de glboal == bibliothèque de fonctions)
 
-Liste de fichiers
-Cookies
-variables de configuration
