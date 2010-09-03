@@ -69,7 +69,68 @@ if (isset($INI['cornac']['prefix'])) {
     $prefix = 'tokens';
 }
 
+$headers = array('Variables' => 'SELECT COUNT(DISTINCT element) FROM '.$prefix.'_rapport WHERE module="variables"',
+                 'Fichiers'  => 'SELECT COUNT(DISTINCT fichier) FROM '.$prefix.'_rapport',
+                 'Classes'   => 'SELECT COUNT(DISTINCT element) FROM '.$prefix.'_rapport WHERE module="classes"',
+                 );
+
+$stats = array();
+foreach($headers as $name => $sql) {
+    $res = $database->query($sql);
+    $row = $res->fetch();
+    $stats[] = array($name, $row[0]);
+}
+
 $tables = '';
+$headers = array('Libelle','Compte');
+
+// @doc summary table 
+
+    $cells = '';
+    foreach($headers as $header) {
+        $cells .= <<<XML
+					<table:table-cell table:style-name="ce1" office:value-type="string">
+						<text:p>$header</text:p>
+					</table:table-cell>
+XML;
+    }
+
+        $rows = <<<XML
+				<table:table-row table:style-name="ro1">
+				    $cells
+				</table:table-row>
+XML;
+
+    foreach($stats as $row) {
+        $cells = '';
+        foreach($row as $col) {
+            $col = ods_protect($col);
+            
+            $cells .= <<<XML
+					<table:table-cell office:value-type="string">
+						<text:p>{$col}</text:p>
+					</table:table-cell>
+XML;
+        }
+        
+        $rows .= <<<XML
+				<table:table-row table:style-name="ro1">
+				    $cells
+				</table:table-row>
+XML;
+    }
+
+
+
+$tables .= <<<XML
+			<table:table table:name="Sommaire" table:style-name="ta1" table:print="false">
+				<table:table-column table:style-name="co1" table:number-columns-repeated="2" table:default-cell-style-name="Default" />
+				$rows
+			</table:table>
+XML;
+
+
+
 
 // @attention : should also support _dot reports
 $names = array("Modules PHP" => array('query' => 'SELECT DISTINCT element FROM '.$prefix.'_rapport WHERE module="php_modules" ORDER BY element',
@@ -99,6 +160,9 @@ $names = array("Modules PHP" => array('query' => 'SELECT DISTINCT element FROM '
                "Variables" => array('query' => 'SELECT element, COUNT(*) as NB FROM '.$prefix.'_rapport WHERE module="variables" GROUP BY element ORDER BY NB DESC',
                                     'headers' => array('Variable','Number'),
                                     'columns' => array('element','NB')),
+               "Fichiers" => array('query' => 'SELECT DISTINCT fichier FROM '.$prefix.'_rapport GROUP BY fichier ORDER BY fichier DESC',
+                                    'headers' => array('Fichier'),
+                                    'columns' => array('fichier')),
                                   
                                   //, "variables","constantes","deffunctions","interfaces"
                                   
