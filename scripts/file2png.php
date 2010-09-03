@@ -10,45 +10,75 @@ while($row = $res->fetch()) {
 }
 $a = path2array($a);
 
-$img = imagecreatetruecolor((large($a)) * SCALE, (deep($a) + 1) * SCALE);
+
+//$a = array(array(array(array(1,2,3,4,array(5,6,7),8,array(9,10,11,12)))));
+//$a = array(1,2,3,4,array(5,6,7),8,array(9,10,11,12));
+print_r($a);
+//$a = array(1,2,3,array(4,5,6),array(7,8,10,array(11,12)),9, array(13,14,15, array(16,17,18,19,20)), 21, 22, range(23,3));
+//$a = array(1,array(7,8,10,array(11,12)));
+//$a = array(array(1,2,3,9));
+// largeur : 4
+// longueur 5
+
+//print_r($a);
+
+print "deep : ".deep($a)."\n";
+print "large : ".large($a)."\n";
+
+$img = imagecreatetruecolor((large($a)) * SCALE, (deep($a) ) * SCALE);
 $white = imagecolorallocate($img, 0xff, 0xff, 0xff);
-imagefilledrectangle($img, 0, 0, (large($a)) * SCALE -1, (deep($a) + 1) * SCALE -1, $white);
+imagefilledrectangle($img, 0, 0, (large($a)) * SCALE -1, (deep($a) ) * SCALE -1, $white);
 $black = imagecolorallocate($img, 0, 0, 0);
-imagerectangle($img, 0, 0, (large($a)) * SCALE -1, (deep($a) + 1) * SCALE -1, $black);
+$red = imagecolorallocate($img, 0xff, 0, 0);
+imagerectangle($img, 0, 0, (large($a)) * SCALE -1, (deep($a) ) * SCALE -1, $black);
 
 $img = black($img, $a);
 imagepng($img, './file2png.png');
 
-function black($img, $array, &$x = 0, $y = 1) {
+function black($img, $array, &$x_dir = 0, $y_dir = 1) {
     $black = imagecolorallocate($img, 0, 0, 0);
+    $red = imagecolorallocate($img, 0xff, 0, 0);
     
-    $init = $x; 
+    $init = $x_dir; 
+    $x_leaf = $x_dir;
+    $y_leaf = $y_dir;
     
     $white = imagecolorallocate($img, 0xFF, 0xFF, 0xFF);
     foreach($array as $a) {
-        if (is_array($a)) {
-            
-            black($img, $a, $x, $y + 1);
-            // @note go on
-        } else {
+        if (!is_array($a)) {
             $color = color($img, $a);
-
-            imagefilledrectangle($img, $x * SCALE, $y * SCALE, ($x + 1) * SCALE, ($y + 1) * SCALE, $color);
-            imagerectangle($img, $x * SCALE, $y * SCALE, ($x + 1) * SCALE, ($y + 1) * SCALE, $white);
-            $x++;
+            
+            imagefilledrectangle($img, $x_leaf * SCALE, $y_leaf * SCALE, ($x_leaf + 1) * SCALE, ($y_leaf + 1) * SCALE, $color);
+            imagerectangle($img, $x_leaf * SCALE, $y_leaf * SCALE, ($x_leaf + 1) * SCALE, ($y_leaf + 1) * SCALE, $white);
+            $y_leaf++;
         }
     }
     
-    $end = $x; 
-
-    $color = color($img, $array);
-    imagefilledrectangle($img, $init * SCALE, ($y - 1) * SCALE, ($end) * SCALE, ($y ) * SCALE, $white);
-    imagerectangle($img, $init * SCALE, ($y - 1) * SCALE, ($end) * SCALE, ($y ) * SCALE, $black);
+    if ($y_leaf > $y_dir) { $x_dir++; }
+    foreach($array as $a) {
+        if (is_array($a)) {
+            
+            // recursive
+            $y_dir++;
+            black($img, $a, $x_dir, $y_dir);
+            $y_dir--;
+            // @note go on
+        } 
+    }
     
+    $end = $x_dir + 1; 
+
+// folder
+
+    $color = imagecolorallocate($img, rand(0,255),0,0);
+    imagefilledrectangle($img, $init * SCALE, ($y_dir - 1) * SCALE, ($end -2 ) * SCALE , ($y_dir ) * SCALE, $white);
+    imagerectangle($img, $init * SCALE, ($y_dir - 1) * SCALE, ($end -1) * SCALE - 1, ($y_dir ) * SCALE, $red);
+
     return $img;
 }
 
 function color($img, $a) {
+//    return imagecolorallocate($img, 0, rand(0, 255), 0);
     if (is_array($a)) {  return imagecolorallocate($img,  0x77,0x77,0x77);}
 
     global $colors;
@@ -67,31 +97,43 @@ function color($img, $a) {
 
 function large($array) {
     $large = 0;
+    $leafs = 0;
     foreach($array as $a) {
         if (is_array($a)) {
             $large += large($a);
         } else {
-            $large ++;
+//            $large++;
+            $leafs++;
         }
     }
+    
+    if ($leafs > 0) {
+        $large++;
+    }
+    
     return $large;
 }
 
-
-function deep($array) {
+function deep($array, $level = 0) {
     $depth = 1;
     
     $max = 0;
+    $leafs = 0;
     foreach($array as $a) {
         if (is_array($a)) {
-            deep($a);
-            $d = deep($a);
+            $d = deep($a, $level + 1);
             if ($d > $max) {$max = $d; }
+        } else {
+            $leafs++;
         }
     }
     
-    $depth += $max;
-    
+    if ($leafs > $max + 1) {
+        $depth = $leafs + 1;
+    } else {
+        $depth = $max + 1;
+    }
+
     return $depth;
 }
 
