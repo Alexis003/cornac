@@ -74,7 +74,8 @@ SHELL;
         }
         
         if (!empty($elements)) {
-            $this->assertTrue(false, "".count($elements)." objects were found, but they are not processed by the tests (".join(', ', $elements).")");
+            $elements = array_map('addslashes', $elements);
+            $this->assertTrue(false, "".count($elements)." objects were found, but they are not processed by the tests ('".join("', '", $elements)."')");
         }
     }
 
@@ -98,10 +99,11 @@ SHELL;
         $retour = shell_exec($shell);
         $this->assertTrue(!empty($retour),'reader is empty');
         $this->assertTrue(strpos($retour, 'Usage : ') === false);
-        $sx = simplexml_load_string($retour);
-        
+
         file_put_contents('log/'.$this->prefix.'.log', $retour);
-        
+
+        $sx = simplexml_load_string($retour);
+
         $elements = array();
         foreach($sx as $element) {
             $elements[] = $element->element."";
@@ -120,7 +122,8 @@ SHELL;
         }
         
         if (!empty($elements)) {
-            $this->assertTrue(false, "".count($elements)." objects were found, but they are not processed by the tests (".join(', ', $elements).")");
+            $elements = array_map('addslashes', $elements);
+            $this->assertTrue(false, "".count($elements)." objects were found, but they are not processed by the tests ('".join("', '", $elements)."')");
         }
     }
 }

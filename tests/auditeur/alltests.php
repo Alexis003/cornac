@@ -57,6 +57,11 @@ $tests = array(
 'class.literals_reused.test.php',
 'class.tableaux.test.php',
 'class.vardump.test.php',
+'class.defarray.test.php',
+//'class.globals_link.test.php',
+'class.multidimarray.test.php',
+'class.thrown.test.php',
+
 // Prochain tests
 );
 
