@@ -18,10 +18,11 @@ class unused_args extends modules {
 SELECT T1.id, T1.code, T1.fichier, TT.type, TT.token_sub_id , TC.code AS signature
 FROM <tokens> T1
 JOIN <tokens_tags> TT
-ON TT.token_id = T1.id 
+    ON TT.token_id = T1.id 
 JOIN <tokens_cache> TC
-ON T1.id = TC.id 
-WHERE T1.type = '_function' AND TT.type in ('args','block','abstract');
+    ON T1.id = TC.id 
+WHERE T1.type = '_function' AND 
+      TT.type in ('args','block','abstract');
 SQL;
         $res = $this->exec_query($query);
     
@@ -41,14 +42,17 @@ SQL;
             if (isset($abstract)) { unset($abstract); continue; }
         
         	$query = <<<SQL
- SELECT T2.code FROM <tokens> T1
- JOIN <tokens> T2
- ON T2.fichier = T1.fichier and T2.droite between T1.droite and T1.gauche AND T2.type = 'variable'
- where T1.id = $args AND T2.code NOT IN (
+SELECT T2.code FROM <tokens> T1
+JOIN <tokens> T2
+    ON T2.fichier = T1.fichier and T2.droite between T1.droite and T1.gauche AND T2.type = 'variable'
+WHERE T1.id = $args AND T2.code NOT IN (
     SELECT T2.code FROM <tokens> T1
-     JOIN <tokens> T2
-     ON T2.fichier = T1.fichier AND T2.droite BETWEEN T1.droite AND T1.gauche AND T2.type = 'variable'
-     WHERE T1.id = $block );
+    JOIN <tokens> T2
+        ON T2.fichier = T1.fichier AND 
+           T2.droite BETWEEN T1.droite AND T1.gauche AND
+           T2.type = 'variable'
+     WHERE T1.id = $block 
+     );
 SQL;
     
            $res = $this->exec_query($query);
@@ -57,7 +61,8 @@ SQL;
               $vars = join(', ', $ligne);
         
               $query = <<<SQL
-INSERT INTO <rapport> VALUES ( 0, '$fichier', '$signature', $id, '{$this->name}', 0 )
+INSERT INTO <rapport> 
+    VALUES ( 0, '$fichier', '$signature', $id, '{$this->name}', 0 )
 SQL;
               $this->exec_query($query);
           }
