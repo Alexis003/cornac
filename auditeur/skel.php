@@ -1,4 +1,9 @@
+#!/usr/bin/php
 <?php
+
+if (!isset($argv[1])) {
+    die("Usage : skel [new analyzer name]\nCreates a new skeleton for analyze, in classes directory. \n");
+}
 
 $analyzer = trim($argv[1]);
 
@@ -30,7 +35,7 @@ class $analyzer extends modules {
 
 // @doc if this analyzer is based on previous result, use this to make sure the results are here
 	function dependsOn() {
-//	    return array('');
+	    return array();
 	}
 	
 	public function analyse() {
@@ -39,7 +44,7 @@ class $analyzer extends modules {
 // @todo of course, update this useless query. :)
 	    \$query = <<<SQL
 INSERT INTO <rapport>
-SELECT NULL, T1.fichier, T1.code, T1.id, '{\$this->name}' 
+SELECT NULL, T1.fichier, T1.code, T1.id, '{\$this->name}', 0
     FROM <tokens> T1
     WHERE code IS NULL
 SQL;
@@ -57,6 +62,7 @@ file_put_contents('classes/'.$analyzer.'.php', $code);
 $auditeur = file_get_contents('./auditeur.php');
 $auditeur = str_replace("// new analyzers\n", "'$analyzer',\n// new analyzers\n", $auditeur);
 file_put_contents('auditeur.php', $auditeur);
+shell_exec('git add class/$analyzer.php');
 
-print "$analyzer created (git add $analyzer)\n";
+print "$analyzer created ()\n";
 ?>
