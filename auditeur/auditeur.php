@@ -9,6 +9,12 @@ $args = $argv;
 $help = get_arg($args, '-?') ;
 if ($help) { help(); }
 
+if (get_arg($args, '-K')) { 
+    define('CLEAN_DATABASE', true);
+} else {
+    define('CLEAN_DATABASE', false);
+}
+
 // default values, stored in a INI file
 $ini = get_arg_value($args, '-I', null);
 if (!empty($ini)) {
@@ -139,6 +145,8 @@ $modules = array(
 'gpc_variables',
 'mvc',
 'globals_link',
+'defarray',
+'multidimarray',
 // new analyzers
 );
 
@@ -169,8 +177,10 @@ if (INI) {
 if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
     $database = new pdo($INI['mysql']['dsn'],$INI['mysql']['username'], $INI['mysql']['password']);
 
-// @todo : drop old tables?   $database->query('DELETE FROM '.$INI['template.mysql'].'_rapport WHERE fichier = "'.$fichier.'"');
 // @note element column size should match the code column in <tokens>
+    if (CLEAN_DATABASE) {
+        $database->query('DROP TABLE '.$INI['cornac']['prefix'].'_rapport');
+    }
     $database->query('CREATE TABLE IF NOT EXISTS '.$INI['cornac']['prefix'].'_rapport (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `fichier` varchar(500) NOT NULL,
@@ -183,7 +193,9 @@ if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
   KEY `module` (`module`)
 ) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1');
 
-// @todo : drop old tables?        $database->query('DELETE FROM '.$INI['template.mysql']['table'].'_rapport_dot WHERE fichier = "'.$fichier.'"');
+    if (CLEAN_DATABASE) {
+        $database->query('DROP TABLE '.$INI['cornac']['prefix'].'_rapport_dot');
+    }
         $database->query('CREATE TABLE IF NOT EXISTS '.$INI['cornac']['prefix'].'_rapport_dot (
   `a` varchar(255) NOT NULL,
   `b` varchar(255) NOT NULL,
@@ -191,7 +203,9 @@ if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
   `module` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1');
 
-// @todo : drop old tables?        $database->query('DELETE FROM '.$INI['template.mysql']['table'].'_rapport_module WHERE fichier = "'.$fichier.'"');
+    if (CLEAN_DATABASE) {
+        $database->query('DROP TABLE '.$INI['cornac']['prefix'].'_rapport_module');
+    }
         $database->query('CREATE TABLE IF NOT EXISTS '.$INI['cornac']['prefix'].'_rapport_module (
   `module` varchar(255) NOT NULL,
   `fait` datetime NOT NULL,
@@ -202,7 +216,8 @@ if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
 } elseif (isset($INI['sqlite'])  && $INI['sqlite']['active'] == true) {
     $database = new pdo($INI['sqlite']['dsn']);
     
-//    $database->query('DELETE FROM '.$INI['cornac']['prefix'].'_rapport WHERE fichier = "'.$fichier.'"');
+// @todo : support drop of table with option -K
+// @code $database->query('DELETE FROM '.$INI['cornac']['prefix'].'_rapport WHERE fichier = "'.$fichier.'"');
     $database->query('CREATE TABLE IF NOT EXISTS '.$INI['cornac']['prefix'].'_rapport 
   (id       INTEGER PRIMARY KEY   AUTOINCREMENT  , 
   `fichier` varchar(500) NOT NULL,
@@ -304,6 +319,7 @@ prefix : tokens (default)
     -a    : comma separated list of analyzers to be used. Defaut to all. 
     -d    : refresh dependent analyzers (default : no)
     -f    : output format : html
+    -K    : destroy databases first
     -o    : folder for output : /tmp
     -I    : ini config file
 
