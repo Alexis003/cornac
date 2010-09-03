@@ -21,7 +21,6 @@ $args = $argv;
 $help = get_arg($args, '-?') ;
 if ($help) { help(); }
 
-
 // @doc default values, stored in a INI file
 $ini = get_arg_value($args, '-I', null);
 if (!is_null($ini)) {
@@ -557,17 +556,19 @@ function liste_directories_recursive( $path = '.', $level = 0 ){
     if (isset($INI['tokenizeur']['ignore_suffixe']) && !empty($INI['tokenizeur']['ignore_suffixe'])) {
         print preg_quote($INI['tokenizeur']['ignore_suffixe'])."\n";
         $regex_suffixe = str_replace(',','|',  preg_quote($INI['tokenizeur']['ignore_suffixe']));
+        $regex_suffixe = '/('.$regex_suffixe.')$/';
     } else {
         $regex_suffixe = array('.gif','.jpg','.jpeg','.xsl','.css','.js','.png');
+        $regex_suffixe = '/('.join('|', $regex_suffixe).')$/';
     }
-    $regex_suffixe = '/('.join('|', $regex_suffixe).')$/';
 
     if (isset($INI['tokenizeur']['ignore_prefixe']) && !empty($INI['tokenizeur']['ignore_prefixe'])) {
         $regex_prefixe = str_replace(',','|',  preg_quote($INI['tokenizeur']['ignore_prefixe']));
+        $regex_prefixe = '/('.$regex_prefixe.')$/';
     } else {
         $regex_prefixe = array('\\.');
+        $regex_prefixe = '/^('.join('|', $regex_prefixe).')/';
     }
-    $regex_prefixe = '/^('.join('|', $regex_prefixe).')/';
 
     $retour = array();
 
