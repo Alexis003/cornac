@@ -51,18 +51,18 @@ if (!in_array($INI['cornac']['storage'],array('mysql','sqlite'))) {
 
 if (!file_exists($INI['cornac']['destination'])) { 
     if (!mkdir($INI['cornac']['destination'])) {
-        print "Output directory doesn't exist '{$INI['cornac']['destination']}' : update ".INI.".ini\n";
+        print "Output directory doesn't exist '{$INI['cornac']['destination']}' : update ".INI."\n";
         help(); 
     }
 }
 
 if (!is_dir($INI['cornac']['destination'])) { 
-    print "Output path '{$INI['cornac']['destination']}' isn't a directory : update ".INI.".ini\n";
+    print "Output path '{$INI['cornac']['destination']}' isn't a directory : update ".INI."\n";
     help(); 
 }
 
 if (!is_writable($INI['cornac']['destination'])) { 
-    print "Output path '{$INI['cornac']['destination']}' isn't writable : update ".INI.".ini\n";
+    print "Output path '{$INI['cornac']['destination']}' isn't writable : update ".INI."\n";
     help(); 
 }
 $INI['reader']['output'] = $INI['cornac']['destination'];
@@ -86,6 +86,14 @@ if (realpath($INI['cornac']['origin']) == realpath($INI['cornac']['destination']
 if ($INI['cornac']['storage'] == 'mysql') {
     $INI['mysql']['active'] = 1;
     $INI['sqlite']['active'] = 0;
+
+    if (get_arg($args, '-K')) { 
+        $database = new pdo($INI['mysql']['dsn'],$INI['mysql']['username'], $INI['mysql']['password']);
+        $table = $INI['cornac']['prefix'] ?: 'tokens'; 
+        // @todo add some more verifications (existence, number actually destroyed..)
+        $database->query("DROP TABLE {$table}, {$table}_cache, {$table}_rapport, {$table}_rapport_dot, {$table}_rapport_module, {$table}_tags");
+        print "tables $tables_* erased";
+    }
 } elseif ($INI['cornac']['storage'] == 'sqlite') {
     $INI['mysql']['active'] = 0;
     $INI['sqlite']['active'] = 1;
@@ -124,6 +132,7 @@ Options :
   -? : help
   -d : source folder
   -s : storage (mysql (default), sqlite)
+  -K : destroy databases first
   -o : output folder (path, 'web' (leave in database'))
   -I : ini config
 
