@@ -8,6 +8,9 @@ Finish translations of analyzers's title and description
 Make the english version
 
 [cornac]
+process extension as case unsensitive. 
+check for default values of .ini in the code, so as to make sure we have a nice liste
+
 Add a log to show progress
 Add support for a version of Cornac (checking for config files, tables configurations, etc.)
 add file restriction in the cornac.ini file
@@ -154,8 +157,10 @@ Gather all index used in an array (how to check 2 arrays are the same?)
 Be able to search for a string, whatever the analyzer (intersect analyzers result and see what is is common)
 
 Extract array's lists (long list of values in arrays)
+Spot multidimensional array (tableau with several dimensions...)
 
 functions (and files) that emit text (print, var_dump, raw text...)
+functions (and files) that emit error (join, mysql_connect, ) : they should be checked...
 
 methods/files/classes that misses some code.
 
@@ -168,6 +173,8 @@ Check that above characteristics are at the right place (by folder, by framework
 Support some framework : drupal, joomla, zend, symfony, magento
     Support for : templating, modele, controler, usage of internals recommanded libraries
 
+htmlentities used without encoding information
+
 [auditeur]
 export to html : should match the interactive web version
 
@@ -176,6 +183,7 @@ export to dot
 export to gephi
 export to .csv
 export to .yaml
+support graphic file representation (move file2png to a lib, then integrate)
 
 What to do when one (un)check a group of element, when the group is not homogenous : currently, toggle invert the values, and it is not easy to understand
 
