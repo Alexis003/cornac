@@ -9,7 +9,7 @@ class Render_xml {
             return $return;
         }
 
-        $return .= "<document>\n";
+        $return .= "<document count=\"".count($lines)."\">\n";
         foreach($lines as $id => $line) {
             $return .= "  <ligne id=\"$id\">\n";
             foreach($line as $col => $value) {
