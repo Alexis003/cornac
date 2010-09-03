@@ -843,8 +843,10 @@ class template_db extends template {
         $noeud->myDroite = $this->getIntervalleId();
         $noeud->setCode('');
 
-        $this->affiche($noeud->getVariable(), $niveau + 1);
-        $this->affiche($noeud->getIndex(), $niveau + 1);
+        $tags = array();
+        $tags['array'][] = $this->affiche($noeud->getVariable(), $niveau + 1);
+        $tags['index'][] = $this->affiche($noeud->getIndex(), $niveau + 1);
+        $this->tags = $tags;
         
         $noeud->myGauche = $this->getIntervalleId();
         return $this->saveNoeud($noeud, $niveau);
