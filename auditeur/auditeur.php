@@ -149,6 +149,8 @@ $modules = array(
 'multidimarray',
 'zfClasses',
 'popular_libraries',
+'addElement',
+'addElement_unaffected',
 // new analyzers
 );
 
