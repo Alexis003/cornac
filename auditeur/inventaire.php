@@ -9,6 +9,20 @@ $args = $argv;
 $help = get_arg($args, '-?') ;
 if ($help) { help(); }
 
+$output_file = get_arg_value($args, '-o','inventory');
+if (preg_match('#[^a-zA-Z0-9_/\.\-]#', $output_file)) {
+    print "Invalid output file '$output_file'. Aborting\n";
+    die();
+}
+if (strtolower(substr($output_file, 0, -4)) != '.ods') {
+    $output_file .= ".ods";
+}
+
+if (file_exists($output_file)) {
+    print "$output_file already exists. Aborting\n";
+    die();
+}
+
 // @todo : check $format for values
 // @todo : check output for being a folder
 
@@ -228,7 +242,7 @@ $document = file_get_contents('skel/content.xml');
 $document = str_replace('<tables>',$tables,$document);
 
 $zip = new ZipArchive();
-$filename = "./inventaire.ods";
+$filename = "./$output_file";
 
 if ($zip->open($filename, ZIPARCHIVE::CREATE)!==TRUE) {
     exit("cannot open <$filename>\n");
@@ -249,9 +263,11 @@ foreach($files as $file) {
 
 $zip->addFromString("content.xml", $document);
 
-echo "numfiles: " . $zip->numFiles . "\n";
-echo "status:" . $zip->status . "\n";
-var_dump($zip->close());
+if ($zip->close()) {
+    print "Done\n";
+} else {
+    print "Failed\n";
+}
 
 function rglob($path) {
     $files = glob($path);
@@ -277,6 +293,7 @@ Usage : ./inventaire.php
 Options : 
 -?     : this help
 -I     : .INI file of configuration
+-o     : outputfile 
 
 SHELL;
     die();
