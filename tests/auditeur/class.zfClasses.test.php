@@ -1,4 +1,4 @@
-<?php
+<?php 
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -16,22 +16,15 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
+include_once('Auditeur_Framework_TestCase.php');
 
-true;
-FALSE;
-__METHOD__;
-__FILE__;
-
-CONSTANTE_USER;
-$tableau[CONSTANTE_TABLEAU];
-fonction(CONSTANTE_FONCTION1, CONSTANTE_FONCTION2, CONSTANTE_FONCTION3);
-array(CONSTANTE_ARRAY1, CONSTANTE_ARRAY2, CONSTANTE_ARRAY3);
-
-interface interface_class_name {
-    function a();
-}
-
-class class_name extends other_class_name implements interface_class_name {
-    function a() {}
+class zfClasses_Test extends Auditeur_Framework_TestCase
+{
+    public function testzfClasses()  { 
+        $this->attendus = array( 'Zend_View',);
+        $this->inattendus = array('Zend_View_Not_Existing');
+        
+        parent::generic_test();
+    }
 }
 ?>

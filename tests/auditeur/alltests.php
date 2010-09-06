@@ -78,8 +78,9 @@ $tests = array(
 //'class.globals_link.test.php',
 'class.multidimarray.test.php',
 'class.thrown.test.php',
-
-// Prochain tests
+'class.zfClasses.test.php',
+'class.popular_libraries.test.php',
+// new tests
 );
 
 foreach($tests as $i => $test ) {
