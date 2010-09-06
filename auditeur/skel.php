@@ -26,8 +26,8 @@ $code = '<?'.'php ';
 $code .= "
 
 class $analyzer extends modules {
-	protected	\$title = 'Titre pour '.$analyzer;
-	protected	\$description = 'Ceci est l\'analyseur '.$analyzer.' par défaut. ';
+	protected	\$title = 'Titre pour $analyzer';
+	protected	\$description = 'Ceci est l\'analyseur $analyzer par défaut. ';
 
 	function __construct(\$mid) {
         parent::__construct(\$mid);
@@ -62,7 +62,7 @@ file_put_contents('classes/'.$analyzer.'.php', $code);
 $auditeur = file_get_contents('./auditeur.php');
 $auditeur = str_replace("// new analyzers\n", "'$analyzer',\n// new analyzers\n", $auditeur);
 file_put_contents('auditeur.php', $auditeur);
-shell_exec('git add class/'.$analyzer.'.php');
+shell_exec('git add classes/'.$analyzer.'.php');
 
 print "$analyzer created\n";
 ?>
