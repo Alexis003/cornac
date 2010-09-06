@@ -147,6 +147,8 @@ $modules = array(
 'globals_link',
 'defarray',
 'multidimarray',
+'zfClasses',
+'popular_libraries',
 // new analyzers
 );
 
