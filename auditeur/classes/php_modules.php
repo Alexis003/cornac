@@ -21,13 +21,15 @@ class php_modules extends modules {
 	    $query = <<<SQL
 INSERT INTO <rapport>
 SELECT NULL, fichier, element, token_id, '{$this->name}' , 0
-FROM <rapport> 
-WHERE module = 'php_functions'
+    FROM <rapport> 
+    WHERE module = 'php_functions'
 SQL;
 	    $res = $this->exec_query($query);
 
 	    $query = <<<SQL
-SELECT DISTINCT element FROM <rapport> WHERE module = '{$this->name}'
+SELECT DISTINCT element 
+    FROM <rapport> 
+    WHERE module = '{$this->name}'
 SQL;
 	    $res = $this->exec_query($query);
 
@@ -39,39 +41,43 @@ SQL;
         $exts = modules::getPHPExtensions(); 
         foreach($exts as $ext) {
             $ext = strtolower($ext);
-            // @todo Move to modules::
-            $functions = get_extension_funcs($ext);
+            $functions = modules::getPHPFunctions($ext);
             if (!is_array($functions)) { 
                 continue; 
             }
             if (empty($functions)) {
                 continue; 
             }
-            $liste = array_intersect($functions, $fonctions);
-            if (count($liste) > 0) {
-                $in = join("','", $liste);
+            $list = array_intersect($functions, $fonctions);
+            if (count($list) > 0) {
+                $in = join("','", $list);
                 $query = <<<SQL
-UPDATE <rapport> SET element = '$ext' 
-    WHERE module = '{$this->name}' AND element in ( '$in')
+UPDATE <rapport> 
+    SET element = '$ext' 
+    WHERE module = '{$this->name}' AND 
+          element in ( '$in')
     
 SQL;
                 $res = $this->exec_query($query);
-                $fonctions = array_diff($fonctions, $liste);
+                $fonctions = array_diff($fonctions, $list);
             }
-            unset($liste);
+            unset($list);
         }
 
         $functions = modules::getPHPStandardFunctions();
-        $liste = array_intersect($functions, $fonctions);
-        if (count($liste) > 0) {
-            $in = join("','", $liste);
+        $list = array_intersect($functions, $fonctions);
+        if (count($list) > 0) {
+            $in = join("','", $list);
             $query = <<<SQL
-UPDATE <rapport> SET element = 'standard' 
-WHERE module = '{$this->name}' AND element in ( '$in')
+UPDATE <rapport> 
+    SET element = 'standard' 
+    WHERE module = '{$this->name}' AND 
+    element in ( '$in')
 SQL;
             $res = $this->exec_query($query);
-            $fonctions = array_diff($fonctions, $liste);
+            $fonctions = array_diff($fonctions, $list);
         }
+
 
 
 
@@ -79,14 +85,16 @@ SQL;
 	    // @section : searching via classes usage
 	    $query = <<<SQL
 INSERT INTO <rapport>
-SELECT NULL, fichier, element, token_id, '{$this->name}_tmp', 0
-FROM <rapport> 
-WHERE module = 'php_classes'
+    SELECT NULL, fichier, element, token_id, '{$this->name}_tmp', 0
+    FROM <rapport> 
+    WHERE module = 'php_classes'
 SQL;
 	    $res = $this->exec_query($query);
 
 	    $query = <<<SQL
-SELECT DISTINCT element FROM <rapport> WHERE module = '{$this->name}_tmp'
+SELECT DISTINCT element 
+    FROM <rapport> 
+    WHERE module = '{$this->name}_tmp'
 SQL;
 	    $res = $this->exec_query($query);
 
@@ -104,24 +112,26 @@ SQL;
             if (empty($classes)) {
                 continue; 
             }
-            $liste = array_intersect($classes, $ext_classes['classes']);
-            if (count($liste) > 0) {
-                $in = join("', '", $liste);
+            $list = array_intersect($classes, $ext_classes['classes']);
+            if (count($list) > 0) {
+                $in = join("', '", $list);
         	    $query = <<<SQL
 UPDATE <rapport> SET element = '$ext',
                      module='{$this->name}'
-    WHERE module = '{$this->name}_tmp' AND element in ( '$in')
+    WHERE module = '{$this->name}_tmp' AND 
+          element in ( '$in')
 SQL;
         	    $res = $this->exec_query($query);
             }
 
-            $classes = array_diff($classes, $liste);
-            unset($liste);
+            $classes = array_diff($classes, $list);
+            unset($list);
         }
 
         if (count($classes) > 0) {
-print            $query = <<<SQL
-DELETE FROM <rapport> WHERE module = '{$this->name}_tmp'
+            $query = <<<SQL
+DELETE FROM <rapport> 
+    WHERE module = '{$this->name}_tmp'
 SQL;
    	        $res = $this->exec_query($query);
    	    }
