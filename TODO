@@ -50,6 +50,7 @@ Display dots when processing analyzers (auditeur)
 Add a file lister, that will also display ignored files from tokenizeur (export current function to external scripts/)
 
 [tokenizeur]
+Spot php error during execution, and report it. 
 Could it be possible to chain results? Atm, one can do it manually, or creating a new analyzer
 Use JMF's style
 
@@ -70,11 +71,11 @@ For each tokem note scope, class, method, variable, array, fichier
 Add -log option to log information in a log file
 
 [auditeur]
+Spot php error during execution, report it by analyzer
 Add a log to check SQL length and optimize the bad queries 
 Make auditeur i18n easily (export in external file, auto-adding new titles)
 
-Have a treemap, showing where are the occurrences (colors?)
-Change navigation in menus
+Add typing for the analyzers : increment or global; display to web, or internal. 
 
 Gather analyzers by type : function/method, class, file, overall (global) : we can then adapt output, and also, decide if a change in code impact this analyzer. 
 
@@ -82,7 +83,7 @@ Add options for auditeurs analyzers (.ini for the main, or sqlite's db, and also
 
 Export from auditeur to other format (PDF, HTML, XML, JSON, CSV, SQLITE, ODT...)
 
-Support manage manual feedback (from where? Web/Intranet ? )
+Standardization : display one groupe, another, its intersection. Should we build be able to combine the reports as groups (intersect, union, etc.) between report? Then add counting system (group by, vent by file...). 
 
 export analyzers dependencies in a graph
 
@@ -97,7 +98,7 @@ Have ratio calculated on top of analyzers (TDB)
 Support dot format for testing
 
 [analysers ideas]
-Identify looooong literals
+unused foreach arguments
 add 'variable' as a scope, so that we can actually work context by context
 
 String by delimiter (especially <<< )
@@ -175,17 +176,13 @@ Support some framework : drupal, joomla, zend, symfony, magento
 
 htmlentities used without encoding information
 
-[auditeur]
-export to html : should match the interactive web version
-
 [web]
-export to dot
-export to gephi
+export to html : should match the interactive web version
 export to .csv
 export to .yaml
 support graphic file representation (move file2png to a lib, then integrate)
-
-What to do when one (un)check a group of element, when the group is not homogenous : currently, toggle invert the values, and it is not easy to understand
++ What to do when one (un)check a group of element, when the group is not homogenous : currently, toggle invert the values, and it is not easy to understand
+export to html : should match the interactive web version
 
 [tags]
 export data into dabase for easier templating
@@ -200,12 +197,13 @@ display special analyse separatly from normal tagging
 Make better display 
 
 [inventaire]
+add output file in .ini
+internationalize
+centralize connexion to the database
 regex
 sql requests
-File list
 Cookies
 Configuration variables
-
 
 /// to be sorted
 [fixes]
@@ -225,3 +223,15 @@ regex vide! : quel sens?
 chemins d'inclusions
 Multi-def : ignorer les fichiers en fonctions uniquement (différents contextes, pas de glboal == bibliothèque de fonctions)
 
+
+
+formatter les colonnes en chiffres quand il le faut dans le ODS
+
+Attention : bootstrap manquant
+Ajouter la protection sur les méthodes
+ajouter abstract sur les classes
+
+Ajouter un module pour Zend_session et Zend_Request
+addelement : devrait toujours récuprer la valeur retournée
+
+aussi à tester : Library/application + public/dynamique
