@@ -8,7 +8,7 @@
                  GROUP BY ML.module";
     $res = $mysql->query($query);
 
-    $rows = $res->fetchAll();
+    $rows = $res->fetchAll(PDO::FETCH_ASSOC);
     
     foreach($rows as &$row) {
         $row['link'] = "index.php?module=".$row['element'];

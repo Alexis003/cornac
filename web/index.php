@@ -4,7 +4,7 @@
 $mysql = new pdo('mysql:dbname=analyseur;host=127.0.0.1','root','');
 
 // @todo : use the configuration file!
-$prefixe = 'ach';
+$prefixe = 'affility';
     
 // todo Export the table name creation to a new layer (common with the auditeur)
 $tables = array('<rapport>' => $prefixe.'_rapport',
@@ -55,18 +55,29 @@ $cas['html'] = array(
 
 $cas['dot'] = array('dot'  => 'format DOT',
                     'gexf' => 'format GEXF',
-                    'json' => 'format JSON',);
+                    'json' => 'format JSON',
+                    'text' => 'format Text',);
 
 $entete = '';
 foreach($cas[$format] as $titre => $c) {
     if (@$_GET['type'] == $titre) {
-        $entete .= "<li><b>$c</b> (<a href=\"index.php?module={$_GET['module']}&type=$titre&format=json\">json</a> - <a href=\"index.php?module={$_GET['module']}&type=$titre&format=xml\">xml</a>)</li>";
+        $entete .= "<li><b>$c</b><br /> 
+(<a href=\"index.php?module={$_GET['module']}&type=$titre&format=json\">json</a> - 
+ <a href=\"index.php?module={$_GET['module']}&type=$titre&format=xml\">xml</a> - 
+ <a href=\"index.php?module={$_GET['module']}&type=$titre&format=text\">text</a>)</li>";
     } else {
         $entete .= "<li><a href=\"index.php?module={$_GET['module']}&type=$titre\">$c</a></li>";
     }
 }
 $entete = "<table><tr><td><ul>$entete</ul></td>\n";
-$entete .= "<td><strong>{$translations[$_GET['module']]['title']}</strong><br />{$translations[$_GET['module']]['description']}</td></tr></table>\n";
+if (isset($translations[$_GET['module']]['title'])) {   
+    $title = $translations[$_GET['module']]['title'];
+    $description = $translations[$_GET['module']]['description'];
+} else {
+    $title = $_GET['module'].' (default)';
+    $description = $_GET['module'];
+}
+$entete .= "<td><strong>{$title}</strong><br />{$description}</td></tr></table>\n";
 
 if ($format == 'dot') {
     switch(@$_GET['type']) {
@@ -99,6 +110,16 @@ if ($format == 'dot') {
             
             header('Content-type: application/text');
             header('Content-Disposition: attachment; filename="'.$_GET['module'].'.json"');
+            print json_encode($lignes);
+            break;
+
+        case 'text' : 
+            $query = "SELECT a, b, cluster FROM {$tables['<rapport_dot>']} WHERE module='{$_GET['module']}'";
+            $res = $mysql->query($query);
+            $lignes = $res->fetchAll();
+            
+            header('Content-type: application/text');
+            header('Content-Disposition: attachment; filename="'.$_GET['module'].'.txt"');
             print json_encode($lignes);
             break;
 
@@ -164,13 +185,13 @@ switch(@$_GET['type']) {
 
 function get_format($default = 'html') {
     if (isset($_GET['format'])) {
-        if (in_array($_GET['format'], array('json','html','xml'))) {
+        if (in_array($_GET['format'], array('json','text','html','xml'))) {
             return $_GET['format'];
         } else {
             return $default;
         }
     } elseif (isset($_POST['format'])) {
-        if (in_array($_POST['format'], array('json','html','xml'))) {
+        if (in_array($_POST['format'], array('json','text','html','xml'))) {
             return $_POST['format'];
         } else {
             return $default;

@@ -15,7 +15,7 @@ SQL;
         $res = $mysql->query($requete);
 
         $rows = array();
-        while($row = $res->fetch()) {
+        while($row = $res->fetch(PDO::FETCH_ASSOC)) {
             @$rows[$row['fichier']][] = $row;
         }
 

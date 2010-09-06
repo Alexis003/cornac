@@ -6,7 +6,7 @@
         GROUP BY element 
         ORDER BY nb DESC";
     $res = $mysql->query($requete);
-    $lines = $res->fetchAll();
+    $lines = $res->fetchAll(PDO::FETCH_ASSOC);
     
     print get_html_check($lines, $_GET['module']);
 ?>
