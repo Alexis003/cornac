@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/interface.4.test.php
   codephp <?php 
   code : 
       _interface constante a
-       extends 0 "b", 0 "c", 307 "d"
+       extends 307 "b", 0 "c", 307 "d"
           block 
           0 : 
               function literals x ( )
