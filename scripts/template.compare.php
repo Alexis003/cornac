@@ -14,9 +14,9 @@
    | license@php.net so we can mail you a copy immediately.               |
    +----------------------------------------------------------------------+
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
-   |                                                                      |
    +----------------------------------------------------------------------+
  */
+
 
 $php = file_get_contents('prepare/template.tree.php');
 

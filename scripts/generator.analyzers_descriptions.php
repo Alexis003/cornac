@@ -14,9 +14,9 @@
    | license@php.net so we can mail you a copy immediately.               |
    +----------------------------------------------------------------------+
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
-   |                                                                      |
    +----------------------------------------------------------------------+
  */
+
 
 $languages = array('fr','en');
 

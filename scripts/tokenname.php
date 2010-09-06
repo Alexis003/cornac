@@ -15,9 +15,9 @@
    | license@php.net so we can mail you a copy immediately.               |
    +----------------------------------------------------------------------+
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
-   |                                                                      |
    +----------------------------------------------------------------------+
  */
+
 
 $args = $argv;
 array_shift($args);
