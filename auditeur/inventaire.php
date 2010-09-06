@@ -66,12 +66,11 @@ if (empty($INI['reader']['format'])) {
 // @todo : support later
 //$summary = getOption($args, '-s', OPT_NO_VALUE, null);
 
+// @todo put this into a central library 
 if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
     $database = new pdo($INI['mysql']['dsn'],$INI['mysql']['username'], $INI['mysql']['password']);
-//    print "MySQL\n";
 } elseif (isset($INI['sqlite'])  && $INI['sqlite']['active'] == true) {
     $database = new pdo($INI['sqlite']['dsn']);
-//    print "sqlite\n";
 } else {
     print "No database configuration provided (no mysql, no sqlite)\n";
     die();
@@ -83,6 +82,7 @@ if (isset($INI['cornac']['prefix'])) {
     $prefix = 'tokens';
 }
 
+// @todo internationalize this!
 $headers = array('Variables' => 'SELECT COUNT(DISTINCT element) FROM '.$prefix.'_rapport WHERE module="variables"',
                  'Fichiers'  => 'SELECT COUNT(DISTINCT fichier) FROM '.$prefix.'_rapport',
                  'Classes'   => 'SELECT COUNT(DISTINCT element) FROM '.$prefix.'_rapport WHERE module="classes"',
@@ -179,10 +179,8 @@ $names = array("Modules PHP" => array('query' => 'SELECT DISTINCT element FROM '
                "Fichiers" => array('query' => 'SELECT DISTINCT fichier FROM '.$prefix.'_rapport GROUP BY fichier ORDER BY fichier DESC',
                                     'headers' => array('Fichier'),
                                     'columns' => array('fichier')),
-                                  
-                                  //, "variables","constantes","deffunctions","interfaces"
-                                  
-                                  );
+          );
+
 foreach($names as $name => $conf) {
     extract($conf);
     
