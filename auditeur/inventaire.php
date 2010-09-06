@@ -72,6 +72,7 @@ if (isset($INI['cornac']['prefix'])) {
 $headers = array('Variables' => 'SELECT COUNT(DISTINCT element) FROM '.$prefix.'_rapport WHERE module="variables"',
                  'Fichiers'  => 'SELECT COUNT(DISTINCT fichier) FROM '.$prefix.'_rapport',
                  'Classes'   => 'SELECT COUNT(DISTINCT element) FROM '.$prefix.'_rapport WHERE module="classes"',
+                 'Utilise Zend Framework'   => 'SELECT COUNT(DISTINCT element) FROM '.$prefix.'_rapport WHERE module="zfClasses"',
                  );
 
 $stats = array();
