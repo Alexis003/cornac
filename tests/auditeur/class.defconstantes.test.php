@@ -1,4 +1,4 @@
-<?php
+<?php 
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -18,14 +18,17 @@
  */
 include_once('Auditeur_Framework_TestCase.php');
 
-class php_modules_Test extends Auditeur_Framework_TestCase
+class defconstantes_Test extends Auditeur_Framework_TestCase
 {
-    public function testVariables()  { 
-        $this->attendus = array('simplexml','sqlite','standard','phar','soap','mcrypt','core' );
-        $this->inattendus = array('xdebug', 'custom_function');
+    public function testdefconstantes()  { 
+        $this->attendus = array( 'DEFINED_CONSTANTS',
+                                  'DEFINED_CONSTANTS2',);
+        $this->inattendus = array('true',
+                                  '__METHOD__',
+                                  'UNDEFINED_CONSTANTE',);
         
         parent::generic_test();
+//        parent::generic_counted_test();
     }
 }
-
 ?>

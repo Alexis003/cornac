@@ -80,6 +80,7 @@ $tests = array(
 'class.thrown.test.php',
 'class.zfClasses.test.php',
 'class.popular_libraries.test.php',
+'class.defconstantes.test.php',
 // new tests
 );
 

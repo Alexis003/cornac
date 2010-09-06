@@ -17,20 +17,33 @@
    +----------------------------------------------------------------------+
  */
 
+
+// via function
+// mcrypt (not compiled with PHP)
+mcrypt_cbc();
+
 // simplexml
 simplexml_load_string();
 
 // sqlite
 sqlite_open();
 
-// 
+// standard
+abs(3);
+
+// core
 echo "";
 
 // no xdebug
 //xdebug_get_stack_depth
 
+// via classe
 $s = new soapServer();
 
 $p = new Phar();
+
+
+custom_function();
+function custom_function() {}
 
 ?>
