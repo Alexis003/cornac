@@ -254,13 +254,22 @@ SQL;
         $this->exec_query($query);
     }
     
-    static public function getPHPFunctions() {
-        // @todo this depends on PHP used for exécution : we should extract this somewhere else
-        $ini = parse_ini_file('../dict/functions2ext.ini', false);
+    static public function getPHPFunctions($ext = null) {
+        if (is_null($ext)) {
+            $ini = parse_ini_file('../dict/functions2ext.ini', false);
     
-        $extras = array('echo','print','die','exit','isset','empty','array','list','unset','eval','dl');
+            $extras = array('echo','print','die','exit','isset','empty','array','list','unset','eval','dl');
 
-        return array_merge($ini['function'], $extras);
+            return array_merge($ini['function'], $extras);
+        } else {
+            $ini = parse_ini_file('../dict/functions2ext.ini', true);
+            
+            if (isset($ini[$ext])) {
+                return $ini[$ext]['function'];
+            } else {
+                return array();
+            }
+        }
     }
     
     static public function getPHPExtensions() {
@@ -276,7 +285,6 @@ SQL;
     }
 
     static public function getPHPExtClasses() {
-        // @todo this depends on PHP used for exécution : we should extract this somewhere else
         $classes = parse_ini_file('../dict/class2ext.ini', true);
         return $classes;
     }
