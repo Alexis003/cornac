@@ -92,7 +92,7 @@ if ($INI['cornac']['storage'] == 'mysql') {
         $table = $INI['cornac']['prefix'] ?: 'tokens'; 
         // @todo add some more verifications (existence, number actually destroyed..)
         $database->query("DROP TABLE {$table}, {$table}_cache, {$table}_rapport, {$table}_rapport_dot, {$table}_rapport_module, {$table}_tags");
-        print "tables $tables_* erased";
+        print "tables {$table}_* erased\n";
     }
 } elseif ($INI['cornac']['storage'] == 'sqlite') {
     $INI['mysql']['active'] = 0;
