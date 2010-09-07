@@ -154,6 +154,7 @@ function getTemplate($racine, $file, $gabarit = null) {
     return $retour;
 }
 
+/*
 function help() {
     print <<<TEXT
     -d : test all .php files of the folder
@@ -175,6 +176,7 @@ TEXT;
     
     die();
 }
+*/
 
 function liste_directories_recursive( $path = '.', $level = 0 ){ 
     global $INI;

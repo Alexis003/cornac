@@ -98,8 +98,11 @@ Have ratio calculated on top of analyzers (TDB)
 Support dot format for testing
 
 [analysers ideas]
+file relations through CONSTANTES, functions
 unused foreach arguments
 add 'variable' as a scope, so that we can actually work context by context
+
+affected only variables (not used anywhere else that affectations)
 
 String by delimiter (especially <<< )
 
@@ -235,3 +238,7 @@ Ajouter un module pour Zend_session et Zend_Request
 addelement : devrait toujours récuprer la valeur retournée
 
 aussi à tester : Library/application + public/dynamique
+
+[dict]
+Make a library of common library, and extract classes, functions, constante from them. 
+extrat classes from pecl and PHP code, to move into dictionary. 

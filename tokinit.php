@@ -1,135 +1,141 @@
 #!/usr/bin/php 
 <?php
-// @fer -d xdebug.profiler_enable=On
 
-ini_set('memory_limit',234217728);
-
-$times = array('debut' => microtime(true));
+// @synopsis : inclusions
 include('prepare/commun.php');
 include('libs/tok.php');
 include("prepare/analyseur.php");
 
-// @doc Reading the name of the processed application
+// @synopsis : configuration
+ini_set('memory_limit',234217728);
 
+// @synopsis : read options
+$options = array('help' => array('help' => 'display this help',
+                                 'option' => '?',
+                                 'compulsory' => false),
+                 'ini' => array('help' => 'configuration set or file',
+                                 'get_arg_value' => null,
+                                 'option' => 'I',
+                                 'compulsory' => true),
+                 'templates' => array('help' => 'output templates',
+                                 'get_arg_value' => 'tree',
+                                 'option' => 'g',
+                                 'compulsory' => false),
+                 'clean' => array('help' => 'clean tasks',
+                                 'option' => 'K',
+                                 'compulsory' => false),
+                 'recursive' => array('help' => 'recursive mode',
+                                      'option' => 'r',
+                                      'compulsory' => false),
+                 'file' => array('help' => 'file to work on',
+                                 'get_arg_value' => null,
+                                 'option' => 'f',
+                                 'compulsory' => false),
+                 'directory' => array('help' => 'directory to work in',
+                                      'get_arg_value' => null,
+                                      'option' => 'd',
+                                      'compulsory' => false),
+                 );
+include('libs/getopts.php');
+
+
+// @synopsis : next
 global $FIN; 
 // Collecting tokens
 $FIN['debut'] = microtime(true);
 
-include('libs/getopts.php');
-
 // @todo : exporter les informations d'options dans une inclusion
-$args = $argv;
-$help = get_arg($args, '-?') ;
-if ($help) { help(); }
 
 // @doc default values, stored in a INI file
-$ini = get_arg_value($args, '-I', null);
-if (!is_null($ini)) {
-    global $INI;
-    if (file_exists('ini/'.$ini)) {
-        define('INI','ini/'.$ini);
-    } elseif (file_exists('ini/'.$ini.".ini")) {
-        define('INI','ini/'.$ini.".ini");
-    } elseif (file_exists($ini)) {
-        define('INI',$ini);
+
+$templates = explode(',', $INI['templates']);
+$templates = array_unique($templates);
+foreach ($templates as $i => $template) {
+    if (!file_exists('prepare/templates/template.'.$template.'.php')) {
+        print "$id) '$template' doesn't exist. Ignoring\n";
+        unset($templates[$i]);
     } else {
-        define('INI','ini/'.'cornac.ini');
+        print "Using template ".$template."\n";
     }
-    $INI = parse_ini_file(INI, true);
-} else {
-    define('INI',null);
-    $INI = array();
 }
-unset($ini);
-// @todo : what happens if we can't find the .INI ?
-print "Directives files : ".INI."\n";
 
-// @doc Reading constantes that are in the .INI
-define('TOKENS',(bool) get_arg($args, '-t'));
-define('TEST'  ,(bool) get_arg($args, '-T'));
-define('STATS' ,(bool) get_arg($args, '-S', false));
-define('VERBOSE', (bool) get_arg($args, '-v'));
-
-if ($templates = get_arg_value($args, '-g', null)) {
-    $templates = explode(',', $templates);
-
-    $templates = array_unique($templates);
-    
-    foreach ($templates as $i => $template) {
-        if (!file_exists('prepare/templates/template.'.$template.'.php')) {
-            print "$id) '$template' doesn't exist. Ignoring\n";
-            unset($templates[$i]);
-        } else {
-            print "Using template ".$template."\n";
-        }
-    }
-    
-    if (count($templates) == 0) {
-        $templates = array('tree');
-    }
-    
-    
-    define('GABARIT',join(',',$templates));
-} else {
-    define('GABARIT','tree');
+if (count($templates) == 0) {
     $templates = array('tree');
 }
+define('GABARIT',join(',',$templates));
 
 include('./libs/database.php');
+$DATABASE = new database();
 
-define('LOG' ,(bool) get_arg($args, '-l', false));
-$limite = 0 + get_arg_value($args, '-i', 0);
-if ($limite) {
-    print "Cycles = $limite\n";
-} else {
-    $limite = -1;
+$query = <<<SQL
+CREATE TABLE `<tasks>` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `task` enum('tokenize','auditeur') NOT NULL,
+  `target` varchar(255) NOT NULL,
+  `template` varchar(100) NOT NULL,
+  `date_update` datetime NOT NULL,
+  `completed` tinyint(3) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fichiers` (`task`,`target`)
+) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC
+SQL;
+$DATABASE->query($query);
+
+if (isset($INI['clean'])) {
+    $query = "DELETE FROM <tasks>";
+    $DATABASE->query($query);
 }
 
-define('RECURSIVE' ,(bool) get_arg($args, '-r', false));
-
-$dossier = get_arg_value($args, '-d', array());
-if (!empty($dossier)) {
-    if (substr($dossier, -1) == '/') {
-        $dossier = substr($dossier, 0, -1);
+// @synopsis core of the code
+if (isset($INI['directory'])) {
+    if (substr($INI['directory'], -1) == '/') {
+        $directory = substr($INI['directory'], 0, -1);
+    } else {
+        $directory = $INI['directory'];
     }
 
-    if (!file_exists($dossier)) {
-        print "Couldn't find folder '$dossier'\n Aborting\n";
+    if (!file_exists($directory)) {
+        print "Couldn't find directory '$directory'\n Aborting\n";
         die();
     }
 
-    print "Preparing work on folder '{$dossier}'\n";
+    print "Preparing work on directory '{$directory}'\n";
     
-    $files = glob($dossier.'/*.php');
+    $files = glob($directory.'/*.php');
     
     foreach($files as $file) {
-        $query = "INSERT INTO tu_tasks VALUES (NULL, 'tokenize', ".$database->quote($file).", ".$database->quote(GABARIT).", NOW(), 0)";
-        $database->query($query);
+        $query = "INSERT INTO <tasks> VALUES (NULL, 'tokenize', ".$DATABASE->quote($file).", ".$DATABASE->quote(GABARIT).", NOW(), 0)";
+        $DATABASE->query($query);
     }
     
-    if (RECURSIVE) {
-        $files = liste_directories_recursive($dossier);
-        print "Preparing recursive work on folder {$dossier}\n";
+    if ($INI['recursive']) {
+        $files = liste_directories_recursive($directory);
+        print "Preparing recursive work on directory {$directory}\n";
 
         foreach($files as $file) {
             $code = file_get_contents($file);
             if (strpos($code, '<?') === false) { continue; }
             
-            $query = "INSERT IGNORE INTO tu_tasks VALUES (NULL, 'tokenize', ".$database->quote($file).", ".$database->quote(GABARIT).",NOW(), 0)";
-            $database->query($query);
+            $query = "INSERT IGNORE INTO <tasks> VALUES (NULL, 'tokenize', ".$DATABASE->quote($file).", ".$DATABASE->quote(GABARIT).",NOW(), 0)";
+            $DATABASE->query($query);
         }
     }
-} elseif ($file = get_arg_value($args, '-f', '')) {
+} elseif (isset($INI['file'])) {
+    $file = $INI['file'];
+    if (!is_file($file)) {
+        print "'$file' is a directory. Use -d option. Aborting\n";
+        die();
+    }
     print "Working on file '{$file}'\n";
 
-    $query = "INSERT IGNORE INTO tu_tasks VALUES (NULL, 'tokenize', ".$database->quote($file).", ".$database->quote(GABARIT).", NOW(), 0)";
-    $database->query($query);
+    $query = "INSERT IGNORE INTO <tasks> VALUES (NULL, 'tokenize', ".$DATABASE->quote($file).", ".$DATABASE->quote(GABARIT).", NOW(), 0)";
+    $DATABASE->query($query);
 } else {
     print "No files to work on\n";
     help();
+    die();
 }
 
 print "Done\n";
-
 
 ?>

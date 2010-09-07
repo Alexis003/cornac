@@ -1,76 +1,65 @@
 #!/usr/bin/php
 <?php
 
-include('../libs/getopts.php');
 include('../libs/write_ini_file.php');
 
-$args = $argv;
-
-$help = get_arg($args, '-?') ;
-if ($help) { help(); }
+// @synopsis : read options
+$options = array('help' => array('help' => 'display this help',
+                                 'option' => '?',
+                                 'compulsory' => false),
+                 'ini' => array('help' => 'configuration set or file',
+                                 'get_arg_value' => null,
+                                 'option' => 'I',
+                                 'compulsory' => true),
+                 'analyzer' => array('help' => 'analyzer',
+                                     'get_arg_value' => 'all',
+                                     'option' => 'a',
+                                     'compulsory' => false),
+// @todo limit to one folder? 
+                 'file' => array('help' => 'limit report to this file',
+                                      'get_arg_value' => '',
+                                      'option' => 'f',
+                                      'compulsory' => false),
+                 'output' => array('help' => 'output folder (will be created anyway)',
+                                             'get_arg_value' => '',
+                                             'option' => 'o',
+                                             'compulsory' => false),
+                 'format' => array('help' => 'output format (default, xml or html)',
+                                             'get_arg_value' => 'xml',
+                                             'option' => 'F',
+                                             'compulsory' => false),
+                 );
+include('../libs/getopts.php');
 
 // @todo : check $format for values
 // @todo : check output for being a folder
 
 // @question : should options be constants?
-// default values, stored in a INI file
-$ini = get_arg_value($args, '-I', null);
-if (!is_null($ini)) {
-    global $INI;
-    if (file_exists('../ini/'.$ini)) {
-        define('INI','../ini/'.$ini);
-    } elseif (file_exists('../ini/'.$ini.".ini")) {
-        define('INI','../ini/'.$ini.".ini");
-    } elseif (file_exists($ini)) {
-        define('INI',$ini);
-    } else {
-        if (!file_exists('../ini/'.'tokenizeur.ini')) {
-            die("No configuration file available ($ini nor tokenizeur.ini)\n");
-        }
-        define('INI','../ini/'.'tokenizeur.ini');
-    }
-    $INI = parse_ini_file(INI, true);
-} else {
-    define('INI',null);
-    $INI = array("reader" => array( 'fichier' => '', ));
-}
-unset($ini);
 
-$INI['reader']['dependences'] = (bool) get_arg_value($args, '-d', false);
-$INI['reader']['module'] = get_arg_value($args, '-a', @$INI['reader']['module']);
-$INI['reader']['file']   = get_arg_value($args, '-f', ''  );
-$INI['reader']['output'] = get_arg_value($args, '-o', @$INI['reader']['output']);
-$INI['reader']['format'] = get_arg_value($args, '-F', @$INI['reader']['format']);
+$INI['reader']['module'] = $INI['analyzer'];
+$INI['reader']['file']   = $INI['file'];
+$INI['reader']['output'] = $INI['output'];
+$INI['reader']['format'] = $INI['format'];
 
 // validations
-if (empty($INI['reader']['format'])) {
+if (empty($INI['reader']['format']) || !in_array($INI['reader']['format'],array('xml','html'))) {
     print "Output format is needed (option -F) : xml or html\n";
-    help();
+    print help();
+    die();
 }
 
 
 // @todo : support later
 //$summary = getOption($args, '-s', OPT_NO_VALUE, null);
 
-if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
-    $database = new pdo($INI['mysql']['dsn'],$INI['mysql']['username'], $INI['mysql']['password']);
-} elseif (isset($INI['sqlite'])  && $INI['sqlite']['active'] == true) {
-    $database = new pdo($INI['sqlite']['dsn']);
-} else {
-    print "No database configuration provided (no mysql, no sqlite)\n";
-    die();
-}
+include('../libs/database.php');
+$DATABASE = new database();
 
-if (isset($INI['cornac']['prefix'])) {
-    $prefix = $INI['cornac']['prefix'];
-} else {
-    $prefix = 'tokens';
-}
+// @todo support this later
+//write_ini_file($INI, INI);
 
-write_ini_file($INI, INI);
-
-$query = 'SELECT * FROM '.$prefix.'_rapport_module WHERE module='.$database->quote($INI['reader']['module']);
-$res = $database->query($query);
+$query = 'SELECT * FROM <rapport_module> WHERE module='.$DATABASE->quote($INI['reader']['module']);
+$res = $DATABASE->query($query);
 $row = $res->fetch();
 unset($res);
 
@@ -79,28 +68,28 @@ if (!$row) {
     die();
 } elseif ($row['format'] == 'html') {
     // @attention : should also support _dot reports
-    $query = 'SELECT * FROM '.$prefix.'_rapport WHERE module='.$database->quote($INI['reader']['module']);
+    $query = 'SELECT * FROM <rapport> WHERE module='.$DATABASE->quote($INI['reader']['module']);
     if (!empty($INI['reader']['file'])) {
-        $query .= ' AND fichier='.$database->quote($INI['reader']['file']);
+        $query .= ' AND fichier='.$DATABASE->quote($INI['reader']['file']);
     }
 } elseif ($row['format'] == 'dot') {
     // @attention : should also support _dot reports
-    $query = 'SELECT * FROM '.$prefix.'_rapport_dot WHERE module='.$database->quote($INI['reader']['module']);
+    $query = 'SELECT * FROM <rapport_dot> WHERE module='.$DATABASE->quote($INI['reader']['module']);
     if (!empty($INI['reader']['file'])) {
-        $query .= ' AND fichier='.$database->quote($INI['reader']['file']);
+        $query .= ' AND fichier='.$DATABASE->quote($INI['reader']['file']);
     }
 } else {
     print "Format '{$row['format']}' is not understood. Aborting\n";
     die();
 }
-$res = $database->query($query);
+$res = $DATABASE->query($query);
 
 // @attention : should support -s for summaries. 
 
 include('render/'.$INI['reader']['format'].'.php');
 $class = "Render_".$INI['reader']['format'];
 
-$view = new $class($database, $prefix, $INI['reader']['file']);
+$view = new $class($INI['reader']['file']);
 
 // @bug : shouldn't be here
 if (get_class($view) == 'Render_html') {
@@ -118,24 +107,6 @@ if (empty($output)) {
     print $result; 
 } else {
     print "File written in '$output'\n";
-}
-
-function help() {
-    print <<<SHELL
-Usage : ./reader.php
-
-Options : 
--?     : this help
--a     : analyzer to report
--I     : .INI file of configuration
--f     : report is limited to this file
--F     : format to use. Supported : xml (default)
--s     : produce the current summary of available analyzer
--p     : application
--o     : folder of output
-
-SHELL;
-    die();
 }
 
 ?>

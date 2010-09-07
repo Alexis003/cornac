@@ -7,7 +7,7 @@ class Analyseur_Framework_TestCase  extends PHPUnit_Framework_TestCase {
             print "\nLe script de tests 'scripts/$test.test.php' est manquant\n";
             $this->assertEquals(true, false);
         }
-        $retour = shell_exec('cd ../../; ./tokenizeur.php -f tests/tokenizeur/scripts/'.$test.'.test.php');
+        $retour = shell_exec('cd ../../; ./tokenizeur.php -f tests/tokenizeur/scripts/'.$test.'.test.php -I testsunitaires -g tree');
         
         if (!file_exists('exp/'.$test.'.test.exp')) {
             print "\nLe fichier d'attendu 'exp/$test.test.exp' est manquant\n";
@@ -19,6 +19,7 @@ class Analyseur_Framework_TestCase  extends PHPUnit_Framework_TestCase {
 
         $retour = preg_replace("/Fichier de directives : .*?\n/is",'', $retour);
         $retour = preg_replace("/Directives files : .*?\n/is",'', $retour);
+        $retour = str_replace("No more tasks to go on\n",'', $retour);
         
         $this->assertEquals($retour, $exp);        
     }

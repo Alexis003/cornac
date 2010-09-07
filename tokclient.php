@@ -1,55 +1,72 @@
 #!/usr/bin/php 
 <?php
-// @fer -d xdebug.profiler_enable=On
 
 ini_set('memory_limit',234217728);
 
 include('prepare/commun.php');
-include('libs/tok.php');
 include("prepare/analyseur.php");
+include('libs/tok.php');
 
-// @doc Reading the name of the processed application
+$options = array('help' => array('help' => 'display this help',
+                                 'option' => '?',
+                                 'compulsory' => false),
+                 'ini' => array('help' => 'configuration set or file',
+                                 'get_arg_value' => null,
+                                 'option' => 'I',
+                                 'compulsory' => false),
+                 'templates' => array('help' => 'output templates',
+                                 'get_arg_value' => 'tree',
+                                 'option' => 'g',
+                                 'compulsory' => false),
+                 'tokens' => array('help' => 'display tokens',
+                                   'option' => 't',
+                                   'compulsory' => false),
+                 'test' => array('help' => 'works on tests.php file',
+                                   'option' => 'T',
+                                   'compulsory' => false),
+                 'stats' => array('help' => 'display stats about the run',
+                                   'option' => 'S',
+                                   'compulsory' => false),
+                 'verbose' => array('help' => 'make output verbose',
+                                    'option' => 'v',
+                                    'compulsory' => false),
+                 'log' => array('help' => 'log activity',
+                                    'option' => 'l',
+                                    'compulsory' => false),
+                 'limit' => array('help' => 'limit the number of cycles',
+                                    'option' => 'i',
+                                    'compulsory' => false),
+/*
+                 'recursive' => array('help' => 'recursive mode',
+                                      'option' => 'r',
+                                      'compulsory' => false),*/
+/*                 'file' => array('help' => 'file to work on',
+                                 'get_arg_value' => null,
+                                 'option' => 'f',
+                                 'compulsory' => false),
+                                 */
+/*
+                'directory' => array('help' => 'directory to work in',
+                                      'get_arg_value' => null,
+                                      'option' => 'd',
+                                      'compulsory' => false),
+                                      */
+                 );
+include('libs/getopts.php');
 
 global $FIN; 
 // Collecting tokens
 $FIN['debut'] = microtime(true);
 
-include('libs/getopts.php');
-
-// @todo : exporter les informations d'options dans une inclusion
-$args = $argv;
-$help = get_arg($args, '-?') ;
-if ($help) { help(); }
-
-// @doc default values, stored in a INI file
-$ini = get_arg_value($args, '-I', null);
-if (!is_null($ini)) {
-    global $INI;
-    if (file_exists('ini/'.$ini)) {
-        define('INI','ini/'.$ini);
-    } elseif (file_exists('ini/'.$ini.".ini")) {
-        define('INI','ini/'.$ini.".ini");
-    } elseif (file_exists($ini)) {
-        define('INI',$ini);
-    } else {
-        define('INI','ini/'.'cornac.ini');
-    }
-    $INI = parse_ini_file(INI, true);
-} else {
-    define('INI',null);
-    $INI = array();
-}
-unset($ini);
-// @todo : what happens if we can't find the .INI ?
-print "Directives files : ".INI."\n";
+// @todo make this work on tasks or individually
 
 // @doc Reading constantes that are in the .INI
-define('TOKENS',(bool) get_arg($args, '-t'));
-define('TEST'  ,(bool) get_arg($args, '-T'));
-define('STATS' ,(bool) get_arg($args, '-S', false));
-define('VERBOSE', (bool) get_arg($args, '-v'));
+define('TOKENS',$INI['tokens']); 
+define('TEST',$INI['test']);
+define('STATS',$INI['stats']);
+define('VERBOSE',$INI['verbose']);
 
-define('GABARIT', 'mysql,cache');
+define('GABARIT', $INI['templates']);
 
 $templates = explode(',',GABARIT);
 include('prepare/templates/template.php');
@@ -57,96 +74,23 @@ foreach ($templates as $id => $template) {
     include('prepare/templates/template.'.$template.'.php');
 }
 
-define('LOG' ,(bool) get_arg($args, '-l', false));
-$limite = 0 + get_arg_value($args, '-i', 0);
+define('LOG',$INI['log']);
+$limite = 0 + $INI['limit'];
 if ($limite) {
     print "Cycles = $limite\n";
 } else {
     $limite = -1;
 }
 
-/*
-define('RECURSIVE' ,(bool) get_arg($args, '-r', false));
-
-$dossier = get_arg_value($args, '-d', array());
-if (!empty($dossier)) {
-    if (substr($dossier, -1) == '/') {
-        $dossier = substr($dossier, 0, -1);
-    }
-
-    if (!file_exists($dossier)) {
-        print "Impossible de trouver le dossier '$dossier'\n Annulation\n";
-        die();
-    }
-
-    print "Travail sur le dossier {$dossier} \n";
-    
-    $files = glob($dossier.'/*.php');
-    $files = array_slice($files, 1, 1);
-    
-    foreach($files as $file) {
-        print shell_exec("./tokenizeur.php  -T -i -1 -f \"".escapeshellarg($file)."\" -g ".GABARIT. " "." -I ".INI);
-    }
-    
-    if (RECURSIVE) {
-        $files = liste_directories_recursive($dossier);
-
-        foreach($files as $file) {
-            $code = file_get_contents($file);
-            if (strpos($code, '<?') === false) { continue; }
-            
-            $commande = "./tokenizeur.php -f ".escapeshellarg($file)." -g ".GABARIT." -I ".INI;
-            print $commande. "\n";
-            print shell_exec($commande);
-        }
-        print "Done\n";
-        die();
-    }
-    print "Done\n";
-    die();
-} elseif ($file = get_arg_value($args, '-f', '')) {
-    print "Working on file '{$file}'\n";
-
-    $objects = new arrayIterator(array($file => $file));
-    $scriptsPHP = $objects;
-
-} else {
-    print "No files to work on\n";
-    help();
-}
-
-*/
+include('libs/database.php');
+$DATABASE = new database();
 // @section end of options
 
-$preparations = array();
-    
-$extra_cols = array();
-foreach($preparations as $p) {
-    $cols = $p->get_cols();
-    foreach($cols as $nom => $definition) {
-        $extra_cols[] = "$nom $definition ";
-    }
-}
-if (count($extra_cols) > 0) {
-    $extra_cols = ', '.join(', ', $extra_cols).", ";
-} else {
-    $extra_cols = '';
-}
-
-$tidbits = scandir('prepare');
-foreach($tidbits as $module) {
-    if ($module[0] == '.') { continue; }
-    if ($module == 'token.php') { continue; }
-}
-
-include('libs/database.php');
-
-
-
+// @todo : make a sleeping client here, that waits, not die. 
 while(1) {
 $times = array('debut' => microtime(true));
 // @todo attention, big TOCTOU!
-$res = $database->query('SELECT * FROM tu_tasks WHERE completed = 0 LIMIT 1');
+$res = $DATABASE->query('SELECT * FROM <tasks> WHERE completed = 0 LIMIT 1');
 $row = $res->fetch(PDO::FETCH_ASSOC);
 
 if (!$row) { 
@@ -154,7 +98,7 @@ if (!$row) {
     die();
 }
 
-$database->query('UPDATE tu_tasks SET completed = 1, date_update=NOW() WHERE id = '.$database->quote($row['id']).' LIMIT 1');
+$DATABASE->query('UPDATE <tasks> SET completed = 1, date_update=NOW() WHERE id = '.$DATABASE->quote($row['id']).' LIMIT 1');
 
 $scriptsPHP = array($row['target'] => null);
 
@@ -355,7 +299,7 @@ foreach($scriptsPHP as $file => $object){
 
 $times['fin'] = microtime(true);
 
-$database->query('UPDATE tu_tasks SET completed = 100, date_update=NOW() WHERE id = '.$database->quote($row['id']).' LIMIT 1');
+$DATABASE->query('UPDATE <tasks> SET completed = 100, date_update=NOW() WHERE id = '.$DATABASE->quote($row['id']).' LIMIT 1');
 
 
 $debut = $times['debut'];

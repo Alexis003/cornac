@@ -1,42 +1,34 @@
 #!/usr/bin/php
 <?php
 
-include('../libs/getopts.php');
 include('../libs/write_ini_file.php');
 
-$args = $argv;
+// @synopsis : read options
+$options = array('help' => array('help' => 'display this help',
+                                 'option' => '?',
+                                 'compulsory' => false),
+                 'ini' => array('help' => 'configuration set or file',
+                                 'get_arg_value' => null,
+                                 'option' => 'I',
+                                 'compulsory' => true),
+                 'clean' => array('help' => 'clean database',
+                                 'option' => 'K',
+                                 'compulsory' => false),
+                 'analyzers' => array('help' => 'analyzers applied (default = all)',
+                                      'get_arg_value' => 'all',
+                                      'option' => 'a',
+                                      'compulsory' => false),
+                 'dependences' => array('help' => 'force update dependences',
+                                        'option' => 'd',
+                                        'compulsory' => false),
+                 'directory' => array('help' => 'directory to work in',
+                                      'get_arg_value' => null,
+                                      'option' => 'd',
+                                      'compulsory' => false),
+                 );
+include('../libs/getopts.php');
 
-$help = get_arg($args, '-?') ;
-if ($help) { help(); }
-
-if (get_arg($args, '-K')) { 
-    define('CLEAN_DATABASE', true);
-} else {
-    define('CLEAN_DATABASE', false);
-}
-
-// default values, stored in a INI file
-$ini = get_arg_value($args, '-I', null);
-if (!empty($ini)) {
-    global $INI;
-    if (file_exists('../ini/'.$ini)) {
-        define('INI','../ini/'.$ini);
-    } elseif (file_exists('../ini/'.$ini.".ini")) {
-        define('INI','../ini/'.$ini.".ini");
-    } elseif (file_exists($ini)) {
-        define('INI',$ini);
-    } else {
-        define('INI','../ini/'.'cornac.ini');
-    }
-    $INI = parse_ini_file(INI, true);
-} else {
-    define('INI',null);
-    $INI = array('analyzers' => 'all');
-}
-unset($ini);
-
-$INI['dependences'] = (bool) get_arg_value($args, '-d', false);
-
+define('CLEAN_DATABASE', isset($INI['clean']));
 
 $modules = array(
 '_new',
@@ -154,7 +146,6 @@ $modules = array(
 // new analyzers
 );
 
-$INI['analyzers'] = get_arg_value($args, '-a', 'all');
 if ($INI['analyzers'] == 'all' ) {
  // default : all modules
 } else {
@@ -167,16 +158,19 @@ if ($INI['analyzers'] == 'all' ) {
     
     $m = array_intersect($m, $modules);    
     if (count($m) == 0) {
-        print "No analyzer provided : aborting\n";
+        print "No analyzer provided : Aborting\n";
         die();
     } else {
         $modules = $m;
     }
 } 
 print count($modules)." modules will be treated : ".join(', ', $modules)."\n";
+// @todo fix the problem with the path
+/*
 if (INI) {
     write_ini_file($INI, INI);
 }
+*/
 
 if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
     $database = new pdo($INI['mysql']['dsn'],$INI['mysql']['username'], $INI['mysql']['password']);
@@ -314,6 +308,7 @@ function analyse_module($module) {
 
 $sommaire->sauve();
 
+/*
 function help() {
     print <<<TEXT
 Usage : ./auditeur.php
@@ -331,5 +326,5 @@ TEXT;
     
     die();
 }
-
+*/
 ?>
