@@ -112,6 +112,10 @@ SQL;
             if (empty($classes)) {
                 continue; 
             }
+            if (!isset($ext_classes['classes'])) {  
+                // @note there is a problem with the dictionary, with this $ext
+                continue; 
+            }
             $list = array_intersect($classes, $ext_classes['classes']);
             if (count($list) > 0) {
                 $in = join("', '", $list);
