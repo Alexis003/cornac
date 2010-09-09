@@ -77,8 +77,9 @@ while(1 ) {
     }
 
 $times = array('debut' => microtime(true));
+
 // @todo attention, big TOCTOU!
-$res = $DATABASE->query('SELECT * FROM <tasks> WHERE completed = 0 LIMIT 1');
+$res = $DATABASE->query('SELECT * FROM <tasks> WHERE task="tokenize" AND completed = 0 LIMIT 1');
 $row = $res->fetch(PDO::FETCH_ASSOC);
 
 if (!$row) { 
