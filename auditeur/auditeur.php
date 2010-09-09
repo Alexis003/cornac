@@ -28,7 +28,7 @@ $options = array('help' => array('help' => 'display this help',
                  );
 include('../libs/getopts.php');
 
-define('CLEAN_DATABASE', isset($INI['clean']));
+define('CLEAN_DATABASE', !empty($INI['clean']));
 
 $modules = array(
 '_new',
@@ -143,6 +143,8 @@ $modules = array(
 'popular_libraries',
 'addElement',
 'addElement_unaffected',
+'constantes_link',
+'function_link',
 // new analyzers
 );
 
