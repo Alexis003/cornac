@@ -26,7 +26,7 @@ if (in_array('-f', $args)) {
     print "\nFull analysis of test files\n";
     $shell = <<<SHELL
 cd ../..
-./tokinit.php -r -d ./tests/auditeur/scripts/ -I testsunitaires
+./tokinit.php -r -d ./tests/auditeur/scripts/ -I testsunitaires -K -g mysql,cache
 ./tokclient.php -I testsunitaires
 cd auditeur
 ./auditeur.php -d -p tu -I testsunitaires
