@@ -1,0 +1,122 @@
+<?php 
+
+class foreach_unused extends modules {
+	protected	$title = 'Variables non utilisées d\'un foreach';
+	protected	$description = 'Repère les variables d\'un foreach qui ne sont pas utilisées. foreach($a as $k => $v) {     }';
+
+	function __construct($mid) {
+        parent::__construct($mid);
+	}
+
+// @doc if this analyzer is based on previous result, use this to make sure the results are here
+	function dependsOn() {
+	    return array();
+	}
+	
+	public function analyse() {
+        $this->clean_rapport();
+
+// @todo sync search for index and variables
+// @todo do the search for properties, array, and any mix
+
+// @doc spot unused variables in index
+	    $query = <<<SQL
+INSERT INTO <rapport> 
+SELECT NULL, T1.fichier, T2.code, T1.id, '{$this->name}', 0
+FROM <tokens> T1
+JOIN <tokens_tags> TT
+    ON TT.token_id = T1.id AND
+       TT.type = 'key'
+JOIN <tokens> T2
+    ON TT.token_sub_id = T2.id AND
+       T2.fichier = T1.fichier
+JOIN <tokens_tags> TT2
+    ON TT2.token_id = T1.id AND
+       TT2.type = 'block'
+JOIN <tokens> T3
+    ON TT2.token_sub_id = T3.id AND
+       T3.fichier = T1.fichier
+LEFT JOIN <tokens> T4
+    ON T4.fichier = T1.fichier AND
+       T4.droite BETWEEN T3.droite AND T3.gauche AND
+       T4.code = T2.code
+WHERE T1.type='_foreach' AND
+      T4.id IS NULL;
+SQL;
+        $this->exec_query($query);
+
+// @todo spot unused variables in index as reference
+// @todo spot unused properties in index
+// @todo spot unused array in index
+// @todo spot unused properties in index as reference
+// @todo spot unused array in index as reference
+
+
+// @doc spot unused variables in value
+	    $query = <<<SQL
+INSERT INTO <rapport> 
+SELECT NULL, T1.fichier, T2.code, T1.id, '{$this->name}', 0
+FROM <tokens> T1
+JOIN <tokens_tags> TT
+    ON TT.token_id = T1.id AND
+       TT.type = 'value'
+JOIN <tokens> T2
+    ON TT.token_sub_id = T2.id AND
+       T2.fichier = T1.fichier AND
+       T2.type = 'variable'
+JOIN <tokens_tags> TT2
+    ON TT2.token_id = T1.id AND
+       TT2.type = 'block'
+JOIN <tokens> T3
+    ON TT2.token_sub_id = T3.id AND
+       T3.fichier = T1.fichier
+LEFT JOIN <tokens> T4
+    ON T4.fichier = T1.fichier AND
+       T4.droite BETWEEN T3.droite AND T3.gauche AND
+       T4.code = T2.code
+WHERE T1.type='_foreach' AND 
+      T4.id IS NULL;
+SQL;
+        $this->exec_query($query);
+
+// @doc spot unused variables in value as reference
+	    $query = <<<SQL
+INSERT INTO <rapport> 
+SELECT NULL, T1.fichier, T2.code, T1.id, '{$this->name}', 0
+FROM <tokens> T1
+JOIN <tokens_tags> TT
+    ON TT.token_id = T1.id AND
+       TT.type = 'value'
+JOIN <tokens> T2a
+    ON TT.token_sub_id = T2a.id AND
+       T2a.fichier = T1.fichier AND 
+       T2a.type = 'reference'
+JOIN <tokens> T2
+    ON T2.fichier = T1.fichier AND 
+       T2a.droite + 1 = T2.droite
+JOIN <tokens_tags> TT2
+    ON TT2.token_id = T1.id AND
+       TT2.type = 'block'
+JOIN <tokens> T3
+    ON TT2.token_sub_id = T3.id AND
+       T3.fichier = T1.fichier
+LEFT JOIN <tokens> T4
+    ON T4.fichier = T1.fichier AND
+       T4.droite BETWEEN T3.droite AND T3.gauche AND
+       T4.code = T2.code
+WHERE T1.type='_foreach' AND 
+      T4.id IS NULL;
+SQL;
+        $this->exec_query($query);
+
+// @todo spot unused variables in value as reference
+// @todo spot unused properties in value
+// @todo spot unused array in value
+// @todo spot unused properties in value as reference
+// @todo spot unused array in value as reference
+        
+        return true;
+	}
+}
+
+?>
