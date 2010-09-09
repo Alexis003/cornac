@@ -142,47 +142,27 @@ function mon_log($message) {
 
 function getTemplate($racine, $file, $gabarit = null) {
     if (is_null($gabarit)) {
-        $gabarit = GABARIT;
+        global $INI;
+        $gabarit = $INI['templates'];
     }
     $templates = explode(',' , $gabarit);
     
     $retour = array();
     foreach($templates as $template) {
-        $classe  = "template_".$template;
-        $retour[$template] = new $classe($racine, $file);
+        $class = "template_".$template;
+        if (!class_exists($class)) {
+            include('prepare/templates/template.'.$template.'.php');
+        }
+        $retour[$template] = new $class($racine, $file);
     }
     return $retour;
 }
-
-/*
-function help() {
-    print <<<TEXT
-    -d : test all .php files of the folder
-    -e : also open the file in an editor
-    -f : work on this file
-    -g : gabarit à utiliser
-    -l : activate log (in the file tokenizer.log)
-    -h : This help
-    -i : number of cycles. Default to 
-    -I : ini file. Default to 'tokenizeur.ini'. 
-    -q : quick tests.php file
-    -r : mode récursif (avec -d)
-    -S : display internal objects stats
-    -t : display tokens produced and quit
-    -T : activate test mode
-    -? : this help
-
-TEXT;
-    
-    die();
-}
-*/
 
 function liste_directories_recursive( $path = '.', $level = 0 ){ 
     global $INI;
 
     $ignore_dirs = array( 'cgi-bin', '.', '..',
-                          'CVS','.svn','.git', // @todo : mercurial? other vcs's special folder : please add 
+                          'CVS','.svn','.git','.hg', // @todo : mercurial? other vcs's special folder : please add 
                           'adodb','fpdf','fckeditor','incutio','lightbox','nusoap','odtphp','pear','phpthumb','phputf8','scriptaculous','simpletest','smarty','spyc','tiny_mce','tinymce','Zend'); 
     if (isset($INI['tokenizeur']['ignore_dirs']) && !empty($INI['tokenizeur']['ignore_dirs'])) {
         $ignore_dirs = array_merge($ignore_dirs, explode(',',$INI['tokenizeur']['ignore_dirs']));
