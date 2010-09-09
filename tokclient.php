@@ -6,6 +6,7 @@ ini_set('memory_limit',234217728);
 include('prepare/commun.php');
 include("prepare/analyseur.php");
 include('libs/tok.php');
+include('prepare/templates/template.php');
 
 $options = array('help' => array('help' => 'display this help',
                                  'option' => '?',
@@ -33,24 +34,13 @@ $options = array('help' => array('help' => 'display this help',
                  'log' => array('help' => 'log activity',
                                     'option' => 'l',
                                     'compulsory' => false),
+                 'slave' => array('help' => 'work as slave. -1 for infinite wait, 0 to process all in database, x to process only x files',
+                                  'get_arg_value' => '0',
+                                  'option' => 's',
+                                  'compulsory' => false),
                  'limit' => array('help' => 'limit the number of cycles',
                                     'option' => 'i',
                                     'compulsory' => false),
-/*
-                 'recursive' => array('help' => 'recursive mode',
-                                      'option' => 'r',
-                                      'compulsory' => false),*/
-/*                 'file' => array('help' => 'file to work on',
-                                 'get_arg_value' => null,
-                                 'option' => 'f',
-                                 'compulsory' => false),
-                                 */
-/*
-                'directory' => array('help' => 'directory to work in',
-                                      'get_arg_value' => null,
-                                      'option' => 'd',
-                                      'compulsory' => false),
-                                      */
                  );
 include('libs/getopts.php');
 
@@ -66,14 +56,6 @@ define('TEST',$INI['test']);
 define('STATS',$INI['stats']);
 define('VERBOSE',$INI['verbose']);
 
-define('GABARIT', $INI['templates']);
-
-$templates = explode(',',GABARIT);
-include('prepare/templates/template.php');
-foreach ($templates as $id => $template) {
-    include('prepare/templates/template.'.$template.'.php');
-}
-
 define('LOG',$INI['log']);
 $limite = 0 + $INI['limit'];
 if ($limite) {
@@ -87,26 +69,42 @@ $DATABASE = new database();
 // @section end of options
 
 // @todo : make a sleeping client here, that waits, not die. 
-while(1) {
+$files_processed = 0; 
+while(1 ) {
+    if ($INI['slave'] >= 0 && ($files_processed >= intval($INI['slave']))) {
+        print "Processed $files_processed files {$INI['slave']}. Finishing.\n"; 
+        die();
+    }
+
 $times = array('debut' => microtime(true));
 // @todo attention, big TOCTOU!
 $res = $DATABASE->query('SELECT * FROM <tasks> WHERE completed = 0 LIMIT 1');
 $row = $res->fetch(PDO::FETCH_ASSOC);
 
 if (!$row) { 
-    print "No more tasks to go on\n"; 
-    die();
+    if ($INI['slave'] == 0) {
+        print "No more tasks to work on. Finishing.\n"; 
+        die();
+    } elseif ($INI['slave'] == -1) { // @note infinite loop
+        print "Sleeping for 30 secondes\n";
+        sleep(30);
+        continue; 
+    } else {
+        print "Sleeping for 30 secondes ( ".($INI['slave'] - $files_processed)." more to process)\n";
+        sleep(30);
+        continue; 
+    }
 }
 
 $DATABASE->query('UPDATE <tasks> SET completed = 1, date_update=NOW() WHERE id = '.$DATABASE->quote($row['id']).' LIMIT 1');
 
-$scriptsPHP = array($row['target'] => null);
+$scriptsPHP = array($row['target'] => $row);
 
 global $file;
 $FIN['fait'] = 0;
 $FIN['trouves'] = 0;
 
-foreach($scriptsPHP as $file => $object){
+foreach($scriptsPHP as $file => $config){
     $FIN['trouves']++;
     print $file."\n";
     if (!file_exists($file)) { 
@@ -136,6 +134,7 @@ foreach($scriptsPHP as $file => $object){
     // @todo this is too simple, but it works until now (binary, beware!)
     $code = str_replace('<?=', '<?php echo ', $code);
     
+    // @todo abstract this function, so one can choose the PHP version for tokenization
     $brut = @token_get_all($code);
     if (count($brut) == 0) {
         print "No token found. Aborting\n";
@@ -279,7 +278,7 @@ foreach($scriptsPHP as $file => $object){
         $id++;
     }
    
-    $templates = getTemplate($root, $file);
+    $templates = getTemplate($root, $file, $config['template']);
     foreach($templates as $template) {
         $template->affiche();
         $template->save();
@@ -295,12 +294,12 @@ foreach($scriptsPHP as $file => $object){
         asort($stats);
         print_r($stats);
     }
+    $files_processed++; 
 }
 
 $times['fin'] = microtime(true);
 
 $DATABASE->query('UPDATE <tasks> SET completed = 100, date_update=NOW() WHERE id = '.$DATABASE->quote($row['id']).' LIMIT 1');
-
 
 $debut = $times['debut'];
 unset($times['debut']);
