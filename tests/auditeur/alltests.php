@@ -81,6 +81,7 @@ $tests = array(
 'class.zfClasses.test.php',
 'class.popular_libraries.test.php',
 'class.defconstantes.test.php',
+'class.foreach_unused.test.php',
 // new tests
 );
 
