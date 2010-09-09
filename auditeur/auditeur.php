@@ -145,6 +145,7 @@ $modules = array(
 'addElement_unaffected',
 'constantes_link',
 'function_link',
+'foreach_unused',
 // new analyzers
 );
 
