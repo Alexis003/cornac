@@ -310,24 +310,4 @@ function analyse_module($module) {
 }
 
 $sommaire->sauve();
-
-/*
-function help() {
-    print <<<TEXT
-Usage : ./auditeur.php
-prefix : tokens (default)
-
-    -?    : this help
-    -a    : comma separated list of analyzers to be used. Defaut to all. 
-    -d    : refresh dependent analyzers (default : no)
-    -f    : output format : html
-    -K    : destroy databases first
-    -o    : folder for output : /tmp
-    -I    : ini config file
-
-TEXT;
-    
-    die();
-}
-*/
 ?>
