@@ -98,8 +98,7 @@ Have ratio calculated on top of analyzers (TDB)
 Support dot format for testing
 
 [analysers ideas]
-file relations through CONSTANTES, functions
-unused foreach arguments
+
 add 'variable' as a scope, so that we can actually work context by context
 
 affected only variables (not used anywhere else that affectations)
@@ -181,6 +180,7 @@ htmlentities used without encoding information
 
 [web]
 export to html : should match the interactive web version
+add a table list for the DOT format
 export to .csv
 export to .yaml
 support graphic file representation (move file2png to a lib, then integrate)
