@@ -122,22 +122,4 @@ shell_exec("cd auditeur; ./reader.php $ini -F html -o {$INI['cornac']['destinati
 
 print "Done\n";
 
-
-function help() {
-    print <<<SHELL
-
-Usage : ./cornac -d <source folder> -o <output folder>
-
-Options : 
-  -? : help
-  -d : source folder
-  -s : storage (mysql (default), sqlite)
-  -K : destroy databases first
-  -o : output folder (path, 'web' (leave in database'))
-  -I : ini config
-
-SHELL;
-    die();
-}
-
 ?>
