@@ -27,7 +27,7 @@ $options = array('help' => array('help' => 'display this help',
                  );
 include('libs/getopts.php');
 
-$shell = './tokinit.php -I '.$INI['ini'].' -g '.$INI['templates'];
+$shell = './tokinit.php -I '.$INI['ini'].' -g '.$INI['templates'].' -K -r -d '.$INI['directory'];
 if (isset($INI['directory'])) {
     shell_exec($shell.' -d '.$INI['directory']);
 } elseif (isset($INI['file'])) {

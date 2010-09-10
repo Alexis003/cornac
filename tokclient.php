@@ -71,15 +71,16 @@ $DATABASE = new database();
 // @todo : make a sleeping client here, that waits, not die. 
 $files_processed = 0; 
 while(1 ) {
-    if ($INI['slave'] >= 0 && ($files_processed >= intval($INI['slave']))) {
-        print "Processed $files_processed files {$INI['slave']}. Finishing.\n"; 
+    if ($INI['slave'] > 0 && ($files_processed >= intval($INI['slave']))) {
+        print "Processed $files_processed files. Finishing.\n"; 
         die();
     }
 
 $times = array('debut' => microtime(true));
 
 // @todo attention, big TOCTOU!
-$res = $DATABASE->query('SELECT * FROM <tasks> WHERE task="tokenize" AND completed = 0 LIMIT 1');
+print $query = 'SELECT * FROM <tasks> WHERE task="tokenize" AND completed = 0 LIMIT 1';
+$res = $DATABASE->query($query);
 $row = $res->fetch(PDO::FETCH_ASSOC);
 
 if (!$row) { 
