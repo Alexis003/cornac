@@ -4,11 +4,11 @@ class postplusplus extends instruction {
     protected $variable = null;
     protected $operateur = null;
     
-    function __construct($entree) {
+    function __construct($expression) {
         parent::__construct(array());
             
-        $this->variable  = $entree[0];
-        $this->operateur = $this->make_token_traite($entree[1]);
+        $this->variable  = $expression[0];
+        $this->operateur = $this->make_token_traite($expression[1]);
     }
 
     function __toString() {

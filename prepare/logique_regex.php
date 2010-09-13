@@ -20,9 +20,9 @@ class logique_regex extends analyseur_regex {
         if ($t->checkClass('literals')) { return false; }
         if ($t->getPrev()->checkClass(array( 'arglist','sequence','block'))) { return false;}
         if ($t->getPrev()->checkCode(array( ')',','))) { return false;}
-        if ($t->getNext()->checkClass(array('Token', 'arglist','sequence','block'))) { return false;}
-        
         if ($t->getPrev()->checkForAssignation()) { return false;}
+
+        if ($t->getNext()->checkClass(array('Token', 'arglist','sequence','block'))) { return false;}
 
         if ((!$t->hasPrev(2) || ($t->getPrev(1)->checkBeginInstruction()) || 
                                  $t->getPrev(1)->checkCode(')') ) &&

@@ -7,32 +7,32 @@ class affectation extends instruction {
     protected $operateur = null;
     protected $gauche    = null;
     
-    function __construct($entree) {
+    function __construct($expression) {
         parent::__construct(array());
         
-        if (is_array($entree)) {
-            while ($entree[0]->checkToken(array(T_PUBLIC, T_PRIVATE, T_PROTECTED, T_STATIC))) {
-                if ($entree[0]->checkToken(array(T_PUBLIC, T_PRIVATE, T_PROTECTED))) {
-                    $this->_visibility = $this->make_token_traite($entree[0]);
-                } elseif ($entree[0]->checkToken(array(T_STATIC))) {
-                    $this->_static = $this->make_token_traite($entree[0]);
+        if (is_array($expression)) {
+            while ($expression[0]->checkToken(array(T_PUBLIC, T_PRIVATE, T_PROTECTED, T_STATIC))) {
+                if ($expression[0]->checkToken(array(T_PUBLIC, T_PRIVATE, T_PROTECTED))) {
+                    $this->_visibility = $this->make_token_traite($expression[0]);
+                } elseif ($expression[0]->checkToken(array(T_STATIC))) {
+                    $this->_static = $this->make_token_traite($expression[0]);
                 }
 
-                unset($entree[0]);
-                $entree = array_values($entree);
+                unset($expression[0]);
+                $expression = array_values($expression);
             }
 
-            if (count($entree) != 3) {
-                $this->stop_on_error("Affectation with unexpected number of valudes : ".count($entree)." received\n");
+            if (count($expression) != 3) {
+                $this->stop_on_error("Affectation with unexpected number of valudes : ".count($expression)." received\n");
             }
 
-            $this->droite = $entree[0];
-            $entree[1]->setLine($entree[0]->getLine());
-            $this->operateur = $this->make_token_traite($entree[1]);
-            $this->gauche = $entree[2];
+            $this->droite = $expression[0];
+            $expression[1]->setLine($expression[0]->getLine());
+            $this->operateur = $this->make_token_traite($expression[1]);
+            $this->gauche = $expression[2];
             $this->setLine($this->droite->getLine());
         } else {
-            $this->stop_on_error("Affectation received strange number of values : ".count($entree)." received\n");
+            $this->stop_on_error("Affectation received strange number of values : ".count($expression)." received\n");
         }
     }
 

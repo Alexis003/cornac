@@ -3,22 +3,22 @@
 class variable extends token {
     protected $nom = null;
 
-    function __construct($entree = null) {
+    function __construct($expression = null) {
         parent::__construct(array());
 
-        if (is_null($entree)) { // @note  coming from class tableau
+        if (is_null($expression)) { // @note  coming from class tableau
             return ;
         }
 
-        if (count($entree) == 1) {
-            if ($entree[0]->checkClass('Token')) {
-                $this->nom = $entree[0]->getCode();
+        if (count($expression) == 1) {
+            if ($expression[0]->checkClass('Token')) {
+                $this->nom = $expression[0]->getCode();
             } else {
-                $this->nom = $entree[0];
+                $this->nom = $expression[0];
             }
-            $this->setLine($entree[0]->getLine());
+            $this->setLine($expression[0]->getLine());
         } else {
-          $this->nom = $entree[1];
+          $this->nom = $expression[1];
           $this->code = $this->nom->getCode();
           $this->setLine($this->nom->getLine());
         }

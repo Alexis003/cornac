@@ -3,14 +3,14 @@
 class block extends instruction {
     protected $list = array();
     
-    function __construct($entree = array()) {
+    function __construct($expression = array()) {
         parent::__construct(array());
         
-        if (is_null($entree)) {
-            $entree = array();
+        if (is_null($expression)) {
+            $expression = array();
         }
 
-        foreach($entree as $l) {
+        foreach($expression as $l) {
             if (get_class($l) == 'sequence') {
                 $this->list = array_merge($this->list, $l->getElements());
             } elseif (get_class($l) == 'block') {

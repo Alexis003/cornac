@@ -178,11 +178,11 @@ class analyseur {
             }
         }
         
-        if (empty($args)) {
-            $retour = new $class();
-        } else {
+//        if (empty($args)) {
+//            $retour = new $class();
+//        } else {
             $retour = new $class($args);
-        }
+//        }
         $retour->copyToken($t);
 
         $remove = $r->getRemove();

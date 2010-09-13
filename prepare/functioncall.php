@@ -4,24 +4,24 @@ class functioncall extends instruction {
     protected $function = null;
     protected $args = null;
     
-    function __construct($entree) {
+    function __construct($expression) {
         parent::__construct(array());
         
-        if ($entree[0]->checkCode('=')) {
-            $entree[0]->code = 'echo';
+        if ($expression[0]->checkCode('=')) {
+            $expression[0]->code = 'echo';
         }
         
-        if ($entree[0]->checkClass('Token')) {
-            $this->function = $this->make_token_traite($entree[0]);
+        if ($expression[0]->checkClass('Token')) {
+            $this->function = $this->make_token_traite($expression[0]);
         } else {
-            $this->function = $entree[0];
+            $this->function = $expression[0];
         }
 
-        if (isset($entree[1])) {
-            $this->args = $entree[1];
+        if (isset($expression[1])) {
+            $this->args = $expression[1];
         } else {
             $this->args = new arglist(array( null ));
-            $this->args->setLine($entree[0]->getLine());
+            $this->args->setLine($expression[0]->getLine());
         }
     }
 

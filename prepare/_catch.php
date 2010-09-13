@@ -5,15 +5,15 @@ class _catch extends instruction {
     protected $variable = null;
     protected $block = null;
     
-    function __construct($entree = null) {
+    function __construct($expression = null) {
         parent::__construct(array());
         
-        $this->block = array_pop($entree);
-        if (count($entree) == 2) {
-            $this->exception = $this->make_token_traite($entree[0]);
-            $this->variable  = $entree[1];
+        $this->block = array_pop($expression);
+        if (count($expression) == 2) {
+            $this->exception = $this->make_token_traite($expression[0]);
+            $this->variable  = $expression[1];
         } else {
-            $this->stop_on_error("Unexpected number of arguments received : (".count($entree)." instead of 3) in ".__METHOD__);
+            $this->stop_on_error("Unexpected number of arguments received : (".count($expression)." instead of 3) in ".__METHOD__);
         }
     }
 

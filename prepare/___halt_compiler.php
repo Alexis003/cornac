@@ -2,7 +2,7 @@
 
 class ___halt_compiler extends instruction {
 
-    function __construct($entree = null) {
+    function __construct($expression = null) {
         parent::__construct(array());
     }
     

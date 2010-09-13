@@ -4,10 +4,10 @@ class literals extends token {
     private $value = null;     // value of the literal
     private $delimiter = null; // delimter used. Used for string literals
     
-    function __construct($entree = null) {
+    function __construct($expression = null) {
         parent::__construct(array());
         
-        $this->value = $entree[0]->getCode();
+        $this->value = $expression[0]->getCode();
         if ($this->value[0] == '"' || $this->value[0] == "'") {
             $this->delimiter = $this->value[0];
             $this->value = trim($this->value, "'\"");

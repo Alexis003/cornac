@@ -3,10 +3,10 @@
 class reference extends instruction {
     private $expression = null;
     
-    function __construct($entree) {
+    function __construct($expression) {
         parent::__construct(array());
   
-        $this->expression = $entree[0];
+        $this->expression = $expression[0];
     }
 
     function __toString() {

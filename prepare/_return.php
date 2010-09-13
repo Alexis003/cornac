@@ -3,12 +3,12 @@
 class _return extends instruction {
     protected $retour = null;
 
-    function __construct($entree = null) {
+    function __construct($expression = null) {
         parent::__construct(array());
 
-        if (isset($entree[0])) {
-            $this->retour = $entree[0];
-        }
+        if (isset($expression[0])) {
+            $this->retour = $expression[0];
+        } 
     }
     
     function __toString() {

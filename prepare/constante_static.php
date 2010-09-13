@@ -4,14 +4,14 @@ class constante_static extends token {
     protected $class = null;
     protected $constant = null;
     
-    function __construct($entree) {
+    function __construct($expression) {
         parent::__construct();
         
-        if (is_array($entree)) {
-            $this->class = $this->make_token_traite($entree[0]);
-            $this->constant = $entree[1];
+        if (is_array($expression)) {
+            $this->class = $this->make_token_traite($expression[0]);
+            $this->constant = $expression[1];
         } else {
-            $this->stop_on_error("Wrong number of arguments  : '".count($entree)."' in ".__METHOD__);
+            $this->stop_on_error("Wrong number of arguments  : '".count($expression)."' in ".__METHOD__);
         }
     }
 

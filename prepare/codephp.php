@@ -3,14 +3,14 @@
 class codephp extends instruction {
     private $php_code = array();
     
-    function __construct($entree = null) {
+    function __construct($expression = null) {
         parent::__construct(array());
 
-        if (is_null($entree)) {
+        if (is_null($expression) || empty($expression)) {
             $this->php_code = new sequence(array());
         } else {
-            $this->php_code =  $entree[0];
-            if (count($entree) > 1) {
+            $this->php_code =  $expression[0];
+            if (count($expression) > 1) {
                 $this->stop_on_error("We lost some elements in ".__METHOD__);
             }
         }

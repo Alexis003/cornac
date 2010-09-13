@@ -5,14 +5,14 @@ class _interface extends instruction {
     protected $block = null;
     protected $extends = array();
     
-    function __construct($entree = null) {
+    function __construct($expression = null) {
         parent::__construct(array());
         
-        $this->name = $this->toToken_traite($entree[0]);
-        unset($entree[0]);
-        $this->block = array_pop($entree);
+        $this->name = $this->toToken_traite($expression[0]);
+        unset($expression[0]);
+        $this->block = array_pop($expression);
         
-        foreach($entree as $e) {
+        foreach($expression as $e) {
             $this->extends[] = $this->make_token_traite($e);
         }
     }

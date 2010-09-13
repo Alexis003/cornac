@@ -29,26 +29,27 @@ class arglist_regex extends analyseur_regex {
         
         $pos = 1;
         
-        while ($var->checkNotClass('Token') && $var->checkNotCode(')') &&
-               $var->getNext()->checkCode(',')) {
+        while ($var->checkNotClass('Token') && $var->checkNotOperateur(')') &&
+               $var->getNext()->checkOperateur(',')) {
             $this->args[]    = $pos;
             $this->remove[]  = $pos;
             $this->remove[]  = $pos + 1;
             
             $pos += 2;
             $var = $var->getNext();
-            if ($var->checkCode('(')) { return false; }
+            if ($var->checkOperateur('(')) { return false; }
             $var = $var->getNext();
-            if ($var->checkCode('(')) { return false; }
+            if ($var->checkOperateur('(')) { return false; }
         }
+        
 
-        if ($var->checkCode(')')) {
+        if ($var->checkOperateur(')')) {
             // cas des conditions ? : 
             $this->remove[] = $pos; // le ) finale
             
             mon_log(get_class($t)." =>1 ".__CLASS__);
             return true; 
-        } elseif ($var->getNext()->checkCode(')')) {
+        } elseif ($var->getNext()->checkOperateur(')')) {
             if ($var->checkClass('Token')) { return false; }
             
             if ($t->getPrev()->checkCode('echo') && $var->getNext(1)->checkCode(array('|','&','^'))) { return false; }

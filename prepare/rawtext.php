@@ -3,16 +3,16 @@
 class rawtext extends instruction {
     protected $rawtext = null;
 
-    function __construct($entree = null) {
+    function __construct($expression = null) {
         parent::__construct(array());
         
-        if ($entree[0]->checkToken(T_CLOSE_TAG)) {
-            $this->rawtext = $entree[0];
+        if ($expression[0]->checkToken(T_CLOSE_TAG)) {
+            $this->rawtext = $expression[0];
             
             $this->rawtext->setToken(T_INLINE_HTML);
             $this->rawtext->setCode('');
         } else {
-            $this->rawtext = $entree[0];
+            $this->rawtext = $expression[0];
         }
     }
 

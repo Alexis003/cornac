@@ -4,14 +4,14 @@ class constante_classe extends token {
     protected $name = null;
     protected $constante = null;
     
-    function __construct($entree) {
+    function __construct($expression) {
         parent::__construct();
         
-        if (is_array($entree) && count($entree) == 2) {
-            $this->name = $entree[0];
-            $this->constante = $entree[1];
+        if (is_array($expression) && count($expression) == 2) {
+            $this->name = $expression[0];
+            $this->constante = $expression[1];
         } else {
-            $this->stop_on_error("Wrong number of arguments  : '".count($entree)."' in ".__METHOD__);
+            $this->stop_on_error("Wrong number of arguments  : '".count($expression)."' in ".__METHOD__);
         }
     }
 

@@ -10,48 +10,48 @@ class _function extends instruction {
     protected $block = null;
     
 
-    function __construct($entree) {
+    function __construct($expression) {
         parent::__construct(array());
         
-        while($entree[0]->checkToken(array(T_PUBLIC, T_PROTECTED, T_PRIVATE, T_STATIC, T_ABSTRACT, T_FINAL))) {
+        while($expression[0]->checkToken(array(T_PUBLIC, T_PROTECTED, T_PRIVATE, T_STATIC, T_ABSTRACT, T_FINAL))) {
 
-            if ($entree[0]->checkToken(array(T_PUBLIC, T_PROTECTED, T_PRIVATE))) {
-                $this->_visibility = $this->make_token_traite($entree[0]);
-                unset($entree[0]);
-                $entree = array_values($entree);
+            if ($expression[0]->checkToken(array(T_PUBLIC, T_PROTECTED, T_PRIVATE))) {
+                $this->_visibility = $this->make_token_traite($expression[0]);
+                unset($expression[0]);
+                $expression = array_values($expression);
                 continue;
             }
 
-            if ($entree[0]->checkToken(array(T_STATIC))) {
-                $this->_static = $this->make_token_traite($entree[0]);
+            if ($expression[0]->checkToken(array(T_STATIC))) {
+                $this->_static = $this->make_token_traite($expression[0]);
 
-                unset($entree[0]);
-                $entree = array_values($entree);
+                unset($expression[0]);
+                $expression = array_values($expression);
                 continue;
             }
 
-            if ($entree[0]->checkToken(array(T_ABSTRACT, T_FINAL))) {
-                $this->_abstract = $this->make_token_traite($entree[0]);
+            if ($expression[0]->checkToken(array(T_ABSTRACT, T_FINAL))) {
+                $this->_abstract = $this->make_token_traite($expression[0]);
 
-                unset($entree[0]);
-                $entree = array_values($entree);
+                unset($expression[0]);
+                $expression = array_values($expression);
                 continue;
             }
             
             $this->stop_on_error("On ne devrait pas arriver ici : ".__CLASS__);
         }
 
-        if (count($entree) == 3) {
-            $this->name = $entree[0];
-            $this->args = $entree[1];
-            $this->block = $entree[2];
-        } elseif (count($entree) == 4) {
-            $this->reference = $entree[0];
-            $this->name = $entree[1];
-            $this->args = $entree[2];
-            $this->block = $entree[3];
+        if (count($expression) == 3) {
+            $this->name = $expression[0];
+            $this->args = $expression[1];
+            $this->block = $expression[2];
+        } elseif (count($expression) == 4) {
+            $this->reference = $expression[0];
+            $this->name = $expression[1];
+            $this->args = $expression[2];
+            $this->block = $expression[3];
         } else {
-            $this->stop_on_error("Wrong number of arguments  : '".count($entree)."' in ".__METHOD__);
+            $this->stop_on_error("Wrong number of arguments  : '".count($expression)."' in ".__METHOD__);
         }
         
         if ($this->block->getCode() == ';') {

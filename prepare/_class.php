@@ -8,33 +8,33 @@ class _class extends instruction {
     protected $block = null;
     
 
-    function __construct($entree) {
+    function __construct($expression) {
         parent::__construct(array());
 
         $pos = 0;
-        if ($entree[$pos]->checkToken(array(T_ABSTRACT, T_FINAL))) {
-            $this->_abstract = $this->make_token_traite($entree[$pos]);
+        if ($expression[$pos]->checkToken(array(T_ABSTRACT, T_FINAL))) {
+            $this->_abstract = $this->make_token_traite($expression[$pos]);
             $pos += 1;
         }
 
-        $this->nom = $this->toToken_traite($entree[$pos]);
+        $this->nom = $this->toToken_traite($expression[$pos]);
         $pos ++;
         
-        if ($entree[$pos]->checkToken(T_EXTENDS)) {
-            $this->extends = $this->toToken_traite($entree[$pos + 1]);
+        if ($expression[$pos]->checkToken(T_EXTENDS)) {
+            $this->extends = $this->toToken_traite($expression[$pos + 1]);
             $pos += 2;
         }
 
-        if ($entree[$pos]->checkToken(T_IMPLEMENTS)) {
-            $this->implements[] = $this->toToken_traite($entree[$pos + 1]);
+        if ($expression[$pos]->checkToken(T_IMPLEMENTS)) {
+            $this->implements[] = $this->toToken_traite($expression[$pos + 1]);
             $pos += 2;
             
-            while ($entree[$pos]->checkCode(',')) {
-                $this->implements[] = $this->toToken_traite($entree[$pos + 1]);
+            while ($expression[$pos]->checkCode(',')) {
+                $this->implements[] = $this->toToken_traite($expression[$pos + 1]);
                 $pos += 2;
             }
         }
-        $this->block = $entree[$pos];
+        $this->block = $expression[$pos];
     }
     
     function __toString() {

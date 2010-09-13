@@ -3,11 +3,12 @@
 class _while extends instruction {
     protected $expression = null;
     
-    function __construct($entree = null) {
+    function __construct($expression = null) {
         parent::__construct(array());
         
-        $this->condition = $entree[0];
-        $this->block = $entree[1];
+        // @todo check count of expression
+        $this->condition = $expression[0];
+        $this->block = $expression[1];
     }
 
     function __toString() {

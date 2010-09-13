@@ -4,20 +4,20 @@ class property extends token {
     private $objet = null;
     private $property = null;
 
-    function __construct($entree) {
+    function __construct($expression) {
         parent::__construct();
         
-        if (is_array($entree) && count($entree) == 2) {
-            if ($entree[0]->checkClass('Token')) {
-                $objet = new token_traite($entree[0]);
-                $objet->replace($entree[0]);
+        if (is_array($expression) && count($expression) == 2) {
+            if ($expression[0]->checkClass('Token')) {
+                $objet = new token_traite($expression[0]);
+                $objet->replace($expression[0]);
             } else {
-                $objet = $entree[0];
+                $objet = $expression[0];
             }
 
             $this->objet = $objet;
             
-            $this->property = $entree[1];
+            $this->property = $expression[1];
         } else {
             $this->stop_on_error("Bad number of parameters in ".__METHOD__);
         }

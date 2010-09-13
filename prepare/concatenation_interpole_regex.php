@@ -5,15 +5,15 @@ class concatenation_interpole_regex extends analyseur_regex {
         parent::__construct(array());
         
         $this->sequence_classes = array('literals',
-                                                  'variable',
-                                                  'tableau',
-                                                  'property',
-                                                  'property_static',
-                                                  'method',
-                                                  'method_static',
-                                                  'constante_static',
-                                                  'sequence',
-                                                  );
+                                        'variable',
+                                        'tableau',
+                                        'property',
+                                        'property_static',
+                                        'method',
+                                        'method_static',
+                                        'constante_static',
+                                        'sequence',
+                                        );
     }
 
     function getTokens() {

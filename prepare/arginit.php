@@ -4,11 +4,11 @@ class arginit extends instruction {
     protected $variable = array();
     protected $valeur = null;
 
-    function __construct($entree) {
+    function __construct($expression) {
         parent::__construct(array());
 
-        $this->variable = $entree[0];
-        $this->valeur = $entree[1];
+        $this->variable = $expression[0];
+        $this->valeur = $expression[1];
     }
     
     function __toString() {
@@ -32,7 +32,6 @@ class arginit extends instruction {
         return array(
     'arginit_literal_regex',
     'arginit_array_regex',
-//    'arginit_typehint_regex',
 );
     }
 }

@@ -5,33 +5,33 @@ class _declare extends instruction {
     protected $encoding = null;
     protected $block = null;
     
-    function __construct($entree) {
+    function __construct($expression) {
         parent::__construct(array());
         
-        if ($entree[count($entree) - 1]->checkClass('block')) {
-            $this->block = array_pop($entree);
+        if ($expression[count($expression) - 1]->checkClass('block')) {
+            $this->block = array_pop($expression);
         } else {
             // @empty_else
         }
         
-        if ($entree[0]->checkClass('parentheses')) {
+        if ($expression[0]->checkClass('parentheses')) {
             // @doc we expect no initialisation 
-            if (!$this->set(strtolower($entree[0]->getContenu()->getVariable()->getCode()), 
-                            $entree[0]->getContenu()->getValeur())) {
-                $this->stop_on_error($entree[0]->getContenu()->getVariable()." is unknown in ".__METHOD__."\n");
+            if (!$this->set(strtolower($expression[0]->getContenu()->getVariable()->getCode()), 
+                            $expression[0]->getContenu()->getValeur())) {
+                $this->stop_on_error($expression[0]->getContenu()->getVariable()." is unknown in ".__METHOD__."\n");
             }
-        } elseif ($entree[0]->checkClass('arginit')) {
+        } elseif ($expression[0]->checkClass('arginit')) {
             // @doc we expect an initialisation 
-            if (!$this->set(strtolower($entree[0]->getVariable()->getCode()), 
-                            $entree[0]->getValeur())) {
-                $this->stop_on_error($entree[0]->getVariable()." is unknown in ".__METHOD__."\n");
+            if (!$this->set(strtolower($expression[0]->getVariable()->getCode()), 
+                            $expression[0]->getValeur())) {
+                $this->stop_on_error($expression[0]->getVariable()." is unknown in ".__METHOD__."\n");
             }
-            if (!$this->set(strtolower($entree[1]->getVariable()->getCode()), 
-                            $entree[1]->getValeur())) {
-                stop_on_error($entree[1]->getVariable()." is unknown in ".__METHOD__."\n");
+            if (!$this->set(strtolower($expression[1]->getVariable()->getCode()), 
+                            $expression[1]->getValeur())) {
+                stop_on_error($expression[1]->getVariable()." is unknown in ".__METHOD__."\n");
             }
         } else {
-            $this->stop_on_error("Entree is of unexpected class ".get_class($entree[0])." in ".__METHOD__."\n");
+            $this->stop_on_error("Entree is of unexpected class ".get_class($expression[0])." in ".__METHOD__."\n");
         }
     }
     

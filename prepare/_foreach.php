@@ -13,31 +13,31 @@ class _foreach extends instruction {
     static $blind_values = array('variable','tableau','property','reference','parentheses','property_static');
     static $blind_keys = array('variable','tableau','property','reference','parentheses','property_static');
 
-    function __construct($entree) {
+    function __construct($expression) {
         parent::__construct(array());
             
-        $block = array_pop($entree);
+        $block = array_pop($expression);
         if ($block->checkCode(';')) {
             $real = new block(array());
             $real->replace($block);
             
-            $entree[] = $real;
-            $entree = array_values($entree);
+            $expression[] = $real;
+            $expression = array_values($expression);
         } else {
-            $entree[] = $block;
-            $entree = array_values($entree);
+            $expression[] = $block;
+            $expression = array_values($expression);
         }
         
-        if (count($entree) == 4) {
-            $this->tableau = $entree[0];
-            $this->key = $entree[1];
-            $this->value = $entree[2];
-            $this->block = $entree[3];
+        if (count($expression) == 4) {
+            $this->tableau = $expression[0];
+            $this->key = $expression[1];
+            $this->value = $expression[2];
+            $this->block = $expression[3];
         } else {
-            $this->tableau = $entree[0];
+            $this->tableau = $expression[0];
             $this->key =  null;
-            $this->value = $entree[1];
-            $this->block = $entree[2];
+            $this->value = $expression[1];
+            $this->block = $expression[2];
         }    
     }
     

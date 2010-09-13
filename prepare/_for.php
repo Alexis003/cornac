@@ -6,20 +6,20 @@ class _for extends instruction {
     protected $increment = null;
     protected $block = null;
 
-    function __construct($entree) {
+    function __construct($expression) {
         parent::__construct(array());
 
-        if ($entree[0]->getCode() == ';') {
+        if ($expression[0]->getCode() == ';') {
             $this->init = null;
         } else {
-            $this->init = $entree[0];
+            $this->init = $expression[0];
         }
 
         // @note immediate processing of block
-        $this->block = array_pop($entree);
+        $this->block = array_pop($expression);
 
-        if ($entree[1]->checkClass('sequence') && $entree[2]->checkCode(')')) {
-            $x = $entree[1]->getElements();
+        if ($expression[1]->checkClass('sequence') && $expression[2]->checkCode(')')) {
+            $x = $expression[1]->getElements();
             if (count($x) == 2) { 
                 $this->fin = $x[0];
                 $this->increment = $x[1];
@@ -27,20 +27,20 @@ class _for extends instruction {
                 return;
             } elseif (count($x) == 1) {
                 $this->fin = $x[0];
-                // @for_translation puis on continue comme d'hab, increment est dans entree[2];
+                // @for_translation puis on continue comme d'hab, increment est dans expression[2];
             } else {
                 $this->stop_on_error("Wrong number of elements  : '".count($x)."' in ".__METHOD__);
             }
-        } elseif ($entree[1]->getCode() == ';') {
+        } elseif ($expression[1]->getCode() == ';') {
             $this->fin = null;
         } else {
-            $this->fin = $entree[1];
+            $this->fin = $expression[1];
         }
         
-        if ($entree[2]->getCode() == ')') {
+        if ($expression[2]->getCode() == ')') {
             $this->increment = null;
         } else {
-            $this->increment = $entree[2];
+            $this->increment = $expression[2];
         }
         
     }

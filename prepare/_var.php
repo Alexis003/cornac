@@ -6,23 +6,23 @@ class _var extends instruction {
     protected $variable = array();
     protected $init = array();
 
-    function __construct($entree) {
+    function __construct($expression) {
         parent::__construct(array());
 
-        while ($entree[0]->checkToken(array(T_VAR, T_PRIVATE, T_PROTECTED, T_PUBLIC, T_STATIC))) {
-            if ($entree[0]->checkToken(array(T_VAR, T_PRIVATE, T_PROTECTED, T_PUBLIC))) {
-                $this->_visibility = $this->make_token_traite($entree[0]);
-            } elseif ($entree[0]->checkToken(array(T_STATIC))) {
-                $this->_static = $this->make_token_traite($entree[0]);
+        while ($expression[0]->checkToken(array(T_VAR, T_PRIVATE, T_PROTECTED, T_PUBLIC, T_STATIC))) {
+            if ($expression[0]->checkToken(array(T_VAR, T_PRIVATE, T_PROTECTED, T_PUBLIC))) {
+                $this->_visibility = $this->make_token_traite($expression[0]);
+            } elseif ($expression[0]->checkToken(array(T_STATIC))) {
+                $this->_static = $this->make_token_traite($expression[0]);
             } else {
-                $this->stop_on_error("Unknown attribute class : ".count($entree)." in ".__METHOD__);
+                $this->stop_on_error("Unknown attribute class : ".count($expression)." in ".__METHOD__);
             }
 
-            unset($entree[0]);
-            $entree = array_values($entree);
+            unset($expression[0]);
+            $expression = array_values($expression);
         }
         
-        foreach($entree as $id => $e) {
+        foreach($expression as $id => $e) {
             if ($e->checkClass('variable')) {
                 $this->variable[] = $e;
                 $this->init[] = null;

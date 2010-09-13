@@ -14,7 +14,7 @@ class sequence_regex extends analyseur_regex {
         
         if ( $t->hasPrev() && $t->getPrev()->checkForAssignation()) { return false; }
         if ( $t->hasPrev() && $t->getPrev()->checkClass('parentheses')) { return false; }
-        if ( $t->hasPrev() && $t->getPrev()->checkCode(array(')','->','(',',','.','new','!==','::',':',
+        if ( $t->hasPrev() && $t->getPrev()->checkCode(array('=',')','->','(',',','.','new','!==','::',':',
                 '?','or','and','xor','var','$','/','+','-','*','%','@','&','|','^','"',
                 '<','>','+'))) { return false; }
 
@@ -65,7 +65,7 @@ class sequence_regex extends analyseur_regex {
                        $pos += 1;
                        $var = $var->getNext();
                        if (is_null($var)) {
-                           mon_log(get_class($t)." => nnull ".__CLASS__);
+                           mon_log(get_class($t)." => nnull2 ".__CLASS__);
                            return true; 
                        }
                    } elseif ($var->checkToken(T_LOGICAL_OR, T_LOGICAL_AND, T_LOGICAL_XOR)) {

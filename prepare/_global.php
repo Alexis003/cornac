@@ -3,10 +3,10 @@
 class _global extends instruction {
     protected $variables = array();
 
-    function __construct($entree) {
+    function __construct($expression) {
         parent::__construct(array());
 
-        $this->variables = $entree;
+        $this->variables = $expression;
     }
     
     function __toString() {

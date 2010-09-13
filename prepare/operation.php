@@ -5,13 +5,13 @@ class operation extends instruction {
     protected $operation = null;
     protected $gauche = null;
     
-    function __construct($entree) {
+    function __construct($expression) {
         parent::__construct(array());
         
-        if (count($entree) == 3) {
-            $this->droite = $entree[0];
-            $this->operation = $this->make_token_traite($entree[1]);
-            $this->gauche = $entree[2];
+        if (count($expression) == 3) {
+            $this->droite = $expression[0];
+            $this->operation = $this->make_token_traite($expression[1]);
+            $this->gauche = $expression[2];
         } else {
             $this->stop_on_error("We shouldn't reach here");
         }

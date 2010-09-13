@@ -4,11 +4,11 @@ class preplusplus extends instruction {
     protected $variable = null;
     protected $operateur = null;
     
-    function __construct($entree) {
+    function __construct($expression) {
         parent::__construct(array());
         
-        $this->operateur = $this->make_token_traite($entree[0]);
-        $this->variable  = $entree[1];
+        $this->operateur = $this->make_token_traite($expression[0]);
+        $this->variable  = $expression[1];
     }
 
     function __toString() {

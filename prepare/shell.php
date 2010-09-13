@@ -3,10 +3,11 @@
 class shell extends instruction {
     protected $expression = array();
     
-    function __construct($entree) {
+    function __construct($expression) {
         parent::__construct(array());
         
-        $this->expression = $entree;
+        // @todo accept anything?
+        $this->expression = $expression;
     }
 
     function __toString() {

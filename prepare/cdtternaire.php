@@ -1,21 +1,34 @@
 <?php
 
 class cdtternaire extends instruction {
-    function __construct($entree) {
+    protected $condition = null;
+    protected $vraie = null;
+    protected $faux = null;
+    
+    function __construct($expression) {
         parent::__construct(array());
-        if (!is_array($entree)) {
+        if (!is_array($expression)) {
         
-        } elseif (count($entree) == 3) {
-            if ($entree[0]->checkClass('arglist')) {
-                $this->condition = $entree[0]->getList();
+        } elseif (count($expression) == 2) {
+            if ($expression[0]->checkClass('arglist')) {
+                $this->condition = $expression[0]->getList();
                 $this->condition = $this->condition[0];
             } else {
-                $this->condition = $entree[0];
+                $this->condition = $expression[0];
             }
-            $this->vraie     = $entree[1];
-            $this->faux      = $entree[2];
+            $this->vraie     = null;
+            $this->faux      = $expression[1];
+        } elseif (count($expression) == 3) {
+            if ($expression[0]->checkClass('arglist')) {
+                $this->condition = $expression[0]->getList();
+                $this->condition = $this->condition[0];
+            } else {
+                $this->condition = $expression[0];
+            }
+            $this->vraie     = $expression[1];
+            $this->faux      = $expression[2];
         } else {
-            $this->stop_on_error("Wrong number of arguments  : '".count($entree)."' in ".__METHOD__);
+            $this->stop_on_error("Wrong number of arguments  : '".count($expression)."' in ".__METHOD__);
         }
     }
 
@@ -41,7 +54,9 @@ class cdtternaire extends instruction {
 
     function neutralise() {
         $this->condition->detach();
-        $this->vraie->detach();
+        if (!is_null($this->vraie)) {
+            $this->vraie->detach();
+        }
         $this->faux->detach();
     }
 }

@@ -5,15 +5,15 @@ class logique extends instruction {
     protected $operateur = null;
     protected $gauche = null;
     
-    function __construct($entree) {
+    function __construct($expression) {
         parent::__construct(array());
         
-        if (is_array($entree)) {
-            $this->droite = $entree[0];
-            $this->operateur = $this->make_token_traite($entree[1]);
-            $this->gauche = $entree[2];
+        if (is_array($expression)) {
+            $this->droite = $expression[0];
+            $this->operateur = $this->make_token_traite($expression[1]);
+            $this->gauche = $expression[2];
         } else {
-            $this->stop_on_error("Must receive an array as argument : ".count($entree)." received\n");
+            $this->stop_on_error("Must receive an array as argument : ".count($expression)." received\n");
         }
     }
 

@@ -535,13 +535,13 @@ class Token {
     function checkForAssignation() {
         if ($this->checkNotClass('Token')) { return false; }
         $liste = array('=','.=','*=','+=','-=','/=','%=','>>=','&=','^=', '|=','<<=');
-        return $this->checkCode($liste);
+        return $this->checkOperateur($liste);
     }
 
     function checkForLogical() {
         if ($this->checkNotClass('Token')) { return false; }
-        $liste = array('&&','and','or','xor','||');
-        return $this->checkCode($liste);
+        $liste = array(T_LOGICAL_OR, T_LOGICAL_AND, T_LOGICAL_XOR,);
+        return $this->checkToken($liste);
     }
 
     function checkForVariable() {
