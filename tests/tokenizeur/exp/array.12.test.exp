@@ -1,0 +1,14 @@
+tests/tokenizeur/scripts/array.12.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable $x
+       "=" 
+      gauche : 
+          functioncall array
+          appel de fonction : array: 
+              arglist 
+              0 : 
+                  literals (

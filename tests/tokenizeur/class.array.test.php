@@ -3,7 +3,7 @@ include_once('Analyseur_Framework_TestCase.php');
 
 class Array_Test extends Analyseur_Framework_TestCase
 {
-    /* 10 methodes */
+    /* 12 methodes */
     public function testArray1()  { $this->generic_test('array.1'); }
     public function testArray2()  { $this->generic_test('array.2'); }
     public function testArray3()  { $this->generic_test('array.3'); }
@@ -14,6 +14,8 @@ class Array_Test extends Analyseur_Framework_TestCase
     public function testArray8()  { $this->generic_test('array.8'); }
     public function testArray9()  { $this->generic_test('array.9'); }
     public function testArray10()  { $this->generic_test('array.10'); }
+    public function testArray11()  { $this->generic_test('array.11'); }
+    public function testArray12()  { $this->generic_test('array.12'); }
 
 }
 

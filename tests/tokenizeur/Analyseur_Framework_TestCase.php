@@ -19,7 +19,7 @@ class Analyseur_Framework_TestCase  extends PHPUnit_Framework_TestCase {
 
         $retour = preg_replace("/Fichier de directives : .*?\n/is",'', $retour);
         $retour = preg_replace("/Directives files : .*?\n/is",'', $retour);
-        $retour = str_replace("No more tasks to go on\n",'', $retour);
+        $retour = str_replace("No more tasks to work on. Finishing.\n",'', $retour);
         
         $this->assertEquals($retour, $exp);        
     }

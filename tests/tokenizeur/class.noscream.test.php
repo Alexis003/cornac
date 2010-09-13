@@ -3,7 +3,7 @@ include_once('Analyseur_Framework_TestCase.php');
 
 class Noscream_Test extends Analyseur_Framework_TestCase
 {
-    /* 16 methodes */
+    /* 17 methodes */
     public function testNoscream1()  { $this->generic_test('noscream.1'); }
     public function testNoscream2()  { $this->generic_test('noscream.2'); }
     public function testNoscream3()  { $this->generic_test('noscream.3'); }
@@ -20,6 +20,7 @@ class Noscream_Test extends Analyseur_Framework_TestCase
     public function testNoscream14()  { $this->generic_test('noscream.14'); }
     public function testNoscream15()  { $this->generic_test('noscream.15'); }
     public function testNoscream16()  { $this->generic_test('noscream.16'); }
+    public function testNoscream17()  { $this->generic_test('noscream.17'); }
 
 }
 
