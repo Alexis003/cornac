@@ -20,6 +20,12 @@ $options = array('help' => array('help' => 'display this help',
                                  'get_arg_value' => null,
                                  'option' => 'f',
                                  'compulsory' => false),
+                 'log' => array('help' => 'log activity',
+                                          'option' => 'l',
+                                          'compulsory' => false),
+                 'tokens' => array('help' => 'only show tokens',
+                                          'option' => 't',
+                                          'compulsory' => false),
                  'directory' => array('help' => 'directory to work in',
                                       'get_arg_value' => null,
                                       'option' => 'd',
@@ -33,6 +39,17 @@ if (isset($INI['directory'])) {
 } elseif (isset($INI['file'])) {
     shell_exec($shell.' -f '.$INI['file']);
 }
-print shell_exec('./tokclient.php -I '.$INI['ini'].'');
+
+$ini = ' ';
+if ($INI['log']) {
+    $ini .= " -l ";
+}
+
+if ($INI['tokens']) {
+    $ini .= " -t ";
+}
+
+
+print shell_exec('./tokclient.php -I '.$INI['ini'].$ini);
 
 ?>
