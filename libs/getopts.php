@@ -83,9 +83,9 @@ if (isset($options)) {
         } elseif (file_exists(dirname(dirname(__FILE__)).'/ini/'.$INI['ini'].".ini")) {
             $ini = parse_ini_file(dirname(dirname(__FILE__)).'/ini/'.$INI['ini'].".ini", true);
             $ini['cornac']['ini'] = $INI['ini']; // @note good name
-        } elseif (file_exists($INI['ini'])) {
+        } elseif (file_exists($INI['ini'])) { // @note don't support this : at least, enfoce .ini extension
             $ini = parse_ini_file($INI['ini'], true);
-            $ini['cornac']['ini'] = substr(basname($INI['ini']), 0, -4); // @note file name minus .ini (loosing dir name?)
+            $ini['cornac']['ini'] = substr(basename($INI['ini']), 0, -4); // @note file name minus .ini (loosing dir name?)
         } else {
             $ini = parse_ini_file(dirname(dirname(__FILE__)).'/ini/'.'cornac.ini', true);
             $ini['cornac']['ini'] = 'cornac'; // @note default value. Probably wrong.
