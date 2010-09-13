@@ -540,7 +540,7 @@ class Token {
 
     function checkForLogical() {
         if ($this->checkNotClass('Token')) { return false; }
-        $liste = array(T_LOGICAL_OR, T_LOGICAL_AND, T_LOGICAL_XOR,);
+        $liste = array(T_LOGICAL_OR, T_LOGICAL_AND, T_LOGICAL_XOR, T_BOOLEAN_AND, T_BOOLEAN_OR);
         return $this->checkToken($liste);
     }
 
