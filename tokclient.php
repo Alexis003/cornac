@@ -32,8 +32,8 @@ $options = array('help' => array('help' => 'display this help',
                                     'option' => 'v',
                                     'compulsory' => false),
                  'log' => array('help' => 'log activity',
-                                    'option' => 'l',
-                                    'compulsory' => false),
+                                          'option' => 'l',
+                                          'compulsory' => false),
                  'slave' => array('help' => 'work as slave. -1 for infinite wait, 0 to process all in database, x to process only x files',
                                   'get_arg_value' => '0',
                                   'option' => 's',
@@ -79,7 +79,7 @@ while(1 ) {
 $times = array('debut' => microtime(true));
 
 // @todo attention, big TOCTOU!
-print $query = 'SELECT * FROM <tasks> WHERE task="tokenize" AND completed = 0 LIMIT 1';
+$query = 'SELECT * FROM <tasks> WHERE task="tokenize" AND completed = 0 LIMIT 1';
 $res = $DATABASE->query($query);
 $row = $res->fetch(PDO::FETCH_ASSOC);
 
