@@ -68,6 +68,33 @@ function liste_directories_recursive( $path = '.', $level = 0 ){
     return $retour;
 }
 
+// merge a pdo fetchall into a simple array
+function multi2array($array, $index = null) {
+    $r = array();
+    
+    if(!is_array($array)) { return $r; }
+    if(count($array) == 0) { return $r; }
+    
+    if (is_null($index)) {
+        list($k, $v) = each($array);
+        
+        if (!is_array($v)) { var_dump($v); die; }
+        list($index, $V) = each($v);
+        
+        $r[$k] = $V;
+    }
+    
+    foreach($array as $k => $v) {
+        if (isset($v[$index])) {
+            $r[$k] = $v[$index];
+        }
+    }
+
+    return $r;
+}
+
+
+// 
 function array2multi($array) {
     $f = array_shift($array);
     if (count($array) > 0) {
@@ -99,6 +126,23 @@ function pdo_fetch_one_col($res, $col = null) {
     }
     
     return $r;
+}
+
+// recursive glob 
+function rglob($path) {
+    $files = glob($path);
+    
+    $files2 = array();
+    foreach($files as $id => $file) {
+        if (is_dir($file)) {
+            $files2[] = $file."/";
+            $files2 = array_merge($files2, rglob($file."/*"));
+        } else {
+            $files2[] = $file;
+        }
+    }
+    
+    return $files2;
 }
 
 ?>
