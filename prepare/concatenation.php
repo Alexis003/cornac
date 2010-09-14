@@ -34,7 +34,7 @@ class concatenation extends instruction {
     }
 
     function neutralise() {
-        foreach($this->list as $id => &$a) {
+        foreach($this->list as $id => $a) {
             $a->detach();
         }
     }

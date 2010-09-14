@@ -41,7 +41,7 @@ class block extends instruction {
     }
 
     function neutralise() {
-        foreach($this->list as &$e) {
+        foreach($this->list as $e) {
             $e->detach();
         }
     }
