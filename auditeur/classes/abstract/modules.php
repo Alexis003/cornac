@@ -212,7 +212,7 @@ $subgraph
         $query = str_replace(array_keys($this->tables), array_values($this->tables), $query);
         
         if (preg_match_all('/<\w+>/', $query, $r)) {
-            print "Il reste des tables à analyser : ".join(', ', $r[0]);
+            print "There are some more tables to process : ".join(', ', $r[0]);
         }
         
         return $query;

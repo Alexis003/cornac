@@ -1,6 +1,4 @@
 <?php
-//select * from tokens where fichier = 'References/optima4/include/StockAdressage/StockAdressageProcess.inc' and type='ifthen'
-//select * from tokens where fichier = 'References/optima4/include/Refs/Reference.inc' and droite > 6409 and gauche < 6422 order by droite;
 
 class rendu {
     function __construct($mid) {
@@ -43,8 +41,6 @@ SQL;
         if (is_string($this->lignes[$droite])) { return ; } // deja fait 
 
           $methode = "affiche_".$this->lignes[$droite]['type'];
-//          print $methode." [$droite]\n";
-//          if (!isset($this->lignes[3090])) { print "Plus de 3090]\n"; } else { print "3090 : ok]\n";}
           if (method_exists($this, $methode)){
               $this->lignes[$droite] = $this->$methode($this->lignes[$droite]["droite"]);
           } else {
@@ -52,8 +48,6 @@ SQL;
               print_r( $this->lignes[$droite]);
               die();
           }
-//          print $methode." ($droite) = \"{$this->lignes[$droite]}\"\n";
-//          if (!isset($this->lignes[3090])) { print "Plus de 3090\n"; } else { print "3090 : ok\n";}
     }
 
     function affiche_affectation($droite) {
@@ -111,7 +105,7 @@ SQL;
     function affiche__break($droite) {
         if ($this->lignes[$droite]['droite'] + 1 == $this->lignes[$droite]['gauche']) {
             return "break 1;"; 
-            // implicite continue, le return ne contenait pas de valeur
+            // @doc implict level : break uses the default value
         } else {
             return "break ".$this->lignes[$droite + 1]['code'].";";
         }
@@ -169,7 +163,7 @@ SQL;
     function affiche__continue($droite) {
         if ($this->lignes[$droite]['droite'] + 1 == $this->lignes[$droite]['gauche']) {
             return "continue 1;"; 
-            // implicite continue, le return ne contenait pas de valeur
+            // @doc implicit continue : default value
         } else {
             return "continue ".$this->lignes[$droite + 1]['code'].";";
         }
@@ -203,13 +197,13 @@ SQL;
                 }
             }
         }
-        // un nom et une liste d'arguments
+        // @doc a name, and an argument list
         $r = $retour[0].$retour[1];
         return $r;
     }
 
     function affiche_ifthen($droite) {
-    // @attention : ne traite que les ifthen simples
+    // @todo this only process simple ifthen. 
         $suivant = $this->lignes[$droite + 1]['gauche'] + 1 ;
         $this->traite($droite + 1); 
         $this->traite($suivant); 
@@ -228,7 +222,7 @@ SQL;
                 }
             }
         }
-        // un nom et une liste d'arguments
+        // doc a name, and an argument list
         $r = $this->lignes[$droite]['code'].'('.$retour[0].')';
         return $r;    
     }
@@ -256,8 +250,8 @@ SQL;
 
     function affiche_method($droite) {
         $suivant = $this->lignes[$droite + 1]['gauche'] + 1 ;
-        $this->traite($droite + 1); // functioncall
-        $this->traite($suivant); // functioncall
+        $this->traite($droite + 1); 
+        $this->traite($suivant); 
         return "".$this->lignes[$droite + 1]['code']."->".$this->lignes[$suivant];
     }
 
@@ -266,7 +260,7 @@ SQL;
     }
 
     function affiche__new($droite) {
-        $this->traite($droite + 1); // functioncall
+        $this->traite($droite + 1); 
         return " new ".$this->lignes[$droite + 1]['code']."";
     }
 
@@ -306,16 +300,14 @@ SQL;
     }
     
     function affiche_parentheses($droite) {
-        $this->traite($droite + 1); // functioncall
+        $this->traite($droite + 1); 
         return "(".$this->lignes[$droite + 1]['code'].")";
     }
 
     function affiche_property($droite) {
-        $this->traite($droite + 1); // objet
-        $this->traite($droite + 3); // propriété
+        $this->traite($droite + 1); 
+        $this->traite($droite + 3); 
         $retour = "".$this->lignes[$droite + 1]."->".$this->lignes[$droite + 3];
-// @question : je ne comprend pas pourquoi ci-dessous ne marche pas
-//        $retour = "".$this->lignes[$droite + 1]['code']."->".$this->lignes[$droite + 3];
         unset($this->lignes[$droite + 1]);
         unset($this->lignes[$droite + 3]);
         return $retour; 
@@ -337,7 +329,7 @@ SQL;
     function affiche__return($droite) {
         if ($this->lignes[$droite]['droite'] + 1 == $this->lignes[$droite]['gauche']) {
             return "return NULL;"; 
-            // implicite NULL, le return ne contenait pas de valeur
+            // @doc implicit NULL : return was alone.
         } else {
             return "return ".$this->lignes[$droite + 1]['code'].";";
         }
