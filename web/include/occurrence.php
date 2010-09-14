@@ -1,12 +1,12 @@
 <?php
     $requete = "SELECT id, element, COUNT(*) AS nb,
                        COUNT(*) = SUM(checked) AS checked
-    FROM {$tables['<rapport>']} TR
-    WHERE module='{$_GET['module']}' 
+    FROM <rapport> TR
+    WHERE module='{$_CLEAN['module']}' 
         GROUP BY element 
         ORDER BY element";
-    $res = $mysql->query($requete);
+    $res = $DATABASE->query($requete);
     $lines = $res->fetchAll(PDO::FETCH_ASSOC);
     
-    print get_html_check($lines, $_GET['module']);
+    print get_html_check($lines, $_CLEAN['module']);
 ?>

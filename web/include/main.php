@@ -2,11 +2,11 @@
     $query = "SELECT ML.module AS element, 
                      COUNT(RL.id) AS nb, 
                      COUNT(RL.id) - SUM(checked) AS todo 
-                 FROM {$tables['<rapport>']}_module ML
-                 LEFT JOIN {$tables['<rapport>']} RL
+                 FROM <rapport_module> ML
+                 LEFT JOIN <rapport> RL
                     ON ML.module = RL.module
                  GROUP BY ML.module";
-    $res = $mysql->query($query);
+    $res = $DATABASE->query($query);
 
     $rows = $res->fetchAll(PDO::FETCH_ASSOC);
     

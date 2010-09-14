@@ -15,8 +15,8 @@ XML;
         }
         $xml .= "</xml>";
 
-        global $prefixe;
-        $xml = print_entete($prefixe).$xml.print_pieddepage($prefixe);
+        global $prefix;
+        $xml = print_entete($prefix).$xml.print_pieddepage($prefix);
         
         return $xml;
 }
@@ -53,14 +53,14 @@ XML;
         }
         $xml .= "</xml>";
 
-        global $prefixe;
-        $xml = print_entete($prefixe).$xml.print_pieddepage($prefixe);
+        global $prefix;
+        $xml = print_entete($prefix).$xml.print_pieddepage($prefix);
         
         return $xml;
 }        
 
     
-function print_entete($prefixe='Sans Nom') {
+function print_entete($prefix='No Name') {
     global $entete;
     
     return <<<XML
@@ -70,7 +70,7 @@ XML;
 
 }
 
-function print_pieddepage($prefixe='Sans Nom') {
+function print_pieddepage($prefix='No Name') {
     return <<<XML
 XML;
 }

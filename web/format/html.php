@@ -47,8 +47,8 @@ function get_html_check($lines, $module) {
         $row = $table->addRow(array('Total', $total, ''));
         $row->setCellsClass('h');
 
-        global $prefixe;
-        return print_entete($prefixe).$table->asHTML().print_pieddepage($prefixe);
+        global $prefix;
+        return print_entete($prefix).$table->asHTML().print_pieddepage($prefix);
 }   
 
 function get_html($lines) {
@@ -90,8 +90,8 @@ function get_html($lines) {
         $row = $table->addRow(array('Total', $total));
         $row->setCellsClass('h');
 
-        global $prefixe;
-        return print_entete($prefixe).$table->asHTML().print_pieddepage($prefixe);
+        global $prefix;
+        return print_entete($prefix).$table->asHTML().print_pieddepage($prefix);
 }
 
 function get_html_manual($lines) {
@@ -121,8 +121,8 @@ function get_html_manual($lines) {
         $html .= '<tr><td class="h">Distinct</td><td class="h">'.$distinct.'</td><td class="h"></td></tr>';
         $html .= "</table><div id=\"myDiv\" />";
 
-        global $prefixe;
-        $html = print_entete($prefixe).$html.print_pieddepage($prefixe);
+        global $prefix;
+        $html = print_entete($prefix).$html.print_pieddepage($prefix);
         
         return $html;
 }
@@ -170,12 +170,12 @@ function get_html_level2($lines,$module='inclusions_path') {
     $row = $table->addRow(array('Total', $total,''))
                  ->setCellsClass('h');
 
-    global $prefixe;
-    return print_entete($prefixe).$table->asHTML().print_pieddepage($prefixe);
+    global $prefix;
+    return print_entete($prefix).$table->asHTML().print_pieddepage($prefix);
 }        
 
     
-function print_entete($prefixe='Sans Nom') {
+function print_entete($prefix = 'No Name') {
     global $entete;
     
     return <<<HTML
@@ -183,7 +183,7 @@ function print_entete($prefixe='Sans Nom') {
                       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
- <title>Analyseur pour l'application $prefixe</title>
+ <title>Analyseur pour l'application $prefix</title>
  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
  <script type="text/javascript" src="site.js"></script>
  <style type="text/css" media="all">
@@ -197,7 +197,7 @@ HTML;
 
 }
 
-function print_pieddepage($prefixe='Sans Nom') {
+function print_pieddepage($prefix = 'No Name') {
     return <<<HTML
     <p>
     <a href="#" onClick="javascript:document.cookie = 'langue=fr';window.location.reload();">fr</a> - 

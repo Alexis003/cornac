@@ -18,11 +18,11 @@ function get_html_level2($lines) {
     return $r;
 }        
     
-function print_entete($prefixe='Sans Nom') {
+function print_entete($prefix='No Name') {
 
 }
 
-function print_pieddepage($prefixe='Sans Nom') {
+function print_pieddepage($prefix='No Name') {
 
 }
 ?>

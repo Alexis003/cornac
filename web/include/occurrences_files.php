@@ -1,17 +1,17 @@
 <?php
     $requete = "SELECT element AS fichier, 
                        fichier AS element, 
-                       1 AS nb,
+                       COUNT(*) AS nb,
                        id
-                   FROM {$tables['<rapport>']} 
-                   WHERE module='{$_GET['module']}' 
+                   FROM <rapport> 
+                   WHERE module='{$_CLEAN['module']}'
                    GROUP BY element, fichier";
-    $res = $mysql->query($requete);
+    $res = $DATABASE->query($requete);
     
     $rows = array();
     while($row = $res->fetch(PDO::FETCH_ASSOC)) {
         @$rows[$row['fichier']][] = $row; 
     }
         
-    print get_html_level2($rows);
+    print get_html_level2($rows, $_CLEAN['module']);
 ?>

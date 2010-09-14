@@ -1,20 +1,15 @@
 <?php
 
 // @todo : use the configuration file! 
-$mysql = new pdo('mysql:dbname=analyseur;host=127.0.0.1','root','');
+include('../libs/database.php');
+$ini = array('mysql' => array('active' => 1,
+                              'dsn' => 'mysql:dbname=analyseur;host=127.0.0.1', 
+                              'username' => 'root',
+                              'password' => ''),
+             'cornac' => array('prefix' => 'cornac' ) );
+$DATABASE = new database($ini);
 
-// @todo : use the configuration file!
-$prefixe = 'affility';
-    
-// todo Export the table name creation to a new layer (common with the auditeur)
-$tables = array('<rapport>' => $prefixe.'_rapport',
-                '<rapport_scope>' => $prefixe.'_rapport_scope',
-                '<tokens>' => $prefixe.'',
-                '<tokens_tags>' => $prefixe.'_tags',
-                '<rapport_module>' => $prefixe.'_rapport_module',
-                '<rapport_dot>' => $prefixe.'_rapport_dot',
-                );
-
+// incoming variables
 if (isset($_COOKIE['langue']) && in_array($_COOKIE['langue'], array('fr','en'))) {
     $translations = parse_ini_file('../dict/translations.'.$_COOKIE['langue'].'.ini', true);
 } else {
@@ -22,15 +17,33 @@ if (isset($_COOKIE['langue']) && in_array($_COOKIE['langue'], array('fr','en')))
     setcookie('langue','fr');
 }
 
+// @todo : use the configuration file!
+$prefix = $ini['cornac']['prefix'];
+
 if (!isset($_GET['module'])) {
     $format = 'html';
     include("format/$format.php");
     include('include/main.php');
     die();
+} else {
+    $_CLEAN['module'] = preg_replace('/[^a-z0-9\-]/', '', $_GET['module']);
 }
 
-$requete = "SELECT * FROM {$tables['<rapport_module>']} WHERE module=".$mysql->quote($_GET['module'])." ";
-$res = $mysql->query($requete);
+if (isset($translations[$_CLEAN['module']]['title'])) {   
+    $title = $translations[$_CLEAN['module']]['title'];
+    $description = $translations[$_CLEAN['module']]['description'];
+} else {
+    $title = $_CLEAN['module'].' (default)';
+    $description = $_CLEAN['module'];
+}
+
+$query_module = $DATABASE->quote($_CLEAN['module']);
+$query = <<<SQL
+SELECT * 
+    FROM <rapport_module> 
+    WHERE module=$query_module
+SQL;
+$res = $DATABASE->query($query);
 
 $ligne = $res->fetch();
 $format = $ligne['format'];
@@ -62,64 +75,60 @@ $entete = '';
 foreach($cas[$format] as $titre => $c) {
     if (@$_GET['type'] == $titre) {
         $entete .= "<li><b>$c</b><br /> 
-(<a href=\"index.php?module={$_GET['module']}&type=$titre&format=json\">json</a> - 
- <a href=\"index.php?module={$_GET['module']}&type=$titre&format=xml\">xml</a> - 
- <a href=\"index.php?module={$_GET['module']}&type=$titre&format=text\">text</a>)</li>";
+(<a href=\"index.php?module={$_CLEAN['module']}&type=$titre&format=json\">json</a> - 
+ <a href=\"index.php?module={$_CLEAN['module']}&type=$titre&format=xml\">xml</a> - 
+ <a href=\"index.php?module={$_CLEAN['module']}&type=$titre&format=text\">text</a> - 
+ <a href=\"index.php?module={$_CLEAN['module']}&type=$titre&format=png\">png</a> - 
+ )</li>";
     } else {
-        $entete .= "<li><a href=\"index.php?module={$_GET['module']}&type=$titre\">$c</a></li>";
+        $entete .= "<li><a href=\"index.php?module={$_CLEAN['module']}&type=$titre\">$c</a></li>";
     }
 }
+
 $entete = "<table><tr><td><ul>$entete</ul></td>\n";
-if (isset($translations[$_GET['module']]['title'])) {   
-    $title = $translations[$_GET['module']]['title'];
-    $description = $translations[$_GET['module']]['description'];
-} else {
-    $title = $_GET['module'].' (default)';
-    $description = $_GET['module'];
-}
 $entete .= "<td><strong>{$title}</strong><br />{$description}</td></tr></table>\n";
 
 if ($format == 'dot') {
     switch(@$_GET['type']) {
         case 'dot' : 
-            $query = "SELECT a, b, cluster FROM {$tables['<rapport_dot>']} WHERE module='{$_GET['module']}'";
+            $query = "SELECT a, b, cluster FROM {$tables['<rapport_dot>']} WHERE module='{$_CLEAN['module']}'";
             $res = $mysql->query($query);
             $lignes = $res->fetchAll();
             include('format/dot.php');
 
             header('Content-type: application/dot');
-            header('Content-Disposition: attachment; filename="'.$_GET['module'].'.dot"');
+            header('Content-Disposition: attachment; filename="'.$_CLEAN['module'].'.dot"');
             print $dot;
             break;
 
         case 'gexf' : 
-            $query = "SELECT a, b, cluster FROM {$tables['<rapport_dot>']} WHERE module='{$_GET['module']}'";
+            $query = "SELECT a, b, cluster FROM {$tables['<rapport_dot>']} WHERE module='{$_CLEAN['module']}'";
             $res = $mysql->query($query);
             $lignes = $res->fetchAll();
             include('format/gexf.php');
 
             header('Content-type: application/gexf');
-            header('Content-Disposition: attachment; filename="'.$_GET['module'].'.gexf"');
+            header('Content-Disposition: attachment; filename="'.$_CLEAN['module'].'.gexf"');
             print $gexf;
             break;
 
         case 'json' : 
-            $query = "SELECT a, b, cluster FROM {$tables['<rapport_dot>']} WHERE module='{$_GET['module']}'";
+            $query = "SELECT a, b, cluster FROM {$tables['<rapport_dot>']} WHERE module='{$_CLEAN['module']}'";
             $res = $mysql->query($query);
             $lignes = $res->fetchAll();
             
             header('Content-type: application/text');
-            header('Content-Disposition: attachment; filename="'.$_GET['module'].'.json"');
+            header('Content-Disposition: attachment; filename="'.$_CLEAN['module'].'.json"');
             print json_encode($lignes);
             break;
 
         case 'text' : 
-            $query = "SELECT a, b, cluster FROM {$tables['<rapport_dot>']} WHERE module='{$_GET['module']}'";
+            $query = "SELECT a, b, cluster FROM {$tables['<rapport_dot>']} WHERE module='{$_CLEAN['module']}'";
             $res = $mysql->query($query);
             $lignes = $res->fetchAll();
             
             header('Content-type: application/text');
-            header('Content-Disposition: attachment; filename="'.$_GET['module'].'.txt"');
+            header('Content-Disposition: attachment; filename="'.$_CLEAN['module'].'.txt"');
             print json_encode($lignes);
             break;
 
@@ -185,13 +194,13 @@ switch(@$_GET['type']) {
 
 function get_format($default = 'html') {
     if (isset($_GET['format'])) {
-        if (in_array($_GET['format'], array('json','text','html','xml'))) {
+        if (in_array($_GET['format'], array('json','text','html','xml','png'))) {
             return $_GET['format'];
         } else {
             return $default;
         }
     } elseif (isset($_POST['format'])) {
-        if (in_array($_POST['format'], array('json','text','html','xml'))) {
+        if (in_array($_POST['format'], array('json','text','html','xml','png'))) {
             return $_POST['format'];
         } else {
             return $default;

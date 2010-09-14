@@ -4,21 +4,21 @@
                 IF (class = '', 'global',class) AS fichier, 
                 element AS element, 
                 COUNT(*) AS nb,
-                CR.id,
+                TR.id,
                 COUNT(*) = SUM(checked) AS checked
-            FROM {$tables['<rapport>']} CR
-            JOIN {$tables['<tokens>']} T1
-                ON CR.token_id = T1.id
-                WHERE module='{$_GET['module']}' 
-            GROUP BY class, element
-            ORDER BY if (class = '', 'global',class) 
+            FROM <rapport> TR
+            JOIN <tokens> T1
+                ON TR.token_id = T1.id
+                WHERE TR.module='{$_CLEAN['module']}' 
+            GROUP BY T1.class, TR.element
+            ORDER BY if (class = '', 'global', T1.class) 
 SQL;
-        $res = $mysql->query($requete);
+        $res = $DATABASE->query($requete);
 
         $rows = array();
         while($row = $res->fetch(PDO::FETCH_ASSOC)) {
             @$rows[$row['fichier']][] = $row;
         }
 
-        print get_html_level2($rows, $_GET['module']);
+        print get_html_level2($rows, $_CLEAN['module']);
 ?>
