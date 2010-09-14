@@ -146,6 +146,8 @@ $modules = array(
 'constantes_link',
 'function_link',
 'foreach_unused',
+'_this',
+'references',
 // new analyzers
 );
 

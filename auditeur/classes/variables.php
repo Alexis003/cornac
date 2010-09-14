@@ -13,7 +13,10 @@ class variables extends modules {
 INSERT INTO <rapport>
     SELECT NULL, T1.fichier, T1.code AS code, T1.id, '{$this->name}', 0
     FROM <tokens> T1 
-    WHERE T1.type = 'variable' AND T1.code != '$'
+    WHERE T1.type = 'variable' AND 
+          T1.code != '$'       AND 
+          ( T1.class = '' OR T1.scope != 'global') AND
+          T1.code != '\$this'
 SQL;
 	$this->exec_query($query);
 	

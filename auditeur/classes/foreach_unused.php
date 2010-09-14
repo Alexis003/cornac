@@ -50,6 +50,7 @@ SQL;
 // @todo spot unused array in index
 // @todo spot unused properties in index as reference
 // @todo spot unused array in index as reference
+// @todo spot unused references
 
 
 // @doc spot unused variables in value

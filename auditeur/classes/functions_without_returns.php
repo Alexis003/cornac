@@ -17,7 +17,8 @@ INSERT INTO <rapport>
    SELECT NULL, T1.fichier, CONCAT(T1.class,'::', T1.scope), T1.id, '{$this->name}', 0
    FROM <tokens> T1
    WHERE T1.class != '' AND
-         T1.scope!='global'
+         T1.scope!='global' AND 
+         T1.scope NOT IN ('__construct','__destruct')
    GROUP BY class, scope 
    HAVING SUM(if(type='_return', 1, 0)) = 0;
 SQL;
@@ -26,11 +27,12 @@ SQL;
 // @note for functions
         $query = <<<SQL
 INSERT INTO <rapport>
-   SELECT NULL, T1.fichier, CONCAT(T1.class,'::', T1.scope), T1.id, '{$this->name}', 0
+   SELECT NULL, T1.fichier, T1.scope, T1.id, '{$this->name}', 0
    FROM <tokens> T1
-   WHERE T1.class = '' 
+   WHERE T1.class = '' AND 
+         T1.scope != 'global'
    GROUP BY class, scope 
-   HAVING SUM(if(type='_return', 1, 0)) = 0;
+   HAVING SUM(if(type='_return' OR code IN ('die','exit'), 1, 0)) = 0;
 SQL;
         $this->exec_query($query);
         
