@@ -1,35 +1,36 @@
 tests/tokenizeur/scripts/sequence.37.test.php
-Plus d'upgrade au cycle 7 
-  Token <?php  ( Affichage par défaut)
-  sequence 
-  0 : 
-      functioncall a
-      appel de fonction : a: 
-          arglist 
-          0 : 
-              variable $b
-  1 : 
-      comparaison 
-      droite : 
-          functioncall c
-          appel de fonction : c: 
+  codephp <?php 
+  code : 
+      sequence 
+      0 : 
+          functioncall a
+          appel de fonction : a: 
               arglist 
               0 : 
-                  variable $d
-      operateur : 282 "!="
-      gauche : 
-          variable $e
-  Token AND ( Affichage par défaut)
-  functioncall f
-  appel de fonction : f: 
-      arglist 
-      0 : 
-          literals g
-  Token ; ( Affichage par défaut)
-  functioncall h
-  appel de fonction : h: 
-      arglist 
-      0 : 
-          literals i
-  Token ; ( Affichage par défaut)
-  Token ?> ( Affichage par défaut)
+                  variable $b
+      1 : 
+          logique 
+          droite : 
+              comparaison 
+              droite : 
+                  functioncall c
+                  appel de fonction : c: 
+                      arglist 
+                      0 : 
+                          variable $d
+              operateur : 282 "!="
+              gauche : 
+                  variable $e
+          operateur : 265 "AND"
+          gauche : 
+              functioncall f
+              appel de fonction : f: 
+                  arglist 
+                  0 : 
+                      literals g
+      2 : 
+          functioncall h
+          appel de fonction : h: 
+              arglist 
+              0 : 
+                  literals i

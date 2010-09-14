@@ -82,6 +82,8 @@ $tests = array(
 'class.popular_libraries.test.php',
 'class.defconstantes.test.php',
 'class.foreach_unused.test.php',
+'class._this.test.php',
+'class.references.test.php',
 // new tests
 );
 
