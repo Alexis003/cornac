@@ -27,7 +27,7 @@ class ooo_ods {
 
     function setCol($table, $col, $array) {
         if (count($array) == 0) { return true; }
-        foreach($array as $row => &$cols) {
+        foreach($array as $row => $cols) {
             $this->cells[$table][$row][$col] = $array[$row];
         }
         return true;
