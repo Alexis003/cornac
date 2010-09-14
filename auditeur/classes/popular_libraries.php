@@ -24,10 +24,10 @@ class popular_libraries extends modules {
         foreach($list as $ext => $characteristics) {
             $in = "'".join("', '", $characteristics['classes'])."'";
 
-            // search for usage as class extensions
+            // @doc search for usage as class extensions
             $query = <<<SQL
 INSERT INTO <rapport>
-SELECT NULL, T1.fichier, T2.code, T1.id, '{$this->name}', 0
+SELECT NULL, T1.fichier, '$ext', T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens_tags> TT 
     ON TT.token_id = T1.id AND
@@ -40,10 +40,10 @@ WHERE T1.type='_class';
 SQL;
             $this->exec_query($query);
 
-            // search for usage as instanciation
+            // @doc search for usage as instanciation
             $query = <<<SQL
 INSERT INTO <rapport>
-SELECT NULL, TR.fichier, TR.element, TR.id, '{$this->name}', 0
+SELECT NULL, TR.fichier, '$ext', TR.id, '{$this->name}', 0
 FROM <rapport> TR
 WHERE TR.element IN ($in); 
 SQL;
