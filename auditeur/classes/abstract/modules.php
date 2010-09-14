@@ -112,42 +112,42 @@ abstract class modules {
     }
 
 function array2li($array) {
-    $retour = '';
+    $return = '';
     if (count($array) == 0) { 
-        $retour .= "Aucune valeur trouvee";
+        $return .= "Aucune valeur trouvee";
     } else {
-        $retour .= "<ul>";
+        $return .= "<ul>";
         foreach($array as $name => $fonctions) {
             if (count($fonctions) == 0) { continue; }
             // @a_revoir
             $name = str_replace('/Users/macbook/Desktop/audit/','',$name);
             if (is_array($fonctions)) {
-                $retour .= "<li>$name<ul>";
+                $return .= "<li>$name<ul>";
                 asort($fonctions);
                 foreach($fonctions as $nom => $nombre) {
-                    $retour .= "<li>".$this->highlight_code($nom, true)." : $nombre</li>";
+                    $return .= "<li>".$this->highlight_code($nom, true)." : $nombre</li>";
                 }
-                $retour .= "</ul></li>";
+                $return .= "</ul></li>";
             } else {
-                $retour .= "<li>$name : $fonctions</li>";
+                $return .= "<li>$name : $fonctions</li>";
             }
         }
-           $retour .= "</ul>";
+           $return .= "</ul>";
     }
     
-    return $retour;
+    return $return;
 }
 
 function array_invert($array) {
-    $retour = array();    
+    $return = array();    
     
     foreach($array as $key => $value) {
         foreach($value as $k => $v) {
-            $retour[$k][] = $key;
+            $return[$k][] = $key;
         }
     }
     
-    return $retour;
+    return $return;
 }
 
 function highlight_code($code) {
@@ -161,7 +161,7 @@ function highlight_code($code) {
 }
 
 function array2dot($points) {
-    $retour = '';
+    $return = '';
     $subgraph = array();
 
     $occurrences = array();
@@ -176,7 +176,7 @@ function array2dot($points) {
         $subgraph[dirname($origine)][] = $origine;
         foreach($destinations as $dest => $foo) {
             if ($occurrences[$dest] > 1) { 
-                $retour .= "\"$origine\" -> \"$dest\";\n";
+                $return .= "\"$origine\" -> \"$dest\";\n";
             }
             $subgraph[dirname($dest)][] = $dest;
         }
@@ -194,13 +194,13 @@ function array2dot($points) {
     }
     $subgraph = $dot;
     
-    $retour = "digraph G {
+    $return = "digraph G {
 size=\"8,6\"; ratio=fill; node[fontsize=24];
-$retour
+$return
 $subgraph
 }";
 
-    return $retour;
+    return $return;
 }
 
     function print_query($query) {
