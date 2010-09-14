@@ -15,7 +15,7 @@ class _var extends instruction {
             } elseif ($expression[0]->checkToken(array(T_STATIC))) {
                 $this->_static = $this->make_token_traite($expression[0]);
             } else {
-                $this->stop_on_error("Unknown attribute class : ".count($expression)." in ".__METHOD__);
+                $this->stop_on_error("Unknown class attribute : ".count($expression)." in ".__METHOD__);
             }
 
             unset($expression[0]);
@@ -39,14 +39,14 @@ class _var extends instruction {
     }
     
     function __toString() {
-         $retour = __CLASS__." ".$this->getVisibility();
+         $return = __CLASS__." ".$this->getVisibility();
          
          $r = array();
          foreach($this->variable as $id => $variable) {
             $r[] = $variable;
          }
-         $retour .= join(', ', $r);
-         return $retour;
+         $return .= join(', ', $r);
+         return $return;
     }
 
     function getVariable() {

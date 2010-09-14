@@ -366,7 +366,7 @@ class template_tree extends template {
 
     function affiche__return($noeud, $niveau) {
         print str_repeat('  ', $niveau).get_class($noeud)." \n";
-        print str_repeat('  ', $niveau)."return : \"".$noeud->getRetour()."\"\n";    
+        print str_repeat('  ', $niveau)."return : \"".$noeud->getReturn()."\"\n";    
     }
 
     function affiche_sequence($noeud, $niveau) {

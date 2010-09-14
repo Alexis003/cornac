@@ -74,7 +74,7 @@ class template_cache extends template {
         $method = "affiche_$class";
         
         if (method_exists($this, $method)) {
-            $retour = $this->$method($noeud, $niveau + 1);
+            $return = $this->$method($noeud, $niveau + 1);
         } else {
             print "Affichage ".__CLASS__." de '".$method."'\n";die;
         }
@@ -82,7 +82,7 @@ class template_cache extends template {
             $this->affiche($noeud->getNext(), $niveau);
         }
 
-        return $retour;
+        return $return;
     }
     
 ////////////////////////////////////////////////////////////////////////
@@ -628,9 +628,9 @@ class template_cache extends template {
     }
 
     function affiche__return($noeud, $niveau) {
-        if (!is_null($retour = $noeud->getRetour())) {
-            $this->affiche($retour, $niveau + 1);
-            $noeud->cache = 'return '.$retour->cache;
+        if (!is_null($return = $noeud->getReturn())) {
+            $this->affiche($return, $niveau + 1);
+            $noeud->cache = 'return '.$return->cache;
         } else {
             $noeud->cache = 'return NULL';
         }

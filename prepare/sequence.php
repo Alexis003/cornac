@@ -25,15 +25,15 @@ class sequence extends instruction {
     }
 
     function __toString() {
-        $retour = __CLASS__;
+        $return = __CLASS__;
         if (count($this->elements) == 0) {
-            $retour .= "Sequence vide\n";
+            $return .= "Sequence vide\n";
         } else {
             foreach($this->elements as $e) {
-                $retour .= $e."\n";
+                $return .= $e."\n";
             }
         }
-        return $retour;
+        return $return;
     }
 
     function getCode() {

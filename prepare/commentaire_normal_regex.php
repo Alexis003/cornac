@@ -10,10 +10,10 @@ class commentaire_normal_regex extends analyseur_regex {
             $this->args = array();
             $this->remove = array();
             
-            $retour = $t->getPrev();
-            $retour->removeNext();
+            $return = $t->getPrev();
+            $return->removeNext();
             
-            return $retour; 
+            return $return; 
         } else {
             return $t;
         }

@@ -372,8 +372,8 @@ class template_stats extends template {
 
     function affiche__return($noeud, $niveau) {
         $this->addStat(__FUNCTION__);
-        if (!is_null($noeud->getRetour())) {
-            $this->affiche($noeud->getRetour(), $niveau + 1);
+        if (!is_null($noeud->getReturn())) {
+            $this->affiche($noeud->getReturn(), $niveau + 1);
         }
     }
 

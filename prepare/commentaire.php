@@ -8,10 +8,10 @@ class commentaire extends token {
 
     static public function factory($t) {
         if ($t->checkToken(array(T_COMMENT, T_DOC_COMMENT))) {
-            $retour = $t->getPrev();
-            $retour->removeNext();
+            $return = $t->getPrev();
+            $return->removeNext();
             
-            return $retour; 
+            return $return; 
         } else {
             return $t;
         }

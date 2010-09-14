@@ -99,15 +99,15 @@ class analyseur {
     function upgrade($t ) {
         return $this->factory($t);
         
-            $retour = $this->factory($t);
-            if (is_null($retour)) {
-                print "$s a retourne null pour $this\n";
+            $return = $this->factory($t);
+            if (is_null($return)) {
+                print "$s a returnne null pour $this\n";
                 die();
             }
-            if ($t != $retour) {
-                return $retour;
+            if ($t != $return) {
+                return $return;
             }
-        return $retour;
+        return $return;
     }
 
     public function factory(Token $t) {
@@ -123,9 +123,9 @@ class analyseur {
                     continue;
                 }
     
-                $retour = analyseur::applyRegex($t, $this->tokens[$nom], $r);
-                mon_log(get_class($t)." => ".get_class($retour));
-                return $retour; 
+                $return = analyseur::applyRegex($t, $this->tokens[$nom], $r);
+                mon_log(get_class($t)." => ".get_class($return));
+                return $return; 
             }
         } else {
             // @empty_ifthen
@@ -142,10 +142,10 @@ class analyseur {
                     continue;
                 }
     
-                $retour = analyseur::applyRegex($t, $this->tokens[$nom], $r);
-                if ($retour->getLine() == -1) { print $t->getLine()."\n"; print $retour."\n"; die(__METHOD__."\n"); }
-                mon_log(get_class($t)." => ".get_class($retour));
-                return $retour; 
+                $return = analyseur::applyRegex($t, $this->tokens[$nom], $r);
+                if ($return->getLine() == -1) { print $t->getLine()."\n"; print $return."\n"; die(__METHOD__."\n"); }
+                mon_log(get_class($t)." => ".get_class($return));
+                return $return; 
             }
         } else {
             // @empty_ifthen
@@ -157,9 +157,9 @@ class analyseur {
                 continue;
             }
 
-            $retour = analyseur::applyRegex($t, $this->tokens[$nom], $r);
-            mon_log(get_class($t)." => ".get_class($retour));
-            return $retour; 
+            $return = analyseur::applyRegex($t, $this->tokens[$nom], $r);
+            mon_log(get_class($t)." => ".get_class($return));
+            return $return; 
         }
         return $t;
 
@@ -179,11 +179,11 @@ class analyseur {
         }
         
 //        if (empty($args)) {
-//            $retour = new $class();
+//            $return = new $class();
 //        } else {
-            $retour = new $class($args);
+            $return = new $class($args);
 //        }
-        $retour->copyToken($t);
+        $return->copyToken($t);
 
         $remove = $r->getRemove();
         foreach($remove as $arg) {
@@ -196,13 +196,13 @@ class analyseur {
             }
         }
 
-        $retour->replace($t);
-        $retour->setToken(0);
-        $retour->neutralise();
+        $return->replace($t);
+        $return->setToken(0);
+        $return->neutralise();
         
         $r->reset();
         
-        return $retour;
+        return $return;
     }
 }
 

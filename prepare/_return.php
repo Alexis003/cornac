@@ -1,27 +1,27 @@
 <?php
 
 class _return extends instruction {
-    protected $retour = null;
+    protected $return = null;
 
     function __construct($expression = null) {
         parent::__construct(array());
 
         if (isset($expression[0])) {
-            $this->retour = $expression[0];
+            $this->return = $expression[0];
         } 
     }
     
     function __toString() {
-        return __CLASS__." return ".$this->retour;
+        return __CLASS__." return ".$this->return;
     }
 
-    function getRetour() {
-        return $this->retour;
+    function getReturn() {
+        return $this->return;
     }
 
     function neutralise() {
-        if (!is_null($this->retour)) {
-            $this->retour->detach();
+        if (!is_null($this->return)) {
+            $this->return->detach();
         }
     }
 

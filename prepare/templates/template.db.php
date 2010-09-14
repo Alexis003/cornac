@@ -40,7 +40,7 @@ class template_db extends template {
         $method = "affiche_$class";
         
         if (method_exists($this, $method)) {
-            $retour = $this->$method($noeud, $niveau);
+            $return = $this->$method($noeud, $niveau);
         } else {
             print "Affichage ".__CLASS__." de '".$method."'\n";die;
         }
@@ -48,7 +48,7 @@ class template_db extends template {
             $this->affiche($noeud->getNext(), $niveau);
         }
 
-        return $retour;
+        return $return;
     }
     
 ////////////////////////////////////////////////////////////////////////
@@ -94,13 +94,13 @@ class template_db extends template {
             die();
         }
         
-        $retour = $this->database->lastinsertid();
+        $return = $this->database->lastinsertid();
         
         if (is_array($this->tags) && count($this->tags) > 0) {
             foreach($this->tags as $label => $tokens) {
                 foreach($tokens as $token) {
                     $requete = "INSERT INTO {$this->table_tags} VALUES 
-                    ($retour ,
+                    ($return ,
                      '".$token."',
                      '".$label."')";
     
@@ -115,9 +115,9 @@ class template_db extends template {
         }
         
         $this->tags = array();
-        $noeud->database_id = $retour;
+        $noeud->database_id = $return;
         
-        return $retour;
+        return $return;
     }
 
 ////////////////////////////////////////////////////////////////////////
@@ -194,8 +194,8 @@ class template_db extends template {
             $this->affiche($e, $niveau + 1);
         }
         $noeud->myGauche = $this->getIntervalleId();
-        $retour = $this->saveNoeud($noeud, $niveau);
-        return $retour;
+        $return = $this->saveNoeud($noeud, $niveau);
+        return $return;
     }
 
     function affiche__break($noeud, $niveau) {
@@ -772,8 +772,8 @@ class template_db extends template {
         $noeud->myId = $this->getNextId();
         $noeud->myDroite = $this->getIntervalleId();
         
-        if (!is_null($retour = $noeud->getRetour())) {
-            $this->affiche($retour, $niveau + 1);
+        if (!is_null($return = $noeud->getReturn())) {
+            $this->affiche($return, $niveau + 1);
         }
 
         $noeud->myGauche = $this->getIntervalleId();
@@ -956,7 +956,7 @@ class template_db extends template {
     
     function affiche_Token($noeud, $niveau) {
         print_r(xdebug_get_function_stack());        
-        print "Attention, Token affiché : '$noeud'\n";
+        print "Warning : displayed raw Token : '$noeud'\n";
         die();
     }
 }

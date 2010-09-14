@@ -38,16 +38,16 @@ class _class extends instruction {
     }
     
     function __toString() {
-        $retour = __CLASS__." class ".$this->nom;
+        $return = __CLASS__." class ".$this->nom;
         if (!is_null($this->extends)) {
-            $retour .= " extends ".$this->extends;
+            $return .= " extends ".$this->extends;
         }
         if (count($this->implements) > 0) {
-            $retour .= " implements ".join(', ', $this->implements);
+            $return .= " implements ".join(', ', $this->implements);
         }
-        $retour .= " {".$this->block."} ";
+        $return .= " {".$this->block."} ";
 
-        return $retour;
+        return $return;
     }
 
     function getNom() {

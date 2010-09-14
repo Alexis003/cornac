@@ -7,11 +7,11 @@ class whitespace extends Token {
     }
 
     static public function factory($t) {
-        if ($t->getToken() == 371) {
-            $retour = $t->getPrev();
-            $retour->removeNext();
+        if ($t->getToken() == T_WHITESPACE) {
+            $return = $t->getPrev();
+            $return->removeNext();
 
-            return $retour; 
+            return $return; 
         } else {
             return $t;
         }

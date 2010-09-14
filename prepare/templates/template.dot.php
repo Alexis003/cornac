@@ -574,7 +574,7 @@ die("cas de l'argument null ou inexistant");
     }
 
     function affiche__return($noeud, $niveau) {
-        $this->dot_standard_one($noeud, $niveau, 'getRetour');
+        $this->dot_standard_one($noeud, $niveau, 'getReturn');
     }
 
     function affiche_sequence($noeud, $niveau) {

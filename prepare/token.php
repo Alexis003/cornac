@@ -184,16 +184,16 @@ class Token {
     }
 
     function getPrev($n = 0) {
-        $retour = $this->prev;
+        $return = $this->prev;
         
         if ($n > 0) {
-            if (is_null($retour)) {
+            if (is_null($return)) {
                 return NULL;
             }
-            $retour = $retour->getPrev($n - 1);
+            $return = $return->getPrev($n - 1);
         }
 
-        return $retour;  
+        return $return;  
     }
 
     function hasNext($n = 0) {
@@ -219,14 +219,14 @@ class Token {
     function getNext($n = 0) {
         if (!isset($id_getNext)) {$id_getNext = 1;} else { $id_getNext++; } 
         $n++;
-        $retour = $this;
+        $return = $this;
         while($n > 0) {
-            $retour = $retour->next;
-            if (is_null($retour)) { return NULL; }
+            $return = $return->next;
+            if (is_null($return)) { return NULL; }
             $n--;
         }
         
-        return $retour;
+        return $return;
     }
     
     function __toString() {
@@ -244,9 +244,9 @@ class Token {
                 continue;
             }
         
-            $retour = Token::applyRegex($t, $class, $r);
-            mon_log(get_class($t)." => ".get_class($retour));
-            return $retour; 
+            $return = Token::applyRegex($t, $class, $r);
+            mon_log(get_class($t)." => ".get_class($return));
+            return $return; 
         }
         return $t;
     }
@@ -254,12 +254,12 @@ class Token {
     function make_token_traite($entree) {
         $clone = clone $entree;
                 
-        $retour = new token_traite($clone);
-        $retour->replace($clone);
-        $retour->setToken($entree->getToken());
-        $retour->setLine($entree->getLine());
+        $return = new token_traite($clone);
+        $return->replace($clone);
+        $return->setToken($entree->getToken());
+        $return->setLine($entree->getLine());
         
-        return $retour;
+        return $return;
     }
     
 
@@ -277,11 +277,11 @@ class Token {
         }
         
         if (empty($args)) {
-            $retour = new $class();
+            $return = new $class();
         } else {
-            $retour = new $class($args);
+            $return = new $class($args);
         }
-        $retour->copyToken($t);
+        $return->copyToken($t);
 
         $remove = $r->getRemove();
         foreach($remove as $arg) {
@@ -294,13 +294,13 @@ class Token {
             }
         }
 
-        $retour->replace($t);
-        $retour->setToken(0);
-        $retour->neutralise();
+        $return->replace($t);
+        $return->setToken(0);
+        $return->neutralise();
         
         unset($r);
         
-        return $retour;
+        return $return;
     }
 
     static public function factory_get_args() {
@@ -551,13 +551,13 @@ class Token {
     
     function toToken_traite($token) {
         if ($token->checkClass('Token')) {
-            $retour = new token_traite($token);
-            $retour->replace($token);
+            $return = new token_traite($token);
+            $return->replace($token);
         } else {
-            $retour = $token;
+            $return = $token;
         }
         
-        return $retour;
+        return $return;
     }
     
     function stop_on_error($message) {

@@ -7,8 +7,8 @@ class ___halt_compiler extends instruction {
     }
     
     function __toString() {
-         $retour = __CLASS__;
-         return $retour;
+         $return = __CLASS__;
+         return $return;
     }
 
     function neutralise() {

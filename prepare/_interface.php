@@ -18,13 +18,13 @@ class _interface extends instruction {
     }
 
     function __toString() {
-        $retour = __CLASS__." interface {$this->name} ";
+        $return = __CLASS__." interface {$this->name} ";
         if (count($this->extends) > 0) {
-            $retour .= " extends ".join(', ', $this->extends);
+            $return .= " extends ".join(', ', $this->extends);
         }
-        $retour .= "{ ".$this->block." } ";
+        $return .= "{ ".$this->block." } ";
         
-        return $retour;
+        return $return;
     }
 
     function getBlock() {
