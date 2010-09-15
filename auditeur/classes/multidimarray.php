@@ -37,7 +37,7 @@ WHERE T1.type IN ('tableau','opappend') AND
 SQL;
 
 for($i = 2; $i < 7; $i++) {
-    $h = $i -1;
+    $h = $i - 1;
     $join = <<<SQL
 JOIN <tokens> T$i
     ON T$i.type IN ('tableau','opappend') AND 
