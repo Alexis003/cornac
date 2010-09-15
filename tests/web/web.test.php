@@ -28,10 +28,40 @@ class web_Test extends PhpUnit_Framework_TestCase
     public function test_index()  { 
         global $url_site;
         
+        $url = $url_site."";
         $html = file_get_contents($url_site."");
+
+        $this->generic_test($url);
+    }
+
+    public function test_views_index()  { 
+        global $url_site;
         
-        $this->checkForReturn($html);
-        $this->checkForPHPerror($html);
+        $views = array(
+                       'occurrences-frequency',
+                       'files-occurrences',
+                       'classes-occurrences',
+                       'methods-occurrences',
+                       'occurrences-fichiers',
+                       'occurrences-classes',
+                       'occurrences-methods',
+                       'undefined',
+                       
+                       );
+        
+        foreach($views as $view) {
+            $url = $url_site.'?module=arglist_disc&type='.$view;
+            $html = file_get_contents($url);
+            
+            $this->checkForReturn($html, $url);
+            $this->checkForPHPerror($html, $url);
+            
+            $formats = array('json','xml','png','text'); 
+            foreach($formats as $format) {
+                $url_format = $url.'&format='.$format;
+                $this->generic_test($url);
+            }
+        }
     }
 
     public function test_modules_index()  { 
@@ -154,26 +184,46 @@ class web_Test extends PhpUnit_Framework_TestCase
 );
         
         foreach($modules as $module) {
-            $html = file_get_contents($url_site."?module=".$module);
-            
-            $this->checkForReturn($html);
-            $this->checkForPHPerror($html);
+            $url = $url_site."?module=".$module;
+            $this->generic_test($url);
         }
     }
+    
+    private function generic_test($url) {
+        $opts = array(
+          'http'=>array(
+            'max_redirects'=>"0"
+          )
+        );
+        $context = stream_context_create($opts);
 
-    private function checkForPHPerror($html) {
-        $this->assertNotContains(' error ',$html);
+        $html = @file_get_contents($url, false, $context);
+        
+        $this->checkForReturn($html, $url);
+        $this->checkForPHPerror($html, $url);
+        
+        return $html;
+    }
+
+    private function checkForPHPerror($html, $url) {
+        $tests = array('Notice: Undefined index:',
+                       ' error ',
+//                       'SELECT', // @doc case of sql debug
+                       'select');
+        foreach($tests as $test) {
+            $this->assertNotContains($test, $html, "Found $test in $url");
+        }
     }
     
-    private function checkForReturn($html) {
-        $this->assertFalse(strlen($html) == 0);
+    private function checkForReturn($html, $url) {
+        $this->assertFalse(strlen($html) == 0, "$url brought back an empty page, or a redirect.");
         
         $tests = array('<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">',
                        '</html>',
                        'utf-8',
                        );
         foreach($tests as $test) {
-            $this->assertContains($test,$html);
+            $this->assertContains($test,$html, "Found $test in $url");
         }
         
         return true;

@@ -3,7 +3,8 @@ Merge TODO from auditeur.
 
 Move __CLASS__ to getclass($this);
 
-Spin off .ods builder 
+check that it works on one file only. 
+
 Finish translations of analyzers's title and description
 Make the english version
 
@@ -71,7 +72,7 @@ For each tokem note scope, class, method, variable, array, fichier
 Add -log option to log information in a log file
 
 [auditeur]
-Spot php error during execution, report it by analyzer
+Spot php error during execution, report it by auditeur
 Add a log to check SQL length and optimize the bad queries 
 Make auditeur i18n easily (export in external file, auto-adding new titles)
 

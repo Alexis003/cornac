@@ -148,6 +148,8 @@ $modules = array(
 'foreach_unused',
 '_this',
 'references',
+'keyval',
+'keyval_outside',
 // new analyzers
 );
 
@@ -177,14 +179,15 @@ if (INI) {
 }
 */
 
-if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
-    $database = new pdo($INI['mysql']['dsn'],$INI['mysql']['username'], $INI['mysql']['password']);
+include('../libs/database.php');
+$DATABASE = new database();
 
+if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
 // @note element column size should match the code column in <tokens>
     if (CLEAN_DATABASE) {
-        $database->query('DROP TABLE '.$INI['cornac']['prefix'].'_rapport');
+        $DATABASE->query('DROP TABLE <rapport>');
     }
-    $database->query('CREATE TABLE IF NOT EXISTS '.$INI['cornac']['prefix'].'_rapport (
+    $DATABASE->query('CREATE TABLE IF NOT EXISTS <rapport> (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `fichier` varchar(500) NOT NULL,
   `element` varchar(10000) NOT NULL,
@@ -197,9 +200,9 @@ if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
 ) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1');
 
     if (CLEAN_DATABASE) {
-        $database->query('DROP TABLE '.$INI['cornac']['prefix'].'_rapport_dot');
+        $DATABASE->query('DROP TABLE <rapport_dot>');
     }
-        $database->query('CREATE TABLE IF NOT EXISTS '.$INI['cornac']['prefix'].'_rapport_dot (
+        $DATABASE->query('CREATE TABLE IF NOT EXISTS <rapport_dot> (
   `a` varchar(255) NOT NULL,
   `b` varchar(255) NOT NULL,
   `cluster` varchar(255) NOT NULL DEFAULT \'\',
@@ -207,9 +210,9 @@ if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1');
 
     if (CLEAN_DATABASE) {
-        $database->query('DROP TABLE '.$INI['cornac']['prefix'].'_rapport_module');
+        $DATABASE->query('DROP TABLE '.$INI['cornac']['prefix'].'_rapport_module');
     }
-        $database->query('CREATE TABLE IF NOT EXISTS '.$INI['cornac']['prefix'].'_rapport_module (
+        $DATABASE->query('CREATE TABLE IF NOT EXISTS <rapport_module> (
   `module` varchar(255) NOT NULL,
   `fait` datetime NOT NULL,
   `format` enum("html","dot","gefx") NOT NULL,
@@ -217,11 +220,9 @@ if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1');
 
 } elseif (isset($INI['sqlite'])  && $INI['sqlite']['active'] == true) {
-    $database = new pdo($INI['sqlite']['dsn']);
-    
 // @todo : support drop of table with option -K
 // @code $database->query('DELETE FROM '.$INI['cornac']['prefix'].'_rapport WHERE fichier = "'.$fichier.'"');
-    $database->query('CREATE TABLE IF NOT EXISTS '.$INI['cornac']['prefix'].'_rapport 
+    $DATABASE->query('CREATE TABLE IF NOT EXISTS <rapport> 
   (id       INTEGER PRIMARY KEY   AUTOINCREMENT  , 
   `fichier` varchar(500) NOT NULL,
   `element` varchar(10000) NOT NULL,
@@ -229,15 +230,15 @@ if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
   `module` varchar(50) NOT NULL
 )');
         
-//    $database->query('DELETE FROM '.$INI['cornac']['prefix'].'_rapport_dot WHERE cluster = "'.$fichier.'"');
-    $database->query('CREATE TABLE IF NOT EXISTS '.$INI['cornac']['prefix'].'_rapport_dot (
+//    $DATABASE->query('DELETE FROM '.$INI['cornac']['prefix'].'_rapport_dot WHERE cluster = "'.$fichier.'"');
+    $DATABASE->query('CREATE TABLE IF NOT EXISTS <rapport_dot> (
   `a` varchar(255) NOT NULL,
   `b` varchar(255) NOT NULL,
   `cluster` varchar(255) NOT NULL DEFAULT \'\',
   `module` varchar(255) NOT NULL
 )');
 
-    $database->query('CREATE TABLE IF NOT EXISTS '.$INI['cornac']['prefix'].'_rapport_module (
+    $DATABASE->query('CREATE TABLE IF NOT EXISTS <rapport_module> (
   `module` varchar(255) NOT NULL PRIMARY KEY,
   `fait` datetime NOT NULL,
   `format` varchar(255) NOT NULL
@@ -269,16 +270,16 @@ foreach($modules as $module) {
     analyse_module($module);
 }
 
-function analyse_module($module) {
-    require_once('classes/'.$module.'.php');
-    global $modules_faits, $database,$sommaire, $INI;
+function analyse_module($module_name) {
+    require_once('classes/'.$module_name.'.php');
+    global $modules_faits, $DATABASE, $sommaire, $INI;
     
-    if (isset($modules_faits[$module])) {  
+    if (isset($modules_faits[$module_name])) {  
         return ;
     }
 
-    $x = new $module($database);
-    $dependances = $x->dependsOn();
+    $module = new $module_name($DATABASE);
+    $dependances = $module->dependsOn();
     
     if (count($dependances) > 0) {
         $manque = array_diff($dependances, $modules_faits);
@@ -288,7 +289,7 @@ function analyse_module($module) {
                 if ($INI['dependences']) {
                     analyse_module($m);
                 } else {
-                    $res = $database->query('SELECT * FROM '.$INI['cornac']['prefix'].'_rapport_module WHERE module="'.$m.'"');
+                    $res = $DATABASE->query('SELECT * FROM <rapport_module> WHERE module="'.$m.'"');
                     $row = $res->fetch();
                     if (!isset($row['module'])) {
                         analyse_module($m);
@@ -304,11 +305,11 @@ function analyse_module($module) {
         }
     }
     
-    $x->analyse();
-    $x->sauve(); 
+    $module->analyse();
+    $module->sauve(); 
     
-    $sommaire->add($x);
-    $modules_faits[$module] = 1;
+    $sommaire->add($module);
+    $modules_faits[$module_name] = 1;
 }
 
 $sommaire->sauve();

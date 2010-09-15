@@ -12,9 +12,8 @@ class foreach_withkey_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasNext(6)) { return false; }
 
-        if ($t->checkToken(array(T_FOREACH)) &&
-            $t->getNext()->checkCode('(')    &&
-            $t->getNext(1)->checkClass(_foreach::$incoming_vars)  &&
+        if ($t->getNext()->checkNotOperateur('(')) { return false; }
+        if ($t->getNext(1)->checkClass(_foreach::$incoming_vars)  &&
             $t->getNext(2)->checkToken(T_AS)  &&
             $t->getNext(3)->checkClass(_foreach::$blind_keys)  &&
             $t->getNext(4)->checkToken(T_DOUBLE_ARROW)  &&

@@ -96,15 +96,15 @@ class analyseur {
         }
     }
 
-    function upgrade($t ) {
-        return $this->factory($t);
+    function upgrade($token ) {
+        return $this->factory($token);
         
             $return = $this->factory($t);
             if (is_null($return)) {
                 print "$s a returnne null pour $this\n";
                 die();
             }
-            if ($t != $return) {
+            if ($token != $return) {
                 return $return;
             }
         return $return;
@@ -165,42 +165,38 @@ class analyseur {
 
     }
     
-    function applyRegex($t, $class, $r) { 
-        $args = $r->getArgs();
+    function applyRegex($token, $class, $regex) { 
+        $args = $regex->getArgs();
         
         foreach($args as $id => $arg) {
             if ($arg > 0) {
-                $args[$id] = $t->getNext($arg - 1);
+                $args[$id] = $token->getNext($arg - 1);
             } elseif ($arg < 0) {
-                $args[$id] = $t->getPrev(abs($arg + 1));
+                $args[$id] = $token->getPrev(abs($arg + 1));
             } else {        
-                $args[$id] = $t;
+                $args[$id] = $token;
             }
         }
         
-//        if (empty($args)) {
-//            $return = new $class();
-//        } else {
-            $return = new $class($args);
-//        }
-        $return->copyToken($t);
+        $return = new $class($args);
+        $return->copyToken($token);
 
-        $remove = $r->getRemove();
+        $remove = $regex->getRemove();
         foreach($remove as $arg) {
             if ($arg > 0) {
-                $t->removeNext($arg - 1);
+                $token->removeNext($arg - 1);
             } elseif ($arg < 0) {
-                $t->removePrev($arg + 1);
+                $token->removePrev($arg + 1);
             } else {
                 // @empty_ifthen Just ignore this
             }
         }
 
-        $return->replace($t);
+        $return->replace($token);
         $return->setToken(0);
         $return->neutralise();
         
-        $r->reset();
+        $regex->reset();
         
         return $return;
     }
