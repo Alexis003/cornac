@@ -1,42 +1,49 @@
 <?php
 
-if (!isset($_GET['module'])) { die('non'); }
+if (!isset($_GET['module'])) { die(''); }
 
 $fp = fopen('./ajax.log', 'a');
+fwrite($fp, "date = ".date('r')."\n");
 fwrite($fp, "element = ".@$_GET['element']."\n");
 fwrite($fp, "file = ".@$_GET['file']."\n");
+fwrite($fp, "elementfile = ".@$_GET['elementfile']."\n");
 fclose($fp);
 
-$mysql = new pdo('mysql:dbname=analyseur;host=127.0.0.1','root','');
+include('include/config.php');
 
-if (isset($_GET['element'])) {
-    $query = "SELECT element FROM ach_rapport WHERE id = ".$mysql->quote($_GET['element'])."";
-    $res = $mysql->query($query);
+$_CLEAN['module'] = preg_replace('/[^a-zA-Z0-9_\-]/', '', $_GET['module']);
+$_CLEAN['element'] = $_GET['element'] ?: NULL; 
+$_CLEAN['elementfile'] = $_GET['elementfile'] ?: NULL; 
+$_CLEAN['file'] = $_GET['file'] ?: NULL; 
+
+if (!empty($_CLEAN['element'])) {
+    $query = "SELECT element FROM <rapport> WHERE id = ".$DATABASE->quote($_CLEAN['element'])."";
+    $res = $DATABASE->query($query);
     $id = $res->fetch(PDO::FETCH_NUM);
     $id = $id[0];
 
-    $query = "UPDATE ach_rapport SET checked = 1 - checked WHERE element = ".$mysql->quote($id)." AND module=".$mysql->quote($_GET['module'])."";
+    $query = "UPDATE <rapport> SET checked = 1 - checked WHERE element = ".$DATABASE->quote($id)." AND module=".$DATABASE->quote($_CLEAN['module'])."";
     
-    $res = $mysql->query($query);
-    print $res->rowCount() ? 'oui' : 'non';
-} elseif (isset($_GET['elementfile'])) {
-    $query = "SELECT element, fichier FROM ach_rapport WHERE id = ".$mysql->quote($_GET['elementfile'])."";
-    $res = $mysql->query($query);
+    $res = $DATABASE->query($query);
+    print $res->rowCount() ? 'yes' : '';
+} elseif (!empty($_CLEAN['elementfile'])) {
+    $query = "SELECT element, fichier FROM <rapport> WHERE id = ".$DATABASE->quote($_CLEAN['elementfile'])."";
+    $res = $DATABASE->query($query);
     $id = $res->fetch(PDO::FETCH_ASSOC);
     $file = $id['fichier'];
     $element = $id['element'];
 
-    $query = "UPDATE ach_rapport SET checked = 1 - checked WHERE element = ".$mysql->quote($element)." AND fichier = ".$mysql->quote($file)." AND module=".$mysql->quote($_GET['module'])."";
+    $query = "UPDATE <rapport> SET checked = 1 - checked WHERE element = ".$DATABASE->quote($element)." AND fichier = ".$DATABASE->quote($file)." AND module=".$DATABASE->quote($_CLEAN['module'])."";
     
-    $res = $mysql->query($query);
-    print $res->rowCount() ? 'oui' : 'non';
-} elseif (isset($_GET['file'])) {
-    $query = "UPDATE ach_rapport SET checked = 1 - checked WHERE fichier = ".$mysql->quote($_GET['file'])." AND module='".$mysql->quote($_GET['module'])."'";
+    $res = $DATABASE->query($query);
+    print $res->rowCount() ? 'yes' : '';
+} elseif (!empty($_CLEAN['file'])) {
+    $query = "UPDATE <rapport> SET checked = 1 - checked WHERE fichier = ".$DATABASE->quote($_CLEAN['file'])." AND module='".$DATABASE->quote($_CLEAN['module'])."'";
     
-    $res = $mysql->query($query);
-    print $res->rowCount() ? 'oui' : 'non';
+    $res = $DATABASE->query($query);
+    print $res->rowCount() ? 'yes' : '';
 } else {
-    print 'non';
+    print '';
 } 
 
 ?>

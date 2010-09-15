@@ -39,7 +39,7 @@ XML;
 <gexf xmlns="http://www.gexf.net/1.1draft" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.gexf.net/1.1draft http://gexf.net/1.1draft.xsd" version="1.1">
     <meta lastmodifieddate="2009-03-20">
         <creator>Auditeur</creator>
-        <description>{$_GET['module']}</description>
+        <description>{$_CLEAN['module']}</description>
     </meta>
     <graph defaultedgetype="directed">
         <attributes class="node">

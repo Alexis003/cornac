@@ -1,13 +1,7 @@
 <?php
 
 // @todo : use the configuration file! 
-include('../libs/database.php');
-$ini = array('mysql' => array('active' => 1,
-                              'dsn' => 'mysql:dbname=analyseur;host=127.0.0.1', 
-                              'username' => 'root',
-                              'password' => ''),
-             'cornac' => array('prefix' => 'cornac' ) );
-$DATABASE = new database($ini);
+include('include/config.php');
 
 // incoming variables
 if (isset($_COOKIE['langue']) && in_array($_COOKIE['langue'], array('fr','en'))) {
@@ -16,6 +10,29 @@ if (isset($_COOKIE['langue']) && in_array($_COOKIE['langue'], array('fr','en')))
     $translations = parse_ini_file('../dict/translations.en.ini', true);
     setcookie('langue','fr');
 }
+
+if (isset($_GET['type'])) {
+    if (in_array($_GET['type'], array('dot',
+                                      'gexf',
+                                      'text',
+                                      'json',
+                                      'classes-occurrences' ,
+                                      'files-occurrences' ,
+                                      'methods-occurrences' ,
+                                      'occurrences-classes' ,
+                                      'occurrences-element' ,
+                                      'occurrences-fichiers' ,
+                                      'occurrences-frequency' ,
+                                      'occurrences-methods' ))) { 
+        $_CLEAN['type'] = $_GET['type'];
+    } else {
+        $_CLEAN['type'] = 'occurrences-element';
+    }
+} else {
+    $_CLEAN['type'] = 'occurrences-element';
+}
+
+// incoming variables
 
 // @todo : use the configuration file!
 $prefix = $ini['cornac']['prefix'];
@@ -26,7 +43,7 @@ if (!isset($_GET['module'])) {
     include('include/main.php');
     die();
 } else {
-    $_CLEAN['module'] = preg_replace('/[^a-z0-9\-]/', '', $_GET['module']);
+    $_CLEAN['module'] = preg_replace('/[^a-zA-Z0-9_\-]/', '', $_GET['module']);
 }
 
 if (isset($translations[$_CLEAN['module']]['title'])) {   
@@ -73,7 +90,7 @@ $cas['dot'] = array('dot'  => 'format DOT',
 
 $entete = '';
 foreach($cas[$format] as $titre => $c) {
-    if (@$_GET['type'] == $titre) {
+    if ($_CLEAN['type'] == $titre) {
         $entete .= "<li><b>$c</b><br /> 
 (<a href=\"index.php?module={$_CLEAN['module']}&type=$titre&format=json\">json</a> - 
  <a href=\"index.php?module={$_CLEAN['module']}&type=$titre&format=xml\">xml</a> - 
@@ -141,7 +158,7 @@ if ($format == 'dot') {
 }
 
     
-switch(@$_GET['type']) {
+switch($_CLEAN['type']) {
     case 'methods-occurrences' :
         $format = get_format();
         include("format/$format.php");
