@@ -207,6 +207,7 @@ class web_Test extends PhpUnit_Framework_TestCase
 
     private function checkForPHPerror($html, $url) {
         $tests = array('Notice: Undefined index:',
+                       'Notice: Undefined variable:',
                        ' error ',
 //                       'SELECT', // @doc case of sql debug
                        'select');
