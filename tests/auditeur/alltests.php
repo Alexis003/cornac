@@ -84,6 +84,8 @@ $tests = array(
 'class.foreach_unused.test.php',
 'class._this.test.php',
 'class.references.test.php',
+'class.callback_functions.test.php',
+'class.functions_with_callback.test.php',
 // new tests
 );
 
