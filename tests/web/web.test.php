@@ -210,7 +210,8 @@ class web_Test extends PhpUnit_Framework_TestCase
                        'Notice: Undefined variable:',
                        ' error ',
 //                       'SELECT', // @doc case of sql debug
-                       'select');
+//                       'select',
+                       );
         foreach($tests as $test) {
             $this->assertNotContains($test, $html, "Found $test in $url");
         }
