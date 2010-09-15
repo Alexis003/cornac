@@ -55,10 +55,10 @@ SQL;
 INSERT INTO <rapport>
 SELECT NULL, mvc.fichier, 'undecided', 0, '{$this->name}', 0
     FROM mvc
-    LEFT JOIN ach_rapport 
-        ON mvc.fichier = ach_rapport.fichier AND
+    LEFT JOIN <rapport> TR
+        ON mvc.fichier = TR.fichier AND
            module='mvc'  
-    WHERE ach_rapport.fichier IS NULL
+    WHERE TR.fichier IS NULL
 SQL;
         $this->exec_query($query);
 
