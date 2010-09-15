@@ -19,11 +19,10 @@ class _this extends modules {
 	    $query = <<<SQL
 INSERT INTO <rapport>
 SELECT NULL, T1.fichier, T1.code, T1.id, '{$this->name}', 0
-    FROM <tokens> T1
+    FROM tu T1
     WHERE code = '\$this' AND 
-          ( class = ''  OR
-            scope = 'global'
-          )
+          class = ''      AND
+          type = 'variable'
 SQL;
         $this->exec_query($query);
         
