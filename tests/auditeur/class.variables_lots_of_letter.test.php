@@ -1,4 +1,4 @@
-<?php
+<?php 
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -18,13 +18,14 @@
  */
 include_once('Auditeur_Framework_TestCase.php');
 
-class multi_def_files_Test extends Auditeur_Framework_TestCase
+class variables_lots_of_letter_Test extends Auditeur_Framework_TestCase
 {
-    public function testVariables()  { 
-        $this->attendus = array('global', 'scope_class', 'scope_function');
-        $this->inattendus = array('scope_class::global','::global');
+    public function testvariables_lots_of_letter()  { 
+        $this->attendus = array( '$this_is_a_another_long_variable_name (37 chars)','$this_is_a_very_long_variable_name (34 chars)');
+        $this->inattendus = array(/*'',*/);
         
         parent::generic_test();
+//        parent::generic_counted_test();
     }
 }
 

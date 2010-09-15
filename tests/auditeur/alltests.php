@@ -86,6 +86,8 @@ $tests = array(
 'class.references.test.php',
 'class.callback_functions.test.php',
 'class.functions_with_callback.test.php',
+'class.variables_lots_of_letter.test.php',
+'class.regex.test.php',
 // new tests
 );
 

@@ -1,4 +1,4 @@
-<?php
+<?php 
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -18,14 +18,14 @@
  */
 include_once('Auditeur_Framework_TestCase.php');
 
-class multi_def_files_Test extends Auditeur_Framework_TestCase
+class regex_Test extends Auditeur_Framework_TestCase
 {
-    public function testVariables()  { 
-        $this->attendus = array('global', 'scope_class', 'scope_function');
-        $this->inattendus = array('scope_class::global','::global');
+    public function testregex()  { 
+        $this->attendus = array( '/regex/','/regex2/is','/regex3/m',);
+        $this->inattendus = array(/*'',*/);
         
         parent::generic_test();
+//        parent::generic_counted_test();
     }
 }
-
 ?>
