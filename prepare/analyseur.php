@@ -5,7 +5,6 @@ class analyseur {
     public $rates = array();
 
     function __construct() {
-
         $this->structures = array(
                                   'ifthen',
                                   'literals', 
@@ -71,9 +70,9 @@ class analyseur {
                                   '___halt_compiler',
                                   );
         $this->regex = array();
-        foreach ($this->structures as $id => $s) {
-            if (!method_exists($s, 'getRegex')) { continue; }
-            $regex = $s::getRegex(); 
+        foreach ($this->structures as $id => $structure) {
+            if (!method_exists($structure, 'getRegex')) { continue; }
+            $regex = $structure::getRegex(); 
             
             foreach($regex as $r) {
                 $objet = new $r;
@@ -91,39 +90,25 @@ class analyseur {
                 }
                 
                 
-                $this->tokens[$r] = $s;
+                $this->tokens[$r] = $structure;
             }
         }
     }
 
-    function upgrade($token ) {
-        return $this->factory($token);
-        
-            $return = $this->factory($t);
-            if (is_null($return)) {
-                print "$s a returnne null pour $this\n";
-                die();
-            }
-            if ($token != $return) {
-                return $return;
-            }
-        return $return;
-    }
-
-    public function factory(Token $t) {
+    public function upgrade(Token $t) {
         $token = $t->getToken();
         
         if ($token > 0 && isset($this->regex[$token])) {
-            foreach($this->regex[$token] as $nom => $r) {
+            foreach($this->regex[$token] as $nom => $regex) {
                 $this->verifs++;
                 
-                if (!$r->check($t)) {
+                if (!$regex->check($t)) {
                     $this->rates[] = $nom;
-                    unset($r);
+                    unset($regex);
                     continue;
                 }
     
-                $return = analyseur::applyRegex($t, $this->tokens[$nom], $r);
+                $return = analyseur::applyRegex($t, $this->tokens[$nom], $regex);
                 mon_log(get_class($t)." => ".get_class($return));
                 return $return; 
             }
@@ -133,17 +118,21 @@ class analyseur {
         
         $code = $t->getCode();
         if (isset($this->regex[$code])) {
-            foreach($this->regex[$code] as $nom => $r) {
+            foreach($this->regex[$code] as $nom => $regex) {
                 $this->verifs++;
                 
-                if (!$r->check($t)) {
+                if (!$regex->check($t)) {
                     $this->rates[] = $nom;
-                    unset($r);
+                    unset($regex);
                     continue;
                 }
     
-                $return = analyseur::applyRegex($t, $this->tokens[$nom], $r);
-                if ($return->getLine() == -1) { print $t->getLine()."\n"; print $return."\n"; die(__METHOD__."\n"); }
+                $return = analyseur::applyRegex($t, $this->tokens[$nom], $regex);
+                if ($return->getLine() == -1) { 
+                    print $t->getLine()."\n"; 
+                    print $return."\n"; 
+                    die(__METHOD__."\n"); 
+                }
                 mon_log(get_class($t)." => ".get_class($return));
                 return $return; 
             }
@@ -151,18 +140,17 @@ class analyseur {
             // @empty_ifthen
         }
         
-        foreach($this->regex[0] as $nom => $r) {
-            if (!$r->check($t)) {
-                unset($r);
+        foreach($this->regex[0] as $nom => $regex) {
+            if (!$regex->check($t)) {
+                unset($regex);
                 continue;
             }
 
-            $return = analyseur::applyRegex($t, $this->tokens[$nom], $r);
+            $return = analyseur::applyRegex($t, $this->tokens[$nom], $regex);
             mon_log(get_class($t)." => ".get_class($return));
             return $return; 
         }
         return $t;
-
     }
     
     function applyRegex($token, $class, $regex) { 

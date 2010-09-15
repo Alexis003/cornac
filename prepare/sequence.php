@@ -45,7 +45,7 @@ class sequence extends instruction {
     }
 
     function neutralise() {
-        foreach($this->elements as &$e) {
+        foreach($this->elements as $e) {
             $e->detach();
         }
     }

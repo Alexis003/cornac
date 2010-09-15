@@ -19,7 +19,7 @@ class shell extends instruction {
     }
 
     function neutralise() {
-        foreach($this->expression as &$e) {
+        foreach($this->expression as $e) {
             $e->detach();
         }
     }

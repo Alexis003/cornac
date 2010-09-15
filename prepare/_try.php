@@ -26,7 +26,7 @@ class _try extends instruction {
 
     function neutralise() {
         $this->block->detach();
-        foreach($this->catch as &$e) {
+        foreach($this->catch as $e) {
             $e->detach();
         }
     }

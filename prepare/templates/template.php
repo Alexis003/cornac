@@ -3,9 +3,7 @@
 
 abstract class template {
 
-    function __construct() {
-    
-    }
+    function __construct() { }
     
     abstract function affiche($noeud = null, $niveau = 0); 
 }

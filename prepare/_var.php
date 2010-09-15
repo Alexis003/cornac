@@ -67,7 +67,7 @@ class _var extends instruction {
 
     function neutralise() {
         if (count($this->variable)) {
-            foreach($this->variable as $id => &$e) {
+            foreach($this->variable as $id => $e) {
                 $e->detach();
                 if (!is_null($this->init[$id])) {
                     $this->init[$id]->detach();

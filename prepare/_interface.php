@@ -42,7 +42,7 @@ class _interface extends instruction {
     function neutralise() {
         $this->block->detach();
         $this->name->detach();
-        foreach($this->extends as &$e) {
+        foreach($this->extends as $e) {
             $e->detach();
         }
     }
