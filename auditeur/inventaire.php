@@ -3,7 +3,7 @@
 
 include('../libs/getopts.php');
 include('../libs/write_ini_file.php');
-include('../libs/ooo_ods.php');
+include('../libs/ods/ooo_ods.php');
 
 $args = $argv;
 
