@@ -150,6 +150,10 @@ $modules = array(
 'references',
 'keyval',
 'keyval_outside',
+'return_with_dead_code',
+'functions_lines',
+'callback_functions',
+'functions_with_callback',
 // new analyzers
 );
 
@@ -241,7 +245,9 @@ if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
     $DATABASE->query('CREATE TABLE IF NOT EXISTS <rapport_module> (
   `module` varchar(255) NOT NULL PRIMARY KEY,
   `fait` datetime NOT NULL,
-  `format` varchar(255) NOT NULL
+  `format` varchar(255) NOT NULL,
+  `web` ENUM("yes","no") DEFAULT 1
+  
 )');
 } else {
     print "No database configuration provided (no mysql, no sqlite)\n";
