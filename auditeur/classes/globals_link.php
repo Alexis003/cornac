@@ -16,8 +16,8 @@ class globals_link extends modules {
         $query = <<<SQL
 INSERT INTO <rapport_dot> 
 SELECT DISTINCT TR1.fichier, TR2.fichier, TR1.element, '{$this->name}'
-FROM ach_rapport TR1
-JOIN ach_rapport TR2
+FROM <rapport> TR1
+JOIN <rapport> TR2
     ON TR1.element = TR2.element AND
        TR2.module='globals'
 WHERE TR1.module='globals'
