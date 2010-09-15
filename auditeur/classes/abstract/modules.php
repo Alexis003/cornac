@@ -13,8 +13,12 @@ abstract class modules {
     const FORMAT_HTMLLIST = 1;
     const FORMAT_DOT = 2;
     const FORMAT_SCOPE = 3;
+    
+    const WEB_DISPLAY = 'yes';
+    const WEB_NOT_DISPLAY = 'no';
 
     protected  $format = modules::FORMAT_HTMLLIST;
+    protected  $web = modules::WEB_DISPLAY;
 
     function __construct($mid) {
         global $INI;
@@ -107,7 +111,7 @@ abstract class modules {
         }
         
         $now = date('c');
-        $this->exec_query("REPLACE INTO <rapport_module> VALUES ('$this->name', '$now', '{$this->format}')");
+        $this->exec_query("REPLACE INTO <rapport_module> VALUES ('$this->name', '$now', '{$this->format}', '{$this->web}')");
 
     }
 
