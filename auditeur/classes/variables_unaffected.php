@@ -18,7 +18,7 @@ class variables_unaffected extends modules {
 	    // @todo take foreach into account
         $query = <<<SQL
 INSERT INTO <rapport>
-    SELECT NULL, TR1.fichier, TR1.element AS code, TR1.token_id, '{$this->name}', 0
+SELECT NULL, TR1.fichier, TR1.element AS code, TR1.token_id, '{$this->name}', 0
 FROM <rapport> TR1
 LEFT JOIN <rapport> TR2
     ON TR2.module = 'affectations_variables' AND 
@@ -30,10 +30,10 @@ SQL;
     	$this->exec_query($query);
 
         $query = <<<SQL
-DELETE FROM <rapport> CR1 
-    WHERE CR1.element IN ('\$GLOBALS','\$_SESSION','\$_REQUEST',
+DELETE FROM <rapport> 
+    WHERE element IN ('\$GLOBALS','\$_SESSION','\$_REQUEST',
                           '\$_GET','\$_POST','\$this','\$_FILES') AND
-          CR1.module='{$this->name}'
+          module='{$this->name}'
 SQL;
     	$this->exec_query($query);
 
