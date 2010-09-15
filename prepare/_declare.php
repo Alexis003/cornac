@@ -44,9 +44,9 @@ class _declare extends instruction {
     }
 
     function __toString() {
-        $x = __CLASS__." ticks= ".$this->tick." encoding = ".$this->encoding;
-        if (!is_null($this->block)) { $x .= " ".$this->block;}
-        return $x; 
+        $string = __CLASS__." ticks= ".$this->tick." encoding = ".$this->encoding;
+        if (!is_null($this->block)) { $string .= " ".$this->block;}
+        return $string; 
     }
 
     function getTicks() {

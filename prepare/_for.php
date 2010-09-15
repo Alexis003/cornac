@@ -19,8 +19,8 @@ class _for extends instruction {
         $this->block = array_pop($expression);
 
         if ($expression[1]->checkClass('sequence') && $expression[2]->checkCode(')')) {
-            $x = $expression[1]->getElements();
-            if (count($x) == 2) { 
+            $elements = $expression[1]->getElements();
+            if (count($elements) == 2) { 
                 $this->fin = $x[0];
                 $this->increment = $x[1];
                 
@@ -85,7 +85,6 @@ class _for extends instruction {
     'for_comma1_regex',
     'for_comma2_regex',
     'for_comma3_regex',
-    
     'for_alternative_regex',
 );
     }

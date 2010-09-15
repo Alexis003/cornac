@@ -101,13 +101,16 @@ class template_dot extends template {
     }
     
     function dot_standard_one($noeud, $niveau, $methode) {
-        $x = $noeud->$methode();
+        $result = $noeud->$methode();
         
-        if(!is_null($x)) {
-            if (!is_object($x)) { var_dump($x);die("$methode ".__FILE__." ".__LINE__."\n");}
-            $x->dotId = $this->getNextId();
-            $this->dot_link($noeud->dotId, $x->dotId);
-            $this->affiche($x, $niveau + 1);            
+        if(!is_null($result)) {
+            if (!is_object($result)) { 
+                var_dump($result);
+                die("$methode ".__FILE__." ".__LINE__."\n");
+            }
+            $result->dotId = $this->getNextId();
+            $this->dot_link($noeud->dotId, $result->dotId);
+            $this->affiche($result, $niveau + 1);
         }
     }
 

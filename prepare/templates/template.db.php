@@ -164,8 +164,8 @@ class template_db extends template {
 
         $elements = $noeud->getList();
         if (count($elements) == 0) {
-            $x = new token_traite(new Token());
-            $this->affiche($x, $niveau + 1);
+            $token_traite = new token_traite(new Token());
+            $this->affiche($token_traite, $niveau + 1);
             // @note create an empty token, to materialize the empty list
         } else {
             $labels = array();

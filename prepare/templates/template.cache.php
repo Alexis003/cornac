@@ -140,8 +140,8 @@ class template_cache extends template {
     function affiche_arglist($noeud, $niveau) {
         $elements = $noeud->getList();
         if (count($elements) == 0) {
-            $x = new token_traite(new Token());
-            $this->affiche($x, $niveau + 1);
+            $token_traite = new token_traite(new Token());
+            $this->affiche($token_traite, $niveau + 1);
             $noeud->cache = '()';
             return;
         } else {
