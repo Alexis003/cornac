@@ -214,12 +214,13 @@ if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1');
 
     if (CLEAN_DATABASE) {
-        $DATABASE->query('DROP TABLE '.$INI['cornac']['prefix'].'_rapport_module');
+        $DATABASE->query('DROP TABLE <rapport_module>');
     }
         $DATABASE->query('CREATE TABLE IF NOT EXISTS <rapport_module> (
   `module` varchar(255) NOT NULL,
   `fait` datetime NOT NULL,
   `format` enum("html","dot","gefx") NOT NULL,
+  `web` ENUM("yes","no") DEFAULT 1,
   PRIMARY KEY (`module`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1');
 
