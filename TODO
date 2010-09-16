@@ -1,3 +1,7 @@
+use .ini for the web folder too
+see how tokclient may not stop stupidly, and keep going when there are still some tasks to do
+have auditeur do its insertion into a tmp table, and avoid blocking the <rapport> table
+
 Check fudforum binary protector (install.php)
 Merge TODO from auditeur.
 
