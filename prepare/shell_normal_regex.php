@@ -28,7 +28,7 @@ class shell_normal_regex extends analyseur_regex {
         if ($t->checkOperateur('`') ) {
             $token_fin = '`';
         } else {
-            $this->stop_on_error("Can't reach here");
+            return false;
         }
 
         $var = $t->getNext(); 

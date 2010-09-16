@@ -35,7 +35,7 @@ class function_reference_regex extends analyseur_regex {
         } elseif ($t->getNext(3)->checkClass('Token') ) { 
             return false;
         } else {
-            $this->stop_on_error("Unknown class : '".get_class($t->getNext(3))."' in ".__METHOD__);
+            return false;
         }
 
         if ($t->hasPrev() && $t->getPrev()->checkToken($this->options)) {
