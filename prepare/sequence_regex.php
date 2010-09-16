@@ -27,6 +27,8 @@ class sequence_regex extends analyseur_regex {
                                                               ))                        )            { return false; }
         if ( $t->hasPrev()  && $t->getPrev( )->checkClass(array('tableau','variable','property')))   { return false; }
         if ( $t->hasPrev(1) && $t->getPrev(1)->checkToken(array(T_FOR,T_WHILE)))                     { return false; }
+        if ( $t->checkClass(array('_catch')))                                                        { return false; }
+        
 
         if ($t->checkSubClass('instruction') && 
             $t->checkNotClass('parentheses') && 
