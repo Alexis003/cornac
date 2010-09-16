@@ -220,7 +220,7 @@ if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
   `module` varchar(255) NOT NULL,
   `fait` datetime NOT NULL,
   `format` enum("html","dot","gefx") NOT NULL,
-  `web` ENUM("yes","no") DEFAULT 1,
+  `web` ENUM("yes","no") DEFAULT "yes",
   PRIMARY KEY (`module`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1');
 
