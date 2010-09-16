@@ -37,8 +37,8 @@ SQL;
     }
     
     function traite($droite) {
-        if (!isset($this->lignes[$droite])) { return ; } // deja fait 
-        if (is_string($this->lignes[$droite])) { return ; } // deja fait 
+        if (!isset($this->lignes[$droite])) { return ; } // @note already done
+        if (is_string($this->lignes[$droite])) { return ; } //  @note already done
 
           $methode = "affiche_".$this->lignes[$droite]['type'];
           if (method_exists($this, $methode)){
