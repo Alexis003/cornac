@@ -18,16 +18,51 @@
  */
 
 include(dirname(__FILE__).'/ooo_ods_meta.php');
+include(dirname(__FILE__).'/ooo_ods_style.php');
 
 class ooo_ods {
     // @todo move this to private! 
-    public $cells = array();
+    private $cells = array();
+    private $styles = array();
+    private $ods_styles = array();
     
     private $meta = null;
     
     function __construct() {
         $this->meta = new ooo_ods_meta();
-    }
+        
+        $style = new ooo_ods_style('co1', 'table-column');
+        $style->setProperties(array( 'fo:break-before'=> "auto",
+                                     'style:column-width' => "2.267cm"));
+        $this->ods_styles[] = $style;
+
+        $style = new ooo_ods_style('ro1', 'table-row');
+        $style->setProperties(array( 'style:row-height' => "0.45cm",
+                                     'fo:break-before' => "auto",
+                                     'style:use-optimal-row-height' => "true"));
+        $this->ods_styles[] = $style;
+
+        $style = new ooo_ods_style('ro2', 'table-row');
+        $style->setProperties(array('style:row-height' => "0.427cm",
+                                    'fo:break-before' => "auto",
+                                    'style:use-optimal-row-height' => "true"));
+        $this->ods_styles[] = $style;
+
+        $style = new ooo_ods_style('ta1', 'table', "Default");
+        $style->setProperties(array( "table:display" => "true",
+                                     "style:writing-mode" => "lr-tb"));
+        $this->ods_styles[] = $style;
+
+        $style = new ooo_ods_style('ce1', 'table-cell', "Default");
+        $style->setProperties(array( 'fo:font-weight' => "bold",
+                                     'style:font-weight-asian' => "bold",
+                                     'style:font-weight-complex' => "bold"));
+        $this->ods_styles[] = $style;
+
+        $style = new ooo_ods_style('ta_extref', 'table', null);
+        $style->setProperties(array( 'table:display' => "false"));
+        $this->ods_styles[] = $style;
+ }
     
     function protect($text) {
         $in = array("\t");
@@ -55,7 +90,48 @@ class ooo_ods {
         }
         return true;
     }
-    
+
+// @doc set style for the cell
+    function setCellStyle($table, $row, $col, $style) {
+        $this->styles[$table][$row][$col] = $style;
+    }
+
+// @doc set style for the cells of the whole row
+    function setRowCellsStyle($table, $row, $style) {
+        if (!isset($this->cells[$table][$row])) { return false; }
+        if (!is_array($this->cells[$table][$row])) { return false; }
+
+        foreach($this->cells[$table] as $row_id => $cols) {
+            $cols = array_keys($cols);
+            foreach($cols as $col) {
+                $this->styles[$table][$row][$col] = $style;
+            }
+        }
+        return true;
+    }
+
+// @doc set style for the cells of the whole column
+    function setColCellsStyle($table, $col, $style) {
+        foreach($this->cells as $row => $cols) {
+            if (isset($this->cells[$table][$row][$col])) {
+                $this->styles[$table][$row][$col] = $style;
+            }
+        }
+        return true;
+    }
+
+// @doc set style for the row
+    function setRowStyle($table, $row, $style) {
+        $this->styles_row[$table][$row] = $style;
+        return true;
+    }
+
+// @doc set style for the col
+    function setColStyle($table, $col, $style) {
+        $this->styles_col[$table][$col] = $style;
+        return true;
+    }
+
     function save($filename = null) {
         $zip = new ZipArchive();
 
@@ -70,6 +146,12 @@ class ooo_ods {
     }
     
     function asXML() {
+        $styles = "	<office:automatic-styles>\n";
+        foreach($this->ods_styles as $style) {
+            $styles .= $style->asXML()."\n";
+        }
+        $styles .= "	</office:automatic-styles>\n";
+        
         $skel_xml = '<?xml version="1.0" encoding="UTF-8"?>
 <office:document-content xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0" xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0" xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" xmlns:number="urn:oasis:names:tc:opendocument:xmlns:datastyle:1.0" xmlns:presentation="urn:oasis:names:tc:opendocument:xmlns:presentation:1.0" xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0" xmlns:chart="urn:oasis:names:tc:opendocument:xmlns:chart:1.0" xmlns:dr3d="urn:oasis:names:tc:opendocument:xmlns:dr3d:1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:form="urn:oasis:names:tc:opendocument:xmlns:form:1.0" xmlns:script="urn:oasis:names:tc:opendocument:xmlns:script:1.0" xmlns:ooo="http://openoffice.org/2004/office" xmlns:ooow="http://openoffice.org/2004/writer" xmlns:oooc="http://openoffice.org/2004/calc" xmlns:dom="http://www.w3.org/2001/xml-events" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:rpt="http://openoffice.org/2005/report" xmlns:of="urn:oasis:names:tc:opendocument:xmlns:of:1.2" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:grddl="http://www.w3.org/2003/g/data-view#" xmlns:field="urn:openoffice:names:experimental:ooo-ms-interop:xmlns:field:1.0" office:version="1.2" grddl:transformation="http://docs.oasis-open.org/office/1.2/xslt/odf2rdf.xsl">
 	<office:scripts />
@@ -79,26 +161,7 @@ class ooo_ods {
 		<style:font-face style:name="Lucida Sans" svg:font-family="&apos;Lucida Sans&apos;" style:font-family-generic="system" style:font-pitch="variable" />
 		<style:font-face style:name="Tahoma" svg:font-family="Tahoma" style:font-family-generic="system" style:font-pitch="variable" />
 	</office:font-face-decls>
-	<office:automatic-styles>
-		<style:style style:name="co1" style:family="table-column">
-			<style:table-column-properties fo:break-before="auto" style:column-width="2.267cm" />
-		</style:style>
-		<style:style style:name="ro1" style:family="table-row">
-			<style:table-row-properties style:row-height="0.45cm" fo:break-before="auto" style:use-optimal-row-height="true" />
-		</style:style>
-		<style:style style:name="ro2" style:family="table-row">
-			<style:table-row-properties style:row-height="0.427cm" fo:break-before="auto" style:use-optimal-row-height="true" />
-		</style:style>
-		<style:style style:name="ta1" style:family="table" style:master-page-name="Default">
-			<style:table-properties table:display="true" style:writing-mode="lr-tb" />
-		</style:style>
-		<style:style style:name="ce1" style:family="table-cell" style:parent-style-name="Default">
-			<style:text-properties fo:font-weight="bold" style:font-weight-asian="bold" style:font-weight-complex="bold" />
-		</style:style>
-		<style:style style:name="ta_extref" style:family="table">
-			<style:table-properties table:display="false" />
-		</style:style>
-	</office:automatic-styles>
+	'.$styles.'
 	<office:body>
 		<office:spreadsheet>
 		    <tables>
@@ -125,9 +188,14 @@ class ooo_ods {
                     }
 
                     $cell = $this->protect($cell);
-                
+                    if (isset($this->styles[$name][$row][$col])) {
+                        $style = ' table:style-name="'.$this->styles[$name][$row][$col].'"';
+                    } else {
+                        $style = '';
+                    }
+                    
                     $cols_xml .= <<<XML
-					<table:table-cell office:value-type="string">
+					<table:table-cell$style office:value-type="string">
 						<text:p>{$cell}</text:p>
 					</table:table-cell>
 XML;
@@ -152,37 +220,6 @@ XML;
     
     function ods_structure($zip) {
     // meta.xml
-    
-    $meta = <<<'XML'
-<office:document-meta xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" xmlns:ooo="http://openoffice.org/2004/office" xmlns:grddl="http://www.w3.org/2003/g/data-view#" office:version="1.2" grddl:transformation="http://docs.oasis-open.org/office/1.2/xslt/odf2rdf.xsl">
-	<office:meta>
-		<meta:initial-creator>
-			Damien Seguy
-		</meta:initial-creator>
-		<meta:creation-date>
-			2010-08-25T15:22:05
-		</meta:creation-date>
-		<dc:date>
-			2010-08-25T15:26:22
-		</dc:date>
-		<dc:creator>
-			Cornac for PHP
-		</dc:creator>
-		<meta:editing-duration>
-			PT00H04M17S
-		</meta:editing-duration>
-		<meta:editing-cycles>
-			2
-		</meta:editing-cycles>
-		<meta:generator>
-			OpenOffice.org/3.2$Unix OpenOffice.org_project/320m18$Build-9502
-		</meta:generator>
-		<meta:document-statistic meta:table-count="3" meta:cell-count="2" meta:object-count="0" />
-	</office:meta>
-</office:document-meta>
-XML;
-//    $zip->addFromString("meta.xml", '<?xml version="1.0" encoding="UTF-8"?'.">\n".$meta);
-
 
     $meta = $this->meta->asXML();
     $zip->addFromString("meta.xml", '<?xml version="1.0" encoding="UTF-8"?'.">\n".$meta);
