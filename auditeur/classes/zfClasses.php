@@ -19,9 +19,7 @@ class zfClasses extends modules {
         $list = parse_ini_file('../dict/zfClasses.ini');
         $in = "'".join("', '", $list['classes'])."'";
         
-// @todo of course, update this useless query. :)
 	    $query = <<<SQL
-INSERT INTO <rapport>
 SELECT NULL, T1.fichier, T2.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens_tags> TT 
@@ -33,7 +31,7 @@ JOIN <tokens> T2
        T2.code IN ($in)
 WHERE T1.type='_class'; 
 SQL;
-        $this->exec_query($query);
+        $this->exec_query_insert('rapport', $query);
         
         return true;
 	}

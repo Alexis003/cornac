@@ -13,7 +13,6 @@ class zfController extends modules {
 
         $concat = $this->concat("T2.class", "'->'","T2.code");
 	    $query = <<<SQL
-INSERT INTO <rapport>
 SELECT NULL, T1.fichier, $concat as code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens_tags> TT 
@@ -26,7 +25,7 @@ WHERE T1.type = '_function' AND
 T2.code like "%action"
 ORDER BY T2.class, T2.code;
 SQL;
-        $this->exec_query($query);
+        $this->exec_query_insert('rapport', $query);
         
         return true;
 	}

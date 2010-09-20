@@ -18,7 +18,6 @@ class functions_lines extends modules {
 
 // @todo of course, update this useless query. :)
 	    $query = <<<SQL
-INSERT INTO <rapport>
 SELECT NULL, T1.fichier, CONCAT( (T2.ligne - T1.ligne)), T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens> T2
@@ -31,7 +30,7 @@ LEFT JOIN <tokens> T3
        T3.code = 'abstract'
 WHERE T1.type='_function' 
 SQL;
-        $this->exec_query($query);
+        $this->exec_query_insert('rapport', $query);
         
         return true;
 	}

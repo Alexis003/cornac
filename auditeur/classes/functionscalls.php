@@ -15,7 +15,6 @@ class functionscalls extends modules {
 	    $in = join("', '", $total);
 
         $query = <<<SQL
-INSERT INTO <rapport> 
 SELECT NULL, T1.fichier, T2.code AS code, T1.id, '{$this->name}', 0
   FROM <tokens> T1
   JOIN <tokens> T2
@@ -29,7 +28,7 @@ where
 T2.code NOT IN ('$in')
 SQL;
 
-        $this->exec_query($query);
+        $this->exec_query_insert('rapport', $query);
         return true;
 	}
 }

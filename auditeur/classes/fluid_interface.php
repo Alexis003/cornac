@@ -37,7 +37,6 @@ SQL;
         //
         while($row = $res->fetch(PDO::FETCH_ASSOC)) {
     	    $query = <<<SQL
-INSERT INTO <rapport>
 SELECT NULL, T1.fichier, CONCAT(T1.code, '->', GROUP_CONCAT(T4.code ORDER BY T4.droite  SEPARATOR '->')), T1.id, '{$this->name}', 0
     FROM <tokens> T1
     JOIN <tokens> T2 
@@ -54,7 +53,7 @@ SELECT NULL, T1.fichier, CONCAT(T1.code, '->', GROUP_CONCAT(T4.code ORDER BY T4.
            T4.droite = T3.droite + 1
     WHERE T1.id = {$row['id']}
 SQL;
-            $this->exec_query($query);
+            $this->exec_query_insert('rapport', $query);
         }
         
         return true;

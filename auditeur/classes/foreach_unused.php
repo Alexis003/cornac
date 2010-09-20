@@ -55,7 +55,6 @@ SQL;
 
 // @doc spot unused variables in value
 	    $query = <<<SQL
-INSERT INTO <rapport> 
 SELECT NULL, T1.fichier, T2.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens_tags> TT
@@ -78,11 +77,10 @@ LEFT JOIN <tokens> T4
 WHERE T1.type='_foreach' AND 
       T4.id IS NULL;
 SQL;
-        $this->exec_query($query);
+        $this->exec_query_insert('rapport', $query);
 
 // @doc spot unused variables in value as reference
 	    $query = <<<SQL
-INSERT INTO <rapport> 
 SELECT NULL, T1.fichier, T2.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens_tags> TT
@@ -108,7 +106,7 @@ LEFT JOIN <tokens> T4
 WHERE T1.type='_foreach' AND 
       T4.id IS NULL;
 SQL;
-        $this->exec_query($query);
+        $this->exec_query_insert('rapport', $query);
 
 // @todo spot unused variables in value as reference
 // @todo spot unused properties in value

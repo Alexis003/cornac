@@ -19,7 +19,6 @@ class keyval_outside extends modules {
 // @rfu SELECT TR1.element, T1.droite, T1.gauche, T2.droite, T1.fichier, T1.ligne, T2.ligne
 
 	    $query = <<<SQL
-INSERT INTO <rapport>
 SELECT NULL, T1.fichier, T2.code, T2.id, '{$this->name}',0
 FROM cornac_rapport TR1
 JOIN cornac T1 
@@ -32,7 +31,7 @@ JOIN cornac T2
        T2.droite > T1.gauche
 WHERE TR1.module='keyval';
 SQL;
-        $this->exec_query($query);
+        $this->exec_query_insert('rapport', $query);
         
         return true;
 	}

@@ -17,7 +17,6 @@ class classes_undefined extends modules {
 
         $in = "'".join("','", modules::getPHPClasses())."'";
         $query = <<<SQL
-INSERT INTO <rapport> 
 SELECT NULL, TR1.fichier, TR1.element AS code, TR1.id, '{$this->name}', 0
     FROM <rapport>  TR1
     LEFT JOIN <rapport>  TR2 
@@ -26,7 +25,7 @@ SELECT NULL, TR1.fichier, TR1.element AS code, TR1.id, '{$this->name}', 0
           TR2.element IS NULL AND
           TR1.element NOT IN ($in)
 SQL;
-        $this->exec_query($query);
+        $this->exec_query_insert('rapport', $query);
         return true;
 	}
 }

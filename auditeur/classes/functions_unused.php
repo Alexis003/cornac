@@ -16,7 +16,6 @@ class functions_unused extends modules {
         $this->clean_rapport();
 
         $query = <<<SQL
-INSERT INTO <rapport> 
 SELECT NULL, TR1.fichier, TR1.element AS code, TR1.id, '{$this->name}', 0
     FROM <rapport>  TR1
     LEFT JOIN <rapport>  TR2 
@@ -25,7 +24,7 @@ SELECT NULL, TR1.fichier, TR1.element AS code, TR1.id, '{$this->name}', 0
           TR2.module IS NULL AND
           TR1.element NOT IN ('__autoload')
 SQL;
-        $this->exec_query($query);
+        $this->exec_query_insert('rapport', $query);
         return true;
 	}
 }

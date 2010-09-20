@@ -13,7 +13,6 @@ class globals extends modules {
         
         // @note variable global thanks to the global reserved word
         $query = <<<SQL
-INSERT INTO <rapport> 
 SELECT NULL, T2.fichier, T2.code AS code, T2.id, '{$this->name}', 0
     FROM <tokens> T1
     JOIN <tokens> T2 
@@ -21,11 +20,10 @@ SELECT NULL, T2.fichier, T2.code AS code, T2.id, '{$this->name}', 0
            T1.fichier = T2.fichier
     WHERE T1.type='_global' 
 SQL;
-        $this->exec_query($query);
+        $this->exec_query_insert('rapport', $query);
         
         // @note variables globales because in $GLOBALS
        $query = <<<SQL
-INSERT INTO <rapport> 
 SELECT NULL, T1.fichier, T3.code AS code, T2.id, '{$this->name}', 0
     FROM <tokens> T1
     JOIN <tokens> T2 
@@ -38,7 +36,7 @@ SELECT NULL, T1.fichier, T3.code AS code, T2.id, '{$this->name}', 0
           T1.type = 'tableau' AND
           T2.code = '\$GLOBALS';
 SQL;
-        $this->exec_query($query);
+        $this->exec_query_insert('rapport', $query);
         
         return true;
     }    

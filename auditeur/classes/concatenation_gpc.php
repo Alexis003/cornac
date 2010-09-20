@@ -14,18 +14,17 @@ class concatenation_gpc extends modules {
         $concat = $this->concat('class','"::"','scope');
         $gpc_regexp = '(\\\\'.join('|\\\\',modules::getPHPGPC()).')';
 	    $query = <<<SQL
-INSERT INTO <rapport>
-    SELECT NULL, T1.fichier, T2.code, T1.id, '{$this->name}', 0
-    FROM <tokens> T1
-    JOIN <tokens> T2
-    ON T1.fichier= T2.fichier AND 
-        T2.type='variable' AND 
-        T2.droite BETWEEN T1.droite AND T1.gauche AND
-        T2.code REGEXP '^$gpc_regexp'
-    WHERE T1.type='concatenation'
+SELECT NULL, T1.fichier, T2.code, T1.id, '{$this->name}', 0
+FROM <tokens> T1
+JOIN <tokens> T2
+ON T1.fichier= T2.fichier AND 
+    T2.type='variable' AND 
+    T2.droite BETWEEN T1.droite AND T1.gauche AND
+    T2.code REGEXP '^$gpc_regexp'
+WHERE T1.type='concatenation'
 
 SQL;
-        $this->exec_query($query);
+        $this->exec_query_insert('rapport', $query);
 
 	    return true;
 	}

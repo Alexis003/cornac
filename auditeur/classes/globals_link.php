@@ -14,7 +14,6 @@ class globals_link extends modules {
         $this->clean_rapport();
         
         $query = <<<SQL
-INSERT INTO <rapport_dot> 
 SELECT DISTINCT TR1.fichier, TR2.fichier, TR1.element, '{$this->name}'
 FROM <rapport> TR1
 JOIN <rapport> TR2
@@ -22,7 +21,7 @@ JOIN <rapport> TR2
        TR2.module='globals'
 WHERE TR1.module='globals'
 SQL;
-        $res = $this->exec_query($query);
+        $res = $this->exec_query_insert('rapport', $query);
 	}
 }
 

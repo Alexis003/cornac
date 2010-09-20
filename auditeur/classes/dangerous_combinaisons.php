@@ -23,13 +23,12 @@ class dangerous_combinaisons extends modules {
             // @todo : this shouldn't be sufficient. One must work on distinct occurences... may be a sub query will do
 
             $query = <<<SQL
-INSERT INTO <rapport> 
-    SELECT NULL, T1.fichier, '$nom', T1.code, '{$this->name}', 0
-    FROM <tokens> T1
-    GROUP BY fichier
-    HAVING SUM(IF (code IN ($in), 1, 0)) >= $count
+SELECT NULL, T1.fichier, '$nom', T1.code, '{$this->name}', 0
+FROM <tokens> T1
+GROUP BY fichier
+HAVING SUM(IF (code IN ($in), 1, 0)) >= $count
 SQL;
-            $this->exec_query($query);
+            $this->exec_query_insert('rapport', $query);
         }
         return true;
 	}

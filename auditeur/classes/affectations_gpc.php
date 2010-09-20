@@ -13,9 +13,8 @@ class affectations_gpc extends modules {
 
         $gpc_regexp = '(\\\\'.join('|\\\\',modules::getPHPGPC()).')';
 
-// variables, not whole arrays
+// @doc variables, not whole arrays
         $query = <<<SQL
-INSERT INTO <rapport> 
 SELECT NULL, T1.fichier, TC.code, T1.id,'{$this->name}', 0
 FROM <tokens> T1  
     JOIN <tokens_tags> TT
@@ -33,9 +32,8 @@ TC.code REGEXP '^$gpc_regexp';
 SQL;
         $this->exec_query($query);
 
-// full arrays,  not just variables
+// @doc full arrays,  not just variables
         $query = <<<SQL
-INSERT INTO <rapport> 
 SELECT NULL, T1.fichier, TC.code, T1.id,'{$this->name}', 0
 FROM <tokens> T1  
     JOIN <tokens_tags> TT
@@ -55,7 +53,7 @@ WHERE T1.fichier like "%affectations_gpc%" and T1.type = 'affectation' AND
 (T4.type IS NULL OR T4.type != 'tableau') AND 
 TC.code REGEXP '^$gpc_regexp';
 SQL;
-        $this->exec_query($query);
+        $this->exec_query_insert('rapport', $query);
         
         return true;
     }

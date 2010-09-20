@@ -19,29 +19,26 @@ class mvc extends modules {
 
 // @doc inclusions are for controlers
 	    $query = <<<SQL
-INSERT INTO <rapport>
 SELECT DISTINCT NULL, T1.fichier, 'controler', 1, '{$this->name}', 0
-    FROM <tokens> T1
-    WHERE code IN ('include','require','include_once','require_once')
+FROM <tokens> T1
+WHERE code IN ('include','require','include_once','require_once')
 SQL;
-        $this->exec_query($query);
+        $this->exec_query_insert('rapport', $query);
 
 // @doc echo are for template
 	    $query = <<<SQL
-INSERT INTO <rapport>
 SELECT DISTINCT NULL, T1.fichier, 'template', 1, '{$this->name}', 0
-    FROM <tokens> T1
-    WHERE code IN ('echo','print','phpinfo')
+FROM <tokens> T1
+WHERE code IN ('echo','print','phpinfo')
 SQL;
-        $this->exec_query($query);
+        $this->exec_query_insert('rapport', $query);
 
 	    $query = <<<SQL
-INSERT INTO <rapport>
 SELECT DISTINCT NULL, T1.fichier, 'template', 1, '{$this->name}', 0
-    FROM <tokens> T1
-    WHERE type IN ('rawtext')
+FROM <tokens> T1
+WHERE type IN ('rawtext')
 SQL;
-        $this->exec_query($query);
+        $this->exec_query_insert('rapport', $query);
 
 // @doc the remaining files are unknown type (no M, V or C) : time to update the analyzer
 	    $query = <<<SQL
@@ -52,7 +49,6 @@ SQL;
 
 // @doc the rest is undecided
 	    $query = <<<SQL
-INSERT INTO <rapport>
 SELECT NULL, mvc.fichier, 'undecided', 0, '{$this->name}', 0
     FROM mvc
     LEFT JOIN <rapport> TR
@@ -60,7 +56,7 @@ SELECT NULL, mvc.fichier, 'undecided', 0, '{$this->name}', 0
            module='mvc'  
     WHERE TR.fichier IS NULL
 SQL;
-        $this->exec_query($query);
+        $this->exec_query_insert('rapport', $query);
 
         return true;
 	}

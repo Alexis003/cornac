@@ -18,7 +18,6 @@ class callback_functions extends modules {
 
 // @doc spot callback when it's a first argument
 	    $query = <<<SQL
-INSERT INTO <rapport>
 SELECT NULL, T1.fichier, T4.code, T4.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens_tags> TT
@@ -43,11 +42,10 @@ JOIN <tokens> T4
        T4.droite = T3.droite + 1
 WHERE T1.type='functioncall';
 SQL;
-        $this->exec_query($query);
+        $this->exec_query_insert('rapport', $query);
 
 // @doc spot callback when it's a second argument
 	    $query = <<<SQL
-INSERT INTO <rapport>
 SELECT NULL, T1.fichier, T5.code, T5.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens_tags> TT
@@ -80,11 +78,10 @@ JOIN <tokens> T5
        T5.droite = T4.gauche + 1
 WHERE T1.type='functioncall';
 SQL;
-        $this->exec_query($query);
+        $this->exec_query_insert('rapport', $query);
 
 // @doc spot callback when it's the last argument
 	    $query = <<<SQL
-INSERT INTO <rapport>
 SELECT NULL, T1.fichier, T4.code, T4.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens_tags> TT
@@ -118,7 +115,7 @@ JOIN <tokens> T4
        T4.gauche = T3.gauche - 1
 WHERE T1.type='functioncall';
 SQL;
-        $this->exec_query($query);
+        $this->exec_query_insert('rapport', $query);
         
         return true;
 	}

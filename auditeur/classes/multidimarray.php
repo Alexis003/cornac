@@ -18,7 +18,6 @@ class multidimarray extends modules {
 
 // @todo of course, update this useless query. :)
 	    $query = <<<SQL
-INSERT INTO <rapport>
 SELECT NULL, T1.fichier, TC.code ,T1.id, '{$this->name}', 0
 FROM <tokens> T1
 /* JOIN */
@@ -48,7 +47,7 @@ SQL;
     $query = str_replace('/* JOIN */', $join, $query);
     $query = str_replace('       T'.$h.'.droite + 1 = TX.droite','       T'.$i.'.droite + 1 = TX.droite', $query);
 
-    $this->exec_query($query);
+    $this->exec_query_insert('rapport', $query);
 }
 
         // @todo spot array(array());

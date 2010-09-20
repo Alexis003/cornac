@@ -18,7 +18,6 @@ class defarray extends modules {
 
 // @todo of course, update this useless query. :)
 	    $query = <<<SQL
-INSERT INTO <rapport>
 SELECT NULL, T2.fichier, CONCAT(SUM(IF(T3.type='token_traite',0,1)), ' elements'), T2.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens> T2
@@ -33,7 +32,7 @@ WHERE T1.code='array' AND
        T2.gauche - T2.droite > 1
 GROUP BY T2.id;
 SQL;
-        $this->exec_query($query);
+        $this->exec_query_insert('rapport', $query);
         
         return true;
 	}

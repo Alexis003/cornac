@@ -13,7 +13,6 @@ class arglist_def extends modules {
 
 // @doc this query search for the minimum argument to send a function/method
         $query = <<<SQL
-INSERT INTO <rapport> 
 SELECT NULL, T1.fichier, CONCAT(T2.code,'(', count(*),' args)') AS code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens_tags> TT1
@@ -29,9 +28,9 @@ JOIN <tokens> T4
     AND T4.type = 'variable'
     AND T4.level = T3.level + 1
 WHERE T1.type = '_function'
-GROUP BY T1.id;
+GROUP BY T1.id
 SQL;
-        $this->exec_query($query);
+        $this->exec_query_insert('rapport', $query);
 
 // @doc this query search for variable number of argument
         $query = <<<SQL
@@ -57,8 +56,7 @@ GROUP BY T1.id
 HAVING optional > 0
 ;
 SQL;
-//                print $this->prepare_query($query);
-        $res = $this->exec_query($query);
+        $res = $this->exec_query_insert('rapport', $query);
         
         while($row = $res->fetch()) {
             for($i = 0; $i < $row['optional']; $i++) {

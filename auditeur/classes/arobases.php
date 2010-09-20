@@ -12,14 +12,13 @@ class arobases extends modules {
         $this->clean_rapport();
 
         $query = <<<SQL
-INSERT INTO <rapport> 
 SELECT NULL, TC.fichier, TC.code AS code, T1.id, '{$this->name}', 0
     FROM <tokens> T1
     LEFT JOIN <tokens_cache>  TC 
     ON T1.id = TC.id 
     WHERE T1.type='noscream' 
 SQL;
-        $this->exec_query($query);
+        $this->exec_query_insert('rapport', $query);
         
         return true;
     }

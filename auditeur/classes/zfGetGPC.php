@@ -13,13 +13,12 @@ class zfGetGPC extends modules {
 
 	    $query = <<<SQL
 SELECT NULL, T1.fichier, T1.code, T1.id, '{$this->name}', 0
-    FROM <tokens> T1
-    JOIN  <tokens_tags> TT
-        ON TT.token_sub_id = T1.id
-    WHERE 
-        T1.code in ("getRequest",'getPost','getParams','getParam','isErrors','isValid','isPost','getModuleName','getControllerName','getActionName','getParameterValue')
-        AND TT.type='fonction'
-    ;
+FROM <tokens> T1
+JOIN <tokens_tags> TT
+    ON TT.token_sub_id = T1.id
+WHERE
+    T1.code in ("getRequest",'getPost','getParams','getParam','isErrors','isValid','isPost','getModuleName','getControllerName','getActionName','getParameterValue') AND 
+    TT.type='fonction'
 SQL;
 
     $this->exec_query_insert('rapport', $query);

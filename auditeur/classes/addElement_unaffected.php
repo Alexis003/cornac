@@ -16,9 +16,7 @@ class addElement_unaffected extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
-// @todo of course, update this useless query. :)
 	    $query = <<<SQL
-INSERT INTO <rapport>
 SELECT NULL, T1.fichier, concat('ligne ',T1.ligne), T1.id, '{$this->name}', 0
 FROM affility_rapport TR
 JOIN affility T1
@@ -36,7 +34,7 @@ LEFT JOIN affility T3
 WHERE TR.module='addElement' AND
       T3.id IS NULL
 SQL;
-        $this->exec_query($query);
+        $this->exec_query_insert('rapport', $query);
         
         return true;
 	}

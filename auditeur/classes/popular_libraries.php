@@ -26,7 +26,6 @@ class popular_libraries extends modules {
 
             // @doc search for usage as class extensions
             $query = <<<SQL
-INSERT INTO <rapport>
 SELECT NULL, T1.fichier, '$ext', T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens_tags> TT 
@@ -38,16 +37,15 @@ JOIN <tokens> T2
        T2.code IN ($in)
 WHERE T1.type='_class'; 
 SQL;
-            $this->exec_query($query);
+            $this->exec_query_insert('rapport', $query);
 
             // @doc search for usage as instanciation
             $query = <<<SQL
-INSERT INTO <rapport>
 SELECT NULL, TR.fichier, '$ext', TR.id, '{$this->name}', 0
 FROM <rapport> TR
 WHERE TR.element IN ($in); 
 SQL;
-            $this->exec_query($query);
+            $this->exec_query_insert('rapport', $query);
         }
 
         

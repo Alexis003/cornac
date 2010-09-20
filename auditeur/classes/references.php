@@ -17,7 +17,6 @@ class references extends modules {
         $this->clean_rapport();
 
 	    $query = <<<SQL
-INSERT INTO <rapport>
 SELECT NULL, T1.fichier, TC.code, T1.id, '{$this->name}', 0
     FROM <tokens> T1
     JOIN <tokens> T2
@@ -27,7 +26,7 @@ SELECT NULL, T1.fichier, TC.code, T1.id, '{$this->name}', 0
         ON TC.id = T2.id
     WHERE T1.type = 'reference' 
 SQL;
-        $this->exec_query($query);
+        $this->exec_query_insert('rapport', $query);
         
         return true;
 	}

@@ -13,16 +13,15 @@ class ifsanselse extends modules {
 
         $concat = $this->concat("T2.class","'->'","T2.code");
 	    $query = <<<SQL
-INSERT INTO <rapport>
-   SELECT NULL, T1.fichier, SUM(TT.type = 'else')  AS elsee, T1.id, '{$this->name}', 0
-    FROM <tokens> T1
-    LEFT join <tokens_tags> TT ON
-        T1.id = TT.token_id
-    WHERE T1.type = 'ifthen' 
-    GROUP by fichier, droite
-    HAVING elsee = 0;
+SELECT NULL, T1.fichier, SUM(TT.type = 'else')  AS elsee, T1.id, '{$this->name}', 0
+FROM <tokens> T1
+LEFT join <tokens_tags> TT 
+    ON T1.id = TT.token_id
+WHERE T1.type = 'ifthen' 
+GROUP BY fichier, droite
+HAVING elsee = 0;
 SQL;
-        $this->exec_query($query);
+        $this->exec_query_insert('rapport', $query);
         
         return true;
 	}

@@ -12,7 +12,6 @@ class gpc_variables extends modules {
         $this->clean_rapport();
 
         $query = <<<SQL
-INSERT INTO <rapport>
 SELECT NULL, T1.fichier, T3.code, T1.id, '{$this->name}', 0
     FROM <tokens> T1
     JOIN <tokens> T2
@@ -26,7 +25,7 @@ SELECT NULL, T1.fichier, T3.code, T1.id, '{$this->name}', 0
            T1.fichier = T3.fichier
     WHERE T1.type='tableau'
 SQL;
-        $res = $this->exec_query($query);
+        $res = $this->exec_query_insert('rapport', $query);
 	}
 }
 
