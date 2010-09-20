@@ -23,7 +23,7 @@ class defconstantes_Test extends Auditeur_Framework_TestCase
     public function testdefconstantes()  { 
         $this->expected = array( 'DEFINED_CONSTANTS',
                                   'DEFINED_CONSTANTS2',);
-        $this->inexpected = array('true',
+        $this->unexpeted = array('true',
                                   '__METHOD__',
                                   'UNDEFINED_CONSTANTE',);
         

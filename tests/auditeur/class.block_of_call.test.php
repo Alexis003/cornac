@@ -34,7 +34,7 @@ block5(4)',
 block3(1)
 block3(2)'
                                 );
-        $this->inexpected = array();
+        $this->unexpeted = array();
         
         parent::generic_test();
     }

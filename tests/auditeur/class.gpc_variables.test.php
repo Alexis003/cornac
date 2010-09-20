@@ -22,7 +22,7 @@ class gpc_variables_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
         $this->expected = array('a','z','y','x');
-        $this->inexpected = array();
+        $this->unexpeted = array();
         
         parent::generic_test();
     }

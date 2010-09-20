@@ -22,7 +22,7 @@ class undefined_properties_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
         $this->expected = array('undefined');
-        $this->inexpected = array('public_defined_inited','protected_defined_inited','private_defined_inited','var_defined_inited');
+        $this->unexpeted = array('public_defined_inited','protected_defined_inited','private_defined_inited','var_defined_inited');
         
         parent::generic_test();
     }

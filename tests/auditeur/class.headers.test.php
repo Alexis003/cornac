@@ -22,7 +22,7 @@ class headers_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
         $this->expected = array('header', 'setcookie','setrawcookie');
-        $this->inexpected = array();
+        $this->unexpeted = array();
         
         parent::generic_test();
     }

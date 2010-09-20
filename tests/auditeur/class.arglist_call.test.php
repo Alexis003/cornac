@@ -27,7 +27,7 @@ class arglist_call_Test extends Auditeur_Framework_TestCase
     'call_two_3_arg(2 args)',
     'call_two_arg(2 args)',
 );
-        $this->inexpected = array();
+        $this->unexpeted = array();
         
         parent::generic_test();
     }

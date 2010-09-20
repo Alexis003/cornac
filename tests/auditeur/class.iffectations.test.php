@@ -23,7 +23,7 @@ class iffectations_Test extends Auditeur_Framework_TestCase
     public function testVariables()  { 
         $this->expected = array('$x = 1',
                                 '$z = 3',);
-        $this->inexpected = array('$y = 2',
+        $this->unexpeted = array('$y = 2',
                                   '$b = 6',
                                   '$a = 5',);
         

@@ -121,7 +121,7 @@ class image_functions_Test extends Auditeur_Framework_TestCase
 'jpeg2wbmp',
 'png2wbmp',
 );
-        $this->inexpected = array(/*'',*/);
+        $this->unexpeted = array(/*'',*/);
         
         parent::generic_test();
     }

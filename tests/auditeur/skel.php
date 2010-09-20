@@ -57,7 +57,7 @@ class {$analyzer}_Test extends Auditeur_Framework_TestCase
 {
     public function test{$analyzer}()  { 
         \$this->expected = array( '');
-        \$this->inexpected = array(/*'',*/);
+        \$this->unexpeted = array(/*'',*/);
         
         parent::generic_test();
 //        parent::generic_counted_test();

@@ -24,7 +24,7 @@ class arobases_Test extends Auditeur_Framework_TestCase
         $this->expected = array(
         '@$x','@$a->prop','@new StdClass()','@substr(1, 1, 1)','@1',
         );
-        $this->inexpected = array('$c','$y');
+        $this->unexpeted = array('$c','$y');
         
         parent::generic_test();
     }

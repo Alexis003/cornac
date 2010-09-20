@@ -32,7 +32,7 @@ class indenting_Test extends Auditeur_Framework_TestCase
 '_class,_function',
 '_class',
  );
-        $this->inexpected = array();
+        $this->unexpeted = array();
         
         parent::generic_test();
     }

@@ -22,7 +22,7 @@ class upload_functions_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
         $this->expected = array('move_uploaded_file','is_uploaded_file','rename',);
-        $this->inexpected = array();
+        $this->unexpeted = array();
         
         parent::generic_test();
     }

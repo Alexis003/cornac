@@ -27,7 +27,7 @@ class inclusions_Test extends Auditeur_Framework_TestCase
                                 'require_once',
                                 
                                 );
-        $this->inexpected = array();
+        $this->unexpeted = array();
         
         parent::generic_test();
     }

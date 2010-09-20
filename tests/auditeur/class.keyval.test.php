@@ -28,7 +28,7 @@ class keyval_Test extends Auditeur_Framework_TestCase
                                 '$k',
                                 '$l',
                                 );
-        $this->inexpected = array();
+        $this->unexpeted = array();
         
         parent::generic_test();
     }

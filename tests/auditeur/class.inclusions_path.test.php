@@ -25,7 +25,7 @@ class inclusions_path_Test extends Auditeur_Framework_TestCase
                                 '$this->inclusion()',
                                 'PATH.$fichier'
                                 );
-        $this->inexpected = array();
+        $this->unexpeted = array();
         
         parent::generic_test();
     }

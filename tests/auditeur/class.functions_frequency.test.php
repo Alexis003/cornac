@@ -22,7 +22,7 @@ class functions_frequency_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
         $this->expected = array('echo','echo','echo');
-        $this->inexpected = array();
+        $this->unexpeted = array();
         
         parent::generic_counted_test();
     }

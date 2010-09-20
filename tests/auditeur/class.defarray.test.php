@@ -30,7 +30,7 @@ class defarray_Test extends Auditeur_Framework_TestCase
         '2 elements',
         '5 elements',
         );
-        $this->inexpected = array();
+        $this->unexpeted = array();
         
         parent::generic_counted_test();
     }

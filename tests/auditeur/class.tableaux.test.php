@@ -22,7 +22,7 @@ class tableaux_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
         $this->expected = array('$a[1]','$b[2]','$b[2][3]','$e[$f[1]]','$f[1]','$d[$e[$f[1]]]');
-        $this->inexpected = array('$c','$g' );
+        $this->unexpeted = array('$c','$g' );
         
         parent::generic_test();
     }

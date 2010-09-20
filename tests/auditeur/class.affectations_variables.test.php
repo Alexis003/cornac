@@ -29,7 +29,7 @@ class Affectations_variables_Test extends Auditeur_Framework_TestCase
                                 '$l','$m',
                                 '$fe_key',
                                 '$fe_value','$fe_value2');
-        $this->inexpected = array('$e','$h','$i',
+        $this->unexpeted = array('$e','$h','$i',
                                   'propriete','$fe_array',
                                   '$fe_array2','$fe_array3',
                                   '$fe_key3',);

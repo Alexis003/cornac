@@ -22,7 +22,7 @@ class dangerous_combinaisons_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
         $this->expected = array('worm_post');
-        $this->inexpected = array('worm_get','worm_request' );
+        $this->unexpeted = array('worm_get','worm_request' );
         
         parent::generic_test();
     }

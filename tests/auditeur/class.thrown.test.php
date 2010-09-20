@@ -22,7 +22,7 @@ class thrown_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
         $this->expected = array('Exception', );
-        $this->inexpected = array();
+        $this->unexpeted = array();
         
         parent::generic_test();
     }

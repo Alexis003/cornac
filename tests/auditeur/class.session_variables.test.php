@@ -22,7 +22,7 @@ class session_variables_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
         $this->expected = array('x');
-        $this->inexpected = array();
+        $this->unexpeted = array();
         
         parent::generic_test();
     }

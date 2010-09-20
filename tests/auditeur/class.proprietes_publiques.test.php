@@ -25,7 +25,7 @@ class proprietes_publiques_Test extends Auditeur_Framework_TestCase
                                  'x::$static_public_prop',
                                  'x::$public_static_prop',
                                  );
-        $this->inexpected = array('$protected_prop',
+        $this->unexpeted = array('$protected_prop',
                                   '$private_prop',
                                   '$static_protected_prop',
                                   '$static_private_prop');

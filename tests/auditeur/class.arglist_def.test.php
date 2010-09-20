@@ -31,7 +31,7 @@ class arglist_def_Test extends Auditeur_Framework_TestCase
                                 'four_2_arg(3 args)',
                                 'four_2_arg(4 args)'
 );
-        $this->inexpected = array();
+        $this->unexpeted = array();
         
         parent::generic_test();
     }

@@ -22,7 +22,7 @@ class literals_reused_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
         $this->expected = array('b_reused','c_reused_thrice','1');
-        $this->inexpected = array('$d','a_not_reused','$a');
+        $this->unexpeted = array('$d','a_not_reused','$a');
         
         parent::generic_test();
     }
