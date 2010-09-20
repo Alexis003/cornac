@@ -96,6 +96,11 @@ $tests = array(
 'class.dieexit.test.php',
 'class.keyval.test.php',
 'class.ldap_functions.test.php',
+'class.handlers.test.php',
+'class.unused_args.test.php',
+'class.php_functions_name_conflict.test.php',
+'class.php_constant_name_conflict.test.php',
+'class.php_classes_name_conflict.test.php',
 // new tests
 );
 
