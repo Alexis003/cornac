@@ -21,13 +21,13 @@ include_once('Auditeur_Framework_TestCase.php');
 class constantes_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
-        $this->attendus = array(
+        $this->expected = array(
             'true','FALSE','__METHOD__','__FILE__','CONSTANTE_USER',
             'CONSTANTE_FONCTION1','CONSTANTE_FONCTION2','CONSTANTE_FONCTION3',
             'CONSTANTE_ARRAY1','CONSTANTE_ARRAY2','CONSTANTE_ARRAY3',
             'CONSTANTE_TABLEAU',
         );
-        $this->inattendus = array('fonction','array');
+        $this->inexpected = array('fonction','array');
         
         parent::generic_test();
     }

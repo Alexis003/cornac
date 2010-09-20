@@ -89,6 +89,13 @@ $tests = array(
 'class.variables_lots_of_letter.test.php',
 'class.regex.test.php',
 'class.fluid_interface.test.php',
+'class.ereg_functions.test.php',
+'class.error_functions.test.php',
+'class.image_functions.test.php',
+'class.proprietes_publiques.test.php',
+'class.dieexit.test.php',
+'class.keyval.test.php',
+'class.ldap_functions.test.php',
 // new tests
 );
 

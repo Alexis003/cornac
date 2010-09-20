@@ -56,8 +56,8 @@ include_once('Auditeur_Framework_TestCase.php');
 class {$analyzer}_Test extends Auditeur_Framework_TestCase
 {
     public function test{$analyzer}()  { 
-        \$this->attendus = array( '');
-        \$this->inattendus = array(/*'',*/);
+        \$this->expected = array( '');
+        \$this->inexpected = array(/*'',*/);
         
         parent::generic_test();
 //        parent::generic_counted_test();

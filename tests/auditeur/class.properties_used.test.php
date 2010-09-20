@@ -21,8 +21,8 @@ include_once('Auditeur_Framework_TestCase.php');
 class properties_used_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
-        $this->attendus = array('x->a','x->b','x->c','x->d','x->e','$autre->am', '$x->a');
-        $this->inattendus = array();
+        $this->expected = array('x->a','x->b','x->c','x->d','x->e','$autre->am', '$x->a');
+        $this->inexpected = array();
         
         parent::generic_test();
     }

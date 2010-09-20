@@ -21,7 +21,7 @@ include_once('Auditeur_Framework_TestCase.php');
 class classes_nb_methods_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
-        $this->attendus = array(
+        $this->expected = array(
 'one_method_class',
 'two_method_class',
 'two_method_class',
@@ -30,7 +30,7 @@ class classes_nb_methods_Test extends Auditeur_Framework_TestCase
 'three_method_class',
 
 );
-        $this->inattendus = array();
+        $this->inexpected = array();
         
         parent::generic_counted_test();
     }

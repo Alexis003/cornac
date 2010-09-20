@@ -21,8 +21,8 @@ include_once('Auditeur_Framework_TestCase.php');
 class php_modules_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
-        $this->attendus = array('simplexml','sqlite','standard','phar','soap','mcrypt','core' );
-        $this->inattendus = array('xdebug', 'custom_function');
+        $this->expected = array('simplexml','sqlite','standard','phar','soap','mcrypt','core' );
+        $this->inexpected = array('xdebug', 'custom_function');
         
         parent::generic_test();
     }

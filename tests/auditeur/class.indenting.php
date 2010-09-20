@@ -21,7 +21,7 @@ include_once('Auditeur_Framework_TestCase.php');
 class indenting_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
-        $this->attendus = array(
+        $this->expected = array(
 '_class,_function,ifthen,_foreach,ifthen,_switch,_case,_while,_dowhile',
 '_class,_function,ifthen,_foreach,ifthen,_switch,_case,_while',
 '_class,_function,ifthen,_foreach,ifthen,_switch,_case',
@@ -32,7 +32,7 @@ class indenting_Test extends Auditeur_Framework_TestCase
 '_class,_function',
 '_class',
  );
-        $this->inattendus = array();
+        $this->inexpected = array();
         
         parent::generic_test();
     }

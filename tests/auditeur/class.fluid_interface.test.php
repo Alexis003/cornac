@@ -21,11 +21,10 @@ include_once('Auditeur_Framework_TestCase.php');
 class fluid_interface_Test extends Auditeur_Framework_TestCase
 {
     public function testfluid_interface()  { 
-        $this->attendus = array( '');
-        $this->inattendus = array(/*'',*/);
+        $this->expected = array( '$that->is->a->fluid');
+        $this->inexpected = array(/*'',*/);
         
         parent::generic_test();
-//        parent::generic_counted_test();
     }
 }
 ?>

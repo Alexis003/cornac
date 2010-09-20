@@ -21,8 +21,8 @@ include_once('Auditeur_Framework_TestCase.php');
 class doubledefclass_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
-        $this->attendus = array('double_class');
-        $this->inattendus = array('unique_class',);
+        $this->expected = array('double_class');
+        $this->inexpected = array('unique_class',);
         
         parent::generic_test();
     }

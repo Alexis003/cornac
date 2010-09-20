@@ -21,8 +21,8 @@ include_once('Auditeur_Framework_TestCase.php');
 class _new_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
-        $this->attendus = array('$a','$asp','StdClass', 'classe_sans_parenthese','z');
-        $this->inattendus = array('$x','$z');
+        $this->expected = array('$a','$asp','StdClass', 'classe_sans_parenthese','z');
+        $this->inexpected = array('$x','$z');
         
         parent::generic_test();
     }

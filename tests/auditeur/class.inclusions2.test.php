@@ -21,13 +21,13 @@ include_once('Auditeur_Framework_TestCase.php');
 class inclusions2_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
-        $this->attendus = array('include',
+        $this->expected = array('include',
                                 'include_once',
                                 'require',
                                 'require_once',
                                 
                                 );
-        $this->inattendus = array();
+        $this->inexpected = array();
         
         parent::generic_test();
     }

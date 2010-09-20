@@ -21,8 +21,8 @@ include_once('Auditeur_Framework_TestCase.php');
 class vardump_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
-        $this->attendus = array('var_dump','print_r');
-        $this->inattendus = array();
+        $this->expected = array('var_dump','print_r');
+        $this->inexpected = array();
 
         parent::generic_test();
     }

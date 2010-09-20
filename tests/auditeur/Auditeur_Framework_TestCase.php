@@ -31,7 +31,7 @@ cd ../..
 cd auditeur
 ./auditeur.php -d -p tu -I testsunitaires
 SHELL;
-    $retour = shell_exec($shell);
+    $return = shell_exec($shell);
     $fin = microtime(true);
     print "  Done (".number_format(($fin - $debut), 2)." s)\n";
 }
@@ -42,7 +42,7 @@ if (in_array('-a', $args)) {
 cd ../../auditeur
 ./auditeur.php -d -p tu -I testsunitaires
 SHELL;
-    $retour = shell_exec($shell);
+    $return = shell_exec($shell);
     $fin = microtime(true);
     print "  Done (".number_format(($fin - $debut), 2)." s)\n";
 }
@@ -59,36 +59,26 @@ class Auditeur_Framework_TestCase  extends PHPUnit_Framework_TestCase {
 php -l ./scripts/{$this->prefix}.php
 SHELL;
 
-        $retour = shell_exec($shell);
-        if ($retour != "No syntax errors detected in ./scripts/".$this->prefix.".php
-") {
+        $return = shell_exec($shell);
+        if ($return != "No syntax errors detected in ./scripts/".$this->prefix.".php"."\n") {
             $this->assertFalse(true, "Script scripts/".$this->prefix.".php doesn't compile\n");
-}
+        }
 
-        $shell = <<<SHELL
-cd ../../auditeur
-./reader.php -I testsunitaires -a {$this->prefix} -f ./tests/auditeur/scripts/{$this->prefix}.php
-SHELL;
+        $sx = $this->read_log();
 
-        $retour = shell_exec($shell);
-        file_put_contents('log/'.$this->prefix.'.log', $retour);
-        // @note first log, then process.
-        
-        $sx = simplexml_load_string($retour);
-        
         $elements = array();
         foreach($sx as $element) {
             $elements[$element->element.""] = $element->element."";
         }
 
-        foreach($this->attendus as $attendu) {
-            $this->assertTrue(in_array($attendu, $elements), "Couldn't find expected '$attendu'\n");
-            unset($elements[$attendu]);
+        foreach($this->expected as $expected) {
+            $this->assertTrue(in_array($expected, $elements), "Couldn't find expected '$expected'\n");
+            unset($elements[$expected]);
         }
 
-        foreach($this->inattendus as $inattendu) {
-            $this->assertTrue(!in_array($inattendu, $elements), "Found '$inattendu', but it shouldn\'t be\n");
-            unset($elements[$inattendu]);
+        foreach($this->inexpected as $inexpected) {
+            $this->assertTrue(!in_array($inexpected, $elements), "Found '$inexpected', but it shouldn\'t be\n");
+            unset($elements[$inexpected]);
         }
         
         if (!empty($elements)) {
@@ -102,40 +92,28 @@ SHELL;
 php -l ./scripts/{$this->prefix}.php
 SHELL;
 
-        $retour = shell_exec($shell);
-        if ($retour != "No syntax errors detected in ./scripts/".$this->prefix.".php
-") {
-            print $retour; 
+        $return = shell_exec($shell);
+        if ($return != "No syntax errors detected in ./scripts/".$this->prefix.".php\n") {
+            print $return; 
             $this->assertFalse(true, "Script scripts/".$this->prefix.".php doesn't compile\n");
 }
 
-        $shell = <<<SHELL
-cd ../../auditeur
-./reader.php -I testsunitaires -F xml -a {$this->prefix} -f ./tests/auditeur/scripts/{$this->prefix}.php
-SHELL;
-
-        $retour = shell_exec($shell);
-        $this->assertTrue(!empty($retour),'reader is empty');
-        $this->assertTrue(strpos($retour, 'Usage : ') === false);
-
-        file_put_contents('log/'.$this->prefix.'.log', $retour);
-
-        $sx = simplexml_load_string($retour);
+        $sx = $this->read_log();
 
         $elements = array();
         foreach($sx as $element) {
             $elements[] = $element->element."";
         }
 
-        foreach($this->attendus as $attendu) {
-            $id = array_search($attendu, $elements);
-            $this->assertTrue($id !== false , "Couldn't find one of the expected '$attendu'\n");
+        foreach($this->expected as $expected) {
+            $id = array_search($expected, $elements);
+            $this->assertTrue($id !== false , "Couldn't find one of the expected '$expected'\n");
             unset($elements[$id]);
         }
 
-        foreach($this->inattendus as $inattendu) {
-            $id = array_search($attendu, $elements);
-            $this->assertTrue($id === false, "Found '$inattendu', but it shouldn\'t be\n");
+        foreach($this->inexpected as $inexpected) {
+            $id = array_search($expected, $elements);
+            $this->assertTrue($id === false, "Found '$inexpected', but it shouldn\'t be\n");
             unset($elements[$id]);
         }
         
@@ -143,6 +121,29 @@ SHELL;
             $elements = array_map('addslashes', $elements);
             $this->assertTrue(false, "".count($elements)." objects were found, but they are not processed by the tests ('".join("', '", $elements)."')");
         }
+    }
+
+    function read_log() {
+
+        $shell = <<<SHELL
+cd ../../auditeur
+./reader.php -I testsunitaires -F xml -a {$this->prefix} -f ./tests/auditeur/scripts/{$this->prefix}.php
+SHELL;
+
+        $return = shell_exec($shell);
+
+        file_put_contents('log/'.$this->prefix.'.log', $return);
+        $this->assertTrue(!empty($return),'reader didn\'t return anything');
+        $this->assertTrue(strpos($return, 'Usage : ') === false,'reader returned a usage error');
+        $this->assertContains('<?xml version="1.0" encoding="UTF-8"?>',$return); 
+        $this->assertEquals(substr($return, 0, 38), '<?xml version="1.0" encoding="UTF-8"?'.'>', "reader didn'\t return valid XML."); 
+        $this->assertNotEquals($return, '<?xml version="1.0" encoding="UTF-8"?'.'>
+<document />', "Reader provided empty log");
+
+        
+        $sx = simplexml_load_string($return);
+        
+        return $sx;
     }
 }
 

@@ -21,7 +21,7 @@ include_once('Auditeur_Framework_TestCase.php');
 class multidimarray_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
-        $this->attendus = array(
+        $this->expected = array(
 //'$x1[1]',
 '$x2[2][3]',
 '$x3[4][5][6]',
@@ -35,7 +35,7 @@ class multidimarray_Test extends Auditeur_Framework_TestCase
 '$x3[][]',
 '$x6[10][20][30][40][50][60]',
 );
-        $this->inattendus = array();
+        $this->inexpected = array();
         
         parent::generic_counted_test();
     }
