@@ -267,7 +267,7 @@ $subgraph
   `checked` tinyint(1) NOT NULL,
   KEY `element` (`element`),
   KEY `module` (`module`)
-) ENGINE=HEAP DEFAULT CHARSET=latin1');
+) ENGINE=MyISAM DEFAULT CHARSET=latin1');
 
 // @todo handle nicely when tmp_rapport is already here!
         } elseif ($report == 'rapport_dot') {
