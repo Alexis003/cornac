@@ -49,7 +49,7 @@ WHERE T1.class = '' AND
 GROUP BY class, scope 
 HAVING SUM(if(type='_return' OR code IN ('die','exit'), 1, 0)) = 0;
 SQL;
-        $this->exec_query$query);
+        $this->exec_query_insert('rapport', $query);
         
         return true; 
 	}
