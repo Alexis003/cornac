@@ -57,11 +57,11 @@ define('STATS',$INI['stats']);
 define('VERBOSE',$INI['verbose']);
 
 define('LOG',$INI['log']);
-$limite = 0 + $INI['limit'];
-if ($limite) {
-    print "Cycles = $limite\n";
+$limit = 0 + $INI['limit'];
+if ($limit) {
+    print "Cycles = $limit\n";
 } else {
-    $limite = -1;
+    $limit = -1;
 }
 
 include('libs/database.php');
@@ -72,41 +72,58 @@ $DATABASE = new database();
 $files_processed = 0; 
 while(1 ) {
     if ($INI['slave'] > 0 && ($files_processed >= intval($INI['slave']))) {
-        print "Processed $files_processed files. Finishing.\n"; 
+        print "Processed all $files_processed files. Finishing.\n"; 
         die();
     }
 
-$times = array('debut' => microtime(true));
+    $times = array('debut' => microtime(true));
 
 // @todo attention, big TOCTOU!
-$query = 'SELECT * FROM <tasks> WHERE task="tokenize" AND completed = 0 LIMIT 1';
-$res = $DATABASE->query($query);
-$row = $res->fetch(PDO::FETCH_ASSOC);
+    $query = 'SELECT * FROM <tasks> WHERE task="tokenize" AND completed = 0 LIMIT 1';
+    $res = $DATABASE->query($query);
+    $row = $res->fetch(PDO::FETCH_ASSOC);
 
-if (!$row) { 
-    if ($INI['slave'] == 0) {
-        print "No more tasks to work on. Finishing.\n"; 
-        die();
-    } elseif ($INI['slave'] == -1) { // @note infinite loop
-        print "Sleeping for 30 secondes\n";
-        sleep(30);
-        continue; 
-    } else {
-        print "Sleeping for 30 secondes ( ".($INI['slave'] - $files_processed)." more to process)\n";
-        sleep(30);
-        continue; 
+    if (!$row) { 
+        if ($INI['slave'] == 0) {
+            print "No more tasks to work on. Finishing.\n"; 
+            die();
+        } elseif ($INI['slave'] == -1) { // @note infinite loop
+            print "Sleeping for 30 secondes\n";
+            sleep(30);
+            continue; 
+        } else {
+            print "Sleeping for 30 secondes ( ".($INI['slave'] - $files_processed)." more to process)\n";
+            sleep(30);
+            continue; 
+        }
+    }
+
+    $DATABASE->query('UPDATE <tasks> SET completed = 1, date_update=NOW() WHERE id = '.$DATABASE->quote($row['id']).' LIMIT 1');
+
+    $scriptsPHP = array($row['target'] => $row);
+    process_file($scriptsPHP, $limit);
+
+    $times['fin'] = microtime(true);
+
+    $DATABASE->query('UPDATE <tasks> SET completed = 100, date_update=NOW() WHERE id = '.$DATABASE->quote($row['id']).' LIMIT 1');
+
+    $debut = $times['debut'];
+    unset($times['debut']);
+
+    foreach($times as $key => $valeur) {
+        $times[$key] = floor(($valeur - $debut) * 1000);
     }
 }
+mon_die();
 
-$DATABASE->query('UPDATE <tasks> SET completed = 1, date_update=NOW() WHERE id = '.$DATABASE->quote($row['id']).' LIMIT 1');
+function process_file($scriptsPHP, $limit) {
+    global $file, $files_processed;
+    $FIN['fait'] = 0;
+    $FIN['trouves'] = 0;
 
-$scriptsPHP = array($row['target'] => $row);
-
-global $file;
-$FIN['fait'] = 0;
-$FIN['trouves'] = 0;
-
-foreach($scriptsPHP as $file => $config){
+    list($file, $config) = each($scriptsPHP);
+    
+//foreach($scriptsPHP as $file => $config){
     $FIN['trouves']++;
     print $file."\n";
     if (!file_exists($file)) { 
@@ -118,7 +135,7 @@ foreach($scriptsPHP as $file => $config){
     $exec = shell_exec('php -d short_open_tag=1 -d error_reporting=4177  -l '.escapeshellarg($file).' '); 
     if (trim($exec) != 'No syntax errors detected in '.$file) {
         print "Script \"$file\" can't be compiled by PHP\n$exec\n";
-        die();
+        return false;
     }
     
     $code = file_get_contents($file);
@@ -140,16 +157,10 @@ foreach($scriptsPHP as $file => $config){
     $brut = @token_get_all($code);
     if (count($brut) == 0) {
         print "No token found. Aborting\n";
-        die();
+        return false;
     }
     $nb_tokens_initial = count($brut);
-    
-    if (TOKENS) {
-       print_r($brut);
-       $times['fin'] = microtime(true);
-       mon_die();
-    }
-    
+
     $root = new Token();
     $suite = null;
     $ligne = 0;
@@ -246,7 +257,7 @@ foreach($scriptsPHP as $file => $config){
             break 1;
         }
         
-        if ($i == $limite) {
+        if ($i == $limit) {
             break 1;
         }
     }
@@ -258,7 +269,7 @@ foreach($scriptsPHP as $file => $config){
         } else {
             print "$nb_tokens_courant remain to be processed\n";
         }
-        die();
+        return false;
     }
 
     if (VERBOSE) {
@@ -299,15 +310,4 @@ foreach($scriptsPHP as $file => $config){
     $files_processed++; 
 }
 
-$times['fin'] = microtime(true);
-
-$DATABASE->query('UPDATE <tasks> SET completed = 100, date_update=NOW() WHERE id = '.$DATABASE->quote($row['id']).' LIMIT 1');
-
-$debut = $times['debut'];
-unset($times['debut']);
-foreach($times as $key => $valeur) {
-    $times[$key] = floor(($valeur - $debut) * 1000);
-}
-}
-mon_die();
 ?>

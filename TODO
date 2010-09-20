@@ -1,6 +1,5 @@
 use .ini for the web folder too
 see how tokclient may not stop stupidly, and keep going when there are still some tasks to do
-have auditeur do its insertion into a tmp table, and avoid blocking the <rapport> table
 
 Check fudforum binary protector (install.php)
 Merge TODO from auditeur.
@@ -45,8 +44,6 @@ Check for code coverage
 
 Move the chained list to SPL
 Move the analyze into SQL only ? (That would be too slow, because of the disk)
-
-Add a licence warning in every code source
 
 Stop script when option is unrecognized (any of them);
 Display dots when parsing the file (tokenizer)
