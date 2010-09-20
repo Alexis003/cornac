@@ -1,4 +1,4 @@
-<?php 
+<?php
 switch ( $x ) {
     case 2: $a->b();
             {

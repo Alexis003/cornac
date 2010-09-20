@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class multidimarray extends modules {
 	protected	$title = 'Tableaux multi-dimensionnels';

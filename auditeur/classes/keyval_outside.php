@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class keyval_outside extends modules {
 	protected	$title = 'Clé/valeurs hors de la boucle';

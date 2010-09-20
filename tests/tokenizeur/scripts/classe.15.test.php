@@ -1,4 +1,4 @@
-<?php 
+<?php
 class x {
     public function a() { $x = 1; } 
     private function b() { $x = 1; } 

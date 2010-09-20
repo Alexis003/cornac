@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class constantes_link extends modules {
 	protected	$title = 'Liens entre fichier par constante';

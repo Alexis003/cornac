@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class _this extends modules {
 	protected	$title = 'Utilisation indue de $this';

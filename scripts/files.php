@@ -19,6 +19,7 @@
  */
 
 include('../libs/getopts.php');
+include('../libs/write_ini_file.php');
 
 $args = $argv;
 if (get_arg($args, '-f')) { define('SHOW_FILES','true'); }
@@ -36,7 +37,7 @@ if ($dir = get_arg_value($args, '-D', '.')) {
 
 chdir($dir);
 
-$liste = Liste_directories_recursive('.');
+$liste = liste_directories_recursive('.');
 
 
 $dirs = array_map('dirname', $liste);
@@ -52,27 +53,6 @@ $exts = array_count_values($exts);
 if (SHOW_EXTS) { display($exts); }
 
 //print count($liste)." fichiers distincts\n";
-
-function liste_directories_recursive( $path = '.', $level = 0 ){ 
-    $ignore = array( 'cgi-bin', '.', '..' ); 
-
-    $dh = opendir( $path ); 
-    if (!is_resource($dh)) { return array(); }
-    $retour = array();
-    while( false !== ( $file = readdir( $dh ) ) ){ 
-        if( !in_array( $file, $ignore ) ){ 
-            if( is_dir( "$path/$file" ) ){ 
-                $r = Liste_directories_recursive( "$path/$file", ($level+1) ); 
-                $retour = array_merge($retour, $r);
-            } else { 
-                $retour[] = "$path/$file";
-            } 
-        } 
-    } 
-     
-    closedir( $dh ); 
-    return $retour;
-} 
 
 function cb_exts($filename) {
     $filename = basename($filename);

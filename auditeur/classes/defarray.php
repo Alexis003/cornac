@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class defarray extends modules {
 	protected	$title = 'Listes en tableaux ';

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class functions_with_callback extends modules {
 	protected	$title = 'Fonctions avec callback';

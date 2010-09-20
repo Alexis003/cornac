@@ -1,4 +1,4 @@
-<?php 
+<?php
 class a {
   const b = 'c';
   const f = 1;

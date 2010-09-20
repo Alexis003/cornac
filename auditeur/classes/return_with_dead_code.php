@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class return_with_dead_code extends modules {
 	protected	$title = 'Return avec code mort';

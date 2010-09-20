@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class keyval extends modules {
 	protected	$title = 'Variables de foreach';

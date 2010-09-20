@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class popular_libraries extends modules {
 	protected	$title = 'Bibliothèques courantes';

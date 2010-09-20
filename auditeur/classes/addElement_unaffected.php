@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class addElement_unaffected extends modules {
 	protected	$title = 'addElement non affectés ';

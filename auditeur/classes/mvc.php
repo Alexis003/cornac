@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class mvc extends modules {
 	protected	$title = 'Types de fichiers MVC';

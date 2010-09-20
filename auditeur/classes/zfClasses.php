@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class zfClasses extends modules {
 	protected	$title = 'Classes du Zend Framework';

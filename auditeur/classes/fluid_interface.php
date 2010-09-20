@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class fluid_interface extends modules {
 	protected	$title = 'Titre pour fluid_interface';

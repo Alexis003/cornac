@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class functions_lines extends modules {
 	protected	$title = 'Lignes';

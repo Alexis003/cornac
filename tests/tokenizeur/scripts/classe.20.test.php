@@ -1,4 +1,4 @@
-<?php 
+<?php
 class x {
 //    static protected $a;
     static protected $a, $b, $c;

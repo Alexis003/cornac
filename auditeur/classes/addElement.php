@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class addElement extends modules {
 	protected	$title = 'addElement utilisés';

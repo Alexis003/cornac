@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class references extends modules {
 	protected	$title = 'References';

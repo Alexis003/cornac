@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class callback_functions extends modules {
 	protected	$title = 'Fonction de rappel';

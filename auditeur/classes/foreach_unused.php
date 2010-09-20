@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class foreach_unused extends modules {
 	protected	$title = 'Variables non utilisées d\'un foreach';

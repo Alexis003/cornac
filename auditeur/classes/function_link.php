@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class function_link extends modules {
 	protected	$title = 'Lien entre les fichiers via les fonctions';
