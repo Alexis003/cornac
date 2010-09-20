@@ -112,6 +112,7 @@ $stats = array();
 $ods = new ooo_ods();
 
 $ods->setRow('Sommaire',1, array(1 => 'Module','Nombre'));
+$ods->setRowCellsStyle('Sommaire', 1, "ce1");
 
 $cell_row = 1;
 foreach($headers as $name => $sql) {
@@ -166,16 +167,22 @@ foreach($names as $name => $conf) {
     }
     
     foreach($headers as $id => $header) {
-        $ods->cells[$name][1][$id + 1] = $header;
+        $ods->setCell($name, 1, $id + 1, $header);
+        $ods->setCellStyle($name, 1, $id + 1, "ce1");
+    }
 
-        $res = $DATABASE->query($query);
-        $rows = $res->fetchAll(PDO::FETCH_ASSOC);
+    $res = $DATABASE->query($query);
+    $rows = $res->fetchAll(PDO::FETCH_ASSOC);
     
-        foreach($columns as $id => $col) {
-            $r = multi2array($rows, $col);
-
-            $ods->setCol($name, $id + 1, $r);
-        }
+    if (count($rows) == 0) { continue; }
+    
+    foreach($columns as $id => $col) {
+       $r = multi2array($rows, $col);
+       $r[] = $r[0];
+       unset($r[0]);
+       $r[] = $r[1];
+       unset($r[1]);
+       $ods->setCol($name, $id + 1, $r);
     }
 }
 

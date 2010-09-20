@@ -172,6 +172,8 @@ $modules = array(
 'callback_functions',
 'functions_with_callback',
 'fluid_interface',
+'handlers',
+'php_functions_name_conflict',
 // new analyzers
 );
 
