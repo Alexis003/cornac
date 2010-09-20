@@ -88,6 +88,7 @@ $tests = array(
 'class.functions_with_callback.test.php',
 'class.variables_lots_of_letter.test.php',
 'class.regex.test.php',
+'class.fluid_interface.test.php',
 // new tests
 );
 
