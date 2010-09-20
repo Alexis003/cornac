@@ -35,7 +35,7 @@ WHERE T1.type='_function' AND
       T1.class != ''      AND
       T1.code = T1.scope
 SQL;
-        $this->exec_query($query);
+        $this->exec_query_insert('rapport', $query);
 
 	    return true;
 	}
