@@ -174,6 +174,8 @@ $modules = array(
 'fluid_interface',
 'handlers',
 'php_functions_name_conflict',
+'php_constant_name_conflict',
+'php_classes_name_conflict',
 // new analyzers
 );
 

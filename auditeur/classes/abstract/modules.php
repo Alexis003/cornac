@@ -170,7 +170,7 @@ function array_invert($array) {
     
     return $return;
 }
-*/
+
 function highlight_code($code) {
     $code = str_replace("\n",' ', $code);
     $code = highlight_string('<?php '.$code.' ?>', true);
@@ -223,7 +223,7 @@ $subgraph
 
     return $return;
 }
-
+*/
     function print_query($query) {
         print $this->prepare_query($query)."\n";
         die();
@@ -309,6 +309,25 @@ DELETE FROM <rapport_module> WHERE module='{$this->name}'
 SQL;
         $this->exec_query($query);
     }
+
+    static public function getPHPConstants($ext = null) {
+        if (is_null($ext)) {
+            $ini = parse_ini_file('../dict/constant2ext.ini', false);
+    
+    // @note : not useful, but maybe later...
+            $extras = array();
+
+            return array_merge($ini['constant'], $extras);
+        } else {
+            $ini = parse_ini_file('../dict/constant2ext.ini', true);
+            
+            if (isset($ini[$ext])) {
+                return $ini[$ext]['constant'];
+            } else {
+                return array();
+            }
+        }
+    }    
     
     static public function getPHPFunctions($ext = null) {
         if (is_null($ext)) {

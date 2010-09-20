@@ -1,8 +1,8 @@
 <?php
 
-class php_functions_name_conflict extends modules {
-	protected	$title = 'Conflits de noms avec des fonctions PHP';
-	protected	$description = 'Identifie des fonctions dont le nom est en conflit avec celles courantes de PHP';
+class php_classes_name_conflict extends modules {
+	protected	$title = 'Conflits de noms avec des classe PHP';
+	protected	$description = 'Identifie des classes dont le nom est en conflit avec celles courantes de PHP';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -10,21 +10,21 @@ class php_functions_name_conflict extends modules {
 
 // @doc if this analyzer is based on previous result, use this to make sure the results are here
 	function dependsOn() {
-	    return array('deffunctions');
+	    return array('classes');
 	}
 	
 	public function analyse() {
         $this->clean_rapport();
 
-        $functions = modules::getPHPFunctions();
-        $functions = join("','", $functions);
+        $classes = modules::getPHPClasses();
+        $classes = join("','", $classes);
 
 // @todo of course, update this useless query. :)
 	    $query = <<<SQL
 SELECT NULL, T1.fichier, T1.element, T1.id, '{$this->name}', 0
     FROM <rapport> T1
-    WHERE   T1.module = 'deffunctions' AND
-            T1.element IN ('$functions')
+    WHERE   T1.module = 'classes' AND
+            T1.element IN ('$classes')
 SQL;
         $this->exec_query_insert('rapport', $query);
         

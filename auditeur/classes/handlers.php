@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class handlers extends functioncalls {
 	protected	$title = 'Gestionnaires';
