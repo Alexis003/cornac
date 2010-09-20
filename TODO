@@ -1,12 +1,9 @@
+add a script to check ext sync between class/functions/classes (missing ones?)
+
 use .ini for the web folder too
-see how tokclient may not stop stupidly, and keep going when there are still some tasks to do
+see how tokclient may not stop stupidly, and keep going when there are still some tasks to do : Test this now
 
 Check fudforum binary protector (install.php)
-Merge TODO from auditeur.
-
-Move __CLASS__ to getclass($this);
-
-check that it works on one file only. 
 
 Finish translations of analyzers's title and description
 Make the english version
@@ -52,6 +49,8 @@ Display dots when processing analyzers (auditeur)
 Add a file lister, that will also display ignored files from tokenizeur (export current function to external scripts/)
 
 [tokenizeur]
+check that tokenizeur works on one file only, without database
+
 Spot php error during execution, and report it. 
 Could it be possible to chain results? Atm, one can do it manually, or creating a new analyzer
 Use JMF's style
