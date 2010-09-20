@@ -13,7 +13,6 @@ class tableaux extends modules {
 
 // @note simple situation : variable -> index
         $query = <<<SQL
-INSERT INTO <rapport> 
 SELECT NULL, T1.fichier, T2.code AS code, T1.id, '{$this->name}', 0
   FROM <tokens> T1
   JOIN <tokens_cache> T2 
@@ -21,7 +20,7 @@ SELECT NULL, T1.fichier, T2.code AS code, T1.id, '{$this->name}', 0
 WHERE 
  T1.type='tableau'
 SQL;
-        $this->exec_query($query);
+        $this->exec_query_insert('rapport', $query);
 
         return true;
 	}

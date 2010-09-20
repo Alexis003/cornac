@@ -13,7 +13,6 @@ class properties_defined extends modules {
 
         $concat = $this->concat("T2.class","'->'","T2.code");
         $query = <<<SQL
-INSERT INTO <rapport> 
 SELECT NULL, T1.fichier, $concat as code, T2.id, '{$this->name}' , 0
 FROM <tokens> T1
   JOIN <tokens> T2 
@@ -22,7 +21,7 @@ FROM <tokens> T1
   AND T2.type='variable'
 WHERE T1.class != 'global' AND T1.type='_var';
 SQL;
-        $this->exec_query($query);
+        $this->exec_query_insert('rapport',$query);
 
         return true;
     // @todo support methods and classes

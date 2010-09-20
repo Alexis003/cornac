@@ -9,7 +9,7 @@ class ereg_functions extends functioncalls {
 	}
 	
 	public function analyse() {
-	    $this->functions = array('ereg-replace.xml', 'ereg.xml', 'eregi-replace.xml',  'eregi.xml', 'split.xml', 'spliti.xml', 'sql-regcase.xml');
+	    $this->functions = modules::getPHPFunctions("ereg");
 	    parent::analyse();
 	    
 	    return true;

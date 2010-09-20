@@ -12,7 +12,6 @@ class regex extends modules {
         $this->clean_rapport();
 
         $query = <<<SQL
-INSERT INTO <rapport>
    SELECT NULL, T1.fichier, T2.code, T1.id, '{$this->name}', 0
    FROM <tokens> T1
    JOIN <tokens> T2
@@ -20,7 +19,7 @@ INSERT INTO <rapport>
       T2.droite = T1.droite + 3
    WHERE T1.code in ('preg_match','preg_replace','preg_replace_callback','preg_match_all')
 SQL;
-        $this->exec_query($query);
+        $this->exec_query_insert('rapport',$query);
 
         return true;
 	}

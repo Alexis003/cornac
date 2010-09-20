@@ -12,7 +12,6 @@ class undeffunctions extends modules {
         $this->clean_rapport();
 
         $query = <<<SQL
-INSERT INTO <rapport> 
    SELECT NULL, TR1.fichier, TR1.element, TR1.id, '{$this->name}', 0
    FROM <rapport> TR1
    LEFT JOIN <rapport> TR2 
@@ -20,7 +19,7 @@ INSERT INTO <rapport>
    WHERE TR1.module='functionscalls' AND
          TR2.element IS NULL;
 SQL;
-        $this->exec_query($query);
+        $this->exec_query_insert('rapport',$query);
 
         return true;
 	}

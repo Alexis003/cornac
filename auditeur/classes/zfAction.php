@@ -12,7 +12,6 @@ class zfAction extends modules {
         $this->clean_rapport();
 
 	    $query = <<<SQL
-INSERT INTO <rapport>
 SELECT NULL, T1.fichier, T1.code, T1.id, '{$this->name}', 0
     FROM <tokens> T1
     JOIN  <tokens_tags> TT
@@ -22,7 +21,7 @@ SELECT NULL, T1.fichier, T1.code, T1.id, '{$this->name}', 0
         AND TT.type = 'name'
     ;
 SQL;
-        $this->exec_query($query);
+        $this->exec_query_insert('rapport',$query);
         
         return true;
 	}

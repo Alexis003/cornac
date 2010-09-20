@@ -9,7 +9,7 @@ class image_functions extends functioncalls {
 	}
 	
 	public function analyse() {
-	    $this->functions = get_extension_funcs("gd");
+	    $this->functions = modules::getPHPFunctions("gd");
 	    parent::analyse();
 	    
 	    return true;

@@ -12,17 +12,15 @@ class variablesvariables extends modules {
         $this->clean_rapport();
 
         $query = <<<SQL
-INSERT INTO <rapport> 
    SELECT NULL, T1.fichier, TC.code AS code, T1.id, '{$this->name}', 0
    FROM <tokens> T1
     JOIN <tokens_cache> TC
         ON T1.id = TC.id  
     WHERE T1.type='variable'      AND 
           T1.gauche - T1.droite > 1
-          ;
 SQL;
 
-        $this->exec_query($query);
+        $this->exec_query_insert('rapport',$query);
 	}
 	
 }

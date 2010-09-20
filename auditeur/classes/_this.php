@@ -17,14 +17,13 @@ class _this extends modules {
         $this->clean_rapport();
 
 	    $query = <<<SQL
-INSERT INTO <rapport>
 SELECT NULL, T1.fichier, T1.code, T1.id, '{$this->name}', 0
     FROM tu T1
     WHERE code = '\$this' AND 
           class = ''      AND
           type = 'variable'
 SQL;
-        $this->exec_query($query);
+        $this->exec_query_insert('rapport', $query);
         
         return true;
 	}

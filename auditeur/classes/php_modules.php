@@ -19,12 +19,11 @@ class php_modules extends modules {
 	    
 	    // @section : searching via functions usage
 	    $query = <<<SQL
-INSERT INTO <rapport>
 SELECT NULL, fichier, element, token_id, '{$this->name}' , 0
     FROM <rapport> 
     WHERE module = 'php_functions'
 SQL;
-	    $res = $this->exec_query($query);
+	    $res = $this->exec_query_insert('rapport',$query);
 
 	    $query = <<<SQL
 SELECT DISTINCT element 

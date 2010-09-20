@@ -18,7 +18,6 @@ class return_with_dead_code extends modules {
 
 // @todo of course, update this useless query. :)
 	    $query = <<<SQL
-INSERT INTO <rapport>
 SELECT NULL, T1.fichier, CONCAT('ligne :',T1.ligne, ' : ', T1.fichier), T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens> T2
@@ -30,7 +29,7 @@ WHERE T1.type='_return' AND
       T2.gauche != T1.gauche + 2 AND 
       T2.level = T1.level - 2;
 SQL;
-        $this->exec_query($query);
+        $this->exec_query_insert('rapport',$query);
         
         return true;
 	}

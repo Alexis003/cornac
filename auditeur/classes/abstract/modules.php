@@ -114,7 +114,7 @@ abstract class modules {
         $this->exec_query("REPLACE INTO <rapport_module> VALUES ('$this->name', '$now', '{$this->format}', '{$this->web}')");
 
     }
-
+/*
 function array2li($array) {
     $return = '';
     if (count($array) == 0) { 
@@ -153,7 +153,7 @@ function array_invert($array) {
     
     return $return;
 }
-
+*/
 function highlight_code($code) {
     $code = str_replace("\n",' ', $code);
     $code = highlight_string('<?php '.$code.' ?>', true);
@@ -236,6 +236,41 @@ $subgraph
 
         return $res;
     }
+
+    function exec_query_insert($report, $query) {
+    // @todo support rapport and report_dot
+        if ($report == 'rapport') {
+        // @note be aware that tmp_table need id as NULL column, so auto_increment is managed in the report table
+        $this->mid->query('CREATE TEMPORARY TABLE IF NOT EXISTS tmp_rapport (
+  `id` tinyint(10),
+  `fichier` varchar(500) NOT NULL,
+  `element` varchar(10000) NOT NULL,
+  `token_id` int(10) unsigned NOT NULL,
+  `module` varchar(50) NOT NULL,
+  `checked` tinyint(1) NOT NULL,
+  KEY `element` (`element`),
+  KEY `module` (`module`)
+) ENGINE=HEAP DEFAULT CHARSET=latin1');
+
+// @todo handle nicely when tmp_rapport is already here!
+        } elseif ($report == 'rapport_dot') {
+            
+        } else {
+            print "\$report is not (rapport or rapport_dot) : $report\n\n";
+        } 
+
+        $query = "INSERT INTO tmp_rapport $query";
+        $this->exec_query($query);
+        
+        $query = "INSERT INTO <rapport> SELECT * FROM tmp_rapport";
+        $this->exec_query($query);
+        
+        $query = "DROP TABLE tmp_rapport";
+        $this->exec_query($query);
+
+        return true;
+    }
+    
     
     function dependsOn() {
         return array();

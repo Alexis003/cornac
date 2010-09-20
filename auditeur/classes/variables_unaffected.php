@@ -17,7 +17,6 @@ class variables_unaffected extends modules {
 	    // @todo take scope/class into account
 	    // @todo take foreach into account
         $query = <<<SQL
-INSERT INTO <rapport>
 SELECT NULL, TR1.fichier, TR1.element AS code, TR1.token_id, '{$this->name}', 0
 FROM <rapport> TR1
 LEFT JOIN <rapport> TR2
@@ -27,7 +26,7 @@ LEFT JOIN <rapport> TR2
 WHERE TR1.module='variables' AND 
       TR2.element IS NULL
 SQL;
-    	$this->exec_query($query);
+    	$this->exec_query_insert('rapport',$query);
 
         $query = <<<SQL
 DELETE FROM <rapport> 
