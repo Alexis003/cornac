@@ -1,5 +1,6 @@
 tests/tokenizeur/scripts/constante_classe.1.test.php
-  codephp <?php 
+  codephp <?php
+
   code : 
        class 307 "a"
           block 

@@ -1,5 +1,6 @@
 tests/tokenizeur/scripts/throw.3.test.php
-  codephp <?php 
+  codephp <?php
+
   code : 
       _throw 
           method variable $x

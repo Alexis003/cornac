@@ -1,5 +1,6 @@
 tests/tokenizeur/scripts/cast.13.test.php
-  codephp <?php 
+  codephp <?php
+
   code : 
       affectation 
       droite : 

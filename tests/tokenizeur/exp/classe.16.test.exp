@@ -1,5 +1,6 @@
 tests/tokenizeur/scripts/classe.16.test.php
-  codephp <?php 
+  codephp <?php
+
   code : 
       345 "final" class 307 "x"
           block 

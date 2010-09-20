@@ -1,5 +1,6 @@
 tests/tokenizeur/scripts/switch.17.test.php
-  codephp <?php 
+  codephp <?php
+
   code : 
       _switch 
           parentheses 

@@ -1,5 +1,6 @@
 tests/tokenizeur/scripts/sequence.34.test.php
-  codephp <?php 
+  codephp <?php
+
   code : 
       sequence 
       0 : 

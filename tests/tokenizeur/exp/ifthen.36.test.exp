@@ -1,5 +1,6 @@
 tests/tokenizeur/scripts/ifthen.36.test.php
-  codephp <?php 
+  codephp <?php
+
   code : 
       sequence 
       0 : 

@@ -1,5 +1,6 @@
 tests/tokenizeur/scripts/cdtternaire.11.test.php
-  codephp <?php 
+  codephp <?php
+
   code : 
       affectation 
       droite : 

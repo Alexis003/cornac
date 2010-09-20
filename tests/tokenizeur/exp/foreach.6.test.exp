@@ -1,5 +1,6 @@
 tests/tokenizeur/scripts/foreach.6.test.php
-  codephp <?php 
+  codephp <?php
+
   code : 
       _foreach (property variable $a->literals b as  => variable $c)
           block 

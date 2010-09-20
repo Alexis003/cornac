@@ -1,4 +1,5 @@
 tests/tokenizeur/scripts/property_static.4.test.php
-  codephp <?php 
+  codephp <?php
+
   code : 
       property_static 307 "self"::tableau variable $x[literals a]->

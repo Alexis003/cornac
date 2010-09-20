@@ -1,5 +1,6 @@
 tests/tokenizeur/scripts/sequence.19.test.php
-  codephp <?php 
+  codephp <?php
+
   code : 
       sequence 
       0 : 
@@ -65,5 +66,4 @@ tests/tokenizeur/scripts/sequence.19.test.php
                           literals 1
                       literals asc
   rawtext 
-  Texte : "311 "');
-""
+  Texte : "311 "');""

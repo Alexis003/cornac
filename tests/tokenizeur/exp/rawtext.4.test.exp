@@ -14,5 +14,3 @@ tests/tokenizeur/scripts/rawtext.4.test.php
               rawtext 
               Texte : "311 "b
 ""
-  rawtext 
-  Texte : "311 "  ""

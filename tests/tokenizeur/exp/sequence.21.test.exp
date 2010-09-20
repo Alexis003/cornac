@@ -1,5 +1,6 @@
 tests/tokenizeur/scripts/sequence.21.test.php
-  codephp <?php 
+  codephp <?php
+
   code : 
       affectation 
       droite : 

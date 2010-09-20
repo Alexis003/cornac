@@ -1,5 +1,6 @@
 tests/tokenizeur/scripts/method_static.6.test.php
-  codephp <?php 
+  codephp <?php
+
   code : 
       affectation 
       droite : 

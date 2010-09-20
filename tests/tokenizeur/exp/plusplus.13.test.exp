@@ -1,7 +1,6 @@
 tests/tokenizeur/scripts/plusplus.13.test.php
-  rawtext 
-  Texte : "311 " ""
-  codephp <?php 
+  codephp <?php
+
   code : 
       affectation 
       droite : 

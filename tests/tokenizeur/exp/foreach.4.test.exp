@@ -1,5 +1,6 @@
 tests/tokenizeur/scripts/foreach.4.test.php
-  codephp <?php 
+  codephp <?php
+
   code : 
       _foreach (tableau variable $a[literals 1] as  => variable $b)
           block 

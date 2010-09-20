@@ -1,5 +1,6 @@
 tests/tokenizeur/scripts/affectation.43.test.php
-  codephp <?php 
+  codephp <?php
+
   code : 
       ifthen if
       Condition 0) 
