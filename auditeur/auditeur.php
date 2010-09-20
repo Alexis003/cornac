@@ -154,6 +154,7 @@ $modules = array(
 'functions_lines',
 'callback_functions',
 'functions_with_callback',
+'fluid_interface',
 // new analyzers
 );
 
