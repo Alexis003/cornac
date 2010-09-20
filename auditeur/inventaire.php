@@ -83,9 +83,11 @@ $headers = array('Variables' => 'SELECT COUNT(DISTINCT element) FROM <rapport> W
                  'Classes'   => 'SELECT COUNT(DISTINCT element) FROM <rapport> WHERE module="classes"',
                  'Constantes'   => 'SELECT COUNT(DISTINCT element) FROM <rapport> WHERE module="defconstantes"',
                  'Utilise Zend Framework'   => 'SELECT COUNT(DISTINCT element) FROM <rapport> WHERE module="zfClasses"',
+                 'Interfaces'   => 'SELECT COUNT(DISTINCT element) FROM <rapport> WHERE module="interfaces"',
                  'Interfaces fluides'   => 'SELECT COUNT(DISTINCT element) FROM <rapport> WHERE module="fluid_interface"',
                  'References'   => 'SELECT COUNT(DISTINCT element) FROM <rapport> WHERE module="references"',
                  'Variables variables'   => 'SELECT COUNT(DISTINCT element) FROM <rapport> WHERE module="variablesvariables"',
+                 'Constantes de classes'   => 'SELECT COUNT(DISTINCT element) FROM <rapport> WHERE module="constantes_classes"',
                  );
 
 $stats = array();
