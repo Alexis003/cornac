@@ -18,12 +18,12 @@
  */
 
 class file2png {
-    private $scale=30;
+    private $scale=10;
     private $array = array();
     private $img = null;
     private $webcolors = array();
     private $colors = array();
-    
+
     function __construct() {
         $this->webcolors['aqua'] = '#00FFFF';
         $this->webcolors['gray'] = '#808080';
@@ -42,11 +42,11 @@ class file2png {
         $this->webcolors['red'] = '#FF0000';
         $this->webcolors['yellow'] = '#FFFF00';
     }
-    
+
     function setArray($array) {
         $this->array = $array;
     }
-    
+
     function process() {
         $this->path2array($this->array);
 
@@ -60,70 +60,70 @@ class file2png {
         imagefilledrectangle($this->img, 0, 0, $large * $this->scale -1, $deep * $this->scale -1, $white);
         imagerectangle($this->img, 0, 0, $large * $this->scale -1, $deep * $this->scale -1, $black);
 
-        $img = $this->draw($this->array);    
+        $img = $this->draw($this->array);
     }
-    
+
     function draw($array, &$x_dir = 0, $y_dir = 1) {
         $black = $this->getcolor('black');
         $red = $this->getcolor('red');
         $white = $this->getcolor('white');
-        
-        $init = $x_dir; 
+
+        $init = $x_dir;
         $x_leaf = $x_dir;
         $y_leaf = $y_dir;
-        
+
         foreach($array as $a) {
             if (!is_array($a)) {
                 list($file, $color) = explode(';', $a);
                 $color = $this->getcolor($color);
-                
+
                 imagefilledrectangle($this->img, $x_leaf * $this->scale, $y_leaf * $this->scale, ($x_leaf + 1) * $this->scale, ($y_leaf + 1) * $this->scale, $color);
                 imagerectangle($this->img, $x_leaf * $this->scale, $y_leaf * $this->scale, ($x_leaf + 1) * $this->scale, ($y_leaf + 1) * $this->scale, $white);
                 $y_leaf++;
             }
         }
-        
+
         if ($y_leaf > $y_dir) { $x_dir++; }
         foreach($array as $a) {
             if (is_array($a)) {
-                
+
                 // recursive
                 $y_dir++;
                 $this->draw($a, $x_dir, $y_dir);
                 $y_dir--;
                 // @note go on
-            } 
+            }
         }
-        
-        $end = $x_dir + 1; 
-    
+
+        $end = $x_dir + 1;
+
     // folder
-    
+
         $color = imagecolorallocate($this->img, rand(0,255),0,0);
         imagefilledrectangle($this->img, $init * $this->scale, ($y_dir - 1) * $this->scale, ($end -2 ) * $this->scale , ($y_dir ) * $this->scale, $white);
         imagerectangle($this->img, $init * $this->scale, ($y_dir - 1) * $this->scale, ($end -1) * $this->scale - 1, ($y_dir ) * $this->scale, $red);
-    }    
-    
+    }
+
     function save($filename = null) {
         if (!is_null($filename)) {
             imagepng($this->img, $filename);
         } else {
-        // @todo emit headers? 
+            header('Content-Type: image/png');
             imagepng($this->img);
         }
     }
-    
+
     function path2array() {
         $retour = array();
-    
+
         foreach($this->array as $path) {
             $dirs = explode('/', $path);
             $retour = array_merge_recursive($retour, array2multi($dirs));
         }
-    
+
         $this->array = $retour;
     }
-    
+
     function getcolor($color) {
         if (isset($this->colors[$color])) {
             return $this->colors[$color];
@@ -134,7 +134,7 @@ class file2png {
         $b = hexdec(substr($this->webcolors[$color], 5,6));
         return $this->colors[$color] = imagecolorallocate($this->img, $r, $g, $b);
     }
-    
+
     function large($array) {
         $large = 0;
         $leafs = 0;
@@ -145,17 +145,17 @@ class file2png {
                 $leafs++;
             }
         }
-        
+
         if ($leafs > 0) {
             $large++;
         }
-        
+
         return $large;
     }
-    
+
     function deep($array, $level = 0) {
         $depth = 1;
-        
+
         $max = 0;
         $leafs = 0;
         foreach($array as $a) {
@@ -166,13 +166,13 @@ class file2png {
                 $leafs++;
             }
         }
-        
+
         if ($leafs > $max + 1) {
             $depth = $leafs + 1;
         } else {
             $depth = $max + 1;
         }
-    
+
         return $depth;
     }
 }
