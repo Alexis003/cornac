@@ -1,4 +1,4 @@
-#!/usr/bin/php
+#!/usr/bin/env php
 <?php
 /*
    +----------------------------------------------------------------------+
@@ -55,10 +55,10 @@ include_once('Auditeur_Framework_TestCase.php');
 
 class {$analyzer}_Test extends Auditeur_Framework_TestCase
 {
-    public function test{$analyzer}()  { 
+    public function test{$analyzer}()  {
         \$this->expected = array( '');
         \$this->unexpeted = array(/*'',*/);
-        
+
         parent::generic_test();
 //        parent::generic_counted_test();
     }

@@ -1,4 +1,4 @@
-#!/usr/bin/php
+#!/usr/bin/env php
 <?php
 /*
    +----------------------------------------------------------------------+
@@ -26,13 +26,13 @@ if (get_arg($args, '-f')) { define('SHOW_FILES','true'); }
 if (get_arg($args, '-d')) { define('SHOW_DIRS','true'); }
 if (get_arg($args, '-e')) { define('SHOW_DIRS','true'); }
 
-if ($format = get_arg_value($args, '-F', 'print_r')) { 
+if ($format = get_arg_value($args, '-F', 'print_r')) {
     if (!in_array($format, array('print_r','csv','xml'))) { $format = 'print_r'; }
-    define('FORMAT', $format); 
+    define('FORMAT', $format);
 }
 if ($dir = get_arg_value($args, '-D', '.')) {
     if (!file_exists($dir)) { print "'$dir' doesn't exist\n"; die(); }
-    define('DIR', $dir);  
+    define('DIR', $dir);
 }
 
 chdir($dir);
@@ -57,7 +57,7 @@ if (SHOW_EXTS) { display($exts); }
 function cb_exts($filename) {
     $filename = basename($filename);
     $pos = strrpos($filename, '.');
-    return substr($filename, $pos); 
+    return substr($filename, $pos);
 }
 
 function display($list) {
@@ -67,8 +67,8 @@ function display($list) {
         print "<list>\n    <file>".join("</file>\n    <file>", $list)."</file>\n</list>\n";
     } elseif (FORMAT == 'csv') {
         print '"'.join("\"\n\"", $list).'"';
-    } 
-    
+    }
+
     return true;
 }
 ?>

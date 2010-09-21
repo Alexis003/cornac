@@ -1,4 +1,4 @@
-#!/usr/bin/php
+#!/usr/bin/env php
 <?php
 /*
    +----------------------------------------------------------------------+
@@ -56,7 +56,7 @@ include('libs/getopts.php');
 
 
 // @synopsis : next
-global $FIN; 
+global $FIN;
 // Collecting tokens
 $FIN['debut'] = microtime(true);
 
@@ -116,14 +116,14 @@ if (isset($INI['directory'])) {
     }
 
     print "Preparing work on directory '{$directory}'\n";
-    
+
     $files = glob($directory.'/*.php');
-    
+
     foreach($files as $file) {
         $query = "INSERT INTO <tasks> VALUES (NULL, 'tokenize', ".$DATABASE->quote($file).", ".$DATABASE->quote(GABARIT).", NOW(), 0)";
         $DATABASE->query($query);
     }
-    
+
     if ($INI['recursive']) {
         $files = liste_directories_recursive($directory);
         print "Preparing recursive work on directory {$directory}\n";
@@ -131,7 +131,7 @@ if (isset($INI['directory'])) {
         foreach($files as $file) {
             $code = file_get_contents($file);
             if (strpos($code, '<?') === false) { continue; }
-            
+
             $query = "INSERT IGNORE INTO <tasks> VALUES (NULL, 'tokenize', ".$DATABASE->quote($file).", ".$DATABASE->quote(GABARIT).",NOW(), 0)";
             $DATABASE->query($query);
         }

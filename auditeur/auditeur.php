@@ -1,4 +1,4 @@
-#!/usr/bin/php
+#!/usr/bin/env php
 <?php
 /*
    +----------------------------------------------------------------------+
@@ -87,7 +87,7 @@ $modules = array(
 'literals',
 'method_special',
 'methodscall',
-'multi_def_files', 
+'multi_def_files',
 'mssql_functions',
 'mysql_functions',
 'mysqli_functions',
@@ -123,7 +123,7 @@ $modules = array(
 'properties_used',
 'classes_unused',
 'classes_undefined',
-'html_tags', 
+'html_tags',
 //'affectations_gpc', @_
 'classes_nb_methods',
 'unused_properties',
@@ -188,15 +188,15 @@ if ($INI['analyzers'] == 'all' ) {
     if (count($diff) > 0) {
         print count($diff)." analyzers are unknown and omitted : ".join(', ', $diff)."\n";
     }
-    
-    $m = array_intersect($m, $modules);    
+
+    $m = array_intersect($m, $modules);
     if (count($m) == 0) {
         print "No analyzer provided : Aborting\n";
         die();
     } else {
         $modules = $m;
     }
-} 
+}
 print count($modules)." modules will be treated : ".join(', ', $modules)."\n";
 // @todo fix the problem with the path
 /*
@@ -249,14 +249,14 @@ if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
 } elseif (isset($INI['sqlite'])  && $INI['sqlite']['active'] == true) {
 // @todo : support drop of table with option -K
 // @code $database->query('DELETE FROM '.$INI['cornac']['prefix'].'_rapport WHERE fichier = "'.$fichier.'"');
-    $DATABASE->query('CREATE TABLE IF NOT EXISTS <rapport> 
-  (id       INTEGER PRIMARY KEY   AUTOINCREMENT  , 
+    $DATABASE->query('CREATE TABLE IF NOT EXISTS <rapport>
+  (id       INTEGER PRIMARY KEY   AUTOINCREMENT  ,
   `fichier` varchar(500) NOT NULL,
   `element` varchar(10000) NOT NULL,
   `token_id` int unsigned NOT NULL,
   `module` varchar(50) NOT NULL
 )');
-        
+
 //    $DATABASE->query('DELETE FROM '.$INI['cornac']['prefix'].'_rapport_dot WHERE cluster = "'.$fichier.'"');
     $DATABASE->query('CREATE TABLE IF NOT EXISTS <rapport_dot> (
   `a` varchar(255) NOT NULL,
@@ -270,7 +270,7 @@ if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
   `fait` datetime NOT NULL,
   `format` varchar(255) NOT NULL,
   `web` ENUM("yes","no") DEFAULT 1
-  
+
 )');
 } else {
     print "No database configuration provided (no mysql, no sqlite)\n";
@@ -284,7 +284,7 @@ if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
 include 'classes/sommaire.php';
 $sommaire = new sommaire();
 
-// @inclusions abstract classes 
+// @inclusions abstract classes
 include 'classes/abstract/modules.php';
 include 'classes/abstract/functioncalls.php';
 include 'classes/abstract/typecalls.php';
@@ -302,14 +302,14 @@ foreach($modules as $module) {
 function analyse_module($module_name) {
     require_once('classes/'.$module_name.'.php');
     global $modules_faits, $DATABASE, $sommaire, $INI;
-    
-    if (isset($modules_faits[$module_name])) {  
+
+    if (isset($modules_faits[$module_name])) {
         return ;
     }
 
     $module = new $module_name($DATABASE);
     $dependances = $module->dependsOn();
-    
+
     if (count($dependances) > 0) {
         $manque = array_diff($dependances, $modules_faits);
         if (count($manque) > 0) {
@@ -333,10 +333,10 @@ function analyse_module($module_name) {
             print "Dépendances already processed\n";
         }
     }
-    
+
     $module->analyse();
-    $module->sauve(); 
-    
+    $module->sauve();
+
     $sommaire->add($module);
     $modules_faits[$module_name] = 1;
 }

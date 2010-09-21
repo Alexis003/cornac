@@ -1,4 +1,4 @@
-#!/usr/bin/php
+#!/usr/bin/env php
 <?php
 /*
    +----------------------------------------------------------------------+
@@ -54,7 +54,7 @@ class $analyzer extends modules {
 	function dependsOn() {
 	    return array();
 	}
-	
+
 	public function analyse() {
         \$this->clean_rapport();
 
@@ -65,7 +65,7 @@ SELECT NULL, T1.fichier, T1.code, T1.id, '{\$this->name}', 0
     WHERE code IS NULL
 SQL;
         \$this->exec_query_insert('rapport', \$query);
-        
+
         return true;
 	}
 }

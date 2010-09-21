@@ -1,4 +1,4 @@
-#!/usr/bin/php
+#!/usr/bin/env php
 <?php
 /*
    +----------------------------------------------------------------------+
@@ -32,7 +32,7 @@ $options = array('help' => array('help' => 'display this help',
                                      'get_arg_value' => 'all',
                                      'option' => 'a',
                                      'compulsory' => false),
-// @todo limit to one folder? 
+// @todo limit to one folder?
                  'file' => array('help' => 'limit report to this file',
                                       'get_arg_value' => '',
                                       'option' => 'f',
@@ -101,7 +101,7 @@ if (!$row) {
 }
 $res = $DATABASE->query($query);
 
-// @attention : should support -s for summaries. 
+// @attention : should support -s for summaries.
 
 include('render/'.$INI['reader']['format'].'.php');
 $class = "Render_".$INI['reader']['format'];
@@ -114,14 +114,14 @@ if (get_class($view) == 'Render_html') {
 }
 
 if (!$res) {
-    $result = $view->render(array());    
+    $result = $view->render(array());
 } else {
     $rows = $res->fetchall(PDO::FETCH_ASSOC);
     $result = $view->render($rows);
 }
 
 if (empty($output)) {
-    print $result; 
+    print $result;
 } else {
     print "File written in '$output'\n";
 }

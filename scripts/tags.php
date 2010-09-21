@@ -1,4 +1,4 @@
-#!/usr/bin/php
+#!/usr/bin/env php
 <?php
 /*
    +----------------------------------------------------------------------+
@@ -27,21 +27,21 @@ if (get_arg($args, '-f')) { define('SHOW_FILES','true'); }
 if (get_arg($args, '-d')) { define('SHOW_DIRS','true'); }
 if (get_arg($args, '-e')) { define('SHOW_DIRS','true'); }
 
-if ($format = get_arg_value($args, '-F', 'print_r')) { 
+if ($format = get_arg_value($args, '-F', 'print_r')) {
     if (!in_array($format, array('print_r','csv','xml'))) { $format = 'print_r'; }
-    define('FORMAT', $format); 
+    define('FORMAT', $format);
 }
 if ($dir = get_arg_value($args, '-D', '.')) {
     if (!file_exists($dir)) { print "'$dir' doesn't exist\n"; die(); }
-    define('DIR', $dir);  
+    define('DIR', $dir);
 }
 
 chdir($dir);
 
 $OPTIONS = parse_ini_file("tags.ini");
-if (!isset($OPTIONS['limit']) || $OPTIONS['limit'] == 0) { 
+if (!isset($OPTIONS['limit']) || $OPTIONS['limit'] == 0) {
     // @note big value as default
-    $OPTIONS['limit'] = 10000000; 
+    $OPTIONS['limit'] = 10000000;
 }
 
 $liste = Liste_directories_recursive('.');
@@ -58,17 +58,17 @@ foreach($liste as $fichier) {
         if (is_array($token) && $token[0] == T_COMMENT) {
             $comments_this_file++;
             $comment = remove_delimiter($token[1]);
-            
+
             // comment used as presentation delimiter (------, ////////, ========)
-            if (preg_match_all('/^(.)\1*$/is', $comment, $r)) { 
+            if (preg_match_all('/^(.)\1*$/is', $comment, $r)) {
                 continue;
             }
-            
+
             if (preg_match_all('/(@[a-zA-Z0-9_\-]+)/is', $comment, $r)) {
                 $token['tags'] = $r[1];
                 if (in_array('@_', $token['tags'])) {
                 // comments are ignored
-                    continue; 
+                    continue;
                 }
             } else {
                 $token['tags'] = array('@no_tag');
@@ -90,7 +90,7 @@ foreach($liste as $fichier) {
                $token['tags'][] = '@smell_words';
             }
 
-            // @doc clean comment 
+            // @doc clean comment
             // @note remove all tokens from the comment
             $token['comment'] = preg_replace('/(@[a-zA-Z0-9_\-]+)/is','', $comment);
             // @note remove white space and : from comment
@@ -101,7 +101,7 @@ foreach($liste as $fichier) {
             unset($token[2]);
             $token['raw'] = $comment;
             unset($token[1]);
-            
+
             $comments[] = $token;
         }
     }
@@ -123,15 +123,15 @@ die();
 
 function export_csv($comments) {
     $csv = "";
-    
+
     $fp = fopen('tags.csv', 'w+');
-    
+
     foreach($comments as $comment) {
         $comment['tags'] = join(', ', $comment['tags']);
         unset($comment['raw']);
         fputcsv($fp, $comment);
     }
-    fclose($fp);  
+    fclose($fp);
 }
 
 function export_html($comments) {
@@ -156,16 +156,16 @@ HTML;
         $html .= "<tr><td colspan=\"3\"><a name=\"".make_anchor($fichier)."\"><b>".htmlentities($fichier)."</b></td></tr>\n";
         foreach ($commentaires as $id => $commentaire) {
             $tags = "";
-            
+
             foreach($commentaire['tags'] as $tag) {
                 $tags .= "<a href=\"tags.html#".make_anchor($tag)."\">".htmlentities($tag)."</a>, ";
             }
             $tags = substr($tags, 0, -2);
-            
+
             $html .= "<tr>
     <td>$id)</td>
     <td>".htmlentities($commentaire['comment'])."</td>
-    <td>$tags</td>    
+    <td>$tags</td>
     </tr>\n";
         }
     }
@@ -203,7 +203,7 @@ HTML;
             $html .= "<tr>
     <td>$id) </td>
     <td>".htmlentities($commentaire['comment'])."</td>
-    <td><a href=\"files.html#".make_anchor($commentaire['fichier'])."\">".htmlentities($commentaire['fichier'])."</a></td>    
+    <td><a href=\"files.html#".make_anchor($commentaire['fichier'])."\">".htmlentities($commentaire['fichier'])."</a></td>
     </tr>\n";
         }
     }
@@ -218,11 +218,11 @@ HTML;
 
 function remove_delimiter($comment) {
     $comment = trim($comment);
-    
+
     if ($comment[0] == '#') {
         $comment = substr($comment, 1);
     } elseif (substr($comment, 0, 2) == '//') {
-        $comment = substr($comment, 2);    
+        $comment = substr($comment, 2);
     } elseif (substr($comment, 0, 2) == '/*') {
         $comment = substr($comment, 2, -2);
     } else {
@@ -246,37 +246,37 @@ if (SHOW_EXTS) { display($exts); }
 
 //print count($liste)." fichiers distincts\n";
 
-function liste_directories_recursive( $path = '.', $level = 0 ){ 
+function liste_directories_recursive( $path = '.', $level = 0 ){
     global $OPTIONS;
-    $ignore_dirs = array_merge(array( 'cgi-bin', '.', '..' ), $OPTIONS['ignore_dirs']); 
+    $ignore_dirs = array_merge(array( 'cgi-bin', '.', '..' ), $OPTIONS['ignore_dirs']);
 
-    $dh = opendir( $path ); 
+    $dh = opendir( $path );
     if (!is_resource($dh)) { return array(); }
     $retour = array();
-    while( false !== ( $file = readdir( $dh ) ) ) { 
+    while( false !== ( $file = readdir( $dh ) ) ) {
         if( $file[0] == '.'                ){ continue; }
 
-        if( is_dir( "$path/$file" ) ){ 
+        if( is_dir( "$path/$file" ) ){
             if( in_array( $file, $ignore_dirs )){ continue; }
-            $r = Liste_directories_recursive( "$path/$file", ($level+1) ); 
+            $r = Liste_directories_recursive( "$path/$file", ($level+1) );
             $retour = array_merge($retour, $r);
-        } else { 
+        } else {
             $details = pathinfo($file);
             if (!isset($details['extension'])){
                 $details['extension'] = '';
             }
             if (in_array($details['extension'], $OPTIONS['ignore_ext'])) { continue; }
-        
+
             $retour[] = "$path/$file";
         }
         if ($OPTIONS['limit'] > 0 && count($retour) >= $OPTIONS['limit']) {
             return $retour;
         }
-    } 
-     
-    closedir( $dh ); 
+    }
+
+    closedir( $dh );
     return $retour;
-} 
+}
 
 function make_anchor($name) {
     $name = preg_replace('/[^a-zA-Z]/', '_', $name);
@@ -288,7 +288,7 @@ function make_anchor($name) {
 function cb_exts($filename) {
     $filename = basename($filename);
     $pos = strrpos($filename, '.');
-    return substr($filename, $pos); 
+    return substr($filename, $pos);
 }
 
 function display($list) {
@@ -298,8 +298,8 @@ function display($list) {
         print "<list>\n    <file>".join("</file>\n    <file>", $list)."</file>\n</list>\n";
     } elseif (FORMAT == 'csv') {
         print '"'.join("\"\n\"", $list).'"';
-    } 
-    
+    }
+
     return true;
 }
 ?>

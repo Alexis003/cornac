@@ -1,4 +1,4 @@
-#!/usr/bin/php 
+#!/usr/bin/env php
 <?php
 
 ini_set('memory_limit',234217728);
@@ -44,14 +44,14 @@ $options = array('help' => array('help' => 'display this help',
                  );
 include('libs/getopts.php');
 
-global $FIN; 
+global $FIN;
 // Collecting tokens
 $FIN['debut'] = microtime(true);
 
 // @todo make this work on tasks or individually
 
 // @doc Reading constantes that are in the .INI
-define('TOKENS',$INI['tokens']); 
+define('TOKENS',$INI['tokens']);
 define('TEST',$INI['test']);
 define('STATS',$INI['stats']);
 define('VERBOSE',$INI['verbose']);
@@ -68,11 +68,11 @@ include('libs/database.php');
 $DATABASE = new database();
 // @section end of options
 
-// @todo : make a sleeping client here, that waits, not die. 
-$files_processed = 0; 
+// @todo : make a sleeping client here, that waits, not die.
+$files_processed = 0;
 while(1 ) {
     if ($INI['slave'] > 0 && ($files_processed >= intval($INI['slave']))) {
-        print "Processed all $files_processed files. Finishing.\n"; 
+        print "Processed all $files_processed files. Finishing.\n";
         die();
     }
 
@@ -83,18 +83,18 @@ while(1 ) {
     $res = $DATABASE->query($query);
     $row = $res->fetch(PDO::FETCH_ASSOC);
 
-    if (!$row) { 
+    if (!$row) {
         if ($INI['slave'] == 0) {
-            print "No more tasks to work on. Finishing.\n"; 
+            print "No more tasks to work on. Finishing.\n";
             die();
         } elseif ($INI['slave'] == -1) { // @note infinite loop
             print "Sleeping for 30 secondes\n";
             sleep(30);
-            continue; 
+            continue;
         } else {
             print "Sleeping for 30 secondes ( ".($INI['slave'] - $files_processed)." more to process)\n";
             sleep(30);
-            continue; 
+            continue;
         }
     }
 
@@ -122,29 +122,29 @@ function process_file($scriptsPHP, $limit) {
     $FIN['trouves'] = 0;
 
     list($file, $config) = each($scriptsPHP);
-    
+
 //foreach($scriptsPHP as $file => $config){
     $FIN['trouves']++;
     print $file."\n";
-    if (!file_exists($file)) { 
+    if (!file_exists($file)) {
         print "'$file' doesn't exist. Aborting\n";
         continue;
     }
 
 // @doc 4177 is error_reporting for  E_COMPILE_ERROR|E_RECOVERABLE_ERROR|E_ERROR|E_CORE_ERROR (compilations error only)
-    $exec = shell_exec('php -d short_open_tag=1 -d error_reporting=4177  -l '.escapeshellarg($file).' '); 
+    $exec = shell_exec('php -d short_open_tag=1 -d error_reporting=4177  -l '.escapeshellarg($file).' ');
     if (trim($exec) != 'No syntax errors detected in '.$file) {
         print "Script \"$file\" can't be compiled by PHP\n$exec\n";
         return false;
     }
-    
+
     $code = file_get_contents($file);
-    
+
     // @doc one must leave <?php and <?xml untouched
     // @doc one must also leave <?R& (\w\W), which are binary, not PI
-    // @note only take into account <?\s 
-    
-    if ($c = preg_match_all('/<\\?(?!php)(\w?\s)/is', $code, $r) ) { 
+    // @note only take into account <?\s
+
+    if ($c = preg_match_all('/<\\?(?!php)(\w?\s)/is', $code, $r) ) {
         if (VERBOSE) {
             print "Fixing $c opening tags\n";
         }
@@ -152,7 +152,7 @@ function process_file($scriptsPHP, $limit) {
     }
     // @todo this is too simple, but it works until now (binary, beware!)
     $code = str_replace('<?=', '<?php echo ', $code);
-    
+
     // @todo abstract this function, so one can choose the PHP version for tokenization
     $brut = @token_get_all($code);
     if (count($brut) == 0) {
@@ -164,7 +164,7 @@ function process_file($scriptsPHP, $limit) {
     $root = new Token();
     $suite = null;
     $ligne = 0;
-    
+
     foreach($brut as $id => $b) {
         $t = new Token();
 
@@ -178,7 +178,7 @@ function process_file($scriptsPHP, $limit) {
             $t->setCode($b);
             $t->setLine($ligne);
         }
-        
+
         if (is_null($suite)) {
             $suite = $t;
             $root = $t;
@@ -187,7 +187,7 @@ function process_file($scriptsPHP, $limit) {
             $suite = $suite->getNext();
         }
         unset($brut[$id]);
-        
+
     }
 
     $t = $root;
@@ -195,7 +195,7 @@ function process_file($scriptsPHP, $limit) {
     do {
         $t = whitespace::factory($t);
         $t = commentaire::factory($t);
-        
+
         if ($t->getId() == 0 && $t != $root) {
             mon_log("New root : ".$t."");
             $root = $t;
@@ -222,7 +222,7 @@ function process_file($scriptsPHP, $limit) {
         mon_log("\nCycle : ".$i."\n");
         $nb_tokens_precedent[] = $nb_tokens_courant;
         if (count($nb_tokens_precedent) > 3) {
-            array_shift($nb_tokens_precedent); 
+            array_shift($nb_tokens_precedent);
         }
         $nb_tokens_courant = 0;
         do {
@@ -241,22 +241,22 @@ function process_file($scriptsPHP, $limit) {
                 print "$i) ".$t->getCode()."---- \n";
            }
         } while ($t = $t->getNext());
-        
+
         mon_log("Remaining tokens : ".$nb_tokens_courant."");
-        
+
         if ($nb_tokens_courant == 0) {
             break 1;
         }
-        
-        if ($nb_tokens_courant == $nb_tokens_precedent[0] && 
+
+        if ($nb_tokens_courant == $nb_tokens_precedent[0] &&
             $nb_tokens_courant == $nb_tokens_precedent[1] &&
             $nb_tokens_courant == $nb_tokens_precedent[2]
-            ) { 
+            ) {
             print "No more update at cycle #$i \n";
 
             break 1;
         }
-        
+
         if ($i == $limit) {
             break 1;
         }
@@ -290,7 +290,7 @@ function process_file($scriptsPHP, $limit) {
         $loop = $loop->getNext();
         $id++;
     }
-   
+
     $templates = getTemplate($root, $file, $config['template']);
     foreach($templates as $template) {
         $template->affiche();
@@ -301,13 +301,13 @@ function process_file($scriptsPHP, $limit) {
         include('prepare/template.stats.php');
         $template = new template_stats($root);
         $template->affiche();
-        
+
         print $analyseur->verifs." checks were made\n";
         $stats = array_count_values($analyseur->rates);
         asort($stats);
         print_r($stats);
     }
-    $files_processed++; 
+    $files_processed++;
 }
 
 ?>

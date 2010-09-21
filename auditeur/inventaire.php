@@ -1,4 +1,4 @@
-#!/usr/bin/php
+#!/usr/bin/env php
 <?php
 /*
    +----------------------------------------------------------------------+
@@ -84,7 +84,7 @@ if (empty($INI['reader']['format'])) {
 // @todo : support later
 //$summary = getOption($args, '-s', OPT_NO_VALUE, null);
 
-// @todo put this into a central library 
+// @todo put this into a central library
 include('../libs/database.php');
 $DATABASE = new database();
 
@@ -157,15 +157,15 @@ $names = array("Modules PHP" => array('query' => 'SELECT DISTINCT element FROM <
 
 foreach($names as $name => $conf) {
     extract($conf);
-    
+
     $confs = array('query','headers','columns');
     foreach($confs as $conf) {
-        if (!isset($$conf)) { 
+        if (!isset($$conf)) {
             print "Missing '$conf' info in configuration for '$name' : aborting\n";
-            continue; 
+            continue;
         }
     }
-    
+
     foreach($headers as $id => $header) {
         $ods->setCell($name, 1, $id + 1, $header);
         $ods->setCellStyle($name, 1, $id + 1, "ce1");
@@ -173,9 +173,9 @@ foreach($names as $name => $conf) {
 
     $res = $DATABASE->query($query);
     $rows = $res->fetchAll(PDO::FETCH_ASSOC);
-    
+
     if (count($rows) == 0) { continue; }
-    
+
     foreach($columns as $id => $col) {
        $r = multi2array($rows, $col);
        $r[] = $r[0];
