@@ -73,7 +73,7 @@ GROUP BY T1.id
 HAVING optional > 0
 ;
 SQL;
-        $res = $this->exec_query_insert('rapport', $query);
+        $res = $this->exec_query($query);
         
         while($row = $res->fetch()) {
             for($i = 0; $i < $row['optional']; $i++) {
