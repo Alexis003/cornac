@@ -35,7 +35,7 @@ class rawtext_regex extends analyseur_regex {
                 $t->getNext()->checkToken(T_OPEN_TAG)) {
                 
                 if ($t->getNext(1)->checkCode('=')) {
-                    // cas des short tags
+                    // @note case of a short tag
                     return false;
                 }
                 $this->args = array(0);
@@ -44,7 +44,7 @@ class rawtext_regex extends analyseur_regex {
                       $t->getNext()->checkToken(T_OPEN_TAG)) {
                 
                 if ($t->getNext(1)->checkCode('=')) {
-                    // cas des short tags
+                    // @note case of a short tag
                     return false;
                 } 
                 $this->args = array(0);
@@ -56,9 +56,9 @@ class rawtext_regex extends analyseur_regex {
                 $this->remove = array(-1);
             } elseif ($t->getPrev()->checkClass('codephp') &&
                       $t->getNext()->checkClass('codephp')) {
-                      // rien, on peut continuer
+                      // @note nothing. We can carry on
             } else {
-            // rien du tout...
+                // @empty_else
             }
         }
 
