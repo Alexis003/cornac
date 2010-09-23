@@ -1,26 +1,9 @@
 <?php
-/*
-   +----------------------------------------------------------------------+
-   | Cornac, PHP code inventory                                           |
-   +----------------------------------------------------------------------+
-   | Copyright (c) 2010 Alter Way Solutions (France)                      |
-   +----------------------------------------------------------------------+
-   | This source file is subject to version 3.01 of the PHP license,      |
-   | that is bundled with this package in the file LICENSE, and is        |
-   | available through the world-wide-web at the following url:           |
-   | http://www.php.net/license/3_01.txt                                  |
-   | If you did not receive a copy of the PHP license and are unable to   |
-   | obtain it through the world-wide-web, please send a note to          |
-   | license@php.net so we can mail you a copy immediately.               |
-   +----------------------------------------------------------------------+
-   | Author: Damien Seguy <damien.seguy@gmail.com>                        |
-   +----------------------------------------------------------------------+
- */
 include_once('Analyseur_Framework_TestCase.php');
 
 class Switch_Test extends Analyseur_Framework_TestCase
 {
-    /* 23 methodes */
+    /* 24 methodes */
     public function testSwitch1()  { $this->generic_test('switch.1'); }
     public function testSwitch2()  { $this->generic_test('switch.2'); }
     public function testSwitch3()  { $this->generic_test('switch.3'); }
@@ -44,6 +27,7 @@ class Switch_Test extends Analyseur_Framework_TestCase
     public function testSwitch21()  { $this->generic_test('switch.21'); }
     public function testSwitch22()  { $this->generic_test('switch.22'); }
     public function testSwitch23()  { $this->generic_test('switch.23'); }
+    public function testSwitch24()  { $this->generic_test('switch.24'); }
 
 }
 

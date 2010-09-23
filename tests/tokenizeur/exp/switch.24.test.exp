@@ -1,0 +1,56 @@
+tests/tokenizeur/scripts/switch.24.test.php
+  codephp <?php
+
+  code : 
+      _switch 
+          parentheses 
+          ( "variable $a" )
+          block 
+          0 : 
+              _case 
+                  literals a
+                  block 
+                  0 : 
+                      rawtext 
+                      Texte : "311 "rawtext 1
+        ""
+                  1 : 
+                      functioncall echo
+                      appel de fonction : echo: 
+                          arglist 
+                          0 : 
+                              literals Edit
+                  2 : 
+                      rawtext 
+                      Texte : "311 "    </span></button>
+    ""
+                  3 : 
+                      _break 
+                      Nombre : " "1""
+                  4 : 
+                      rawtext 
+                      Texte : "311 """
+          1 : 
+              _case 
+                  literals b
+                  block 
+                  0 : 
+                      rawtext 
+                      Texte : "311 "rawtext 2
+        ""
+                  1 : 
+                      functioncall echo
+                      appel de fonction : echo: 
+                          arglist 
+                          0 : 
+                              literals Edit
+                  2 : 
+                      rawtext 
+                      Texte : "311 "    </span></button>
+    ""
+                  3 : 
+                      _break 
+                      Nombre : " "1""
+                  4 : 
+                      rawtext 
+                      Texte : "311 """

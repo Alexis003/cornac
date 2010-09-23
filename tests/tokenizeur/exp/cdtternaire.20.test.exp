@@ -1,0 +1,88 @@
+tests/tokenizeur/scripts/cdtternaire.20.test.php
+  codephp <?php 
+  code : 
+      sequence 
+      0 : 
+          affectation 
+          droite : 
+              variable $_tag
+           "=" 
+          gauche : 
+              cdtternaire ?
+              method variable $x->functioncall 307 "y" ( ( ) )  ? method variable $x->functioncall 307 "z" ( ( ) )  : literals literal
+                  method variable $x
+                  appel de methode : functioncall 307 "y" ( ( ) ) : 
+                      functioncall y
+                      appel de fonction : y: 
+                          arglist 
+                          Liste d'argument vide
+                  method variable $x
+                  appel de methode : functioncall 307 "z" ( ( ) ) : 
+                      functioncall z
+                      appel de fonction : z: 
+                          arglist 
+                          Liste d'argument vide
+                  literals literal
+      1 : 
+          rawtext 
+          Texte : "311 "<""
+      2 : 
+          functioncall echo
+          appel de fonction : echo: 
+              arglist 
+              0 : 
+                  variable $x
+      3 : 
+          rawtext 
+          Texte : "311 " id="""
+      4 : 
+          functioncall echo
+          appel de fonction : echo: 
+              arglist 
+              0 : 
+                  method variable $x
+                  appel de methode : functioncall 307 "w" ( ( ) ) : 
+                      functioncall w
+                      appel de fonction : w: 
+                          arglist 
+                          Liste d'argument vide
+      5 : 
+          rawtext 
+          Texte : "311 "" ""
+      6 : 
+          functioncall echo
+          appel de fonction : echo: 
+              arglist 
+              0 : 
+                  method variable $z
+                  appel de methode : functioncall 307 "d" ( ( ) ) : 
+                      functioncall d
+                      appel de fonction : d: 
+                          arglist 
+                          Liste d'argument vide
+      7 : 
+          rawtext 
+          Texte : "311 ">
+""
+      8 : 
+          functioncall echo
+          appel de fonction : echo: 
+              arglist 
+              0 : 
+                  method variable $x
+                  appel de methode : functioncall 307 "x" ( ( ) ) : 
+                      functioncall x
+                      appel de fonction : x: 
+                          arglist 
+                          Liste d'argument vide
+      9 : 
+          rawtext 
+          Texte : "311 "</""
+      10 : 
+          functioncall echo
+          appel de fonction : echo: 
+              arglist 
+              0 : 
+                  variable $x
+  rawtext 
+  Texte : "311 ">""
