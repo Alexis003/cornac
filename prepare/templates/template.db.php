@@ -43,14 +43,14 @@ class template_db extends template {
                 $noeud = $this->root;
             } else {
                 print_r(xdebug_get_function_stack());        
-                print "On a tenté de refiler un null à affiche.";
+                print "Attempting to send null to display.";
                 die();
             }
         }
         
         if (!is_object($noeud)) {
             print_r(xdebug_get_function_stack());        
-            print "Attention, $noeud n'est pas un objet (".gettype($noeud).")\n";
+            print "Attention, node $noeud is not an (".gettype($noeud).")\n";
             die(__METHOD__."\n");
         }
         $class = get_class($noeud);
@@ -59,7 +59,7 @@ class template_db extends template {
         if (method_exists($this, $method)) {
             $return = $this->$method($noeud, $niveau);
         } else {
-            print "Affichage ".__CLASS__." de '".$method."'\n";die;
+            print "Displaying ".__CLASS__." for '".$method."' : aborting\n";die;
         }
         if (!is_null($noeud->getNext())){
             $this->affiche($noeud->getNext(), $niveau);
@@ -188,7 +188,7 @@ class template_db extends template {
             $labels = array();
             foreach($elements as $id => &$e) {
                 if (is_null($e)) {
-                    // @empty_ifelse nothing to do
+                    // @empty_else
                 } else {
                     $this->affiche($e, $niveau + 1);
                 }
@@ -804,13 +804,14 @@ class template_db extends template {
 
         $elements = $noeud->getElements();
         if (count($elements) == 0) {
-            // @empty_ifelse 
+            // @empty_else 
         } else {
             $labels = array();
             $id = 0;
             foreach($elements as $id => &$e) {
                 if (is_null($e)) {
-                    die("cas de l'argument null ou inexistant dans une sequence");
+                // @todo check this : we don't like die anymore
+                    die("This is when an argument is null, or non existing. ");
                 } else {
                     $this->affiche($e, $niveau + 1);
                 }
