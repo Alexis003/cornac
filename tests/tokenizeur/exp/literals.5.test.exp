@@ -9,7 +9,7 @@ tests/tokenizeur/scripts/literals.5.test.php
               variable $x
            "=" 
           gauche : 
-              signe  "-"literals 10
+              sign  "-"literals 10
                   literals 10
       1 : 
           affectation 
@@ -17,7 +17,7 @@ tests/tokenizeur/scripts/literals.5.test.php
               variable $x
            "=" 
           gauche : 
-              signe  "-"literals 10
+              sign  "-"literals 10
                   literals 10
       2 : 
           functioncall echo

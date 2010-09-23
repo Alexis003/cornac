@@ -106,7 +106,6 @@ affected only variables (not used anywhere else that affectations)
 
 String by delimiter (especially <<< )
 
-Detect dead code due to early return
 detect infinite loop (for, while)
 detect impossible condition (if (false), ...)
 

@@ -48,7 +48,7 @@ class var_simple_regex extends analyseur_regex {
                 $var = $t->getNext(1);
                 
                 if ($var->checkCode('=') &&
-                    $var->getNext()->checkClass(array('functioncall','literals','signe'))) {
+                    $var->getNext()->checkClass(array('functioncall','literals','sign'))) {
 
                         $args = array(0,1, 2);
                         $remove = array(0,1, 2);
@@ -64,7 +64,7 @@ class var_simple_regex extends analyseur_regex {
                 while($var->checkCode(',')) {
                     if ($var->getNext()->checkClass('variable') && 
                         $var->getNext(1)->checkCode('=') && 
-                        $var->getNext(2)->checkClass(array('literals','functioncall','constante','signe'))) {
+                        $var->getNext(2)->checkClass(array('literals','functioncall','constante','sign'))) {
 
                             $args = array(0,1, 2);
                             $remove = array(0,1, 2);

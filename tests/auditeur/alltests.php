@@ -101,6 +101,10 @@ $tests = array(
 'class.php_functions_name_conflict.test.php',
 'class.php_constant_name_conflict.test.php',
 'class.php_classes_name_conflict.test.php',
+'class.xdebug_functions.test.php',
+'class.session_functions.test.php',
+'class.dir_functions.test.php',
+'class.mssql_functions.test.php',
 // new tests
 );
 

@@ -83,7 +83,7 @@ class concatenation_interpole_regex extends analyseur_regex {
             }
 
             if ($var->checkNotClass($this->sequence_classes) &&
-                $var->checkNotClass(array('signe','block'))) { return false; }
+                $var->checkNotClass(array('sign','block'))) { return false; }
         
             $this->args[]    = $pos;
             $this->remove[]  = $pos;
@@ -92,7 +92,7 @@ class concatenation_interpole_regex extends analyseur_regex {
             $var = $var->getNext();
         }
 
-        $this->remove[]  = $pos; // " final
+        $this->remove[]  = $pos; // @note final "
         
         mon_log(get_class($t)." => ".__CLASS__);
         return true; 

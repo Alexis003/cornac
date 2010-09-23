@@ -34,7 +34,7 @@ class invert_regex extends analyseur_regex {
                                             'method','property','_new','comparaison',
                                             'parentheses','constante','literals',
                                             'constante_static','property_static','method_static',
-                                            'cast','invert','noscream','signe')) &&
+                                            'cast','invert','noscream','sign')) &&
             $t->getNext(1)->checkNotCode(array('->','[','{','::'))
             ) {
 

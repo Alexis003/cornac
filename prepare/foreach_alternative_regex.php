@@ -75,19 +75,19 @@ class foreach_alternative_regex extends analyseur_regex {
                     }
 
                     if ($var->checkToken(T_FOREACH) ) {
-                        // Un autre if qui démarre? On aime pas les imbrications
+                        // @note nested foreach? We'll process this later
                         return false;
                     }
                     
                     if ($var->checkCode(';') ) {
-                        // un point-virgule qui traine. Bah....
+                        // @note trailing semi-colon? Ignoring. 
                         $remove[] = $pos;
                         $pos++;
                         $var = $var->getNext();
                         continue;
                     }
         
-                    // pas traitable ? On annule tout.
+                    // @note counldn't figure it out? Ignoring
                     $this->args = array();
                     $this->remove = array();
                     return false;

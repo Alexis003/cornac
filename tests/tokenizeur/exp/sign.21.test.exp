@@ -1,4 +1,4 @@
-tests/tokenizeur/scripts/signe.21.test.php
+tests/tokenizeur/scripts/sign.21.test.php
   codephp <?php
 
   code : 
@@ -7,7 +7,7 @@ tests/tokenizeur/scripts/signe.21.test.php
           variable $u
        "=" 
       gauche : 
-          signe  "-"cast (int)
+          sign  "-"cast (int)
               cast (295 "(int)")method variable $a->functioncall 307 "b" ( ( ) ) 
                   method variable $a
                   appel de methode : functioncall 307 "b" ( ( ) ) : 

@@ -86,14 +86,14 @@ class declare_alternative_regex extends analyseur_regex {
             }
 
             if ($var->checkOperateur(';') ) {
-                // un point-virgule qui traine. Bah....
+                // @note trailing semi-colon : just ignore it
                 $remove[] = $pos;
                 $pos++;
                 $var = $var->getNext();
                 continue;
             }
 
-            // pas traitable ? On annule tout.
+            // @note coun't figure this out? Aborting.
             return false;
          }
 

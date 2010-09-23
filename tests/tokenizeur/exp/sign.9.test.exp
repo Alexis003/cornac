@@ -1,4 +1,4 @@
-tests/tokenizeur/scripts/signe.9.test.php
+tests/tokenizeur/scripts/sign.9.test.php
   codephp <?php
 
   code : 
@@ -17,7 +17,7 @@ tests/tokenizeur/scripts/signe.9.test.php
               2 : 
                   operation 
                   droite : 
-                      signe  "-"functioncall 307 "strlen" ( arglist(variable $c) ) 
+                      sign  "-"functioncall 307 "strlen" ( arglist(variable $c) ) 
                           functioncall strlen
                           appel de fonction : strlen: 
                               arglist 

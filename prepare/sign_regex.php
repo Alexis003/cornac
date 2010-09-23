@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class signe_regex extends analyseur_regex {
+class sign_regex extends analyseur_regex {
     function __construct() {
         parent::__construct(array());
     }
@@ -35,7 +35,7 @@ class signe_regex extends analyseur_regex {
                                                 'literals','parentheses','operation',
                                                 'cast'))) { return false; }
         if ( $t->getPrev()->checkClass(array('literals','variable','tableau',
-                                             'property','operation','signe',
+                                             'property','operation','sign',
                                              'functioncall','parentheses','arglist',
                                              'cdtternaire', )) ) { return false ;}
 

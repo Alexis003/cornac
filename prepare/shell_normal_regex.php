@@ -66,7 +66,7 @@ class shell_normal_regex extends analyseur_regex {
             }
 
             if ($var->checkNotClass($this->sequence_classes) &&
-                $var->checkNotClass(array('signe'))) { return false; }
+                $var->checkNotClass(array('sign'))) { return false; }
         
             $this->args[]    = $pos;
             $this->remove[]  = $pos;

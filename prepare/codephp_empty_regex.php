@@ -34,7 +34,7 @@ class codephp_empty_regex extends analyseur_regex {
             
             if ($t->hasNext(1) && 
                 $t->getNext(1)->checkToken(T_INLINE_HTML)) {
-                    // on évite de polluer le travail de rawtext
+                    // @note avoid polluting rawtext_regex 
                 return false;
             }
             $this->args = array();

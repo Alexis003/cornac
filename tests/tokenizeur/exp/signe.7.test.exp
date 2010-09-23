@@ -1,6 +1,0 @@
-tests/tokenizeur/scripts/signe.7.test.php
-  codephp <?php
-
-  code : 
-      signe  "-"property variable $t->literals x
-          property variable $tliterals x->

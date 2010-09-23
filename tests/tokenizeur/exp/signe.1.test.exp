@@ -1,6 +1,0 @@
-tests/tokenizeur/scripts/signe.1.test.php
-  codephp <?php
-
-  code : 
-      signe  "-"variable $x
-          variable $x

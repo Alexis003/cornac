@@ -821,11 +821,12 @@ class template_db extends template {
         return $this->saveNoeud($noeud, $niveau);
     }
 
-    function affiche_signe($noeud, $niveau) {
+    function affiche_sign($noeud, $niveau) {
         $noeud->myId = $this->getNextId();
         $noeud->myDroite = $this->getIntervalleId();
         $noeud->setCode('');
 
+        $this->affiche($noeud->getSign(), $niveau + 1);
         $this->affiche($noeud->getExpression(), $niveau + 1);
         
         $noeud->myGauche = $this->getIntervalleId();

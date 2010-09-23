@@ -56,13 +56,18 @@ foreach($liste as $fichier) {
     $comments_this_file = 0;
     foreach($tokens as $token) {
         if (is_array($token) && $token[0] == T_COMMENT) {
-            $comments_this_file++;
             $comment = remove_delimiter($token[1]);
 
             // comment used as presentation delimiter (------, ////////, ========)
-            if (preg_match_all('/^(.)\1*$/is', $comment, $r)) {
+            if (preg_match_all('/^\+?(.)\1+$/is', $comment, $r)) {
                 continue;
             }
+            
+            // Copyright : this is probably a FLOSS disclaimer. Forget it.
+            if (preg_match_all('/Copyright/is', $comment, $r)) {
+                continue;
+            }
+            $comments_this_file++;
 
             if (preg_match_all('/(@[a-zA-Z0-9_\-]+)/is', $comment, $r)) {
                 $token['tags'] = $r[1];
@@ -138,9 +143,16 @@ function export_html($comments) {
     setlocale(LC_TIME, "fr_FR");
     $date = strftime("%A %d %B %Y %T" );
 
+    $css = getCSS();
+    
     $html = <<<HTML
-<html>
-    <head></head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="fr">
+    <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+$css
+    </head>
     <body>
     <p>Generated on : $date</p>
 HTML;
@@ -151,9 +163,13 @@ HTML;
     }
 
 
-    $html .= "<table border=1>";
+    $html .= "<table id=\"box-table-a\">\n";
     foreach($fichiers as $fichier => $commentaires) {
-        $html .= "<tr><td colspan=\"3\"><a name=\"".make_anchor($fichier)."\"><b>".htmlentities($fichier)."</b></td></tr>\n";
+        $count = count($commentaires);
+        $html .= "<tr id=\"box-table-a-section\">
+        <td colspan=\"2\"><a name=\"".make_anchor($fichier)."\"><b>".htmlentities($fichier)."</b></td>
+        <td>$count</td>
+        </tr>\n";
         foreach ($commentaires as $id => $commentaire) {
             $tags = "";
 
@@ -161,10 +177,11 @@ HTML;
                 $tags .= "<a href=\"tags.html#".make_anchor($tag)."\">".htmlentities($tag)."</a>, ";
             }
             $tags = substr($tags, 0, -2);
-
-            $html .= "<tr>
+            
+            $odd = $id % 2 ? 'odd' : '';
+            $html .= "<tr id=\"$odd\">
     <td>$id)</td>
-    <td>".htmlentities($commentaire['comment'])."</td>
+    <td>".htmlspecialchars($commentaire['comment'],ENT_COMPAT, 'UTF-8')."</td>
     <td>$tags</td>
     </tr>\n";
         }
@@ -182,9 +199,16 @@ function export_tags_html($comments) {
     setlocale(LC_TIME, "fr_FR");
     $date = strftime("%A %d %B %Y %T");
 
+    $css = getCSS();
+    
     $html = <<<HTML
-<html>
-    <head></head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="fr">
+    <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+$css
+    </head>
     <body>
     <p>Generated on : $date</p>
 HTML;
@@ -196,14 +220,19 @@ HTML;
         }
     }
 
-    $html .= "<table border=1>";
+    $html .= "<table id=\"box-table-a\">\n";
     foreach($tags as $tag => $commentaires) {
-        $html .= "<tr><td colspan=\"3\"><a name=\"".make_anchor($tag)."\"><b>".htmlentities($tag)."</b></td></tr>\n";
+        $count = count($commentaires);
+        $html .= "<tr id=\"box-table-a-section\">
+            <td colspan=\"2\"><a name=\"".make_anchor($tag)."\"><b>".htmlentities($tag,ENT_COMPAT, 'UTF-8')."</b></td>
+            <td>$count</td>
+            </tr>\n";
         foreach ($commentaires as $id => $commentaire) {
-            $html .= "<tr>
+            $odd = $id % 2 ? 'odd' : '';
+            $html .= "<tr id=\"$odd\">
     <td>$id) </td>
-    <td>".htmlentities($commentaire['comment'])."</td>
-    <td><a href=\"files.html#".make_anchor($commentaire['fichier'])."\">".htmlentities($commentaire['fichier'])."</a></td>
+    <td>".htmlspecialchars($commentaire['comment'],ENT_COMPAT, 'UTF-8')."</td>
+    <td><a href=\"files.html#".make_anchor($commentaire['fichier'])."\">".htmlentities($commentaire['fichier'],ENT_COMPAT, 'UTF-8')."</a></td>
     </tr>\n";
         }
     }
@@ -301,5 +330,59 @@ function display($list) {
     }
 
     return true;
+}
+
+function getCSS() {
+    return <<<CSS
+<style type="text/css">
+#box-table-a
+{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	margin: 45px;
+	width: 880px;
+	text-align: left;
+	border-collapse: collapse;
+}
+#box-table-a th
+{
+	font-size: 13px;
+	font-weight: normal;
+	padding: 8px;
+	background: #b9c9fe;
+	border-top: 4px solid #aabcfe;
+	border-bottom: 1px solid #fff;
+	color: #039;
+}
+#box-table-a td
+{
+	padding: 8px;
+	background: #e8edff; 
+	border-bottom: 1px solid #fff;
+	color: #000000;
+	border-top: 1px solid transparent;
+	
+}
+
+#odd td
+{
+	background: #f9feff; 
+#	background: #e8edff; 
+	
+}
+
+#box-table-a-section td
+{
+	background: #cccccc; 
+	
+}
+
+#box-table-a tr:hover td
+{
+	background: #d0dafd;
+	color: #339;
+}
+</style>
+CSS;
 }
 ?>

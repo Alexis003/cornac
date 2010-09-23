@@ -17,7 +17,7 @@ tests/tokenizeur/scripts/sequence.22.test.php
               0 : 
                   literals a
               1 : 
-                  signe  "-"literals 9
+                  sign  "-"literals 9
                       literals 9
               2 : 
                   literals a

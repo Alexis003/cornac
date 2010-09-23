@@ -32,7 +32,7 @@ class cdtternaire_normal_regex extends analyseur_regex {
 
         if ($t->hasPrev(1) && $t->getPrev(1)->checkCode(array('::','->','@'))) { return false; }
 
-// case of the ?   :
+// @note case of the ? <something>  :
         if ($t->getPrev()->checkNotClass(array('Token','arglist')) &&
             $t->checkCode('?') &&
             $t->getNext()->checkNotClass('Token') &&
@@ -48,10 +48,9 @@ class cdtternaire_normal_regex extends analyseur_regex {
                 return true;
             } 
 
-// case of the ?:
+// @note case of the ?:
         if ($t->getPrev()->checkNotClass(array('Token','arglist')) &&
             $t->checkCode('?') &&
-//            $t->getNext()->checkNotClass('Token') &&
             $t->getNext()->checkCode(':') &&
             $t->getNext(1)->checkNotClass('Token') &&
             $t->getNext(2)->checkNotCode(array('->','[','(','::')) &&

@@ -1,4 +1,4 @@
-tests/tokenizeur/scripts/signe.11.test.php
+tests/tokenizeur/scripts/sign.11.test.php
   codephp <?php
 
   code : 
@@ -11,13 +11,13 @@ tests/tokenizeur/scripts/signe.11.test.php
           appel de fonction : array: 
               arglist 
               0 : 
-                  signe  "-"literals 3
+                  sign  "-"literals 3
                       literals 3
               1 : 
-                  literals last => signe  "-"literals 1
+                  literals last => sign  "-"literals 1
                       literals last
-                      signe  "-"literals 1
+                      sign  "-"literals 1
                           literals 1
               2 : 
-                  signe  "-"literals 2
+                  sign  "-"literals 2
                       literals 2

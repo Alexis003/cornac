@@ -74,7 +74,7 @@ class analyseur {
                                   '_interface',
                                   '_var',
                                   'reference',
-                                  'signe',
+                                  'sign',
                                   'cast',
                                   '_static',
                                   '_try',

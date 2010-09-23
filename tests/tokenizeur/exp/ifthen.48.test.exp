@@ -14,5 +14,5 @@ tests/tokenizeur/scripts/ifthen.48.test.php
           block 
           0 : 
               noscream @
-                  signe  "-"literals 1
+                  sign  "-"literals 1
                       literals 1

@@ -16,12 +16,40 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
-include_once('Analyseur_Framework_TestCase.php');
 
-class Constante_static.1_Test extends Analyseur_Framework_TestCase
-{
-    /* 1 methodes */
-    public function testConstante_static.11()  { $this->generic_test('constante_static.1.1'); }
+class sign extends instruction {
+    protected $sign = null;
+    protected $expression = null;
+    
+    function __construct($expression = null) {
+        parent::__construct(array());
+
+        $this->sign = $this->make_token_traite($expression[0]);
+        $this->expression = $expression[1];
+    }
+
+    function __toString() {
+        return __CLASS__." ".$this->sign.$this->expression;
+    }
+
+    function getExpression() {
+        return $this->expression;
+    }
+
+    function getsign() {
+        return $this->sign;
+    }
+
+    function neutralise() {
+        $this->sign      ->detach();
+        $this->expression->detach();
+    }
+
+    function getRegex(){
+        return array('sign_regex',
+                     'sign_suite_regex',
+                    );
+    }
 
 }
 

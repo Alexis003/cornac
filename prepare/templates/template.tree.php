@@ -404,8 +404,8 @@ class template_tree extends template {
         }
     }
 
-    function affiche_signe($noeud, $niveau) {
-        print str_repeat('  ', $niveau).get_class($noeud)." ".$noeud->getSigne().$noeud->getExpression()."\n";
+    function affiche_sign($noeud, $niveau) {
+        print str_repeat('  ', $niveau).get_class($noeud)." ".$noeud->getsign().$noeud->getExpression()."\n";
         $this->affiche($noeud->getExpression(), $niveau + 1);
     }
 

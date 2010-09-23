@@ -1,4 +1,4 @@
-tests/tokenizeur/scripts/signe.13.test.php
+tests/tokenizeur/scripts/sign.13.test.php
   codephp <?php
 
   code : 
@@ -7,6 +7,6 @@ tests/tokenizeur/scripts/signe.13.test.php
           variable $x
        "=" 
       gauche : 
-          signe  "-"parentheses (operation literals 1  "+" literals 2)
+          sign  "-"parentheses (operation literals 1  "+" literals 2)
               parentheses 
               ( "operation literals 1  "+" literals 2" )

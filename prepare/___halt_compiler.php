@@ -21,6 +21,8 @@ class ___halt_compiler extends instruction {
 
     function __construct($expression = null) {
         parent::__construct(array());
+        
+        // @note empty constructor : nothing to do, as this won't take arg : just stop PHP
     }
     
     function __toString() {

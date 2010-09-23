@@ -32,9 +32,8 @@ class decalage_regex extends analyseur_regex {
 
         if (($t->hasPrev(1) && $t->getPrev(1)->checkNotCode(array('->','::'))) &&
             $t->getPrev()->checkNotClass(array('Token','arglist'))  &&
-//            $t->checkToken(array(T_SR, T_SL))      &&
             $t->getNext()->checkNotClass('Token')  &&
-            $t->getNext(1)->checkNotCode(array('[','->','{')) //',',
+            $t->getNext(1)->checkNotCode(array('[','->','{'))
             ) {
 
             $this->args = array(-1, 0, 1);

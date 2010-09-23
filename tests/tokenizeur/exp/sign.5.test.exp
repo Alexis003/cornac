@@ -1,4 +1,4 @@
-tests/tokenizeur/scripts/signe.5.test.php
+tests/tokenizeur/scripts/sign.5.test.php
   codephp <?php
 
   code : 
@@ -8,8 +8,8 @@ tests/tokenizeur/scripts/signe.5.test.php
           0 : 
               concatenation 
               0 : 
-                  signe  "-"literals a
+                  sign  "-"literals a
                       literals a
               1 : 
-                  signe  "-"literals b
+                  sign  "-"literals b
                       literals b

@@ -11,7 +11,7 @@ tests/tokenizeur/scripts/literals.6.test.php
           appel de fonction : range: 
               arglist 
               0 : 
-                  signe  "-"literals 1
+                  sign  "-"literals 1
                       literals 1
               1 : 
                   literals 2

@@ -6,5 +6,5 @@ tests/tokenizeur/scripts/functioncall.45.test.php
       appel de fonction : exit: 
           arglist 
           0 : 
-              signe  "-"literals 1
+              sign  "-"literals 1
                   literals 1

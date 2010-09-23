@@ -30,8 +30,8 @@ class literals extends token {
             $this->value = trim($this->value, "'\"");
         }
 
-        if (isset($signe[1])) {
-            if ($signe[1]->checkCode("-")){
+        if (isset($sign[1])) {
+            if ($sign[1]->checkCode("-")){
                 $this->value = -1 * $this->value;
             }
         }

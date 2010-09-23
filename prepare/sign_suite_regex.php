@@ -17,40 +17,29 @@
    +----------------------------------------------------------------------+
  */
 
-class signe extends instruction {
-    protected $signe = null;
-    protected $expression = null;
-    
-    function __construct($expression = null) {
+class sign_suite_regex extends analyseur_regex {
+    function __construct() {
         parent::__construct(array());
-
-        $this->signe = $this->make_token_traite($expression[0]);
-        $this->expression = $expression[1];
     }
 
-    function __toString() {
-        return __CLASS__." ".$this->signe.$this->expression;
+    function getTokens() {
+        return array('+','-');
     }
+    
+    function check($t) {
+        if (!$t->hasPrev()) { return false; }
+        if (!$t->hasNext()) { return false; }
 
-    function getExpression() {
-        return $this->expression;
+        if ( $t->getPrev()->checkNotCode(array('+','-'))) { return false; }
+        if ( $t->getPrev()->checkClass(array('operation'))) { return false; }
+        if ( $t->getNext()->checkNotClass(array('sign','variable','property','property_static','method','method_static','functioncall','constante','literal')) ) { return false ;}
+        if ( $t->getNext(1)->checkCode(array('->','[','{','::','++','--'))) { return false; }
+        
+        $this->args = array(0, 1 );
+        $this->remove = array(1);
+
+        mon_log(get_class($t)." => ".__CLASS__);
+        return true; 
     }
-
-    function getSigne() {
-        return $this->signe;
-    }
-
-    function neutralise() {
-        $this->signe     ->detach();
-        $this->expression->detach();
-    }
-
-    function getRegex(){
-        return array('signe_regex',
-                     'signe_suite_regex',
-                    );
-    }
-
 }
-
 ?>

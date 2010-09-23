@@ -33,7 +33,7 @@ class arginit_array_regex extends analyseur_regex {
         if ($t->getPrev()->checkCode(array('(',',')) &&
             $t->checkClass(array('variable','reference')) &&
             $t->getNext()->checkCode('=') && 
-            $t->getNext(1)->checkClass('functioncall') &&  // en fait, on veut juste array... 
+            $t->getNext(1)->checkClass('functioncall') &&  // @note in fact, we just need accept arrays
             $t->getNext(2)->checkCode(array(',',')'))
             ) {
                 $this->args = array(0, 2);

@@ -1,4 +1,4 @@
-tests/tokenizeur/scripts/signe.14.test.php
+tests/tokenizeur/scripts/sign.14.test.php
   codephp <?php
 
   code : 
@@ -7,7 +7,7 @@ tests/tokenizeur/scripts/signe.14.test.php
           variable $tm
        "=" 
       gauche : 
-          signe  "-"operation variable $tm  "*" variable $y
+          sign  "-"operation variable $tm  "*" variable $y
               operation 
               droite : 
                   variable $tm

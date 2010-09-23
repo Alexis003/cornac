@@ -1,0 +1,19 @@
+tests/tokenizeur/scripts/sign.12.test.php
+  codephp <?php
+
+  code : 
+      functioncall print
+      appel de fonction : print: 
+          arglist 
+          0 : 
+              operation 
+              droite : 
+                  variable $a
+              operation :  "-"
+              gauche : 
+                  sign  "+"sign  "+"sign  "-"sign  "+"sign  "+"variable $b
+                      sign  "+"sign  "-"sign  "+"sign  "+"variable $b
+                          sign  "-"sign  "+"sign  "+"variable $b
+                              sign  "+"sign  "+"variable $b
+                                  sign  "+"variable $b
+                                      variable $b

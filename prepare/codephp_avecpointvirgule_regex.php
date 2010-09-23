@@ -34,12 +34,12 @@ class codephp_avecpointvirgule_regex extends analyseur_regex {
         if ($t->getNext(2)->checkNotToken(T_CLOSE_TAG)) { return false; }
 
         if ($t->hasNext(3) && $t->getNext(3)->checkToken(T_OPEN_TAG)) {
-            // cas du empty raw text
+            // @note empty raw text
             return false;
         }
 
         if ($t->hasNext(4) && $t->getNext(4)->checkToken(T_OPEN_TAG)) {
-            // cas du raw text non vide
+            // @note non empty raw text
             return false;
         }
         

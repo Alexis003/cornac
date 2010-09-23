@@ -46,7 +46,7 @@ class case_between_regex extends analyseur_regex {
             } elseif ($t->checkClass('_case')) {
                 return false; 
             } else {
-                mon_log("Tentative de ".__CLASS__." => block mais '".$t."' n'est ni T_CASE, ni T_DEFAULT : ");
+                mon_log("Trying to spot ".__CLASS__." => block but '".$t."' is not T_CASE, nor T_DEFAULT");
                 return false;
             }
             $args = array();
@@ -60,8 +60,9 @@ class case_between_regex extends analyseur_regex {
                     $var = $var->getNext();
                     continue;
                 }    
+                // @note waiting for all structures to be processed
                 if ($var->checkClass(array('Token'))) { return false; }
-                if ($var->checkCode('{') && $var->checkNotClass('block'))      { return false; } // on attend que les structures soient traitées
+                if ($var->checkCode('{') && $var->checkNotClass('block'))  { return false; } 
                 $args[] = $pos;
                 $remove[] = $pos;
                 $pos++;
@@ -69,12 +70,11 @@ class case_between_regex extends analyseur_regex {
             }
             
             if (empty($args)) { 
-                // un case vide, mais un case quand même!
-                // si c'était un token, on aurait déjà quitté
+                // @note empty cas, but case nonetheless. 
                 mon_log(get_class($t)." => ".__CLASS__);
                 return true; 
             } else {
-                // nettoyage de la situation
+                // @note cleaning regex before leaving
                 $this->args = array();
                 $this->remove = array();
             }

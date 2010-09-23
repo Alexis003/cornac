@@ -58,7 +58,7 @@ $tests = array(
 'class.classe.test.php',
 'class.while.test.php',
 'class.reference.test.php',
-'class.signe.test.php',
+'class.sign.test.php',
 'class.cast.test.php',
 'class.method_static.test.php',
 'class.static.test.php',

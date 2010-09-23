@@ -1,4 +1,4 @@
-tests/tokenizeur/scripts/signe.19.test.php
+tests/tokenizeur/scripts/sign.19.test.php
   codephp <?php
 
   code : 
@@ -7,6 +7,6 @@ tests/tokenizeur/scripts/signe.19.test.php
           variable $a
        "=" 
       gauche : 
-          cast (295 "(int)")signe  "-"literals 3
-              signe  "-"literals 3
+          cast (295 "(int)")sign  "-"literals 3
+              sign  "-"literals 3
                   literals 3

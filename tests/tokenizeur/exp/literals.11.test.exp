@@ -16,5 +16,5 @@ tests/tokenizeur/scripts/literals.11.test.php
               variable $a
            "=" 
           gauche : 
-              signe  "-"literals 0.3
+              sign  "-"literals 0.3
                   literals 0.3

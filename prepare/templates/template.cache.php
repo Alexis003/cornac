@@ -675,13 +675,13 @@ class template_cache extends template {
 
     }
 
-    function affiche_signe($noeud, $niveau) {
+    function affiche_sign($noeud, $niveau) {
         $expression = $noeud->getExpression();
         $this->affiche($expression, $niveau + 1);
-        $signe = $noeud->getSigne();
-        $this->affiche($signe, $niveau + 1);
+        $sign = $noeud->getsign();
+        $this->affiche($sign, $niveau + 1);
         
-        $noeud->cache = $signe->cache.$expression->cache;
+        $noeud->cache = $sign->cache.$expression->cache;
     }
 
     function affiche__static($noeud, $niveau) {

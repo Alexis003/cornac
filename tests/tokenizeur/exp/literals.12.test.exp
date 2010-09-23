@@ -10,7 +10,7 @@ tests/tokenizeur/scripts/literals.12.test.php
           operation 
           droite : 
               parentheses 
-              ( "operation variable $y  "/" signe  "-"literals 2" )
+              ( "operation variable $y  "/" sign  "-"literals 2" )
           operation :  "+"
           gauche : 
               literals 0.3

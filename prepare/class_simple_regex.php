@@ -89,7 +89,7 @@ class class_simple_regex extends analyseur_regex {
                   return true;
               }
               
-              // on a échoué à comprendre. On annule tout
+              // @note we couldn't understand this. Aborting
               $this->args = array();
               $this->remove = array();
               return false;

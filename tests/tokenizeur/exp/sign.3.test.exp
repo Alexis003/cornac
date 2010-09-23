@@ -1,8 +1,8 @@
-tests/tokenizeur/scripts/signe.3.test.php
+tests/tokenizeur/scripts/sign.3.test.php
   codephp <?php
 
   code : 
-      signe  "-"functioncall 307 "f" ( arglist(literals 1) ) 
+      sign  "-"functioncall 307 "f" ( arglist(literals 1) ) 
           functioncall f
           appel de fonction : f: 
               arglist 

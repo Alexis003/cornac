@@ -72,21 +72,21 @@ class for_alternative_regex extends analyseur_regex {
             }
 
             if ($var->checkToken(T_FOR) ) {
-                // if imbriqués ? Alors, on annule tout.
+                // @note nested FOR? We'll process that later.
                 $args = array();
                 $remove = array();
                 return false;
             }
 
             if ($var->checkOperateur(';') ) {
-                // un point-virgule qui traine. Bah....
+                // @note trailing semi-colon ? Ignoring.
                 $remove[] = $pos;
                 $pos++;
                 $var = $var->getNext();
                 continue;
             }
 
-            // pas traitable ? On annule tout.
+            // @note couldn't figure it out? Aborting. 
             return false;
         }
         

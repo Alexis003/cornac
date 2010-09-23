@@ -2,5 +2,5 @@ tests/tokenizeur/scripts/function.9.test.php
   codephp <?php
 
   code : 
-      function literals x arglist(variable $a, arginit variable $b = signe  "-"literals 1 , arginit variable $b = literals 0 )
+      function literals x arglist(variable $a, arginit variable $b = sign  "-"literals 1 , arginit variable $b = literals 0 )
           block 

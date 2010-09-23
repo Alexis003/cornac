@@ -35,7 +35,7 @@ class arglist_regex extends analyseur_regex {
             $t->getPrev()->checkNotCode('}')) { return false;}
         
        if ($t->getPrev()->checkCode('}') && 
-        // cas du getPrev(1) ? 
+        // @todo could be limit getPrev(1) values? 
         $t->getPrev(2)->checkNotCode('{')) {
                 return false;
             }
@@ -61,8 +61,7 @@ class arglist_regex extends analyseur_regex {
         
 
         if ($var->checkOperateur(')')) {
-            // cas des conditions ? : 
-            $this->remove[] = $pos; // le ) finale
+            $this->remove[] = $pos; // @note remove the final )
             
             mon_log(get_class($t)." =>1 ".__CLASS__);
             return true; 

@@ -35,7 +35,7 @@ class arginit_literal_regex extends analyseur_regex {
         
         if ($t->checkNotClass(array('variable','constante','reference'))) { return false; }
         if ($t->getNext()->checkNotCode('=')) { return false; }
-        if ($t->getNext(1)->checkNotClass(array('constante','literals','signe'))) { return false; }
+        if ($t->getNext(1)->checkNotClass(array('constante','literals','sign'))) { return false; }
         if ($t->getPrev(1)->checkToken(array(T_FOR,T_IF, T_ELSEIF))) { return false; }
         if ($t->getNext(2)->checkNotCode(array(',',')')))  { return false;}
 

@@ -13,5 +13,5 @@ tests/tokenizeur/scripts/ifthen.46.test.php
        else 
           block 
           0 : 
-              signe  "-"literals 1
+              sign  "-"literals 1
                   literals 1

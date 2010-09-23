@@ -402,9 +402,9 @@ class template_stats extends template {
         }
     }
 
-    function affiche_signe($noeud, $niveau) {
+    function affiche_sign($noeud, $niveau) {
         $this->addStat(__FUNCTION__);
-         $this->affiche($noeud->getSigne(), $niveau + 1);
+         $this->affiche($noeud->getsign(), $niveau + 1);
          $this->affiche($noeud->getExpression(), $niveau + 1);
     }
 
