@@ -32,11 +32,20 @@ if ($format = get_arg_value($args, '-F', 'print_r')) {
     define('FORMAT', $format);
 }
 if ($dir = get_arg_value($args, '-D', '.')) {
-    if (!file_exists($dir)) { print "'$dir' doesn't exist\n"; die(); }
+    $dirs = explode(',', $dir);
+    foreach($dirs as $id => $dir) {
+        if (substr($dir, -1) == '/') {
+            $dirs[$id] = substr($dir, 0, -1);
+        }
+        if (!file_exists($dir)) { 
+            print "'$dir' doesn't exist : ignoring\n"; 
+            unset($dirs[$id]);
+        } else {
+            // @empty_else
+        }
+    }
     define('DIR', $dir);
 }
-
-chdir($dir);
 
 $OPTIONS = parse_ini_file("tags.ini");
 if (!isset($OPTIONS['limit']) || $OPTIONS['limit'] == 0) {
@@ -44,14 +53,20 @@ if (!isset($OPTIONS['limit']) || $OPTIONS['limit'] == 0) {
     $OPTIONS['limit'] = 10000000;
 }
 
-$liste = Liste_directories_recursive('.');
+$liste = array();
+foreach($dirs as $dir) {
+    $liste_one_dir = liste_directories_recursive($dir);
+    $liste = array_merge($liste_one_dir, $liste);
+}
+
+$liste = array_slice($liste, 0, $OPTIONS['limit']);
 
 // @question : qoui?
 # @autre : non?
 
 $comments = array();
-foreach($liste as $fichier) {
-    $php = file_get_contents($fichier);
+foreach($liste as $file) {
+    $php = file_get_contents($file);
     $tokens = token_get_all($php);
     $comments_this_file = 0;
     foreach($tokens as $token) {
@@ -100,7 +115,7 @@ foreach($liste as $fichier) {
             $token['comment'] = preg_replace('/(@[a-zA-Z0-9_\-]+)/is','', $comment);
             // @note remove white space and : from comment
             $token['comment'] = trim($token['comment'], ' :');
-            $token['fichier'] = $fichier;
+            $token['file'] = $file;
             unset($token[0]);
             $token['ligne'] = $token[2];
             unset($token[2]);
@@ -112,7 +127,7 @@ foreach($liste as $fichier) {
     }
 
     if ($comments_this_file == 0) {
-        $comments[] = array('fichier' => $fichier,
+        $comments[] = array('file' => $file,
                             'tags' => array('@no_comment_in_file'),
                             'comment' => '',);
     }
@@ -157,17 +172,23 @@ $css
     <p>Generated on : $date</p>
 HTML;
 
-    $fichiers = array();
+    $files = $tags = array();
     foreach($comments as $id => $comment) {
-        $fichiers[$comment['fichier']][] = $comment;
+        $files[$comment['file']][] = $comment;
+        $tags = array_merge($tags, $comment['tags']);
     }
+    $tags = array_count_values($tags);
+
+    $html .= "    <p>Distinct files : ".count($files)."</p>\n";
+    $html .= "    <p>Distinct comments : ".count($comments)."</p>\n";
+    $html .= "    <p>Distinct tags : ".count($tags)."</p>\n";
 
 
     $html .= "<table id=\"box-table-a\">\n";
-    foreach($fichiers as $fichier => $commentaires) {
+    foreach($files as $file => $commentaires) {
         $count = count($commentaires);
         $html .= "<tr id=\"box-table-a-section\">
-        <td colspan=\"2\"><a name=\"".make_anchor($fichier)."\"><b>".htmlentities($fichier)."</b></td>
+        <td colspan=\"2\"><a name=\"".make_anchor($file)."\"><b>".htmlentities($file)."</b></td>
         <td>$count</td>
         </tr>\n";
         foreach ($commentaires as $id => $commentaire) {
@@ -181,7 +202,7 @@ HTML;
             $odd = $id % 2 ? 'odd' : '';
             $html .= "<tr id=\"$odd\">
     <td>$id)</td>
-    <td>".htmlspecialchars($commentaire['comment'],ENT_COMPAT, 'UTF-8')."</td>
+    <td>".wordwrap(htmlspecialchars($commentaire['comment'],ENT_COMPAT, 'UTF-8'), 150, '<br />', TRUE)."</td>
     <td>$tags</td>
     </tr>\n";
         }
@@ -192,7 +213,8 @@ HTML;
 </html>
 HTML;
 
-    print file_put_contents('files.html', $html)." octets écrits\n";
+    file_put_contents('files.html', $html);
+    print count($comments)." comments processed\n";
 }
 
 function export_tags_html($comments) {
@@ -213,26 +235,39 @@ $css
     <p>Generated on : $date</p>
 HTML;
 
-    $tags = array();
+    $files = $tags = array();
     foreach($comments as $id => $comment) {
+        $files[] = $comment['file'];
         foreach($comment['tags'] as $tag) {
             $tags[$tag][] = $comment;
         }
     }
+    
+    $files = array_count_values($files);
+
+    $html .= "    <p>Distinct files : ".count($files)."</p>\n";
+    $html .= "    <p>Distinct comments : ".count($comments)."</p>\n";
+    $html .= "    <p>Distinct tags : ".count($tags)."</p>\n";
+    $html .= "    <p><a name=\"_summary\" />";
+    foreach(array_keys($tags) as $tag) {
+        $html .= "<a href=\"#".make_anchor($tag)."\">$tag</a> - ";
+    } 
+    $html .= "</p>\n";
+    
 
     $html .= "<table id=\"box-table-a\">\n";
     foreach($tags as $tag => $commentaires) {
         $count = count($commentaires);
         $html .= "<tr id=\"box-table-a-section\">
-            <td colspan=\"2\"><a name=\"".make_anchor($tag)."\"><b>".htmlentities($tag,ENT_COMPAT, 'UTF-8')."</b></td>
+            <td colspan=\"2\"><a name=\"".make_anchor($tag)."\"><b>".htmlentities($tag,ENT_COMPAT, 'UTF-8')."</b> [<a href=\"#_summary\">^</a>]</td>
             <td>$count</td>
             </tr>\n";
         foreach ($commentaires as $id => $commentaire) {
             $odd = $id % 2 ? 'odd' : '';
             $html .= "<tr id=\"$odd\">
     <td>$id) </td>
-    <td>".htmlspecialchars($commentaire['comment'],ENT_COMPAT, 'UTF-8')."</td>
-    <td><a href=\"files.html#".make_anchor($commentaire['fichier'])."\">".htmlentities($commentaire['fichier'],ENT_COMPAT, 'UTF-8')."</a></td>
+    <td>".wordwrap(htmlspecialchars($commentaire['comment'],ENT_COMPAT, 'UTF-8'), 150, '<br />', TRUE)."</td>
+    <td><a href=\"files.html#".make_anchor($commentaire['file'])."\">".htmlentities($commentaire['file'],ENT_COMPAT, 'UTF-8')."</a></td>
     </tr>\n";
         }
     }
@@ -273,7 +308,7 @@ $exts = array_map('cb_exts', $liste);
 $exts = array_count_values($exts);
 if (SHOW_EXTS) { display($exts); }
 
-//print count($liste)." fichiers distincts\n";
+//print count($liste)." files distincts\n";
 
 function liste_directories_recursive( $path = '.', $level = 0 ){
     global $OPTIONS;
