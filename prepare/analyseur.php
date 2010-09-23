@@ -130,7 +130,7 @@ class analyseur {
                 return $return; 
             }
         } else {
-            // @empty_ifthen
+            // @empty_else
         }
         
         $code = $t->getCode();
@@ -154,7 +154,7 @@ class analyseur {
                 return $return; 
             }
         } else {
-            // @empty_ifthen
+            // @empty_else
         }
         
         foreach($this->regex[0] as $nom => $regex) {
@@ -193,7 +193,7 @@ class analyseur {
             } elseif ($arg < 0) {
                 $token->removePrev($arg + 1);
             } else {
-                // @empty_ifthen Just ignore this
+                // @empty_else
             }
         }
 
