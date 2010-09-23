@@ -1,26 +1,9 @@
 <?php
-/*
-   +----------------------------------------------------------------------+
-   | Cornac, PHP code inventory                                           |
-   +----------------------------------------------------------------------+
-   | Copyright (c) 2010 Alter Way Solutions (France)                      |
-   +----------------------------------------------------------------------+
-   | This source file is subject to version 3.01 of the PHP license,      |
-   | that is bundled with this package in the file LICENSE, and is        |
-   | available through the world-wide-web at the following url:           |
-   | http://www.php.net/license/3_01.txt                                  |
-   | If you did not receive a copy of the PHP license and are unable to   |
-   | obtain it through the world-wide-web, please send a note to          |
-   | license@php.net so we can mail you a copy immediately.               |
-   +----------------------------------------------------------------------+
-   | Author: Damien Seguy <damien.seguy@gmail.com>                        |
-   +----------------------------------------------------------------------+
- */
 include_once('Analyseur_Framework_TestCase.php');
 
 class Cdtternaire_Test extends Analyseur_Framework_TestCase
 {
-    /* 19 methodes */
+    /* 20 methodes */
     public function testCdtternaire1()  { $this->generic_test('cdtternaire.1'); }
     public function testCdtternaire2()  { $this->generic_test('cdtternaire.2'); }
     public function testCdtternaire3()  { $this->generic_test('cdtternaire.3'); }
@@ -40,6 +23,7 @@ class Cdtternaire_Test extends Analyseur_Framework_TestCase
     public function testCdtternaire17()  { $this->generic_test('cdtternaire.17'); }
     public function testCdtternaire18()  { $this->generic_test('cdtternaire.18'); }
     public function testCdtternaire19()  { $this->generic_test('cdtternaire.19'); }
+    public function testCdtternaire20()  { $this->generic_test('cdtternaire.20'); }
 
 }
 
