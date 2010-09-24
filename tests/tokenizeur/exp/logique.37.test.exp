@@ -14,19 +14,15 @@ tests/tokenizeur/scripts/logique.37.test.php
                   operateur :  "|"
                   gauche : 
                       cdtternaire ?
-                      parentheses (comparaison tableau variable $property[literals emp_id] 283 "==" literals ) ? literals selected : sequenceliterals 
-rawtext 311 "A"
-
+                      parentheses (comparaison tableau variable $property[literals emp_id] 283 "==" literals ) ? literals selected : literals 
                           parentheses 
                           ( "comparaison tableau variable $property[literals emp_id] 283 "==" literals " )
                           literals selected
-                          sequence 
-                          0 : 
-                              literals 
-                          1 : 
-                              rawtext 
-                              Texte : "311 "A""
+                          literals 
       1 : 
+          rawtext 
+          Texte : "311 "A""
+      2 : 
           functioncall echo
           appel de fonction : echo: 
               arglist 

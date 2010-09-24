@@ -36,18 +36,26 @@ class switch_alternative_regex extends analyseur_regex {
         $var = $t->getNext(2);
         
         $args = array();
+        $remove = array();
         
         while($var->checkNotToken(T_ENDSWITCH)) {
             
+            if ($var->checkClass('rawtext')) {
+                $remove[] = $pos;
+                $pos++;
+                $var = $var->getNext();
+                continue;
+            }
             if ($var->checkNotClass(array('_case','_default'))) { return false; }
             
             $args[] = $pos;
+            $remove[] = $pos;
             $pos++;
             
             $var = $var->getNext();
         }
         
-        $regex = new modele_regex('block',$args, $args);
+        $regex = new modele_regex('block',$args, $remove);
         Token::applyRegex($t->getNext(2), 'block', $regex);
 
         $this->args = array(1, 3);

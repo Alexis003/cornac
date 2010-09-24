@@ -109,13 +109,18 @@ String by delimiter (especially <<< )
 detect infinite loop (for, while)
 detect impossible condition (if (false), ...)
 
+
+
 PHP configuration function usage
 
-check for case without break
+check for case without break, of switch without default. 
 useless lines (like 1; array(); etc.)
 Identify variables that where not initialized (less args, less foreach)
 
-Long functions (number of tokens, number of lines...)
+Long functions (number of tokens, number of lines...), long loops
+unused return values from user functions
+unused return values from PHP functions
+literals used as parameter in function call
 Compromised variables (the one affected with values from GPC)
 
 Gather files including something else than class, function or global.... 

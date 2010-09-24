@@ -40,7 +40,7 @@ class sequence_class_regex extends analyseur_regex {
                ) { 
 
             if ($t->hasNext(1) && $t->getNext(1)->checkCode(array('=','->',',','('))) { return false; }
-            if ($t->hasPrev() && ($t->getPrev()->checkCode(array(')',':','->','.','?','"')) ||
+            if ($t->hasPrev() && ($t->getPrev()->checkCode(array(')',':','->','.','?','"','*','/','%','+','-')) ||
                                   $t->getPrev()->checkClass(array('parentheses','arglist')) ||
                                   $t->getPrev()->checkForAssignation() || 
                                   $t->getPrev()->checkToken(array(T_ELSE, T_ABSTRACT))) ) { return false; }

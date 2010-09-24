@@ -34,7 +34,7 @@ class operation_multiplication_regex extends analyseur_regex {
 
         if (($t->hasPrev(1) && $t->getPrev(1)->checkNotCode(array('->','::','@','$'))) &&
             $t->getPrev()->checkNotClass(array('Token','arglist')) &&
-            $t->getNext()->checkNotClass('Token') &&
+            $t->getNext()->checkNotClass(array('Token', 'sequence')) &&
             $t->getNext(1)->checkNotCode(array('[','->','{','(','++','--')) 
             && !$t->getNext(1)->checkForAssignation() 
             ) {
