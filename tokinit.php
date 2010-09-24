@@ -84,7 +84,7 @@ include('./libs/database.php');
 $DATABASE = new database();
 
 $query = <<<SQL
-CREATE TABLE `<tasks>` (
+CREATE TABLE IF NOT EXISTS `<tasks>` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `task` enum('tokenize','auditeur') NOT NULL,
   `target` varchar(255) NOT NULL,
@@ -117,7 +117,7 @@ if (isset($INI['directory'])) {
 
     print "Preparing work on directory '{$directory}'\n";
 
-    $files = glob($directory.'/*.php');
+    $files = glob($directory.'/*');
 
     foreach($files as $file) {
         $query = "INSERT INTO <tasks> VALUES (NULL, 'tokenize', ".$DATABASE->quote($file).", ".$DATABASE->quote(GABARIT).", NOW(), 0)";
