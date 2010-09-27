@@ -26,7 +26,16 @@ class dir_functions extends functioncalls {
 	}
 	
 	public function analyse() {
-	    $this->functions = array('opendir','dir','unlink', 'rename','move_uploaded_files','is_uploaded_file','is_writeable');
+	    $this->functions = array(
+'chdir',
+'chroot',
+'dir',
+'closedir',
+'getcwd',
+'opendir',
+'readdir',
+'rewinddir',
+'scandir',);
 	    parent::analyse();
 	    
 	    return true;
