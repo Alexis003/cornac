@@ -18,7 +18,7 @@
  */
 
 class nonphp_functions extends functioncalls {
-	protected	$description = 'Liste des fonctions de dossier';
+	protected	$description = 'Liste des fonctions utilisateurs';
 	protected	$title = 'Fonctions';
 
 	function __construct($mid) {
