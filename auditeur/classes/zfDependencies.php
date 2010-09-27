@@ -1,0 +1,65 @@
+<?php 
+
+class zfDependencies extends modules {
+	protected	$title = 'Dépendances au Zend Framework';
+	protected	$description = 'Liste des classes du ZF dont l\'application dépend : par héritage ou par utilisation directe';
+
+	function __construct($mid) {
+        parent::__construct($mid);
+	}
+
+// @doc if this analyzer is based on previous result, use this to make sure the results are here
+	function dependsOn() {
+	    return array();
+	}
+
+	public function analyse() {
+        $this->clean_rapport();
+
+// @note heritage
+        $in = modules::getZendFrameworkClasses();
+//        $in = array_slice($in, 0, 4);
+        $in = join('", "', $in);
+	    $query = <<<SQL
+SELECT NULL, T1.fichier, T2.code AS code, T1.id, '{$this->name}', 0
+FROM <tokens> T1
+JOIN <tokens_tags> TT 
+ON T1.id = TT.token_id AND
+   TT.type='extends'
+JOIN <tokens> T2
+ON T2.id = TT.token_sub_id AND
+   T2.fichier=T1.fichier
+WHERE T1.type = '_class' AND
+T2.code IN ("$in")
+SQL;
+        $this->exec_query_insert('rapport', $query);
+
+// @note direct instantiation with new
+        $query = <<<SQL
+SELECT NULL, T1.fichier, T2.code AS code, T2.id, '{$this->name}', 0
+FROM <tokens> T1
+JOIN <tokens> T2
+    ON T2.fichier = T1.fichier AND
+       T2.droite = T1.droite + 1
+WHERE T1.type='_new' AND
+      T2.code IN ("$in")
+SQL;
+        $this->exec_query_insert('rapport', $query);
+
+// @note static usage
+        $query = <<<SQL
+SELECT NULL, T1.fichier, T2.code AS code, T2.id, '{$this->name}', 0
+FROM <tokens> T1
+JOIN <tokens> T2
+    ON T2.fichier = T1.fichier AND
+       T2.droite = T1.droite + 1
+WHERE T1.type='method_static' AND
+      T2.code IN ("$in")
+SQL;
+        $this->exec_query_insert('rapport', $query);
+
+        return true;
+	}
+}
+
+?>

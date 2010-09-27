@@ -33,9 +33,10 @@ class zfClasses extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
-        $list = parse_ini_file('../dict/zfClasses.ini');
-        $in = "'".join("', '", $list['classes'])."'";
+        $list = modules::getZendFrameworkClasses();
+        $in = "'".join("', '", $list)."'";
         
+        // @note classes extended
 	    $query = <<<SQL
 SELECT NULL, T1.fichier, T2.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1

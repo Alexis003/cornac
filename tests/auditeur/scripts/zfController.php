@@ -16,15 +16,17 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
-include_once('Auditeur_Framework_TestCase.php');
 
-class zfClasses_Test extends Auditeur_Framework_TestCase
-{
-    public function testzfClasses()  { 
-        $this->expected = array( 'Zend_View',);
-        $this->unexpeted = array('Zend_View_Not_Existing','getInstance','$x');
-        
-        parent::generic_test();
-    }
+class Zend_My_Controller extends Application_Zend_Controller {
+    function realAction() {}
 }
+
+class Zend_My_Second_Controller extends Zend_Controller {
+    function anotherrealAction() {}
+}
+
+class X extends Y {
+    function notarealAction() {}
+}
+
 ?>

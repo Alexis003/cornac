@@ -16,15 +16,12 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
-include_once('Auditeur_Framework_TestCase.php');
 
-class zfClasses_Test extends Auditeur_Framework_TestCase
-{
-    public function testzfClasses()  { 
-        $this->expected = array( 'Zend_View',);
-        $this->unexpeted = array('Zend_View_Not_Existing','getInstance','$x');
-        
-        parent::generic_test();
+class ZFextension extends Zend_Mail {
+    function __construct() {
+        $y = new Zend_Pdf();
     }
 }
+
+
 ?>
