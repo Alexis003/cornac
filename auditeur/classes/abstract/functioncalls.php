@@ -42,7 +42,6 @@ class functioncalls extends modules {
         $this->clean_rapport();
 
         $query = <<<SQL
-INSERT INTO <rapport> 
     SELECT NULL, T1.fichier, T2.code AS code, T1.id, '{$this->name}', 0
     FROM <tokens> T1 
     JOIN <tokens> T2
@@ -50,7 +49,7 @@ INSERT INTO <rapport>
            T2.fichier = T1.fichier
     WHERE T1.type='functioncall' AND T2.code $not in ('$in')
 SQL;
-        $this->exec_query($query);
+        $this->exec_query_insert('rapport', $query);
     }
 }
 
