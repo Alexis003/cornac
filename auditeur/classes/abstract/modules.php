@@ -156,7 +156,7 @@ abstract class modules {
         if ($erreur[2]) {
             print_r($erreur);
             print $query;
-            die();
+            return false;
         }
 
         return $res;
