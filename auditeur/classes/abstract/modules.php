@@ -271,6 +271,11 @@ SQL;
         $classes = parse_ini_file('../dict/class2ext.ini', true);
         return $classes;
     }
+
+    static public function getZendFrameworkClasses() {
+        $classes = parse_ini_file('../dict/zfClasses.ini', true);
+        return $classes['classes'];
+    }
     
     static public function getPHPGPC() {
         return array('$_GET','$_POST','$_COOKIE','$_REQUEST','$_FILES','$_SESSION',
