@@ -105,6 +105,13 @@ $tests = array(
 'class.session_functions.test.php',
 'class.dir_functions.test.php',
 'class.mssql_functions.test.php',
+'class.mysql_functions.test.php',
+'class.mysqli_functions.test.php',
+'class.execs.test.php',
+'class.evals.test.php',
+'class.filter_functions.test.php',
+'class.file_functions.test.php',
+'class.keyval_outside.test.php',
 // new tests
 );
 
