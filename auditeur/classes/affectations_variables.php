@@ -97,7 +97,6 @@ JOIN <tokens_tags> TT1
 JOIN <tokens> T2
     ON T1.fichier = T2.fichier AND TT1.token_sub_id = T2.id
 WHERE T1.type = '_foreach'
-LIMIT 12;
 SQL;
         $this->exec_query_insert('rapport', $query);    
         
