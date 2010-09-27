@@ -37,10 +37,10 @@ class keyval_outside extends modules {
 
 	    $query = <<<SQL
 SELECT NULL, T1.fichier, T2.code, T2.id, '{$this->name}',0
-FROM cornac_rapport TR1
-JOIN cornac T1 
+FROM <rapport> TR1
+JOIN <tokens> T1 
     ON T1.id = TR1.token_id
-JOIN cornac T2
+JOIN  <tokens> T2
     ON T1.fichier = T2.fichier AND
        T1.class = T2.class AND
        T1.scope = T2.scope AND
