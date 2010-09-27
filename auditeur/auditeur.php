@@ -222,6 +222,7 @@ if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
   `checked` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `element` (`element`),
+  KEY `fichier` (`fichier`),
   KEY `module` (`module`)
 ) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1');
 
