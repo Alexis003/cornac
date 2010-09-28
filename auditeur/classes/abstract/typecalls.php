@@ -26,7 +26,7 @@ class typecalls extends modules {
 	
 	public function analyse() {
 	    if (is_array($this->type)) {
-    	    $in = join("', '", $this->type);
+    	    $in = '"'.join('", "', $this->type).'"';
 	    } else {
     	    $in = $this->type;
 	    }
@@ -34,16 +34,16 @@ class typecalls extends modules {
         $this->clean_rapport();
 
         $query = <<<SQL
-INSERT INTO <rapport>
     SELECT NULL, T1.fichier, T1.code AS code, T1.id, '{$this->name}', 0
     FROM <tokens> T1 
-    WHERE T1.type IN ('$in')
+    WHERE T1.type IN ($in)
 SQL;
         if (!is_null($this->code) && is_array($this->code) && count($this->code) > 0) {
-            $query .= " AND T1.code in ('".join("', '", $this->code)."')";
+            $in = "'".join("', '", $this->code)."'";
+            $query .= " AND T1.code IN ($in)";
         }
-
-        $this->exec_query($query);
+        
+        $this->exec_query_insert('rapport', $query);
 	}
 }
 

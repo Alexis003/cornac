@@ -32,15 +32,16 @@ class php_classes_name_conflict extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
-        $classes = modules::getPHPClasses();
-        $classes = join("','", $classes);
+        $constants = modules::getPHPClasses();
+        print_r($constants);
+        $in = '"'.join('","', $constants).'"';
 
 // @todo of course, update this useless query. :)
 	    $query = <<<SQL
 SELECT NULL, T1.fichier, T1.element, T1.id, '{$this->name}', 0
     FROM <rapport> T1
     WHERE   T1.module = 'classes' AND
-            T1.element IN ('$classes')
+            T1.element IN ($in)
 SQL;
         $this->exec_query_insert('rapport', $query);
         

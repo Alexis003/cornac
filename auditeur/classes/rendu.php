@@ -57,11 +57,11 @@ SQL;
         if (!isset($this->lignes[$droite])) { return ; } // @note already done
         if (is_string($this->lignes[$droite])) { return ; } //  @note already done
 
-          $methode = "affiche_".$this->lignes[$droite]['type'];
-          if (method_exists($this, $methode)){
-              $this->lignes[$droite] = $this->$methode($this->lignes[$droite]["droite"]);
+          $method = "affiche_".$this->lignes[$droite]['type'];
+          if (method_exists($this, $method)){
+              $this->lignes[$droite] = $this->$method($this->lignes[$droite]["droite"]);
           } else {
-              print __CLASS__." manque d'une methode pour traiter $methode ($droite)\n";
+              print __CLASS__." lack a method to process $method ($droite)\n";
               print_r( $this->lignes[$droite]);
               die();
           }

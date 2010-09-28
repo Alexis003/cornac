@@ -65,7 +65,7 @@ INSERT INTO <rapport_dot>
   JOIN <tokens_tags> TT 
     ON TT.token_id = T1.id
   JOIN <tokens> T2
-    ON TT.token_sub_id = T2.id AND T1.fichier = T2.fichier and TT.type='fonction' and T2.code='loadLibrary'
+    ON TT.token_sub_id = T2.id AND T1.fichier = T2.fichier and TT.type='function' and T2.code='loadLibrary'
   JOIN <tokens_tags> TT2 
     ON TT2.token_id = T1.id
   JOIN <tokens> T3

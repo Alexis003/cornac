@@ -43,15 +43,15 @@ WHERE T1.type = '_function' AND
 SQL;
         $res = $this->exec_query($query);
     
-        $fonctions = array();
+        $functions = array();
         while($ligne = $res->fetch()) {
-            $fonctions[$ligne['id']][$ligne['type']] = $ligne['token_sub_id'];
-            $fonctions[$ligne['id']]['function'] = $ligne['code'];
-            $fonctions[$ligne['id']]['fichier'] = $ligne['fichier'];
-            $fonctions[$ligne['id']]['signature'] = $ligne['signature'];
+            $functions[$ligne['id']][$ligne['type']] = $ligne['token_sub_id'];
+            $functions[$ligne['id']]['function'] = $ligne['code'];
+            $functions[$ligne['id']]['fichier'] = $ligne['fichier'];
+            $functions[$ligne['id']]['signature'] = $ligne['signature'];
         }
         
-        foreach($fonctions as $id => $infos) {
+        foreach($functions as $id => $infos) {
             extract($infos);
             if ($args == 0) { continue; }
     

@@ -18,7 +18,7 @@
  */
 
 class fluid_interface extends modules {
-	protected	$title = 'Titre pour fluid_interface';
+	protected	$title = 'Interfaces fluides';
 	protected	$description = 'Ceci est l\'analyseur fluid_interface par défaut. ';
 
 	function __construct($mid) {
@@ -61,7 +61,7 @@ SELECT NULL, T1.fichier, CONCAT(T1.code, '->', GROUP_CONCAT(T4.code ORDER BY T4.
            T2.droite BETWEEN T1.droite + 1 AND T1.droite + {$row['nb']}
     JOIN <tokens_tags> TT
         ON TT.token_id = T2.id AND
-           TT.type='methode'
+           TT.type='method'
     JOIN <tokens> T3
         ON T3.fichier = T2.fichier AND
            T3.id = TT.token_sub_id

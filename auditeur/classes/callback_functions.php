@@ -39,7 +39,7 @@ SELECT NULL, T1.fichier, T4.code, T4.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens_tags> TT
     ON TT.token_id = T1.id AND
-       TT.type='fonction'
+       TT.type='function'
 JOIN <tokens> T2
     ON T2.fichier = T1.fichier AND
        TT.token_sub_id = T2.id AND
@@ -67,7 +67,7 @@ SELECT NULL, T1.fichier, T5.code, T5.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens_tags> TT
     ON TT.token_id = T1.id AND
-       TT.type='fonction'
+       TT.type='function'
 JOIN <tokens> T2
     ON T2.fichier = T1.fichier AND
        TT.token_sub_id = T2.id AND
@@ -103,7 +103,7 @@ SELECT NULL, T1.fichier, T4.code, T4.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens_tags> TT
     ON TT.token_id = T1.id AND
-       TT.type='fonction'
+       TT.type='function'
 JOIN <tokens> T2
     ON T2.fichier = T1.fichier AND
        TT.token_sub_id = T2.id AND

@@ -41,7 +41,7 @@ SELECT NULL, T1.fichier, T2.code AS code, T1.id, '{$this->name}', 0
        ON T1.id = TT.token_sub_id
 where 
  T1.type='functioncall' AND
-( TT.token_id IS NULL OR TT.type != 'methode') AND
+( TT.token_id IS NULL OR TT.type != 'method') AND
 T2.code NOT IN ('$in')
 SQL;
 

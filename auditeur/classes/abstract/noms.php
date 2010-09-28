@@ -31,19 +31,18 @@ class noms extends modules {
         $this->clean_rapport();
 
         $query = <<<SQL
-INSERT INTO <rapport> 
-   SELECT NULL, T1.fichier, T2.code, T1.id, '{$this->name}', 0
-   FROM <tokens> T1
-    JOIN <tokens_tags> TT
-        ON T1.id = TT.token_id  
-    JOIN <tokens> T2 
-        ON TT.token_sub_id = T2.id
-    WHERE T1.type='$type_token'      AND 
-          TT.type = '$type_tag';
+SELECT NULL, T1.fichier, T2.code, T1.id, '{$this->name}', 0
+FROM <tokens> T1
+JOIN <tokens_tags> TT
+    ON T1.id = TT.token_id  
+JOIN <tokens> T2 
+    ON TT.token_sub_id = T2.id AND
+       T1.fichier = T2.fichier
+WHERE T1.type='$type_token'      AND 
+      TT.type = '$type_tag';
 SQL;
 
-        $this->exec_query($query);
-
+        $this->exec_query_insert('rapport', $query);
     }
 }
 

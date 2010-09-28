@@ -32,7 +32,7 @@ class arglist_call extends modules {
 SELECT NULL, T1.fichier, CONCAT(T2.code,'(', count(*),' args)') AS code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens_tags> TT1
-    ON T1.id = TT1.token_id AND TT1.type = 'fonction'
+    ON T1.id = TT1.token_id AND TT1.type = 'function'
 JOIN <tokens> T2
     ON T2.fichier = T1.fichier AND TT1.token_sub_id = T2.id
 JOIN <tokens_tags> TT2

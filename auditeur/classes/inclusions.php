@@ -43,7 +43,7 @@ JOIN <tokens_tags> TT
 JOIN <tokens> T2
     ON TT.token_sub_id = T2.id AND
        T1.fichier = T2.fichier AND
-       TT.type='fonction'      AND 
+       TT.type='function'      AND 
        T2.code='loadLibrary'
 SQL;
         $this->exec_query_insert('rapport', $query);

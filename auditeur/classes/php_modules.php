@@ -49,22 +49,22 @@ SELECT DISTINCT element
 SQL;
 	    $res = $this->exec_query($query);
 
-        $fonctions = array();
+        $functions = array();
         while($ligne = $res->fetchColumn()) {
-            $fonctions[] = strtolower($ligne);
+            $functions[] = strtolower($ligne);
         }
         
         $exts = modules::getPHPExtensions(); 
         foreach($exts as $ext) {
             $ext = strtolower($ext);
-            $functions = modules::getPHPFunctions($ext);
-            if (!is_array($functions)) { 
+            $phpfunctions = modules::getPHPFunctions($ext);
+            if (!is_array($phpfunctions)) { 
                 continue; 
             }
-            if (empty($functions)) {
+            if (empty($phpfunctions)) {
                 continue; 
             }
-            $list = array_intersect($functions, $fonctions);
+            $list = array_intersect($phpfunctions, $functions);
             if (count($list) > 0) {
                 $in = join("','", $list);
                 $query = <<<SQL
@@ -75,13 +75,13 @@ UPDATE <rapport>
     
 SQL;
                 $res = $this->exec_query($query);
-                $fonctions = array_diff($fonctions, $list);
+                $functions = array_diff($functions, $list);
             }
             unset($list);
         }
 
-        $functions = modules::getPHPStandardFunctions();
-        $list = array_intersect($functions, $fonctions);
+        $phpfunctions = modules::getPHPStandardFunctions();
+        $list = array_intersect($phpfunctions, $functions);
         if (count($list) > 0) {
             $in = join("','", $list);
             $query = <<<SQL
@@ -91,7 +91,7 @@ UPDATE <rapport>
     element in ( '$in')
 SQL;
             $res = $this->exec_query($query);
-            $fonctions = array_diff($fonctions, $list);
+            $functions = array_diff($functions, $list);
         }
 
 

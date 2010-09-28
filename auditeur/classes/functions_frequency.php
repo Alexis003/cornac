@@ -27,7 +27,7 @@ class functions_frequency extends noms {
 	
 	public function analyse() {
 	    $this->noms['type_token'] = 'functioncall';
-	    $this->noms['type_tags'] = 'fonction';
+	    $this->noms['type_tags'] = 'function';
 	    
 	    parent::analyse();
 	    

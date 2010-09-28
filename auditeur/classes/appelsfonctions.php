@@ -67,12 +67,12 @@ SELECT $concat1, $concat2, T1.fichier, '{$this->name}', 0
     on T1.fichier = T4.fichier AND
        T4.droite = T1.droite + 4
 where 
- T1.type='method' ;
+ T1.type='method' 
 SQL;
         $res = $this->exec_query($query);
 
         $query = <<<SQL
-SELECT T4.code AS methode, T1.class as classe
+SELECT T4.code AS method, T1.class as classe
   from <tokens> T1
   join <tokens_cache> T2 
     on T1.id = T2.id
@@ -84,7 +84,7 @@ SELECT T4.code AS methode, T1.class as classe
     on T1.fichier = T4.fichier AND
        T4.droite = T1.droite + 4
 where 
- T1.type='method' ;
+ T1.type='method' 
 SQL;
         $res = $this->exec_query($query);
         
@@ -97,9 +97,7 @@ SELECT T1.element
 where 
  T1.module='defmethodes' AND 
  T1.element NOT LIKE "{$ligne["classe"]}->%" AND
- T1.element LIKE "%->{$ligne["methode"]}"
-
- ;
+ T1.element LIKE "%->{$ligne["method"]}"
 SQL;
             $res2 = $this->exec_query($query);            
             
