@@ -72,6 +72,11 @@ For each tokem note scope, class, method, variable, array, fichier
 Add -log option to log information in a log file
 
 [auditeur]
+secu and secu_functions are double
+execs and exec_functions
+zfClasses and zfDependencies are double 
+
+
 Spot php error during execution, report it by auditeur
 Add a log to check SQL length and optimize the bad queries 
 Make auditeur i18n easily (export in external file, auto-adding new titles)
