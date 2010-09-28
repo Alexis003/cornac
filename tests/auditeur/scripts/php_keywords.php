@@ -16,14 +16,13 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
-// this function might also be defined by a PHP extension! 
-function fbsql_username() {
 
+$unset = 1;
+$php = 'die';
+
+function x($foreach) {
+    return 'try';
 }
 
-// this function is not defined by a PHP extension (that we hope)
-function fbsql_username_hopefully() {
-
-}
 
 ?>

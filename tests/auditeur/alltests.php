@@ -117,6 +117,7 @@ $tests = array(
 'class.abstracts.test.php',
 'class.finals.test.php',
 'class.function_args_reference.test.php',
+'class.php_keywords.test.php',
 // new tests
 );
 

@@ -1,4 +1,4 @@
-<?php
+<?php 
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -16,14 +16,16 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
-// this function might also be defined by a PHP extension! 
-function fbsql_username() {
 
+include_once('Auditeur_Framework_TestCase.php');
+
+class php_keywords_Test extends Auditeur_Framework_TestCase
+{
+    public function testphp_keywords()  {
+        $this->expected = array( '$unset','die','$foreach','try');
+        $this->unexpected = array('php','return','function','x');
+
+        parent::generic_test();
+    }
 }
-
-// this function is not defined by a PHP extension (that we hope)
-function fbsql_username_hopefully() {
-
-}
-
 ?>
