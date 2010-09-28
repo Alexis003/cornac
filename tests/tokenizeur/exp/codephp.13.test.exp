@@ -15,7 +15,7 @@ tests/tokenizeur/scripts/codephp.13.test.php
 ""
       2 : 
           functioncall echo
-          appel de fonction : echo: 
+          function call : echo: 
               arglist 
               0 : 
                   variable $x

@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/affectation.19.test.php
 
   code : 
       functioncall z
-      appel de fonction : z: 
+      function call : z: 
           arglist 
           0 : 
                argument et initialisation 

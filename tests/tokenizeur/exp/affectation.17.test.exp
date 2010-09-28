@@ -8,7 +8,7 @@ tests/tokenizeur/scripts/affectation.17.test.php
        "=" 
       gauche : 
           functioncall imagecolorallocate
-          appel de fonction : imagecolorallocate: 
+          function call : imagecolorallocate: 
               arglist 
               0 : 
                   variable $image_info

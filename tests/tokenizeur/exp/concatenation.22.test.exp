@@ -11,7 +11,7 @@ tests/tokenizeur/scripts/concatenation.22.test.php
           not ! ? concatenation literals f . functioncall variable $g ( arglist(literals h) )  . literals i   : literals j
               not !
                   functioncall empty
-                  appel de fonction : empty: 
+                  function call : empty: 
                       arglist 
                       0 : 
                           tableau
@@ -22,7 +22,7 @@ tests/tokenizeur/scripts/concatenation.22.test.php
                   literals f
               1 : 
                   functioncall $g
-                  appel de fonction : $g: 
+                  function call : $g: 
                       arglist 
                       0 : 
                           literals h

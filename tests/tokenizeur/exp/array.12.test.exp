@@ -8,7 +8,7 @@ tests/tokenizeur/scripts/array.12.test.php
        "=" 
       gauche : 
           functioncall array
-          appel de fonction : array: 
+          function call : array: 
               arglist 
               0 : 
                   literals (

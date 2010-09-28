@@ -8,7 +8,7 @@ tests/tokenizeur/scripts/clone.14.test.php
        "=" 
       gauche : 
           functioncall array
-          appel de fonction : array: 
+          function call : array: 
               arglist 
               0 : 
                   _clone 

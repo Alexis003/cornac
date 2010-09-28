@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/functioncall.38.test.php
 
   code : 
       functioncall eval
-      appel de fonction : eval: 
+      function call : eval: 
           arglist 
           0 : 
               concatenation 

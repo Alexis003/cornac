@@ -3,8 +3,8 @@ tests/tokenizeur/scripts/property.10.test.php
 
   code : 
       method method method method_static 307 "ProduitsRefsPrix"::functioncall 307 "Model" ( ( ) ) ->functioncall 307 "with" ( arglist(literals 1) ) ->functioncall 307 "together" ( ( ) ) 
-      appel de methode : functioncall 307 "findAll" ( ( ) ) : 
+      method call : functioncall 307 "findAll" ( ( ) ) : 
           functioncall findAll
-          appel de fonction : findAll: 
+          function call : findAll: 
               arglist 
               Liste d'argument vide

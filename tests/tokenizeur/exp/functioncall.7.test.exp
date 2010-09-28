@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/functioncall.7.test.php
 
   code : 
       functioncall x
-      appel de fonction : x: 
+      function call : x: 
           arglist 
           0 : 
               literals 1
@@ -15,6 +15,6 @@ tests/tokenizeur/scripts/functioncall.7.test.php
               variable $x
           4 : 
               functioncall x
-              appel de fonction : x: 
+              function call : x: 
                   arglist 
                   Liste d'argument vide

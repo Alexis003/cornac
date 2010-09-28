@@ -9,7 +9,7 @@ tests/tokenizeur/scripts/operation.22.test.php
       operation :  "*"
       gauche : 
           functioncall $sorter
-          appel de fonction : $sorter: 
+          function call : $sorter: 
               arglist 
               0 : 
                   tableau

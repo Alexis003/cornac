@@ -27,7 +27,7 @@ tests/tokenizeur/scripts/sequence.19.test.php
                    "=" 
                   gauche : 
                       functioncall array
-                      appel de fonction : array: 
+                      function call : array: 
                           arglist 
                           0 : 
                               variable $sort
@@ -38,7 +38,7 @@ tests/tokenizeur/scripts/sequence.19.test.php
           Texte : "311 "    return array('""
       4 : 
           functioncall echo
-          appel de fonction : echo: 
+          function call : echo: 
               arglist 
               0 : 
                   tableau
@@ -49,13 +49,13 @@ tests/tokenizeur/scripts/sequence.19.test.php
           Texte : "311 "', '""
       6 : 
           functioncall echo
-          appel de fonction : echo: 
+          function call : echo: 
               arglist 
               0 : 
                   cdtternaire ?
                   functioncall 350 "isset" ( arglist(tableau variable $sort[literals 1]) )  ? tableau variable $sort[literals 1] : literals asc
                       functioncall isset
-                      appel de fonction : isset: 
+                      function call : isset: 
                           arglist 
                           0 : 
                               tableau

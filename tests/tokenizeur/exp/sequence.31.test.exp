@@ -7,12 +7,12 @@ tests/tokenizeur/scripts/sequence.31.test.php
           method_static 
           307 "a"::functioncall 307 "b" ( ( ) ) : 
               functioncall b
-              appel de fonction : b: 
+              function call : b: 
                   arglist 
                   Liste d'argument vide
       1 : 
           functioncall define
-          appel de fonction : define: 
+          function call : define: 
               arglist 
               0 : 
                   literals c

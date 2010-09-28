@@ -4,6 +4,6 @@ tests/tokenizeur/scripts/noscream.2.test.php
   code : 
       noscream @
           functioncall x
-          appel de fonction : x: 
+          function call : x: 
               arglist 
               Liste d'argument vide

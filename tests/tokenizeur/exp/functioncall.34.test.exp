@@ -3,6 +3,6 @@ tests/tokenizeur/scripts/functioncall.34.test.php
 
   code : 
       functioncall $x
-      appel de fonction : $x: 
+      function call : $x: 
           arglist 
           Liste d'argument vide

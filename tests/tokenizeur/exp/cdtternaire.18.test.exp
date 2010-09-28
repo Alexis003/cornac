@@ -10,7 +10,7 @@ tests/tokenizeur/scripts/cdtternaire.18.test.php
           cdtternaire ?
           functioncall 351 "empty" ( arglist(variable $b) )  ? variable $d : affectation variable $d 273 ".=" concatenation literals   . variable $e  
               functioncall empty
-              appel de fonction : empty: 
+              function call : empty: 
                   arglist 
                   0 : 
                       variable $b

@@ -2,7 +2,7 @@ tests/tokenizeur/scripts/codephp.17.test.php
   codephp <?php 
   code : 
       functioncall echo
-      appel de fonction : echo: 
+      function call : echo: 
           arglist 
           0 : 
               constante_static (              307 "lang"::constante forum )

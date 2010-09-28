@@ -3,8 +3,8 @@ tests/tokenizeur/scripts/method.7.test.php
 
   code : 
       method variable $x
-      appel de methode : functioncall 307 "y" ( ( ) ) : 
+      method call : functioncall 307 "y" ( ( ) ) : 
           functioncall y
-          appel de fonction : y: 
+          function call : y: 
               arglist 
               Liste d'argument vide

@@ -14,7 +14,7 @@ tests/tokenizeur/scripts/foreach.3.test.php
                "=" 
               gauche : 
                   functioncall array
-                  appel de fonction : array: 
+                  function call : array: 
                       arglist 
                       Liste d'argument vide
        else 
@@ -42,7 +42,7 @@ tests/tokenizeur/scripts/foreach.3.test.php
                               literals 0
                   1 : 
                       functioncall echo
-                      appel de fonction : echo: 
+                      function call : echo: 
                           arglist 
                           0 : 
                               concatenation 

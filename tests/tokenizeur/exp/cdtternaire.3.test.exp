@@ -10,7 +10,7 @@ tests/tokenizeur/scripts/cdtternaire.3.test.php
           cdtternaire ?
           functioncall 350 "isset" ( arglist(tableau variable $_REQUEST[literals rech_ven]) )  ? tableau variable $_REQUEST[literals rech_ven] : literals 
               functioncall isset
-              appel de fonction : isset: 
+              function call : isset: 
                   arglist 
                   0 : 
                       tableau

@@ -8,7 +8,7 @@ tests/tokenizeur/scripts/sign.9.test.php
        "=" 
       gauche : 
           functioncall substr
-          appel de fonction : substr: 
+          function call : substr: 
               arglist 
               0 : 
                   variable $b
@@ -19,7 +19,7 @@ tests/tokenizeur/scripts/sign.9.test.php
                   droite : 
                       sign  "-"functioncall 307 "strlen" ( arglist(variable $c) ) 
                           functioncall strlen
-                          appel de fonction : strlen: 
+                          function call : strlen: 
                               arglist 
                               0 : 
                                   variable $c

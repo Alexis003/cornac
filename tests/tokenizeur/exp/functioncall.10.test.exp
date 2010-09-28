@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/functioncall.10.test.php
 
   code : 
       functioncall x
-      appel de fonction : x: 
+      function call : x: 
           arglist 
           0 : 
               tableau

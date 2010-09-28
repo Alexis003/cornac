@@ -14,7 +14,7 @@ tests/tokenizeur/scripts/literals.7.test.php
               literals 1
       1 : 
           functioncall echo
-          appel de fonction : echo: 
+          function call : echo: 
               arglist 
               0 : 
                   concatenation 

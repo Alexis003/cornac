@@ -9,6 +9,6 @@ tests/tokenizeur/scripts/clone.12.test.php
       gauche : 
           _clone 
               functioncall y
-              appel de fonction : y: 
+              function call : y: 
                   arglist 
                   Liste d'argument vide

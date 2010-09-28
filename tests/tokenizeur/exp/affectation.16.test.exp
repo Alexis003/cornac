@@ -8,7 +8,7 @@ tests/tokenizeur/scripts/affectation.16.test.php
        "=" 
       gauche : 
           functioncall substr
-          appel de fonction : substr: 
+          function call : substr: 
               arglist 
               0 : 
                   variable $select_increment1
@@ -18,7 +18,7 @@ tests/tokenizeur/scripts/affectation.16.test.php
                   operation 
                   droite : 
                       functioncall strlen
-                      appel de fonction : strlen: 
+                      function call : strlen: 
                           arglist 
                           0 : 
                               variable $select_increment1

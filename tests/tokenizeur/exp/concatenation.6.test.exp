@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/concatenation.6.test.php
 
   code : 
       functioncall header
-      appel de fonction : header: 
+      function call : header: 
           arglist 
           0 : 
               concatenation 

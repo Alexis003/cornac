@@ -6,6 +6,6 @@ tests/tokenizeur/scripts/throw.6.test.php
           method_static 
           307 "c"::functioncall 307 "m" ( ( ) ) : 
               functioncall m
-              appel de fonction : m: 
+              function call : m: 
                   arglist 
                   Liste d'argument vide

@@ -2,7 +2,7 @@ tests/tokenizeur/scripts/functioncall.43.test.php
   codephp <?php 
   code : 
       functioncall PRINT
-      appel de fonction : PRINT: 
+      function call : PRINT: 
           arglist 
           0 : 
               concatenation 

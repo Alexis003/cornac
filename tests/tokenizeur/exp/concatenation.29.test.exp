@@ -6,11 +6,11 @@ tests/tokenizeur/scripts/concatenation.29.test.php
       sequence 
       0 : 
           functioncall echo
-          appel de fonction : echo: 
+          function call : echo: 
               arglist 
               0 : 
                   functioncall a
-                  appel de fonction : a: 
+                  function call : a: 
                       arglist 
                       0 : 
                           variable $b
@@ -25,7 +25,7 @@ tests/tokenizeur/scripts/concatenation.29.test.php
               block 
               0 : 
                   functioncall echo
-                  appel de fonction : echo: 
+                  function call : echo: 
                       arglist 
                       0 : 
                           literals d

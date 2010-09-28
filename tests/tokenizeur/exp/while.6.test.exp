@@ -8,9 +8,9 @@ tests/tokenizeur/scripts/while.6.test.php
           block 
           0 : 
               method variable $this
-              appel de methode : functioncall 307 "b" ( arglist(literals c) ) : 
+              method call : functioncall 307 "b" ( arglist(literals c) ) : 
                   functioncall b
-                  appel de fonction : b: 
+                  function call : b: 
                       arglist 
                       0 : 
                           literals c

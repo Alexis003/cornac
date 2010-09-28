@@ -5,14 +5,14 @@ tests/tokenizeur/scripts/affectation.35.test.php
       affectation 
       droite : 
           functioncall list
-          appel de fonction : list: 
+          function call : list: 
               arglist 
               0 : 
                   variable $x
        "=" 
       gauche : 
           functioncall explode
-          appel de fonction : explode: 
+          function call : explode: 
               arglist 
               0 : 
                   literals a

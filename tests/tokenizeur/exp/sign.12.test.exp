@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/sign.12.test.php
 
   code : 
       functioncall print
-      appel de fonction : print: 
+      function call : print: 
           arglist 
           0 : 
               operation 

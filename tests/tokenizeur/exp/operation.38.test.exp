@@ -11,7 +11,7 @@ tests/tokenizeur/scripts/operation.38.test.php
           droite : 
               noscream @
                   functioncall number_format
-                  appel de fonction : number_format: 
+                  function call : number_format: 
                       arglist 
                       0 : 
                           operation 

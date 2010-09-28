@@ -4,7 +4,7 @@ tests/tokenizeur/scripts/codephp.11.test.php
       sequence 
       0 : 
           functioncall echo
-          appel de fonction : echo: 
+          function call : echo: 
               arglist 
               0 : 
                   variable $x

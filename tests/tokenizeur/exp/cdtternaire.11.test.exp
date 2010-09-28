@@ -11,7 +11,7 @@ tests/tokenizeur/scripts/cdtternaire.11.test.php
                   parentheses 
                   ( "variable $b" )
                   functioncall strtoupper
-                  appel de fonction : strtoupper: 
+                  function call : strtoupper: 
                       arglist 
                       0 : 
                           property variable $eliterals f->

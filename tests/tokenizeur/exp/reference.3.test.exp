@@ -9,6 +9,6 @@ tests/tokenizeur/scripts/reference.3.test.php
       gauche : 
           reference &
               functioncall x
-              appel de fonction : x: 
+              function call : x: 
                   arglist 
                   Liste d'argument vide

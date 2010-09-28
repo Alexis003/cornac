@@ -105,7 +105,7 @@ tests/tokenizeur/scripts/switch.23.test.php
                       method_static 
                       307 "parent"::functioncall 307 "takeChildFromDOM" ( arglist(variable $child) ) : 
                           functioncall takeChildFromDOM
-                          appel de fonction : takeChildFromDOM: 
+                          function call : takeChildFromDOM: 
                               arglist 
                               0 : 
                                   variable $child

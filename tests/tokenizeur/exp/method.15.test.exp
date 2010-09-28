@@ -3,12 +3,12 @@ tests/tokenizeur/scripts/method.15.test.php
 
   code : 
       functioncall strlen
-      appel de fonction : strlen: 
+      function call : strlen: 
           arglist 
           0 : 
               method variable $e
-              appel de methode : functioncall literals namespace1:gt ( arglist() ) : 
+              method call : functioncall literals namespace1:gt ( arglist() ) : 
                   functioncall namespace1:gt
-                  appel de fonction : namespace1:gt: 
+                  function call : namespace1:gt: 
                       arglist 
                       0 : 

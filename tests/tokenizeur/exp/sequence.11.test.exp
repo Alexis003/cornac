@@ -26,7 +26,7 @@ tests/tokenizeur/scripts/sequence.11.test.php
               literals c
       3 : 
           functioncall print
-          appel de fonction : print: 
+          function call : print: 
               arglist 
               0 : 
                   variable $c

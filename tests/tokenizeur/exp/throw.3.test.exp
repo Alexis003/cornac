@@ -4,8 +4,8 @@ tests/tokenizeur/scripts/throw.3.test.php
   code : 
       _throw 
           method variable $x
-          appel de methode : functioncall 307 "method" ( ( ) ) : 
+          method call : functioncall 307 "method" ( ( ) ) : 
               functioncall method
-              appel de fonction : method: 
+              function call : method: 
                   arglist 
                   Liste d'argument vide

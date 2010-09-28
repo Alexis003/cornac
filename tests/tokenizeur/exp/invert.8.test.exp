@@ -11,6 +11,6 @@ tests/tokenizeur/scripts/invert.8.test.php
               method_static 
               307 "y"::functioncall 307 "x" ( ( ) ) : 
                   functioncall x
-                  appel de fonction : x: 
+                  function call : x: 
                       arglist 
                       Liste d'argument vide

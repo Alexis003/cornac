@@ -11,15 +11,15 @@ tests/tokenizeur/scripts/cdtternaire.20.test.php
               cdtternaire ?
               method variable $x->functioncall 307 "y" ( ( ) )  ? method variable $x->functioncall 307 "z" ( ( ) )  : literals literal
                   method variable $x
-                  appel de methode : functioncall 307 "y" ( ( ) ) : 
+                  method call : functioncall 307 "y" ( ( ) ) : 
                       functioncall y
-                      appel de fonction : y: 
+                      function call : y: 
                           arglist 
                           Liste d'argument vide
                   method variable $x
-                  appel de methode : functioncall 307 "z" ( ( ) ) : 
+                  method call : functioncall 307 "z" ( ( ) ) : 
                       functioncall z
-                      appel de fonction : z: 
+                      function call : z: 
                           arglist 
                           Liste d'argument vide
                   literals literal
@@ -28,7 +28,7 @@ tests/tokenizeur/scripts/cdtternaire.20.test.php
           Texte : "311 "<""
       2 : 
           functioncall echo
-          appel de fonction : echo: 
+          function call : echo: 
               arglist 
               0 : 
                   variable $x
@@ -37,13 +37,13 @@ tests/tokenizeur/scripts/cdtternaire.20.test.php
           Texte : "311 " id="""
       4 : 
           functioncall echo
-          appel de fonction : echo: 
+          function call : echo: 
               arglist 
               0 : 
                   method variable $x
-                  appel de methode : functioncall 307 "w" ( ( ) ) : 
+                  method call : functioncall 307 "w" ( ( ) ) : 
                       functioncall w
-                      appel de fonction : w: 
+                      function call : w: 
                           arglist 
                           Liste d'argument vide
       5 : 
@@ -51,13 +51,13 @@ tests/tokenizeur/scripts/cdtternaire.20.test.php
           Texte : "311 "" ""
       6 : 
           functioncall echo
-          appel de fonction : echo: 
+          function call : echo: 
               arglist 
               0 : 
                   method variable $z
-                  appel de methode : functioncall 307 "d" ( ( ) ) : 
+                  method call : functioncall 307 "d" ( ( ) ) : 
                       functioncall d
-                      appel de fonction : d: 
+                      function call : d: 
                           arglist 
                           Liste d'argument vide
       7 : 
@@ -66,13 +66,13 @@ tests/tokenizeur/scripts/cdtternaire.20.test.php
 ""
       8 : 
           functioncall echo
-          appel de fonction : echo: 
+          function call : echo: 
               arglist 
               0 : 
                   method variable $x
-                  appel de methode : functioncall 307 "x" ( ( ) ) : 
+                  method call : functioncall 307 "x" ( ( ) ) : 
                       functioncall x
-                      appel de fonction : x: 
+                      function call : x: 
                           arglist 
                           Liste d'argument vide
       9 : 
@@ -80,7 +80,7 @@ tests/tokenizeur/scripts/cdtternaire.20.test.php
           Texte : "311 "</""
       10 : 
           functioncall echo
-          appel de fonction : echo: 
+          function call : echo: 
               arglist 
               0 : 
                   variable $x

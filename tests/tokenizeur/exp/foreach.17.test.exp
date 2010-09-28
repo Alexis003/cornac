@@ -10,7 +10,7 @@ tests/tokenizeur/scripts/foreach.17.test.php
            "=" 
           gauche : 
               functioncall range
-              appel de fonction : range: 
+              function call : range: 
                   arglist 
                   0 : 
                       literals 1
@@ -21,7 +21,7 @@ tests/tokenizeur/scripts/foreach.17.test.php
               block 
               0 : 
                   functioncall print
-                  appel de fonction : print: 
+                  function call : print: 
                       arglist 
                       0 : 
                           tableau

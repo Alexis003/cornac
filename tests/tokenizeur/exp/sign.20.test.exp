@@ -17,7 +17,7 @@ tests/tokenizeur/scripts/sign.20.test.php
                   operation 
                   droite : 
                       functioncall count
-                      appel de fonction : count: 
+                      function call : count: 
                           arglist 
                           0 : 
                               variable $c

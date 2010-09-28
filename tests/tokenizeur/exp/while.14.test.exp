@@ -11,11 +11,11 @@ tests/tokenizeur/scripts/while.14.test.php
                "=" 
               gauche : 
                   functioncall sha1
-                  appel de fonction : sha1: 
+                  function call : sha1: 
                       arglist 
                       0 : 
                           functioncall microtime
-                          appel de fonction : microtime: 
+                          function call : microtime: 
                               arglist 
                               Liste d'argument vide
           parentheses 

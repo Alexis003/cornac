@@ -2,10 +2,10 @@ tests/tokenizeur/scripts/codephp.18.test.php
   codephp <?php 
   code : 
       functioncall echo
-      appel de fonction : echo: 
+      function call : echo: 
           arglist 
           0 : 
               functioncall lang
-              appel de fonction : lang: 
+              function call : lang: 
                   arglist 
                   Liste d'argument vide

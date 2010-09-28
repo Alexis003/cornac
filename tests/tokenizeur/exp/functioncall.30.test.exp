@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/functioncall.30.test.php
       sequence 
       0 : 
           functioncall define
-          appel de fonction : define: 
+          function call : define: 
               arglist 
               0 : 
                   literals TYPE_DOC
@@ -14,7 +14,7 @@ tests/tokenizeur/scripts/functioncall.30.test.php
       1 : 
           inclusion require
               functioncall fct_lien_page_custom
-              appel de fonction : fct_lien_page_custom: 
+              function call : fct_lien_page_custom: 
                   arglist 
                   0 : 
                       concatenation 

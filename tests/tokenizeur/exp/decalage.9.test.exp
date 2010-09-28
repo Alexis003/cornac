@@ -8,7 +8,7 @@ tests/tokenizeur/scripts/decalage.9.test.php
       273 ".=" 
       gauche : 
           functioncall pack
-          appel de fonction : pack: 
+          function call : pack: 
               arglist 
               0 : 
                   decalage 

@@ -11,6 +11,6 @@ tests/tokenizeur/scripts/clone.11.test.php
               method_static 
               307 "y"::functioncall 307 "w" ( ( ) ) : 
                   functioncall w
-                  appel de fonction : w: 
+                  function call : w: 
                       arglist 
                       Liste d'argument vide

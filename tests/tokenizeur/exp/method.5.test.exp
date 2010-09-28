@@ -3,9 +3,9 @@ tests/tokenizeur/scripts/method.5.test.php
 
   code : 
       method variable $rech
-      appel de methode : functioncall 307 "fct_rech_pdt" ( arglist(literals 3, literals 1, literals 2, functioncall 360 "array" ( arglist(variable $select_cle3, variable $select_increment3) ) , functioncall 360 "array" ( arglist(variable $select_cle1, variable $select_increment1) ) , functioncall 360 "array" ( arglist(variable $select_cle2, variable $select_increment2) ) ) ) : 
+      method call : functioncall 307 "fct_rech_pdt" ( arglist(literals 3, literals 1, literals 2, functioncall 360 "array" ( arglist(variable $select_cle3, variable $select_increment3) ) , functioncall 360 "array" ( arglist(variable $select_cle1, variable $select_increment1) ) , functioncall 360 "array" ( arglist(variable $select_cle2, variable $select_increment2) ) ) ) : 
           functioncall fct_rech_pdt
-          appel de fonction : fct_rech_pdt: 
+          function call : fct_rech_pdt: 
               arglist 
               0 : 
                   literals 3
@@ -15,7 +15,7 @@ tests/tokenizeur/scripts/method.5.test.php
                   literals 2
               3 : 
                   functioncall array
-                  appel de fonction : array: 
+                  function call : array: 
                       arglist 
                       0 : 
                           variable $select_cle3
@@ -23,7 +23,7 @@ tests/tokenizeur/scripts/method.5.test.php
                           variable $select_increment3
               4 : 
                   functioncall array
-                  appel de fonction : array: 
+                  function call : array: 
                       arglist 
                       0 : 
                           variable $select_cle1
@@ -31,7 +31,7 @@ tests/tokenizeur/scripts/method.5.test.php
                           variable $select_increment1
               5 : 
                   functioncall array
-                  appel de fonction : array: 
+                  function call : array: 
                       arglist 
                       0 : 
                           variable $select_cle2

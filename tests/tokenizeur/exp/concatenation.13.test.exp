@@ -3,15 +3,15 @@ tests/tokenizeur/scripts/concatenation.13.test.php
 
   code : 
       functioncall echo
-      appel de fonction : echo: 
+      function call : echo: 
           arglist 
           0 : 
               concatenation 
               0 : 
                   method variable $a
-                  appel de methode : functioncall 307 "b" ( arglist(tableau variable $c[constante d]) ) : 
+                  method call : functioncall 307 "b" ( arglist(tableau variable $c[constante d]) ) : 
                       functioncall b
-                      appel de fonction : b: 
+                      function call : b: 
                           arglist 
                           0 : 
                               tableau

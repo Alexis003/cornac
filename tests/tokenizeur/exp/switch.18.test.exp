@@ -19,13 +19,13 @@ tests/tokenizeur/scripts/switch.18.test.php
                   block 
                   0 : 
                       functioncall echo
-                      appel de fonction : echo: 
+                      function call : echo: 
                           arglist 
                           0 : 
                               literals 4
                   1 : 
                       functioncall echo
-                      appel de fonction : echo: 
+                      function call : echo: 
                           arglist 
                           0 : 
                               literals 5

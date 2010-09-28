@@ -25,9 +25,9 @@ tests/tokenizeur/scripts/affectation.43.test.php
                       literals  c: 
                   1 : 
                       method variable $d
-                      appel de methode : functioncall 307 "e" ( ( ) ) : 
+                      method call : functioncall 307 "e" ( ( ) ) : 
                           functioncall e
-                          appel de fonction : e: 
+                          function call : e: 
                               arglist 
                               Liste d'argument vide
                   2 : 

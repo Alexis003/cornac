@@ -23,6 +23,6 @@ tests/tokenizeur/scripts/ifthen.41.test.php
                "=" 
               gauche : 
                   functioncall f
-                  appel de fonction : f: 
+                  function call : f: 
                       arglist 
                       Liste d'argument vide

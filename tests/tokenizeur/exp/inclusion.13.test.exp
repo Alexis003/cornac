@@ -7,9 +7,9 @@ tests/tokenizeur/scripts/inclusion.13.test.php
               concatenation 
               0 : 
                   method variable $a
-                  appel de methode : functioncall 307 "b" ( ( ) ) : 
+                  method call : functioncall 307 "b" ( ( ) ) : 
                       functioncall b
-                      appel de fonction : b: 
+                      function call : b: 
                           arglist 
                           Liste d'argument vide
               1 : 

@@ -5,13 +5,13 @@ tests/tokenizeur/scripts/sequence.7.test.php
       sequence 
       0 : 
           functioncall print
-          appel de fonction : print: 
+          function call : print: 
               arglist 
               0 : 
                   literals 1
       1 : 
           functioncall print
-          appel de fonction : print: 
+          function call : print: 
               arglist 
               0 : 
                   literals 2

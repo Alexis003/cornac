@@ -4,7 +4,7 @@ tests/tokenizeur/scripts/logique.41.test.php
       logique 
       droite : 
           functioncall die
-          appel de fonction : die: 
+          function call : die: 
               arglist 
               0 : 
                   literals 1

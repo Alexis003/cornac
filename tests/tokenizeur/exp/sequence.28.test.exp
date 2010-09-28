@@ -12,11 +12,11 @@ tests/tokenizeur/scripts/sequence.28.test.php
               comparaison 
               droite : 
                   functioncall intval
-                  appel de fonction : intval: 
+                  function call : intval: 
                       arglist 
                       0 : 
                           functioncall substr
-                          appel de fonction : substr: 
+                          function call : substr: 
                               arglist 
                               0 : 
                                   variable $a

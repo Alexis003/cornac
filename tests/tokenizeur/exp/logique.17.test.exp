@@ -10,9 +10,9 @@ tests/tokenizeur/scripts/logique.17.test.php
           logique 
           droite : 
               method variable $this
-              appel de methode : functioncall 307 "a" ( ( ) ) : 
+              method call : functioncall 307 "a" ( ( ) ) : 
                   functioncall a
-                  appel de fonction : a: 
+                  function call : a: 
                       arglist 
                       Liste d'argument vide
           operateur : 263 "or"
@@ -25,6 +25,6 @@ tests/tokenizeur/scripts/logique.17.test.php
                   method_static 
                   307 "d"::functioncall 307 "c" ( ( ) ) : 
                       functioncall c
-                      appel de fonction : c: 
+                      function call : c: 
                           arglist 
                           Liste d'argument vide

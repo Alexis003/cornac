@@ -11,15 +11,15 @@ tests/tokenizeur/scripts/operation.48.test.php
               Texte : "311 "    ""
           1 : 
               functioncall echo
-              appel de fonction : echo: 
+              function call : echo: 
                   arglist 
                   0 : 
                       operation 
                       droite : 
                           method tableau variable $x[method variable $y->functioncall 307 "z" ( ( ) ) ]
-                          appel de methode : functioncall 307 "z" ( ( ) ) : 
+                          method call : functioncall 307 "z" ( ( ) ) : 
                               functioncall z
-                              appel de fonction : z: 
+                              function call : z: 
                                   arglist 
                                   Liste d'argument vide
                       operation :  "*"

@@ -5,6 +5,6 @@ tests/tokenizeur/scripts/method_static.1.test.php
       method_static 
       0 "$x"::functioncall 307 "y" ( ( ) ) : 
           functioncall y
-          appel de fonction : y: 
+          function call : y: 
               arglist 
               Liste d'argument vide

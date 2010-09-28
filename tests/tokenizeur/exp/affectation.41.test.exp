@@ -8,7 +8,7 @@ tests/tokenizeur/scripts/affectation.41.test.php
       273 ".=" 
       gauche : 
           functioncall substr
-          appel de fonction : substr: 
+          function call : substr: 
               arglist 
               0 : 
                   literals abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789./
@@ -16,7 +16,7 @@ tests/tokenizeur/scripts/affectation.41.test.php
                   logique 
                   droite : 
                       functioncall mt_rand
-                      appel de fonction : mt_rand: 
+                      function call : mt_rand: 
                           arglist 
                           Liste d'argument vide
                   operateur :  "&"

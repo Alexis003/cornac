@@ -14,7 +14,7 @@ tests/tokenizeur/scripts/codephp.12.test.php
           Texte : "311 """
       2 : 
           functioncall echo
-          appel de fonction : echo: 
+          function call : echo: 
               arglist 
               0 : 
                   variable $x

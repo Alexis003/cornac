@@ -8,7 +8,7 @@ tests/tokenizeur/scripts/while.12.test.php
           block 
           0 : 
               functioncall print
-              appel de fonction : print: 
+              function call : print: 
                   arglist 
                   0 : 
                       literals 1

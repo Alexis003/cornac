@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/array.2.test.php
 
   code : 
       functioncall array
-      appel de fonction : array: 
+      function call : array: 
           arglist 
           0 : 
               literals 1

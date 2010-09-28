@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/property.6.test.php
 
   code : 
       functioncall print
-      appel de fonction : print: 
+      function call : print: 
           arglist 
           0 : 
               property variable $xvariable $b->

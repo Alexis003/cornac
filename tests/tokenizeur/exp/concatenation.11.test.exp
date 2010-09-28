@@ -11,7 +11,7 @@ tests/tokenizeur/scripts/concatenation.11.test.php
           0 : 
               noscream @
                   functioncall y
-                  appel de fonction : y: 
+                  function call : y: 
                       arglist 
                       0 : 
                           literals 1

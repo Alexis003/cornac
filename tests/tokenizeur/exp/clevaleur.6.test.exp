@@ -8,20 +8,20 @@ tests/tokenizeur/scripts/clevaleur.6.test.php
        "=" 
       gauche : 
           method method_static 307 "b"::functioncall 307 "c" ( arglist(literals d) ) 
-          appel de methode : functioncall 307 "e" ( arglist(functioncall 360 "array" ( arglist(clevaleur method variable $f->functioncall 307 "g" ( ( ) )  => variable $h) ) ) ) : 
+          method call : functioncall 307 "e" ( arglist(functioncall 360 "array" ( arglist(clevaleur method variable $f->functioncall 307 "g" ( ( ) )  => variable $h) ) ) ) : 
               functioncall e
-              appel de fonction : e: 
+              function call : e: 
                   arglist 
                   0 : 
                       functioncall array
-                      appel de fonction : array: 
+                      function call : array: 
                           arglist 
                           0 : 
                               method variable $f->functioncall 307 "g" ( ( ) )  => variable $h
                                   method variable $f
-                                  appel de methode : functioncall 307 "g" ( ( ) ) : 
+                                  method call : functioncall 307 "g" ( ( ) ) : 
                                       functioncall g
-                                      appel de fonction : g: 
+                                      function call : g: 
                                           arglist 
                                           Liste d'argument vide
                                   variable $h

@@ -13,6 +13,6 @@ tests/tokenizeur/scripts/sequence.23.test.php
           method_static 
           307 "c"::functioncall 307 "d" ( ( ) ) : 
               functioncall d
-              appel de fonction : d: 
+              function call : d: 
                   arglist 
                   Liste d'argument vide

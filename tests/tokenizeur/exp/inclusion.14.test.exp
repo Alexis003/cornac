@@ -17,7 +17,7 @@ tests/tokenizeur/scripts/inclusion.14.test.php
 ""
       4 : 
           functioncall html_page_bottom1
-          appel de fonction : html_page_bottom1: 
+          function call : html_page_bottom1: 
               arglist 
               0 : 
                   literals 1

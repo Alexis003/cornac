@@ -6,7 +6,7 @@ tests/tokenizeur/scripts/foreach.40.test.php
           block 
           0 : 
               functioncall print
-              appel de fonction : print: 
+              function call : print: 
                   arglist 
                   0 : 
                       variable $t

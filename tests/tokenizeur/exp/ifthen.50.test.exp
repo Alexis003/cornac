@@ -9,7 +9,7 @@ tests/tokenizeur/scripts/ifthen.50.test.php
           block 
           0 : 
               functioncall echo
-              appel de fonction : echo: 
+              function call : echo: 
                   arglist 
                   0 : 
                       literals <br>
@@ -19,7 +19,7 @@ tests/tokenizeur/scripts/ifthen.50.test.php
           block 
           0 : 
               functioncall echo
-              appel de fonction : echo: 
+              function call : echo: 
                   arglist 
                   0 : 
                       literals <br>
@@ -29,7 +29,7 @@ tests/tokenizeur/scripts/ifthen.50.test.php
           block 
           0 : 
               functioncall echo
-              appel de fonction : echo: 
+              function call : echo: 
                   arglist 
                   0 : 
                       literals <br>
@@ -39,7 +39,7 @@ tests/tokenizeur/scripts/ifthen.50.test.php
           block 
           0 : 
               functioncall echo
-              appel de fonction : echo: 
+              function call : echo: 
                   arglist 
                   0 : 
                       literals <br>
@@ -49,7 +49,7 @@ tests/tokenizeur/scripts/ifthen.50.test.php
           block 
           0 : 
               functioncall echo
-              appel de fonction : echo: 
+              function call : echo: 
                   arglist 
                   0 : 
                       literals <br>

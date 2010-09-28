@@ -10,7 +10,7 @@ tests/tokenizeur/scripts/method_static.4.test.php
           method_static 
           307 "self"::functioncall variable $a ( arglist(variable $b, variable $c, variable $d) ) : 
               functioncall $a
-              appel de fonction : $a: 
+              function call : $a: 
                   arglist 
                   0 : 
                       variable $b

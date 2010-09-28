@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/sequence.35.test.php
       sequence 
       0 : 
           functioncall a
-          appel de fonction : a: 
+          function call : a: 
               arglist 
               0 : 
                   variable $b
@@ -15,7 +15,7 @@ tests/tokenizeur/scripts/sequence.35.test.php
               comparaison 
               droite : 
                   functioncall c
-                  appel de fonction : c: 
+                  function call : c: 
                       arglist 
                       0 : 
                           variable $d
@@ -25,13 +25,13 @@ tests/tokenizeur/scripts/sequence.35.test.php
           operateur : 278 "||"
           gauche : 
               functioncall f
-              appel de fonction : f: 
+              function call : f: 
                   arglist 
                   0 : 
                       literals g
       2 : 
           functioncall h
-          appel de fonction : h: 
+          function call : h: 
               arglist 
               0 : 
                   literals i

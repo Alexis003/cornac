@@ -8,13 +8,13 @@ tests/tokenizeur/scripts/array.9.test.php
        "=" 
       gauche : 
           functioncall array
-          appel de fonction : array: 
+          function call : array: 
               arglist 
               0 : 
                   literals a => functioncall variable $c ( arglist(literals b) ) 
                       literals a
                       functioncall $c
-                      appel de fonction : $c: 
+                      function call : $c: 
                           arglist 
                           0 : 
                               literals b

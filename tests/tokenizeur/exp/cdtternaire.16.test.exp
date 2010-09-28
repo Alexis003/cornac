@@ -22,7 +22,7 @@ tests/tokenizeur/scripts/cdtternaire.16.test.php
               parentheses 
               ( "functioncall 307 "function_exists" ( arglist(literals a) ) " )
               functioncall a
-              appel de fonction : a: 
+              function call : a: 
                   arglist 
                   0 : 
                       literals b

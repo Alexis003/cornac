@@ -8,9 +8,9 @@ tests/tokenizeur/scripts/try.6.test.php
               block 
               0 : 
                   method variable $x
-                  appel de methode : functioncall 307 "y" ( arglist(literals 3, literals 4) ) : 
+                  method call : functioncall 307 "y" ( arglist(literals 3, literals 4) ) : 
                       functioncall y
-                      appel de fonction : y: 
+                      function call : y: 
                           arglist 
                           0 : 
                               literals 3

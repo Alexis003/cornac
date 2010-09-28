@@ -14,8 +14,8 @@ tests/tokenizeur/scripts/ifthen.38.test.php
                "=" 
               gauche : 
                   method variable $e
-                  appel de methode : functioncall 307 "f" ( ( ) ) : 
+                  method call : functioncall 307 "f" ( ( ) ) : 
                       functioncall f
-                      appel de fonction : f: 
+                      function call : f: 
                           arglist 
                           Liste d'argument vide

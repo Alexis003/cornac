@@ -11,13 +11,13 @@ tests/tokenizeur/scripts/cdtternaire.15.test.php
               Texte : "311 "TR ""
           1 : 
               functioncall echo
-              appel de fonction : echo: 
+              function call : echo: 
                   arglist 
                   0 : 
                       cdtternaire ?
                       functioncall 350 "isset" ( arglist(variable $a) )  ? literals desc : literals asc
                           functioncall isset
-                          appel de fonction : isset: 
+                          function call : isset: 
                               arglist 
                               0 : 
                                   variable $a
@@ -34,13 +34,13 @@ tests/tokenizeur/scripts/cdtternaire.15.test.php
               Texte : "311 "TR ""
           1 : 
               functioncall echo
-              appel de fonction : echo: 
+              function call : echo: 
                   arglist 
                   0 : 
                       cdtternaire ?
                       functioncall 350 "isset" ( arglist(variable $a) )  ? literals desc : literals asc
                           functioncall isset
-                          appel de fonction : isset: 
+                          function call : isset: 
                               arglist 
                               0 : 
                                   variable $a

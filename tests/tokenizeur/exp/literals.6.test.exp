@@ -8,7 +8,7 @@ tests/tokenizeur/scripts/literals.6.test.php
        "=" 
       gauche : 
           functioncall range
-          appel de fonction : range: 
+          function call : range: 
               arglist 
               0 : 
                   sign  "-"literals 1

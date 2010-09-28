@@ -4,7 +4,7 @@ tests/tokenizeur/scripts/not.5.test.php
   code : 
       not !
           functioncall $x
-          appel de fonction : $x: 
+          function call : $x: 
               arglist 
               0 : 
                   literals 1

@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/functioncall.17.test.php
       sequence 
       0 : 
           functioncall echo
-          appel de fonction : echo: 
+          function call : echo: 
               arglist 
               0 : 
                   literals 1
@@ -13,7 +13,7 @@ tests/tokenizeur/scripts/functioncall.17.test.php
                   literals 1
       1 : 
           functioncall echo
-          appel de fonction : echo: 
+          function call : echo: 
               arglist 
               0 : 
                   literals 1

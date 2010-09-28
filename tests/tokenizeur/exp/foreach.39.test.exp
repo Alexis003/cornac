@@ -8,7 +8,7 @@ tests/tokenizeur/scripts/foreach.39.test.php
               Texte : "311 "    ""
           1 : 
               functioncall echo
-              appel de fonction : echo: 
+              function call : echo: 
                   arglist 
                   0 : 
                       literals 1

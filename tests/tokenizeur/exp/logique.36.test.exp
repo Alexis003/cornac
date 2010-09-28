@@ -2,7 +2,7 @@ tests/tokenizeur/scripts/logique.36.test.php
   codephp <?php 
   code : 
       functioncall echo
-      appel de fonction : echo: 
+      function call : echo: 
           arglist 
           0 : 
               logique 

@@ -8,7 +8,7 @@ tests/tokenizeur/scripts/clevaleur.2.test.php
        "=" 
       gauche : 
           functioncall array
-          appel de fonction : array: 
+          function call : array: 
               arglist 
               0 : 
                   literals bouton0 => postplusplus 297 "++"variable $nbtab

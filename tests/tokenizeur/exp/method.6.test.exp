@@ -3,9 +3,9 @@ tests/tokenizeur/scripts/method.6.test.php
 
   code : 
       method variable $rech
-      appel de methode : functioncall 307 "fct_rech_pdt" ( arglist(literals 3, literals 1, literals 2) ) : 
+      method call : functioncall 307 "fct_rech_pdt" ( arglist(literals 3, literals 1, literals 2) ) : 
           functioncall fct_rech_pdt
-          appel de fonction : fct_rech_pdt: 
+          function call : fct_rech_pdt: 
               arglist 
               0 : 
                   literals 3

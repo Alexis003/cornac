@@ -22,7 +22,7 @@ tests/tokenizeur/scripts/sequence.17.test.php
               operateur :  "|"
               gauche : 
                   functioncall ord
-                  appel de fonction : ord: 
+                  function call : ord: 
                       arglist 
                       0 : 
                           tableau

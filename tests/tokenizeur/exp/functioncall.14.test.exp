@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/functioncall.14.test.php
 
   code : 
       functioncall echo
-      appel de fonction : echo: 
+      function call : echo: 
           arglist 
           0 : 
               literals oui

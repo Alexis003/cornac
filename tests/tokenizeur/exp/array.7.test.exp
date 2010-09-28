@@ -8,7 +8,7 @@ tests/tokenizeur/scripts/array.7.test.php
        "=" 
       gauche : 
           functioncall array
-          appel de fonction : array: 
+          function call : array: 
               arglist 
               0 : 
                   literals b => affectation variable $a 273 ".=" constante true

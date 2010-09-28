@@ -9,7 +9,7 @@ tests/tokenizeur/scripts/affectation.53.test.php
           block 
           0 : 
               functioncall die
-              appel de fonction : die: 
+              function call : die: 
                   arglist 
                   0 : 
                       literals d

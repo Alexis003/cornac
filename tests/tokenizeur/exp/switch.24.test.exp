@@ -16,7 +16,7 @@ tests/tokenizeur/scripts/switch.24.test.php
         ""
                   1 : 
                       functioncall echo
-                      appel de fonction : echo: 
+                      function call : echo: 
                           arglist 
                           0 : 
                               literals Edit
@@ -40,7 +40,7 @@ tests/tokenizeur/scripts/switch.24.test.php
         ""
                   1 : 
                       functioncall echo
-                      appel de fonction : echo: 
+                      function call : echo: 
                           arglist 
                           0 : 
                               literals Edit
