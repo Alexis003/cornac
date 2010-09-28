@@ -33,14 +33,16 @@ class php_functions_name_conflict extends modules {
         $this->clean_rapport();
 
         $functions = modules::getPHPFunctions();
-        $functions = join("','", $functions);
+        $in = '"'.join('","', $functions).'"';
+        // @note removing empty arrays
+        $in = str_replace('"",', '', $in);
 
 // @todo of course, update this useless query. :)
 	    $query = <<<SQL
 SELECT NULL, T1.fichier, T1.element, T1.id, '{$this->name}', 0
     FROM <rapport> T1
     WHERE   T1.module = 'deffunctions' AND
-            T1.element IN ('$functions')
+            T1.element IN ($in)
 SQL;
         $this->exec_query_insert('rapport', $query);
         
