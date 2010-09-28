@@ -33,7 +33,7 @@ class template_stats extends template {
         }
         
         if (!is_object($noeud)) {
-            print "Attention, on tente un affichage d'une variable qui n'est pas un objet dans template.stats\n\n";
+            print "Fatal : attemptint to display a non-object in ".__METHOD__."\n\n";
         }
         $class = get_class($noeud);
         $method = "affiche_$class";

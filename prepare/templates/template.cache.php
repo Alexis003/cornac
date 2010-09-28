@@ -84,7 +84,7 @@ class template_cache extends template {
         
         if (!is_object($noeud)) {
             print_r(xdebug_get_function_stack());        
-            print "Attention, $noeud n'est pas un objet (".gettype($noeud).")\n";
+            print "Fatal, $noeud is not an object (".gettype($noeud).")\n";
             die(__METHOD__);
         }
         $class = get_class($noeud);
@@ -330,10 +330,10 @@ class template_cache extends template {
     function affiche_constante_static($noeud, $niveau) {
         $classe = $noeud->getClass();
         $this->affiche($classe, $niveau + 1);
-        $methode = $noeud->getConstant();
-        $this->affiche($methode, $niveau + 1);
+        $method = $noeud->getConstant();
+        $this->affiche($method, $niveau + 1);
 
-        $noeud->cache = $classe->cache.'::'.$methode->cache;
+        $noeud->cache = $classe->cache.'::'.$method->cache;
         return $this->saveNoeud($noeud);        
     }
 
@@ -432,13 +432,13 @@ class template_cache extends template {
     }
 
     function affiche_functioncall($noeud, $niveau) {
-        $fonction = $noeud->getFunction();
-        $this->affiche($fonction, $niveau + 1);
+        $function = $noeud->getFunction();
+        $this->affiche($function, $niveau + 1);
 
         $args = $noeud->getArgs();
         $this->affiche($args, $niveau + 1);
         
-        $noeud->cache = $fonction->cache.''.$args->cache;
+        $noeud->cache = $function->cache.''.$args->cache;
         $this->saveNoeud($noeud);
     }
 
@@ -533,10 +533,10 @@ class template_cache extends template {
     function affiche_method_static($noeud, $niveau) {
         $classe = $noeud->getClass();
         $this->affiche($classe, $niveau + 1);
-        $methode = $noeud->getMethod();
-        $this->affiche($methode, $niveau + 1);
+        $method = $noeud->getMethod();
+        $this->affiche($method, $niveau + 1);
 
-        $noeud->cache = $classe->cache.'::'.$methode->cache;
+        $noeud->cache = $classe->cache.'::'.$method->cache;
         return $this->saveNoeud($noeud);        
     }
 

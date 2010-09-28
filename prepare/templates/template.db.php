@@ -498,7 +498,7 @@ class template_db extends template {
             $tags['static'][] = $this->affiche($m, $niveau + 1);
         }
         $tags['name'][] = $this->affiche($noeud->getName(), $niveau + 1);
-        // @note récupération du nom de la fonction
+        // @note reading function name
         $noeud->setCode($noeud->getName()->getCode());
         $tags['args'][] = $this->affiche($noeud->getArgs(), $niveau + 1);
         $tags['block'][] = $this->affiche($noeud->getBlock(), $niveau + 1);
@@ -517,7 +517,7 @@ class template_db extends template {
         $noeud->setCode('');
 
         $tags = array();
-        $tags['fonction'][] = $this->affiche($noeud->getFunction(), $niveau + 1);
+        $tags['function'][] = $this->affiche($noeud->getFunction(), $niveau + 1);
         $tags['args'][] = $this->affiche($noeud->getArgs(), $niveau + 1);
 
         $noeud->myGauche = $this->getIntervalleId();
@@ -629,8 +629,8 @@ class template_db extends template {
         $noeud->myDroite = $this->getIntervalleId();
 
         $tags = array();
-        $tags['objet'][] = $this->affiche($noeud->getObject(), $niveau + 1);
-        $tags['methode'][] = $this->affiche($noeud->getMethod(), $niveau + 1);        
+        $tags['object'][] = $this->affiche($noeud->getObject(), $niveau + 1);
+        $tags['method'][] = $this->affiche($noeud->getMethod(), $niveau + 1);        
         
         $noeud->myGauche = $this->getIntervalleId();
         $this->tags = $tags;
@@ -642,8 +642,8 @@ class template_db extends template {
         $noeud->myDroite = $this->getIntervalleId();
 
         $tags = array();
-        $tags['classe'][] = $this->affiche($noeud->getClass(), $niveau + 1);
-        $tags['methode'][] = $this->affiche($noeud->getMethod(), $niveau + 1);
+        $tags['class'][] = $this->affiche($noeud->getClass(), $niveau + 1);
+        $tags['method'][] = $this->affiche($noeud->getMethod(), $niveau + 1);
         
         $noeud->myGauche = $this->getIntervalleId();
         $this->tags = $tags;

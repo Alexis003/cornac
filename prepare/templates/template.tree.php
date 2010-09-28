@@ -32,7 +32,8 @@ class template_tree extends template {
     
     function affiche($noeud = null, $niveau = 0) {
         if ($niveau > 100) {
-            print "Attention : plus de 100 niveau de récursion (annulation)\n"; die();
+            print "Fatal : more than 100 level of recursion : aborting\n"; 
+            die();
         }
         if (is_null($noeud)) {
             $noeud = $this->root;
@@ -40,7 +41,7 @@ class template_tree extends template {
         
         if (!is_object($noeud)) {
             debug_print_backtrace();
-            print "Attention, $noeud n'est pas un objet\n";
+            print "Fatal : attemptint to display a non-object in ".__METHOD__."\n\n";
             die();
         }
         $class = get_class($noeud);
@@ -238,7 +239,7 @@ class template_tree extends template {
 
     function affiche_functioncall($noeud, $niveau) {
         print str_repeat('  ', $niveau).get_class($noeud)." ".$noeud->getCode()."\n";
-        print str_repeat('  ', $niveau)."appel de fonction : ".$noeud->getFunction()->getCode().": \n";
+        print str_repeat('  ', $niveau)."function call : ".$noeud->getFunction()->getCode().": \n";
 
         $args = $noeud->getArgs();
         $this->affiche($args, $niveau + 1);
@@ -314,7 +315,7 @@ class template_tree extends template {
     function affiche_method($noeud, $niveau) {
         print str_repeat('  ', $niveau).get_class($noeud)." ".$noeud->getObject()."\n";
         $method = $noeud->getMethod();
-        print str_repeat('  ', $niveau)."appel de methode : ".$method.": \n";
+        print str_repeat('  ', $niveau)."method call : ".$method.": \n";
         $this->affiche($method, $niveau + 1);
     }
 

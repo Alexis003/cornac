@@ -104,7 +104,7 @@ Have ratio calculated on top of analyzers (TDB)
 Support dot format for testing
 
 [analysers ideas]
-
+too many instructions in one line 
 add 'variable' as a scope, so that we can actually work context by context
 
 affected only variables (not used anywhere else that affectations)

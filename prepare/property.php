@@ -18,7 +18,7 @@
  */
 
 class property extends token { 
-    private $objet = null;
+    private $object = null;
     private $property = null;
 
     function __construct($expression) {
@@ -26,13 +26,13 @@ class property extends token {
         
         if (is_array($expression) && count($expression) == 2) {
             if ($expression[0]->checkClass('Token')) {
-                $objet = new token_traite($expression[0]);
-                $objet->replace($expression[0]);
+                $object = new token_traite($expression[0]);
+                $object->replace($expression[0]);
             } else {
-                $objet = $expression[0];
+                $object = $expression[0];
             }
 
-            $this->objet = $objet;
+            $this->object = $object;
             
             $this->property = $expression[1];
         } else {
@@ -41,7 +41,7 @@ class property extends token {
     }
 
     function getObject() {  
-        return $this->objet;
+        return $this->object;
     }
 
     function getProperty() {
@@ -49,17 +49,17 @@ class property extends token {
     }
 
     function neutralise() {
-        $this->objet->detach();
+        $this->object->detach();
         $this->property->detach();
     }
 
     function __toString() {
-        return __CLASS__." ".$this->objet."->".$this->property;
+        return __CLASS__." ".$this->object."->".$this->property;
     }
 
     function getRegex(){
         return array('property_regex',
-        'property_accolade_regex',
+                     'property_accolade_regex',
                      );
     }
 

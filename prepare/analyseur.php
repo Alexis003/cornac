@@ -92,18 +92,18 @@ class analyseur {
             $regex = $structure::getRegex(); 
             
             foreach($regex as $r) {
-                $objet = new $r;
-                $tokens = $objet->getTokens();
+                $object = new $r;
+                $tokens = $object->getTokens();
                 
                 if ($tokens === false) { 
-                    $this->regex[0][$r] = $objet;
+                    $this->regex[0][$r] = $object;
                     print "$r manque de getToken()\n"; 
                 } elseif (count($tokens) > 0) {
                     foreach($tokens as $token) {
-                        $this->regex[$token][$r] = $objet;
+                        $this->regex[$token][$r] = $object;
                     }
                 } else {
-                    $this->regex[0][$r] = $objet;
+                    $this->regex[0][$r] = $object;
                 }
                 
                 
