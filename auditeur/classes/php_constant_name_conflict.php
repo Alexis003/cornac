@@ -33,14 +33,14 @@ class php_constant_name_conflict extends modules {
         $this->clean_rapport();
 
         $constants = modules::getPHPConstants();
-        $constants = join("','", $constants);
+        $in = '"'.join('","', $constants)."'";
 
 // @todo of course, update this useless query. :)
 	    $query = <<<SQL
 SELECT NULL, T1.fichier, T1.element, T1.id, '{$this->name}', 0
     FROM <rapport> T1
     WHERE   T1.module = 'defconstantes' AND
-            T1.element IN ('$constants')
+            T1.element IN ($in)
 SQL;
         $this->exec_query_insert('rapport', $query);
         

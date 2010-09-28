@@ -180,6 +180,7 @@ $modules = array(
 'abstracts',
 'finals',
 'function_args_reference',
+'php_keywords',
 // new analyzers
 );
 
