@@ -177,6 +177,9 @@ $modules = array(
 'php_constant_name_conflict',
 'php_classes_name_conflict',
 'zfDependencies',
+'abstracts',
+'finals',
+'function_args_reference',
 // new analyzers
 );
 
