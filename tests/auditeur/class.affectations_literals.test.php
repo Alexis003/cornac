@@ -24,7 +24,7 @@ class affectations_literals_Test extends Auditeur_Framework_TestCase
         $this->expected = array('$a = 1',
 '$b = 2 + 3',
 '$e = array()',);
-        $this->unexpeted = array('$c = $d',);
+        $this->unexpected = array('$c = $d',);
         
         parent::generic_test();
     }

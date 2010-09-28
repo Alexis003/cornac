@@ -22,7 +22,7 @@ class fluid_interface_Test extends Auditeur_Framework_TestCase
 {
     public function testfluid_interface()  { 
         $this->expected = array( '$that->is->a->fluid');
-        $this->unexpeted = array(/*'',*/);
+        $this->unexpected = array(/*'',*/);
         
         parent::generic_test();
     }

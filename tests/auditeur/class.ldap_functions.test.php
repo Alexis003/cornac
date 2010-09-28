@@ -67,7 +67,7 @@ class ldap_functions_Test extends Auditeur_Framework_TestCase
 'ldap_unbind',
 
         );
-        $this->unexpeted = array(/*'',*/);
+        $this->unexpected = array(/*'',*/);
         
         parent::generic_test();
 //        parent::generic_counted_test();

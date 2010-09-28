@@ -21,7 +21,7 @@ class execs_Test extends Auditeur_Framework_TestCase
 {
     public function testexecs()  {
         $this->expected = array( 'exec','shell_exec','system','passthru');
-        $this->unexpeted = array(/*'',*/);
+        $this->unexpected = array(/*'',*/);
 
         parent::generic_test();
     }

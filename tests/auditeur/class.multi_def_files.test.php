@@ -22,7 +22,7 @@ class multi_def_files_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
         $this->expected = array('global', 'scope_class', 'scope_function');
-        $this->unexpeted = array('scope_class::global','::global');
+        $this->unexpected = array('scope_class::global','::global');
         
         parent::generic_test();
     }

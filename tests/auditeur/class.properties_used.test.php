@@ -22,7 +22,7 @@ class properties_used_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
         $this->expected = array('x->a','x->b','x->c','x->d','x->e','$autre->am', '$x->a');
-        $this->unexpeted = array();
+        $this->unexpected = array();
         
         parent::generic_test();
     }

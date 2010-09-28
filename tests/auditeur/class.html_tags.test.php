@@ -22,7 +22,7 @@ class html_tags_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
         $this->expected = array('<br />','</div >','<b>', '<hr> < BR> <P>');
-        $this->unexpeted = array('<table id=\"$id\">',);
+        $this->unexpected = array('<table id=\"$id\">',);
         
         parent::generic_test();
     }

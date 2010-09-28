@@ -103,7 +103,7 @@ class file_functions_Test extends Auditeur_Framework_TestCase
 'umask',
 'unlink',
 );
-        $this->unexpeted = array(/*'',*/);
+        $this->unexpected = array(/*'',*/);
 
         parent::generic_test();
     }

@@ -22,7 +22,7 @@ class interfaces_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
         $this->expected = array('interface_a');
-        $this->unexpeted = array('interface_a','ArrayObject','x');
+        $this->unexpected = array('interface_a','ArrayObject','x');
         
         parent::generic_test();
     }

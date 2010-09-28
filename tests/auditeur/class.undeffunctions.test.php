@@ -22,7 +22,7 @@ class undeffunctions_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
         $this->expected = array('undefined_function');
-        $this->unexpeted = array('defined_function',);
+        $this->unexpected = array('defined_function',);
         
         parent::generic_test();
     }

@@ -42,7 +42,7 @@ class session_functions_Test extends Auditeur_Framework_TestCase
 'session_write_close',
 'session_commit',
         );
-        $this->unexpeted = array(/*'',*/);
+        $this->unexpected = array(/*'',*/);
 
         parent::generic_test();
     }

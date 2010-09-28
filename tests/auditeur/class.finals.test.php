@@ -17,7 +17,7 @@ class finals_Test extends Auditeur_Framework_TestCase
 'final_class::public_final_method',
 'final_class',
         );
-        $this->unexpeted = array('real_method',);
+        $this->unexpected = array('real_method',);
 
         parent::generic_test();
     }

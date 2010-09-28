@@ -22,7 +22,7 @@ class php_classes_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
         $this->expected = array('Exception','Phar','soapServer');
-        $this->unexpeted = array('user_defined_class' );
+        $this->unexpected = array('user_defined_class' );
         
         parent::generic_test();
     }

@@ -29,7 +29,7 @@ class ereg_functions_Test extends Auditeur_Framework_TestCase
 'spliti',
 'sql_regcase',
 );
-        $this->unexpeted = array(/*'',*/);
+        $this->unexpected = array(/*'',*/);
         
         parent::generic_test();
     }

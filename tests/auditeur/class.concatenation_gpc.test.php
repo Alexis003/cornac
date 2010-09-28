@@ -22,7 +22,7 @@ class concatenation_gpc_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
         $this->expected = array('$_GET','$_REQUEST',);
-        $this->unexpeted = array('$_POST');
+        $this->unexpected = array('$_POST');
         
         parent::generic_test();
     }

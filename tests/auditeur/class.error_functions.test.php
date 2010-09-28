@@ -32,7 +32,7 @@ class error_functions_Test extends Auditeur_Framework_TestCase
 'set_exception_handler',
 'trigger_error',
 'user_error',);
-        $this->unexpeted = array(/*'',*/);
+        $this->unexpected = array(/*'',*/);
         
         parent::generic_test();
     }

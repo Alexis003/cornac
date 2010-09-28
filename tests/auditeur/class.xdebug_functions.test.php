@@ -51,7 +51,7 @@ class xdebug_functions_Test extends Auditeur_Framework_TestCase
 'xdebug_get_function_count',
 'xdebug_dump_superglobals',
 );
-        $this->unexpeted = array(/*'',*/);
+        $this->unexpected = array(/*'',*/);
 
         parent::generic_test();
     }

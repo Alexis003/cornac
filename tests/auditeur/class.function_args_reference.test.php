@@ -15,7 +15,7 @@ class function_args_reference_Test extends Auditeur_Framework_TestCase
 'x::method_two_references_c',
 
         );
-        $this->unexpeted = array(
+        $this->unexpected = array(
 '::function_no_reference',
 'x::method_no_reference',
 );

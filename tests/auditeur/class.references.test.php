@@ -22,7 +22,7 @@ class references_Test extends Auditeur_Framework_TestCase
 {
     public function testreferences()  { 
         $this->expected = array( '$a','$d','$f');
-        $this->unexpeted = array('$b','$c','$e');
+        $this->unexpected = array('$b','$c','$e');
         
         parent::generic_test();
 //        parent::generic_counted_test();

@@ -128,7 +128,7 @@ class mysqli_functions_Test extends Auditeur_Framework_TestCase
 'mysqli_warning_count',
 
         );
-        $this->unexpeted = array(/*'',*/);
+        $this->unexpected = array(/*'',*/);
 
         parent::generic_test();
     }

@@ -51,7 +51,7 @@ class mssql_functions_Test extends Auditeur_Framework_TestCase
 'mssql_result',
 'mssql_rows_affected',
 'mssql_select_db',);
-        $this->unexpeted = array(/*'',*/);
+        $this->unexpected = array(/*'',*/);
 
         parent::generic_test();
     }

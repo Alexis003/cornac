@@ -7,7 +7,7 @@ class zfController_Test extends Auditeur_Framework_TestCase
         $this->expected = array( 'Zend_My_Controller->realAction',
                                  'Zend_My_Second_Controller->anotherrealAction',
                                  );
-        $this->unexpeted = array('X->notarealAction',);
+        $this->unexpected = array('X->notarealAction',);
 
         parent::generic_test();
     }

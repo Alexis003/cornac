@@ -22,7 +22,7 @@ class functions_unused_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
         $this->expected = array('defined_but_not_used');
-        $this->unexpeted = array('defined_and_used','eval','unset','__autoload');
+        $this->unexpected = array('defined_and_used','eval','unset','__autoload');
         
         parent::generic_test();
     }

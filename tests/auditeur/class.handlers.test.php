@@ -40,7 +40,7 @@ class handlers_Test extends Auditeur_Framework_TestCase
                                 'http_request_method_register',
                                 'http_request_method_unregister',
                                );
-        $this->unexpeted = array();
+        $this->unexpected = array();
         
         parent::generic_test();
     }

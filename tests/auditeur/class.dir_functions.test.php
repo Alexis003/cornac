@@ -31,7 +31,7 @@ class dir_functions_Test extends Auditeur_Framework_TestCase
 'rewinddir',
 'scandir',
 );
-        $this->unexpeted = array(/*'',*/);
+        $this->unexpected = array(/*'',*/);
 
         parent::generic_test();
     }

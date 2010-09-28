@@ -35,7 +35,7 @@ class multidimarray_Test extends Auditeur_Framework_TestCase
 '$x3[][]',
 '$x6[10][20][30][40][50][60]',
 );
-        $this->unexpeted = array();
+        $this->unexpected = array();
         
         parent::generic_counted_test();
     }

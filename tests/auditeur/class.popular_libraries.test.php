@@ -22,7 +22,7 @@ class popular_libraries_Test extends Auditeur_Framework_TestCase
 {
     public function testpopular_libraries()  { 
         $this->expected = array( 'fpdf','tcpdf');
-        $this->unexpeted = array('Third_Party_Lib',);
+        $this->unexpected = array('Third_Party_Lib',);
         
         parent::generic_test();
 //        parent::generic_counted_test();

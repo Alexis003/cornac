@@ -22,7 +22,7 @@ class vardump_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
         $this->expected = array('var_dump','print_r');
-        $this->unexpeted = array();
+        $this->unexpected = array();
 
         parent::generic_test();
     }

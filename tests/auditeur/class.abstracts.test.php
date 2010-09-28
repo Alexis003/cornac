@@ -17,7 +17,7 @@ class abstracts_Test extends Auditeur_Framework_TestCase
 'abstract_class::public_abstract_method',
 'abstract_class',
         );
-        $this->unexpeted = array('real_method',);
+        $this->unexpected = array('real_method',);
 
         parent::generic_test();
 //        parent::generic_counted_test();

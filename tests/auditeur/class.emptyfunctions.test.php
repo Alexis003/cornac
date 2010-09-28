@@ -27,7 +27,7 @@ class emptyfunctions_Test extends Auditeur_Framework_TestCase
 
                                 
                                 );
-        $this->unexpeted = array('real_function',
+        $this->unexpected = array('real_function',
                                   'interface_empty_function',);
         
         parent::generic_test();

@@ -21,7 +21,7 @@ class php_constant_name_conflict_Test extends Auditeur_Framework_TestCase
 {
     public function testphp_constant_name_conflict()  { 
         $this->expected = array( 'FBSQL_ASSOC');
-        $this->unexpeted = array('true');
+        $this->unexpected = array('true');
         
         parent::generic_test();
     }

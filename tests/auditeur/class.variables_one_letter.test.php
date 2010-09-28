@@ -22,7 +22,7 @@ class variables_one_letter_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
         $this->expected = array('$a','$b','$B', '$C');
-        $this->unexpeted = array();
+        $this->unexpected = array();
         
         parent::generic_test();
     }

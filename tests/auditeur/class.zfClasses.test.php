@@ -22,7 +22,7 @@ class zfClasses_Test extends Auditeur_Framework_TestCase
 {
     public function testzfClasses()  { 
         $this->expected = array( 'Zend_View',);
-        $this->unexpeted = array('Zend_View_Not_Existing','getInstance','$x');
+        $this->unexpected = array('Zend_View_Not_Existing','getInstance','$x');
         
         parent::generic_test();
     }

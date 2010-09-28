@@ -29,7 +29,7 @@ class affectations_direct_gpc_Test extends Auditeur_Framework_TestCase
 '$HTTP_POST_VARS',
 '$_SESSION', 
 '$HTTP_COOKIE_VARS',);
-        $this->unexpeted = array('$i','$j','$k','$a','$b','$c','$d','$e','$g','$h');
+        $this->unexpected = array('$i','$j','$k','$a','$b','$c','$d','$e','$g','$h');
         
         parent::generic_test();
     }

@@ -30,7 +30,7 @@ class classes_nb_methods_Test extends Auditeur_Framework_TestCase
 'three_method_class',
 
 );
-        $this->unexpeted = array();
+        $this->unexpected = array();
         
         parent::generic_counted_test();
     }

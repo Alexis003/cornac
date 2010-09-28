@@ -30,7 +30,7 @@ class filter_functions_Test extends Auditeur_Framework_TestCase
 'filter_var_array',
 
 );
-        $this->unexpeted = array(/*'',*/);
+        $this->unexpected = array(/*'',*/);
 
         parent::generic_test();
     }

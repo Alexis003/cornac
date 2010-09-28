@@ -22,7 +22,7 @@ class gpc_affectations_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
         $this->expected = array('$_POST','$_GET');
-        $this->unexpeted = array('$_COOKIE' );
+        $this->unexpected = array('$_COOKIE' );
         
         parent::generic_test();
     }

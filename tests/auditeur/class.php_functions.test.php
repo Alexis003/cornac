@@ -22,7 +22,7 @@ class php_functions_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
         $this->expected = array('xdebug_get_stack_depth','sqlite_open','echo','ECHO', 'eCHo');
-        $this->unexpeted = array();
+        $this->unexpected = array();
         
         parent::generic_test();
     }

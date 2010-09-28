@@ -22,7 +22,7 @@ class arglist_disc_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
         $this->expected = array('arglist_def_2(3 args)', );
-        $this->unexpeted = array('arglist_def_ok(1 args)','arglist_def_ok_2(1 args)');
+        $this->unexpected = array('arglist_def_ok(1 args)','arglist_def_ok_2(1 args)');
         
         parent::generic_test();
     }

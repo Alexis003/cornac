@@ -21,7 +21,7 @@ class keyval_outside_Test extends Auditeur_Framework_TestCase
 {
     public function testkeyval_outside()  {
         $this->expected = array( '$b_outside','$c_outside');
-        $this->unexpeted = array('$a_inside','$a_outside','$b_inside','$c_inside');
+        $this->unexpected = array('$a_inside','$a_outside','$b_inside','$c_inside');
 
         parent::generic_test();
     }

@@ -22,7 +22,7 @@ class statiques_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
         $this->expected = array('a->$propriete','parent::methode3()','self::methode2()','a::method(2)','a::constante');
-        $this->unexpeted = array();
+        $this->unexpected = array();
         
         parent::generic_test();
     }

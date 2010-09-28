@@ -27,7 +27,7 @@ class constantes_Test extends Auditeur_Framework_TestCase
             'CONSTANTE_ARRAY1','CONSTANTE_ARRAY2','CONSTANTE_ARRAY3',
             'CONSTANTE_TABLEAU',
         );
-        $this->unexpeted = array('fonction','array');
+        $this->unexpected = array('fonction','array');
         
         parent::generic_test();
     }

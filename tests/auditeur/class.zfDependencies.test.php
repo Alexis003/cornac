@@ -5,7 +5,7 @@ class zfDependencies_Test extends Auditeur_Framework_TestCase
 {
     public function testzfDependencies()  {
         $this->expected = array( 'Zend_Mail','Zend_Pdf');
-        $this->unexpeted = array('$x',);
+        $this->unexpected = array('$x',);
 
         parent::generic_test();
     }

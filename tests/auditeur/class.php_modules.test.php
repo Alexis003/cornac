@@ -22,7 +22,7 @@ class php_modules_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
         $this->expected = array('simplexml','sqlite','standard','phar','soap','mcrypt','core' );
-        $this->unexpeted = array('xdebug', 'custom_function');
+        $this->unexpected = array('xdebug', 'custom_function');
         
         parent::generic_test();
     }

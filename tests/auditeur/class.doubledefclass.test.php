@@ -22,7 +22,7 @@ class doubledefclass_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
         $this->expected = array('double_class');
-        $this->unexpeted = array('unique_class',);
+        $this->unexpected = array('unique_class',);
         
         parent::generic_test();
     }

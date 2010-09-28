@@ -84,7 +84,7 @@ class mysql_functions_Test extends Auditeur_Framework_TestCase
 'mysql_unbuffered_query',
 
 );
-        $this->unexpeted = array(/*'',*/);
+        $this->unexpected = array(/*'',*/);
 
         parent::generic_test();
     }
