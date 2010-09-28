@@ -24,6 +24,10 @@ class emptyfunctions extends modules {
 	function __construct($mid) {
         parent::__construct($mid);
 	}
+
+	function dependsOn() {
+	    return array();
+	}
 	
 	public function analyse() {
         $this->clean_rapport();
