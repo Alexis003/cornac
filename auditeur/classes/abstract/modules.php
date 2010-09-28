@@ -276,6 +276,11 @@ SQL;
         $classes = parse_ini_file('../dict/zfClasses.ini', true);
         return $classes['classes'];
     }
+
+    static public function getPHPKeywords() {
+        $keywords = parse_ini_file('../dict/keywords.ini', true);
+        return $keywords['keyword'];
+    }
     
     static public function getPHPGPC() {
         return array('$_GET','$_POST','$_COOKIE','$_REQUEST','$_FILES','$_SESSION',
