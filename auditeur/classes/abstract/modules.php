@@ -221,7 +221,7 @@ SQL;
     static public function getPHPConstants($ext = null) {
         if (is_null($ext)) {
             $ini = parse_ini_file('../dict/constant2ext.ini', false);
-    
+            
     // @note : not useful, but maybe later...
             $extras = array();
 
