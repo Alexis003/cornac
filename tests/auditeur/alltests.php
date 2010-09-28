@@ -114,6 +114,9 @@ $tests = array(
 'class.keyval_outside.test.php',
 'class.zfController.test.php',
 'class.zfDependencies.test.php',
+'class.abstracts.test.php',
+'class.finals.test.php',
+'class.function_args_reference.test.php',
 // new tests
 );
 
