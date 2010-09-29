@@ -19,7 +19,7 @@
 
 $args = $GLOBALS['argv'];
 
-require_once 'PHPUnit/Framework.php'; 
+require_once 'PHPUnit/Autoload.php'; 
 
 $debut = microtime(true);
 if (in_array('-f', $args)) {

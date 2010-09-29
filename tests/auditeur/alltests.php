@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-require_once 'PHPUnit/Framework.php'; 
+require_once 'PHPUnit/Autoload.php'; 
 
 $tests = array( 
 'class.variables.test.php',
@@ -118,6 +118,8 @@ $tests = array(
 'class.finals.test.php',
 'class.function_args_reference.test.php',
 'class.php_keywords.test.php',
+'class.literals_as_argref.test.php',
+'class.tostring_no_arg.test.php',
 // new tests
 );
 
