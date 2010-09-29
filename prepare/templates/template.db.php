@@ -514,10 +514,10 @@ class template_db extends template {
     function affiche_functioncall($noeud, $niveau) {
         $noeud->myId = $this->getNextId();
         $noeud->myDroite = $this->getIntervalleId();
-        $noeud->setCode('');
 
         $tags = array();
         $tags['function'][] = $this->affiche($noeud->getFunction(), $niveau + 1);
+        $noeud->setCode($tags['function'][0]);
         $tags['args'][] = $this->affiche($noeud->getArgs(), $niveau + 1);
 
         $noeud->myGauche = $this->getIntervalleId();
