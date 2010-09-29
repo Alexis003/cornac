@@ -95,16 +95,17 @@ if (isset($INI['cornac']['prefix'])) {
 }
 
 // @todo internationalize this!
-$headers = array('Variables' => 'SELECT COUNT(DISTINCT element) FROM <rapport> WHERE module="variables"',
-                 'Fichiers'  => 'SELECT COUNT(DISTINCT fichier) FROM <rapport>',
-                 'Classes'   => 'SELECT COUNT(DISTINCT element) FROM <rapport> WHERE module="classes"',
-                 'Constantes'   => 'SELECT COUNT(DISTINCT element) FROM <rapport> WHERE module="defconstantes"',
-                 'Utilise Zend Framework'   => 'SELECT COUNT(DISTINCT element) FROM <rapport> WHERE module="zfClasses"',
-                 'Interfaces'   => 'SELECT COUNT(DISTINCT element) FROM <rapport> WHERE module="interfaces"',
-                 'Interfaces fluides'   => 'SELECT COUNT(DISTINCT element) FROM <rapport> WHERE module="fluid_interface"',
-                 'References'   => 'SELECT COUNT(DISTINCT element) FROM <rapport> WHERE module="references"',
-                 'Variables variables'   => 'SELECT COUNT(DISTINCT element) FROM <rapport> WHERE module="variablesvariables"',
-                 'Constantes de classes'   => 'SELECT COUNT(DISTINCT element) FROM <rapport> WHERE module="constantes_classes"',
+$headers = array('Variables' => 'SELECT COUNT(DISTINCT element)  FROM <rapport> WHERE module="variables"',
+                 'Files'  => 'SELECT COUNT(DISTINCT fichier) FROM <rapport>',
+                 'Classes'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <rapport> WHERE module="classes"',
+                 'Constants'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <rapport> WHERE module="defconstantes"',
+                 'Uses Zend Framework'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <rapport> WHERE module="zfClasses"',
+                 'Interfaces'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <rapport> WHERE module="interfaces"',
+                 'Fluid interfaces'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <rapport> WHERE module="fluid_interface"',
+                 'References'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <rapport> WHERE module="references"',
+                 'Variable variables'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <rapport> WHERE module="variablesvariables"',
+                 'Class constants'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <rapport> WHERE module="constantes_classes"',
+                 'Magic methods'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <rapport> WHERE module="special_methods"',
                  );
 
 $stats = array();
