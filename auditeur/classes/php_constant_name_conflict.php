@@ -33,7 +33,7 @@ class php_constant_name_conflict extends modules {
         $this->clean_rapport();
 
         $constants = modules::getPHPConstants();
-        $in = '"'.join('","', $constants)."'";
+        $in = '"'.join('","', $constants).'"';
 
 // @todo of course, update this useless query. :)
 	    $query = <<<SQL
