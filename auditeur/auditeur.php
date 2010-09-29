@@ -181,6 +181,8 @@ $modules = array(
 'finals',
 'function_args_reference',
 'php_keywords',
+//'literals_as_argref', @todo support ogher PHP version for token_get_all before activating
+//'tostring_no_arg',  @todo support ogher PHP version for token_get_all before activating
 // new analyzers
 );
 
@@ -340,7 +342,14 @@ function analyse_module($module_name) {
         }
     }
 
+    $init_time = microtime(true);
     $module->analyse();
+    // @todo add an option for this
+    $finish_time = microtime(true);
+    $fp = fopen('auditeur.log','a');
+    fwrite($fp, date('r')."\t$module_name\t{$INI['ini']}\t".number_format(($finish_time - $init_time) * 1000, 2)."\r");
+    fclose($fp);
+
     $module->sauve();
 
     $sommaire->add($module);
