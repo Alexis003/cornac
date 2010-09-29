@@ -35,7 +35,7 @@ class _this extends modules {
 
 	    $query = <<<SQL
 SELECT NULL, T1.fichier, T1.code, T1.id, '{$this->name}', 0
-    FROM tu T1
+    FROM <tokens> T1
     WHERE code = '\$this' AND 
           class = ''      AND
           type = 'variable'
