@@ -58,16 +58,16 @@ SELECT  T1.fichier AS file,
         T3.type,
         T3.code,
        if (@id = T2.id, @i := @i + 1, LEAST(@id := T2.id , @i := 0 )) AS rank
-FROM dotclear T1
-JOIN dotclear T2
+FROM <tokens> T1
+JOIN <tokens> T2
     ON T2.fichier = T1.fichier AND 
        T2.droite = T1.droite + 3 AND
        T2.type = 'arglist'
-JOIN dotclear T3
+JOIN <tokens> T3
     ON T3.fichier = T1.fichier AND
        T3.level = T2.level + 1 AND
        T3.droite BETWEEN T2.droite AND T2.gauche
-JOIN dotclear T4
+JOIN <tokens> T4
     ON T4.fichier = T1.fichier AND
        T4.droite = T1.droite + 1
 WHERE T1.type='_function'
@@ -102,16 +102,16 @@ SELECT T3.fichier,
        T2.id, 
        T4.type, 
        if (@id = T3.id, @i := @i + 1, LEAST(@id := T3.id , @i := 0 )) AS rank
-FROM dotclear T1
-JOIN dotclear T2
+FROM <tokens> T1
+JOIN <tokens> T2
     ON T2.fichier = T1.fichier AND
        T2.droite = T1.droite - 1 AND
        T2.type = 'functioncall'
-JOIN dotclear T3
+JOIN <tokens> T3
     ON T3.fichier = T1.fichier AND
        T3.droite = T1.gauche + 1 AND
        T3.type = 'arglist'
-JOIN dotclear T4
+JOIN <tokens> T4
     ON T4.fichier = T1.fichier AND
        T4.level = T3.level + 1 AND
        T4.droite BETWEEN T3.droite AND T3.gauche
