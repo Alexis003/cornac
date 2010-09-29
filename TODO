@@ -1,12 +1,4 @@
-add a script to check ext sync between class/functions/classes (missing ones?)
-
-use .ini for the web folder too
-see how tokclient may not stop stupidly, and keep going when there are still some tasks to do : Test this now
-
 Check fudforum binary protector (install.php)
-
-Finish translations of analyzers's title and description
-Make the english version
 
 [cornac]
 process extension as case unsensitive. 
@@ -19,6 +11,8 @@ add file restriction in the cornac.ini file
 Move prepare to classes
 Move auditeur.php to English
 Move auditeur.php to upper directory
+
+add a script to check ext sync between class/functions/classes (missing ones?)
 
 Add some more cornac tests
 Apply cornac to itself
@@ -49,6 +43,7 @@ Display dots when processing analyzers (auditeur)
 Add a file lister, that will also display ignored files from tokenizeur (export current function to external scripts/)
 
 [tokenizeur]
+Run tokenizeur regularly on Open source project. 
 check that tokenizeur works on one file only, without database
 
 Spot php error during execution, and report it. 
@@ -71,14 +66,19 @@ Count GetNext and getPrev for stats
 For each tokem note scope, class, method, variable, array, fichier
 Add -log option to log information in a log file
 
+see how tokclient may not stop stupidly, and keep going when there are still some tasks to do : Test this now
+
 [auditeur]
+Move auditeur to English as reference translations of analyzers's title and description
+Add 'tags' to help sort out the analyzers
+
 secu and secu_functions are double
 execs and exec_functions
 zfClasses and zfDependencies are double 
 
 
 Spot php error during execution, report it by auditeur
-Add a log to check SQL length and optimize the bad queries 
+Add a log-time option to auditeur, to fill the auditeur.log
 Make auditeur i18n easily (export in external file, auto-adding new titles)
 
 Add typing for the analyzers : increment or global; display to web, or internal. 
@@ -189,10 +189,12 @@ Support some framework : drupal, joomla, zend, symfony, magento
 htmlentities used without encoding information
 
 [web]
+use .ini for the web folder too
 export to html : should match the interactive web version
 add a table list for the DOT format
 export to .csv
 export to .yaml
+export to .xmi 
 support graphic file representation (move file2png to a lib, then integrate)
 + What to do when one (un)check a group of element, when the group is not homogenous : currently, toggle invert the values, and it is not easy to understand
 export to html : should match the interactive web version
