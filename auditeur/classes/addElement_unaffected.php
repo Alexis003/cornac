@@ -35,17 +35,17 @@ class addElement_unaffected extends modules {
 
 	    $query = <<<SQL
 SELECT NULL, T1.fichier, concat('ligne ',T1.ligne), T1.id, '{$this->name}', 0
-FROM affility_rapport TR
-JOIN affility T1
+FROM <rapport> TR
+JOIN <tokens> T1
     ON T1.id = TR.token_id
-LEFT JOIN affility T2
+LEFT JOIN <tokens> T2
     ON T1.fichier = T2.fichier AND
        T1.droite BETWEEN T2.droite AND T2.gauche AND
        T2.type = 'affectation'
-LEFT JOIN affility_tags TT
+LEFT JOIN <tokens_tags> TT
     ON TT.token_id=  T2.id AND
        TT.type = 'left'
-LEFT JOIN affility T3
+LEFT JOIN <tokens> T3
     ON T1.fichier = T3.fichier AND
        T3.id = TT.token_sub_id
 WHERE TR.module='addElement' AND
