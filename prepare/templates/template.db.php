@@ -517,7 +517,7 @@ class template_db extends template {
 
         $tags = array();
         $tags['function'][] = $this->affiche($noeud->getFunction(), $niveau + 1);
-        $noeud->setCode($tags['function'][0]);
+        $noeud->setCode($noeud->getFunction()->getCode());
         $tags['args'][] = $this->affiche($noeud->getArgs(), $niveau + 1);
 
         $noeud->myGauche = $this->getIntervalleId();

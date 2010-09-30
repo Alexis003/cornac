@@ -1,0 +1,53 @@
+<?php 
+/*
+   +----------------------------------------------------------------------+
+   | Cornac, PHP code inventory                                           |
+   +----------------------------------------------------------------------+
+   | Copyright (c) 2010 Alter Way Solutions (France)                      |
+   +----------------------------------------------------------------------+
+   | This source file is subject to version 3.01 of the PHP license,      |
+   | that is bundled with this package in the file LICENSE, and is        |
+   | available through the world-wide-web at the following url:           |
+   | http://www.php.net/license/3_01.txt                                  |
+   | If you did not receive a copy of the PHP license and are unable to   |
+   | obtain it through the world-wide-web, please send a note to          |
+   | license@php.net so we can mail you a copy immediately.               |
+   +----------------------------------------------------------------------+
+   | Author: Damien Seguy <damien.seguy@gmail.com>                        |
+   +----------------------------------------------------------------------+
+ */
+
+class function_return_unused extends modules {
+	protected	$title = 'Unused return values';
+	protected	$description = 'Spot function whose return values are not used. Function is called, but result is just ignored.';
+	protected   $tags = array('quality');
+
+	function __construct($mid) {
+        parent::__construct($mid);
+	}
+
+	function dependsOn() {
+	    return array();
+	}
+
+	public function analyse() {
+        $this->clean_rapport();
+
+	    $query = <<<SQL
+SELECT NULL, T1.fichier, T1.code, T1.id, '{$this->name}', 0
+FROM <tokens> T1
+JOIN <tokens> T2 
+    ON T2.fichier = T1.fichier AND
+       T1.droite BETWEEN T2.droite AND T2.gauche AND
+       T2.level = T1.level - 1
+WHERE T1.type = 'functioncall' AND
+      T1.code NOT IN ('echo','print','define') AND 
+      T2.type NOT IN ('noscream','arginit','tableau','comparaison','logique','clevaleur','cdtternaire','not','concatenation','method_static','parentheses','method','affectation','arglist')
+SQL;
+        $this->exec_query_insert('rapport', $query);
+
+        return true;
+	}
+}
+
+?>

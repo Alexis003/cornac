@@ -120,6 +120,7 @@ $tests = array(
 'class.php_keywords.test.php',
 'class.literals_as_argref.test.php',
 'class.tostring_no_arg.test.php',
+'class.function_return_unused.test.php',
 // new tests
 );
 
