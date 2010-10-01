@@ -33,18 +33,18 @@ class affectations_direct_gpc extends modules {
         $query = <<<SQL
 SELECT NULL, T1.fichier, TC.code, T1.id,'{$this->name}'  , 0
 FROM <tokens> T1  
-    JOIN <tokens_tags> TT
-ON T1.id = TT.token_id AND TT.type='right'
+JOIN <tokens_tags> TT
+    ON T1.id = TT.token_id AND TT.type='right'
 JOIN <tokens> T2
-ON T2.fichier = T1.fichier AND TT.token_sub_id = T2.id
+    ON T2.fichier = T1.fichier AND TT.token_sub_id = T2.id
 JOIN <tokens> T3
-ON T3.fichier = T1.fichier AND 
-T3.type='variable' AND 
-T3.droite between T2.droite AND T2.gauche 
+    ON T3.fichier = T1.fichier AND 
+       T3.type='variable' AND 
+       T3.droite between T2.droite AND T2.gauche 
 JOIN <tokens_cache> TC
-  ON TC.id = T3.id
+    ON TC.id = T3.id
 WHERE T1.type = 'affectation' AND
-TC.code REGEXP '^$gpc_regexp';
+      TC.code REGEXP '^$gpc_regexp'
 SQL;
         $this->exec_query_insert('rapport', $query);
 
@@ -53,23 +53,26 @@ SQL;
 // @note full arrays,  not just variables
         $query = <<<SQL
 SELECT NULL, T1.fichier, TC.code, T1.id,'{$this->name}'  , 0
-FROM <tokens> T1  
-    JOIN <tokens_tags> TT
-ON T1.id = TT.token_id AND TT.type='right'
+FROM <tokens> T1
+JOIN <tokens_tags> TT
+    ON T1.id = TT.token_id AND 
+       TT.type='right'
 JOIN <tokens> T2
-ON T2.fichier = T1.fichier AND TT.token_sub_id = T2.id
+    ON T2.fichier = T1.fichier AND 
+       TT.token_sub_id = T2.id
 JOIN <tokens> T3
-ON T3.fichier = T1.fichier AND 
-T3.type='variable' AND 
-T3.droite between T2.droite AND T2.gauche 
+    ON T3.fichier = T1.fichier AND 
+       T3.type='variable' AND 
+       T3.droite between T2.droite AND T2.gauche 
 LEFT JOIN <tokens> T4
-ON T4.fichier = T1.fichier AND 
-T4.droite=T3.droite -1 
+    ON T4.fichier = T1.fichier AND 
+       T4.droite=T3.droite -1 
 JOIN <tokens_cache> TC
   ON TC.id = T3.id
-WHERE T1.fichier like "%affectations_gpc%" and T1.type = 'affectation' AND
-(T4.type IS NULL OR T4.type != 'tableau') AND 
-TC.code REGEXP '^$gpc_regexp';
+WHERE T1.fichier like "%affectations_gpc%" AND
+      T1.type = 'affectation' AND
+      (T4.type IS NULL OR T4.type != 'tableau') AND 
+      TC.code REGEXP '^$gpc_regexp'
 SQL;
         $this->exec_query_insert('rapport', $query);
     }
