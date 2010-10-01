@@ -185,6 +185,8 @@ $modules = array(
 'function_return_unused',
 'long_loops',
 'method_without_ppp',
+'loops_oneliner',
+'pearClasses',
 // new analyzers
 );
 

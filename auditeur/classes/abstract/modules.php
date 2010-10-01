@@ -277,6 +277,11 @@ SQL;
         return $classes['classes'];
     }
 
+    static public function getPearClasses() {
+        $classes = parse_ini_file('../dict/pearClasses.ini', true);
+        return $classes['classes'];
+    }
+
     static public function getPHPKeywords() {
         $keywords = parse_ini_file('../dict/keywords.ini', true);
         return $keywords['keyword'];
