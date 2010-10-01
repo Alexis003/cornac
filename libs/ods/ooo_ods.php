@@ -181,6 +181,7 @@ class ooo_ods {
                 foreach($cols as $col => $cell) {
                     if ($col == 0) { continue; } // no use for row 0 
                     
+                    // @rfu : date, time, percentage, float, number, string. (Add a 'guess' case)
                     if (intval($cell)) {
                         $type = "number";
                     } else {
