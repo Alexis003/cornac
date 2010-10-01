@@ -22,6 +22,7 @@ include('../libs/getopts.php');
 include('../libs/write_ini_file.php');
 include('../libs/ods/ooo_ods.php');
 
+// @todo use options from getopts library
 $args = $argv;
 
 $help = get_arg($args, '-?') ;
@@ -37,8 +38,13 @@ if (strtolower(substr($output_file, 0, -4)) != '.ods') {
 }
 
 if (file_exists($output_file)) {
-    print "$output_file already exists. Aborting\n";
-    die();
+    if (get_arg($args, '-k')) {
+        unlink($output_file);
+        print "Old file '$output_file' removed\n";
+    } else {
+        print "$output_file already exists. Use -k to force removal. Aborting\n";
+        die();
+    }
 }
 
 // @todo : check $format for values
@@ -79,10 +85,6 @@ if (empty($INI['reader']['format'])) {
     print "Output format is needed (option -F) : xml or html\n";
     help();
 }
-
-
-// @todo : support later
-//$summary = getOption($args, '-s', OPT_NO_VALUE, null);
 
 // @todo put this into a central library
 include('../libs/database.php');
@@ -136,9 +138,28 @@ $names = array("Modules PHP" => array('query' => 'SELECT DISTINCT element FROM <
                "Interfaces" => array('query' => 'SELECT element, COUNT(*) as NB FROM <rapport> WHERE module="interface" GROUP BY element ORDER BY NB DESC',
                                     'headers' => array('Interface','Number'),
                                     'columns' => array('element','NB')),
-               "Méthodes" => array('query' => 'SELECT DISTINCT class, scope AS method, fichier FROM '.$prefix.' WHERE class != "" AND scope != "global" ORDER BY class, scope',
-                                    'headers' => array('Class','Method','File'),
-                                    'columns' => array('class','method','fichier')),
+               "Méthodes" => array('query' => 'SELECT T1.class, T1.scope AS method, T1.fichier, 
+if (SUM(if(T2.code="private",1,0))>0, "private","") AS private,
+if (SUM(if(T2.code="protected",1,0))>0, "protected","") AS protected,
+if ((SUM(if(T2.code="public",1,0))>0) OR 
+(SUM(if(T2.code="protected",1,0)) + SUM(if(T2.code="private",1,0)) = 0), "public","") as public,
+if (SUM(if(T2.code="abstract",1,0))>0, "abstract","") as abstract,
+if (SUM(if(T2.code="final",1,0))>0, "final","") as final,
+if (SUM(if(T2.code="static",1,0))>0, "static","") as static
+FROM dotclear T1
+LEFT JOIN dotclear T2
+    ON T2.fichier = T1.fichier AND
+       T2.type = "token_traite" AND
+       (T2.droite = T1.droite + 1 OR 
+        T2.droite = T1.droite + 3 OR 
+        T2.droite = T1.droite + 5
+        )
+WHERE T1.type="_function" AND
+      T1.class!= ""
+GROUP BY T1.class, T1.scope, T1.fichier;
+',
+                                    'headers' => array('Class','Method','private','protected','public','static','final','abstract','File'),
+                                    'columns' => array('class','method','fichier','private','protected','public','static','final','abstract')),
                "Fonctions" => array('query' => 'SELECT element, fichier FROM <rapport> WHERE module="deffunctions" ORDER BY element',
                                     'headers' => array('Functions','Number'),
                                     'columns' => array('element','fichier')),
@@ -167,15 +188,16 @@ foreach($names as $name => $conf) {
         }
     }
 
+    $res = $DATABASE->query($query);
+    $rows = $res->fetchAll(PDO::FETCH_ASSOC);
+
+    // @note no need to add a tab for no information
+    if (count($rows) == 0) { continue; }
+
     foreach($headers as $id => $header) {
         $ods->setCell($name, 1, $id + 1, $header);
         $ods->setCellStyle($name, 1, $id + 1, "ce1");
     }
-
-    $res = $DATABASE->query($query);
-    $rows = $res->fetchAll(PDO::FETCH_ASSOC);
-
-    if (count($rows) == 0) { continue; }
 
     foreach($columns as $id => $col) {
        $r = multi2array($rows, $col);
