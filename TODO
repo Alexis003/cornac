@@ -161,23 +161,17 @@ Upper case variables
 URL manipulations
 
 Spot PHP code in comments
-Note interferences between names (variables, constantes, fonctions, classes, HTML, SQL).
-Spot one lined loops (1 or 2 lines) : often, this is simple operation that will be done some other way
 
 Gather all index used in an array (how to check 2 arrays are the same?)
 
 Be able to search for a string, whatever the analyzer (intersect analyzers result and see what is is common)
 
-Extract array's lists (long list of values in arrays)
-Spot multidimensional array (tableau with several dimensions...)
-
 functions (and files) that emit text (print, var_dump, raw text...)
 functions (and files) that emit error (join, mysql_connect, ) : they should be checked...
 
-methods/files/classes that misses some code.
+methods/files/classes that misses some (provided) code.
 
-Spot GPC assigned to variable, then used in concatenation (security...)
-Spot library dependencies, espcially PEAR, phpmailer, tinyMCE. 
+Spot library dependencies, like PEAR, phpmailer, tinyMCE. 
 
 Qualify scripts/contextes/folders as being controler (aka _GET, include), model (database) ou template (html, pdf, echo...).
 Check that above characteristics are at the right place (by folder, by framework...)
