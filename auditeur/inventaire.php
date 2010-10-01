@@ -126,19 +126,28 @@ foreach($headers as $name => $sql) {
 }
 
 // @attention : should also support _dot reports
-$names = array("Modules PHP" => array('query' => 'SELECT DISTINCT element FROM <rapport> WHERE module="php_modules" ORDER BY element',
+$names = array("PHP extensions" => array('query' => 'SELECT DISTINCT element FROM <rapport> WHERE module="php_modules" ORDER BY element',
                                   'headers' => array('Extension'),
                                   'columns' => array('element')),
-               "Constantes" => array('query' => 'SELECT element, COUNT(*) as NB FROM <rapport> WHERE module="defconstantes" GROUP BY element ORDER BY NB DESC',
+               "Constants" => array('query' => 'SELECT element, COUNT(*) as NB FROM <rapport> WHERE module="defconstantes" GROUP BY element ORDER BY NB DESC',
                                     'headers' => array('Constant','Number'),
                                     'columns' => array('element','NB')),
-               "Classes" => array('query' => 'SELECT element, fichier FROM <rapport> WHERE module="classes" ORDER BY element',
-                                  'headers' => array('Classe','File'),
-                                  'columns' => array('element','fichier')),
+               "Classes" => array('query' => 'SELECT T1.class, T1.fichier AS file, IFNULL(T2.code, "") AS abstract
+FROM <tokens> T1
+LEFT JOIN <tokens> T2
+    ON T2.fichier = T1.fichier AND
+       T2.code != T1.class AND
+       (T2.droite = T1.droite + 1 ) AND
+       T2.type = "token_traite"
+WHERE T1.type="_class" AND
+      T1.class!= "" 
+ORDER BY T1.class',
+                                  'headers' => array('Classe','abstract','File'),
+                                  'columns' => array('class','file','abstract')),
                "Interfaces" => array('query' => 'SELECT element, COUNT(*) as NB FROM <rapport> WHERE module="interface" GROUP BY element ORDER BY NB DESC',
                                     'headers' => array('Interface','Number'),
                                     'columns' => array('element','NB')),
-               "Méthodes" => array('query' => 'SELECT T1.class, T1.scope AS method, T1.fichier, 
+               "Methods" => array('query' => 'SELECT T1.class, T1.scope AS method, T1.fichier AS file, 
 if (SUM(if(T2.code="private",1,0))>0, "private","") AS private,
 if (SUM(if(T2.code="protected",1,0))>0, "protected","") AS protected,
 if ((SUM(if(T2.code="public",1,0))>0) OR 
@@ -146,8 +155,8 @@ if ((SUM(if(T2.code="public",1,0))>0) OR
 if (SUM(if(T2.code="abstract",1,0))>0, "abstract","") as abstract,
 if (SUM(if(T2.code="final",1,0))>0, "final","") as final,
 if (SUM(if(T2.code="static",1,0))>0, "static","") as static
-FROM dotclear T1
-LEFT JOIN dotclear T2
+FROM <tokens> T1
+LEFT JOIN <tokens> T2
     ON T2.fichier = T1.fichier AND
        T2.type = "token_traite" AND
        (T2.droite = T1.droite + 1 OR 
@@ -156,11 +165,32 @@ LEFT JOIN dotclear T2
         )
 WHERE T1.type="_function" AND
       T1.class!= ""
-GROUP BY T1.class, T1.scope, T1.fichier;
+GROUP BY T1.class, T1.scope, T1.fichier
+ORDER BY T1.class, T1.scope
 ',
                                     'headers' => array('Class','Method','private','protected','public','static','final','abstract','File'),
-                                    'columns' => array('class','method','fichier','private','protected','public','static','final','abstract')),
-               "Fonctions" => array('query' => 'SELECT element, fichier FROM <rapport> WHERE module="deffunctions" ORDER BY element',
+                                    'columns' => array('class','method','private','protected','public','static','final','abstract','file')),
+               "Properties" => array('query' => 'SELECT T1.class, T1.code AS property, T1.fichier AS file, 
+if (SUM(if(T2.code="public",1,0))>0, "public","") as public,
+if (SUM(if(T2.code="protected",1,0))>0, "protected","") as protected,
+if (SUM(if(T2.code="private",1,0))>0, "private","") as private,
+if (SUM(if(T2.code="static",1,0))>0, "static","") as static
+FROM <tokens> T1
+LEFT JOIN <tokens> T2
+    ON T2.fichier = T1.fichier AND
+       T2.code != T1.class AND
+       (T2.droite = T1.droite + 1 OR
+        T2.droite = T1.droite + 3 OR
+        T2.droite = T1.droite + 5) AND
+       T2.type = "token_traite"
+WHERE T1.type="_var" AND
+      T1.class!= ""
+GROUP BY T1.class, T1.code
+ORDER BY T1.class
+',
+                                    'headers' => array('Class','Property','private','protected','public','static','File'),
+                                    'columns' => array('class','property','private','protected','public','static','file')),
+               "Functions" => array('query' => 'SELECT element, fichier FROM <rapport> WHERE module="deffunctions" ORDER BY element',
                                     'headers' => array('Functions','Number'),
                                     'columns' => array('element','fichier')),
                "Paramètres" => array('query' => 'SELECT element, COUNT(*) as NB FROM <rapport> WHERE module="gpc_variables" GROUP BY element ORDER BY NB DESC',
