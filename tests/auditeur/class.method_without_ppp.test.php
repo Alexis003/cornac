@@ -49,4 +49,3 @@ class method_without_ppp_Test extends Auditeur_Framework_TestCase
     }
 }
 ?>
-
