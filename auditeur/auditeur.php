@@ -185,6 +185,7 @@ $modules = array(
 //'tostring_no_arg',  @todo support ogher PHP version for token_get_all before activating
 'function_return_unused',
 'long_loops',
+'method_without_ppp',
 // new analyzers
 );
 
