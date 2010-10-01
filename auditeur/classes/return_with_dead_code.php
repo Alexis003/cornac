@@ -35,7 +35,7 @@ class return_with_dead_code extends modules {
 
 // @todo of course, update this useless query. :)
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, CONCAT('ligne :',T1.ligne, ' : ', T1.fichier), T1.id, '{$this->name}', 0
+SELECT NULL, T1.fichier, CONCAT('line :',T1.line, ' : ', T1.fichier), T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens> T2
     ON T1.fichier = T2.fichier AND

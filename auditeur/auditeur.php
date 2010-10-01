@@ -67,7 +67,6 @@ $modules = array(
 'ereg_functions',
 'error_functions',
 'evals',
-'exec_functions',
 'execs',
 'file_functions',
 'filter_functions',

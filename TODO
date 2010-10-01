@@ -252,4 +252,4 @@ aussi à tester : Library/application + public/dynamique
 
 [dict]
 Make a library of common library, and extract classes, functions, constante from them. 
-extrat classes from pecl and PHP code, to move into dictionary. 
+extract classes from pecl and PHP code, to move into dictionary. 

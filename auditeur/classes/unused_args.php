@@ -44,11 +44,11 @@ SQL;
         $res = $this->exec_query($query);
     
         $functions = array();
-        while($ligne = $res->fetch()) {
-            $functions[$ligne['id']][$ligne['type']] = $ligne['token_sub_id'];
-            $functions[$ligne['id']]['function'] = $ligne['code'];
-            $functions[$ligne['id']]['fichier'] = $ligne['fichier'];
-            $functions[$ligne['id']]['signature'] = $ligne['signature'];
+        while($row = $res->fetch()) {
+            $functions[$row['id']][$row['type']] = $row['token_sub_id'];
+            $functions[$row['id']]['function'] = $row['code'];
+            $functions[$row['id']]['fichier'] = $row['fichier'];
+            $functions[$row['id']]['signature'] = $row['signature'];
         }
         
         foreach($functions as $id => $infos) {
@@ -74,8 +74,8 @@ SQL;
     
            $res = $this->exec_query($query);
            if ($res->rowCount() > 0) {
-              $ligne = $res->fetch(PDO::FETCH_ASSOC);
-              $vars = join(', ', $ligne);
+              $row = $res->fetch(PDO::FETCH_ASSOC);
+              $vars = join(', ', $row);
         
               $query = <<<SQL
 INSERT INTO <rapport> 

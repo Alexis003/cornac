@@ -55,39 +55,39 @@ SQL;
         $already = array();
         
         // @todo : reduce the number of partial list of functions
-        while($ligne = $res->fetch()) {
-           if (isset($already[$ligne['id1']])) {
+        while($row = $res->fetch()) {
+           if (isset($already[$row['id1']])) {
                 continue;
            }
 
-           $resultats[$ligne['id1']] = array($ligne['id1'] => $ligne['code1'],
-                                             $ligne['id2'] => $ligne['code2'],
-                                             $ligne['id3'] => $ligne['code3']);
-           $already[$ligne['id1']] = $ligne['fichier'];
-           $already[$ligne['id2']] = $ligne['fichier'];
-           $already[$ligne['id3']] = $ligne['fichier'];
+           $resultats[$row['id1']] = array($row['id1'] => $row['code1'],
+                                             $row['id2'] => $row['code2'],
+                                             $row['id3'] => $row['code3']);
+           $already[$row['id1']] = $row['fichier'];
+           $already[$row['id2']] = $row['fichier'];
+           $already[$row['id3']] = $row['fichier'];
 
-           $id = $ligne['id3'];
+           $id = $row['id3'];
            while ($id > 0) {
                $query2 = <<<SQL
 SELECT T2.id, T1.droite, T1.type, T2.type, TC2.code AS code, T1.fichier
     FROM <tokens> T1
     LEFT JOIN <tokens> T2 
-        ON T2.fichier = '{$ligne['fichier']}' AND T2.droite = T1.gauche + 1
+        ON T2.fichier = '{$row['fichier']}' AND T2.droite = T1.gauche + 1
     JOIN <tokens_cache> TC2 
         ON T2.id=  TC2.id
     WHERE T1.id = {$id} AND
-          T1.fichier = '{$ligne['fichier']}' AND 
-          '{$ligne['code']}' = LEFT(TC2.code, LOCATE('(', TC2.code) )
+          T1.fichier = '{$row['fichier']}' AND 
+          '{$row['code']}' = LEFT(TC2.code, LOCATE('(', TC2.code) )
     LIMIT 12;
 SQL;
                 $res2 = $this->exec_query($query2);
-                if ($ligne2 = $res2->fetch()) {
-                   $already[$ligne2['id']] = $ligne['fichier'];
-                    $resultats[$ligne['id1']][$ligne2['id']] = $ligne2['code'];
-                    $id = $ligne2['id'];
+                if ($row2 = $res2->fetch()) {
+                   $already[$row2['id']] = $row['fichier'];
+                   $resultats[$row['id1']][$row2['id']] = $row2['code'];
+                   $id = $row2['id'];
                 } else {
-                    $id = 0;
+                   $id = 0;
                 }
              }
          }
@@ -96,7 +96,7 @@ SQL;
             list($id, $code) = each($resultat);
             $code = join("\n", $resultat);
             $query = <<<SQL
-INSERT INTO <rapport> VALUES 
+INSERT INTO <rapport> VALUES
 (NULL, '{$already[$id]}','$code','$id', '{$this->name}', 0 )
 SQL;
 

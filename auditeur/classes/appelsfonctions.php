@@ -90,14 +90,14 @@ SQL;
         
         $erreurs = 0;
         $total = 0;
-        while($ligne = $res->fetch(PDO::FETCH_ASSOC)) {
+        while($row = $res->fetch(PDO::FETCH_ASSOC)) {
             $query = <<<SQL
 SELECT T1.element
   from <rapport> T1
 where 
  T1.module='defmethodes' AND 
- T1.element NOT LIKE "{$ligne["classe"]}->%" AND
- T1.element LIKE "%->{$ligne["method"]}"
+ T1.element NOT LIKE "{$row["classe"]}->%" AND
+ T1.element LIKE "%->{$row["method"]}"
 SQL;
             $res2 = $this->exec_query($query);            
             

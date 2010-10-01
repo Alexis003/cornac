@@ -34,7 +34,7 @@ class addElement_unaffected extends modules {
         $this->clean_rapport();
 
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, concat('ligne ',T1.ligne), T1.id, '{$this->name}', 0
+SELECT NULL, T1.fichier, concat('line ',T1.line), T1.id, '{$this->name}', 0
 FROM <rapport> TR
 JOIN <tokens> T1
     ON T1.id = TR.token_id

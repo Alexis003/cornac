@@ -45,7 +45,7 @@ class template_mysql extends template_db {
                                                           type     CHAR(20),
                                                           code     VARCHAR(10000),
                                                           fichier  VARCHAR(255) DEFAULT "prec",
-                                                          ligne    INT,
+                                                          line     INT,
                                                           scope    VARCHAR(255),
                                                           class    VARCHAR(255),
                                                           level    TINYINT UNSIGNED,

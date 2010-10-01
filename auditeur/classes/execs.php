@@ -18,8 +18,8 @@
  */
 
 class execs extends functioncalls {
-	protected	$title = 'Fonctions execution';
-	protected	$description = 'Liste des fonctions d\'execution de commandes en ligne';
+	protected	$title = 'Shell exec functions';
+	protected	$description = 'Shell execution functions';
 
 	function __construct($mid) {
         parent::__construct($mid);

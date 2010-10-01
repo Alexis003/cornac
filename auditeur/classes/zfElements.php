@@ -48,8 +48,8 @@ SQL;
 
     $res = $this->exec_query($query);
     
-    while($ligne = $res->fetch()) {
-        $droite = $ligne['gauche'] + 1;
+    while($row = $res->fetch()) {
+        $droite = $row['gauche'] + 1;
         $trouve = false;
         while(!$trouve) {
 	        $query = <<<SQL
@@ -59,30 +59,30 @@ FROM <tokens> T1
     ON T2.fichier=  T1.fichier AND
        T2.droite BETWEEN T1.droite AND T1.gauche
     WHERE T1.droite = $droite AND 
-          T1.fichier='{$ligne["fichier"]}'
+          T1.fichier='{$row["fichier"]}'
     GROUP BY T1.droite, T1.gauche, T1.fichier
 ;
 SQL;
 
             $res2 = $this->exec_query($query);
-            $ligne2 = $res2->fetch();
+            $row2 = $res2->fetch();
             
-            $trouve = $ligne2['addElement'] != 0;
-            $droite = $ligne2['gauche'] + 1;
+            $trouve = $row2['addElement'] != 0;
+            $droite = $row2['gauche'] + 1;
         
         }
         
         $query = <<<SQL
 SELECT sum(if (T1.code IN ('addValidator','addFilter'), 1, 0)) AS addValidator, T1.fichier 
     FROM <tokens> T1 
-    WHERE fichier = '{$ligne['fichier']}' AND droite BETWEEN {$ligne['droite']} AND {$ligne2['gauche']}
+    WHERE fichier = '{$row['fichier']}' AND droite BETWEEN {$row['droite']} AND {$row2['gauche']}
 SQL;
         $res2 = $this->exec_query($query);
-        $ligne2 = $res2->fetch();
+        $row2 = $res2->fetch();
         
 	    $query = <<<SQL
 INSERT INTO <rapport> VALUES 
-    (0, '{$ligne2['fichier']}', '{$ligne['code']} : {$ligne2['addValidator']}' , {$ligne['id']}, '{$this->name}', 0 );
+    (0, '{$row2['fichier']}', '{$row['code']} : {$row2['addValidator']}' , {$row['id']}, '{$this->name}', 0 );
 SQL;
         $this->exec_query($query);
         }

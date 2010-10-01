@@ -20,7 +20,7 @@
 class template_cache extends template {
     protected $root = null;
     private $database = null;
-    private $ligne = 0;
+    private $line = 0;
     private $scope = 'global';
     private $class = '';
     

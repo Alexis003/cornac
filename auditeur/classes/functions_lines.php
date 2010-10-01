@@ -18,8 +18,8 @@
  */
 
 class functions_lines extends modules {
-	protected	$title = 'Lignes';
-	protected	$description = 'Nombres de lignes par fonction';
+	protected	$title = 'Lines of code';
+	protected	$description = 'Line of code count, function by function';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -35,7 +35,7 @@ class functions_lines extends modules {
 
 // @todo of course, update this useless query. :)
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, CONCAT( (T2.ligne - T1.ligne)), T1.id, '{$this->name}', 0
+SELECT NULL, T1.fichier, CONCAT( (T2.line - T1.line)), T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens> T2
     ON T1.fichier = T2.fichier AND

@@ -43,7 +43,7 @@ class template_sqlite extends template_db {
                                                           type     CHAR(20) CONSTRAINT KEY DEFAULT "",
                                                           code     VARCHAR(255) CONSTRAINT KEY DEFAULT "",
                                                           fichier  VARCHAR(255) CONSTRAINT KEY DEFAULT "prec",
-                                                          ligne    INT,
+                                                          line     INT,
                                                           scope    VARCHAR(255),
                                                           class    VARCHAR(255),
                                                           level    INT UNSIGNED

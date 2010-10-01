@@ -33,7 +33,7 @@ class keyval_outside extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
-// @rfu SELECT TR1.element, T1.droite, T1.gauche, T2.droite, T1.fichier, T1.ligne, T2.ligne
+// @rfu SELECT TR1.element, T1.droite, T1.gauche, T2.droite, T1.fichier, T1.line, T2.line
 
 	    $query = <<<SQL
 SELECT NULL, T1.fichier, T2.code, T2.id, '{$this->name}',0

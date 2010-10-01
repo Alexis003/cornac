@@ -82,8 +82,8 @@ SELECT * FROM <rapport_dot> WHERE module='{$this->name}'
 SQL;
         $res = $this->exec_query($query);
 
-    while($ligne = $res->fetch()) {
-        $ligne['b'] = str_replace( array("\"", "'"), array('',''), $ligne['b']);
+    while($row = $res->fetch()) {
+        $row['b'] = str_replace( array("\"", "'"), array('',''), $row['b']);
         
         // @todo need a mechanism to translate path into absolute value 
         $variables = array(
@@ -94,17 +94,17 @@ SQL;
             
         );
         
-        $ligne['b'] = str_replace(array_keys($variables), array_values($variables), $ligne['b']);
-        $ligne['b'] = path_normaliser(dirname($ligne['a']).'/', $ligne['b']);
-        $ligne['b'] = addslashes($ligne['b']);
-        $ligne[1] = addslashes($ligne[1]);
+        $row['b'] = str_replace(array_keys($variables), array_values($variables), $row['b']);
+        $row['b'] = path_normaliser(dirname($row['a']).'/', $row['b']);
+        $row['b'] = addslashes($row['b']);
+        $row[1] = addslashes($row[1]);
 
        $query = <<<SQL
 UPDATE <rapport_dot>
-   SET b = '{$ligne['b']}'
+   SET b = '{$row['b']}'
 WHERE module='{$this->name}' AND 
-      b = '{$ligne[1]}' AND
-      a = '{$ligne['a']}'
+      b = '{$row[1]}' AND
+      a = '{$row['a']}'
 SQL;
         $this->exec_query($query);
         }

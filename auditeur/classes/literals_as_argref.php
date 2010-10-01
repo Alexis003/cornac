@@ -81,8 +81,8 @@ FROM literals_as_argref_definitions
 WHERE class=''
 SQL;
         $res = $this->exec_query($query);
-        $lignes = $res->fetch(PDO::FETCH_ASSOC);
-        $in = "'".$lignes['list']."'";
+        $rows = $res->fetch(PDO::FETCH_ASSOC);
+        $in = "'".$rows['list']."'";
 
 	    $query = <<<SQL
 SELECT @i := 0;

@@ -50,8 +50,8 @@ SQL;
 	    $res = $this->exec_query($query);
 
         $functions = array();
-        while($ligne = $res->fetchColumn()) {
-            $functions[] = strtolower($ligne);
+        while($row = $res->fetchColumn()) {
+            $functions[] = strtolower($row);
         }
         
         $exts = modules::getPHPExtensions(); 
@@ -115,8 +115,8 @@ SQL;
 	    $res = $this->exec_query($query);
 
         $classes = array();
-        while($ligne = $res->fetchColumn()) {
-            $classes[] = strtolower($ligne);
+        while($row = $res->fetchColumn()) {
+            $classes[] = strtolower($row);
         }
         
         $exts = modules::getPHPExtClasses(); 

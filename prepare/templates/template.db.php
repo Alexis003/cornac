@@ -18,7 +18,7 @@
  */
 
 class template_db extends template {
-    protected $ligne = 0;
+    protected $line = 0;
     protected $scope = 'global';
     protected $class = '';
     
@@ -88,7 +88,7 @@ class template_db extends template {
         global $file;
         
         if (($noeud->getline() + 0) > 0) {
-            $this->ligne = $noeud->getline() + 0;
+            $this->line = $noeud->getline() + 0;
         } 
         
         $requete = "INSERT INTO {$this->table} VALUES 

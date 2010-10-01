@@ -40,7 +40,7 @@ JOIN dotclear T2
     ON T2.fichier = T1.fichier AND
        T2.droite = T1.gauche + 1
 WHERE T1.type IN ('_for','_while','_do','_foreach') AND
-      T2.ligne - T1.ligne > 10
+      T2.line - T1.line > 10
 SQL;
         $this->exec_query_insert('rapport', $query);
 
