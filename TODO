@@ -70,7 +70,8 @@ see how tokclient may not stop stupidly, and keep going when there are still som
 
 [auditeur]
 Move auditeur to English as reference translations of analyzers's title and description
-Add 'tags' to help sort out the analyzers
+Add 'tags' propertie to every analyzers to help sort out the analyzers
+Support tags in web format : on the index page, display a list of them, for filtering. 
 
 secu and secu_functions are double
 execs and exec_functions
@@ -122,9 +123,7 @@ check for case without break, of switch without default.
 useless lines (like 1; array(); etc.)
 Identify variables that where not initialized (less args, less foreach)
 
-Long functions (number of tokens, number of lines...), long loops
-unused return values from user functions
-unused return values from PHP functions
+Long functions (number of tokens, number of lines...), 
 literals used as parameter in function call
 Compromised variables (the one affected with values from GPC)
 
