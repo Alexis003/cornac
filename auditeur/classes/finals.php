@@ -17,14 +17,13 @@
    +----------------------------------------------------------------------+
  */
 class finals extends modules {
-	protected	$title = 'Titre pour finals';
-	protected	$description = 'Ceci est l\'analyseur finals par défaut. ';
+	protected	$title = 'final';
+	protected	$description = 'List of final keyword usage. ';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
 
-// @doc if this analyzer is based on previous result, use this to make sure the results are here
 	function dependsOn() {
 	    return array();
 	}
