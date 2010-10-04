@@ -85,10 +85,10 @@ class template_dot extends template {
         $this->dot .=  $origine." -> { ".$destination."}; \n";
     }
 
-    function dot_label($noeud, $nom) {
-        $nom = str_replace('"', '\\"', $nom);
-        $nom = str_replace("\n", '\\n', $nom);
-        $this->dot .=  $noeud." [label=\"".$nom."\"];\n";
+    function dot_label($noeud, $name) {
+        $name = str_replace('"', '\\"', $name);
+        $name = str_replace("\n", '\\n', $name);
+        $this->dot .=  $noeud." [label=\"".$name."\"];\n";
     }
 
     function dot_struct($noeud, $labels, $title = '[Titre]') {
@@ -278,11 +278,11 @@ die("cas de l'argument null ou inexistant");
             $this->affiche($abstract, $niveau + 1);            
         }
 
-        $noeud->getNom()->dotId = $this->getNextId();
-        $this->dot_link($noeud->dotId.":f$id", $noeud->getNom()->dotId);
+        $noeud->getName()->dotId = $this->getNextId();
+        $this->dot_link($noeud->dotId.":f$id", $noeud->getName()->dotId);
         $labels[] = $id; 
         $id++;
-        $this->affiche($noeud->getNom(), $niveau + 1);            
+        $this->affiche($noeud->getName(), $niveau + 1);            
         
         $extends = $noeud->getExtends();
         if (!is_null($extends)) {

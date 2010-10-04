@@ -302,7 +302,7 @@ class template_db extends template {
         $noeud->myDroite = $this->getIntervalleId();
         $noeud->setCode('');
         $classe_precedent = $this->class;
-        $this->class = $noeud->getNom()->getCode();
+        $this->class = $noeud->getName()->getCode();
 
         $tags = array();
         $abstract = $noeud->getAbstract();
@@ -310,7 +310,7 @@ class template_db extends template {
             $tags['abstract'][] = $this->affiche($abstract, $niveau + 1);            
         }
 
-        $tags['name'][] = $this->affiche($noeud->getNom(), $niveau + 1);            
+        $tags['name'][] = $this->affiche($noeud->getName(), $niveau + 1);            
 
         $extends = $noeud->getExtends();
         if (!is_null($extends)) {
@@ -904,7 +904,7 @@ class template_db extends template {
         $noeud->setCode('');
 
         $this->affiche($noeud->getType(), $niveau + 1);
-        $this->affiche($noeud->getNom(), $niveau + 1);
+        $this->affiche($noeud->getName(), $niveau + 1);
 
         $noeud->myGauche = $this->getIntervalleId();
         return $this->saveNoeud($noeud, $niveau);
@@ -941,10 +941,10 @@ class template_db extends template {
         $noeud->myId = $this->getNextId();
         $noeud->myDroite = $this->getIntervalleId();
         
-        $nom = $noeud->getNom();
-        if (is_object($nom)) {
-            $this->affiche($nom, $niveau + 1);
-            $noeud->setCode("$".$nom->getCode());
+        $name = $noeud->getName();
+        if (is_object($name)) {
+            $this->affiche($name, $niveau + 1);
+            $noeud->setCode("$".$name->getCode());
         }
 
         $noeud->myGauche = $this->getIntervalleId();

@@ -19,7 +19,7 @@
 
 class _class extends instruction {
     protected $_abstract = null;
-    protected $nom = array();
+    protected $name = array();
     protected $extends = null;
     protected $implements = array();
     protected $block = null;
@@ -34,7 +34,7 @@ class _class extends instruction {
             $pos += 1;
         }
 
-        $this->nom = $this->toToken_traite($expression[$pos]);
+        $this->name = $this->toToken_traite($expression[$pos]);
         $pos ++;
         
         if ($expression[$pos]->checkToken(T_EXTENDS)) {
@@ -55,7 +55,7 @@ class _class extends instruction {
     }
     
     function __toString() {
-        $return = __CLASS__." class ".$this->nom;
+        $return = __CLASS__." class ".$this->name;
         if (!is_null($this->extends)) {
             $return .= " extends ".$this->extends;
         }
@@ -67,8 +67,8 @@ class _class extends instruction {
         return $return;
     }
 
-    function getNom() {
-        return $this->nom;
+    function getName() {
+        return $this->name;
     }
 
     function getAbstract() {
@@ -88,7 +88,7 @@ class _class extends instruction {
     }
 
     function neutralise() {
-        $this->nom->detach();
+        $this->name->detach();
         if (count($this->implements) > 0) {
             foreach($this->implements as $e) {
                 $e->detach();

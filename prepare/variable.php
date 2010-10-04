@@ -18,7 +18,7 @@
  */
 
 class variable extends token {
-    protected $nom = null;
+    protected $name = null;
 
     function __construct($expression = null) {
         parent::__construct(array());
@@ -29,29 +29,29 @@ class variable extends token {
 
         if (count($expression) == 1) {
             if ($expression[0]->checkClass(array('variable','Token'))) {
-                $this->nom = $expression[0]->getCode();
+                $this->name = $expression[0]->getCode();
             } else {
-                $this->nom = $expression[0];
+                $this->name = $expression[0];
             }
             $this->setLine($expression[0]->getLine());
         } else {
-          $this->nom = $expression[1];
-          $this->code = $this->nom->getCode();
-          $this->setLine($this->nom->getLine());
+          $this->name = $expression[1];
+          $this->code = $this->name->getCode();
+          $this->setLine($this->name->getLine());
         }
     }
 
     function __toString() {
-        return __CLASS__." ".$this->nom;
+        return __CLASS__." ".$this->name;
     }
     
-    function getNom() {
-        return $this->nom;
+    function getName() {
+        return $this->name;
     }
     
     function neutralise() {
-        if (is_object($this->nom)) {
-            $this->nom->detach();
+        if (is_object($this->name)) {
+            $this->name->detach();
         }
     }
 

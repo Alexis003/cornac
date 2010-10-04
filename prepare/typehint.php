@@ -19,7 +19,7 @@
 
 class typehint extends token {
     protected $type = null;
-    protected $nom = null;
+    protected $name = null;
 
     function __construct($expression = null) {
         parent::__construct(array());
@@ -29,15 +29,15 @@ class typehint extends token {
         }
         
         $this->type = $this->make_token_traite($expression[0]);
-        $this->nom = $expression[1];
+        $this->name = $expression[1];
     }
 
     function __toString() {
-        return __CLASS__." ".$this->type." ".$this->nom;
+        return __CLASS__." ".$this->type." ".$this->name;
     }
     
-    function getNom() {
-        return $this->nom;
+    function getName() {
+        return $this->name;
     }
 
     function getType() {
@@ -46,7 +46,7 @@ class typehint extends token {
 
     function neutralise() {
         $this->type->detach();
-        $this->nom->detach();
+        $this->name->detach();
     }
 
     function getRegex(){

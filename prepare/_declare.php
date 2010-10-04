@@ -52,9 +52,9 @@ class _declare extends instruction {
         }
     }
     
-    function set($nom, $valeur) {
-        if (in_array($nom, array('ticks','encoding'))) {
-            $this->$nom = $valeur;
+    function set($name, $value) {
+        if (in_array($name, array('ticks','encoding'))) {
+            $this->$name = $value;
             return true;
         }
         return false;

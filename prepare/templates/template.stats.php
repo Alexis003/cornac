@@ -54,15 +54,15 @@ class template_stats extends template {
         }
     }
     
-    function addStat($nom) {
-        if (substr($nom, 0, 8) == 'affiche_') {
-            $nom = substr($nom, 8);
+    function addStat($name) {
+        if (substr($name, 0, 8) == 'affiche_') {
+            $name = substr($name, 8);
         }
         
-        if (isset( $this->stats[$nom])) {
-            $this->stats[$nom]++;        
+        if (isset( $this->stats[$name])) {
+            $this->stats[$name]++;        
         } else {
-            $this->stats[$nom] = 1;
+            $this->stats[$name] = 1;
         }
     }
 
@@ -445,7 +445,7 @@ class template_stats extends template {
 
     function affiche_typehint($noeud, $niveau) {
         $this->addStat(__FUNCTION__);
-        $this->affiche($noeud->getNom(), $niveau + 1);
+        $this->affiche($noeud->getName(), $niveau + 1);
         $this->affiche($noeud->getType(), $niveau + 1);
     }
 

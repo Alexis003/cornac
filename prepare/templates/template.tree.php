@@ -98,7 +98,7 @@ class template_tree extends template {
 
     function affiche__break($noeud, $niveau) {
          print str_repeat('  ', $niveau).get_class($noeud)." \n";
-         print str_repeat('  ', $niveau)."Nombre : \"".$noeud->getNiveaux()."\"\n";    
+         print str_repeat('  ', $niveau)."Number : \"".$noeud->getNiveaux()."\"\n";    
     }
 
     function affiche__case($noeud, $niveau) {
@@ -119,7 +119,7 @@ class template_tree extends template {
     }
 
     function affiche__class($noeud, $niveau) {
-        print str_repeat('  ', $niveau).$noeud->getAbstract().' class '.$noeud->getNom();
+        print str_repeat('  ', $niveau).$noeud->getAbstract().' class '.$noeud->getName();
         $extends = $noeud->getExtends();
         if (!is_null($extends)) {
             print " extends ".$extends;
@@ -441,7 +441,7 @@ class template_tree extends template {
     function affiche_typehint($noeud, $niveau) {
         print str_repeat('  ', $niveau).get_class($noeud)."\n";
         $this->affiche($noeud->getType(), $niveau + 1);
-        $this->affiche($noeud->getNom(), $niveau + 1);
+        $this->affiche($noeud->getName(), $niveau + 1);
     }
 
     function affiche__try($noeud, $niveau) {
@@ -472,7 +472,7 @@ class template_tree extends template {
     }
 
     function affiche_variable($noeud, $niveau) {
-        print str_repeat('  ', $niveau).get_class($noeud)." ".$noeud->getNom()."\n";
+        print str_repeat('  ', $niveau).get_class($noeud)." ".$noeud->getName()."\n";
     }
 
     function affiche__while($noeud, $niveau) {

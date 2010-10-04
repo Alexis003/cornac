@@ -116,16 +116,16 @@ class analyseur {
         $token = $t->getToken();
         
         if ($token > 0 && isset($this->regex[$token])) {
-            foreach($this->regex[$token] as $nom => $regex) {
+            foreach($this->regex[$token] as $name => $regex) {
                 $this->verifs++;
                 
                 if (!$regex->check($t)) {
-                    $this->rates[] = $nom;
+                    $this->rates[] = $name;
                     unset($regex);
                     continue;
                 }
     
-                $return = analyseur::applyRegex($t, $this->tokens[$nom], $regex);
+                $return = analyseur::applyRegex($t, $this->tokens[$name], $regex);
                 mon_log(get_class($t)." => ".get_class($return));
                 return $return; 
             }
@@ -135,16 +135,16 @@ class analyseur {
         
         $code = $t->getCode();
         if (isset($this->regex[$code])) {
-            foreach($this->regex[$code] as $nom => $regex) {
+            foreach($this->regex[$code] as $name => $regex) {
                 $this->verifs++;
                 
                 if (!$regex->check($t)) {
-                    $this->rates[] = $nom;
+                    $this->rates[] = $name;
                     unset($regex);
                     continue;
                 }
     
-                $return = analyseur::applyRegex($t, $this->tokens[$nom], $regex);
+                $return = analyseur::applyRegex($t, $this->tokens[$name], $regex);
                 if ($return->getLine() == -1) { 
                     print $t->getLine()."\n"; 
                     print $return."\n"; 
@@ -157,13 +157,13 @@ class analyseur {
             // @empty_else
         }
         
-        foreach($this->regex[0] as $nom => $regex) {
+        foreach($this->regex[0] as $name => $regex) {
             if (!$regex->check($t)) {
                 unset($regex);
                 continue;
             }
 
-            $return = analyseur::applyRegex($t, $this->tokens[$nom], $regex);
+            $return = analyseur::applyRegex($t, $this->tokens[$name], $regex);
             mon_log(get_class($t)." => ".get_class($return));
             return $return; 
         }

@@ -251,7 +251,7 @@ class template_cache extends template {
     }
 
     function affiche__class($noeud, $niveau) {
-        $name = $noeud->getNom();
+        $name = $noeud->getName();
         $this->affiche($name, $niveau + 1);            
         $class = ' class '.$name->cache;
 
@@ -404,14 +404,14 @@ class template_cache extends template {
     }
 
     function affiche__function($noeud, $niveau) {
-        $nom = $noeud->getName();
-        $this->affiche($nom, $niveau + 1);
+        $name = $noeud->getName();
+        $this->affiche($name, $niveau + 1);
         $args = $noeud->getArgs();
         $tags['args'][] = $this->affiche($args, $niveau + 1);
         $block = $noeud->getBlock();
         $tags['block'][] = $this->affiche($block, $niveau + 1);
         
-        $function = 'function '.$nom->cache.$args->cache; 
+        $function = 'function '.$name->cache.$args->cache; 
         // on ignore le block
 
         if (!is_null($m = $noeud->getVisibility())) {
@@ -730,10 +730,10 @@ class template_cache extends template {
     function affiche_typehint($noeud, $niveau) {
         $type = $noeud->getType();
         $this->affiche($type, $niveau + 1);
-        $nom = $noeud->getNom();
-        $this->affiche($nom, $niveau + 1);
+        $name = $noeud->getName();
+        $this->affiche($name, $niveau + 1);
         
-        $noeud->cache = $type->cache." ".$nom->cache;
+        $noeud->cache = $type->cache." ".$name->cache;
     }
 
     function affiche__var($noeud, $niveau) {
@@ -773,12 +773,12 @@ class template_cache extends template {
     }
 
     function affiche_variable($noeud, $niveau) {
-        $nom = $noeud->getNom();
-        if (is_object($nom)) {
-            $this->affiche($nom, $niveau + 1);
-            $noeud->cache = '$'.$nom->cache;
+        $name = $noeud->getName();
+        if (is_object($name)) {
+            $this->affiche($name, $niveau + 1);
+            $noeud->cache = '$'.$name->cache;
         } else {
-            $noeud->cache = $nom;
+            $noeud->cache = $name;
         }
         return $this->saveNoeud($noeud);
     }
