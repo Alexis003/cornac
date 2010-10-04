@@ -11,7 +11,7 @@ tests/tokenizeur/scripts/ifthen.37.test.php
               block 
               0 : 
                   _break 
-                  Nombre : " "1""
+                  Number : " "1""
            else 
               block 
               0 : 
@@ -28,4 +28,4 @@ tests/tokenizeur/scripts/ifthen.37.test.php
               block 
               0 : 
                   _break 
-                  Nombre : " "1""
+                  Number : " "1""

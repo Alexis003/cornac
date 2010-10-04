@@ -3,4 +3,4 @@ tests/tokenizeur/scripts/break.1.test.php
 
   code : 
       _break 
-      Nombre : " "123""
+      Number : " "123""

@@ -60,6 +60,7 @@ foreach($args as $arg) {
       $exp = file_get_contents($fichier);
       $exp = str_replace("Fichier de directives : ini/tokenizeur.ini\n", '', $exp);
       $exp = str_replace("Directives files : \n", '', $exp);
+      $exp = str_replace("Cycles = -1\n", '', $exp);
       $exp = str_replace("No more tasks to work on. Finishing.\n",'', $exp);
 
       file_put_contents($fichier, $exp);

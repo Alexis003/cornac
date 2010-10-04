@@ -19,4 +19,4 @@ tests/tokenizeur/scripts/switch.15.test.php
                           literals  demarchage_flag='1' 
                   1 : 
                       _break 
-                      Nombre : " "1""
+                      Number : " "1""

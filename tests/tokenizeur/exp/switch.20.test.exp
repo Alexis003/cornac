@@ -12,17 +12,17 @@ tests/tokenizeur/scripts/switch.20.test.php
                   block 
                   0 : 
                       _break 
-                      Nombre : " "1""
+                      Number : " "1""
           1 : 
               _default 
                   block 
                   0 : 
                       _break 
-                      Nombre : " "1""
+                      Number : " "1""
           2 : 
               _case 
                   literals b
                   block 
                   0 : 
                       _break 
-                      Nombre : " "1""
+                      Number : " "1""

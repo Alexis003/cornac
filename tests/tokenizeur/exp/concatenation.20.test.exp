@@ -1,3 +1,4 @@
+Cycles = -1
 tests/tokenizeur/scripts/concatenation.20.test.php
   codephp <?php
 
@@ -11,6 +12,6 @@ tests/tokenizeur/scripts/concatenation.20.test.php
           0 : 
               literals (
           1 : 
-              variable variable $derivedSelect
+              variable $derivedSelect
           2 : 
               literals )

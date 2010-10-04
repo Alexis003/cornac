@@ -24,10 +24,10 @@ tests/tokenizeur/scripts/switch.22.test.php
                   block 
                   0 : 
                       _break 
-                      Nombre : " "1""
+                      Number : " "1""
           4 : 
               _default 
                   block 
                   0 : 
                       _break 
-                      Nombre : " "1""
+                      Number : " "1""

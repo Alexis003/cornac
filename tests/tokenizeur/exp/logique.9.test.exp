@@ -20,7 +20,7 @@ tests/tokenizeur/scripts/logique.9.test.php
                                   literals dateecheance
                   1 : 
                       _break 
-                      Nombre : " "1""
+                      Number : " "1""
           1 : 
               _case 
                   logique 
@@ -45,4 +45,4 @@ tests/tokenizeur/scripts/logique.9.test.php
                                   literals limitevalidite
                   1 : 
                       _break 
-                      Nombre : " "1""
+                      Number : " "1""

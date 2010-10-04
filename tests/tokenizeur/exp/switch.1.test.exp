@@ -12,14 +12,14 @@ tests/tokenizeur/scripts/switch.1.test.php
                   block 
                   0 : 
                       _break 
-                      Nombre : " "1""
+                      Number : " "1""
           1 : 
               _case 
                   literals 3
                   block 
                   0 : 
                       _break 
-                      Nombre : " "1""
+                      Number : " "1""
           2 : 
               _default 
                   block 

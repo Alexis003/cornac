@@ -1,3 +1,4 @@
+Cycles = -1
 tests/tokenizeur/scripts/not.7.test.php
   codephp <?php
 
@@ -9,13 +10,13 @@ tests/tokenizeur/scripts/not.7.test.php
       gauche : 
           concatenation 
           0 : 
-              variable variable $a
+              variable $a
           1 : 
               literals /
           2 : 
               property variable $bliterals c->
           3 : 
-              variable variable $d
+              variable $d
           4 : 
               literals !
           5 : 

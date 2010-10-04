@@ -19,7 +19,7 @@ tests/tokenizeur/scripts/switch.16.test.php
                           literals 1
                   1 : 
                       _break 
-                      Nombre : " "1""
+                      Number : " "1""
           1 : 
               _default 
                   block 

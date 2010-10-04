@@ -33,4 +33,4 @@ tests/tokenizeur/scripts/sequence.29.test.php
                       literals d
       1 : 
           _break 
-          Nombre : " "1""
+          Number : " "1""

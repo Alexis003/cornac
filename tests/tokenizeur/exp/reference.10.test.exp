@@ -1,3 +1,4 @@
+Cycles = -1
 tests/tokenizeur/scripts/reference.10.test.php
   codephp <?php
 
@@ -11,7 +12,7 @@ tests/tokenizeur/scripts/reference.10.test.php
           0 : 
               literals a=
           1 : 
-              variable variable $b
+              variable $b
           2 : 
               literals &
           3 : 
@@ -19,4 +20,4 @@ tests/tokenizeur/scripts/reference.10.test.php
           4 : 
               literals =
           5 : 
-              variable variable $d
+              variable $d
