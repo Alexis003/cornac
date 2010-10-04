@@ -33,6 +33,8 @@ class callback_functions extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
+// @todo spot functions when it is a method call (aka, it is an array instead of a function) 
+
 // @doc spot callback when it's a first argument
 	    $query = <<<SQL
 SELECT NULL, T1.fichier, T4.code, T4.id, '{$this->name}', 0

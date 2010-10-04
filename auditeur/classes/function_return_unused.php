@@ -36,6 +36,7 @@ class function_return_unused extends modules {
 // @todo update list of authorize functions (first IN)
 // @todo check on other application the list of authorized structures (second IN)
 // @todo make another level for noscream, arobases, etc. : or find a way to ignore them
+// @todo check immediatly if return value is used in a foreach 
 	    $query = <<<SQL
 SELECT NULL, T1.fichier, T1.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1

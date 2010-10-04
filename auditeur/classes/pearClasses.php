@@ -32,7 +32,7 @@ class pearClasses extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
-        $list = modules::getPearFrameworkClasses();
+        $list = modules::getPearClasses();
         $in = "'".join("', '", $list)."'";
         
         // @note classes extended
@@ -47,6 +47,18 @@ JOIN <tokens> T2
        T1.fichier = T2.fichier AND 
        T2.code IN ($in)
 WHERE T1.type='_class'; 
+SQL;
+        $this->exec_query_insert('rapport', $query);
+
+        // @note classes directly used
+	    $query = <<<SQL
+SELECT NULL, T1.fichier, T2.code, T1.id, '{$this->name}', 0
+FROM <tokens> T1
+JOIN <tokens> T2
+    ON T2.droite = T1.droite + 1 AND
+       T1.fichier = T2.fichier AND 
+       T2.code IN ($in)
+WHERE T1.type='_new'; 
 SQL;
         $this->exec_query_insert('rapport', $query);
         

@@ -25,11 +25,11 @@ class fluid_interface extends modules {
         parent::__construct($mid);
 	}
 
-// @doc if this analyzer is based on previous result, use this to make sure the results are here
 	function dependsOn() {
 	    return array();
 	}
 	
+// @todo put a name in this element
 	public function analyse() {
         $this->clean_rapport();
 
