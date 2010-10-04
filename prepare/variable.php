@@ -28,7 +28,7 @@ class variable extends token {
         }
 
         if (count($expression) == 1) {
-            if ($expression[0]->checkClass('Token')) {
+            if ($expression[0]->checkClass(array('variable','Token'))) {
                 $this->nom = $expression[0]->getCode();
             } else {
                 $this->nom = $expression[0];

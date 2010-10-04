@@ -28,7 +28,7 @@ class variable_variable_regex extends analyseur_regex {
     
     function check($t) {
     
-        if (!$t->hasPrev() ) { return false; }
+        if (!$t->hasNext() ) { return false; }
 
         if ($t->checkCode('$') &&
             $t->getNext()->checkClass('variable')

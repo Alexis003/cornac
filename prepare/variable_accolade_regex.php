@@ -33,7 +33,7 @@ class variable_accolade_regex extends analyseur_regex {
         if ($t->getNext()->checkNotClass(array('variable','tableau'))) { return false;}
         if ($t->getNext(1)->checkNotCode('}')) { return false;}
         
-        $this->args   = array(1);
+        $this->args   = array(0, 1);
         $this->remove = array(1,2);
 
         mon_log(get_class($t)." => ".__CLASS__);
