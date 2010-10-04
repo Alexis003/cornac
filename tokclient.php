@@ -117,7 +117,7 @@ while(1 ) {
 mon_die();
 
 function process_file($scriptsPHP, $limit) {
-    global $file, $files_processed;
+    global $file, $files_processed, $INI;
     $FIN['fait'] = 0;
     $FIN['trouves'] = 0;
 
@@ -154,18 +154,22 @@ function process_file($scriptsPHP, $limit) {
     $code = str_replace('<?=', '<?php echo ', $code);
 
     // @todo abstract this function, so one can choose the PHP version for tokenization
-    $brut = @token_get_all($code);
-    if (count($brut) == 0) {
+    $raw = @token_get_all($code);
+    if (count($raw) == 0) {
         print "No token found. Aborting\n";
         return false;
     }
-    $nb_tokens_initial = count($brut);
+    if ($INI['tokens']) {
+        print_r($raw);
+        die();
+    }
+    $nb_tokens_initial = count($raw);
 
     $root = new Token();
     $suite = null;
     $ligne = 0;
 
-    foreach($brut as $id => $b) {
+    foreach($raw as $id => $b) {
         $t = new Token();
 
         $t->setId($id);
@@ -186,7 +190,7 @@ function process_file($scriptsPHP, $limit) {
             $suite->append($t);
             $suite = $suite->getNext();
         }
-        unset($brut[$id]);
+        unset($raw[$id]);
 
     }
 
