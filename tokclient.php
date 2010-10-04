@@ -38,9 +38,10 @@ $options = array('help' => array('help' => 'display this help',
                                   'get_arg_value' => '0',
                                   'option' => 's',
                                   'compulsory' => false),
-                 'limit' => array('help' => 'limit the number of cycles',
-                                    'option' => 'i',
-                                    'compulsory' => false),
+                 'limit' => array('help' => 'limit the number of cycles (-1 for no limit)',
+                                  'get_arg_value' => -1,
+                                  'option' => 'i',
+                                  'compulsory' => false),
                  );
 include('libs/getopts.php');
 
@@ -51,7 +52,6 @@ $FIN['debut'] = microtime(true);
 // @todo make this work on tasks or individually
 
 // @doc Reading constantes that are in the .INI
-define('TOKENS',$INI['tokens']);
 define('TEST',$INI['test']);
 define('STATS',$INI['stats']);
 define('VERBOSE',$INI['verbose']);

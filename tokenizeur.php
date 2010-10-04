@@ -46,6 +46,10 @@ $options = array('help' => array('help' => 'display this help',
                                       'get_arg_value' => null,
                                       'option' => 'd',
                                       'compulsory' => false),
+                 'limit' => array('help' => 'limit the number of cycles (-1 for no limit)',
+                                  'get_arg_value' => -1,
+                                  'option' => 'i',
+                                  'compulsory' => false),
                  );
 include('libs/getopts.php');
 
@@ -64,6 +68,8 @@ if ($INI['log']) {
 if ($INI['tokens']) {
     $ini .= " -t ";
 }
+
+$ini .= " -i ".$INI['limit'];
 
 print shell_exec('./tokclient.php -I '.$INI['ini'].$ini);
 
