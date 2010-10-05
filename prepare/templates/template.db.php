@@ -397,8 +397,8 @@ class template_db extends template {
 
         $classe = $noeud->getClass();
         $this->affiche($classe, $niveau + 1);
-        $methode = $noeud->getConstant();
-        $this->affiche($methode, $niveau + 1);
+        $method = $noeud->getConstant();
+        $this->affiche($method, $niveau + 1);
 
         $noeud->myGauche = $this->getIntervalleId();
         return $this->saveNoeud($noeud, $niveau);
@@ -410,8 +410,8 @@ class template_db extends template {
 
         $classe = $noeud->getName();
         $this->affiche($classe, $niveau + 1);
-        $methode = $noeud->getConstante();
-        $this->affiche($methode, $niveau + 1);
+        $method = $noeud->getConstante();
+        $this->affiche($method, $niveau + 1);
 
         $noeud->myGauche = $this->getIntervalleId();
         return $this->saveNoeud($noeud, $niveau);

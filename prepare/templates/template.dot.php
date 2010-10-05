@@ -117,13 +117,13 @@ class template_dot extends template {
         }
     }
     
-    function dot_standard_one($noeud, $niveau, $methode) {
-        $result = $noeud->$methode();
+    function dot_standard_one($noeud, $niveau, $method) {
+        $result = $noeud->$method();
         
         if(!is_null($result)) {
             if (!is_object($result)) { 
                 var_dump($result);
-                die("$methode ".__FILE__." ".__LINE__."\n");
+                die("$method ".__FILE__." ".__LINE__."\n");
             }
             $result->dotId = $this->getNextId();
             $this->dot_link($noeud->dotId, $result->dotId);
@@ -425,7 +425,7 @@ die("cas de l'argument null ou inexistant");
         $this->dot_standard_one($noeud, $niveau, 'getArgs');
         $this->dot_standard_one($noeud, $niveau, 'getBlock');
 
-        $this->dot_struct($noeud->dotId, array(), 'methode');
+        $this->dot_struct($noeud->dotId, array(), 'method');
     }
 
     function affiche_functioncall($noeud, $niveau) {
