@@ -77,7 +77,6 @@ secu and secu_functions are double
 execs and exec_functions
 zfClasses and zfDependencies are double 
 
-
 Spot php error during execution, report it by auditeur
 Add a log-time option to auditeur, to fill the auditeur.log
 Make auditeur i18n easily (export in external file, auto-adding new titles)
@@ -94,7 +93,6 @@ Standardization : display one groupe, another, its intersection. Should we build
 
 export analyzers dependencies in a graph
 
-make the web publication one simple include
 find a nice display for auditeur export in HTML/Web version
 
 Add one main figure for each analyzers (count of info)
@@ -114,8 +112,6 @@ String by delimiter (especially <<< )
 
 detect infinite loop (for, while)
 detect impossible condition (if (false), ...)
-
-
 
 PHP configuration function usage
 
@@ -171,7 +167,7 @@ functions (and files) that emit error (join, mysql_connect, ) : they should be c
 
 methods/files/classes that misses some (provided) code.
 
-Spot library dependencies, like PEAR, phpmailer, tinyMCE. 
+Spot library dependencies, like, phpmailer, tinyMCE. 
 
 Qualify scripts/contextes/folders as being controler (aka _GET, include), model (database) ou template (html, pdf, echo...).
 Check that above characteristics are at the right place (by folder, by framework...)
@@ -212,37 +208,6 @@ regex
 sql requests
 Cookies
 Configuration variables
-
-/// to be sorted
-[fixes]
-classes_undefined : cas de la valeur vide sur dotclear
-Identifier les conflit de noms avec des exntesions ou des bibliothèes PHP
-fonctions vides : ignore les classes abstraites, interfaces ou les classes dérivées 
-détecter les foncontions en double, avec le même code ! 
-$:: globals
-inclusions_path : a revoir entièrement : le contenu n'est psa le bon
-attention aux proriétés : sur variable ou sur méthode. 
-
-variables utilisées : retirer les globales, et ignorer le scope 'global' dans les classes
-Liste des blanches pour les eval (surveiller la valeur de retour)
-block d'appels ; a revoir
-pas de résultat == pas dans le sommaire!!
-regex vide! : quel sens?
-chemins d'inclusions
-Multi-def : ignorer les fichiers en fonctions uniquement (différents contextes, pas de glboal == bibliothèque de fonctions)
-
-
-
-formatter les colonnes en chiffres quand il le faut dans le ODS
-
-Attention : bootstrap manquant
-Ajouter la protection sur les méthodes
-ajouter abstract sur les classes
-
-Ajouter un module pour Zend_session et Zend_Request
-addelement : devrait toujours récuprer la valeur retournée
-
-aussi à tester : Library/application + public/dynamique
 
 [dict]
 Make a library of common library, and extract classes, functions, constante from them. 
