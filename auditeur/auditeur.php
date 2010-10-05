@@ -98,7 +98,6 @@ $modules = array(
 'proprietes_publiques',
 'regex',
 'returns',
-'secu_functions',
 'secu_protection_functions',
 'session_functions',
 'sql_queries',
@@ -187,6 +186,9 @@ $modules = array(
 'method_without_ppp',
 'loops_oneliner',
 'pearClasses',
+'recursive',
+'rawtext_whitespace',
+'loaded_lines',
 // new analyzers
 );
 
