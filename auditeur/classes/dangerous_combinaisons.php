@@ -39,9 +39,12 @@ class dangerous_combinaisons extends modules {
             $count = count($combinaison['combinaison']);
             // @todo : this shouldn't be sufficient. One must work on distinct occurences... may be a sub query will do
 
+// @note : some token duplicate code from other tokens (like functioncall, which have no code by itself, but get a copy of their name for easy reference)
+// @note so, we need to ignore some types. 
             $query = <<<SQL
 SELECT NULL, T1.fichier, '$nom', T1.code, '{$this->name}', 0
 FROM <tokens> T1
+WHERE T1.type NOT IN ('functioncall','method')
 GROUP BY fichier
 HAVING SUM(IF (code IN ($in), 1, 0)) >= $count
 SQL;
