@@ -18,8 +18,8 @@
  */
 
 class zfAction extends modules {
-	protected	$title = 'Actions Zend';
-	protected	$description = 'Liste des fonctions méthodes de contrôleur pour le ZF (*Action)';
+	protected	$title = 'ZF Actions';
+	protected	$description = 'List of methods for the Zend Framework ';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -29,14 +29,24 @@ class zfAction extends modules {
         $this->clean_rapport();
 
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, T1.code, T1.id, '{$this->name}', 0
-    FROM <tokens> T1
-    JOIN  <tokens_tags> TT
-        ON TT.token_sub_id = T1.id
-    WHERE 
-        T1.code like "%Action"    
-        AND TT.type = 'name'
-    ;
+SELECT NULL, T1.fichier, CONCAT(T1.class,'::',T1.code), T1.id, '{$this->name}', 0
+FROM <tokens> T1
+JOIN  <tokens_tags> TT
+    ON TT.token_sub_id = T1.id
+JOIN  <tokens> T2
+ON T2.fichier = T1.fichier AND
+   T1.droite BETWEEN T2.droite AND T2.gauche AND
+   T2.type = '_class'
+JOIN  <tokens_tags> TT2
+ON TT2.token_id = T2.id AND
+   TT2.type = 'extends'
+JOIN  <tokens> T3
+ON T3.fichier = T1.fichier AND
+   TT2.token_sub_id = T3.id
+WHERE 
+    T1.code LIKE "%Action" AND 
+    TT.type = 'name' AND
+    T3.code = "Zend_Controller"
 SQL;
         $this->exec_query_insert('rapport',$query);
         

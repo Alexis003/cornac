@@ -18,8 +18,8 @@
  */
 
 class multi_def_files extends modules {
-	protected	$title = 'Fichiers muli-déclarations';
-	protected	$description = 'Fichier définissant plusieurs structures';
+	protected	$title = 'Multi declaration files';
+	protected	$description = 'Files that declare several structures (classes, functions and global code).';
 
 	function __construct($mid) {
         parent::__construct($mid);
