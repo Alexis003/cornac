@@ -34,17 +34,10 @@ class variable_accoladeseparee_regex extends analyseur_regex {
         if ($t->getNext(1)->checkClass('Token')) { return false;}
         if ($t->getNext(2)->checkNotCode('}')) { return false;}
         
-        if ($t->getNext()->checkCode('{') &&
-            $t->getNext(1)->checkNotClass('Token') &&
-            $t->getNext(2)->checkCode('}')
-            ) {
-            $this->args   = array(2);
-            $this->remove = array(1,2,3);
+        $this->args   = array(1, 2);
+        $this->remove = array(1,2,3);
 
-            mon_log(get_class($t)." => ".__CLASS__);
-            return true; 
-        } 
-        return false;
+        return true;
     }
 }
 ?>
