@@ -125,6 +125,10 @@ $tests = array(
 'class.zfAction.test.php',
 'class.returns.test.php',
 'class.return_with_dead_code.test.php',
+'class.secu_protection_functions.test.php',
+'class.recursive.test.php',
+'class.loaded_lines.test.php',
+'class.rawtext_whitespace.test.php',
 // new tests
 );
 
