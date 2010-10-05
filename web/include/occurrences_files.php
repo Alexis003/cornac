@@ -15,14 +15,14 @@
    +----------------------------------------------------------------------+
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
- */    $requete = "SELECT element AS fichier, 
+ */    $query = "SELECT element AS fichier, 
                        fichier AS element, 
                        COUNT(*) AS nb,
                        id
                    FROM <rapport> 
                    WHERE module='{$_CLEAN['module']}'
                    GROUP BY element, fichier";
-    $res = $DATABASE->query($requete);
+    $res = $DATABASE->query($query);
     
     $rows = array();
     while($row = $res->fetch(PDO::FETCH_ASSOC)) {

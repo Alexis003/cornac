@@ -15,7 +15,9 @@
    +----------------------------------------------------------------------+
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
- */    $requete = <<<SQL
+ */    
+
+$query = <<<SQL
 SELECT element AS element, 
        fichier AS fichier, 
        COUNT(*) AS nb,
@@ -24,7 +26,7 @@ FROM <rapport> TR
 WHERE TR.module='{$_CLEAN['module']}'
 GROUP BY TR.fichier, TR.element
 SQL;
-    $res = $DATABASE->query($requete);
+    $res = $DATABASE->query($query);
     
     $rows = array();
     while($row = $res->fetch(PDO::FETCH_ASSOC)) {

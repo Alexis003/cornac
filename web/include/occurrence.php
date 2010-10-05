@@ -15,13 +15,15 @@
    +----------------------------------------------------------------------+
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
- */    $requete = "SELECT id, element, COUNT(*) AS nb,
+ */    
+ 
+ $query = "SELECT id, element, COUNT(*) AS nb,
                        COUNT(*) = SUM(checked) AS checked
     FROM <rapport> TR
     WHERE module='{$_CLEAN['module']}' 
         GROUP BY element 
         ORDER BY element";
-    $res = $DATABASE->query($requete);
+    $res = $DATABASE->query($query);
     $lines = $res->fetchAll(PDO::FETCH_ASSOC);
     
     print get_html_check($lines, $_CLEAN['module']);

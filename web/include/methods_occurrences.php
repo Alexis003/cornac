@@ -15,7 +15,8 @@
    +----------------------------------------------------------------------+
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
- */        $requete = <<<SQL
+ */        
+ $query = <<<SQL
             SELECT CONCAT(if (class = '', 'global',class) ,'::', scope) AS fichier, 
                     element AS element, 
                     COUNT(*) AS nb,
@@ -28,7 +29,7 @@
             GROUP BY element, CONCAT(class , scope)
             ORDER BY CONCAT(if (class = '', 'global',class) ,'::', scope)
 SQL;
-        $res = $DATABASE->query($requete);
+        $res = $DATABASE->query($query);
 
         $rows = array();
         while($row = $res->fetch(PDO::FETCH_ASSOC)) {

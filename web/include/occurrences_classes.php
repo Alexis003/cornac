@@ -15,7 +15,8 @@
    +----------------------------------------------------------------------+
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
- */        $requete = <<<SQL
+ */        
+ $query = <<<SQL
             SELECT 
                 IF (class = '', 'global',class) AS element, 
                 element AS fichier, 
@@ -29,7 +30,7 @@
             GROUP BY element, class
             ORDER BY if (class = '', 'global',class) 
 SQL;
-        $res = $DATABASE->query($requete);
+        $res = $DATABASE->query($query);
 
         $rows = array();
         while($row = $res->fetch(PDO::FETCH_ASSOC)) {
