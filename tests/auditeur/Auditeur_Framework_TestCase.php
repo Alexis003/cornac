@@ -77,7 +77,7 @@ SHELL;
         }
 
         foreach($this->unexpected as $unexpected) {
-            $this->assertTrue(!in_array($unexpected, $elements), "Found '$unexpected', but it shouldn\'t be\n");
+            $this->assertTrue(!in_array($unexpected, $elements), "Found '$unexpected', but it shouldn't be\n");
             unset($elements[$unexpected]);
         }
         
@@ -113,7 +113,7 @@ SHELL;
 
         foreach($this->unexpected as $unexpected) {
             $id = array_search($expected, $elements);
-            $this->assertTrue($id === false, "Found '$unexpected', but it shouldn\'t be\n");
+            $this->assertTrue($id === false, "Found '$unexpected', but it shouldn't be\n");
             unset($elements[$id]);
         }
         

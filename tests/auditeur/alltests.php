@@ -122,6 +122,9 @@ $tests = array(
 'class.tostring_no_arg.test.php',
 'class.function_return_unused.test.php',
 'class.method_without_ppp.test.php',
+'class.zfAction.test.php',
+'class.returns.test.php',
+'class.return_with_dead_code.test.php',
 // new tests
 );
 
