@@ -123,7 +123,7 @@ SQL;
 	    $query = <<<SQL
 DROP TABLES literals_as_argref_calls, literals_as_argref_definitions
 SQL;
-//        $this->exec_query($query);
+        $this->exec_query($query);
 // @todo activate this
 
         return true;

@@ -64,8 +64,13 @@ WHERE T1.scope!='global'  AND
 SQL;
         $this->exec_query_insert('rapport',$query);
 
+        $query = <<<SQL
+DROP TABLE IF EXISTS undefined_properties
+SQL;
+        $this->exec_query($query);
+        
+        return false;
 	}
-	
 }
 
 ?>
