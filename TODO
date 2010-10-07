@@ -8,13 +8,16 @@ Add a log to show progress
 Add support for a version of Cornac (checking for config files, tables configurations, etc.)
 add file restriction in the cornac.ini file
 
-Move prepare to classes
+Move prepare to classes folder
 Move auditeur.php to English
 Move auditeur.php to upper directory
+
+make a script to change name of auditeur's analyser git : move auditeur/classes/, auditeur/auditeur.php, tests/auditeur/ scripts, class.*.test.php, alltests.php 
 
 add a script to check ext sync between class/functions/classes (missing ones?)
 
 Add some more cornac tests
+make a database of already tokenized applications (with a link to the source, and automatic update)
 Apply cornac to itself
 Move array style to object ? 
 
@@ -43,6 +46,8 @@ Display dots when processing analyzers (auditeur)
 Add a file lister, that will also display ignored files from tokenizeur (export current function to external scripts/)
 
 [tokenizeur]
+Check for table structure before using. 
+
 Run tokenizeur regularly on Open source project. 
 check that tokenizeur works on one file only, without database
 
@@ -69,6 +74,7 @@ Add -log option to log information in a log file
 see how tokclient may not stop stupidly, and keep going when there are still some tasks to do : Test this now
 
 [auditeur]
+Check for table structure before using. 
 Move auditeur to English as reference translations of analyzers's title and description
 Add 'tags' propertie to every analyzers to help sort out the analyzers
 Support tags in web format : on the index page, display a list of them, for filtering. 
@@ -103,14 +109,12 @@ Have ratio calculated on top of analyzers (TDB)
 Support dot format for testing
 
 [analysers ideas]
-too many instructions in one line 
 add 'variable' as a scope, so that we can actually work context by context
 
 affected only variables (not used anywhere else that affectations)
 
 String by delimiter (especially <<< )
 
-detect infinite loop (for, while)
 detect impossible condition (if (false), ...)
 
 PHP configuration function usage
