@@ -166,7 +166,8 @@ abstract class modules {
     // @todo support rapport and report_dot
         if ($report == 'rapport') {
         // @note be aware that tmp_table need id as NULL column, so auto_increment is managed in the report table
-        $this->mid->query('CREATE TEMPORARY TABLE IF NOT EXISTS tmp_rapport (
+        $this->mid->query('
+CREATE TEMPORARY TABLE IF NOT EXISTS tmp_rapport (
   `id` tinyint(10),
   `fichier` varchar(500) NOT NULL,
   `element` varchar(10000) NOT NULL,
