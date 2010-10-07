@@ -28,7 +28,7 @@ class typecalls extends modules {
 	    if (is_array($this->type)) {
     	    $in = '"'.join('", "', $this->type).'"';
 	    } else {
-    	    $in = $this->type;
+    	    $in = '"'.$this->type.'"';
 	    }
 
         $this->clean_rapport();
