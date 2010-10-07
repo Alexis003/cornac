@@ -31,6 +31,14 @@ $options = array('help' => array('help' => 'display this help',
                  'clean' => array('help' => 'clean database',
                                  'option' => 'K',
                                  'compulsory' => false),
+                 'init' => array('help' => 'init auditeur, don\'t run it',
+                                 'get_arg_value' => 1,
+                                 'option' => 'i',
+                                 'compulsory' => false),
+                 'slave' => array('help' => 'slave mode. -1, infinite; 0, all task available; n : number of tasks',
+                                 'get_arg_value' => 0,
+                                 'option' => 's',
+                                 'compulsory' => false),
                  'analyzers' => array('help' => 'analyzers applied (default = all)',
                                       'get_arg_value' => 'all',
                                       'option' => 'a',
@@ -136,11 +144,9 @@ $modules = array(
 'variables_lots_of_letter',
 'php_classes',
 'upload_functions',
-'concatenation_gpc',
 'affectations_direct_gpc',
 'affectations_literals',
 'concatenation_gpc',
-'upload_functions',
 'variables_unaffected',
 'gpc_affectations',
 'dangerous_combinaisons',
@@ -189,37 +195,46 @@ $modules = array(
 'recursive',
 'rawtext_whitespace',
 'loaded_lines',
+'infinite_loop',
+'comparaison_constant',
 // new analyzers
 );
 
-if ($INI['analyzers'] == 'all' ) {
- // default : all modules
-} else {
-    $m = explode(',', $INI['analyzers']);
+include('../libs/database.php');
+$DATABASE = new database();
 
-    $diff = array_diff($m , $modules);
-    if (count($diff) > 0) {
-        print count($diff)." analyzers are unknown and omitted : ".join(', ', $diff)."\n";
-    }
-
-    $m = array_intersect($m, $modules);
-    if (count($m) == 0) {
-        print "No analyzer provided : Aborting\n";
-        die();
+if ($INI['init']) {
+    if ($INI['analyzers'] == 'all' ) {
+     // default : all modules
     } else {
-        $modules = $m;
+        $m = explode(',', $INI['analyzers']);
+
+        $diff = array_diff($m , $modules);
+        if (count($diff) > 0) {
+            print count($diff)." analyzers are unknown and omitted : ".join(', ', $diff)."\n";
+        }
+
+        $m = array_intersect($m, $modules);
+        if (count($m) == 0) {
+            print "No analyzer provided : Aborting\n";
+            die();
+        } else {
+            $modules = $m;
+        }
     }
-}
-print count($modules)." modules will be treated : ".join(', ', $modules)."\n";
+    
+    $query = "DELETE FROM <tasks> WHERE task='auditeur' AND target IN ('".join("', '", $modules)."')";
+    $DATABASE->query($query);
+    
+    $query = "INSERT INTO <tasks> (task, target, date_update, completed) VALUES ( 'auditeur', '".join("',NOW(), 0) ,('auditeur', '", $modules)."', NOW(), 0)";
+    $DATABASE->query($query);
+    
+    print count($modules)." modules will be treated : ".join(', ', $modules)."\n";
 // @todo fix the problem with the path
 /*
 if (INI) {
     write_ini_file($INI, INI);
-}
 */
-
-include('../libs/database.php');
-$DATABASE = new database();
 
 if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
 // @note element column size should match the code column in <tokens>
@@ -290,6 +305,7 @@ if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
     print "No database configuration provided (no mysql, no sqlite)\n";
     die();
 }
+}
 
 // validation done
 
@@ -304,28 +320,53 @@ include 'classes/abstract/functioncalls.php';
 include 'classes/abstract/typecalls.php';
 include 'classes/abstract/noms.php';
 
-$modules_faits = array();
+//$modules_faits = array();
 
 // @todo the init could take into account the current content of the database, avoiding reprocess
 
-foreach($modules as $module) {
-    print "+ $module\n";
-    analyse_module($module);
+$counter = 0;
+while (1) {
+    foreach($modules as $module) {
+        print "+ $module\n";
+        analyse_module($module);
+        $counter++;
+        
+        if ($INI['slave'] > 0 && $counter >= $INI['slave']) {
+            print "$counter analyzer processed. Terminating.\n";
+            die();
+        }
+    }
+
+    if ($INI['slave'] == 0) {
+        print "all analyzers tasks processed. Terminating.\n";
+        die();
+    }
+    
+    sleep(5);
+    print "Processed $counter tasks. Waiting for 5s\n";
 }
 
 function analyse_module($module_name) {
     require_once('classes/'.$module_name.'.php');
-    global $modules_faits, $DATABASE, $sommaire, $INI;
+    global  $DATABASE, $sommaire, $INI;
 
-    if (isset($modules_faits[$module_name])) {
+    $res = $DATABASE->query("SELECT completed FROM <tasks> WHERE target='$module_name'");
+    $row = $res->fetch(PDO::FETCH_ASSOC);
+    if ($row['completed'] == 100) {
         return ;
     }
+
+    $res = $DATABASE->query("SELECT AVG(completed) / 100 AS completed FROM <tasks> WHERE task='tokenize'");
+    $row = $res->fetch(PDO::FETCH_ASSOC);
+    $completed = $row['completed'];
 
     $module = new $module_name($DATABASE);
     $dependances = $module->dependsOn();
 
     if (count($dependances) > 0) {
-        $manque = array_diff($dependances, $modules_faits);
+        $res = $DATABASE->query("SELECT target FROM <tasks> WHERE target IN ('".join("','", $dependances)."') AND completed != 100");
+        $manque = $res->fetchAll(PDO::FETCH_ASSOC);
+        $manque = multi2array($manque, 'target');
         if (count($manque) > 0) {
             foreach($manque as $m) {
                 print "  +  $m";
@@ -359,7 +400,7 @@ function analyse_module($module_name) {
     $module->sauve();
 
     $sommaire->add($module);
-    $modules_faits[$module_name] = 1;
+    $res = $DATABASE->query("UPDATE <tasks> SET completed = $completed WHERE target = '$module_name'");
 }
 
 $sommaire->sauve();
