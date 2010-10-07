@@ -129,6 +129,8 @@ $tests = array(
 'class.recursive.test.php',
 'class.loaded_lines.test.php',
 'class.rawtext_whitespace.test.php',
+'class.infinite_loop.test.php',
+'class.comparaison_constant.test.php',
 // new tests
 );
 
