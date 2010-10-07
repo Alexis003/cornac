@@ -35,7 +35,6 @@ class php_constant_name_conflict extends modules {
         $constants = modules::getPHPConstants();
         $in = '"'.join('","', $constants).'"';
 
-// @todo of course, update this useless query. :)
 	    $query = <<<SQL
 SELECT NULL, T1.fichier, T1.element, T1.id, '{$this->name}', 0
     FROM <rapport> T1

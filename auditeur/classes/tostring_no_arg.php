@@ -26,7 +26,6 @@ class tostring_no_arg extends modules {
         parent::__construct($mid);
 	}
 
-// @doc if this analyzer is based on previous result, use this to make sure the results are here
 	function dependsOn() {
 	    return array();
 	}
@@ -34,7 +33,6 @@ class tostring_no_arg extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
-// @todo of course, update this useless query. :)
 	    $query = <<<SQL
 SELECT NULL, T1.fichier, T1.class, T1.id, '{$this->name}', 0
 FROM <tokens> T1

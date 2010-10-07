@@ -18,14 +18,13 @@
  */
 
 class multidimarray extends modules {
-	protected	$title = 'Tableaux multi-dimensionnels';
-	protected	$description = 'Liste les tableaux utilisées de manière multi-dimensionnelles, que ce soit par appel ($x[1][2]) ou par construction (array(array())';
+	protected	$title = 'Multi-dimensionnal arrays';
+	protected	$description = 'List of arrays that are multidimensionnal : $x[1][2], $x[1][2][3], and more.';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
 
-// @doc if this analyzer is based on previous result, use this to make sure the results are here
 	function dependsOn() {
 	    return array();
 	}
@@ -33,7 +32,7 @@ class multidimarray extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
-// @todo of course, update this useless query. :)
+// @note the comment /* JOIN */ here is important
 	    $query = <<<SQL
 SELECT NULL, T1.fichier, TC.code ,T1.id, '{$this->name}', 0
 FROM <tokens> T1

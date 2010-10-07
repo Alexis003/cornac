@@ -18,8 +18,8 @@
  */
 
 class mvc extends modules {
-	protected	$title = 'Types de fichiers MVC';
-	protected	$description = 'Détermine si un fichier est plutôt de type controleur (include, etc..), template (echo, print) ou modele (base de données)';
+	protected	$title = 'Type files as M-V-C';
+	protected	$description = 'Try to guess if the file is Model (only database access), Controller (inclusions, validation...), Vue (exit, views...)';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -32,7 +32,6 @@ class mvc extends modules {
 	
 	public function analyse() {
         $this->clean_rapport();
-
 
 // @doc inclusions are for controlers
 	    $query = <<<SQL
@@ -74,6 +73,11 @@ SELECT NULL, mvc.fichier, 'undecided', 0, '{$this->name}', 0
     WHERE TR.fichier IS NULL
 SQL;
         $this->exec_query_insert('rapport', $query);
+
+	    $query = <<<SQL
+DROP TABLE mvc
+SQL;
+        $this->exec_query($query);
 
         return true;
 	}
