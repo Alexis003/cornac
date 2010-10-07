@@ -66,13 +66,6 @@ if (!in_array($INI['cornac']['storage'],array('mysql','sqlite'))) {
     help();
 }
 
-if (!file_exists($INI['cornac']['destination'])) {
-    if (!mkdir($INI['cornac']['destination'])) {
-        print "Output directory doesn't exist '{$INI['cornac']['destination']}' : update ".INI."\n";
-        help();
-    }
-}
-
 if (!is_dir($INI['cornac']['destination'])) {
     print "Output path '{$INI['cornac']['destination']}' isn't a directory : update ".INI."\n";
     help();
