@@ -394,7 +394,7 @@ function analyse_module($module_name) {
     // @todo add an option for this
     $finish_time = microtime(true);
     $fp = fopen('auditeur.log','a');
-    fwrite($fp, date('r')."\t$module_name\t{$INI['ini']}\t".number_format(($finish_time - $init_time) * 1000, 2)."\r");
+    fwrite($fp, date('r')."\t$module_name\t{$INI['ini']}\t".number_format(($finish_time - $init_time) * 1000, 2,',','')."\r");
     fclose($fp);
 
     $module->sauve();
