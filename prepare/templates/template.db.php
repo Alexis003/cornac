@@ -357,12 +357,14 @@ class template_db extends template {
     function affiche_comparaison($noeud, $niveau) {
         $noeud->myId = $this->getNextId();
         $noeud->myDroite = $this->getIntervalleId();
-        $noeud->setCode('');
+        $noeud->setCode($noeud->getOperateur()->getCode());
 
-        $this->affiche($noeud->getDroite(), $niveau + 1);
-        $this->affiche($noeud->getOperateur(), $niveau + 1);
-        $this->affiche($noeud->getGauche(), $niveau + 1);
-
+        $tags = array();
+        $tags['right'][] = $this->affiche($noeud->getDroite(), $niveau + 1);
+        $tags['operator'][] = $this->affiche($noeud->getOperateur(), $niveau + 1);
+        $tags['left'][] = $this->affiche($noeud->getGauche(), $niveau + 1);
+        $this->tags = $tags;
+        
         $noeud->myGauche = $this->getIntervalleId();
         return $this->saveNoeud($noeud, $niveau);
     }
@@ -446,16 +448,19 @@ class template_db extends template {
         $noeud->myDroite = $this->getIntervalleId();
         $noeud->setCode('');
 
+        $tags = array();
+
         if (!is_null($f = $noeud->getInit())) {
-            $this->affiche($f, $niveau + 1);
+            $tags['init'][] = $this->affiche($f, $niveau + 1);
         }
         if (!is_null($f = $noeud->getFin())) {
-            $this->affiche($f, $niveau + 1);
+            $tags['end'][] = $this->affiche($f, $niveau + 1);
         }
         if (!is_null($f = $noeud->getIncrement())) {
-            $this->affiche($f, $niveau + 1);
+            $tags['increment'][] = $this->affiche($f, $niveau + 1);
         }
-        $this->affiche($noeud->getBlock(), $niveau + 1);
+        $tags['block'][] = $this->affiche($noeud->getBlock(), $niveau + 1);
+        $this->tags = $tags;
 
         $noeud->myGauche = $this->getIntervalleId();
         return $this->saveNoeud($noeud, $niveau);
@@ -955,8 +960,10 @@ class template_db extends template {
         $noeud->myId = $this->getNextId();
         $noeud->myDroite = $this->getIntervalleId();
 
-        $this->affiche($noeud->getCondition(), $niveau + 1);
-        $this->affiche($noeud->getBlock(), $niveau + 1);
+        $tags = array();
+        $tags['condition'][] = $this->affiche($noeud->getCondition(), $niveau + 1);
+        $tags['block'][] = $this->affiche($noeud->getBlock(), $niveau + 1);
+        $this->tags = $tags;
 
         $noeud->myGauche = $this->getIntervalleId();
         return $this->saveNoeud($noeud, $niveau);
