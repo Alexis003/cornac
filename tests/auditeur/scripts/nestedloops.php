@@ -17,33 +17,30 @@
    +----------------------------------------------------------------------+
  */
 
-class nestedloops extends modules {
-	protected	$title = 'Nested loops';
-	protected	$description = 'Loops (for, foreach, while) inside other loops. This is usually valid, but one must be cautious when using those, as they easily generate high loads.';
+foreach ($array as $key => $value) {
+    foreach ($array_nested as $key_nested => $value_nested) {
+        $x = 1;
+    }
+}
 
-	function __construct($mid) {
-        parent::__construct($mid);
-	}
-	
-	public function analyse() {
-        $this->clean_rapport();
+foreach ($array as $key => $value) {
+    foreach ($array_nested as $key_nested => $value_nested) {
+        foreach ($array_nested2 as $key_nested2 => $value_nested2) {
+            $x = 2;
+        }
+    }
+}
 
-        $concat = $this->concat("T1.type","'->'","T2.type");
-        $query = <<<SQL
-SELECT NULL, T1.fichier, $concat, T1.id, '{$this->name}', 0
-FROM <tokens> T1
-JOIN <tokens> T2
-    ON T1.fichier = T2.fichier AND 
-       T2.droite BETWEEN T1.droite AND T1.gauche
-WHERE T1.type IN ('_while','_for','_foreach') AND 
-      T2.type IN ('_while','_for','_foreach')
-GROUP BY T1.fichier, T1.droite, T1.id
-HAVING COUNT(*) > 1
-SQL;
-        $this->exec_query_insert('rapport', $query);
-        
-        return true;
-	}
+while($x = 3) {
+    foreach ($array_nested as $key_nested => $value_nested) {
+        $x = 4;
+    }
+}
+
+foreach ($array as $key => $value) {
+    while($x = 5) {
+        $x = 6;
+    }
 }
 
 ?>
