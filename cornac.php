@@ -66,6 +66,7 @@ if (!in_array($INI['cornac']['storage'],array('mysql','sqlite'))) {
     help();
 }
 
+/*
 if (!is_dir($INI['cornac']['destination'])) {
     print "Output path '{$INI['cornac']['destination']}' isn't a directory : update ".INI."\n";
     help();
@@ -76,17 +77,19 @@ if (!is_writable($INI['cornac']['destination'])) {
     help();
 }
 $INI['reader']['output'] = $INI['cornac']['destination'];
-
+*/
 // @notes validations
 if (!file_exists($INI['cornac']['origin'])) {
     print "Source folder '{$INI['cornac']['origin']}' doesn't exist\n";
     die();
 }
 
+/*
 if (!file_exists($INI['cornac']['destination'])) {
     print "Output folder '{$INI['cornac']['destination']}' doesn't exist\n";
     die();
 }
+*/
 
 if (realpath($INI['cornac']['origin']) == realpath($INI['cornac']['destination'])) {
     print "Please, don't use the same folder for source and destination\n";
