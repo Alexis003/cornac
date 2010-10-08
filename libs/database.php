@@ -87,6 +87,10 @@ class database  {
             return $this->pdo->errorInfo();
         }
     }
+    
+    function insert_id() {
+        return $this->pdo->lastInsertId();
+    }
 }
 
 ?>
