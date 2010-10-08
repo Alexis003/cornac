@@ -131,6 +131,7 @@ $tests = array(
 'class.rawtext_whitespace.test.php',
 'class.infinite_loop.test.php',
 'class.comparaison_constant.test.php',
+'class.nestedloops.test.php',
 // new tests
 );
 
