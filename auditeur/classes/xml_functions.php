@@ -18,8 +18,8 @@
  */
 
 class xml_functions extends functioncalls {
-	protected	$title = 'Fonctions XML';
-	protected	$description = 'Liste des fonctions de XML';
+	protected	$title = 'XML functions';
+	protected	$description = 'Usage of XML functions';
 
 	function __construct($mid) {
         parent::__construct($mid);

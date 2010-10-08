@@ -18,8 +18,8 @@
  */
 
 class undeffunctions extends modules {
-	protected	$title = 'Fonctions non définies';
-	protected	$description = 'Liste des fonctions sans définition ni déclaration : elles peuvent manquer, ou bien être natives à PHP';
+	protected	$title = 'Undefined functions';
+	protected	$description = 'List of function without defintions nor declaration. They may be actually forgotten (dead code), native to PHP (unusual ext), or included in standard library (__autoload and PEAR).';
 
 	function __construct($mid) {
         parent::__construct($mid);

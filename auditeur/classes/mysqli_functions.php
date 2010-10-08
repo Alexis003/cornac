@@ -18,8 +18,8 @@
  */
 
 class mysqli_functions extends functioncalls {
-	protected	$title = 'Fonctions de mysqli';
-	protected	$description = 'Liste des fonctions de l\'extension de mysqli de PHP';
+	protected	$title = 'mysqli functions';
+	protected	$description = 'Usage of mysqli functions';
 
 	function __construct($mid) {
         parent::__construct($mid);

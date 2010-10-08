@@ -18,8 +18,8 @@
  */
 
 class upload_functions extends functioncalls {
-	protected	$title = 'Fonctions d\'upload';
-	protected	$description = 'Liste des fonctions utilisées lors de l\'upload d\'un fichier';
+	protected	$title = 'Upload functions';
+	protected	$description = 'Usage of upload functions';
 
 	function __construct($mid) {
         parent::__construct($mid);

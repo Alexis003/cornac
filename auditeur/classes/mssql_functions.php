@@ -18,8 +18,8 @@
  */
 
 class mssql_functions extends functioncalls {
-	protected	$title = 'Fonctions MSSQL';
-	protected	$description = 'Liste des fonctions mssql';
+	protected	$title = 'MSSQL functions';
+	protected	$description = 'Usage of mssql functions';
 
 	function __construct($mid) {
         parent::__construct($mid);
