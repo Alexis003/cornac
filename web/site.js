@@ -10,6 +10,11 @@ function toggle_row(id, nb) {
     }
 }
 
+function set_checked_daily(id, style) {
+    var row = document.getElementById(id);
+    row.className = style;
+}
+
 function toggle_checked(id) {
     var row = document.getElementById(id + '_0');
     if (row.className == 'checked') {
@@ -30,6 +35,34 @@ function toggle_checked(id) {
         row.className = 'v';
     } else {
         row.className = 'checked';
+    }
+}
+
+function checkElementId(tr_id, id, module, reason) {
+    xmlhttp=new XMLHttpRequest();
+    xmlhttp.open("GET","ajax.php?elementid=" + id + "&module=" + module  + "&reason=" + reason,true );
+    xmlhttp.send();
+    
+    if (reason == 0) {
+        set_checked_daily(tr_id, 'e');
+    } else if (reason == 1) {
+        x = uki({
+            view: "TextField", value: "Hello world!", name: "reason_text",  rect: "0 0 180 24"
+         });
+        x.attachTo( document.getElementById(tr_id+'_0'), '100 30' );
+         
+        uki("Button[text^=Hello]").click(
+            function() { alert(this.text()); }
+        );
+        uki("TextField").blur(
+            function() { 
+            checkElementId('tr_154870', 1, 'dieexit',  this.value()); 
+            }
+        );
+
+        set_checked_daily(tr_id, 'checked');
+    } else {
+        set_checked_daily(tr_id, 'checked');
     }
 }
 

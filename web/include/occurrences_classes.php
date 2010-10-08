@@ -16,19 +16,19 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */        
- $query = <<<SQL
-            SELECT 
-                IF (class = '', 'global',class) AS element, 
-                element AS fichier, 
-                COUNT(*) AS nb,
-                CR.id,
-                COUNT(*) = SUM(checked) AS checked
-            FROM <rapport> CR
-            JOIN <tokens> T1
-                ON CR.token_id = T1.id
-                WHERE module='{$_CLEAN['module']}' 
-            GROUP BY element, class
-            ORDER BY if (class = '', 'global',class) 
+$query = <<<SQL
+SELECT 
+    IF (class = '', 'global',class) AS element, 
+    element AS fichier, 
+    COUNT(*) AS nb,
+    CR.id,
+    COUNT(*) = SUM(checked) AS checked
+FROM <rapport> CR
+JOIN <tokens> T1
+    ON CR.token_id = T1.id
+    WHERE module='{$_CLEAN['module']}' 
+GROUP BY element, class
+ORDER BY if (class = '', 'global',class) 
 SQL;
         $res = $DATABASE->query($query);
 

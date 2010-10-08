@@ -21,7 +21,8 @@ $query = <<<SQL
 SELECT element AS element, 
        fichier AS fichier, 
        COUNT(*) AS nb,
-       id
+       id,
+       COUNT(*) = SUM(checked) AS checked
 FROM <rapport> TR 
 WHERE TR.module='{$_CLEAN['module']}'
 GROUP BY TR.fichier, TR.element
@@ -30,7 +31,7 @@ SQL;
     
     $rows = array();
     while($row = $res->fetch(PDO::FETCH_ASSOC)) {
-        @$rows[$row['fichier']][] = $row; 
+        $rows[$row['fichier']][] = $row; 
     }
         
     print get_html_level2($rows, $_CLEAN['module']);

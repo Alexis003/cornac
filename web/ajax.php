@@ -28,9 +28,15 @@ fclose($fp);
 include('include/config.php');
 
 $_CLEAN['module'] = preg_replace('/[^a-zA-Z0-9_\-]/', '', $_GET['module']);
-$_CLEAN['element'] = $_GET['element'] ?: NULL; 
-$_CLEAN['elementfile'] = $_GET['elementfile'] ?: NULL; 
-$_CLEAN['file'] = $_GET['file'] ?: NULL; 
+if (isset($_GET['element'])) {
+    $_CLEAN['element'] = $_GET['element']; 
+} else {
+    $_CLEAN['element'] = NULL; 
+}
+$_CLEAN['elementid'] = @$_GET['elementid'] ?: NULL; 
+$_CLEAN['elementfile'] = @$_GET['elementfile'] ?: NULL; 
+$_CLEAN['file'] = @$_GET['file'] ?: NULL; 
+$_CLEAN['reason'] = @$_GET['reason'] ?: NULL; 
 
 if (!empty($_CLEAN['element'])) {
     $query = "SELECT element FROM <rapport> WHERE id = ".$DATABASE->quote($_CLEAN['element'])."";
@@ -54,12 +60,29 @@ if (!empty($_CLEAN['element'])) {
     $res = $DATABASE->query($query);
     print $res->rowCount() ? 'yes' : '';
 } elseif (!empty($_CLEAN['file'])) {
-    $query = "UPDATE <rapport> SET checked = 1 - checked WHERE fichier = ".$DATABASE->quote($_CLEAN['file'])." AND module='".$DATABASE->quote($_CLEAN['module'])."'";
+    $query = "UPDATE <rapport> SET checked = 1 - checked WHERE fichier = ".$DATABASE->quote($_CLEAN['file'])." AND module=".$DATABASE->quote($_CLEAN['module'])."";
     
     $res = $DATABASE->query($query);
     print $res->rowCount() ? 'yes' : '';
+} elseif (!empty($_CLEAN['elementid'])) {
+    $query = "UPDATE <rapport> SET checked = 1 - checked WHERE id = ".$DATABASE->quote($_CLEAN['elementid'])." AND module=".$DATABASE->quote($_CLEAN['module'])."";    
+    $res = $DATABASE->query($query);
+
+    if (is_int($_CLEAN['reason'])) {
+        $query = "UPDATE cnc_daily SET reason_id = ".$DATABASE->quote($_CLEAN['reason'])."  WHERE report_id = ".$DATABASE->quote($_CLEAN['elementid'])." AND module=".$DATABASE->quote($_CLEAN['module'])."";
+        $res = $DATABASE->query($query);
+    } else {
+        $query = "INSERT INTO cnc_reasons VALUES (NULL, ".$DATABASE->quote($_CLEAN['reason']).")";
+        $res = $DATABASE->query($query);
+        $id = $DATABASE->insert_id();
+        
+        $query = "UPDATE cnc_daily SET reason_id = ".$id."  WHERE report_id = ".$DATABASE->quote($_CLEAN['elementid'])." AND module=".$DATABASE->quote($_CLEAN['module'])."";
+        $res = $DATABASE->query($query);
+    }
+
+    print $res->rowCount() ? 'yes' : '';
 } else {
-    print '';
+    print 'ko';
 } 
 
 ?>

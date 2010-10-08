@@ -15,18 +15,23 @@
    +----------------------------------------------------------------------+
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
- */    $query = "SELECT element AS fichier, 
+ */    
+ 
+ $query = <<<SQL
+ SELECT element AS fichier, 
                        fichier AS element, 
                        COUNT(*) AS nb,
-                       id
+                       id,
+                       COUNT(*) = SUM(checked) AS checked
                    FROM <rapport> 
                    WHERE module='{$_CLEAN['module']}'
-                   GROUP BY element, fichier";
+                   GROUP BY element, fichier
+SQL;
     $res = $DATABASE->query($query);
     
     $rows = array();
     while($row = $res->fetch(PDO::FETCH_ASSOC)) {
-        @$rows[$row['fichier']][] = $row; 
+        $rows[$row['fichier']][] = $row; 
     }
         
     print get_html_level2($rows, $_CLEAN['module']);

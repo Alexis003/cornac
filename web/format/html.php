@@ -143,28 +143,35 @@ function get_html_manual($lines) {
         return $html;
 }
 
-function get_html_level2($lines,$module='inclusions_path') {
+function get_html_level2($lines, $module='inclusions_path',$javascript_function = 'checkElementFile') {
     $total = count($lines);
     
     $table = new html_table();
 
     $id_tr = 0;
     foreach($lines as $file => $rows) {
+        $checked = true;
+        foreach($rows as $row) {
+            $checked &= $row['checked'];
+        }
+        
+        $checked = $checked ? 'checked' : '';
+        
         $row = $table->addRow(array($file, 
                                     count($rows),
-                                    '<input type="checkbox">'
+''//                                    '<input type="checkbox" '.$checked.' OnClick="javascript:'.$javascript_function.'(\''.$module.'\');" />'
                               ));
         $row->setCellsClass('h');
         $row->getCell(0)->setAttribute('OnClick', 'toggle_row('.(substr($row->getId(), 2) + 1).', '.count($rows).');' );
         foreach($rows as $row) {
             $id_tr++;
 
-            if (@$row['checked']) {
+            if ($row['checked']) {
                 $tr_row = $table->addRow(array());
                 $id = $tr_row->getId();
                 $tr_row->setCells(array($row['element'], 
                                      $row['nb'],
-                                     '<input type="checkbox" checked OnClick="javascript:checkElementFile(\''.$id.'\','.$row['id'].',\''.$module.'\');" />'
+                                     '<input type="checkbox" checked OnClick="javascript:'.$javascript_function.'(\''.$id.'\','.$row['id'].',\''.$module.'\');" />'
                                      ));
                 $tr_row->setCellsClass( 'checked');
              } else {
@@ -172,7 +179,7 @@ function get_html_level2($lines,$module='inclusions_path') {
                 $id = $tr_row->getId();
                 $tr_row->setCells(array($row['element'], 
                                       $row['nb'], 
-                                     '<input type="checkbox" OnClick="javascript:checkElementFile(\''.$id.'\','.$row['id'].',\''.$module.'\');" />'
+                                     '<input type="checkbox" OnClick="javascript:'.$javascript_function.'(\''.$id.'\','.$row['id'].',\''.$module.'\');" />'
                                       ));
                 $tr_row->setCellsClass(array('e','v','v'));
              }
@@ -202,6 +209,7 @@ function print_entete($prefix = 'No Name') {
  <title>Analyseur pour l'application $prefix</title>
  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
  <script type="text/javascript" src="site.js"></script>
+ <script type="text/javascript" src="ukijs.js"></script>
  <style type="text/css" media="all">
   @import url("./css/site.css");
  </style>

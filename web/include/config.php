@@ -21,7 +21,14 @@ $ini = array('mysql' => array('active' => 1,
                               'dsn' => 'mysql:dbname=analyseur;host=127.0.0.1',
                               'username' => 'root',
                               'password' => ''),
-             'cornac' => array('prefix' => 'cnc' ) );
+             'cornac' => array('prefix' => 'phpmyfaq' ) );
 $DATABASE = new database($ini);
+
+$res = $DATABASE->query('SHOW TABLES LIKE "'.$ini['cornac']['prefix'].'%"');
+if ($res->rowCount() == 0) {
+    print $ini['cornac']['prefix']." doesn't exists in the database. Fix config file. Aborting. \n";
+    die();
+}
+
 
 ?>
