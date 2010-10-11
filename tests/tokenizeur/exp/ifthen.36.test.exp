@@ -25,7 +25,7 @@ tests/tokenizeur/scripts/ifthen.36.test.php
                           ifthen if
                           Condition 0) 
                               parentheses 
-                              ( "comparaison variable $d 281 "===" constante null" )
+                              ( "comparison variable $d 281 "===" constante null" )
                               block 
                               0 : 
                                   affectation 

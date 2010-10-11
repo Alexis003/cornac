@@ -4,7 +4,7 @@ tests/tokenizeur/scripts/while.10.test.php
   code : 
       _while 
           parentheses 
-          ( "comparaison postplusplus 296 "--"variable $a  ">" literals 0" )
+          ( "comparison postplusplus 296 "--"variable $a  ">" literals 0" )
           block 
           0 : 
               affectation 

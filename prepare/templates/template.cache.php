@@ -299,7 +299,7 @@ class template_cache extends template {
         $noeud->cache = $cle->cache.' => '.$valeur->cache;
     }
 
-    function affiche_comparaison($noeud, $niveau) {
+    function affiche_comparison($noeud, $niveau) {
         $droite = $noeud->getDroite();
         $this->affiche($droite, $niveau + 1);
         $operateur = $noeud->getOperateur();

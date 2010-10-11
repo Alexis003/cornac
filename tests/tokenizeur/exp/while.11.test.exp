@@ -4,5 +4,5 @@ tests/tokenizeur/scripts/while.11.test.php
   code : 
       _while 
           parentheses 
-          ( "comparaison variable $a  ">" operation variable $b  "*" preplusplus variable $d297 "++"" )
+          ( "comparison variable $a  ">" operation variable $b  "*" preplusplus variable $d297 "++"" )
           block 

@@ -3,4 +3,4 @@ tests/tokenizeur/scripts/cdtternaire.8.test.php
 
   code : 
       parentheses 
-      ( "comparaison literals deflate 281 "===" cdtternaire ?" )
+      ( "comparison literals deflate 281 "===" cdtternaire ?" )

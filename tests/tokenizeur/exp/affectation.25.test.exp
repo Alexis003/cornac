@@ -9,8 +9,8 @@ tests/tokenizeur/scripts/affectation.25.test.php
        "=" 
       gauche : 
           cdtternaire ?
-          comparaison variable $y 283 "==" sign  "-"literals 1 ? affectation variable $z  "=" literals 2 : variable $a
-              comparaison 
+          comparison variable $y 283 "==" sign  "-"literals 1 ? affectation variable $z  "=" literals 2 : variable $a
+              comparison 
               droite : 
                   variable $y
               operateur : 283 "=="

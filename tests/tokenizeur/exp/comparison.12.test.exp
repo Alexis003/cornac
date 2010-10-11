@@ -1,11 +1,11 @@
-tests/tokenizeur/scripts/comparaison.11.test.php
+tests/tokenizeur/scripts/comparison.12.test.php
   codephp <?php
 
   code : 
       ifthen if
       Condition 0) 
           parentheses 
-          ( "comparaison preplusplus variable $x296 "--" 283 "==" literals 0" )
+          ( "comparison preplusplus variable $x297 "++" 283 "==" literals 0" )
           block 
           0 : 
               affectation 

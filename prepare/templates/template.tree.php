@@ -143,7 +143,7 @@ class template_tree extends template {
         $this->affiche($noeud->getValeur(), $niveau + 1);
     }
 
-    function affiche_comparaison($noeud, $niveau) {
+    function affiche_comparison($noeud, $niveau) {
          print str_repeat('  ', $niveau).get_class($noeud)." \n";
          print str_repeat('  ', $niveau)."droite : \n";
          $this->affiche($noeud->getDroite(), $niveau + 1);

@@ -19,13 +19,15 @@
 
 include_once('Auditeur_Framework_TestCase.php');
 
-class comparaison_constant_Test extends Auditeur_Framework_TestCase
+class random_Test extends Auditeur_Framework_TestCase
 {
-    public function testcomparaison_constant()  {
-        $this->expected = array( 'line 20 : ==','line 21 : &&');
+    public function testrandom()  {
+        $this->expected = array( "rand","array_rand","shuffle","mt_rand",'srand',
+	                                           'getrandmax','gmp_random','mt_srand');
         $this->unexpected = array(/*'',*/);
 
-        parent::generic_test();
+//        parent::generic_test();
+        parent::generic_counted_test();
     }
 }
 ?>

@@ -8,4 +8,4 @@ tests/tokenizeur/scripts/logique.40.test.php
        "=" 
       gauche : 
           parentheses 
-          ( "comparaison parentheses (logique method variable $b->functioncall 307 "c" ( arglist(variable $d) )  263 "or" property variable $e->literals f) 280 "!==" literals 5" )
+          ( "comparison parentheses (logique method variable $b->functioncall 307 "c" ( arglist(variable $d) )  263 "or" property variable $e->literals f) 280 "!==" literals 5" )

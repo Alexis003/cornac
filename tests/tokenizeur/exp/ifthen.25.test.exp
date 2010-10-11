@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/ifthen.25.test.php
       ifthen if
       Condition 0) 
           parentheses 
-          ( "comparaison variable $x 283 "==" literals 6" )
+          ( "comparison variable $x 283 "==" literals 6" )
           block 
           0 : 
               _while 

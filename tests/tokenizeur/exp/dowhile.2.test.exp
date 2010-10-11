@@ -14,7 +14,7 @@ tests/tokenizeur/scripts/dowhile.2.test.php
                   gauche : 
                       literals 1
               parentheses 
-              ( "comparaison property variable $this->literals _code  "<" literals 200" )
+              ( "comparison property variable $this->literals _code  "<" literals 200" )
       1 : 
           affectation 
           droite : 

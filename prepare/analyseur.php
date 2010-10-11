@@ -49,7 +49,7 @@ class analyseur {
                                   'postplusplus',
                                   'property',
                                   'property_static',
-                                  'comparaison',
+                                  'comparison',
                                   'method',
                                   'method_static',
                                   '_new',

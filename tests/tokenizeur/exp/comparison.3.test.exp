@@ -1,11 +1,11 @@
-tests/tokenizeur/scripts/comparaison.3.test.php
+tests/tokenizeur/scripts/comparison.3.test.php
   codephp <?php
 
   code : 
       ifthen if
       Condition 0) 
           parentheses 
-          ( "comparaison tableau variable $ligne[literals 0] 282 "!=" tableau variable $ligne[literals 1]" )
+          ( "comparison tableau variable $ligne[literals 0] 282 "!=" tableau variable $ligne[literals 1]" )
           block 
           0 : 
               literals 1

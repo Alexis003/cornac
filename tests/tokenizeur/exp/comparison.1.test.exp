@@ -1,8 +1,8 @@
-tests/tokenizeur/scripts/comparaison.1.test.php
+tests/tokenizeur/scripts/comparison.1.test.php
   codephp <?php
 
   code : 
-      comparaison 
+      comparison 
       droite : 
           literals 1
       operateur :  ">"

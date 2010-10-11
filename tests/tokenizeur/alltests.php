@@ -43,7 +43,7 @@ $tests = array(
 'class.plusplus.test.php',
 'class.block.test.php',
 'class.foreach.test.php',
-'class.comparaison.test.php',
+'class.comparison.test.php',
 'class.for.test.php',
 'class.opappend.test.php',
 'class.break.test.php',

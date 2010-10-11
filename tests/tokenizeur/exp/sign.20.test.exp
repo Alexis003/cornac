@@ -7,7 +7,7 @@ tests/tokenizeur/scripts/sign.20.test.php
           variable $a
        "=" 
       gauche : 
-          comparaison 
+          comparison 
           droite : 
               variable $b
           operateur : 283 "=="

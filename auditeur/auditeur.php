@@ -196,7 +196,8 @@ $modules = array(
 'rawtext_whitespace',
 'loaded_lines',
 'infinite_loop',
-'comparaison_constant',
+'comparison_constant',
+'random',
 // new analyzers
 );
 

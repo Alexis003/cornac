@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/sign.17.test.php
       ifthen if
       Condition 0) 
           parentheses 
-          ( "logique comparaison literals  283 "==" variable $a 278 "||" comparaison sign  "+"literals 1 283 "==" variable $b" )
+          ( "logique comparison literals  283 "==" variable $a 278 "||" comparison sign  "+"literals 1 283 "==" variable $b" )
           block 
           0 : 
               affectation 

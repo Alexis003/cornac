@@ -47,7 +47,7 @@ class affectation_normal_regex extends analyseur_regex {
                                              'method_static','operation','cdtternaire',
                                              'constante_static','property_static','_clone',
                                              'parentheses','_new','cast','constante','invert',
-                                             'not','affectation','shell','decalage','comparaison',
+                                             'not','affectation','shell','decalage','comparison',
                                              'reference','concatenation','variable',
                                              'property_static','postplusplus','preplusplus','inclusion')))
             

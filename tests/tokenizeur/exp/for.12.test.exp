@@ -4,7 +4,7 @@ tests/tokenizeur/scripts/for.12.test.php
   code : 
       _for 
         Init : affectation variable $a  "=" literals 1;
-        Fin  : comparaison variable $a  "<" operation variable $b  "+" literals 1;
+        Fin  : comparison variable $a  "<" operation variable $b  "+" literals 1;
         Incr : postplusplus 297 "++"variable $a;
           block 
           0 : 

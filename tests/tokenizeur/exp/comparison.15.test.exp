@@ -1,4 +1,4 @@
-tests/tokenizeur/scripts/comparaison.15.test.php
+tests/tokenizeur/scripts/comparison.15.test.php
   codephp <?php
 
   code : 
@@ -7,7 +7,7 @@ tests/tokenizeur/scripts/comparaison.15.test.php
           variable $x
        "=" 
       gauche : 
-          comparaison 
+          comparison 
           droite : 
                new 307 "a" arglist(variable $b) 
           operateur : 288 "instanceof"

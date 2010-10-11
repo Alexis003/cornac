@@ -5,12 +5,12 @@ tests/tokenizeur/scripts/ifthen.24.test.php
       ifthen if
       Condition 0) 
           parentheses 
-          ( "comparaison variable $x 283 "==" literals 6" )
+          ( "comparison variable $x 283 "==" literals 6" )
           block 
           0 : 
               _for 
                 Init : affectation variable $i  "=" literals 0;
-                Fin  : comparaison variable $i  "<" literals 1;
+                Fin  : comparison variable $i  "<" literals 1;
                 Incr : postplusplus 297 "++"variable $i;
                   block 
                   0 : 

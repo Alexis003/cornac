@@ -12,4 +12,4 @@ tests/tokenizeur/scripts/dowhile.1.test.php
               gauche : 
                   literals 1
           parentheses 
-          ( "comparaison variable $x 283 "==" literals 3" )
+          ( "comparison variable $x 283 "==" literals 3" )

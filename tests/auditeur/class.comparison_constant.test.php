@@ -17,37 +17,15 @@
    +----------------------------------------------------------------------+
  */
 
-class comparaison_constant extends modules {
-	protected	$title = 'Static comparison';
-	protected	$description = 'Comparison that have no variable part, nor is trying to guess the current PHP installation.';
+include_once('Auditeur_Framework_TestCase.php');
 
-	function __construct($mid) {
-        parent::__construct($mid);
-	}
+class comparison_constant_Test extends Auditeur_Framework_TestCase
+{
+    public function testcomparison_constant()  {
+        $this->expected = array( 'line 20 : ==','line 21 : &&');
+        $this->unexpected = array(/*'',*/);
 
-	function dependsOn() {
-	    return array();
-	}
-
-	public function analyse() {
-        $this->clean_rapport();
-
-	    $query = <<<SQL
-SELECT NULL, T1.fichier, CONCAT('line ', T1.line, ' : ', T1.code), T1.id, '{$this->name}', 0
-FROM <tokens> T1
-LEFT JOIN <tokens> T2
-    ON T2.fichier = T1.fichier AND
-       T2.droite BETWEEN T1.droite AND T1.gauche AND
-       ( T2.type = 'variable' OR
-         T2.code = 'function_exists')
-WHERE T1.type IN ( 'logique','comparaison')
-GROUP BY T1.id
-HAVING COUNT(T2.id) = 0
-SQL;
-        $this->exec_query_insert('rapport', $query);
-
-        return true;
-	}
+        parent::generic_test();
+    }
 }
-
 ?>

@@ -328,7 +328,7 @@ die("cas de l'argument null ou inexistant");
         $this->dot_standard_one($noeud, $niveau, 'getValeur');
     }
 
-    function affiche_comparaison($noeud, $niveau) {
+    function affiche_comparison($noeud, $niveau) {
         $noeud->getDroite()->dotId    = $this->getNextId();
         $noeud->getOperateur()->dotId = $this->getNextId();
         $noeud->getGauche()->dotId    = $this->getNextId();

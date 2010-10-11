@@ -141,7 +141,7 @@ SQL;
          return $retour; 
     }
 
-    function affiche_comparaison($droite) {
+    function affiche_comparison($droite) {
         $retour = array();
 
         foreach($this->lignes as $ligne) {

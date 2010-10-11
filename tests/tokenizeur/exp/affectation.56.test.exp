@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/affectation.56.test.php
       ifthen if
       Condition 0) 
           parentheses 
-          ( "comparaison variable $y 283 "==" literals 2" )
+          ( "comparison variable $y 283 "==" literals 2" )
           block 
       Condition 1) 
           parentheses 

@@ -84,7 +84,7 @@ class template_left extends template {
         
     }
 
-    function affiche_comparaison($noeud, $niveau) {
+    function affiche_comparison($noeud, $niveau) {
         
         $this->affiche($noeud->getDroite(), $niveau + 1);
         $this->affiche($noeud->getGauche(), $niveau + 1);

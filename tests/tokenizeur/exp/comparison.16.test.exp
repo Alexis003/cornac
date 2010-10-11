@@ -1,11 +1,11 @@
-tests/tokenizeur/scripts/comparaison.13.test.php
+tests/tokenizeur/scripts/comparison.16.test.php
   codephp <?php
 
   code : 
       ifthen if
       Condition 0) 
           parentheses 
-          ( "comparaison literals 0 283 "==" postplusplus 297 "++"variable $x" )
+          ( "comparison logique comparison variable $x 283 "==" literals 2 263 "OR" constante PHPVERSION 282 "!=" literals s" )
           block 
           0 : 
               affectation 

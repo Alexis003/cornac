@@ -5,21 +5,21 @@ tests/tokenizeur/scripts/ifthen.52.test.php
       ifthen if
       Condition 0) 
           parentheses 
-          ( "comparaison variable $x 283 "==" literals 1" )
+          ( "comparison variable $x 283 "==" literals 1" )
           block 
       Condition 1) 
           parentheses 
-          ( "comparaison variable $x 283 "==" literals 2" )
+          ( "comparison variable $x 283 "==" literals 2" )
           block 
       Condition 2) 
           parentheses 
-          ( "comparaison variable $x 283 "==" literals 3" )
+          ( "comparison variable $x 283 "==" literals 3" )
           block 
       Condition 3) 
           parentheses 
-          ( "comparaison variable $x 283 "==" literals 4" )
+          ( "comparison variable $x 283 "==" literals 4" )
           block 
       Condition 4) 
           parentheses 
-          ( "comparaison variable $x 283 "==" literals 5" )
+          ( "comparison variable $x 283 "==" literals 5" )
           block 

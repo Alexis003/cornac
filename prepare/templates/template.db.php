@@ -354,7 +354,7 @@ class template_db extends template {
         return $this->saveNoeud($noeud, $niveau);
     }
 
-    function affiche_comparaison($noeud, $niveau) {
+    function affiche_comparison($noeud, $niveau) {
         $noeud->myId = $this->getNextId();
         $noeud->myDroite = $this->getIntervalleId();
         $noeud->setCode($noeud->getOperateur()->getCode());

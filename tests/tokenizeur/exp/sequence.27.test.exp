@@ -9,7 +9,7 @@ tests/tokenizeur/scripts/sequence.27.test.php
               variable $s
            "=" 
           gauche : 
-              comparaison 
+              comparison 
               droite : 
                   functioncall intval
                   function call : intval: 

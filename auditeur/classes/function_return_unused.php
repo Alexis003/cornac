@@ -46,7 +46,7 @@ JOIN <tokens> T2
        T2.level = T1.level - 1
 WHERE T1.type = 'functioncall' AND
       T1.code NOT IN ('echo','print','define') AND 
-      T2.type NOT IN ('noscream','arginit','tableau','comparaison','logique','clevaleur','cdtternaire','not','concatenation','method_static','parentheses','method','affectation','arglist')
+      T2.type NOT IN ('noscream','arginit','tableau','comparison','logique','clevaleur','cdtternaire','not','concatenation','method_static','parentheses','method','affectation','arglist')
 SQL;
         $this->exec_query_insert('rapport', $query);
 

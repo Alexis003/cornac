@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/logique.14.test.php
       ifthen if
       Condition 0) 
           parentheses 
-          ( "logique literals 1 279 "&&" comparaison tableau property variable $a->literals b[variable $c] 281 "===" literals @" )
+          ( "logique literals 1 279 "&&" comparison tableau property variable $a->literals b[variable $c] 281 "===" literals @" )
           block 
           0 : 
               affectation 

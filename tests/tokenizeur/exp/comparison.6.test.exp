@@ -1,11 +1,11 @@
-tests/tokenizeur/scripts/comparaison.5.test.php
+tests/tokenizeur/scripts/comparison.6.test.php
   codephp <?php
 
   code : 
       ifthen if
       Condition 0) 
           parentheses 
-          ( "comparaison method variable $this->functioncall 307 "methode" ( ( ) )  283 "==" constante false" )
+          ( "comparison variable $x 288 "instanceof" constante Exception" )
           block 
           0 : 
               _return 

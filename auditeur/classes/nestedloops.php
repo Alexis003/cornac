@@ -37,8 +37,7 @@ JOIN <tokens> T2
        T2.droite BETWEEN T1.droite AND T1.gauche
 WHERE T1.type IN ('_while','_for','_foreach') AND 
       T2.type IN ('_while','_for','_foreach')
-GROUP BY T1.fichier, T1.droite, T1.id
-HAVING COUNT(*) > 1
+GROUP BY T1.fichier, T1.droite, T1.id, T2.type
 SQL;
         $this->exec_query_insert('rapport', $query);
         

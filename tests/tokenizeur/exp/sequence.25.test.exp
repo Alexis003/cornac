@@ -21,7 +21,7 @@ tests/tokenizeur/scripts/sequence.25.test.php
           ifthen if
           Condition 0) 
               parentheses 
-              ( "comparaison variable $d 288 "instanceof" constante e" )
+              ( "comparison variable $d 288 "instanceof" constante e" )
               block 
               0 : 
                   affectation 

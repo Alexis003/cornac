@@ -43,4 +43,13 @@ foreach ($array as $key => $value) {
     }
 }
 
+while($x = 7) {
+    foreach ($array_nested as $key_nested => $value_nested) {
+        $x = 8;
+    }
+    while ($x = 10) {
+        $x = 11;
+    }
+}
+
 ?>

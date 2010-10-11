@@ -2,7 +2,7 @@ tests/tokenizeur/scripts/sign.6.test.php
   codephp <?php
 
   code : 
-      comparaison 
+      comparison 
       droite : 
           literals 1
       operateur : 283 "=="

@@ -1,11 +1,11 @@
-tests/tokenizeur/scripts/comparaison.7.test.php
+tests/tokenizeur/scripts/comparison.7.test.php
   codephp <?php
 
   code : 
       ifthen if
       Condition 0) 
           parentheses 
-          ( "comparaison property_static 307 "self"::tableau variable $a[literals b]  ">" literals 0" )
+          ( "comparison property_static 307 "self"::tableau variable $a[literals b]  ">" literals 0" )
           block 
           0 : 
               affectation 

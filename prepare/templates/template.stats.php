@@ -147,7 +147,7 @@ class template_stats extends template {
         $this->affiche($noeud->getExpression(), $niveau + 1);
     }
 
-    function affiche_comparaison($noeud, $niveau) {
+    function affiche_comparison($noeud, $niveau) {
         $this->addStat(__FUNCTION__);
         $this->affiche($noeud->getDroite(), $niveau + 1);
         $this->affiche($noeud->getGauche(), $niveau + 1);

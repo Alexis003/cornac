@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/logique.18.test.php
       ifthen if
       Condition 0) 
           parentheses 
-          ( "logique logique functioncall 307 "a" ( arglist(variable $b, variable $c) )  278 "||" comparaison variable $c 283 "==" literals d 278 "||" parentheses (logique comparaison variable $c 283 "==" literals e 279 "&&" logique functioncall tableau variable $f[literals g] ( parentheses (functioncall tableau variable $g[literals g] ( arglist(variable $a, operation variable $q  "+" literals 1, literals 1) ) ) )  279 "&&" parentheses (logique logique variable $p 278 "||" variable $q 278 "||" variable $r))" )
+          ( "logique logique functioncall 307 "a" ( arglist(variable $b, variable $c) )  278 "||" comparison variable $c 283 "==" literals d 278 "||" parentheses (logique comparison variable $c 283 "==" literals e 279 "&&" logique functioncall tableau variable $f[literals g] ( parentheses (functioncall tableau variable $g[literals g] ( arglist(variable $a, operation variable $q  "+" literals 1, literals 1) ) ) )  279 "&&" parentheses (logique logique variable $p 278 "||" variable $q 278 "||" variable $r))" )
           block 
           0 : 
               affectation 

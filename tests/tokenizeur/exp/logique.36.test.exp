@@ -8,7 +8,7 @@ tests/tokenizeur/scripts/logique.36.test.php
               logique 
               droite : 
                   parentheses 
-                  ( "comparaison tableau variable $property[literals emp_id] 283 "==" literals " )
+                  ( "comparison tableau variable $property[literals emp_id] 283 "==" literals " )
               operateur :  "|"
               gauche : 
                   parentheses 

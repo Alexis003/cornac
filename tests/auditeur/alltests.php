@@ -130,8 +130,9 @@ $tests = array(
 'class.loaded_lines.test.php',
 'class.rawtext_whitespace.test.php',
 'class.infinite_loop.test.php',
-'class.comparaison_constant.test.php',
+'class.comparison_constant.test.php',
 'class.nestedloops.test.php',
+'class.random.test.php',
 // new tests
 );
 

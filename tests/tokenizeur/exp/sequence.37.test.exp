@@ -12,7 +12,7 @@ tests/tokenizeur/scripts/sequence.37.test.php
       1 : 
           logique 
           droite : 
-              comparaison 
+              comparison 
               droite : 
                   functioncall c
                   function call : c: 

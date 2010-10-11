@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class comparaison_regex extends analyseur_regex {
+class comparison_regex extends analyseur_regex {
     function __construct() {
         parent::__construct(array());
     }

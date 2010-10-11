@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/logique.6.test.php
       ifthen if
       Condition 0) 
           parentheses 
-          ( "logique functioncall 350 "isset" ( arglist(tableau variable $_REQUEST[literals opt]) )  279 "&&" comparaison tableau variable $_REQUEST[literals opt] 283 "==" literals 1" )
+          ( "logique functioncall 350 "isset" ( arglist(tableau variable $_REQUEST[literals opt]) )  279 "&&" comparison tableau variable $_REQUEST[literals opt] 283 "==" literals 1" )
           block 
           0 : 
               literals 1
