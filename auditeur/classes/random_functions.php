@@ -26,8 +26,8 @@ class random_functions extends functioncalls {
 	}
 
 	public function analyse() {
-	    $this->functions = get_extension_funcs("rand","array_rand","shuffle","mt_rand",'srand',
-	                                           'getrandmax','gmp_random_functions','mt_srand');
+	    $this->functions = array("rand","array_rand","shuffle","mt_rand","srand",
+	                             "getrandmax","gmp_random_functions","mt_srand");
 	    parent::analyse();
 	    
         return true;
