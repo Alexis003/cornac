@@ -132,7 +132,7 @@ $tests = array(
 'class.infinite_loop.test.php',
 'class.comparison_constant.test.php',
 'class.nestedloops.test.php',
-'class.random.test.php',
+'class.random_functions.test.php',
 // new tests
 );
 

@@ -17,17 +17,21 @@
    +----------------------------------------------------------------------+
  */
 
-include_once('Auditeur_Framework_TestCase.php');
+class random_functions extends functioncalls {
+	protected	$title = 'random_functions';
+	protected	$description = 'Usage of random_functions function in the code';
 
-class random_Test extends Auditeur_Framework_TestCase
-{
-    public function testrandom()  {
-        $this->expected = array( "rand","array_rand","shuffle","mt_rand",'srand',
-	                                           'getrandmax','gmp_random','mt_srand');
-        $this->unexpected = array(/*'',*/);
+	function __construct($mid) {
+        parent::__construct($mid);
+	}
 
-//        parent::generic_test();
-        parent::generic_counted_test();
-    }
+	public function analyse() {
+	    $this->functions = get_extension_funcs("rand","array_rand","shuffle","mt_rand",'srand',
+	                                           'getrandmax','gmp_random_functions','mt_srand');
+	    parent::analyse();
+	    
+        return true;
+	}
 }
+
 ?>

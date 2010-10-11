@@ -197,7 +197,7 @@ $modules = array(
 'loaded_lines',
 'infinite_loop',
 'comparison_constant',
-'random',
+'random_functions',
 // new analyzers
 );
 

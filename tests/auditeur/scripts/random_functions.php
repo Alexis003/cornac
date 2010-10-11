@@ -28,7 +28,7 @@ shuffle();
 mt_rand();
 srand();
 getrandmax();
-gmp_random();
+gmp_random_functions();
 mt_srand();
 
 ?>
