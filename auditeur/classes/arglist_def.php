@@ -18,8 +18,8 @@
  */
 
 class arglist_def extends modules {
-	protected	$title = 'Arguments définis';
-	protected	$description = 'Liste des arguments par definitions de fonctions';
+	protected	$title = 'Defined arguments';
+	protected	$description = 'Argument list used in function definitions.';
 
 	function __construct($mid) {
         parent::__construct($mid);

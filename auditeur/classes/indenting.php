@@ -19,8 +19,7 @@
 
 class indenting extends modules {
 	protected	$title = 'Indentations';
-	protected	$description = 'Liste des niveaux d\'indentation nécessaires : les classes, fonctions, boucles et switch imposent généralement une indentation. Voici la liste des niveaux qui devraient être nécessaires, et la structure qui les impose.';
-
+	protected	$description = 'List of indentation level expected. We expect a new level with the following scopes : classes, functions, loops and switch.';
 
 	function __construct($mid) {
         parent::__construct($mid);

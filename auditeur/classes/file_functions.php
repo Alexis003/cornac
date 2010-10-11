@@ -18,8 +18,8 @@
  */
 
 class file_functions extends functioncalls {
-	protected	$title = 'Fonctions de fichier';
-	protected	$description = 'Liste des fonctions de fichier native utilisées dans l\'application';
+	protected	$title = 'Files functions';
+	protected	$description = 'Native PHP function to handle files, being used.';
 
 	function __construct($mid) {
         parent::__construct($mid);

@@ -18,8 +18,8 @@
  */
 
 class arglist_disc extends modules {
-	protected	$title = "Appels de fonction avec trop d'arguments";
-	protected	$description = 'Liste des appels de fonctions avec trop d\'arguments';
+	protected	$title = "Too many arguments function call";
+	protected	$description = 'Function call that are providing too many arguments, compared to function definition';
 
 	function __construct($mid) {
         parent::__construct($mid);

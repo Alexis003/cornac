@@ -18,8 +18,8 @@
  */
 
 class deffunctions extends modules {
-	protected	$title = 'Définitions de fonctions';
-	protected	$description = 'Liste des défintions de fonctions';
+	protected	$title = 'Function definitions';
+	protected	$description = 'Function definitions';
 
 	function __construct($mid) {
         parent::__construct($mid);

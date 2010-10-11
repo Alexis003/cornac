@@ -18,14 +18,13 @@
  */
 
 class callback_functions extends modules {
-	protected	$title = 'Fonction de rappel';
-	protected	$description = 'Nom des fonctions de rappels utilisées. ';
+	protected	$title = 'Callfunction';
+	protected	$description = 'Name of callback functions used in PHP functions.';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
 
-// @doc if this analyzer is based on previous result, use this to make sure the results are here
 	function dependsOn() {
 	    return array();
 	}
