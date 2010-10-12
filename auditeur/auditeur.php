@@ -198,6 +198,7 @@ $modules = array(
 'infinite_loop',
 'comparison_constant',
 'random_functions',
+'if_no_comparison',
 // new analyzers
 );
 

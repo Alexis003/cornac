@@ -133,6 +133,7 @@ $tests = array(
 'class.comparison_constant.test.php',
 'class.nestedloops.test.php',
 'class.random_functions.test.php',
+'class.if_no_comparison.test.php',
 // new tests
 );
 
