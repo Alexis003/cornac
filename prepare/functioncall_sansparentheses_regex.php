@@ -29,18 +29,14 @@ class functioncall_sansparentheses_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasNext(1) ) { return false; }
         
-        if ($t->checkToken(array( T_PRINT, T_EXIT)) && 
-            $t->getNext()->checkNotClass(array('Token','arglist'))   && 
-            $t->getNext(1)->checkEndInstruction()
-            )
-        {
-            $regex = new modele_regex('arglist',array(0), array());
-            Token::applyRegex($t->getNext(), 'arglist', $regex);
+        if ($t->getNext()->checkClass(array('Token','arglist'))) { return false; }
+        if (!$t->getNext(1)->checkEndInstruction()) { return false; }
 
-            mon_log(get_class($t)." => arglist (".__CLASS__.")");
-            return false; 
-        }
-        return false;
+        $regex = new modele_regex('arglist',array(0), array());
+        Token::applyRegex($t->getNext(), 'arglist', $regex);
+
+        mon_log(get_class($t)." => arglist (".__CLASS__.")");
+        return false; 
     }
 }
 ?>

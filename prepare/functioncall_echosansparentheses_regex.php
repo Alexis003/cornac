@@ -30,7 +30,7 @@ class functioncall_echosansparentheses_regex extends analyseur_regex {
         if (!$t->hasNext(1) ) { return false; }
         
         if ($t->checkToken(array(T_ECHO)) && 
-            $t->getNext()->checkNotCode('('))             
+            $t->getNext()->checkNotOperateur('('))
         {
             $var = $t->getNext(); 
             $args   = array();
