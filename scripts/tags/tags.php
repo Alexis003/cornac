@@ -172,6 +172,7 @@ foreach($displays as $format) {
     include($class.'.php');
     $format = new $class($comments);
     $format->save($INI['output']);
+//    print_r( $INI);
 }
 
 die();
