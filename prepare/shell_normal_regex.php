@@ -22,15 +22,15 @@ class shell_normal_regex extends analyseur_regex {
         parent::__construct(array());
         
         $this->sequence_classes = array('literals',
-                                                  'variable',
-                                                  'tableau',
-                                                  'property',
-                                                  'property_static',
-                                                  'method',
-                                                  'method_static',
-                                                  'constante_static',
-                                                  'sequence',
-                                                  );
+                                        'variable',
+                                        'tableau',
+                                        'property',
+                                        'property_static',
+                                        'method',
+                                        'method_static',
+                                        'constante_static',
+                                        'sequence',
+                                        );
     }
 
     function getTokens() {
@@ -75,7 +75,7 @@ class shell_normal_regex extends analyseur_regex {
             $var = $var->getNext();
         }
 
-        $this->remove[]  = $pos; // " final
+        $this->remove[]  = $pos; // @note final "
         
         mon_log(get_class($t)." => ".__CLASS__);
         return true; 

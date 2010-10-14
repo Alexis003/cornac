@@ -54,7 +54,7 @@ class template_cache extends template {
                                                           )');
         } else {
             print "No database configuration provided (no db)\n";
-            die();
+            die(__METHOD__."\n");
         }
         
         $this->table_tags = $this->table.'_tags';
@@ -67,14 +67,15 @@ class template_cache extends template {
         unset($this->database);
     }
     
-    function affiche($noeud = null, $niveau = 0) {
+    function affiche($node = null, $niveau = 0) {
         if ($niveau > 200) {
             print_r(xdebug_get_function_stack());        
-            print "Attention : plus de 100 niveaux de récursion (annulation) ".__METHOD__."\n"; die();
+            print "Attention : plus de 100 niveaux de récursion (annulation) ".__METHOD__."\n"; 
+            die(__METHOD__."\n");
         }
-        if (is_null($noeud)) {
+        if (is_null($node)) {
             if ($niveau == 0) {
-                $noeud = $this->root;
+                $node = $this->root;
             } else {
                 print_r(xdebug_get_function_stack());        
                 print "On a tenté de refiler un null à affiche.";
@@ -82,21 +83,21 @@ class template_cache extends template {
             }
         }
         
-        if (!is_object($noeud)) {
+        if (!is_object($node)) {
             print_r(xdebug_get_function_stack());        
-            print "Fatal, $noeud is not an object (".gettype($noeud).")\n";
+            print "Fatal, $node is not an object (".gettype($node).")\n";
             die(__METHOD__);
         }
-        $class = get_class($noeud);
+        $class = get_class($node);
         $method = "affiche_$class";
         
         if (method_exists($this, $method)) {
-            $return = $this->$method($noeud, $niveau + 1);
+            $return = $this->$method($node, $niveau + 1);
         } else {
             print "Affichage ".__CLASS__." de '".$method."'\n";die;
         }
-        if (!is_null($noeud->getNext())){
-            $this->affiche($noeud->getNext(), $niveau);
+        if (!is_null($node->getNext())){
+            $this->affiche($node->getNext(), $niveau);
         }
 
         return $return;
@@ -105,13 +106,13 @@ class template_cache extends template {
 ////////////////////////////////////////////////////////////////////////
 // database functions
 ////////////////////////////////////////////////////////////////////////
-    function saveNoeud($noeud) {
+    function savenode($node) {
         global $file;
         
         $requete = "INSERT INTO {$this->table}_cache VALUES 
             (
-             '".$noeud->database_id."',
-             ".$this->database->quote($noeud->cache).",
+             '".$node->database_id."',
+             ".$this->database->quote($node->cache).",
              ".$this->database->quote($file)."
              )";
              
@@ -128,38 +129,38 @@ class template_cache extends template {
 ////////////////////////////////////////////////////////////////////////
 // database functions
 ////////////////////////////////////////////////////////////////////////
-    function affiche_token_traite($noeud, $niveau) {
-        $noeud->cache = $noeud->getCode();
+    function affiche_token_traite($node, $niveau) {
+        $node->cache = $node->getCode();
     }
 
-    function affiche_affectation($noeud, $niveau) {
-        $droite = $noeud->getDroite();
+    function affiche_affectation($node, $niveau) {
+        $droite = $node->getDroite();
         $this->affiche($droite, $niveau + 1);
-        $operateur = $noeud->getOperateur();
+        $operateur = $node->getOperateur();
         $this->affiche($operateur, $niveau + 1);
-        $gauche = $noeud->getGauche();
+        $gauche = $node->getGauche();
         $this->affiche($gauche, $niveau + 1);
         
-        $noeud->cache = $droite->cache.' '.$operateur->cache.' '.$gauche->cache;
-        return $this->saveNoeud($noeud);
+        $node->cache = $droite->cache.' '.$operateur->cache.' '.$gauche->cache;
+        return $this->savenode($node);
     }
 
-    function affiche_arginit($noeud, $niveau) {
-        $var = $noeud->getVariable();
+    function affiche_arginit($node, $niveau) {
+        $var = $node->getVariable();
         $this->affiche($var, $niveau + 1);
-        $valeur = $noeud->getValeur();
+        $valeur = $node->getValeur();
         $this->affiche($valeur, $niveau + 1);
         
-        $noeud->cache = $var->cache." = ".$valeur->cache;
-        return $this->saveNoeud($noeud);
+        $node->cache = $var->cache." = ".$valeur->cache;
+        return $this->savenode($node);
     }
 
-    function affiche_arglist($noeud, $niveau) {
-        $elements = $noeud->getList();
+    function affiche_arglist($node, $niveau) {
+        $elements = $node->getList();
         if (count($elements) == 0) {
             $token_traite = new token_traite(new Token());
             $this->affiche($token_traite, $niveau + 1);
-            $noeud->cache = '()';
+            $node->cache = '()';
             return;
         } else {
             $labels = array();
@@ -176,98 +177,98 @@ class template_cache extends template {
                     $labels[] = $e->cache;
                 }
             }
-            $noeud->cache = '('.join(', ', $labels).')';
+            $node->cache = '('.join(', ', $labels).')';
         }
     }
 
-    function affiche_block($noeud, $niveau) {
-        $elements = $noeud->getList();
+    function affiche_block($node, $niveau) {
+        $elements = $node->getList();
         foreach($elements as $id => &$e) {
             $this->affiche($e, $niveau + 1);
         }
         
-        $noeud->cache = ' { block }';
+        $node->cache = ' { block }';
     }
 
-    function affiche__break($noeud, $niveau) {
-        $niveaux = $noeud->getNiveaux();
+    function affiche__break($node, $niveau) {
+        $niveaux = $node->getNiveaux();
         $this->affiche($niveaux, $niveau + 1);
 
-        $noeud->cache = 'break '.$niveaux->cache;
+        $node->cache = 'break '.$niveaux->cache;
     }
 
-    function affiche__case($noeud, $niveau) {
+    function affiche__case($node, $niveau) {
         $case = 'case';
-        if (!is_null($m = $noeud->getComparant())) {
+        if (!is_null($m = $node->getComparant())) {
             $this->affiche($m, $niveau + 1);
             $case .= " ".$m->cache;
         }
-        $this->affiche($noeud->getBlock(), $niveau + 1);
+        $this->affiche($node->getBlock(), $niveau + 1);
         // on ignore
 
-        $noeud->cache = $case;
-        return $this->saveNoeud($noeud);
+        $node->cache = $case;
+        return $this->savenode($node);
     }
 
-    function affiche_cast($noeud, $niveau) {
-        $expression = $noeud->getExpression();
+    function affiche_cast($node, $niveau) {
+        $expression = $node->getExpression();
         $this->affiche($expression, $niveau + 1);
 
-        $noeud->cache = '('.$expression->cache.')';
+        $node->cache = '('.$expression->cache.')';
     }
 
-    function affiche__catch($noeud, $niveau) {
-        $this->affiche($noeud->getException(), $niveau + 1);
-        $this->affiche($noeud->getVariable(), $niveau + 1);
-        $this->affiche($noeud->getBlock(), $niveau + 1);
+    function affiche__catch($node, $niveau) {
+        $this->affiche($node->getException(), $niveau + 1);
+        $this->affiche($node->getVariable(), $niveau + 1);
+        $this->affiche($node->getBlock(), $niveau + 1);
         
-        $noeud->cache = 'catch';
+        $node->cache = 'catch';
     }
 
-    function affiche__continue($noeud, $niveau) {
-        $niveaux = $noeud->getNiveaux();
+    function affiche__continue($node, $niveau) {
+        $niveaux = $node->getNiveaux();
         $this->affiche($niveaux, $niveau + 1);
 
-        $noeud->cache = 'continue '.$niveaux->cache;
+        $node->cache = 'continue '.$niveaux->cache;
     }
     
-    function affiche_cdtternaire($noeud, $niveau) {
-        $condition = $noeud->getCondition();
+    function affiche_cdtternaire($node, $niveau) {
+        $condition = $node->getCondition();
         $this->affiche($condition, $niveau + 1);
 
-        $vraie = $noeud->getVraie();
+        $vraie = $node->getVraie();
         $this->affiche($vraie, $niveau + 1);
         
-        $faux = $noeud->getFaux();
+        $faux = $node->getFaux();
         $this->affiche($faux, $niveau + 1);
 
-        $noeud->cache = $condition.' ? '.$vraie.' : '.$faux;
-        return $this->saveNoeud($noeud);
+        $node->cache = $condition.' ? '.$vraie.' : '.$faux;
+        return $this->savenode($node);
     }
 
-    function affiche_codephp($noeud, $niveau) {
-        $this->affiche($noeud->getphp_code(), $niveau + 1);
-        $noeud->cache = "<?php ?>";
+    function affiche_codephp($node, $niveau) {
+        $this->affiche($node->getphp_code(), $niveau + 1);
+        $node->cache = "<?php ?>";
     }
 
-    function affiche__class($noeud, $niveau) {
-        $name = $noeud->getName();
+    function affiche__class($node, $niveau) {
+        $name = $node->getName();
         $this->affiche($name, $niveau + 1);            
         $class = ' class '.$name->cache;
 
-        $abstract = $noeud->getAbstract();
+        $abstract = $node->getAbstract();
         if(!is_null($abstract)) {
             $this->affiche($abstract, $niveau + 1);
             $class = 'abstract '.$class;
         }
 
-        $extends = $noeud->getExtends();
+        $extends = $node->getExtends();
         if (!is_null($extends)) {
             $this->affiche($extends, $niveau + 1);     
             $class .= " extends ".$extends->cache;
         }
 
-        $implements = $noeud->getImplements();
+        $implements = $node->getImplements();
         if (count($implements) > 0) {
             $implemented = array();
             foreach($implements as $implement) {
@@ -277,389 +278,389 @@ class template_cache extends template {
             $class .= " implements ".join(', ', $implemented);
         }
 
-        $this->affiche($noeud->getBlock(), $niveau + 1);
+        $this->affiche($node->getBlock(), $niveau + 1);
 
-        $noeud->cache = $class;
-        return $this->saveNoeud($noeud);
+        $node->cache = $class;
+        return $this->savenode($node);
     }
 
-    function affiche__clone($noeud, $niveau) {
-        $expression = $noeud->getExpression();
+    function affiche__clone($node, $niveau) {
+        $expression = $node->getExpression();
         $this->affiche($expression, $niveau + 1);
 
-        $noeud->cache = 'clone '.$expression->cache;
+        $node->cache = 'clone '.$expression->cache;
     }
 
-    function affiche_clevaleur($noeud, $niveau) {
-        $cle = $noeud->getCle();
+    function affiche_clevaleur($node, $niveau) {
+        $cle = $node->getCle();
         $this->affiche($cle, $niveau + 1);
-        $valeur = $noeud->getValeur();
+        $valeur = $node->getValeur();
         $this->affiche($valeur, $niveau + 1);
 
-        $noeud->cache = $cle->cache.' => '.$valeur->cache;
+        $node->cache = $cle->cache.' => '.$valeur->cache;
     }
 
-    function affiche_comparison($noeud, $niveau) {
-        $droite = $noeud->getDroite();
+    function affiche_comparison($node, $niveau) {
+        $droite = $node->getDroite();
         $this->affiche($droite, $niveau + 1);
-        $operateur = $noeud->getOperateur();
+        $operateur = $node->getOperateur();
         $this->affiche($operateur, $niveau + 1);
-        $gauche = $noeud->getGauche();
+        $gauche = $node->getGauche();
         $this->affiche($gauche, $niveau + 1);
         
-        $noeud->cache = $droite->cache.' '.$operateur->cache.' '.$gauche->cache;
-        return $this->saveNoeud($noeud);
+        $node->cache = $droite->cache.' '.$operateur->cache.' '.$gauche->cache;
+        return $this->savenode($node);
     }
 
-    function affiche_concatenation($noeud, $niveau) {
-        $elements = $noeud->getList();
+    function affiche_concatenation($node, $niveau) {
+        $elements = $node->getList();
         $labels = array();
         foreach($elements as $id => &$e) {
             $this->affiche($e, $niveau + 1);            
             $labels[] = $e->cache;
         }
         
-        $noeud->cache = join('.', $labels);
-        return $this->saveNoeud($noeud);
+        $node->cache = join('.', $labels);
+        return $this->savenode($node);
     }
 
-    function affiche_constante($noeud, $niveau) {
-        $noeud->cache = $noeud->getCode();
+    function affiche_constante($node, $niveau) {
+        $node->cache = $node->getCode();
     }
 
-    function affiche_constante_static($noeud, $niveau) {
-        $classe = $noeud->getClass();
+    function affiche_constante_static($node, $niveau) {
+        $classe = $node->getClass();
         $this->affiche($classe, $niveau + 1);
-        $method = $noeud->getConstant();
+        $method = $node->getConstant();
         $this->affiche($method, $niveau + 1);
 
-        $noeud->cache = $classe->cache.'::'.$method->cache;
-        return $this->saveNoeud($noeud);        
+        $node->cache = $classe->cache.'::'.$method->cache;
+        return $this->savenode($node);        
     }
 
-    function affiche_constante_classe($noeud, $niveau) {
-        $classe = $noeud->getName();
+    function affiche_constante_classe($node, $niveau) {
+        $classe = $node->getName();
         $this->affiche($classe, $niveau + 1);
-        $constante = $noeud->getConstante();
+        $constante = $node->getConstante();
         $this->affiche($constante, $niveau + 1);
 
-        $noeud->cache = $classe->cache.'::'.$constante->cache;
-        return $this->saveNoeud($noeud);        
+        $node->cache = $classe->cache.'::'.$constante->cache;
+        return $this->savenode($node);        
     }
 
-   function affiche_decalage($noeud, $niveau) {
-        $droite = $noeud->getDroite();
+   function affiche_decalage($node, $niveau) {
+        $droite = $node->getDroite();
         $this->affiche($droite, $niveau + 1);
-        $operateur = $noeud->getOperateur();
+        $operateur = $node->getOperateur();
         $this->affiche($operateur, $niveau + 1);
-        $gauche = $noeud->getGauche();
+        $gauche = $node->getGauche();
         $this->affiche($gauche, $niveau + 1);
         
-        $noeud->cache = $droite->cache.' '.$operateur->cache.' '.$gauche->cache;
-        return $this->saveNoeud($noeud);
+        $node->cache = $droite->cache.' '.$operateur->cache.' '.$gauche->cache;
+        return $this->savenode($node);
     }
 
-    function affiche__default($noeud, $niveau) {
-        $this->affiche($noeud->getBlock(), $niveau + 1);
-        $noeud->cache = 'default'; 
+    function affiche__default($node, $niveau) {
+        $this->affiche($node->getBlock(), $niveau + 1);
+        $node->cache = 'default'; 
     }
 
-    function affiche__for($noeud, $niveau) {
-        $noeud->cache = 'foreach(';
-        if (!is_null($f = $noeud->getInit())) {
+    function affiche__for($node, $niveau) {
+        $node->cache = 'foreach(';
+        if (!is_null($f = $node->getInit())) {
             $this->affiche($f, $niveau + 1);
-            $noeud->cache .= $f->cache.'; ';
+            $node->cache .= $f->cache.'; ';
         }
-        if (!is_null($f = $noeud->getFin())) {
+        if (!is_null($f = $node->getFin())) {
             $this->affiche($f, $niveau + 1);
-            $noeud->cache .= $f->cache.'; ';
+            $node->cache .= $f->cache.'; ';
         }
-        if (!is_null($f = $noeud->getIncrement())) {
+        if (!is_null($f = $node->getIncrement())) {
             $this->affiche($f, $niveau + 1);
-            $noeud->cache .= $f->cache.')';
+            $node->cache .= $f->cache.')';
         }
-        $this->affiche($noeud->getBlock(), $niveau + 1);
+        $this->affiche($node->getBlock(), $niveau + 1);
         // on ignore le block
     }
 
-    function affiche__foreach($noeud, $niveau) {
-        $noeud->cache = 'foreach(';
+    function affiche__foreach($node, $niveau) {
+        $node->cache = 'foreach(';
 
-        $tableau = $noeud->getTableau();
+        $tableau = $node->getTableau();
         $this->affiche($tableau, $niveau + 1);
-        $noeud->cache .= $tableau->cache.' as ';
+        $node->cache .= $tableau->cache.' as ';
         
-        $key = $noeud->getKey();
+        $key = $node->getKey();
         if (!is_null($key)) {
             $this->affiche($key, $niveau + 1);
-            $noeud->cache .= $key.' => ';
+            $node->cache .= $key.' => ';
         }
 
-        $valeur = $noeud->getValue();
+        $valeur = $node->getValue();
         $this->affiche($valeur, $niveau + 1);
-        $noeud->cache .= $valeur.')';
+        $node->cache .= $valeur.')';
 
-        $this->affiche($noeud->getBlock(), $niveau + 1);
+        $this->affiche($node->getBlock(), $niveau + 1);
         // on ignore
     }
 
-    function affiche__function($noeud, $niveau) {
-        $name = $noeud->getName();
+    function affiche__function($node, $niveau) {
+        $name = $node->getName();
         $this->affiche($name, $niveau + 1);
-        $args = $noeud->getArgs();
+        $args = $node->getArgs();
         $tags['args'][] = $this->affiche($args, $niveau + 1);
-        $block = $noeud->getBlock();
+        $block = $node->getBlock();
         $tags['block'][] = $this->affiche($block, $niveau + 1);
         
         $function = 'function '.$name->cache.$args->cache; 
         // on ignore le block
 
-        if (!is_null($m = $noeud->getVisibility())) {
+        if (!is_null($m = $node->getVisibility())) {
             $tags['visibility'][] = $this->affiche($m, $niveau + 1);
             $function = $m->cache." $function";
         }
-        if (!is_null($m = $noeud->getAbstract())) {
+        if (!is_null($m = $node->getAbstract())) {
             $tags['abstract'][] = $this->affiche($m, $niveau + 1);
             $function = $m->cache." $function";
         }
-        if (!is_null($m = $noeud->getStatic())) {
+        if (!is_null($m = $node->getStatic())) {
             $tags['static'][] = $this->affiche($m, $niveau + 1);
             $function = $m->cache." $function";
         }
 
-        $noeud->cache = $function;
-        return $this->saveNoeud($noeud);
+        $node->cache = $function;
+        return $this->savenode($node);
     }
 
-    function affiche_functioncall($noeud, $niveau) {
-        $function = $noeud->getFunction();
+    function affiche_functioncall($node, $niveau) {
+        $function = $node->getFunction();
         $this->affiche($function, $niveau + 1);
 
-        $args = $noeud->getArgs();
+        $args = $node->getArgs();
         $this->affiche($args, $niveau + 1);
         
-        $noeud->cache = $function->cache.''.$args->cache;
-        $this->saveNoeud($noeud);
+        $node->cache = $function->cache.''.$args->cache;
+        $this->savenode($node);
     }
 
-    function affiche__global($noeud, $niveau) {
-        $elements = $noeud->getVariables();
+    function affiche__global($node, $niveau) {
+        $elements = $node->getVariables();
         $labels = array();
         foreach($elements as $id => $e) {
             $this->affiche($e, $niveau + 1);
             $labels[] = $e->cache;
         }
 
-        $noeud->cache = 'global '.join(', ', $labels);
-        return $this->saveNoeud($noeud);    
+        $node->cache = 'global '.join(', ', $labels);
+        return $this->savenode($node);    
     }
 
-    function affiche_ifthen($noeud, $niveau) {
-        $conditions = $noeud->getCondition();
-        $thens = $noeud->getThen();
+    function affiche_ifthen($node, $niveau) {
+        $conditions = $node->getCondition();
+        $thens = $node->getThen();
 
         foreach($conditions as $id => &$condition) {
             $this->affiche($condition, $niveau + 1);
             $this->affiche($thens[$id], $niveau + 1);
         }
         
-        $else = $noeud->getElse();
+        $else = $node->getElse();
         if (!is_null($else)){
             $this->affiche($else, $niveau + 1);
         }
         
-        $noeud->cache = "<if then>";
+        $node->cache = "<if then>";
     }
 
-    function affiche_inclusion($noeud, $niveau) {
-        $inclusion = $noeud->getInclusion();
+    function affiche_inclusion($node, $niveau) {
+        $inclusion = $node->getInclusion();
         $this->affiche($inclusion, $niveau + 1);
         
-        $noeud->cache = 'include '.$inclusion->cache;
-        return $this->saveNoeud($noeud);        
+        $node->cache = 'include '.$inclusion->cache;
+        return $this->savenode($node);        
     }
 
-    function affiche__interface($noeud, $niveau) {
+    function affiche__interface($node, $niveau) {
         $cache = array();
-        $e = $noeud->getExtends();
+        $e = $node->getExtends();
         if (count($e) > 0) {
             foreach($e as $ex) {
                 $this->affiche($ex, $niveau + 1);
                 $cache[] = $ex->cache;
             }
         }
-        $this->affiche($noeud->getBlock(), $niveau + 1);
+        $this->affiche($node->getBlock(), $niveau + 1);
 
-        $noeud->cache = 'interface '.$noeud->getName();
+        $node->cache = 'interface '.$node->getName();
         if (count($e) > 0) {
-            $noeud->cache .= 'implements '.join(', ', $cache);
+            $node->cache .= 'implements '.join(', ', $cache);
         }
-        return $this->saveNoeud($noeud);        
+        return $this->savenode($node);        
     }
 
-    function affiche_invert($noeud, $niveau) {
-        $expression = $noeud->getExpression();
+    function affiche_invert($node, $niveau) {
+        $expression = $node->getExpression();
         $this->affiche($expression, $niveau + 1);
 
-        $noeud->cache = ' '.$expression->cache;
-        return $this->saveNoeud($noeud);        
+        $node->cache = ' '.$expression->cache;
+        return $this->savenode($node);        
     }
 
-    function affiche_literals($noeud, $niveau) {
-        $noeud->cache = $noeud->getCode();
+    function affiche_literals($node, $niveau) {
+        $node->cache = $node->getCode();
     }
 
-    function affiche_logique($noeud, $niveau) {
-        $droite = $noeud->getDroite();
+    function affiche_logique($node, $niveau) {
+        $droite = $node->getDroite();
         $this->affiche($droite, $niveau + 1);
-        $operateur = $noeud->getOperateur();
+        $operateur = $node->getOperateur();
         $this->affiche($operateur, $niveau + 1);
-        $gauche = $noeud->getGauche();
+        $gauche = $node->getGauche();
         $this->affiche($gauche, $niveau + 1);
         
-        $noeud->cache = $droite->cache.' '.$operateur->cache.' '.$gauche->cache;
+        $node->cache = $droite->cache.' '.$operateur->cache.' '.$gauche->cache;
     }
 
-    function affiche_method($noeud, $niveau) {
-        $object = $noeud->getObject();
+    function affiche_method($node, $niveau) {
+        $object = $node->getObject();
         $this->affiche($object, $niveau + 1);
-        $method = $noeud->getMethod();
+        $method = $node->getMethod();
         $this->affiche($method, $niveau + 1);        
         
-        $noeud->cache = $object->cache."->".$method->cache;
-        $this->saveNoeud($noeud);
+        $node->cache = $object->cache."->".$method->cache;
+        $this->savenode($node);
     }
 
-    function affiche_method_static($noeud, $niveau) {
-        $classe = $noeud->getClass();
+    function affiche_method_static($node, $niveau) {
+        $classe = $node->getClass();
         $this->affiche($classe, $niveau + 1);
-        $method = $noeud->getMethod();
+        $method = $node->getMethod();
         $this->affiche($method, $niveau + 1);
 
-        $noeud->cache = $classe->cache.'::'.$method->cache;
-        return $this->saveNoeud($noeud);        
+        $node->cache = $classe->cache.'::'.$method->cache;
+        return $this->savenode($node);        
     }
 
-    function affiche__new($noeud, $niveau) {
-        $name = $noeud->getClasse();
+    function affiche__new($node, $niveau) {
+        $name = $node->getClasse();
         $tags['name'][] = $this->affiche($name, $niveau + 1);
-        $args = $noeud->getArgs();
+        $args = $node->getArgs();
         $tags['args'][] = $this->affiche($args, $niveau + 1);
         
-        $noeud->cache = 'new '.$name->cache.''.$args->cache;
+        $node->cache = 'new '.$name->cache.''.$args->cache;
     }
     
-    function affiche_noscream($noeud, $niveau) {
-        $expression = $noeud->getExpression();
+    function affiche_noscream($node, $niveau) {
+        $expression = $node->getExpression();
         $this->affiche($expression, $niveau + 1);
 
-        $noeud->cache = '@'.$expression->cache;
-        return $this->saveNoeud($noeud);
+        $node->cache = '@'.$expression->cache;
+        return $this->savenode($node);
     }
 
-    function affiche_not($noeud, $niveau) {
-        $expression = $noeud->getExpression();
+    function affiche_not($node, $niveau) {
+        $expression = $node->getExpression();
         $this->affiche($expression, $niveau + 1);
 
-        $noeud->cache = '!'.$expression->cache;
-        return $this->saveNoeud($noeud);
+        $node->cache = '!'.$expression->cache;
+        return $this->savenode($node);
     }
 
-    function affiche_opappend($noeud, $niveau) {
-        $variable = $noeud->getVariable();
+    function affiche_opappend($node, $niveau) {
+        $variable = $node->getVariable();
         $this->affiche($variable, $niveau + 1);
 
-        $noeud->cache = $variable->cache.'[]';
-        return $this->saveNoeud($noeud);
+        $node->cache = $variable->cache.'[]';
+        return $this->savenode($node);
     }
 
-    function affiche_operation($noeud, $niveau) {
-        $droite = $noeud->getDroite();
+    function affiche_operation($node, $niveau) {
+        $droite = $node->getDroite();
         $this->affiche($droite, $niveau + 1);
-        $operation = $noeud->getOperation();
+        $operation = $node->getOperation();
         $this->affiche($operation, $niveau + 1);
-        $gauche = $noeud->getGauche();
+        $gauche = $node->getGauche();
         $this->affiche($gauche, $niveau + 1);
         
-        $noeud->cache = $droite->cache.' '.$operation->cache.' '.$gauche->cache;
+        $node->cache = $droite->cache.' '.$operation->cache.' '.$gauche->cache;
     }
 
-    function affiche_parentheses($noeud, $niveau) {
-        $contenu = $noeud->getContenu();
+    function affiche_parentheses($node, $niveau) {
+        $contenu = $node->getContenu();
         $this->affiche($contenu, $niveau + 1);
         
-        $noeud->cache = '('.$contenu->cache.')';
-        return $this->saveNoeud($noeud);        
+        $node->cache = '('.$contenu->cache.')';
+        return $this->savenode($node);        
     }
 
-    function affiche_preplusplus($noeud, $niveau) {
-        $var = $noeud->getVariable();
+    function affiche_preplusplus($node, $niveau) {
+        $var = $node->getVariable();
         $this->affiche($var, $niveau + 1);
-        $operateur = $noeud->getOperateur();
+        $operateur = $node->getOperateur();
         $this->affiche($operateur, $niveau + 1);
         
-        $noeud->cache = $operateur->cache.$var->cache;
-        return $this->saveNoeud($noeud);    
+        $node->cache = $operateur->cache.$var->cache;
+        return $this->savenode($node);    
     }
 
-    function affiche_postplusplus($noeud, $niveau) {
-        $var = $noeud->getVariable();
+    function affiche_postplusplus($node, $niveau) {
+        $var = $node->getVariable();
         $this->affiche($var, $niveau + 1);
-        $operateur = $noeud->getOperateur();
+        $operateur = $node->getOperateur();
         $this->affiche($operateur, $niveau + 1);
         
-        $noeud->cache = $var->cache.$operateur->cache;
-        return $this->saveNoeud($noeud);    
+        $node->cache = $var->cache.$operateur->cache;
+        return $this->savenode($node);    
     }
 
-    function affiche_property($noeud, $niveau) {
-        $object = $noeud->getObject();
+    function affiche_property($node, $niveau) {
+        $object = $node->getObject();
         $this->affiche($object, $niveau + 1);
-        $property = $noeud->getProperty();
+        $property = $node->getProperty();
         $this->affiche($property, $niveau + 1);
         
-        $noeud->cache = $object->cache."->".$property->cache;
-        $this->saveNoeud($noeud);
+        $node->cache = $object->cache."->".$property->cache;
+        $this->savenode($node);
     }
 
-    function affiche_property_static($noeud, $niveau) {
-        $classe = $noeud->getClass();
+    function affiche_property_static($node, $niveau) {
+        $classe = $node->getClass();
         $this->affiche($classe, $niveau + 1);
-        $property = $noeud->getProperty();
+        $property = $node->getProperty();
         $this->affiche($property, $niveau + 1);
         
-        $noeud->cache = $classe->cache."->".$property->cache;
-        $this->saveNoeud($noeud);
+        $node->cache = $classe->cache."->".$property->cache;
+        $this->savenode($node);
     }
 
-    function affiche_rawtext($noeud, $niveau) {
-        $noeud->cache = '';
+    function affiche_rawtext($node, $niveau) {
+        $node->cache = '';
     }
 
-    function affiche_reference($noeud, $niveau) {
-        $expression = $noeud->getExpression();
+    function affiche_reference($node, $niveau) {
+        $expression = $node->getExpression();
         $this->affiche($expression, $niveau + 1);
 
-        $noeud->cache = '&'.$expression->cache;
-        return $this->saveNoeud($noeud);
+        $node->cache = '&'.$expression->cache;
+        return $this->savenode($node);
     }
 
-    function affiche__return($noeud, $niveau) {
-        if (!is_null($return = $noeud->getReturn())) {
+    function affiche__return($node, $niveau) {
+        if (!is_null($return = $node->getReturn())) {
             $this->affiche($return, $niveau + 1);
-            $noeud->cache = 'return '.$return->cache;
+            $node->cache = 'return '.$return->cache;
         } else {
-            $noeud->cache = 'return NULL';
+            $node->cache = 'return NULL';
         }
 
-        return $this->saveNoeud($noeud);
+        return $this->savenode($node);
     }
 
-    function affiche_sequence($noeud, $niveau) {
-        $elements = $noeud->getElements();
+    function affiche_sequence($node, $niveau) {
+        $elements = $node->getElements();
         if (count($elements) == 0) {
             // rien
-            $noeud->cache = '';
+            $node->cache = '';
         } else {
             $labels = array();
             $id = 0;
@@ -670,78 +671,89 @@ class template_cache extends template {
                     $labels[] = $this->affiche($e, $niveau + 1);
                 }
             }
-            $noeud->cache = join('', $labels);
+            $node->cache = join('', $labels);
         }
 
     }
 
-    function affiche_sign($noeud, $niveau) {
-        $expression = $noeud->getExpression();
+    function affiche_sign($node, $niveau) {
+        $expression = $node->getExpression();
         $this->affiche($expression, $niveau + 1);
-        $sign = $noeud->getsign();
+        $sign = $node->getsign();
         $this->affiche($sign, $niveau + 1);
         
-        $noeud->cache = $sign->cache.$expression->cache;
+        $node->cache = $sign->cache.$expression->cache;
     }
 
-    function affiche__static($noeud, $niveau) {
-        $expression = $noeud->getExpression();
+    function affiche_shell($node, $niveau) {
+        $cache = '';
+        $elements = $node->getExpression();
+        foreach($elements as $id => $e) {
+            $this->affiche($e, $niveau + 1);
+            $cache .= $e->cache;
+        }
+
+        $node->cache = $cache;
+    }
+
+    function affiche__static($node, $niveau) {
+        $expression = $node->getExpression();
         $this->affiche($expression, $niveau + 1);
         
-        $noeud->cache = 'static '.$expression->cache;
+        $node->cache = 'static '.$expression->cache;
     }
 
-    function affiche__switch($noeud, $niveau) {
-        $this->affiche($noeud->getOperande(), $niveau + 1);
-        $this->affiche($noeud->getBlock(), $niveau + 1);
-        $noeud->cache = '<switch>';
+    function affiche__switch($node, $niveau) {
+        $this->affiche($node->getOperande(), $niveau + 1);
+        $this->affiche($node->getBlock(), $niveau + 1);
+        $node->cache = '<switch>';
     }
 
-    function affiche_tableau($noeud, $niveau) {
-        $variable = $noeud->getVariable();
+    function affiche_tableau($node, $niveau) {
+        $variable = $node->getVariable();
         $this->affiche($variable, $niveau + 1);
-        $index = $noeud->getIndex();
+        $index = $node->getIndex();
         $this->affiche($index, $niveau + 1);
         
-        $noeud->cache = $variable->cache.'['.$index->cache.']';
-        return $this->saveNoeud($noeud);
+        $node->cache = $variable->cache.'['.$index->cache.']';
+        return $this->savenode($node);
     }
 
-    function affiche__throw($noeud, $niveau) {
-        $exception = $noeud->getException();
+    function affiche__throw($node, $niveau) {
+        $exception = $node->getException();
         $this->affiche($exception, $niveau + 1);
 
-        $noeud->cache = 'throw '.$exception->cache;
+        $node->cache = 'throw '.$exception->cache;
     }
 
-    function affiche__try($noeud, $niveau) {
-        $block = $noeud->getBlock();
+    function affiche__try($node, $niveau) {
+        $block = $node->getBlock();
         $this->affiche($block, $niveau + 1);
 
-        $elements = $noeud->getCatch();
+        $elements = $node->getCatch();
         $labels = array();
         foreach($elements as $id => &$e) {
             $this->affiche($e, $niveau + 1);
             $labels[]=  $e->cache;
         }
-        $noeud->cache = '<try>';        
+        $node->cache = '<try>';        
     }
 
-    function affiche_typehint($noeud, $niveau) {
-        $type = $noeud->getType();
+    function affiche_typehint($node, $niveau) {
+        $type = $node->getType();
         $this->affiche($type, $niveau + 1);
-        $name = $noeud->getName();
+        $name = $node->getName();
         $this->affiche($name, $niveau + 1);
         
-        $noeud->cache = $type->cache." ".$name->cache;
+        $node->cache = $type->cache." ".$name->cache;
     }
 
-    function affiche__var($noeud, $niveau) {
+    function affiche__var($node, $niveau) {
         $var = array();
         
-        $variables = $noeud->getVariable();
+        $variables = $node->getVariable();
         if (count($variables) > 0) {
-            $inits = $noeud->getInit();
+            $inits = $node->getInit();
             foreach($variables as $id => $variable) {
                 $this->affiche($variable, $niveau + 1);
                 $var[] = $variable->cache;
@@ -754,50 +766,50 @@ class template_cache extends template {
         
         $var = join(', ', $var);
 
-        $visibility = $noeud->getVisibility();
+        $visibility = $node->getVisibility();
         if (!is_null($visibility)) {
-            $visibility = $noeud->getVisibility();
+            $visibility = $node->getVisibility();
             $this->affiche($visibility, $niveau + 1);
             $var = $visibility->cache." ".$var;
         } else {
             $var = "var $var";
         }
 
-        if (!is_null($noeud->getStatic())) {
-            $this->affiche($noeud->getStatic(), $niveau + 1);
+        if (!is_null($node->getStatic())) {
+            $this->affiche($node->getStatic(), $niveau + 1);
             $var = "static $var";
         }
         
-        $noeud->cache = $var;
-        return $this->saveNoeud($noeud);
+        $node->cache = $var;
+        return $this->savenode($node);
     }
 
-    function affiche_variable($noeud, $niveau) {
-        $name = $noeud->getName();
+    function affiche_variable($node, $niveau) {
+        $name = $node->getName();
         if (is_object($name)) {
             $this->affiche($name, $niveau + 1);
-            $noeud->cache = '$'.$name->cache;
+            $node->cache = '$'.$name->cache;
         } else {
-            $noeud->cache = $name;
+            $node->cache = $name;
         }
-        return $this->saveNoeud($noeud);
+        return $this->savenode($node);
     }
 
-    function affiche__while($noeud, $niveau) {
-        $this->affiche($noeud->getCondition(), $niveau + 1);
-        $this->affiche($noeud->getBlock(), $niveau + 1);
-        $noeud->cache = '<while>';        
+    function affiche__while($node, $niveau) {
+        $this->affiche($node->getCondition(), $niveau + 1);
+        $this->affiche($node->getBlock(), $niveau + 1);
+        $node->cache = '<while>';        
     }
 
-    function affiche__dowhile($noeud, $niveau) {
-        $this->affiche($noeud->getCondition(), $niveau + 1);
-        $this->affiche($noeud->getBlock(), $niveau + 1);
-        $noeud->cache = '<do_while>';        
+    function affiche__dowhile($node, $niveau) {
+        $this->affiche($node->getCondition(), $niveau + 1);
+        $this->affiche($node->getBlock(), $niveau + 1);
+        $node->cache = '<do_while>';        
     }
     
-    function affiche_Token($noeud, $niveau) {
+    function affiche_Token($node, $niveau) {
         print_r(xdebug_get_function_stack());        
-        print "Attention, Token affiché : '$noeud'\n";
+        print "Attention, Token affiché : '$node'\n";
         die();
     }
 }
