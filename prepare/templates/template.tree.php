@@ -504,7 +504,7 @@ class template_tree extends template {
     }
     
     function affiche_Token($noeud, $niveau) {
-        print str_repeat('  ', $niveau).get_class($noeud)." ".$noeud->getCode()." ( default display)\n";
+        print str_repeat('  ', $niveau).get_class($noeud)." ".$noeud->getCode()." (default display)\n";
     }
 
 }
