@@ -132,14 +132,17 @@ class Token {
     }
 
     function replace(Token $t) {
-        $this->setNext( $t->getNext());
-        $this->setPrev( $t->getPrev());
+        $next = $t->getNext();
+        $prev = $t->getPrev();
 
-        if (!is_null($t->getNext())) {
-            $t->getNext()->setPrev($this);
+        $this->setNext( $next);
+        $this->setPrev( $prev);
+
+        if (!is_null($next)) {
+            $next->setPrev($this);
         }
-        if (!is_null($t->getPrev())) {
-            $t->getPrev()->setNext($this);
+        if (!is_null($prev)) {
+            $prev->setNext($this);
         }
     }
 
@@ -234,7 +237,6 @@ class Token {
     }
 
     function getNext($n = 0) {
-        if (!isset($id_getNext)) {$id_getNext = 1;} else { $id_getNext++; } 
         $n++;
         $return = $this;
         while($n > 0) {
@@ -303,9 +305,9 @@ class Token {
         $remove = $r->getRemove();
         foreach($remove as $arg) {
             if ($arg > 0) {
-                $t->removeNext($arg - 1);
+                $t->removeNext();
             } elseif ($arg < 0) {
-                $t->removePrev($arg + 1);
+                $t->removePrev();
             } else {
                 // @empty_ifelse this is an error. Should be trapped
             }
@@ -321,6 +323,7 @@ class Token {
     }
 
     static public function factory_get_args() {
+        // 
         return array();
     }
     
