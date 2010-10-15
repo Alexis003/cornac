@@ -42,9 +42,7 @@ class rawtext extends instruction {
     }
 
     function neutralise() {
-        if (!is_null($this->rawtext)) {
-            $this->rawtext->detach();
-        }
+        $this->rawtext->detach();
     }
 
     function getRegex(){
