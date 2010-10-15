@@ -41,7 +41,7 @@ class template_tree extends template {
         
         if (!is_object($noeud)) {
             debug_print_backtrace();
-            print "Fatal : attemptint to display a non-object in ".__METHOD__."\n\n";
+            print "Fatal : attempting to display a non-object in ".__METHOD__."\n\n";
             die();
         }
         $class = get_class($noeud);
@@ -52,8 +52,16 @@ class template_tree extends template {
         } else {
             print "Affichage ".__CLASS__." de '".$method."'\n";die;
         }
-        if (!is_null($noeud->getNext())){
-            $this->affiche($noeud->getNext(), $niveau);
+        
+        $noeuds = array();
+        $next = $noeud->getNext();
+        while(!is_null($next)) {
+            $noeuds[] = $next;
+            $next = $next->getNext();
+        }
+        
+        foreach($noeuds as $noeud) {
+            $this->affiche($noeud, $niveau);
         }
     }
 
