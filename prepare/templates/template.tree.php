@@ -30,19 +30,25 @@ class template_tree extends template {
         return false;
     }
     
-    function affiche($noeud = null, $niveau = 0) {
+    function affiche($noeud = null, $niveau = 0, $follow = true) {
         if ($niveau > 100) {
             print "Fatal : more than 100 level of recursion : aborting\n"; 
-            die();
+            die(__METHOD__."\n");
         }
         if (is_null($noeud)) {
-            $noeud = $this->root;
+            if ($niveau == 0) {
+                $noeud = $this->root;
+            } else {
+                print_r(xdebug_get_function_stack());        
+                print "Attempting to send null to display.";
+                die(__METHOD__."\n");
+            }
         }
         
         if (!is_object($noeud)) {
             debug_print_backtrace();
             print "Fatal : attempting to display a non-object in ".__METHOD__."\n\n";
-            die();
+            die(__METHOD__."\n");
         }
         $class = get_class($noeud);
         $method = "affiche_$class";
@@ -50,21 +56,23 @@ class template_tree extends template {
         if (method_exists($this, $method)) {
             $this->$method($noeud, $niveau + 1);
         } else {
-            print "Affichage ".__CLASS__." de '".$method."'\n";die;
+            print "Displaying ".__CLASS__." in '".$method."'\n";
+            die(__METHOD__."\n");
         }
-        
-        $noeuds = array();
-        $next = $noeud->getNext();
-        while(!is_null($next)) {
-            $noeuds[] = $next;
-            $next = $next->getNext();
-        }
-        
-        foreach($noeuds as $noeud) {
-            $this->affiche($noeud, $niveau);
+
+        if ($follow == true) {
+            $noeuds = array();
+            $next = $noeud;
+            while($next = $next->getNext()) {
+                $noeuds[] = $next;
+            }
+            
+            foreach($noeuds as $n) {
+                $this->affiche($n, $niveau, false);
+            }
         }
     }
-
+    
     function affiche_arginit($noeud, $niveau) {
         print str_repeat('  ', $niveau)." argument et initialisation \n";
         $this->affiche($noeud->getVariable(), $niveau + 1);
@@ -496,7 +504,7 @@ class template_tree extends template {
     }
     
     function affiche_Token($noeud, $niveau) {
-        print str_repeat('  ', $niveau).get_class($noeud)." ".$noeud->getCode()." ( Affichage par défaut)\n";
+        print str_repeat('  ', $niveau).get_class($noeud)." ".$noeud->getCode()." ( default display)\n";
     }
 
 }
