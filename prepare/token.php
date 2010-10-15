@@ -204,36 +204,39 @@ class Token {
     }
 
     function getPrev($n = 0) {
-        $return = $this->prev;
-        
-        if ($n > 0) {
-            if (is_null($return)) {
-                return NULL;
-            }
-            $return = $return->getPrev($n - 1);
+        $n++;
+        $return = $this;
+        while($n > 0) {
+            $return = $return->prev;
+            if (is_null($return)) { return NULL; }
+            $n--;
         }
-
-        return $return;  
+        
+        return $return;
     }
 
     function hasNext($n = 0) {
-        if ($n == 0) {
-            return !is_null($this->next);
-        } elseif (is_null($this->next)) {
-            return false;
-        } else {
-            return $this->next->hasNext($n - 1);
+        $n++;
+        $return = $this;
+        while($n > 0) {
+            $return = $return->next;
+            if (is_null($return)) { return false; }
+            $n--;
         }
+        
+        return true;
     }
 
     function hasPrev($n = 0) {
-        if ($n == 0) {
-            return !is_null($this->prev);
-        } elseif (is_null($this->prev)) {
-            return false;
-        } else {
-            return $this->prev->hasPrev($n - 1);
+        $n++;
+        $return = $this;
+        while($n > 0) {
+            $return = $return->prev;
+            if (is_null($return)) { return false; }
+            $n--;
         }
+        
+        return true;
     }
 
     function getNext($n = 0) {
