@@ -32,8 +32,7 @@ class rawtext_empty_regex extends analyseur_regex {
       if ($t->checkToken(T_CLOSE_TAG) &&
           $t->getNext()->checkToken(T_OPEN_TAG)) {
             if ($t->getNext(1)->checkCode('=')) {
-                // cas d'un raw text suivi d'un <?= 
-                // on attend
+                // @note case of a rawtext, followed by <?= 
                 return false; 
             }
               $this->args = array(0);
