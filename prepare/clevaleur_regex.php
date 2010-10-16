@@ -35,7 +35,7 @@ class clevaleur_regex extends analyseur_regex {
         if ($t->getNext()->checkNotClass('Token') && 
             $t->getPrev()->checkNotClass(array('Token', 'arglist')) &&
             ($t->getPrev(1)->checkNotToken(T_AS)) &&
-             $t->getPrev(1)->checkNotOperateur(array('->','::')) &&
+             $t->getPrev(1)->checkNotOperator(array('->','::')) &&
              $t->getNext(1)->checkNotCode(array('[','->','++','--','=','.=','*=','+=','-=','/=','%=',
                                                  '>>=','&=','^=','>>>=', '|=','<<=','>>=','?','(','{')) &&
              $t->getNext(1)->checkNotClass(array('arglist','parentheses')) 

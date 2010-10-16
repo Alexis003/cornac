@@ -32,7 +32,7 @@ class while_noblock_regex extends analyseur_regex {
         if ($t->getNext()->checkNotClass('parentheses')) { return false; }
 
         if ($t->getNext(1)->checkCode(';') &&
-            $t->getPrev()->checkNotOperateur('}')) {
+            $t->getPrev()->checkNotOperator('}')) {
             $regex = new modele_regex('block',array(), array());
             Token::applyRegex($t->getNext(1), 'block', $regex);
 

@@ -30,7 +30,7 @@ class switch_alternative_regex extends analyseur_regex {
         if (!$t->hasNext(2)) { return false; }
 
         if ($t->getNext()->checkNotClass('parentheses')) { return false; }
-        if ($t->getNext(1)->checkNotOperateur(':')) { return false; }
+        if ($t->getNext(1)->checkNotOperator(':')) { return false; }
 
         $pos = 0;
         $var = $t->getNext(2);

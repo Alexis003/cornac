@@ -31,7 +31,7 @@ class function_typehintreference_regex extends analyseur_regex {
 
         $var = $t->getNext(2);
         
-        while ($var->checkNotOperateur(')')) {
+        while ($var->checkNotOperator(')')) {
             if (($var->checkClass('constante') ||
                  $var->checkToken(T_ARRAY)) &&
                 $var->getNext()->checkOperator('&') &&

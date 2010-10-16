@@ -29,7 +29,7 @@ class block_opening_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasNext(2))           { return false; }
         if ($t->getNext()->checkClass('Token') )   { return false; }
-        if ($t->getNext(1)->checkNotOperateur(';') )   { return false; }
+        if ($t->getNext(1)->checkNotOperator(';') )   { return false; }
         if (!$t->getNext(2)->checkForBlock() &&
             !$t->getNext(2)->checkForVariable())   { return false; }
 

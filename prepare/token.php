@@ -365,7 +365,7 @@ class Token {
         return in_array($this->getCode(), $code);
     }
 
-    public function checkNotOperateur($code) {
+    public function checkNotOperator($code) {
         return !$this->checkOperator($code);
     }
 

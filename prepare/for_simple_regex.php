@@ -30,7 +30,7 @@ class for_simple_regex extends analyseur_regex {
         if (!$t->hasNext(4)) { return false; }
 
         if ($t->checkNotToken(array(T_FOR))) { return false; } 
-        if ($t->getNext()->checkNotOperateur(array('('))) { return false; } 
+        if ($t->getNext()->checkNotOperator(array('('))) { return false; } 
 
         $args = array();
         $remove = array(1);

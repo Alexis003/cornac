@@ -33,9 +33,9 @@ class parentheses_normal_regex extends analyseur_regex {
         if ($t->getPrev()->checkClass('variable')) { return false; }
         if ($t->getPrev()->checkToken(T_CONTINUE)) { return false; }
         if ($t->getPrev()->checkCode('}')) { return false; }
-        if ($t->checkNotOperateur('(')) { return false; }
+        if ($t->checkNotOperator('(')) { return false; }
         if ($t->getNext()->checkClass('Token')) { return false; }
-        if ( $t->getNext(1)->checkNotOperateur(')')) { return false; }
+        if ( $t->getNext(1)->checkNotOperator(')')) { return false; }
 
         if ($t->getPrev()->checkFunction() ) { 
             if ($t->getPrev()->checkCode('echo')) {

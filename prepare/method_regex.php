@@ -38,7 +38,7 @@ class method_regex extends analyseur_regex {
                                     'functioncall',
                                     'property_static',
                                     'method_static'))) { return false;}
-        if ($t->getNext()->checkNotOperateur('->')) { return false; }
+        if ($t->getNext()->checkNotOperator('->')) { return false; }
         if ($t->getNext(1)->checkNotClass('functioncall')) { return false; }
 
         $this->args   = array(0, 2);

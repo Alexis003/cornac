@@ -30,8 +30,8 @@ class ___halt_compiler_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasNext(2)) { return false; }
         
-        if ($t->getNext()->checkNotOperateur('(')) { return false; }
-        if ($t->getNext(1)->checkNotOperateur(')')) { return false; }
+        if ($t->getNext()->checkNotOperator('(')) { return false; }
+        if ($t->getNext(1)->checkNotOperator(')')) { return false; }
 
         $this->args = array();
         $this->remove = array(1, 2);

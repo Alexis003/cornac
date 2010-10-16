@@ -30,7 +30,7 @@ class typehint_regex extends analyseur_regex {
         if (!$t->hasNext(1) ) { return false; }
         if (!$t->hasPrev() ) { return false; }
 
-        if ($t->getPrev()->checkNotCode(array('(',','))) { return false; }
+        if ($t->getPrev()->checkNotOperator(array('(',','))) { return false; }
         if ($t->getPrev()->checkClass(array('arglist'))) { return false; }
         if ($t->getPrev(1)->checkToken(array(T_CATCH))) { return false; }
         if ($t->checkNotClass('Token')  &&  $t->checkToken(T_ARRAY)) { return false; }
@@ -56,7 +56,7 @@ class typehint_regex extends analyseur_regex {
         
         if ($t->getNext()->checkNotClass(array('variable','affectation','reference'))) { return false; }
         if ($t->getNext(1)->checkCode(array('='))) { return false; }
-        if ($t->getNext(1)->checkNotOperateur(array(',',')'))) { return false; }
+        if ($t->getNext(1)->checkNotOperator(array(',',')'))) { return false; }
         
         $this->args = array(0,1);
         $this->remove = array(1);

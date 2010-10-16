@@ -46,7 +46,7 @@ class arglist_regex extends analyseur_regex {
         
         $pos = 1;
         
-        while ($var->checkNotClass('Token') && $var->checkNotOperateur(')') &&
+        while ($var->checkNotClass('Token') && $var->checkNotOperator(')') &&
                $var->getNext()->checkOperator(',')) {
             $this->args[]    = $pos;
             $this->remove[]  = $pos;

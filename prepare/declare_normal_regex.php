@@ -52,7 +52,7 @@ class declare_normal_regex extends analyseur_regex {
             $t->getNext(2)->checkCode(',') &&
             $t->getNext(3)->checkClass('arginit') &&
             $t->getNext(4)->checkOperator(')') &&
-            $t->getNext(5)->checkNotOperateur(':')
+            $t->getNext(5)->checkNotOperator(':')
             ) {
             
             $this->args = array(2,4);

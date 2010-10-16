@@ -31,7 +31,7 @@ class dowhile_simples_regex extends analyseur_regex {
 
         if (  $t->getNext()->checkClass('block'))   { return false; }
         if ( !$t->getNext()->checkForBlock()) { return false; }
-        if (  $t->getNext(1)->checkNotOperateur(';')) { return false; }
+        if (  $t->getNext(1)->checkNotOperator(';')) { return false; }
 
         $args = array(0);
         $remove = array(1);

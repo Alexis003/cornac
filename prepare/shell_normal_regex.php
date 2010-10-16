@@ -40,7 +40,7 @@ class shell_normal_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasNext() ) { return false; }
 
-        if ($t->checkNotOperateur('`')) { return false; } 
+        if ($t->checkNotOperator('`')) { return false; } 
         
         if ($t->checkOperator('`') ) {
             $token_fin = '`';

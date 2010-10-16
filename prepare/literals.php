@@ -45,6 +45,10 @@ class literals extends token {
         return $this->value;
     }
 
+    function neutralise() {
+        // @note nothing to do
+    }
+
     function __toString() {
         return __CLASS__." ".$this->value;
     }

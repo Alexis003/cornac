@@ -30,7 +30,7 @@ class while_alternative_regex extends analyseur_regex {
         if (!$t->hasNext(1)) { return false; }
 
         if ($t->getNext()->checkNotClass('parentheses')) { return false; }
-        if ($t->getNext(1)->checkNotOperateur(':')) { return false; }
+        if ($t->getNext(1)->checkNotOperator(':')) { return false; }
 
         $var = $t->getNext(2);
         $init = $var;
