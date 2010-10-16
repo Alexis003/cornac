@@ -70,7 +70,9 @@ if ($INI['tokens']) {
 }
 
 $ini .= " -i ".$INI['limit'];
+// @todo must remove the dependency to the database : this is silly
+$ini .= ' -I '.($INI['ini'] ?: 'cornac');
 
-print shell_exec('./tokclient.php -I '.$INI['ini'].$ini);
+print shell_exec('./tokclient.php '.$ini);
 
 ?>
