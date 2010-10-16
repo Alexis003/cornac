@@ -36,7 +36,7 @@ class function_typehint_regex extends analyseur_regex {
                  $var->checkToken(array(T_ARRAY,T_STRING))) &&
                 $var->getNext()->checkClass('variable')) {
                 
-                if ($var->getNext(1)->checkCode('=') &&
+                if ($var->getNext(1)->checkOperateur('=') &&
                     $var->getNext(2)->checkNotClass('Token')) {
                         $regex = new modele_regex('affectation',array(0, 1, 2), array(1, 2));
                         Token::applyRegex($var->getNext(), 'affectation', $regex);
@@ -51,11 +51,13 @@ class function_typehint_regex extends analyseur_regex {
                         $var = $var->getNext();
                         continue; 
                 } elseif ($var->getNext(1)->checkCode('=')) {
+                    if ($var->getNext(2)->checkClass('Token')) { return false; }
                     if ($var->getNext(3)->checkClass('arglist')) {
                         $regex = new modele_regex('functioncall',array(0, 1), array(1));
                         Token::applyRegex($var->getNext(2), 'functioncall', $regex);
     
                         mon_log(get_class($t)." => affectation (".__CLASS__.")");
+                        // @note return? 
                     }
                     
                     $regex = new modele_regex('affectation',array(0, 1, 2), array(1, 2));
@@ -80,10 +82,10 @@ class function_typehint_regex extends analyseur_regex {
                     continue; 
                 } 
             }
-            // cas des typehint avec initialisation
-            
+
+            // @note typehint with initialisation
             if ($var->checkOperateur('(')) {
-                // On veut pas de collision avec une autre structure
+                // @note avoiding collision with other structures
                 return false; 
             }
             

@@ -35,7 +35,7 @@ class typehint_regex extends analyseur_regex {
         if ($t->getPrev(1)->checkToken(array(T_CATCH))) { return false; }
         if ($t->checkNotClass('Token')  &&  $t->checkToken(T_ARRAY)) { return false; }
         if ($t->checkToken(T_AS)) { return false; }
-        // cas des " d'interpolation : " est alors un token seul
+        // @note this is an interpolation ,with " : this won't be the only one.
         if ($t->checkOperateur(array('"'))) { return false; } 
 
         if ($t->checkClass(array('variable'))) { return false; } 
@@ -56,7 +56,7 @@ class typehint_regex extends analyseur_regex {
         
         if ($t->getNext()->checkNotClass(array('variable','affectation','reference'))) { return false; }
         if ($t->getNext(1)->checkCode(array('='))) { return false; }
-        if ($t->getNext(1)->checkNotCode(array(',',')'))) { return false; }
+        if ($t->getNext(1)->checkNotOperateur(array(',',')'))) { return false; }
         
         $this->args = array(0,1);
         $this->remove = array(1);

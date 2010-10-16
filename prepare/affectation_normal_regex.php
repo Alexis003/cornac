@@ -37,7 +37,6 @@ class affectation_normal_regex extends analyseur_regex {
              $t->getNext(1)->checkNotToken(array(T_AS,T_CLOSE_TAG))
                 ) { return false;}
                 
-             
         if ($t->hasPrev(1) && $t->getPrev(1)->checkCode(array('&','$','::','@','->','var','public','private','protected'))) { return false;}
         if (($t->getPrev()->checkClass(array('variable','property','opappend','functioncall','not','noscream','property_static','reference','cast')) || 
              $t->getPrev()->checkSubclass('variable')) &&
