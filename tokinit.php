@@ -117,24 +117,14 @@ if (isset($INI['directory'])) {
 
     print "Preparing work on directory '{$directory}'\n";
 
-    $files = glob($directory.'/*');
+    $files = liste_directories($directory, 0, (boolean) $INI['recursive']);
 
     foreach($files as $file) {
-        $query = "INSERT INTO <tasks> VALUES (NULL, 'tokenize', ".$DATABASE->quote($file).", ".$DATABASE->quote(GABARIT).", NOW(), 0)";
+        $code = file_get_contents($file);
+        if (strpos($code, '<?') === false) { continue; }
+
+        $query = "INSERT IGNORE INTO <tasks> VALUES (NULL, 'tokenize', ".$DATABASE->quote($file).", ".$DATABASE->quote(GABARIT).",NOW(), 0)";
         $DATABASE->query($query);
-    }
-
-    if ($INI['recursive']) {
-        $files = liste_directories_recursive($directory);
-        print "Preparing recursive work on directory {$directory}\n";
-
-        foreach($files as $file) {
-            $code = file_get_contents($file);
-            if (strpos($code, '<?') === false) { continue; }
-
-            $query = "INSERT IGNORE INTO <tasks> VALUES (NULL, 'tokenize', ".$DATABASE->quote($file).", ".$DATABASE->quote(GABARIT).",NOW(), 0)";
-            $DATABASE->query($query);
-        }
     }
 } elseif (isset($INI['file'])) {
     $file = $INI['file'];
