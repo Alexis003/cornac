@@ -29,8 +29,8 @@ class catch_normal_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasNext(1)) { return false; }
 
-        if ($t->getNext()->checkOperateur('(') &&
-            $t->getNext(3)->checkOperateur(')') &&
+        if ($t->getNext()->checkOperator('(') &&
+            $t->getNext(3)->checkOperator(')') &&
             $t->getNext(4)->checkClass('block') 
             ) {
             

@@ -360,7 +360,7 @@ class Token {
         return !$this->checkCode($code);
     }
 
-    public function checkOperateur($code) {
+    public function checkOperator($code) {
         if (get_class($this) != 'Token') { return false; }
         
         if (!is_array($code)) {
@@ -370,7 +370,7 @@ class Token {
     }
 
     public function checkNotOperateur($code) {
-        return !$this->checkOperateur($code);
+        return !$this->checkOperator($code);
     }
 
     public function checkToken($token) {
@@ -558,7 +558,7 @@ class Token {
     function checkForAssignation() {
         if ($this->checkNotClass('Token')) { return false; }
         $liste = array('=','.=','*=','+=','-=','/=','%=','>>=','&=','^=', '|=','<<=');
-        return $this->checkOperateur($liste);
+        return $this->checkOperator($liste);
     }
 
     function checkForLogical() {

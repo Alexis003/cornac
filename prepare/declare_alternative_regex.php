@@ -31,7 +31,7 @@ class declare_alternative_regex extends analyseur_regex {
         if (!$t->hasNext()) { return false; }
         
         if ($t->getNext()->checkClass('parentheses') && 
-            $t->getNext(1)->checkOperateur(':')) {
+            $t->getNext(1)->checkOperator(':')) {
             $this->args = array(1, 3);
             $this->remove = array(1, 2, 3);
 
@@ -42,12 +42,12 @@ class declare_alternative_regex extends analyseur_regex {
             $remove = array(-1);
             $pos = 0;
 
-        } elseif ($t->getNext()->checkOperateur('(') && 
+        } elseif ($t->getNext()->checkOperator('(') && 
             $t->getNext(1)->checkClass('arginit') &&
-            $t->getNext(2)->checkOperateur(',') &&
+            $t->getNext(2)->checkOperator(',') &&
             $t->getNext(3)->checkClass('arginit') &&
-            $t->getNext(4)->checkOperateur(')') && 
-            $t->getNext(5)->checkOperateur(':') 
+            $t->getNext(4)->checkOperator(')') && 
+            $t->getNext(5)->checkOperator(':') 
             ) {            
             $this->args = array(2,4, 6);
             $this->remove = array(1,2,3,4,5, 6);
@@ -85,7 +85,7 @@ class declare_alternative_regex extends analyseur_regex {
                 continue;
             }
 
-            if ($var->checkOperateur(';') ) {
+            if ($var->checkOperator(';') ) {
                 // @note trailing semi-colon : just ignore it
                 $remove[] = $pos;
                 $pos++;

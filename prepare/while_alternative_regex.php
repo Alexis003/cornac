@@ -68,7 +68,7 @@ class while_alternative_regex extends analyseur_regex {
                 return false;
             }
 
-            if ($var->checkOperateur(';') ) {
+            if ($var->checkOperator(';') ) {
                 // @doc alone semicolon : just eat it up
                 $remove[] = $pos;
                 $pos++;

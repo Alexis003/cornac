@@ -50,7 +50,7 @@ class for_simple_regex extends analyseur_regex {
             $remove[] = $pos  + 1;
             
             $pos += 1;
-            if ($t->getNext($pos)->checkOperateur(';')) {
+            if ($t->getNext($pos)->checkOperator(';')) {
                 $remove[] = $pos  + 1;
                 $pos += 1;
             }
@@ -80,7 +80,7 @@ class for_simple_regex extends analyseur_regex {
             $remove[] = $pos  + 1;
             $pos += 1;
             
-            if ($t->getNext($pos)->checkOperateur(';')) {
+            if ($t->getNext($pos)->checkOperator(';')) {
                 $remove[] = $pos  + 1;
                 $pos += 1;
             }

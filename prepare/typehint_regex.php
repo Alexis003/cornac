@@ -36,11 +36,11 @@ class typehint_regex extends analyseur_regex {
         if ($t->checkNotClass('Token')  &&  $t->checkToken(T_ARRAY)) { return false; }
         if ($t->checkToken(T_AS)) { return false; }
         // @note this is an interpolation ,with " : this won't be the only one.
-        if ($t->checkOperateur(array('"'))) { return false; } 
+        if ($t->checkOperator(array('"'))) { return false; } 
 
         if ($t->checkClass(array('variable'))) { return false; } 
 
-        if ($t->getNext()->checkOperateur(array('&','|','^')) &&
+        if ($t->getNext()->checkOperator(array('&','|','^')) &&
             $t->getNext(1)->checkClass('variable')) {
             
             if ($t->checkClass('constante')) {

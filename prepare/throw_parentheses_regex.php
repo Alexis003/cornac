@@ -30,9 +30,9 @@ class throw_parentheses_regex extends analyseur_regex {
         if (!$t->hasNext(1)) { return false; }
 
         if ($t->checkToken(T_THROW) &&
-            $t->getNext()->checkOperateur('(') &&
+            $t->getNext()->checkOperator('(') &&
             $t->getNext(1)->checkClass(array('_new','variable','property','method','tableau','method_static','functioncall')) &&
-            $t->getNext(2)->checkOperateur(')') &&
+            $t->getNext(2)->checkOperator(')') &&
             $t->getNext(3)->checkNotCode(array('->','['))
             ) {
 

@@ -32,7 +32,7 @@ class affectation_list_regex extends analyseur_regex {
 
         if (!$t->checkForAssignation()) { return false;}
         
-        if ($t->hasPrev(2) && $t->getPrev(1)->checkOperateur('@')) { return false; }
+        if ($t->hasPrev(2) && $t->getPrev(1)->checkOperator('@')) { return false; }
         
         if (($t->getPrev()->checkClass('functioncall') && $t->getPrev()->getCode() == 'list') &&
             ($t->getNext()->checkSubclass(array('instruction'))  || 

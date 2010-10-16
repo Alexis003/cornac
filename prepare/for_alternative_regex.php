@@ -78,7 +78,7 @@ class for_alternative_regex extends analyseur_regex {
                 return false;
             }
 
-            if ($var->checkOperateur(';') ) {
+            if ($var->checkOperator(';') ) {
                 // @note trailing semi-colon ? Ignoring.
                 $remove[] = $pos;
                 $pos++;

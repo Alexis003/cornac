@@ -40,7 +40,7 @@ class for_comma1_regex extends analyseur_regex {
         $var = $t->getNext(3);
         
         while($var->checkNotClass('Token') &&
-              $var->getNext()->checkOperateur(',')) {
+              $var->getNext()->checkOperator(',')) {
             
             $args[] = $pos ;
             

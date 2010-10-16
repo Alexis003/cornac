@@ -31,7 +31,7 @@ class declare_normal_regex extends analyseur_regex {
         if (!$t->hasNext()) { return false; }
         
         if ($t->getNext()->checkClass('parentheses') && 
-            $t->getNext(1)->checkOperateur(';')) {
+            $t->getNext(1)->checkOperator(';')) {
             $this->args = array(1);
             $this->remove = array(1);
 
@@ -47,11 +47,11 @@ class declare_normal_regex extends analyseur_regex {
             mon_log(get_class($t)." => ".__CLASS__);
             return true; 
         }
-        if ($t->getNext()->checkOperateur('(') && 
+        if ($t->getNext()->checkOperator('(') && 
             $t->getNext(1)->checkClass('arginit') &&
             $t->getNext(2)->checkCode(',') &&
             $t->getNext(3)->checkClass('arginit') &&
-            $t->getNext(4)->checkOperateur(')') &&
+            $t->getNext(4)->checkOperator(')') &&
             $t->getNext(5)->checkNotOperateur(':')
             ) {
             

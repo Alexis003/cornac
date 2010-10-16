@@ -30,7 +30,7 @@ class functioncall_simple_regex extends analyseur_regex {
         if (!$t->hasNext() ) { return false; }
 
         if ($t->hasPrev(2) && 
-            $t->getPrev()->checkOperateur('&') &&
+            $t->getPrev()->checkOperator('&') &&
             $t->getPrev(1)->checkToken(T_FUNCTION)) { return false; }
 
         if ((!$t->hasPrev() || 

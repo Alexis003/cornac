@@ -43,7 +43,7 @@ class concatenation_interpole_regex extends analyseur_regex {
         if ($t->checkNotCode('"')  && $t->checkNotToken(T_START_HEREDOC)) { return false; } 
         if ($t->checkClass('concatenation') ) { return false; } 
         
-        if ($t->checkOperateur('"') ) {
+        if ($t->checkOperator('"') ) {
             $token_fin = '"';
         } elseif ($t->checkToken(T_START_HEREDOC) ) {
             $token_fin = trim(substr($t->getCode(), 3));

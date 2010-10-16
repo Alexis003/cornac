@@ -32,9 +32,9 @@ class for_comma2_regex extends analyseur_regex {
         if ($t->getNext()->checkNotCode(array('('))) { return false; } 
         
         $pos = 0;
-        if ($t->getNext(1)->checkOperateur(array(';'))) { 
+        if ($t->getNext(1)->checkOperator(array(';'))) { 
             $pos++;
-        } elseif ($t->getNext(2)->checkOperateur(array(';'))) { 
+        } elseif ($t->getNext(2)->checkOperator(array(';'))) { 
             $pos += 2;
         } else {
             return false;

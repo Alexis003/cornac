@@ -34,7 +34,7 @@ class function_typehintreference_regex extends analyseur_regex {
         while ($var->checkNotOperateur(')')) {
             if (($var->checkClass('constante') ||
                  $var->checkToken(T_ARRAY)) &&
-                $var->getNext()->checkOperateur('&') &&
+                $var->getNext()->checkOperator('&') &&
                 $var->getNext(1)->checkClass('variable')) {
                 
                 if ($var->getNext(2)->checkCode('=') &&
@@ -87,7 +87,7 @@ class function_typehintreference_regex extends analyseur_regex {
             }
             // cas des typehint avec initialisation
             
-            if ($var->checkOperateur('(')) {
+            if ($var->checkOperator('(')) {
                 // On veut pas de collision avec une autre structure
                 return false; 
             }

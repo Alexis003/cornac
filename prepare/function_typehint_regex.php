@@ -36,7 +36,7 @@ class function_typehint_regex extends analyseur_regex {
                  $var->checkToken(array(T_ARRAY,T_STRING))) &&
                 $var->getNext()->checkClass('variable')) {
                 
-                if ($var->getNext(1)->checkOperateur('=') &&
+                if ($var->getNext(1)->checkOperator('=') &&
                     $var->getNext(2)->checkNotClass('Token')) {
                         $regex = new modele_regex('affectation',array(0, 1, 2), array(1, 2));
                         Token::applyRegex($var->getNext(), 'affectation', $regex);
@@ -84,7 +84,7 @@ class function_typehint_regex extends analyseur_regex {
             }
 
             // @note typehint with initialisation
-            if ($var->checkOperateur('(')) {
+            if ($var->checkOperator('(')) {
                 // @note avoiding collision with other structures
                 return false; 
             }
