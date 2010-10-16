@@ -379,28 +379,7 @@ class Token {
     public function checkNotToken($token) {
         return !$this->checkToken($token);
     }
-
-    static function check_token($token, $code) {
-        if (!is_array($code)) {
-            $code = array($code);
-        }
-        return in_array($token->getToken(), $code);
-    }
     
-    static function check_class($token, $classes) {
-        if (!is_object($token)) {
-            return false;
-        }
-        if (!is_array($classes)) {
-            $classes = array($classes);
-        }
-        if (in_array(get_class($token), $classes)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     public function checkClass($classes) {
         if (!is_array($classes)) {
             return get_class($this) == $classes;
