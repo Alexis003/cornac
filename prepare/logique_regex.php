@@ -32,7 +32,7 @@ class logique_regex extends analyseur_regex {
 
         if ($t->checkNotToken(array(T_LOGICAL_OR, T_LOGICAL_AND, T_LOGICAL_XOR, 
                                     T_BOOLEAN_OR, T_BOOLEAN_AND )) &&
-            $t->checkNotCode(array('&','|','^'))) { return false;}
+            $t->checkNotOperateur(array('&','|','^'))) { return false;}
             
         if ($t->checkClass('literals')) { return false; }
         if ($t->getPrev()->checkClass(array( 'arglist','sequence','block'))) { return false;}
