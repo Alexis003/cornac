@@ -52,9 +52,10 @@ function array_explode_keyval($array, $join = ' => ') {
     return $r;
 }
 
-
+// @todo remove this. This is a double defintition
 function liste_directories_recursive( $path = '.', $level = 0 ){ 
     global $OPTIONS;
+
     $ignore_dirs = array_merge(array( 'cgi-bin', '.', '..' ), $OPTIONS['ignore_dirs']); 
 
     $dh = opendir( $path ); 
@@ -65,7 +66,7 @@ function liste_directories_recursive( $path = '.', $level = 0 ){
 
         if( is_dir( "$path/$file" ) ){ 
             if( in_array( $file, $ignore_dirs )){ continue; }
-            $r = Liste_directories_recursive( "$path/$file", ($level+1) ); 
+            $r = liste_directories_recursive( "$path/$file", ($level+1) ); 
             $retour = array_merge($retour, $r);
         } else { 
             $details = pathinfo($file);
