@@ -30,7 +30,7 @@ class logique extends instruction {
             $this->operateur = $this->make_token_traite($expression[1]);
             $this->gauche = $expression[2];
         } else {
-            $this->stop_on_error("Must receive an array as argument : ".count($expression)." received\n");
+            $this->stopOnError("Must receive an array as argument : ".count($expression)." received\n");
         }
     }
 

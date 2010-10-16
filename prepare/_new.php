@@ -51,7 +51,7 @@ class _new extends instruction {
                 $this->args = $expression[1];
             }
         } else {
-            $this->stop_on_error("Unexpected class received : '".get_class($constructeur)."' in ".__METHOD__);
+            $this->stopOnError("Unexpected class received : '".get_class($constructeur)."' in ".__METHOD__);
         }
     }
 

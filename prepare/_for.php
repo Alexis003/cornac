@@ -46,7 +46,7 @@ class _for extends instruction {
                 $this->fin = $x[0];
                 // @for_translation puis on continue comme d'hab, increment est dans expression[2];
             } else {
-                $this->stop_on_error("Wrong number of elements  : '".count($x)."' in ".__METHOD__);
+                $this->stopOnError("Wrong number of elements  : '".count($x)."' in ".__METHOD__);
             }
         } elseif ($expression[1]->getCode() == ';') {
             $this->fin = null;

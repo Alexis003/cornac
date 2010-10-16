@@ -25,7 +25,7 @@ class typehint extends token {
         parent::__construct(array());
         
         if (count($expression) != 2) { 
-            $this->stop_on_error("Number of argument is wrong");
+            $this->stopOnError("Number of argument is wrong");
         }
         
         $this->type = $this->make_token_traite($expression[0]);

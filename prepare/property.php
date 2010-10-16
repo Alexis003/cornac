@@ -36,7 +36,7 @@ class property extends token {
             
             $this->property = $expression[1];
         } else {
-            $this->stop_on_error("Bad number of parameters in ".__METHOD__);
+            $this->stopOnError("Bad number of parameters in ".__METHOD__);
         }
     }
 

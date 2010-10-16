@@ -324,14 +324,10 @@ class Token {
         
         return $return;
     }
-
-    static public function factory_get_args() {
-        // 
-        return array();
-    }
     
+    // @note must be redefined by each class. 
     function neutralise() {
-        
+        print get_class($this)." didn't overload ".__METHOD__."\n";
     }
 
     function affiche($d = 0 , $f = 0) {
@@ -583,7 +579,7 @@ class Token {
         return $return;
     }
     
-    function stop_on_error($message) {
+    function stopOnError($message) {
         $bt = debug_backtrace();
         print "Message : $message\n";
         print_r($bt[0]);

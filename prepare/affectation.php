@@ -40,7 +40,7 @@ class affectation extends instruction {
             }
 
             if (count($expression) != 3) {
-                $this->stop_on_error("Affectation with unexpected number of valudes : ".count($expression)." received\n");
+                $this->stopOnError("Affectation with unexpected number of valudes : ".count($expression)." received\n");
             }
 
             $this->droite = $expression[0];
@@ -49,7 +49,7 @@ class affectation extends instruction {
             $this->gauche = $expression[2];
             $this->setLine($this->droite->getLine());
         } else {
-            $this->stop_on_error("Affectation received strange number of values : ".count($expression)." received\n");
+            $this->stopOnError("Affectation received strange number of values : ".count($expression)." received\n");
         }
     }
 

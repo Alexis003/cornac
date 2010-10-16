@@ -45,7 +45,7 @@ class cdtternaire extends instruction {
             $this->vraie     = $expression[1];
             $this->faux      = $expression[2];
         } else {
-            $this->stop_on_error("Wrong number of arguments  : '".count($expression)."' in ".__METHOD__);
+            $this->stopOnError("Wrong number of arguments  : '".count($expression)."' in ".__METHOD__);
         }
     }
 

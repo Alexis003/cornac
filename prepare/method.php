@@ -28,7 +28,7 @@ class method extends instruction {
             $this->object = $in[0];
             $this->method = $in[1];
         } else {
-            $this->stop_on_error( 'Wrong type of argument');
+            $this->stopOnError( 'Wrong type of argument');
         }
     }
 

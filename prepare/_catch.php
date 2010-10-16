@@ -30,7 +30,7 @@ class _catch extends instruction {
             $this->exception = $this->make_token_traite($expression[0]);
             $this->variable  = $expression[1];
         } else {
-            $this->stop_on_error("Unexpected number of arguments received : (".count($expression)." instead of 3) in ".__METHOD__);
+            $this->stopOnError("Unexpected number of arguments received : (".count($expression)." instead of 3) in ".__METHOD__);
         }
     }
 

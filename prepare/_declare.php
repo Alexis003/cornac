@@ -35,20 +35,20 @@ class _declare extends instruction {
             // @doc we expect no initialisation 
             if (!$this->set(strtolower($expression[0]->getContenu()->getVariable()->getCode()), 
                             $expression[0]->getContenu()->getValeur())) {
-                $this->stop_on_error($expression[0]->getContenu()->getVariable()." is unknown in ".__METHOD__."\n");
+                $this->stopOnError($expression[0]->getContenu()->getVariable()." is unknown in ".__METHOD__."\n");
             }
         } elseif ($expression[0]->checkClass('arginit')) {
             // @doc we expect an initialisation 
             if (!$this->set(strtolower($expression[0]->getVariable()->getCode()), 
                             $expression[0]->getValeur())) {
-                $this->stop_on_error($expression[0]->getVariable()." is unknown in ".__METHOD__."\n");
+                $this->stopOnError($expression[0]->getVariable()." is unknown in ".__METHOD__."\n");
             }
             if (!$this->set(strtolower($expression[1]->getVariable()->getCode()), 
                             $expression[1]->getValeur())) {
-                stop_on_error($expression[1]->getVariable()." is unknown in ".__METHOD__."\n");
+                stopOnError($expression[1]->getVariable()." is unknown in ".__METHOD__."\n");
             }
         } else {
-            $this->stop_on_error("Entree is of unexpected class ".get_class($expression[0])." in ".__METHOD__."\n");
+            $this->stopOnError("Entree is of unexpected class ".get_class($expression[0])." in ".__METHOD__."\n");
         }
     }
     

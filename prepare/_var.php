@@ -32,7 +32,7 @@ class _var extends instruction {
             } elseif ($expression[0]->checkToken(array(T_STATIC))) {
                 $this->_static = $this->make_token_traite($expression[0]);
             } else {
-                $this->stop_on_error("Unknown class attribute : ".count($expression)." in ".__METHOD__);
+                $this->stopOnError("Unknown class attribute : ".count($expression)." in ".__METHOD__);
             }
 
             unset($expression[0]);
@@ -50,7 +50,7 @@ class _var extends instruction {
                 $this->variable[] = $e->getVariable();
                 $this->init[] = $e->getValeur();        
             } else {
-                $this->stop_on_error(" Unexpected class for ".__CLASS__." : ".get_class($e)." $e $id in ".__METHOD__);
+                $this->stopOnError(" Unexpected class for ".__CLASS__." : ".get_class($e)." $e $id in ".__METHOD__);
             }
         }
     }

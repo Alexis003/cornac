@@ -30,7 +30,7 @@ class operation extends instruction {
             $this->operation = $this->make_token_traite($expression[1]);
             $this->gauche = $expression[2];
         } else {
-            $this->stop_on_error("We shouldn't reach here");
+            $this->stopOnError("We shouldn't reach here");
         }
     }
 

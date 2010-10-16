@@ -28,7 +28,7 @@ class tableau extends variable {
             $this->variable = $variable[0];
             $this->index = $variable[1];
         } else {
-            $this->stop_on_error('No way we end up here : '.__METHOD__);
+            $this->stopOnError('No way we end up here : '.__METHOD__);
         }
     }
         

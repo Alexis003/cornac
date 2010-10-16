@@ -28,7 +28,7 @@ class constante_classe extends token {
             $this->name = $expression[0];
             $this->constante = $expression[1];
         } else {
-            $this->stop_on_error("Wrong number of arguments  : '".count($expression)."' in ".__METHOD__);
+            $this->stopOnError("Wrong number of arguments  : '".count($expression)."' in ".__METHOD__);
         }
     }
 

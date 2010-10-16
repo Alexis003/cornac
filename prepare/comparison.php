@@ -30,7 +30,7 @@ class comparison extends instruction {
             $this->operateur = $this->make_token_traite($expression[1]);
             $this->gauche = $expression[2];
         } else {
-            $this->stop_on_error("Wrong number of arguments  : '".count($expression)."' in ".__METHOD__);
+            $this->stopOnError("Wrong number of arguments  : '".count($expression)."' in ".__METHOD__);
         }
     }
 

@@ -28,7 +28,7 @@ class codephp extends instruction {
         } else {
             $this->php_code =  $expression[0];
             if (count($expression) > 1) {
-                $this->stop_on_error("We lost some elements in ".__METHOD__);
+                $this->stopOnError("We lost some elements in ".__METHOD__);
             }
         }
     }

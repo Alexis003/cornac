@@ -39,7 +39,7 @@ class _case extends instruction {
                 $this->block     = new block();
             }
         } else {
-            $this->stop_on_error("Unexpected TOKEN received : '".$expression[0]->getToken()."' in ".__METHOD__);
+            $this->stopOnError("Unexpected TOKEN received : '".$expression[0]->getToken()."' in ".__METHOD__);
         }
     }
 

@@ -55,7 +55,7 @@ class _function extends instruction {
                 continue;
             }
             
-            $this->stop_on_error("On ne devrait pas arriver ici : ".__CLASS__);
+            $this->stopOnError("On ne devrait pas arriver ici : ".__CLASS__);
         }
 
         if (count($expression) == 3) {
@@ -68,7 +68,7 @@ class _function extends instruction {
             $this->args = $expression[2];
             $this->block = $expression[3];
         } else {
-            $this->stop_on_error("Wrong number of arguments  : '".count($expression)."' in ".__METHOD__);
+            $this->stopOnError("Wrong number of arguments  : '".count($expression)."' in ".__METHOD__);
         }
         
         if ($this->block->getCode() == ';') {

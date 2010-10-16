@@ -28,7 +28,7 @@ class method_static extends instruction {
             $this->class = $this->make_token_traite($expression[0]);
             $this->method = $expression[1];
         } else {
-            $this->stop_on_error('Bad call of '.__METHOD__." ".join(', ',func_get_args()));
+            $this->stopOnError('Bad call of '.__METHOD__." ".join(', ',func_get_args()));
         }
     }
 
