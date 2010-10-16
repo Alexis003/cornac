@@ -174,8 +174,11 @@ function getTemplate($racine, $file, $gabarit = null) {
     }
     return $retour;
 }
-
 function liste_directories_recursive( $path = '.', $level = 0 ){ 
+    return liste_directory($path, $level, true);
+}
+
+function liste_directories( $path = '.', $level = 0, $recursive = false ){ 
     global $INI;
 
     $ignore_dirs = array( 'cgi-bin', '.', '..',
@@ -186,9 +189,8 @@ function liste_directories_recursive( $path = '.', $level = 0 ){
     } else {
         // @emptyelse
     }
-    
+
     if (isset($INI['tokenizeur']['ignore_suffixe']) && !empty($INI['tokenizeur']['ignore_suffixe'])) {
-        print preg_quote($INI['tokenizeur']['ignore_suffixe'])."\n";
         $regex_suffixe = str_replace(',','|',  preg_quote($INI['tokenizeur']['ignore_suffixe']));
         $regex_suffixe = '/('.$regex_suffixe.')$/';
     } else {
@@ -207,12 +209,17 @@ function liste_directories_recursive( $path = '.', $level = 0 ){
     $retour = array();
 
     $dh = opendir( $path ); 
-    if (!$dh) {  print "$path\n"; return $retour; }
+    if (!$dh) {  
+        print "Couldn't open $path.\n"; 
+        return $retour; 
+    }
     while( false !== ( $file = readdir( $dh ) ) ){ 
         if( in_array( $file, $ignore_dirs ) ){ continue; }
         if( is_dir( "$path/$file" ) ){ 
-            $r = liste_directories_recursive( "$path/$file", ($level+1) ); 
-            $retour = array_merge($retour, $r);
+            if ($recursive) {
+                $r = liste_directories( "$path/$file", ($level+1), $recursive ); 
+                $retour = array_merge($retour, $r);
+            } // @emptyelse ignore 
         } else { 
             // @doc remove matching suffixe (aka, extensions)
             if ($regex_suffixe && preg_match($regex_suffixe, $file)) { continue; }
