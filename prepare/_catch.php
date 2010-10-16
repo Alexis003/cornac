@@ -27,7 +27,7 @@ class _catch extends instruction {
         
         $this->block = array_pop($expression);
         if (count($expression) == 2) {
-            $this->exception = $this->make_token_traite($expression[0]);
+            $this->exception = $this->makeToken_traite($expression[0]);
             $this->variable  = $expression[1];
         } else {
             $this->stopOnError("Unexpected number of arguments received : (".count($expression)." instead of 3) in ".__METHOD__);

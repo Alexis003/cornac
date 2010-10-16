@@ -28,7 +28,7 @@ class typehint extends token {
             $this->stopOnError("Number of argument is wrong");
         }
         
-        $this->type = $this->make_token_traite($expression[0]);
+        $this->type = $this->makeToken_traite($expression[0]);
         $this->name = $expression[1];
     }
 

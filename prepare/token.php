@@ -273,7 +273,7 @@ class Token {
         return $t;
     }
     
-    function make_token_traite($entree) {
+    function makeToken_traite($entree) {
         $clone = clone $entree;
                 
         $return = new token_traite($clone);

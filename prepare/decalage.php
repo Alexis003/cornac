@@ -26,7 +26,7 @@ class decalage extends instruction {
         parent::__construct(array());
 
         $this->gauche = $expression[0];
-        $this->operateur = $this->make_token_traite($expression[1]);
+        $this->operateur = $this->makeToken_traite($expression[1]);
         $this->droite = $expression[2];
     }
 

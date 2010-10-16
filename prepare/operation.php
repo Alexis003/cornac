@@ -27,7 +27,7 @@ class operation extends instruction {
         
         if (count($expression) == 3) {
             $this->droite = $expression[0];
-            $this->operation = $this->make_token_traite($expression[1]);
+            $this->operation = $this->makeToken_traite($expression[1]);
             $this->gauche = $expression[2];
         } else {
             $this->stopOnError("We shouldn't reach here");

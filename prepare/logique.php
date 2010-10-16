@@ -27,7 +27,7 @@ class logique extends instruction {
         
         if (is_array($expression)) {
             $this->droite = $expression[0];
-            $this->operateur = $this->make_token_traite($expression[1]);
+            $this->operateur = $this->makeToken_traite($expression[1]);
             $this->gauche = $expression[2];
         } else {
             $this->stopOnError("Must receive an array as argument : ".count($expression)." received\n");

@@ -30,7 +30,7 @@ class _class extends instruction {
 
         $pos = 0;
         if ($expression[$pos]->checkToken(array(T_ABSTRACT, T_FINAL))) {
-            $this->_abstract = $this->make_token_traite($expression[$pos]);
+            $this->_abstract = $this->makeToken_traite($expression[$pos]);
             $pos += 1;
         }
 

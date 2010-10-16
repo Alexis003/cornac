@@ -30,9 +30,9 @@ class affectation extends instruction {
         if (is_array($expression)) {
             while ($expression[0]->checkToken(array(T_PUBLIC, T_PRIVATE, T_PROTECTED, T_STATIC))) {
                 if ($expression[0]->checkToken(array(T_PUBLIC, T_PRIVATE, T_PROTECTED))) {
-                    $this->_visibility = $this->make_token_traite($expression[0]);
+                    $this->_visibility = $this->makeToken_traite($expression[0]);
                 } elseif ($expression[0]->checkToken(array(T_STATIC))) {
-                    $this->_static = $this->make_token_traite($expression[0]);
+                    $this->_static = $this->makeToken_traite($expression[0]);
                 }
 
                 unset($expression[0]);
@@ -45,7 +45,7 @@ class affectation extends instruction {
 
             $this->droite = $expression[0];
             $expression[1]->setLine($expression[0]->getLine());
-            $this->operateur = $this->make_token_traite($expression[1]);
+            $this->operateur = $this->makeToken_traite($expression[1]);
             $this->gauche = $expression[2];
             $this->setLine($this->droite->getLine());
         } else {

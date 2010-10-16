@@ -33,14 +33,14 @@ class _function extends instruction {
         while($expression[0]->checkToken(array(T_PUBLIC, T_PROTECTED, T_PRIVATE, T_STATIC, T_ABSTRACT, T_FINAL))) {
 
             if ($expression[0]->checkToken(array(T_PUBLIC, T_PROTECTED, T_PRIVATE))) {
-                $this->_visibility = $this->make_token_traite($expression[0]);
+                $this->_visibility = $this->makeToken_traite($expression[0]);
                 unset($expression[0]);
                 $expression = array_values($expression);
                 continue;
             }
 
             if ($expression[0]->checkToken(array(T_STATIC))) {
-                $this->_static = $this->make_token_traite($expression[0]);
+                $this->_static = $this->makeToken_traite($expression[0]);
 
                 unset($expression[0]);
                 $expression = array_values($expression);
@@ -48,7 +48,7 @@ class _function extends instruction {
             }
 
             if ($expression[0]->checkToken(array(T_ABSTRACT, T_FINAL))) {
-                $this->_abstract = $this->make_token_traite($expression[0]);
+                $this->_abstract = $this->makeToken_traite($expression[0]);
 
                 unset($expression[0]);
                 $expression = array_values($expression);

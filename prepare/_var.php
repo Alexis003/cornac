@@ -28,9 +28,9 @@ class _var extends instruction {
 
         while ($expression[0]->checkToken(array(T_VAR, T_PRIVATE, T_PROTECTED, T_PUBLIC, T_STATIC))) {
             if ($expression[0]->checkToken(array(T_VAR, T_PRIVATE, T_PROTECTED, T_PUBLIC))) {
-                $this->_visibility = $this->make_token_traite($expression[0]);
+                $this->_visibility = $this->makeToken_traite($expression[0]);
             } elseif ($expression[0]->checkToken(array(T_STATIC))) {
-                $this->_static = $this->make_token_traite($expression[0]);
+                $this->_static = $this->makeToken_traite($expression[0]);
             } else {
                 $this->stopOnError("Unknown class attribute : ".count($expression)." in ".__METHOD__);
             }

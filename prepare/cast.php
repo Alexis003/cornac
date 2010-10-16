@@ -24,7 +24,7 @@ class cast extends instruction {
     function __construct($expression) {
         parent::__construct(array());
 
-        $this->cast = $this->make_token_traite($expression[0]);
+        $this->cast = $this->makeToken_traite($expression[0]);
         $this->expression = $expression[1];
     }
 

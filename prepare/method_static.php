@@ -25,7 +25,7 @@ class method_static extends instruction {
         parent::__construct(array());
         
         if (is_array($expression)) {
-            $this->class = $this->make_token_traite($expression[0]);
+            $this->class = $this->makeToken_traite($expression[0]);
             $this->method = $expression[1];
         } else {
             $this->stopOnError('Bad call of '.__METHOD__." ".join(', ',func_get_args()));

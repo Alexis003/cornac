@@ -27,7 +27,7 @@ class comparison extends instruction {
         
         if (is_array($expression) && count($expression) == 3) {
             $this->droite = $expression[0];
-            $this->operateur = $this->make_token_traite($expression[1]);
+            $this->operateur = $this->makeToken_traite($expression[1]);
             $this->gauche = $expression[2];
         } else {
             $this->stopOnError("Wrong number of arguments  : '".count($expression)."' in ".__METHOD__);

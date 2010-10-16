@@ -25,7 +25,7 @@ class property_static extends token {
         parent::__construct();
         
         if (is_array($expression)) {
-            $this->class = $this->make_token_traite($expression[0]);
+            $this->class = $this->makeToken_traite($expression[0]);
             $this->property = $expression[1];
         } else {
             $this->stopOnError("Wrong number of arguments  : '".count($expression)."' in ".__METHOD__);
