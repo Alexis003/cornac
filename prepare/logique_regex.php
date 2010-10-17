@@ -41,11 +41,10 @@ class logique_regex extends analyseur_regex {
 
         if ($t->getNext()->checkClass(array('Token', 'arglist','sequence','block'))) { return false;}
 
-        if ((!$t->hasPrev(2) || ($t->getPrev(1)->checkBeginInstruction()) || 
-                                 $t->getPrev(1)->checkCode(')') ) &&
-            (!$t->hasNext(2) || ($t->getNext(1)->checkNotCode(array('[','->','{','(','::')) && !$t->getNext(1)->checkForAssignation())) && 
+        if (($t->hasPrev(2) && (((!$t->getPrev(1)->checkBeginInstruction()) && 
+                                 $t->getPrev(1)->checkNotCode(')') ))) ) {  return false; }
+        if ((!$t->hasNext(2) || ($t->getNext(1)->checkNotCode(array('[','->','{','(','::')) && !$t->getNext(1)->checkForAssignation())) && 
             (!$t->hasNext(2) || $t->getNext(1)->checkNotClass(array('parentheses')))
-
             ) {
             
             $this->args   = array(-1, 0, 1);
