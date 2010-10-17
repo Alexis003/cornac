@@ -40,7 +40,7 @@ class sign_regex extends analyseur_regex {
                                              'cdtternaire', )) ) { return false ;}
 
         if (!$t->getPrev()->checkBeginInstruction() &&
-             $t->getPrev()->checkNotCode(array('~','@','!'))) { return false; }
+             $t->getPrev()->checkNotOperator(array('~','@','!','-','+'))) { return false; }
              
         if ( $t->getPrev()->checkClass(array('variable','operation','property','property_static'))) { return false; }
         
