@@ -1,6 +1,4 @@
 tests/tokenizeur/scripts/sign.22.test.php
- "-"
-sign_regex::check
   codephp <?php
 
   code : 
