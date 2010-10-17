@@ -1,0 +1,13 @@
+tests/tokenizeur/scripts/sign.22.test.php
+ "-"
+sign_regex::check
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable $x
+       "=" 
+      gauche : 
+          parentheses 
+          ( "operation functioncall 307 "intval" ( arglist(constante y) )   "+" sign  "-"literals 1" )
