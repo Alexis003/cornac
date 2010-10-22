@@ -29,14 +29,17 @@ class sequence_class_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasNext() ) { return false; }
 
-        if (!$t->checkForBlock(true) && $t->checkNotClass(array('codephp'))) { return false; } 
+        if (!$t->checkForBlock(true) && 
+             $t->checkNotClass(array('codephp'))) { return false; } 
+
         if (!$t->getNext()->checkForBlock(true) && 
             !$t->getNext()->checkForVariable() &&
-            $t->getNext()->checkNotClass(array('parentheses')) ) { return false; } 
+             $t->getNext()->checkNotClass(array('parentheses','_new')) ) { return false; } 
+
         if ( (!$t->hasNext(1) || 
-               ($t->getNext(1)->checkNotCode(array('or','and','xor','->','[','::',')','.','^','&','|','||','&&','++','--','+','-','/','*','%')) &&
+               ( $t->getNext(1)->checkNotCode(array('or','and','xor','->','[','::',')','.','^','&','|','||','&&','++','--','+','-','/','*','%')) &&
                 !$t->getNext(1)->checkForAssignation()) &&
-                $t->getNext(1)->checkNotClass('arglist'))
+                 $t->getNext(1)->checkNotClass('arglist'))
                ) { 
 
             if ($t->hasNext(1) && $t->getNext(1)->checkCode(array('=','->',',','('))) { return false; }
