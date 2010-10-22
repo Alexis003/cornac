@@ -32,9 +32,10 @@ class function_typehint_regex extends analyseur_regex {
         $var = $t->getNext(2);
         
         while ($var->checkNotOperator(')')) {
+            if (!$var->hasNext()) { return false; }
             if (($var->checkClass('constante') ||
                  $var->checkToken(array(T_ARRAY,T_STRING))) &&
-                $var->getNext()->checkClass('variable')) {
+                 $var->getNext()->checkClass('variable')) {
                 
                 if ($var->getNext(1)->checkOperator('=') &&
                     $var->getNext(2)->checkNotClass('Token')) {
