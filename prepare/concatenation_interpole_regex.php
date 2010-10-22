@@ -90,6 +90,8 @@ class concatenation_interpole_regex extends analyseur_regex {
 
             $pos += 1;
             $var = $var->getNext();
+            
+            if (is_null($var)) { return false; }
         }
 
         $this->remove[]  = $pos; // @note final "
