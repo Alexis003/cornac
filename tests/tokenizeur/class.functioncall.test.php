@@ -3,7 +3,7 @@ include_once('Analyseur_Framework_TestCase.php');
 
 class Functioncall_Test extends Analyseur_Framework_TestCase
 {
-    /* 49 methodes */
+    /* 50 methodes */
     public function testFunctioncall1()  { $this->generic_test('functioncall.1'); }
     public function testFunctioncall2()  { $this->generic_test('functioncall.2'); }
     public function testFunctioncall3()  { $this->generic_test('functioncall.3'); }
@@ -53,6 +53,7 @@ class Functioncall_Test extends Analyseur_Framework_TestCase
     public function testFunctioncall47()  { $this->generic_test('functioncall.47'); }
     public function testFunctioncall48()  { $this->generic_test('functioncall.48'); }
     public function testFunctioncall49()  { $this->generic_test('functioncall.49'); }
+    public function testFunctioncall50()  { $this->generic_test('functioncall.50'); }
 
 }
 
