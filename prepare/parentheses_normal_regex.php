@@ -42,8 +42,11 @@ class parentheses_normal_regex extends analyseur_regex {
             } else {
                 return false; 
             }
-        }
-
+        } elseif ($t->getPrev()->checkClass(array('property','tableau'))) {
+            // @note this may be a $obj->$array[1]() call
+            return false; 
+        } // @empty_elseif
+        
         $this->args = array(1);
         $this->remove = array(1, 2);
 
