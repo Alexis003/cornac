@@ -30,7 +30,8 @@ class sequence_suite_regex extends analyseur_regex {
         if (!$t->hasNext() ) { return false; }
 
         if ($t->checkNotClass('sequence')) { return false; }
-        if ($t->getNext()->checkForBlock(true) || $t->getNext()->checkClass(array('parentheses','codephp'))) { 
+        if ($t->getNext()->checkForBlock(true) || 
+            $t->getNext()->checkClass(array('parentheses','codephp'))) { 
 
             $var = $t->getNext(1); 
             $this->args   = array( 0, 1 );
