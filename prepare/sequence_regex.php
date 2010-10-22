@@ -91,8 +91,8 @@ class sequence_regex extends analyseur_regex {
                         return false;
                    }
             }
-            
-            if ($var && (
+
+            if (!is_null($var) && (
                 $var->checkCode(array(',','->','[','(',',')) ||
                 $var->checkForLogical() ||
                 $var->checkForAssignation() ||
