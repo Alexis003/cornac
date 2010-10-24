@@ -38,7 +38,7 @@ class functioncall_shorttag_regex extends analyseur_regex {
         $delete = array( 1);
         
         if ($t->getNext(2)->checkCode(';')) {
-            // args : non
+            // @note forgotten final ;
             $delete[] = 2;
         }
         
@@ -46,6 +46,7 @@ class functioncall_shorttag_regex extends analyseur_regex {
         Token::applyRegex($t->getNext(), 'functioncall', $regex);
 
         mon_log(get_class($t)." => echo block (from <?= ) (".__CLASS__.")");
+        return true;
     }
 }
 ?>
