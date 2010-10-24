@@ -43,7 +43,7 @@ class typehint_regex extends analyseur_regex {
         if ($t->getNext()->checkOperator(array('&')) &&
             $t->getNext(1)->checkClass('variable')) {
             
-            if ($t->checkClass('constante')) {
+            if ($t->checkClass(array('constante','functioncall'))) {
                 return false;
             }
             
