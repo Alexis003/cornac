@@ -30,10 +30,6 @@ class logique_regex extends analyseur_regex {
         if (!$t->hasPrev() ) { return false; }
         if (!$t->hasNext() ) { return false; }
 
-        if ($t->checkNotToken(array(T_LOGICAL_OR, T_LOGICAL_AND, T_LOGICAL_XOR, 
-                                    T_BOOLEAN_OR, T_BOOLEAN_AND )) &&
-            $t->checkNotOperator(array('&','|','^'))) { return false;}
-            
         if ($t->checkClass('literals')) { return false; }
         if ($t->getPrev()->checkClass(array( 'arglist','sequence','block'))) { return false;}
         if ($t->getPrev()->checkCode(array( ')',','))) { return false;}
@@ -43,8 +39,10 @@ class logique_regex extends analyseur_regex {
 
         if (($t->hasPrev(2) && (((!$t->getPrev(1)->checkBeginInstruction()) && 
                                  $t->getPrev(1)->checkNotCode(')') ))) ) {  return false; }
-        if ((!$t->hasNext(2) || ($t->getNext(1)->checkNotCode(array('[','->','{','(','::')) && !$t->getNext(1)->checkForAssignation())) && 
-            (!$t->hasNext(2) || $t->getNext(1)->checkNotClass(array('parentheses')))
+        if ($t->hasNext(2) && $t->getNext(1)->checkClass(array('parentheses'))) { return false; }
+        if ((!$t->hasNext(2) || 
+            ( $t->getNext(1)->checkNotCode(array('[','->','{','(','::')) && 
+             !$t->getNext(1)->checkForAssignation()))
             ) {
             
             $this->args   = array(-1, 0, 1);
