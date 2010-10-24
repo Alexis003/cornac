@@ -33,7 +33,7 @@ class noscream_normal_regex extends analyseur_regex {
         if ($t->checkClass('literals')) { return false; }
         if ($t->getNext()->checkClass(array('functioncall','variable','tableau','method',
                                             'property','_new','comparison',
-                                            'parentheses','inclusion','not',
+                                            'parentheses','inclusion','not', 'shell',
                                             'method_static','property_static','postplusplus',
                                             'preplusplus','literals','sign','cast',
                                             'invert','_clone','constante','opappend',
