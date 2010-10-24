@@ -129,9 +129,7 @@ class analyseur {
                 mon_log(get_class($t)." => ".get_class($return));
                 return $return; 
             }
-        } else {
-            // @empty_else
-        }
+        } // @empty_else
         
         $code = $t->getCode();
         if (isset($this->regex[$code])) {
@@ -153,9 +151,7 @@ class analyseur {
                 mon_log(get_class($t)." => ".get_class($return));
                 return $return; 
             }
-        } else {
-            // @empty_else
-        }
+        }   // @empty_else
         
         foreach($this->regex[0] as $name => $regex) {
             if (!$regex->check($t)) {
@@ -192,9 +188,7 @@ class analyseur {
                 $token->removeNext($arg - 1);
             } elseif ($arg < 0) {
                 $token->removePrev($arg + 1);
-            } else {
-                // @empty_else
-            }
+            }   // @empty_else
         }
 
         $return->replace($token);
