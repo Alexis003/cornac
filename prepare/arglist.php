@@ -67,7 +67,7 @@ class arglist extends token {
     
    function getRegex() {
         return array(
-    'arglist_regex',
+                     'arglist_regex',
                     );
     }
 }
