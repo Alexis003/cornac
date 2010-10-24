@@ -29,42 +29,41 @@ class functioncall_echosansparentheses_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasNext(1) ) { return false; }
         
-        if ($t->checkToken(array(T_ECHO)) && 
-            $t->getNext()->checkNotOperator('('))
-        {
-            $var = $t->getNext(); 
-            $args   = array();
-            $remove = array();
+        if ($t->getNext()->checkOperator('(')) { return false; }
+
+        $var = $t->getNext(); 
+        $args   = array();
+        $remove = array();
+    
+        $pos = 0;
+    
+        while ($var->checkNotClass('Token') && 
+               $var->checkNotCode(array(';',',')) &&
+               $var->getNext()->checkCode(',')) {
+
+            $args[]    = $pos;
+
+            $remove[]  = $pos;
+            $remove[]  = $pos + 1;
         
-            $pos = 0;
+            $pos += 2;
+            if (is_null($var)) { return false; }
+            $var = $var->getNext(1);
+            if (is_null($var)) { return false; }
+        }
         
-            while ($var->checkNotClass('Token') && $var->checkNotCode(array(';',',')) &&
-                   $var->getNext()->checkCode(',')) {
+        if ($var->checkNotClass(array('Token','arglist')) && 
+            $var->getNext()->checkEndInstruction() &&
+            $var->getNext()->checkNotClass('parentheses')
+            ) {
+            $args[]    = $pos;
+            $remove[]  = $pos;
 
-                $args[]    = $pos;
+            $regex = new modele_regex('arglist',$args, $remove);
+            Token::applyRegex($t->getNext(), 'arglist', $regex);
 
-                $remove[]  = $pos;
-                $remove[]  = $pos + 1;
-            
-                $pos += 2;
-                $var = $var->getNext(1);
-            }
-
-            if ($var->checkNotClass(array('Token','arglist')) && 
-                $var->getNext()->checkEndInstruction() &&
-                $var->getNext()->checkNotClass('parentheses')
-                ) {
-                $args[]    = $pos;
-                $remove[]  = $pos;
-
-                $regex = new modele_regex('arglist',$args, $remove);
-                Token::applyRegex($t->getNext(), 'arglist', $regex);
-
-                mon_log(get_class($t)." => arglist (".__CLASS__.")");
-                return false; 
-            } else {
-                return false;
-            }
+            mon_log(get_class($t)." => arglist (".__CLASS__.")");
+            return false; 
         } else {
             return false;
         }
