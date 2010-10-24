@@ -38,7 +38,7 @@ class noscream_normal_regex extends analyseur_regex {
                                             'preplusplus','literals','sign','cast',
                                             'invert','_clone','constante','opappend',
                                             )) &&
-            $t->getNext(1)->checkNotCode(array('->','[','('))
+            $t->getNext(1)->checkNotCode(array('->','[','(','{'))
             ) {
 
             $this->args = array(1);
