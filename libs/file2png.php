@@ -41,6 +41,7 @@ class file2png {
         $this->webcolors['maroon'] = '#800000';
         $this->webcolors['red'] = '#FF0000';
         $this->webcolors['yellow'] = '#FFFF00';
+        $this->webcolors['grey'] = '#C0C0C0';
     }
 
     function setArray($array) {
@@ -54,10 +55,11 @@ class file2png {
         $deep = $this->deep($this->array) ;
 
         $this->img = imagecreatetruecolor($large * $this->scale, $deep * $this->scale);
+        $grey = $this->getcolor('grey');
         $white = $this->getcolor('white');
         $black = $this->getcolor('black');
         $red = $this->getcolor('red');
-        imagefilledrectangle($this->img, 0, 0, $large * $this->scale -1, $deep * $this->scale -1, $white);
+        imagefilledrectangle($this->img, 0, 0, $large * $this->scale -1, $deep * $this->scale -1, $grey);
         imagerectangle($this->img, 0, 0, $large * $this->scale -1, $deep * $this->scale -1, $black);
 
         $img = $this->draw($this->array);
