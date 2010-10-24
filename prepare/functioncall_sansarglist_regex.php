@@ -30,7 +30,7 @@ class functioncall_sansarglist_regex extends analyseur_regex {
         if (!$t->hasNext() ) { return false; }
         
         if ($t->checkToken(array(T_EXIT)) &&
-            $t->getNext()->checkCode(';')
+            $t->getNext()->checkOperator(array(';',':'))
             ) {
                 $this->args = array(0 );
                 $this->remove = array();
