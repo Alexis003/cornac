@@ -35,7 +35,7 @@ class dowhile_block_regex extends analyseur_regex {
              $t->getNext(2)->checkClass('parentheses')
            ) {
 
-            $this->args = array(3, 1 );
+            $this->args = array(1, 3 );
             $this->remove = array(1, 2, 3 );
 
             mon_log(get_class($t)." => ".__CLASS__);
