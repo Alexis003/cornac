@@ -169,9 +169,20 @@ class analyseur {
     function applyRegex($token, $class, $regex) { 
         $args = $regex->getArgs();
         
+        $argNext = 0;
+        $tNext = $token;
         foreach($args as $id => $arg) {
             if ($arg > 0) {
-                $args[$id] = $token->getNext($arg - 1);
+                $args[$id] = $tNext->getNext($arg - $argNext - 1);
+                /*
+                if ($tNext->getNext($arg - $argNext - 1)."" != $token->getNext($arg - 1)."") {
+                    print $arg."\n";
+                    print $tNext->getNext($arg - $argNext - 1)." tNext\n";
+                    print $token->getNext($arg - 1)." token\n";
+                    die();
+                }*/
+                $argNext = $arg;
+                $tNext = $args[$id];
             } elseif ($arg < 0) {
                 $args[$id] = $token->getPrev(abs($arg + 1));
             } else {        
