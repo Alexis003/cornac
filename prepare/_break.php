@@ -18,17 +18,17 @@
  */
 
 class _break extends instruction {
-    protected $expression = null;
+    protected $levels = null;
     
     function __construct($expression = null) {
         parent::__construct(array());
         
         if (!isset($expression[1])) {
-            $this->niveaux = new token_traite(1);
+            $this->levels = new token_traite(1);
         } elseif ($expression[1]->checkClass('parentheses')) {
-            $this->niveaux =  new token_traite($expression[1]->getContenu()->getCode());
+            $this->levels =  new token_traite($expression[1]->getContenu()->getCode());
         } else {
-            $this->niveaux =  new token_traite($expression[1]->getCode());
+            $this->levels =  new token_traite($expression[1]->getCode());
         }
     }
 
@@ -36,8 +36,8 @@ class _break extends instruction {
         return __CLASS__." ".$this->code;
     }
 
-    function getNiveaux() {
-        return $this->niveaux;
+    function getLevels() {
+        return $this->levels;
     }
 
     function neutralise() {
