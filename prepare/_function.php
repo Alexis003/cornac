@@ -55,24 +55,26 @@ class _function extends instruction {
                 continue;
             }
             
-            $this->stopOnError("On ne devrait pas arriver ici : ".__CLASS__);
+            // @note we should raise an error here... 
+            // $this->stopOnError("On ne devrait pas arriver ici : ".__CLASS__);
         }
 
-        if (count($expression) == 3) {
-            $this->name = $expression[0];
-            $this->args = $expression[1];
-            $this->block = $expression[2];
-        } elseif (count($expression) == 4) {
-            $this->reference = $expression[0];
-            $this->name = $expression[1];
-            $this->args = $expression[2];
-            $this->block = $expression[3];
-        } else {
-            $this->stopOnError("Wrong number of arguments  : '".count($expression)."' in ".__METHOD__);
-        }
         
-        if ($this->block->getCode() == ';') {
-            $this->block     = new block();
+        foreach($expression as $e) {
+            if ($e->checkClass('arglist')) {
+                $this->args = $e;
+            } elseif ($e->checkClass('block')) {
+                $this->block = $e;
+            } elseif ($e->checkClass('literals')) {
+                $this->name = $e;
+            } elseif ($e->checkOperator('&')) {
+                $this->reference = $this->makeToken_traite($e);
+            } elseif ($e->checkCode(';')) {
+                $this->block = new block();
+            } else {
+            // @note this is an error. We should log this
+                print $e." (".get_class($e).") Unknown\n";die();
+            }
         }
     }
     
@@ -109,7 +111,10 @@ class _function extends instruction {
     }
 
     function neutralise() {
+    // @note always there
         $this->name->detach();
+        $this->args->detach();
+
         if (!is_null($this->reference)) {   
             $this->reference->detach();
         }
@@ -122,8 +127,10 @@ class _function extends instruction {
         if (!is_null($this->_abstract)) {   
             $this->_abstract->detach();
         }
-        $this->args->detach();
-        $this->block->detach();
+        
+        if (!is_null($this->block)) {   
+            $this->block->detach();
+        }
     }
 
     function getRegex() {
