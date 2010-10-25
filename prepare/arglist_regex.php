@@ -46,7 +46,8 @@ class arglist_regex extends analyseur_regex {
         
         $pos = 1;
         
-        while ($var->checkNotClass('Token') && $var->checkNotOperator(')') &&
+        while ($var->checkNotClass('Token') && 
+               $var->checkNotOperator(')')  &&
                $var->getNext()->checkOperator(',')) {
             $this->args[]    = $pos;
             $this->remove[]  = $pos;
@@ -68,7 +69,8 @@ class arglist_regex extends analyseur_regex {
         } elseif ($var->getNext()->checkOperator(')')) {
             if ($var->checkClass('Token')) { return false; }
             
-            if ($t->getPrev()->checkCode('echo') && $var->getNext(1)->checkCode(array('|','&','^'))) { return false; }
+            if ($t->getPrev()->checkCode('echo') && 
+                $var->getNext(1)->checkCode(array('|','&','^'))) { return false; }
             
             $this->args[]    = $pos ;
 
