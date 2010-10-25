@@ -5,6 +5,5 @@ tests/tokenizeur/scripts/function.17.test.php
       _interface 307 "a"
           block 
           0 : 
-              342 "public"function  "&" literals b
-                  arglist 
-                  Liste d'argument vide
+              342 "public"function literals b ( )
+                  block 

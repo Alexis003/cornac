@@ -7,4 +7,4 @@ tests/tokenizeur/scripts/new.14.test.php
           variable $a
        "=" 
       gauche : 
-           new tableau variable $b[literals d.e] parentheses (variable $f) 
+           new tableau variable $b[literals d.e] arglist(variable $f) 

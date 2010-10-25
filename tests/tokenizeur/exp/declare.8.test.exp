@@ -5,3 +5,11 @@ tests/tokenizeur/scripts/declare.8.test.php
       _declare 
          ticks = literals 2
          encoding = literals ISO-8859-1
+          block 
+          0 : 
+              affectation 
+              droite : 
+                  variable $x
+               "=" 
+              gauche : 
+                  literals 1

@@ -5,14 +5,8 @@ tests/tokenizeur/scripts/classe.31.test.php
       346 "abstract" class 307 "a"
           block 
           0 : 
-              346 "abstract"function  "&" literals b
-                  arglist 
-                  0 : 
-                      variable $d
-                  1 : 
-                       argument et initialisation 
-                          variable $e
-                          constante (                          false )
+              346 "abstract"function literals b arglist(variable $d, arginit variable $e = constante false )
+                  block 
           1 : 
               346 "abstract"function literals d arglist(variable $e, arginit variable $f = functioncall 360 "array" ( ( ) )  )
                   block 
