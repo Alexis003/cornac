@@ -44,9 +44,9 @@ class template_dot extends template {
         }
     }
     
-    function affiche($noeud = null, $niveau = 0) {
-        if ($niveau > 100) {
-            print "Attention : plus de 100 niveau de récursion (annulation)\n"; die();
+    function affiche($noeud = null, $level = 0) {
+        if ($level > 100) {
+            print "Attention : plus de 100 level de récursion (annulation)\n"; die();
         }
         if (is_null($noeud)) {
             $noeud = $this->root;
@@ -60,12 +60,12 @@ class template_dot extends template {
         $method = "affiche_$class";
         
         if (method_exists($this, $method)) {
-            $this->$method($noeud, $niveau + 1);
+            $this->$method($noeud, $level + 1);
         } else {
             print "Affichage ".__CLASS__." de '".$method."'\n";die;
         }
         if (!is_null($noeud->getNext())){
-            $this->affiche($noeud->getNext(), $niveau);
+            $this->affiche($noeud->getNext(), $level);
         }
     }
 ////////////////////////////////////////////////////////////////////////
@@ -100,7 +100,7 @@ class template_dot extends template {
 
     }
     
-    function dot_standard($noeud, $niveau, $methods, $title) {
+    function dot_standard($noeud, $level, $methods, $title) {
         foreach($methods as $id => $m) {
             if (is_null($noeud->$m())) {
                 unset($methods[$id]);
@@ -113,11 +113,11 @@ class template_dot extends template {
 
         foreach($methods as $m) {
             $this->dot_link($noeud->dotId, $noeud->$m()->dotId);
-            $this->affiche($noeud->$m(), $niveau + 1);
+            $this->affiche($noeud->$m(), $level + 1);
         }
     }
     
-    function dot_standard_one($noeud, $niveau, $method) {
+    function dot_standard_one($noeud, $level, $method) {
         $result = $noeud->$method();
         
         if(!is_null($result)) {
@@ -127,18 +127,18 @@ class template_dot extends template {
             }
             $result->dotId = $this->getNextId();
             $this->dot_link($noeud->dotId, $result->dotId);
-            $this->affiche($result, $niveau + 1);
+            $this->affiche($result, $level + 1);
         }
     }
 
 ////////////////////////////////////////////////////////////////////////
 // @section dot function 
 ////////////////////////////////////////////////////////////////////////
-    function affiche_token_traite($noeud, $niveau) {
+    function affiche_token_traite($noeud, $level) {
         $this->dot_label($noeud->dotId, $noeud->getCode() );
     }
 
-    function affiche_affectation($noeud, $niveau) {
+    function affiche_affectation($noeud, $level) {
         $noeud->getDroite()->dotId    = $this->getNextId();
         $noeud->getOperateur()->dotId = $this->getNextId();
         $noeud->getGauche()->dotId    = $this->getNextId();
@@ -148,11 +148,11 @@ class template_dot extends template {
         $this->dot_link($noeud->dotId, $noeud->getDroite()->dotId);
         $this->dot_link($noeud->dotId, $noeud->getGauche()->dotId);
 
-        $this->affiche($noeud->getDroite(), $niveau + 1);
-        $this->affiche($noeud->getGauche(), $niveau + 1);
+        $this->affiche($noeud->getDroite(), $level + 1);
+        $this->affiche($noeud->getGauche(), $level + 1);
     }
 
-    function affiche_arginit($noeud, $niveau) {
+    function affiche_arginit($noeud, $level) {
         $noeud->getVariable()->dotId    = $this->getNextId();
         $noeud->getValeur()->dotId    = $this->getNextId();
 
@@ -161,11 +161,11 @@ class template_dot extends template {
         $this->dot_link($noeud->dotId, $noeud->getVariable()->dotId);
         $this->dot_link($noeud->dotId, $noeud->getValeur()->dotId);
         
-        $this->affiche($noeud->getVariable(), $niveau + 1);
-        $this->affiche($noeud->getValeur(), $niveau + 1);
+        $this->affiche($noeud->getVariable(), $level + 1);
+        $this->affiche($noeud->getValeur(), $level + 1);
     }
 
-    function affiche_arglist($noeud, $niveau) {
+    function affiche_arglist($noeud, $level) {
         $elements = $noeud->getList();
         if (count($elements) == 0) {
             
@@ -180,14 +180,14 @@ die("cas de l'argument null ou inexistant");
                     $e->dotId = $this->getNextId();
                     $this->dot_link($noeud->dotId.":f$id", $e->dotId);
                     $labels[] = $id;
-                    $this->affiche($e, $niveau + 1);
+                    $this->affiche($e, $level + 1);
                 }
             }
             $this->dot_struct($noeud->dotId, $labels, 'arguments');
         }
     }
 
-    function affiche_block($noeud, $niveau) {
+    function affiche_block($noeud, $level) {
         $this->dot_label($noeud->dotId, get_class($noeud) );
 
         $elements = $noeud->getList();
@@ -195,38 +195,38 @@ die("cas de l'argument null ou inexistant");
             $e->dotId = $this->getNextId();
 
             $this->dot_link($noeud->dotId, $e->dotId);
-            $this->affiche($e, $niveau + 1);
+            $this->affiche($e, $level + 1);
         }
     }
 
-    function affiche__break($noeud, $niveau) {
+    function affiche__break($noeud, $level) {
         die(__METHOD__);
     }
 
-    function affiche__case($noeud, $niveau) {
+    function affiche__case($noeud, $level) {
         $methods = array('getComparant','getBlock');
         $titre = 'case';
         
-        $this->dot_standard($noeud, $niveau, $methods, $titre);
+        $this->dot_standard($noeud, $level, $methods, $titre);
     }
 
-    function affiche_cast($noeud, $niveau) {
+    function affiche_cast($noeud, $level) {
         $this->dot_label($noeud->dotId, $noeud->getCast() );
-        $this->dot_standard_one($noeud, $niveau, 'getExpression');
+        $this->dot_standard_one($noeud, $level, 'getExpression');
     }
 
-    function affiche__catch($noeud, $niveau) {
+    function affiche__catch($noeud, $level) {
         $methods = array('getException','getVariable','getBlock');
         $titre = 'catch';
         
-        $this->dot_standard($noeud, $niveau, $methods, $titre);
+        $this->dot_standard($noeud, $level, $methods, $titre);
     }
 
-    function affiche__continue($noeud, $niveau) {
-        $this->dot_standard_one($noeud, $niveau, 'getNiveaux');
+    function affiche__continue($noeud, $level) {
+        $this->dot_standard_one($noeud, $level, 'getLevels');
     }
     
-    function affiche_cdtternaire($noeud, $niveau) {
+    function affiche_cdtternaire($noeud, $level) {
         $elements = array(
             $noeud->getCondition(),
             $noeud->getVraie(),
@@ -238,22 +238,22 @@ die("cas de l'argument null ou inexistant");
             $e->dotId = $this->getNextId();
             $this->dot_link($noeud->dotId.":f$id", $e->dotId);
             $labels[] = $id; 
-            $this->affiche($e, $niveau + 1);            
+            $this->affiche($e, $level + 1);            
         }
 
         $this->dot_struct($noeud->dotId, $labels, 'condition ternaire');
         return; 
 
 
-        print str_repeat('  ', $niveau).get_class($noeud)." ".$noeud->getCode()."\n";
-        print str_repeat('  ', $niveau).$noeud->getCondition();
+        print str_repeat('  ', $level).get_class($noeud)." ".$noeud->getCode()."\n";
+        print str_repeat('  ', $level).$noeud->getCondition();
         print " ? ".$noeud->getVraie()." : ".$noeud->getFaux()."\n";
-        $this->affiche($noeud->getCondition(), $niveau + 1);
-        $this->affiche($noeud->getVraie(), $niveau + 1);
-        $this->affiche($noeud->getFaux(), $niveau + 1);
+        $this->affiche($noeud->getCondition(), $level + 1);
+        $this->affiche($noeud->getVraie(), $level + 1);
+        $this->affiche($noeud->getFaux(), $level + 1);
     }
     
-    function affiche_codephp($noeud, $niveau) {
+    function affiche_codephp($noeud, $level) {
         if (!isset($noeud->dotId)) {
             $noeud->dotId = $this->getNextId();
         }
@@ -262,10 +262,10 @@ die("cas de l'argument null ou inexistant");
         $this->dot_label($noeud->dotId, get_class($noeud) );
         $this->dot_link($noeud->dotId, $noeud->getphp_code()->dotId);
 
-        $this->affiche($noeud->getphp_code(), $niveau + 1);
+        $this->affiche($noeud->getphp_code(), $level + 1);
     }
 
-    function affiche__class($noeud, $niveau) {
+    function affiche__class($noeud, $level) {
         $labels = array();
         $id = 0;
 
@@ -275,14 +275,14 @@ die("cas de l'argument null ou inexistant");
             $this->dot_link($noeud->dotId.":f$id", $abstract->dotId);
             $labels[] = $id; 
             $id++;
-            $this->affiche($abstract, $niveau + 1);            
+            $this->affiche($abstract, $level + 1);            
         }
 
         $noeud->getName()->dotId = $this->getNextId();
         $this->dot_link($noeud->dotId.":f$id", $noeud->getName()->dotId);
         $labels[] = $id; 
         $id++;
-        $this->affiche($noeud->getName(), $niveau + 1);            
+        $this->affiche($noeud->getName(), $level + 1);            
         
         $extends = $noeud->getExtends();
         if (!is_null($extends)) {
@@ -290,7 +290,7 @@ die("cas de l'argument null ou inexistant");
             $this->dot_link($noeud->dotId.":f$id", $extends->dotId);
             $labels[] = $id; 
             $id++;
-            $this->affiche($extends, $niveau + 1);            
+            $this->affiche($extends, $level + 1);            
         }
 
         $implements = $noeud->getImplements();
@@ -300,7 +300,7 @@ die("cas de l'argument null ou inexistant");
                 $this->dot_link($noeud->dotId.":f$id", $implement->dotId);
                 $labels[] = $id; 
                 $id++;
-                $this->affiche($implement, $niveau + 1);            
+                $this->affiche($implement, $level + 1);            
             }
         }
 
@@ -308,27 +308,27 @@ die("cas de l'argument null ou inexistant");
         $this->dot_link($noeud->dotId.":f$id", $noeud->getBlock()->dotId);
         $labels[] = $id; 
         $id++;
-        $this->affiche($noeud->getBlock(), $niveau + 1);            
+        $this->affiche($noeud->getBlock(), $level + 1);            
 
         $this->dot_struct($noeud->dotId, $labels, 'classe');
         return; 
     }
 
-    function affiche__clone($noeud, $niveau) {
+    function affiche__clone($noeud, $level) {
         $methods = array('getExpression');
         $titre = 'clone';
         
-        $this->dot_standard($noeud, $niveau, $methods, $titre);
+        $this->dot_standard($noeud, $level, $methods, $titre);
     }
 
-    function affiche_clevaleur($noeud, $niveau) {
+    function affiche_clevaleur($noeud, $level) {
         $this->dot_label($noeud->dotId, "=>");
 
-        $this->dot_standard_one($noeud, $niveau, 'getCle');
-        $this->dot_standard_one($noeud, $niveau, 'getValeur');
+        $this->dot_standard_one($noeud, $level, 'getCle');
+        $this->dot_standard_one($noeud, $level, 'getValeur');
     }
 
-    function affiche_comparison($noeud, $niveau) {
+    function affiche_comparison($noeud, $level) {
         $noeud->getDroite()->dotId    = $this->getNextId();
         $noeud->getOperateur()->dotId = $this->getNextId();
         $noeud->getGauche()->dotId    = $this->getNextId();
@@ -338,11 +338,11 @@ die("cas de l'argument null ou inexistant");
         $this->dot_link($noeud->dotId, $noeud->getDroite()->dotId);
         $this->dot_link($noeud->dotId, $noeud->getGauche()->dotId);
 
-        $this->affiche($noeud->getDroite(), $niveau + 1);
-        $this->affiche($noeud->getGauche(), $niveau + 1);
+        $this->affiche($noeud->getDroite(), $level + 1);
+        $this->affiche($noeud->getGauche(), $level + 1);
     }
 
-    function affiche_concatenation($noeud, $niveau) {
+    function affiche_concatenation($noeud, $level) {
         $elements = $noeud->getList();
         $labels = array();
 
@@ -350,27 +350,27 @@ die("cas de l'argument null ou inexistant");
             $e->dotId = $this->getNextId();
             $this->dot_link($noeud->dotId.":f$id", $e->dotId);
             $labels[] = $id; 
-            $this->affiche($e, $niveau + 1);            
+            $this->affiche($e, $level + 1);            
         }
 
         $this->dot_struct($noeud->dotId, $labels, 'concatenation');
     }
 
-    function affiche_constante($noeud, $niveau) {
+    function affiche_constante($noeud, $level) {
         $this->dot_label($noeud->dotId, $noeud->getName() );
     }
 
-   function affiche_decalage($noeud, $niveau) {
-        $this->dot_standard_one($noeud, $niveau, 'getDroite');
-        $this->dot_standard_one($noeud, $niveau, 'getOperateur');
-        $this->dot_standard_one($noeud, $niveau, 'getGauche');
+   function affiche_decalage($noeud, $level) {
+        $this->dot_standard_one($noeud, $level, 'getDroite');
+        $this->dot_standard_one($noeud, $level, 'getOperateur');
+        $this->dot_standard_one($noeud, $level, 'getGauche');
     }
     
-    function affiche__default($noeud, $niveau) {
-        $this->dot_standard_one($noeud, $niveau, 'getBlock');
+    function affiche__default($noeud, $level) {
+        $this->dot_standard_one($noeud, $level, 'getBlock');
     }
 
-    function affiche__for($noeud, $niveau) {
+    function affiche__for($noeud, $level) {
         $noeud->getInit()->dotId    = $this->getNextId();
         $noeud->getFin()->dotId = $this->getNextId();
         $noeud->getIncrement()->dotId    = $this->getNextId();
@@ -386,19 +386,19 @@ die("cas de l'argument null ou inexistant");
 
         $this->dot_struct($noeud->dotId, $labels, 'for');
 
-        $this->affiche($noeud->getInit(), $niveau + 1);
-        $this->affiche($noeud->getFin(), $niveau + 1);
-        $this->affiche($noeud->getIncrement(), $niveau + 1);
-        $this->affiche($noeud->getBlock(), $niveau + 1);
+        $this->affiche($noeud->getInit(), $level + 1);
+        $this->affiche($noeud->getFin(), $level + 1);
+        $this->affiche($noeud->getIncrement(), $level + 1);
+        $this->affiche($noeud->getBlock(), $level + 1);
 
     }
 
-    function affiche__foreach($noeud, $niveau) {
+    function affiche__foreach($noeud, $level) {
         $noeud->getTableau()->dotId    = $this->getNextId();
         if (!is_null($noeud->getKey())) {
             $noeud->getKey()->dotId = $this->getNextId();
             $this->dot_link($noeud->dotId.":f1", $noeud->getKey()->dotId);
-            $this->affiche($noeud->getKey(), $niveau + 1);
+            $this->affiche($noeud->getKey(), $level + 1);
         }
         $noeud->getValue()->dotId    = $this->getNextId();
         $noeud->getBlock()->dotId    = $this->getNextId();
@@ -412,33 +412,33 @@ die("cas de l'argument null ou inexistant");
 
         $this->dot_struct($noeud->dotId, $labels, 'foreach');
 
-        $this->affiche($noeud->getTableau(), $niveau + 1);
-        $this->affiche($noeud->getValue(), $niveau + 1);
-        $this->affiche($noeud->getBlock(), $niveau + 1);
+        $this->affiche($noeud->getTableau(), $level + 1);
+        $this->affiche($noeud->getValue(), $level + 1);
+        $this->affiche($noeud->getBlock(), $level + 1);
     }
 
-    function affiche__function($noeud, $niveau) {
-        $this->dot_standard_one($noeud, $niveau, 'getVisibility');
-        $this->dot_standard_one($noeud, $niveau, 'getAbstract');
-        $this->dot_standard_one($noeud, $niveau, 'getStatic');
-        $this->dot_standard_one($noeud, $niveau, 'getName');
-        $this->dot_standard_one($noeud, $niveau, 'getArgs');
-        $this->dot_standard_one($noeud, $niveau, 'getBlock');
+    function affiche__function($noeud, $level) {
+        $this->dot_standard_one($noeud, $level, 'getVisibility');
+        $this->dot_standard_one($noeud, $level, 'getAbstract');
+        $this->dot_standard_one($noeud, $level, 'getStatic');
+        $this->dot_standard_one($noeud, $level, 'getName');
+        $this->dot_standard_one($noeud, $level, 'getArgs');
+        $this->dot_standard_one($noeud, $level, 'getBlock');
 
         $this->dot_struct($noeud->dotId, array(), 'method');
     }
 
-    function affiche_functioncall($noeud, $niveau) {
+    function affiche_functioncall($noeud, $level) {
         $this->dot_label($noeud->dotId, $noeud->getFunction() );
         
         $noeud->getArgs()->dotId = $this->getNextId();
         $this->dot_link($noeud->dotId, $noeud->getArgs()->dotId);
         
         $args = $noeud->getArgs();
-        $this->affiche($args, $niveau + 1);
+        $this->affiche($args, $level + 1);
     }
 
-    function affiche__global($noeud, $niveau) {
+    function affiche__global($noeud, $level) {
         $this->dot_label($noeud->dotId, "global" );
 
         $elements = $noeud->getVariables();
@@ -446,11 +446,11 @@ die("cas de l'argument null ou inexistant");
             $e->dotId = $this->getNextId();
             $this->dot_link($noeud->dotId, $e->dotId);
 
-            $this->affiche($e, $niveau + 1);
+            $this->affiche($e, $level + 1);
         }
     }
 
-    function affiche_ifthen($noeud, $niveau) {
+    function affiche_ifthen($noeud, $level) {
         $conditions = $noeud->getCondition();
         $thens = $noeud->getThen();
         $labels = array();
@@ -459,11 +459,11 @@ die("cas de l'argument null ou inexistant");
             $condition->dotId = $this->getNextId();
             $this->dot_link($noeud->dotId.":f$id", $condition->dotId);
             $labels[] = $id; 
-            $this->affiche($condition, $niveau + 1);
+            $this->affiche($condition, $level + 1);
 
             $thens[$id]->dotId = $this->getNextId();
             $this->dot_link($condition->dotId, $thens[$id]->dotId);
-            $this->affiche($thens[$id], $niveau + 1);
+            $this->affiche($thens[$id], $level + 1);
             
         }
 
@@ -474,21 +474,21 @@ die("cas de l'argument null ou inexistant");
             $this->dot_link($noeud->dotId.":f$id", $else->dotId);
             $labels[] = "else"; 
 
-            $this->affiche($else, $niveau + 1);
+            $this->affiche($else, $level + 1);
         }
 
         $this->dot_struct($noeud->dotId, $labels, 'ifthen');
     }
 
-    function affiche_inclusion($noeud, $niveau) {
-        $this->dot_standard_one($noeud, $niveau, 'getInclusion'); 
+    function affiche_inclusion($noeud, $level) {
+        $this->dot_standard_one($noeud, $level, 'getInclusion'); 
     }
 
-    function affiche_literals($noeud, $niveau) {
+    function affiche_literals($noeud, $level) {
         $this->dot_label($noeud->dotId, $noeud->getCode() );
     }
 
-    function affiche_logique($noeud, $niveau) {
+    function affiche_logique($noeud, $level) {
         $noeud->getDroite()->dotId    = $this->getNextId();
         $noeud->getOperateur()->dotId = $this->getNextId();
         $noeud->getGauche()->dotId    = $this->getNextId();
@@ -498,65 +498,65 @@ die("cas de l'argument null ou inexistant");
         $this->dot_link($noeud->dotId, $noeud->getDroite()->dotId);
         $this->dot_link($noeud->dotId, $noeud->getGauche()->dotId);
 
-        $this->affiche($noeud->getDroite(), $niveau + 1);
-        $this->affiche($noeud->getGauche(), $niveau + 1);
+        $this->affiche($noeud->getDroite(), $level + 1);
+        $this->affiche($noeud->getGauche(), $level + 1);
     }
 
-    function affiche_method($noeud, $niveau) {
+    function affiche_method($noeud, $level) {
         $methods = array('getObject','getMethod');
         $titre = "$noeud";
 
-        $this->dot_standard($noeud, $niveau, $methods, $titre);        
+        $this->dot_standard($noeud, $level, $methods, $titre);        
     }
 
-    function affiche_method_static($noeud, $niveau) {
+    function affiche_method_static($noeud, $level) {
         $methods = array('getClass','getMethod');
         $titre = "$noeud";
 
-        $this->dot_standard($noeud, $niveau, $methods, $titre);        
+        $this->dot_standard($noeud, $level, $methods, $titre);        
     }
 
-    function affiche__new($noeud, $niveau) {
-        $this->dot_standard_one($noeud, $niveau, 'getClasse');
-        $this->dot_standard_one($noeud, $niveau, 'getArgs');
+    function affiche__new($noeud, $level) {
+        $this->dot_standard_one($noeud, $level, 'getClasse');
+        $this->dot_standard_one($noeud, $level, 'getArgs');
     }
     
-    function affiche_noscream($noeud, $niveau) {
-        $this->dot_standard_one($noeud, $niveau, 'getExpression');
+    function affiche_noscream($noeud, $level) {
+        $this->dot_standard_one($noeud, $level, 'getExpression');
     }
 
-    function affiche_not($noeud, $niveau) {
+    function affiche_not($noeud, $level) {
         $this->dot_label($noeud->dotId, "Not" );
 
         $noeud->getExpression()->dotId = $this->getNextId();
 
         $this->dot_link($noeud->dotId, $noeud->getExpression()->dotId);
 
-        $this->affiche($noeud->getExpression(), $niveau + 1);
+        $this->affiche($noeud->getExpression(), $level + 1);
     }
 
-    function affiche_opappend($noeud, $niveau) {
+    function affiche_opappend($noeud, $level) {
         $this->dot_label($noeud->dotId, "[]" );
-        $this->dot_standard_one($noeud, $niveau, 'getVariable');
+        $this->dot_standard_one($noeud, $level, 'getVariable');
     }
 
-    function affiche_operation($noeud, $niveau) {
-        $this->dot_standard_one($noeud, $niveau, 'getDroite');
-        $this->dot_standard_one($noeud, $niveau, 'getOperation');
-        $this->dot_standard_one($noeud, $niveau, 'getGauche');
+    function affiche_operation($noeud, $level) {
+        $this->dot_standard_one($noeud, $level, 'getDroite');
+        $this->dot_standard_one($noeud, $level, 'getOperation');
+        $this->dot_standard_one($noeud, $level, 'getGauche');
     }
 
-    function affiche_parentheses($noeud, $niveau) {
+    function affiche_parentheses($noeud, $level) {
         $noeud->getContenu()->dotId = $this->getNextId();
         
         $this->dot_label($noeud->dotId, get_class($noeud) );
 
         $this->dot_link($noeud->dotId, $noeud->getContenu()->dotId);
 
-        $this->affiche($noeud->getContenu(), $niveau + 1);
+        $this->affiche($noeud->getContenu(), $level + 1);
     }
 
-    function affiche_postplusplus($noeud, $niveau) {
+    function affiche_postplusplus($noeud, $level) {
         $noeud->getVariable( )->dotId = $this->getNextId();
         $noeud->getOperateur()->dotId = $this->getNextId();
 
@@ -565,39 +565,39 @@ die("cas de l'argument null ou inexistant");
         $this->dot_link($noeud->dotId, $noeud->getVariable()->dotId);
         $this->dot_link($noeud->dotId, $noeud->getOperateur()->dotId);
 
-        $this->affiche($noeud->getVariable(), $niveau + 1);
-        $this->affiche($noeud->getOperateur(), $niveau + 1);
+        $this->affiche($noeud->getVariable(), $level + 1);
+        $this->affiche($noeud->getOperateur(), $level + 1);
     }
 
-    function affiche_property($noeud, $niveau) {
+    function affiche_property($noeud, $level) {
         $methods = array('getObject','getProperty');
         $titre = 'property';
         
-        $this->dot_standard($noeud, $niveau, $methods, $titre);
+        $this->dot_standard($noeud, $level, $methods, $titre);
     }
 
-    function affiche_property_static($noeud, $niveau) {
+    function affiche_property_static($noeud, $level) {
         $methods = array('getClass','getProperty');
         $titre = 'property static';
         
-        $this->dot_standard($noeud, $niveau, $methods, $titre);
+        $this->dot_standard($noeud, $level, $methods, $titre);
     }
 
-    function affiche_rawtext($noeud, $niveau) {
+    function affiche_rawtext($noeud, $level) {
         $this->dot_label($noeud->dotId, $noeud->getText());
     }
 
-    function affiche_reference($noeud, $niveau) {
+    function affiche_reference($noeud, $level) {
         $this->dot_label($noeud->dotId, "&" );
 
-        $this->dot_standard_one($noeud, $niveau, 'getExpression');
+        $this->dot_standard_one($noeud, $level, 'getExpression');
     }
 
-    function affiche__return($noeud, $niveau) {
-        $this->dot_standard_one($noeud, $niveau, 'getReturn');
+    function affiche__return($noeud, $level) {
+        $this->dot_standard_one($noeud, $level, 'getReturn');
     }
 
-    function affiche_sequence($noeud, $niveau) {
+    function affiche_sequence($noeud, $level) {
         $elements = $noeud->getElements();
         if (count($elements) == 0) {
             die("cas de la sequence vide");
@@ -611,84 +611,84 @@ die("cas de l'argument null ou inexistant");
                     $e->dotId = $this->getNextId();
                     $this->dot_link($noeud->dotId.":f$id", $e->dotId);
                     $labels[] = $id;
-                    $this->affiche($e, $niveau + 1);
+                    $this->affiche($e, $level + 1);
                 }
             }
             $this->dot_struct($noeud->dotId, $labels, 'sequence');
         }
     }
 
-    function affiche__switch($noeud, $niveau) {
+    function affiche__switch($noeud, $level) {
         $methods = array('getOperande','getBlock');
         $titre = 'switch';
         
-        $this->dot_standard($noeud, $niveau, $methods, $titre);
+        $this->dot_standard($noeud, $level, $methods, $titre);
     }
 
-    function affiche_tableau($noeud, $niveau) {
+    function affiche_tableau($noeud, $level) {
         $methods = array('getIndex','getVariable');
         $titre = 'tableau';
         
-        $this->dot_standard($noeud, $niveau, $methods, $titre);
+        $this->dot_standard($noeud, $level, $methods, $titre);
     }
 
-    function affiche__try($noeud, $niveau) {
+    function affiche__try($noeud, $level) {
         $this->dot_label($noeud->dotId, $noeud->getCode() );
 
         $noeud->getBlock()->dotId = $this->getNextId();
 
         $this->dot_link($noeud->dotId, $noeud->getBlock()->dotId);
 
-        $this->affiche($noeud->getBlock(), $niveau + 1);
+        $this->affiche($noeud->getBlock(), $level + 1);
 
         $elements = $noeud->getCatch();
         foreach($elements as $id => &$e) {
             $e->dotId = $this->getNextId();
             $this->dot_link($noeud->dotId, $e->dotId);
-            $this->affiche($e, $niveau + 1);
+            $this->affiche($e, $level + 1);
         }
     }
 
-    function affiche__var($noeud, $niveau) {
+    function affiche__var($noeud, $level) {
         $methods = array('getVisibility','getStatic','getVariable');
         $titre = 'var';
         
-        $this->dot_standard($noeud, $niveau, $methods, $titre);
+        $this->dot_standard($noeud, $level, $methods, $titre);
     }
 
-    function affiche_variable($noeud, $niveau) {
+    function affiche_variable($noeud, $level) {
         $this->dot_label($noeud->dotId, $noeud->getCode() );
     }
 
-    function affiche__while($noeud, $niveau) {
+    function affiche__while($noeud, $level) {
         $noeud->getCondition()->dotId = $this->getNextId();
         $noeud->getBlock()->dotId = $this->getNextId();
 
         $this->dot_link($noeud->dotId.":f0", $noeud->getCondition()->dotId);
         $this->dot_link($noeud->dotId.":f1", $noeud->getBlock()->dotId);
 
-        $this->affiche($noeud->getCondition(), $niveau + 1);
-        $this->affiche($noeud->getBlock(), $niveau + 1);
+        $this->affiche($noeud->getCondition(), $level + 1);
+        $this->affiche($noeud->getBlock(), $level + 1);
 
         $labels = array(0,1);
         $this->dot_struct($noeud->dotId, $labels, 'while');
     }
 
-    function affiche__dowhile($noeud, $niveau) {
+    function affiche__dowhile($noeud, $level) {
         $noeud->getCondition()->dotId = $this->getNextId();
         $noeud->getBlock()->dotId = $this->getNextId();
 
         $this->dot_link($noeud->dotId.":f0", $noeud->getCondition()->dotId);
         $this->dot_link($noeud->dotId.":f1", $noeud->getBlock()->dotId);
 
-        $this->affiche($noeud->getCondition(), $niveau + 1);
-        $this->affiche($noeud->getBlock(), $niveau + 1);
+        $this->affiche($noeud->getCondition(), $level + 1);
+        $this->affiche($noeud->getBlock(), $level + 1);
 
         $labels = array(0,1);
         $this->dot_struct($noeud->dotId, $labels, 'do..while');
     }
     
-    function affiche_Token($noeud, $niveau) {
+    function affiche_Token($noeud, $level) {
         $this->dot_label($noeud->dotId, $noeud->getCode() );
     }
 }
