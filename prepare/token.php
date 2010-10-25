@@ -240,6 +240,10 @@ class Token {
     }
 
     function getNext($n = 0) {
+        if ($n == 0) { return $this->next; }
+        // @note no test. This seems to work, as HasNext is always used. Maybe we can remove hasnext usage, and put it here?
+        if ($n == 1) { return $this->next->next; }
+
         $n++;
         $return = $this;
         while($n > 0) {
