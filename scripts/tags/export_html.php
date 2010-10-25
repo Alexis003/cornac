@@ -23,12 +23,12 @@ class export_html {
         $this->comments = $comments;
     }
     
-    function save($filename) {
-        $this->save_by_file($filename);
-        $this->save_by_tag($filename);
+    function save($dir) {
+        $this->save_by_file($dir);
+        $this->save_by_tag($dir);
     }
 
-    function save_by_file($filename) {
+    function save_by_file($dir) {
         setlocale(LC_TIME, "fr_FR");
         $date = strftime("%A %d %B %Y %T" );
     
@@ -69,7 +69,7 @@ HTML;
                 $tags = "";
     
                 foreach($commentaire['tags'] as $tag) {
-                    $tags .= "<a href=\"$filename.tags.html#".$this->make_anchor($tag)."\">".htmlentities($tag)."</a>, ";
+                    $tags .= "<a href=\"tags.html#".$this->make_anchor($tag)."\">".htmlentities($tag)."</a>, ";
                 }
                 $tags = substr($tags, 0, -2);
                 
@@ -87,11 +87,11 @@ HTML;
     </html>
 HTML;
     
-        file_put_contents($filename.'.files.html', $html);
+        file_put_contents($dir.'files.html', $html);
     }
     
     
-    function save_by_tag($filename) {
+    function save_by_tag($dir) {
         setlocale(LC_TIME, "fr_FR");
         $date = strftime("%A %d %B %Y %T");
     
@@ -123,8 +123,15 @@ HTML;
         $html .= "    <p>Distinct comments : ".count($this->comments)."</p>\n";
         $html .= "    <p>Distinct tags : ".count($tags)."</p>\n";
         $html .= "    <p><a name=\"_summary\" />";
+        
+        $min = 100; $max = 0;
+        foreach($tags as $tag) {
+            $min = min($min, count($tag));
+            $max = max($max, count($tag));
+        }
+        
         foreach(array_keys($tags) as $tag) {
-            $html .= "<a href=\"#".$this->make_anchor($tag)."\">$tag</a> - ";
+            $html .= "<a href=\"#".$this->make_anchor($tag)."\" style=\"font-size: ".number_format((count($tags[$tag]) - $min) / ($max - $min) * 22 + 8 , 0)."px;\">$tag</a> - ";
         } 
         $html .= "</p>\n";
         
@@ -141,7 +148,7 @@ HTML;
                 $html .= "<tr id=\"$odd\">
         <td>$id) </td>
         <td>".wordwrap(htmlspecialchars($commentaire['text'],ENT_COMPAT, 'UTF-8'), 150, '<br />', TRUE)."</td>
-        <td><a href=\"$filename.files.html#".$this->make_anchor($commentaire['file'])."\">".htmlentities($commentaire['file'],ENT_COMPAT, 'UTF-8')."</a></td>
+        <td><a href=\"files.html#".$this->make_anchor($commentaire['file'])."\">".htmlentities($commentaire['file'],ENT_COMPAT, 'UTF-8')."</a></td>
         </tr>\n";
             }
         }
@@ -150,8 +157,7 @@ HTML;
         </body>
     </html>
 HTML;
-    
-        file_put_contents($filename.'.tags.html', $html);
+        file_put_contents($dir.'tags.html', $html);
     }
 
     function getCSS() {

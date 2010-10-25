@@ -169,12 +169,12 @@ if (!in_array('all',$INI['format'])) {
 foreach($displays as $format) {
     print "rendering $format\n";
     $class= 'export_'.$format; 
-    include($class.'.php');
+    include('./'.$class.'.php');
     $format = new $class($comments);
     $format->save($INI['output']);
-//    print_r( $INI);
 }
 
+// @note : ensure end of script. May be should move the defs. to a library file.
 die();
 
 function remove_delimiter($comment) {
