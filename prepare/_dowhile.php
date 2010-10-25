@@ -18,7 +18,8 @@
  */
 
 class _dowhile extends instruction {
-    protected $expression = null;
+    protected $block = null;
+    protected $condition = null;
     
     function __construct($expression = null) {
         parent::__construct(array());
@@ -48,7 +49,6 @@ class _dowhile extends instruction {
     function getRegex(){
         return array('dowhile_block_regex',
                      'dowhile_apres_regex',
-
                     );
     }
 
