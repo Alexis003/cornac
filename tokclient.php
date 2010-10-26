@@ -1,7 +1,9 @@
 #!/usr/bin/env php
 <?php
 
-ini_set('memory_limit',234217728);
+ini_set('memory_limit',1024*1024*1024);
+error_reporting(E_ALL);
+ini_set('display_errors', 'on');
 
 include('prepare/commun.php');
 include("prepare/analyseur.php");
@@ -101,11 +103,15 @@ while(1 ) {
     $DATABASE->query('UPDATE <tasks> SET completed = 1, date_update=NOW() WHERE id = '.$DATABASE->quote($row['id']).' LIMIT 1');
 
     $scriptsPHP = array($row['target'] => $row);
-    process_file($scriptsPHP, $limit);
+    if (process_file($scriptsPHP, $limit)) { 
+        $completed = 100; 
+    } else {
+        $completed = 2;
+    }
 
     $times['fin'] = microtime(true);
 
-    $DATABASE->query('UPDATE <tasks> SET completed = 100, date_update=NOW() WHERE id = '.$DATABASE->quote($row['id']).' LIMIT 1');
+    $DATABASE->query('UPDATE <tasks> SET completed = '.$completed.', date_update=NOW() WHERE id = '.$DATABASE->quote($row['id']).' LIMIT 1');
 
     $debut = $times['debut'];
     unset($times['debut']);
@@ -160,16 +166,24 @@ function process_file($scriptsPHP, $limit) {
         return false;
     }
     if ($INI['tokens']) {
+        print "Displaying tokens\n";
         print_r($raw);
         die();
     }
     $nb_tokens_initial = count($raw);
+    
+    // @note my PHP crashes at 400852 (511 zend_scan_black, or zval_mark_grey) beyong this limit, 
+    // @note over 200k tokens is probably a large library of data. Not the most interesting
+    if ($nb_tokens_initial > 200000) {
+        return false; 
+    }
 
     $root = new Token();
     $suite = null;
     $ligne = 0;
 
     foreach($raw as $id => $b) {
+        if (is_array($b) && in_array($b[0], array(T_COMMENT, T_DOC_COMMENT, T_WHITESPACE))) { continue; }
         $t = new Token();
 
         $t->setId($id);
@@ -190,12 +204,11 @@ function process_file($scriptsPHP, $limit) {
             $suite->append($t);
             $suite = $suite->getNext();
         }
-        unset($raw[$id]);
-
     }
+    unset($raw);
 
+/*
     $t = $root;
-    mon_log("\nWSC \n");
     do {
         $t = whitespace::factory($t);
         $t = commentaire::factory($t);
@@ -213,12 +226,13 @@ function process_file($scriptsPHP, $limit) {
             print "$i) ".$t->getCode()."---- \n";
        }
     } while ($t = $t->getNext());
-
+*/
     $analyseur = new analyseur();
 
     $nb_tokens_courant = -1;
     $nb_tokens_precedent = array(-1);
 
+    mon_log("Init cycles\n");
     $i = 0;
     while (1) {
         $i++;
@@ -257,8 +271,9 @@ function process_file($scriptsPHP, $limit) {
             $nb_tokens_courant == $nb_tokens_precedent[2]
             ) {
             print "No more update at cycle #$i \n";
-
+            // @note just abort the loop, so we may go on
             break 1;
+//            return false; 
         }
 
         if ($i == $limit) {
@@ -312,6 +327,7 @@ function process_file($scriptsPHP, $limit) {
         print_r($stats);
     }
     $files_processed++;
+    return true;
 }
 
 ?>
