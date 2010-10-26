@@ -183,6 +183,7 @@ function process_file($scriptsPHP, $limit) {
     $ligne = 0;
 
     foreach($raw as $id => $b) {
+        // @note actually removing all coments and whitespace even before turning them into token
         if (is_array($b) && in_array($b[0], array(T_COMMENT, T_DOC_COMMENT, T_WHITESPACE))) { continue; }
         $t = new Token();
 
@@ -205,28 +206,9 @@ function process_file($scriptsPHP, $limit) {
             $suite = $suite->getNext();
         }
     }
+    // @note this is less costly in terms of garbage collecting
     unset($raw);
 
-/*
-    $t = $root;
-    do {
-        $t = whitespace::factory($t);
-        $t = commentaire::factory($t);
-
-        if ($t->getId() == 0 && $t != $root) {
-            mon_log("New root : ".$t."");
-            $root = $t;
-        }
-
-        if (VERBOSE) {
-            print "$i) ".$t->getCode()."---- \n";
-            $template = getTemplate($root, $file, 'tree');
-            $template['tree']->affiche();
-            unset($template);
-            print "$i) ".$t->getCode()."---- \n";
-       }
-    } while ($t = $t->getNext());
-*/
     $analyseur = new analyseur();
 
     $nb_tokens_courant = -1;
