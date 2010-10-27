@@ -1,0 +1,17 @@
+tests/tokenizeur/scripts/functioncall.51.test.php
+  codephp <?php
+
+  code : 
+      cdtternaire ?
+      logique property variable $a->literals b  "&" constante C ? functioncall 300 "exit" ( arglist() )  : constante null
+          logique 
+          droite : 
+              property variable $aliterals b->
+          operateur :  "&"
+          gauche : 
+              constante (              C )
+          functioncall exit
+          function call : exit: 
+              arglist 
+              0 : 
+          constante (          null )

@@ -1,0 +1,35 @@
+tests/tokenizeur/scripts/cdtternaire.21.test.php
+  codephp <?php
+
+  code : 
+      sequence 
+      0 : 
+          ifthen if
+          Condition 0) 
+              parentheses 
+              ( "logique not ! 279 "&&" method variable $b->functioncall 307 "c" ( arglist(constante d) ) " )
+              block 
+              0 : 
+                  ifthen if
+                  Condition 0) 
+                      parentheses 
+                      ( "method variable $e->functioncall 307 "f" ( arglist(constante g) ) " )
+                      block 
+                      0 : 
+                          _return 
+                          return : "literals 1"
+      1 : 
+          cdtternaire ?
+          parentheses (functioncall 351 "empty" ( arglist(tableau variable $x[literals t]) ) ) ? noscream @ : noscream @
+              parentheses 
+              ( "functioncall 351 "empty" ( arglist(tableau variable $x[literals t]) ) " )
+              noscream @
+                  functioncall flush
+                  function call : flush: 
+                      arglist 
+                      Liste d'argument vide
+              noscream @
+                  functioncall ob_flush
+                  function call : ob_flush: 
+                      arglist 
+                      Liste d'argument vide
