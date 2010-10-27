@@ -32,14 +32,14 @@ class arglist_regex extends analyseur_regex {
         // @note for it to be a function call, one need all this before
         if ($t->getPrev()->checkNotFunction() &&
             $t->getPrev()->checkNotClass(array('variable','tableau')) &&
-            $t->getPrev()->checkNotCode('}')) { return false;}
+            $t->getPrev()->checkNotCode('}')) { return false; }
         
-       if ($t->getPrev()->checkCode('}') && 
-        // @todo could be limit getPrev(1) values? 
-        $t->getPrev(2)->checkNotCode('{')) {
+       if ($t->getPrev()->checkOperator('}') && 
+        // @todo add limitations on getPrev(1) values? 
+           $t->getPrev(2)->checkNotCode('{')) {
                 return false;
-            }
-            
+        }
+
         $var = $t->getNext(); 
         $this->args   = array();
         $this->remove = array();
@@ -64,10 +64,22 @@ class arglist_regex extends analyseur_regex {
         if ($var->checkOperator(')')) {
             $this->remove[] = $pos; // @note remove the final )
             
+            if ($t->getPrev()->checkOperator('}') && 
+                $var->getNext(1)->checkOperator('?')) {
+                // @note arglist before a cdt ternary? no way.
+                return false;
+            }
+            
             mon_log(get_class($t)." =>1 ".__CLASS__);
             return true; 
         } elseif ($var->getNext()->checkOperator(')')) {
             if ($var->checkClass('Token')) { return false; }
+
+            if ($t->getPrev()->checkOperator('}') && 
+                $var->getNext(1)->checkOperator('?')) {
+                // @note arglist before a cdt ternary? no way.
+                return false;
+            }
             
             if ($t->getPrev()->checkCode('echo') && 
                 $var->getNext(1)->checkCode(array('|','&','^'))) { return false; }
