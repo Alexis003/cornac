@@ -48,6 +48,7 @@ class function_reference_regex extends analyseur_regex {
             $this->args[] = 4;
             $this->remove[] = 4;
         } elseif ($t->getNext(3)->checkOperator(';') ) { 
+            $this->args[] = 4;
             $this->remove[] = 4;
         } elseif ($t->getNext(3)->checkClass('Token') ) { 
             return false;

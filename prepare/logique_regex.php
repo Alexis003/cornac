@@ -32,7 +32,7 @@ class logique_regex extends analyseur_regex {
 
         if ($t->checkClass(array('literals','rawtext'))) { return false; }
         if ($t->getPrev()->checkClass(array( 'arglist','sequence','block'))) { return false;}
-        if ($t->getPrev()->checkCode(array( ')',','))) { return false;}
+        if ($t->getPrev()->checkOperator(array( ')',',',']','}','"'))) { return false;}
         if ($t->getPrev()->checkForAssignation()) { return false;}
 
         if ($t->getNext()->checkClass(array('Token', 'arglist','sequence','block'))) { return false;}
