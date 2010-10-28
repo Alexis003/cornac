@@ -434,6 +434,31 @@ class template_db extends template {
         $node->myGauche = $this->getIntervalleId();
         return $this->savenode($node, $level);
     }
+
+    function affiche__declare($node, $level) {
+        $node->myId = $this->getNextId();
+        $node->myDroite = $this->getIntervalleId();
+        $node->setCode('');
+
+        $tags = array();
+
+        $ticks = $node->getTicks();
+        if (!is_null($ticks)) {
+            $tags['ticks'][] = $this->affiche($ticks, $level + 1);
+        }
+        $encoding = $node->getEncoding();
+        if (!is_null($encoding)) {
+            $tags['encoding'][] = $this->affiche($encoding, $level + 1);
+        }
+        $n = $node->getBlock();
+        if (!is_null($n)) {
+            $tags['block'][] = $this->affiche($n, $level + 1);
+        }
+        $this->tags = $tags;
+
+        $node->myGauche = $this->getIntervalleId();
+        return $this->savenode($node, $level);
+    }
     
     function affiche__default($node, $level) {
         $node->myId = $this->getNextId();

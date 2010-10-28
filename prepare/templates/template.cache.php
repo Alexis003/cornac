@@ -360,6 +360,30 @@ class template_cache extends template {
         return $this->savenode($node);
     }
 
+    function affiche__declare($node, $level) {
+        $ticks = $node->getTicks();
+        if (!is_null($ticks)) {
+            $this->affiche($ticks, $level + 1);
+        } else {
+            $ticks->cache = '';
+        }
+
+        $encoding = $node->getEncoding();
+        if (!is_null($encoding)) {
+            $this->affiche($encoding, $level + 1);
+        } else {
+            $encoding->cache = '';
+        }
+
+        $block = $node->getBlock();
+        if (!is_null($block)) {
+            $this->affiche($block, $level + 1);
+        }
+
+        $node->cache = 'declare( ticks='.$ticks->cache.' encoding='.$encoding->cache.') ';
+        return $this->savenode($node);
+    }
+    
     function affiche__default($node, $level) {
         $this->affiche($node->getBlock(), $level + 1);
         $node->cache = 'default'; 

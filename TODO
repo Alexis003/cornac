@@ -1,8 +1,29 @@
+Add information code when tokclient fail at parsing a file. (php not compile, etc.)
+Check tokclient for memory leaks. 
 Check fudforum binary protector (install.php)
+update tokeniseur.sh to run tokenizeur on all the Reference project and check output automatically (also, collect stats on volume, and processing time).
+
+identify 'tainted' values (either from GPC, or from arguments)
+identify returned values (used in return)
+identify tainted function (one that return transformed incoming values)
+identify variable class by method/property/constant usage. 
+
+Set up a version system, so that it is easier to know which version is being used (upon a phing publication? ) 
+Have a tar.gz packaged automatically. 
+
+Spot function declaration in the middle of nowhere
+Suggest gathering code, depending on calling graph (a->b, b->c, so a,b,c should be a class by itself)
+
+Vérifier les fichiers 
+./References/phpmyfaq-2.6.9/inc/libs/tcpdf/fonts/arialunicid0.php
+
+check tokclient, to make sure he keeps going on when a script can't be processed. 
 
 [cornac]
 process extension as case unsensitive. 
-check for default values of .ini in the code, so as to make sure we have a nice liste
+check for default values of .ini in the code, so as to make sure we have a nice list
+
+update tokinit, to have a list of excluded/included file extension. 
 
 Add a log to show progress
 Add support for a version of Cornac (checking for config files, tables configurations, etc.)
@@ -48,7 +69,7 @@ Add a file lister, that will also display ignored files from tokenizeur (export 
 [tokenizeur]
 Check for table structure before using. 
 
-Run tokenizeur regularly on Open source project. 
+Run tokenizeur regularly on Open source project : make a script for automation, and extract some stats on how much was tested, compare applications (function used, extension used, pattern spotted, number of files...)
 check that tokenizeur works on one file only, without database
 
 Spot php error during execution, and report it. 
@@ -171,7 +192,7 @@ functions (and files) that emit error (join, mysql_connect, ) : they should be c
 
 methods/files/classes that misses some (provided) code.
 
-Spot library dependencies, like, phpmailer, tinyMCE. 
+Spot library dependencies, like, phpmailer, tinyMCE, html purifier, domit, geshi, 
 
 Qualify scripts/contextes/folders as being controler (aka _GET, include), model (database) ou template (html, pdf, echo...).
 Check that above characteristics are at the right place (by folder, by framework...)

@@ -40,7 +40,8 @@ class concatenation_interpole_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasNext() ) { return false; }
 
-        if ($t->checkNotCode('"')  && $t->checkNotToken(T_START_HEREDOC)) { return false; } 
+        if ($t->checkNotOperator('"')  && 
+            $t->checkNotToken(T_START_HEREDOC)) { return false; } 
         if ($t->checkClass('concatenation') ) { return false; } 
         
         if ($t->checkOperator('"') ) {
@@ -59,10 +60,20 @@ class concatenation_interpole_regex extends analyseur_regex {
         $pos = 1;
         
         while ($var->checkNotCode($token_fin)) {
-            if ($var->checkCode('{') && 
-                $var->getNext()->checkClass($this->sequence_classes) && 
-                $var->getNext(1)->checkCode('}')) {
+            if ($var->checkCode('${') && 
+                $var->getNext()->checkClass(array('literals','concatenation')) && 
+                $var->getNext(1)->checkOperator('}')) {
+                    $regex = new modele_regex('variable',array(0), array(-1, 1));
+                    Token::applyRegex($var->getNext(), 'variable', $regex);
 
+                    mon_log(get_class($var->getNext())." => ".get_class($var->getNext())." (".__CLASS__.")");
+                    return false;
+            }
+
+            if ($var->checkOperator('{') && 
+                $var->getNext()->checkClass($this->sequence_classes) && 
+                $var->getNext(1)->checkOperator('}')) {
+                
                 if ($var->getNext()->checkClass(array('tableau','property'))) {
                     $this->args[] = $pos + 1;
                     

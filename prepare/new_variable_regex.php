@@ -29,10 +29,15 @@ class new_variable_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasNext(1)) { return false; }
 
-        if ($t->checkNotToken(T_NEW)) { return false; }
-        if ($t->getNext()->checkNotClass(array('variable','tableau','method','property','property_static','method_static'))) { return false; }
+        if ($t->getNext()->checkNotClass(array('variable',
+                                               'tableau',
+                                               'method',
+                                               'property',
+                                               'property_static',
+                                               'method_static'))) { return false; }
 
-        if (!$t->getNext(1)->checkEndInstruction()) { return false; }
+        if (!$t->getNext(1)->checkEndInstruction() &&
+            !$t->getNext(1)->checkForLogical()) { return false; }
 
         $this->args = array(1);
         $this->remove = array(1);
