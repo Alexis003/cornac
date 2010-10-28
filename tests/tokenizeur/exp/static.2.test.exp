@@ -1,0 +1,9 @@
+tests/tokenizeur/scripts/static.2.test.php
+  codephp <?php
+
+  code : 
+      sequence 
+      0 : 
+           347 "static"variable $x
+      1 : 
+           347 "static"variable $mimetypes = functioncall 360 "array" ( arglist(clevaleur literals 323 => literals text/h323) ) 

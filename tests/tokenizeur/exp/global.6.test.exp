@@ -1,0 +1,19 @@
+tests/tokenizeur/scripts/global.6.test.php
+  codephp <?php 
+  code : 
+      sequence 
+      0 : 
+          _global 
+          0 : 
+              variable $a
+      1 : 
+          _global 
+          0 : 
+              variable $b
+      2 : 
+          method variable $d
+          method call : functioncall 307 "e" ( ( ) ) : 
+              functioncall e
+              function call : e: 
+                  arglist 
+                  Liste d'argument vide
