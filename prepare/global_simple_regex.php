@@ -50,14 +50,17 @@ class global_simple_regex extends analyseur_regex {
             return false;
         }
         
-        if ( $var->checkCode(';')) {
+        if ( $var->checkOperator(';') || 
+             $var->checkToken(T_CLOSE_TAG) || 
+             $var->checkClass('rawtext')
+             ) {
             $this->args   = array(1);
             $this->remove = array(1, 2);
 
             mon_log(get_class($t)." => ".__CLASS__);
             return true; 
-        }
-        
+        } 
+
         // @note otherwise, fail
         return false;
     }
