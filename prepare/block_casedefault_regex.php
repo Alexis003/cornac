@@ -23,11 +23,12 @@ class block_casedefault_regex extends analyseur_regex {
     }
 
     function getTokens() {
+//        return array('{');
         return array(Token::ANY_TOKEN);
     }
     
     function check($t) {
-        if ($t->checkNotCode('{') )   { return false; }
+        if ($t->checkNotOperator('{') )   { return false; }
         if ($t->checkClass('block') ) { return false; }
         if (!$t->hasNext())           { return false; }
 
@@ -36,13 +37,20 @@ class block_casedefault_regex extends analyseur_regex {
         $var = $t->getNext();            
         $i = 1;
 
-        while($var->checkNotCode('}')) {
+        if($var->checkOperator(';')) {
+        // @note one ; is accepted after switch
+           $var = $var->getNext();
+           $this->remove[] = $i;
+           $i++;
+        }
+
+        while($var->checkNotOperator('}')) {
             if ($var->checkClass(array('_case','_default'))) {
                 $this->args[] = $i;
                 $this->remove[] = $i;
                 
                 if (!$var->hasNext()) { 
-                    return $t; 
+                    return false; 
                 }
                 $var = $var->getNext();
                 $i++;
@@ -63,7 +71,7 @@ class block_casedefault_regex extends analyseur_regex {
         }
 
         
-        $this->remove[] = $i ; // @note suppression du } final
+        $this->remove[] = $i ; // @note removeing final }
 
         mon_log(get_class($t)." => ".__CLASS__);
         return true;
