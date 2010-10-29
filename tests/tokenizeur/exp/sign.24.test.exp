@@ -1,0 +1,16 @@
+tests/tokenizeur/scripts/sign.24.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable $a
+      269 "^=" 
+      gauche : 
+          decalage 
+          droite : 
+              sign  "-"literals 16
+                  literals 16
+          operation : 287 "<<"
+          gauche : 
+              variable $b
