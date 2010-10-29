@@ -1,0 +1,47 @@
+tests/tokenizeur/scripts/global.8.test.php
+  codephp <?php
+
+  code : 
+      sequence 
+      0 : 
+          affectation 
+          droite : 
+              variable $a
+           "=" 
+          gauche : 
+              literals 3
+      1 : 
+          affectation 
+          droite : 
+              variable $c
+           "=" 
+          gauche : 
+              functioncall array
+              function call : array: 
+                  arglist 
+                  0 : 
+                      literals d => literals a
+                          literals d
+                          literals a
+                  1 : 
+                      literals e => literals 2
+                          literals e
+                          literals 2
+      2 : 
+          functioncall x
+          function call : x: 
+              arglist 
+              Liste d'argument vide
+      3 : 
+          function literals x ( )
+              block 
+              0 : 
+                  _global 
+                  0 : 
+                      variable tableau variable $c[literals d]
+              1 : 
+                  functioncall print_r
+                  function call : print_r: 
+                      arglist 
+                      0 : 
+                          variable $c

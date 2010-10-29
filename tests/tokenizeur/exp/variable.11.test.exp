@@ -1,0 +1,10 @@
+tests/tokenizeur/scripts/variable.11.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      droite : 
+          variable tableau variable $c[literals d]
+       "=" 
+      gauche : 
+          literals 1
