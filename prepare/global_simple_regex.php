@@ -29,7 +29,7 @@ class global_simple_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasNext(1)) { return false; }
 
-        if ($t->getNext()->checkNotClass('variable')) { return false; }
+        if ($t->getNext()->checkNotClass(array('variable','tableau'))) { return false; }
 
         $var = $t->getNext(1);
 

@@ -30,17 +30,14 @@ class variable_variable_regex extends analyseur_regex {
     
         if (!$t->hasNext() ) { return false; }
 
-        if ($t->checkCode('$') &&
-            $t->getNext()->checkClass('variable')
-            ) {
+        if ($t->getNext()->checkNotClass(array('variable','tableau'))) { return false; }
+        if ($t->getNext(1)->checkOperator('[')) { return false; }
 
-            $this->args   = array(0, 1);
-            $this->remove = array(1);
+        $this->args   = array(0, 1);
+        $this->remove = array(1);
 
-            mon_log(get_class($t)." => ".__CLASS__);
-            return true; 
-        } 
-        return false;
+        mon_log(get_class($t)." => ".__CLASS__);
+        return true; 
     }
 }
 ?>
