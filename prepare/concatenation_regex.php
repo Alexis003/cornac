@@ -32,6 +32,7 @@ class concatenation_regex extends analyseur_regex {
 
         if ($t->getPrev()->checkClass(array('Token','arglist'))) { return false; }
         if ($t->getPrev(1)->checkOperator(array('.','->','@','::','++','--'))) { return false; }
+        if ($t->getPrev(1)->checkCode(array('new'))) { return false; }
         
         $var = $t; 
         $this->args   = array( -1 );
