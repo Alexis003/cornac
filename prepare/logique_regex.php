@@ -41,7 +41,7 @@ class logique_regex extends analyseur_regex {
                                  $t->getPrev(1)->checkNotCode(')') ))) ) {  return false; }
         if ($t->hasNext(2) && $t->getNext(1)->checkClass(array('parentheses'))) { return false; }
         if ((!$t->hasNext(2) || 
-            ( $t->getNext(1)->checkNotCode(array('[','->','{','(','::')) && 
+            ( $t->getNext(1)->checkNotOperator(array('[','->','{','(','::')) && 
              !$t->getNext(1)->checkForAssignation()))
             ) {
             
