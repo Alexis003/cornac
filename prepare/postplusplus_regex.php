@@ -29,7 +29,7 @@ class postplusplus_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasPrev()) { return false; }
 
-        if ($t->hasPrev(1) && $t->getPrev(1)->checkCode(array('::','$'))) { return false; }
+        if ($t->hasPrev(1) && $t->getPrev(1)->checkCode(array('::','$','->'))) { return false; }
         if ($t->getPrev()->checkClass(array('variable','tableau','property','property_static'))) {
 
             $this->args = array(-1, 0);
