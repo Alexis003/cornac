@@ -27,23 +27,19 @@ class tableau_accolade_regex extends analyseur_regex {
     }
     
     function check($t) {
-    
         if (!$t->hasPrev() ) { return false; }
         if (!$t->hasNext() ) { return false; }
 
         if ($t->checkNotClass(array('variable','property','tableau'))) { return false; } 
-        if ($t->getNext()->checkCode('{') &&
-            $t->getNext(1)->checkNotClass('Token') &&
-            $t->getNext(2)->checkCode('}')
-            ) {
+        if ($t->getNext()->checkNotOperator('{')) { return false; }
+        if ($t->getNext(1)->checkClass('Token')) { return false; }
+        if ($t->getNext(2)->checkNotOperator('}')) { return false; }
 
-            $this->args   = array(0, 2);
-            $this->remove = array(1,2,3);
+        $this->args   = array(0, 2);
+        $this->remove = array(1,2,3);
 
-            mon_log(get_class($t)." => ".__CLASS__);
-            return true; 
-        } 
-        return false;
+        mon_log(get_class($t)." => ".__CLASS__);
+        return true; 
     }
 }
 ?>
