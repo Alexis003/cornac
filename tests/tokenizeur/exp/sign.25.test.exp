@@ -1,0 +1,31 @@
+tests/tokenizeur/scripts/sign.25.test.php
+  codephp <?php
+
+  code : 
+      sequence 
+      0 : 
+          affectation 
+          droite : 
+              variable $a
+           "=" 
+          gauche : 
+              logique 
+              droite : 
+                  variable $b
+              operateur :  "&"
+              gauche : 
+                  sign  "-"literals 0xf
+                      literals 0xf
+      1 : 
+          affectation 
+          droite : 
+              variable $c
+           "=" 
+          gauche : 
+              logique 
+              droite : 
+                  variable $d
+              operateur :  "|"
+              gauche : 
+                  sign  "-"literals 0xf
+                      literals 0xf
