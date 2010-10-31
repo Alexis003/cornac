@@ -31,7 +31,7 @@ class not_regex extends analyseur_regex {
 
         if ($t->checkNotClass('Token')) { return false; }
         if ($t->getNext()->checkNotClass('Token') &&
-            (!$t->hasNext(2) || $t->getNext(1)->checkNotCode(array('=','->','[','(')))) {
+            (!$t->hasNext(2) || $t->getNext(1)->checkNotCode(array('=','->','[','(','{')))) {
             $this->args = array(1);
             $this->remove = array(1);
 
