@@ -182,7 +182,7 @@ function liste_directories( $path = '.', $level = 0, $recursive = false ){
     global $INI;
 
     $ignore_dirs = array( 'cgi-bin', '.', '..',
-                          'CVS','.svn','.git','.hg', // @todo : mercurial? other vcs's special folder : please add 
+                          'CVS','.svn','.git','.hg', '.bzr', // @todo : mercurial? other vcs's special folder : please add 
                           'adodb','fpdf','fckeditor','incutio','lightbox','nusoap','odtphp','pear','phpthumb','phputf8','scriptaculous','simpletest','smarty','spyc','tiny_mce','tinymce'); 
     if (isset($INI['tokenizeur']['ignore_dirs']) && !empty($INI['tokenizeur']['ignore_dirs'])) {
         $ignore_dirs = array_merge($ignore_dirs, explode(',',$INI['tokenizeur']['ignore_dirs']));
