@@ -1,0 +1,35 @@
+tests/tokenizeur/scripts/clevaleur.9.test.php
+  codephp <?php
+
+  code : 
+      functioncall array
+      function call : array: 
+          arglist 
+          0 : 
+              literals a => variable $b
+                  literals a
+                  variable $b
+          1 : 
+              literals c => method_static 0 "$d"::functioncall 307 "e" ( ( ) ) 
+                  literals c
+                  method_static 
+                  0 "$d"::functioncall 307 "e" ( ( ) ) : 
+                      functioncall e
+                      function call : e: 
+                          arglist 
+                          Liste d'argument vide
+          2 : 
+              literals f => functioncall 360 "array" ( arglist(clevaleur literals g => method_static 0 "$h"::functioncall 307 "i" ( ( ) ) ) ) 
+                  literals f
+                  functioncall array
+                  function call : array: 
+                      arglist 
+                      0 : 
+                          literals g => method_static 0 "$h"::functioncall 307 "i" ( ( ) ) 
+                              literals g
+                              method_static 
+                              0 "$h"::functioncall 307 "i" ( ( ) ) : 
+                                  functioncall i
+                                  function call : i: 
+                                      arglist 
+                                      Liste d'argument vide
