@@ -134,6 +134,7 @@ $tests = array(
 'class.nestedloops.test.php',
 'class.random_functions.test.php',
 'class.if_no_comparison.test.php',
+'class.zfRedirect.test.php',
 // new tests
 );
 
