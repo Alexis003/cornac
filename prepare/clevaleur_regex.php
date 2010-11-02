@@ -30,24 +30,21 @@ class clevaleur_regex extends analyseur_regex {
         if (!$t->hasNext()) { return false; }
         if (!$t->hasPrev()) { return false; }
 
-        if ($t->checkNotToken(T_DOUBLE_ARROW)) {return false; }
+        if ($t->getNext()->checkClass('Token')) { return false; }
+        if ($t->getPrev()->checkClass(array('Token', 'arglist'))) { return false; }
+        if ($t->getPrev(1)->checkToken(T_AS)) { return false; }
+        if ($t->getPrev(1)->checkOperator(array('->','::'))) { return false; } 
+        if ($t->getNext(1)->checkOperator(array('->','::'))) { return false; } 
 
-        if ($t->getNext()->checkNotClass('Token') && 
-            $t->getPrev()->checkNotClass(array('Token', 'arglist')) &&
-            ($t->getPrev(1)->checkNotToken(T_AS)) &&
-             $t->getPrev(1)->checkNotOperator(array('->','::')) &&
-             $t->getNext(1)->checkNotCode(array('[','->','++','--','=','.=','*=','+=','-=','/=','%=',
-                                                 '>>=','&=','^=','>>>=', '|=','<<=','>>=','?','(','{')) &&
-             $t->getNext(1)->checkNotClass(array('arglist','parentheses')) 
-            ) {
-            
-            $this->args = array(-1, 1);
-            $this->remove = array(-1, 1);
+        if ($t->getNext(1)->checkCode(array('[','->','++','--','=','.=','*=','+=','-=','/=','%=',
+                                                 '>>=','&=','^=','>>>=', '|=','<<=','>>=','?','(','{'))) { return false; }
+        if ($t->getNext(1)->checkClass(array('arglist','parentheses'))) { return false; }
 
-            mon_log(get_class($t)." => ".__CLASS__);
-            return true; 
-        } 
-        return false;
+        $this->args = array(-1, 1);
+        $this->remove = array(-1, 1);
+
+        mon_log(get_class($t)." => ".__CLASS__);
+        return true; 
     }
 }
 ?>
