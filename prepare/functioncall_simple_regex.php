@@ -34,20 +34,18 @@ class functioncall_simple_regex extends analyseur_regex {
             $t->getPrev(1)->checkToken(T_FUNCTION)) { return false; }
 
         if ((!$t->hasPrev() || 
-             $t->getPrev()->checkNotToken(T_FUNCTION)) &&
-            $t->checkFunction() &&
-            $t->getNext()->checkClass('arglist')) {
+              $t->getPrev()->checkNotToken(T_FUNCTION)) &&
+              ($t->checkFunction() || $t->checkToken(array(T_STATIC))) &&
+              $t->getNext()->checkClass('arglist')) {
 
-            if ($t->getNext(1)->checkNotOperator(array('{','(')) &&
-                $t->getNext(1)->checkNotClass('parentheses')) {
-                $this->args = array(0 , 1);
-                $this->remove[] = 1;
+            if ($t->getNext(1)->checkOperator(array('{','(')) ||
+                $t->getNext(1)->checkClass('parentheses')) { return false; }
 
-                mon_log(get_class($t)." => ".__CLASS__);
-                return true; 
-            } else {
-                return false;
-            }
+            $this->args = array(0 , 1);
+            $this->remove[] = 1;
+
+            mon_log(get_class($t)." => ".__CLASS__);
+            return true; 
         }
         
         return false;

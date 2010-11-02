@@ -29,9 +29,9 @@ class constante_normal_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasNext()) { return false; }
         if (!$t->hasPrev()) { return false; }
-
+        
         if ($t->checkNotClass('Token')) { return false; } 
-        if ($t->checkNotToken(T_STRING)) { return false; }
+        if ($t->checkNotToken(array(T_STRING, T_DIR, T_FILE, T_FUNC_C, T_LINE, T_METHOD_C, T_NS_C, T_CLASS_C))) { return false; }
         if ($t->getNext()->checkCode(array('(','::','{'))) { return false; }
         if ($t->getNext()->checkToken(T_VARIABLE)) { return false; }
         if ($t->getNext()->checkClass(array('variable','affectation'))) { return false; }
