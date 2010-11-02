@@ -27,12 +27,14 @@ class arglist_regex extends analyseur_regex {
     }
  
     function check($t) {
-        if (!$t->hasPrev(  )) { return false; }
+        if (!$t->hasPrev( )) { return false; }
+        if (!$t->hasNext(1)) { return false; }
 
         // @note for it to be a function call, one need all this before
-        if ($t->getPrev()->checkNotFunction() &&
-            $t->getPrev()->checkNotClass(array('variable','tableau')) &&
-            $t->getPrev()->checkNotCode('}')) { return false; }
+        if ($t->getPrev()->checkNotToken(array(T_STATIC)) && // @note crazy case 
+            ($t->getPrev()->checkNotFunction() &&
+             $t->getPrev()->checkNotClass(array('variable','tableau')) &&
+             $t->getPrev()->checkNotCode('}'))) { return false; }
         
        if ($t->getPrev()->checkOperator('}') && 
         // @todo add limitations on getPrev(1) values? 
@@ -59,7 +61,6 @@ class arglist_regex extends analyseur_regex {
             $var = $var->getNext();
             if ($var->checkOperator('(')) { return false; }
         }
-        
 
         if ($var->checkOperator(')')) {
             $this->remove[] = $pos; // @note remove the final )
