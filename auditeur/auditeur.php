@@ -199,6 +199,7 @@ $modules = array(
 'comparison_constant',
 'random_functions',
 'if_no_comparison',
+'zfRedirect',
 // new analyzers
 );
 

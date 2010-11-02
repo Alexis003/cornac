@@ -1,4 +1,4 @@
-<?php
+<?php 
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -17,37 +17,30 @@
    +----------------------------------------------------------------------+
  */
 
-class zfGetGPC extends modules {
-	protected	$title = 'ZF : incoming values from HTTP request';
-	protected	$description = 'Methods from ZF controllers that gives access to GPC values';
+class zfRedirect extends modules {
+	protected	$title = 'ZF : redirection';
+	protected	$description = 'List of redirection using Zend Framework. ';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
-	
+
+	function dependsOn() {
+	    return array();
+	}
+
 	public function analyse() {
         $this->clean_rapport();
 
+// @todo of course, update this useless query. :)
 	    $query = <<<SQL
 SELECT NULL, T1.fichier, T1.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens_tags> TT
     ON TT.token_sub_id = T1.id
 WHERE
-    T1.code in ('getRequest',
-                'getPost',
-                'getParams',
-                'getParam',
-                'isErrors',
-                'isValid',
-                'isPost',
-                'getModuleName',
-                'getControllerName',
-                'getActionName',
-                'getParameterValue',
-                '_getParams',
-                '_getParam',
-                '_getAllParams') AND 
+    T1.code in ('_redirect',
+                'redirect'  ) AND 
     TT.type='function'
 SQL;
 
