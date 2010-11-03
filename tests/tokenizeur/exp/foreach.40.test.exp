@@ -2,7 +2,7 @@ tests/tokenizeur/scripts/foreach.40.test.php
   codephp <?php
 
   code : 
-      _foreach (cdtternaire ? as  => variable $t)
+      _foreach (ternaryop ? as  => variable $t)
           block 
           0 : 
               functioncall print

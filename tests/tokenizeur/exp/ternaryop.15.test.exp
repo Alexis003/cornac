@@ -1,4 +1,4 @@
-tests/tokenizeur/scripts/cdtternaire.15.test.php
+tests/tokenizeur/scripts/ternaryop.15.test.php
   codephp <?php 
   code : 
       ifthen if
@@ -14,7 +14,7 @@ tests/tokenizeur/scripts/cdtternaire.15.test.php
               function call : echo: 
                   arglist 
                   0 : 
-                      cdtternaire ?
+                      ternaryop ?
                       functioncall 350 "isset" ( arglist(variable $a) )  ? literals desc : literals asc
                           functioncall isset
                           function call : isset: 
@@ -37,7 +37,7 @@ tests/tokenizeur/scripts/cdtternaire.15.test.php
               function call : echo: 
                   arglist 
                   0 : 
-                      cdtternaire ?
+                      ternaryop ?
                       functioncall 350 "isset" ( arglist(variable $a) )  ? literals desc : literals asc
                           functioncall isset
                           function call : isset: 

@@ -1,7 +1,10 @@
-tests/tokenizeur/scripts/cdtternaire.14.test.php
+tests/tokenizeur/scripts/ternaryop.12.test.php
   codephp <?php 
   code : 
-      _foreach (variable $b as  => variable $c)
+      ifthen if
+      Condition 0) 
+          parentheses 
+          ( "variable $b" )
           block 
           0 : 
               rawtext 
@@ -11,7 +14,7 @@ tests/tokenizeur/scripts/cdtternaire.14.test.php
               function call : echo: 
                   arglist 
                   0 : 
-                      cdtternaire ?
+                      ternaryop ?
                       functioncall 350 "isset" ( arglist(variable $a) )  ? literals desc : literals asc
                           functioncall isset
                           function call : isset: 

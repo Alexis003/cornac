@@ -18,7 +18,8 @@
  */
 
 class _while extends instruction {
-    protected $expression = null;
+    protected $condition = null;
+    protected $block = null;
     
     function __construct($expression = null) {
         parent::__construct(array());

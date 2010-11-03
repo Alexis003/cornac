@@ -1,4 +1,4 @@
-tests/tokenizeur/scripts/cdtternaire.11.test.php
+tests/tokenizeur/scripts/ternaryop.11.test.php
   codephp <?php
 
   code : 
@@ -6,7 +6,7 @@ tests/tokenizeur/scripts/cdtternaire.11.test.php
       droite : 
           tableau
               variable $a
-              cdtternaire ?
+              ternaryop ?
               parentheses (variable $b) ? functioncall 307 "strtoupper" ( arglist(property variable $e->literals f) )  : property variable $e->literals f
                   parentheses 
                   ( "variable $b" )

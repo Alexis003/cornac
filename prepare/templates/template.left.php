@@ -90,11 +90,11 @@ class template_left extends template {
         $this->affiche($noeud->getGauche(), $niveau + 1);
     }
     
-    function affiche_cdtternaire($noeud, $niveau) {
+    function affiche_ternaryop($noeud, $niveau) {
         
         $this->affiche($noeud->getCondition(), $niveau + 1);
-        $this->affiche($noeud->getVraie(), $niveau + 1);
-        $this->affiche($noeud->getFaux(), $niveau + 1);
+        $this->affiche($noeud->getThen(), $niveau + 1);
+        $this->affiche($noeud->getElse(), $niveau + 1);
     }
 
     function affiche_codephp($noeud, $niveau) {

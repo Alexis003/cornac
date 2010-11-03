@@ -13,7 +13,7 @@ tests/tokenizeur/scripts/logique.37.test.php
                       ( "comparison tableau variable $property[literals emp_id] 283 "==" sign  "-"literals 1" )
                   operateur :  "|"
                   gauche : 
-                      cdtternaire ?
+                      ternaryop ?
                       parentheses (comparison tableau variable $property[literals emp_id] 283 "==" literals ) ? literals selected : literals 
                           parentheses 
                           ( "comparison tableau variable $property[literals emp_id] 283 "==" literals " )

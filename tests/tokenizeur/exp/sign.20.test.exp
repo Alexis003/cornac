@@ -23,7 +23,7 @@ tests/tokenizeur/scripts/sign.20.test.php
                               variable $c
                   operation :  "-"
                   gauche : 
-                      cdtternaire ?
+                      ternaryop ?
                       literals 1 ? variable $d : variable $r
                           literals 1
                           variable $d

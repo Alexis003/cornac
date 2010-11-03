@@ -1,4 +1,4 @@
-tests/tokenizeur/scripts/cdtternaire.20.test.php
+tests/tokenizeur/scripts/ternaryop.20.test.php
   codephp <?php 
   code : 
       sequence 
@@ -8,7 +8,7 @@ tests/tokenizeur/scripts/cdtternaire.20.test.php
               variable $_tag
            "=" 
           gauche : 
-              cdtternaire ?
+              ternaryop ?
               method variable $x->functioncall 307 "y" ( ( ) )  ? method variable $x->functioncall 307 "z" ( ( ) )  : literals literal
                   method variable $x
                   method call : functioncall 307 "y" ( ( ) ) : 

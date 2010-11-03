@@ -1,4 +1,4 @@
-tests/tokenizeur/scripts/cdtternaire.3.test.php
+tests/tokenizeur/scripts/ternaryop.3.test.php
   codephp <?php
 
   code : 
@@ -7,7 +7,7 @@ tests/tokenizeur/scripts/cdtternaire.3.test.php
           variable $rech_ven
        "=" 
       gauche : 
-          cdtternaire ?
+          ternaryop ?
           functioncall 350 "isset" ( arglist(tableau variable $_REQUEST[literals rech_ven]) )  ? tableau variable $_REQUEST[literals rech_ven] : literals 
               functioncall isset
               function call : isset: 

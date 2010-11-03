@@ -36,7 +36,7 @@ class sign extends instruction {
         return $this->expression;
     }
 
-    function getsign() {
+    function getSign() {
         return $this->sign;
     }
 

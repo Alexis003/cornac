@@ -2,7 +2,7 @@ tests/tokenizeur/scripts/functioncall.51.test.php
   codephp <?php
 
   code : 
-      cdtternaire ?
+      ternaryop ?
       logique property variable $a->literals b  "&" constante C ? functioncall 300 "exit" ( arglist() )  : constante null
           logique 
           droite : 

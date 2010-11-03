@@ -9,7 +9,7 @@ tests/tokenizeur/scripts/sequence.30.test.php
               variable $a
            "=" 
           gauche : 
-              cdtternaire ?
+              ternaryop ?
               parentheses (comparison variable $b 283 "==" literals 1) ? variable $d : variable $e
                   parentheses 
                   ( "comparison variable $b 283 "==" literals 1" )
@@ -17,4 +17,4 @@ tests/tokenizeur/scripts/sequence.30.test.php
                   variable $e
       1 : 
           parentheses 
-          ( "cdtternaire ?" )
+          ( "ternaryop ?" )

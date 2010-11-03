@@ -172,13 +172,13 @@ class template_tree extends template {
          print str_repeat('  ', $level).get_class($noeud).$noeud->getLevels()." \n";
     }
     
-    function affiche_cdtternaire($noeud, $level) {
+    function affiche_ternaryop($noeud, $level) {
         print str_repeat('  ', $level).get_class($noeud)." ".$noeud->getCode()."\n";
         print str_repeat('  ', $level).$noeud->getCondition();
-        print " ? ".$noeud->getVraie()." : ".$noeud->getFaux()."\n";
+        print " ? ".$noeud->getThen()." : ".$noeud->getElse()."\n";
         $this->affiche($noeud->getCondition(), $level + 1);
-        $this->affiche($noeud->getVraie(), $level + 1);
-        $this->affiche($noeud->getFaux(), $level + 1);
+        $this->affiche($noeud->getThen(), $level + 1);
+        $this->affiche($noeud->getElse(), $level + 1);
     }
 
     function affiche_codephp($noeud, $level) {
@@ -433,7 +433,7 @@ class template_tree extends template {
 
     function affiche__switch($noeud, $level) {
         print str_repeat('  ', $level).get_class($noeud)." \n";
-        $this->affiche($noeud->getOperande(), $level + 1);
+        $this->affiche($noeud->getCondition(), $level + 1);
         $this->affiche($noeud->getBlock(), $level + 1);
     }
 

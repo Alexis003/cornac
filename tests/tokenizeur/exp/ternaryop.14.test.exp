@@ -1,10 +1,7 @@
-tests/tokenizeur/scripts/cdtternaire.13.test.php
+tests/tokenizeur/scripts/ternaryop.14.test.php
   codephp <?php 
   code : 
-      _for 
-        Init : affectation variable $b  "=" literals 0;
-        Fin  : comparison variable $b  "<" literals 1;
-        Incr : postplusplus 297 "++"variable $b;
+      _foreach (variable $b as  => variable $c)
           block 
           0 : 
               rawtext 
@@ -14,7 +11,7 @@ tests/tokenizeur/scripts/cdtternaire.13.test.php
               function call : echo: 
                   arglist 
                   0 : 
-                      cdtternaire ?
+                      ternaryop ?
                       functioncall 350 "isset" ( arglist(variable $a) )  ? literals desc : literals asc
                           functioncall isset
                           function call : isset: 

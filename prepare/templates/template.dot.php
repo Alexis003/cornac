@@ -226,11 +226,11 @@ die("cas de l'argument null ou inexistant");
         $this->dot_standard_one($noeud, $level, 'getLevels');
     }
     
-    function affiche_cdtternaire($noeud, $level) {
+    function affiche_ternaryop($noeud, $level) {
         $elements = array(
             $noeud->getCondition(),
-            $noeud->getVraie(),
-            $noeud->getFaux());
+            $noeud->getTrue(),
+            $noeud->getElse());
         $labels = array();
         $id = 0;
 
@@ -247,10 +247,10 @@ die("cas de l'argument null ou inexistant");
 
         print str_repeat('  ', $level).get_class($noeud)." ".$noeud->getCode()."\n";
         print str_repeat('  ', $level).$noeud->getCondition();
-        print " ? ".$noeud->getVraie()." : ".$noeud->getFaux()."\n";
+        print " ? ".$noeud->getThen()." : ".$noeud->getElse()."\n";
         $this->affiche($noeud->getCondition(), $level + 1);
-        $this->affiche($noeud->getVraie(), $level + 1);
-        $this->affiche($noeud->getFaux(), $level + 1);
+        $this->affiche($noeud->getThen(), $level + 1);
+        $this->affiche($noeud->getElse(), $level + 1);
     }
     
     function affiche_codephp($noeud, $level) {
@@ -619,7 +619,7 @@ die("cas de l'argument null ou inexistant");
     }
 
     function affiche__switch($noeud, $level) {
-        $methods = array('getOperande','getBlock');
+        $methods = array('getCondition','getBlock');
         $titre = 'switch';
         
         $this->dot_standard($noeud, $level, $methods, $titre);

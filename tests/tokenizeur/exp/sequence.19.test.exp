@@ -10,7 +10,7 @@ tests/tokenizeur/scripts/sequence.19.test.php
            "=" 
           gauche : 
               parentheses 
-              ( "cdtternaire ?" )
+              ( "ternaryop ?" )
       1 : 
           rawtext 
           Texte : "311 """
@@ -52,7 +52,7 @@ tests/tokenizeur/scripts/sequence.19.test.php
           function call : echo: 
               arglist 
               0 : 
-                  cdtternaire ?
+                  ternaryop ?
                   functioncall 350 "isset" ( arglist(tableau variable $sort[literals 1]) )  ? tableau variable $sort[literals 1] : literals asc
                       functioncall isset
                       function call : isset: 

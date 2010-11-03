@@ -23,7 +23,7 @@
 $tests = array( 
 'class.commentaire.test.php',
 'class.affectation.test.php',
-'class.cdtternaire.test.php',
+'class.ternaryop.test.php',
 'class.codephp.test.php',
 'class.constante.test.php',
 'class.functioncall.test.php',
@@ -54,7 +54,7 @@ $tests = array(
 'class.global.test.php',
 'class.return.test.php',
 'class.function.test.php',
-'class.clevaleur.test.php',
+'class.keyvalue.test.php',
 'class.classe.test.php',
 'class.while.test.php',
 'class.reference.test.php',

@@ -18,12 +18,13 @@
  */
 
 class _switch extends instruction {
-    protected $expression = null;
+    protected $block = null;
+    protected $condition = null;
     
     function __construct($expression = null) {
         parent::__construct(array());
         
-        $this->operande = $expression[0];
+        $this->condition = $expression[0];
         $this->block = $expression[1];
     }
 
@@ -31,8 +32,8 @@ class _switch extends instruction {
         return __CLASS__." ".$this->code;
     }
 
-    function getOperande() {
-        return $this->operande;
+    function getCondition() {
+        return $this->condition;
     }
 
     function getBlock() {
@@ -40,7 +41,7 @@ class _switch extends instruction {
     }
 
     function neutralise() {
-        $this->operande->detach();
+        $this->condition->detach();
         $this->block->detach();
     }
 

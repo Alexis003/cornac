@@ -1,6 +1,0 @@
-tests/tokenizeur/scripts/cdtternaire.8.test.php
-  codephp <?php
-
-  code : 
-      parentheses 
-      ( "comparison literals deflate 281 "===" cdtternaire ?" )

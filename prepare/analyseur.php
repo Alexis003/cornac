@@ -39,7 +39,7 @@ class analyseur {
                                   'inclusion', 
                                   'codephp',
                                   'concatenation',
-                                  'cdtternaire',
+                                  'ternaryop',
                                   'block',
                                   'not',
                                   'invert',

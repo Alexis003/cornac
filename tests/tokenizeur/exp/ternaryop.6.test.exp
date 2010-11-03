@@ -1,4 +1,4 @@
-tests/tokenizeur/scripts/cdtternaire.6.test.php
+tests/tokenizeur/scripts/ternaryop.6.test.php
   codephp <?php
 
   code : 
@@ -7,7 +7,7 @@ tests/tokenizeur/scripts/cdtternaire.6.test.php
           variable $x
        "=" 
       gauche : 
-          cdtternaire ?
+          ternaryop ?
           literals 1 ? literals 2 : tableau tableau tableau variable $x[literals 1][literals 2][literals 3]
               literals 1
               literals 2

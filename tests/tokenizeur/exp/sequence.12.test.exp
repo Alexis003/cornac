@@ -9,7 +9,7 @@ tests/tokenizeur/scripts/sequence.12.test.php
               variable $x
            "=" 
           gauche : 
-              cdtternaire ?
+              ternaryop ?
               parentheses (literals 1) ? literals 2 : literals 3
                   parentheses 
                   ( "literals 1" )
@@ -21,7 +21,7 @@ tests/tokenizeur/scripts/sequence.12.test.php
               variable $y
            "=" 
           gauche : 
-              cdtternaire ?
+              ternaryop ?
               parentheses (literals 4) ? literals 5 : literals 6
                   parentheses 
                   ( "literals 4" )

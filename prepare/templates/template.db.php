@@ -275,13 +275,13 @@ class template_db extends template {
         return $this->savenode($node, $level);
     }
     
-    function affiche_cdtternaire($node, $level) {
+    function affiche_ternaryop($node, $level) {
         $node->myId = $this->getNextId();
         $node->myDroite = $this->getIntervalleId();
 
         $this->affiche($node->getCondition(), $level + 1);
-        $this->affiche($node->getVraie(), $level + 1);
-        $this->affiche($node->getFaux(), $level + 1);
+        $this->affiche($node->getThen(), $level + 1);
+        $this->affiche($node->getElse(), $level + 1);
 
         $node->myGauche = $this->getIntervalleId();
         return $this->savenode($node, $level);
@@ -896,7 +896,7 @@ class template_db extends template {
         $node->myDroite = $this->getIntervalleId();
         $node->setCode('');
 
-        $this->affiche($node->getOperande(), $level + 1);
+        $this->affiche($node->getCondition(), $level + 1);
         $this->affiche($node->getBlock(), $level + 1);
         
         $node->myGauche = $this->getIntervalleId();

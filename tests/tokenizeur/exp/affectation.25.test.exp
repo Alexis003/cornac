@@ -8,7 +8,7 @@ tests/tokenizeur/scripts/affectation.25.test.php
               variable $x
        "=" 
       gauche : 
-          cdtternaire ?
+          ternaryop ?
           comparison variable $y 283 "==" sign  "-"literals 1 ? affectation variable $z  "=" literals 2 : variable $a
               comparison 
               droite : 

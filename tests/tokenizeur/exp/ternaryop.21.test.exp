@@ -1,4 +1,4 @@
-tests/tokenizeur/scripts/cdtternaire.21.test.php
+tests/tokenizeur/scripts/ternaryop.21.test.php
   codephp <?php
 
   code : 
@@ -19,7 +19,7 @@ tests/tokenizeur/scripts/cdtternaire.21.test.php
                           _return 
                           return : "literals 1"
       1 : 
-          cdtternaire ?
+          ternaryop ?
           parentheses (functioncall 351 "empty" ( arglist(tableau variable $x[literals t]) ) ) ? noscream @ : noscream @
               parentheses 
               ( "functioncall 351 "empty" ( arglist(tableau variable $x[literals t]) ) " )

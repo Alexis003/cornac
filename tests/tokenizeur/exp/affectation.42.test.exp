@@ -8,4 +8,4 @@ tests/tokenizeur/scripts/affectation.42.test.php
        "=" 
       gauche : 
           parentheses 
-          ( "cdtternaire ?" )
+          ( "ternaryop ?" )

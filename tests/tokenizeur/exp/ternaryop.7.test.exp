@@ -1,4 +1,4 @@
-tests/tokenizeur/scripts/cdtternaire.7.test.php
+tests/tokenizeur/scripts/ternaryop.7.test.php
   codephp <?php
 
   code : 
@@ -7,7 +7,7 @@ tests/tokenizeur/scripts/cdtternaire.7.test.php
           variable $x
        "=" 
       gauche : 
-          cdtternaire ?
+          ternaryop ?
           literals 1 ? literals 2 : method variable $x->functioncall 307 "y" ( ( ) ) 
               literals 1
               literals 2

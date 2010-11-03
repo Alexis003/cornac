@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class cdtternaire_normal_regex extends analyseur_regex {
+class ternaryop_regex extends analyseur_regex {
     function __construct() {
         parent::__construct(array());
     }

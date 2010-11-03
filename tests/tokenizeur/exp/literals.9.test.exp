@@ -2,7 +2,7 @@ tests/tokenizeur/scripts/literals.9.test.php
   codephp <?php
 
   code : 
-      cdtternaire ?
+      ternaryop ?
       sign  "-"literals 1 ? sign  "-"literals 2 : sign  "-"literals 3
           sign  "-"literals 1
               literals 1

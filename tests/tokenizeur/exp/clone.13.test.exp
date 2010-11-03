@@ -7,7 +7,7 @@ tests/tokenizeur/scripts/clone.13.test.php
           variable $a
        "=" 
       gauche : 
-          cdtternaire ?
+          ternaryop ?
           functioncall 350 "isset" ( arglist(tableau property variable $b->literals c[literals d]) )  ? _clone clone : method method variable $f->functioncall 307 "g" ( ( ) ) ->functioncall 307 "h" ( arglist(literals i) ) 
               functioncall isset
               function call : isset: 

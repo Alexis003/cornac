@@ -512,7 +512,7 @@ class Token {
                        '_interface',
                        'property',
                        '_static',
-                       'cdtternaire',
+                       'ternaryop',
                        '_clone',
                        '_declare',
 // @dont Don't put variable in this list    'variable',

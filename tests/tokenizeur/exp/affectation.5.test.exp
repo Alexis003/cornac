@@ -7,7 +7,7 @@ tests/tokenizeur/scripts/affectation.5.test.php
           variable $x
        "=" 
       gauche : 
-          cdtternaire ?
+          ternaryop ?
           variable $b ? literals 1 : literals 2
               variable $b
               literals 1

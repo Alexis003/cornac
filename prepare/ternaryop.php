@@ -17,10 +17,10 @@
    +----------------------------------------------------------------------+
  */
 
-class cdtternaire extends instruction {
+class ternaryop extends instruction {
     protected $condition = null;
-    protected $vraie = null;
-    protected $faux = null;
+    protected $then = null;
+    protected $else = null;
     
     function __construct($expression) {
         parent::__construct(array());
@@ -33,8 +33,8 @@ class cdtternaire extends instruction {
             } else {
                 $this->condition = $expression[0];
             }
-            $this->vraie     = null;
-            $this->faux      = $expression[1];
+            $this->then     = null;
+            $this->else      = $expression[1];
         } elseif (count($expression) == 3) {
             if ($expression[0]->checkClass('arglist')) {
                 $this->condition = $expression[0]->getList();
@@ -42,8 +42,8 @@ class cdtternaire extends instruction {
             } else {
                 $this->condition = $expression[0];
             }
-            $this->vraie     = $expression[1];
-            $this->faux      = $expression[2];
+            $this->then     = $expression[1];
+            $this->else      = $expression[2];
         } else {
             $this->stopOnError("Wrong number of arguments  : '".count($expression)."' in ".__METHOD__);
         }
@@ -54,27 +54,27 @@ class cdtternaire extends instruction {
     }
 
     static function getRegex() {
-        return array('cdtternaire_normal_regex');
+        return array('ternaryop_regex');
     }
 
     function getCondition() {
         return $this->condition;
     }
 
-    function getVraie() {
-        return $this->vraie;
+    function getThen() {
+        return $this->then;
     }
 
-    function getFaux() {
-        return $this->faux;
+    function getElse() {
+        return $this->else;
     }
 
     function neutralise() {
         $this->condition->detach();
-        if (!is_null($this->vraie)) {
-            $this->vraie->detach();
+        if (!is_null($this->then)) {
+            $this->then->detach();
         }
-        $this->faux->detach();
+        $this->else->detach();
     }
 }
 ?>

@@ -1,4 +1,4 @@
-tests/tokenizeur/scripts/cdtternaire.10.test.php
+tests/tokenizeur/scripts/ternaryop.9.test.php
   codephp <?php
 
   code : 
@@ -10,7 +10,7 @@ tests/tokenizeur/scripts/cdtternaire.10.test.php
           concatenation 
           0 : 
               parentheses 
-              ( "cdtternaire ?" )
+              ( "ternaryop ?" )
           1 : 
               literals  <code>[-&gt;
           2 : 

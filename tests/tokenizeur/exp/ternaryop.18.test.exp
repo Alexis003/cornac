@@ -1,4 +1,4 @@
-tests/tokenizeur/scripts/cdtternaire.18.test.php
+tests/tokenizeur/scripts/ternaryop.18.test.php
   codephp <?php
 
   code : 
@@ -7,7 +7,7 @@ tests/tokenizeur/scripts/cdtternaire.18.test.php
           variable $a
        "=" 
       gauche : 
-          cdtternaire ?
+          ternaryop ?
           functioncall 351 "empty" ( arglist(variable $b) )  ? variable $d : affectation variable $d 273 ".=" concatenation literals   . variable $e  
               functioncall empty
               function call : empty: 

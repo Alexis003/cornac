@@ -1,4 +1,4 @@
-tests/tokenizeur/scripts/cdtternaire.17.test.php
+tests/tokenizeur/scripts/ternaryop.17.test.php
   codephp <?php
 
   code : 
@@ -17,7 +17,7 @@ tests/tokenizeur/scripts/cdtternaire.17.test.php
                   gauche : 
                       literals 1
       1 : 
-          cdtternaire ?
+          ternaryop ?
           parentheses (functioncall 307 "function_exists" ( arglist(literals a) ) ) ? functioncall 307 "b" ( arglist(literals d) )  : literals 
               parentheses 
               ( "functioncall 307 "function_exists" ( arglist(literals a) ) " )

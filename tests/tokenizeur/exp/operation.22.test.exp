@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/operation.22.test.php
       operation 
       droite : 
           parentheses 
-          ( "cdtternaire ?" )
+          ( "ternaryop ?" )
       operation :  "*"
       gauche : 
           functioncall $sorter

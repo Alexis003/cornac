@@ -37,7 +37,7 @@ class sign_regex extends analyseur_regex {
         if ( $t->getPrev()->checkClass(array('literals','variable','tableau',
                                              'property','operation','sign',
                                              'functioncall','parentheses','arglist',
-                                             'cdtternaire', )) ) { return false ;}
+                                             'ternaryop', )) ) { return false ;}
 
         if (!$t->getPrev()->checkBeginInstruction() &&
              $t->getPrev()->checkNotOperator(array('~','&','|','@','!','-','+','>>','<<'))) { return false; }

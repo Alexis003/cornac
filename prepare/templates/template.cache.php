@@ -232,17 +232,17 @@ class template_cache extends template {
         $node->cache = 'continue '.$levels->cache;
     }
     
-    function affiche_cdtternaire($node, $level) {
+    function affiche_ternaryop($node, $level) {
         $condition = $node->getCondition();
         $this->affiche($condition, $level + 1);
 
-        $vraie = $node->getVraie();
-        $this->affiche($vraie, $level + 1);
+        $then = $node->getThen();
+        $this->affiche($then, $level + 1);
         
-        $faux = $node->getFaux();
-        $this->affiche($faux, $level + 1);
+        $else = $node->getElse();
+        $this->affiche($else, $level + 1);
 
-        $node->cache = $condition.' ? '.$vraie.' : '.$faux;
+        $node->cache = $condition.' ? '.$then.' : '.$else;
         return $this->savenode($node);
     }
 
@@ -728,7 +728,7 @@ class template_cache extends template {
     }
 
     function affiche__switch($node, $level) {
-        $this->affiche($node->getOperande(), $level + 1);
+        $this->affiche($node->getCondition(), $level + 1);
         $this->affiche($node->getBlock(), $level + 1);
         $node->cache = '<switch>';
     }

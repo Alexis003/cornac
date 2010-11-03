@@ -26,7 +26,7 @@ tests/tokenizeur/scripts/sequence.27.test.php
                                   literals 2
               operateur :  "<"
               gauche : 
-                  cdtternaire ?
+                  ternaryop ?
                   literals 12 ? literals c : literals d
                       literals 12
                       literals c

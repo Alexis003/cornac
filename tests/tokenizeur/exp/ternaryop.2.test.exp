@@ -1,4 +1,4 @@
-tests/tokenizeur/scripts/cdtternaire.2.test.php
+tests/tokenizeur/scripts/ternaryop.2.test.php
   codephp <?php
 
   code : 
@@ -7,7 +7,7 @@ tests/tokenizeur/scripts/cdtternaire.2.test.php
           variable $categorie
        "=" 
       gauche : 
-          cdtternaire ?
+          ternaryop ?
           parentheses (comparison variable $categorie_id 282 "!=" literals ) ? concatenation variable $categorie_id . literals  -  . variable $categorie_nom   : literals 
               parentheses 
               ( "comparison variable $categorie_id 282 "!=" literals " )

@@ -41,9 +41,9 @@ class affectation_normal_regex extends analyseur_regex {
         if (($t->getPrev()->checkClass(array('variable','property','opappend','functioncall','not','noscream','property_static','reference','cast')) || 
              $t->getPrev()->checkSubclass('variable')) &&
             ($t->getNext()->checkClass(array('literals', 'variable','tableau','sign','noscream',
-                                             'property', 'method'  ,'cdtternaire',
+                                             'property', 'method'  ,'ternaryop',
                                              'functioncall','operation','logique',
-                                             'method_static','operation','cdtternaire',
+                                             'method_static','operation','ternaryop',
                                              'constante_static','property_static','_clone',
                                              'parentheses','_new','cast','constante','invert',
                                              'not','affectation','shell','decalage','comparison',
