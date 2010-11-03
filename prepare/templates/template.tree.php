@@ -153,10 +153,10 @@ class template_tree extends template {
         $this->affiche($noeud->getExpression(), $level + 1);
     }
 
-    function affiche_clevaleur($noeud, $level) {
-        print str_repeat('  ', $level).$noeud->getCle()." => ".$noeud->getValeur()."\n";
-        $this->affiche($noeud->getCle(), $level + 1);
-        $this->affiche($noeud->getValeur(), $level + 1);
+    function affiche_keyvalue($noeud, $level) {
+        print str_repeat('  ', $level).$noeud->getKey()." => ".$noeud->getValue()."\n";
+        $this->affiche($noeud->getKey(), $level + 1);
+        $this->affiche($noeud->getValue(), $level + 1);
     }
 
     function affiche_comparison($noeud, $level) {

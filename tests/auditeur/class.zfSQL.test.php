@@ -1,4 +1,4 @@
-<?php
+<?php 
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -17,34 +17,20 @@
    +----------------------------------------------------------------------+
  */
 
-class clevaleur_regex extends analyseur_regex {
-    function __construct() {
-        parent::__construct(array());
-    }
+include_once('Auditeur_Framework_TestCase.php');
 
-    function getTokens() {
-        return array(T_DOUBLE_ARROW);
-    }
-    
-    function check($t) {
-        if (!$t->hasNext()) { return false; }
-        if (!$t->hasPrev()) { return false; }
+class zfSQL_Test extends Auditeur_Framework_TestCase
+{
+    public function testzfSQL()  {
+        $this->expected = array( 'fetchAll',
+                                 'update',
+                                 'insert',
+                                 'delete',
+                                 'fetchRow',);
+        $this->unexpected = array(/*'',*/);
 
-        if ($t->getNext()->checkClass('Token')) { return false; }
-        if ($t->getPrev()->checkClass(array('Token', 'arglist'))) { return false; }
-        if ($t->getPrev(1)->checkToken(T_AS)) { return false; }
-        if ($t->getPrev(1)->checkOperator(array('->','::'))) { return false; } 
-        if ($t->getNext(1)->checkOperator(array('->','::'))) { return false; } 
-
-        if ($t->getNext(1)->checkCode(array('[','->','++','--','=','.=','*=','+=','-=','/=','%=',
-                                                 '>>=','&=','^=','>>>=', '|=','<<=','>>=','?','(','{'))) { return false; }
-        if ($t->getNext(1)->checkClass(array('arglist','parentheses'))) { return false; }
-
-        $this->args = array(-1, 1);
-        $this->remove = array(-1, 1);
-
-        mon_log(get_class($t)." => ".__CLASS__);
-        return true; 
+        parent::generic_test();
+//        parent::generic_counted_test();
     }
 }
 ?>

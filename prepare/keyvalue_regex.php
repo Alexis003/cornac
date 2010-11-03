@@ -16,19 +16,35 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
-include('../libs/database.php');
-$ini = array('mysql' => array('active' => 1,
-                              'dsn' => 'mysql:dbname=analyseur;host=127.0.0.1',
-                              'username' => 'root',
-                              'password' => ''),
-             'cornac' => array('prefix' => 'pimcore' ) );
-$DATABASE = new database($ini);
 
-$res = $DATABASE->query('SHOW TABLES LIKE "'.$ini['cornac']['prefix'].'%"');
-if ($res->rowCount() == 0) {
-    print $ini['cornac']['prefix']." doesn't exists in the database. Fix config file. Aborting. \n";
-    die();
+class keyvalue_regex extends analyseur_regex {
+    function __construct() {
+        parent::__construct(array());
+    }
+
+    function getTokens() {
+        return array(T_DOUBLE_ARROW);
+    }
+    
+    function check($t) {
+        if (!$t->hasNext()) { return false; }
+        if (!$t->hasPrev()) { return false; }
+
+        if ($t->getNext()->checkClass('Token')) { return false; }
+        if ($t->getPrev()->checkClass(array('Token', 'arglist'))) { return false; }
+        if ($t->getPrev(1)->checkToken(T_AS)) { return false; }
+        if ($t->getPrev(1)->checkOperator(array('->','::'))) { return false; } 
+        if ($t->getNext(1)->checkOperator(array('->','::'))) { return false; } 
+
+        if ($t->getNext(1)->checkCode(array('[','->','++','--','=','.=','*=','+=','-=','/=','%=',
+                                                 '>>=','&=','^=','>>>=', '|=','<<=','>>=','?','(','{'))) { return false; }
+        if ($t->getNext(1)->checkClass(array('arglist','parentheses'))) { return false; }
+
+        $this->args = array(-1, 1);
+        $this->remove = array(-1, 1);
+
+        mon_log(get_class($t)." => ".__CLASS__);
+        return true; 
+    }
 }
-
-
 ?>

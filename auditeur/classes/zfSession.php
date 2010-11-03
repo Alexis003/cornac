@@ -1,4 +1,4 @@
-<?php
+<?php 
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -16,19 +16,33 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
-include('../libs/database.php');
-$ini = array('mysql' => array('active' => 1,
-                              'dsn' => 'mysql:dbname=analyseur;host=127.0.0.1',
-                              'username' => 'root',
-                              'password' => ''),
-             'cornac' => array('prefix' => 'pimcore' ) );
-$DATABASE = new database($ini);
 
-$res = $DATABASE->query('SHOW TABLES LIKE "'.$ini['cornac']['prefix'].'%"');
-if ($res->rowCount() == 0) {
-    print $ini['cornac']['prefix']." doesn't exists in the database. Fix config file. Aborting. \n";
-    die();
+class zfSession extends modules {
+	protected	$title = 'zf : sessions';
+	protected	$description = 'Using session in Zend Framework. Only Zend_Session_Namespace, no heritage supported. ';
+
+	function __construct($mid) {
+        parent::__construct($mid);
+	}
+
+	function dependsOn() {
+	    return array('_new');
+	}
+
+	public function analyse() {
+        $this->clean_rapport();
+
+// @todo of course, update this useless query. :)
+	    $query = <<<SQL
+SELECT NULL, TR.fichier, TR.element, TR.id, '{$this->name}', 0
+    FROM <rapport> TR
+    WHERE module = '_new' AND
+          element = 'Zend_Session_Namespace' 
+SQL;
+        $this->exec_query_insert('rapport', $query);
+
+        return true;
+	}
 }
-
 
 ?>

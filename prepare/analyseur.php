@@ -59,7 +59,7 @@ class analyseur {
                                   '_switch',
                                   '_case',
                                   '_default',
-                                  'clevaleur',
+                                  'keyvalue',
                                   '_break',
                                   '_continue',
                                   'opappend',
@@ -174,13 +174,6 @@ class analyseur {
         foreach($args as $id => $arg) {
             if ($arg > 0) {
                 $args[$id] = $tNext->getNext($arg - $argNext - 1);
-                /*
-                if ($tNext->getNext($arg - $argNext - 1)."" != $token->getNext($arg - 1)."") {
-                    print $arg."\n";
-                    print $tNext->getNext($arg - $argNext - 1)." tNext\n";
-                    print $token->getNext($arg - 1)." token\n";
-                    die();
-                }*/
                 $argNext = $arg;
                 $tNext = $args[$id];
             } elseif ($arg < 0) {

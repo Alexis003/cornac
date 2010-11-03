@@ -171,7 +171,7 @@ class template_db extends template {
         $node->setCode('');
         
         $this->affiche($node->getVariable(), $level + 1);
-        $this->affiche($node->getValeur(), $level + 1);
+        $this->affiche($node->getValue(), $level + 1);
 
         $node->myGauche = $this->getIntervalleId();
         return $this->savenode($node, $level);
@@ -346,12 +346,12 @@ class template_db extends template {
         return $this->savenode($node, $level);
     }
 
-    function affiche_clevaleur($node, $level) {
+    function affiche_keyvalue($node, $level) {
         $node->myId = $this->getNextId();
         $node->myDroite = $this->getIntervalleId();
 
-        $this->affiche($node->getCle(), $level + 1);
-        $this->affiche($node->getValeur(), $level + 1);
+        $this->affiche($node->getKey(), $level + 1);
+        $this->affiche($node->getValue(), $level + 1);
 
         $node->myGauche = $this->getIntervalleId();
         return $this->savenode($node, $level);

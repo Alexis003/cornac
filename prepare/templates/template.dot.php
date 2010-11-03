@@ -321,11 +321,11 @@ die("cas de l'argument null ou inexistant");
         $this->dot_standard($noeud, $level, $methods, $titre);
     }
 
-    function affiche_clevaleur($noeud, $level) {
+    function affiche_keyvalue($noeud, $level) {
         $this->dot_label($noeud->dotId, "=>");
 
-        $this->dot_standard_one($noeud, $level, 'getCle');
-        $this->dot_standard_one($noeud, $level, 'getValeur');
+        $this->dot_standard_one($noeud, $level, 'getKey');
+        $this->dot_standard_one($noeud, $level, 'getValue');
     }
 
     function affiche_comparison($noeud, $level) {

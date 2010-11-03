@@ -1,4 +1,4 @@
-<?php
+<?php 
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -16,19 +16,17 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
-include('../libs/database.php');
-$ini = array('mysql' => array('active' => 1,
-                              'dsn' => 'mysql:dbname=analyseur;host=127.0.0.1',
-                              'username' => 'root',
-                              'password' => ''),
-             'cornac' => array('prefix' => 'pimcore' ) );
-$DATABASE = new database($ini);
 
-$res = $DATABASE->query('SHOW TABLES LIKE "'.$ini['cornac']['prefix'].'%"');
-if ($res->rowCount() == 0) {
-    print $ini['cornac']['prefix']." doesn't exists in the database. Fix config file. Aborting. \n";
-    die();
+include_once('Auditeur_Framework_TestCase.php');
+
+class zfSession_Test extends Auditeur_Framework_TestCase
+{
+    public function testzfSession()  {
+        $this->expected = array( 'Zend_Session_Namespace');
+        $this->unexpected = array('un_namespace_avec_des_donnes_presentes',);
+
+        parent::generic_test();
+//        parent::generic_counted_test();
+    }
 }
-
-
 ?>

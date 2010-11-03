@@ -1,4 +1,4 @@
-<?php
+<?php 
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -16,19 +16,44 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
-include('../libs/database.php');
-$ini = array('mysql' => array('active' => 1,
-                              'dsn' => 'mysql:dbname=analyseur;host=127.0.0.1',
-                              'username' => 'root',
-                              'password' => ''),
-             'cornac' => array('prefix' => 'pimcore' ) );
-$DATABASE = new database($ini);
 
-$res = $DATABASE->query('SHOW TABLES LIKE "'.$ini['cornac']['prefix'].'%"');
-if ($res->rowCount() == 0) {
-    print $ini['cornac']['prefix']." doesn't exists in the database. Fix config file. Aborting. \n";
-    die();
+class zfSQL extends modules {
+	protected	$title = 'ZF : SQL query execution';
+	protected	$description = 'Spot SQL query execution in Zend Framework Zend_DB style.';
+
+	function __construct($mid) {
+        parent::__construct($mid);
+	}
+
+// @doc if this analyzer is based on previous result, use this to make sure the results are here
+	function dependsOn() {
+	    return array();
+	}
+
+	public function analyse() {
+        $this->clean_rapport();
+
+// @todo of course, update this useless query. :)
+	    $query = <<<SQL
+SELECT NULL, T1.fichier, T1.code, T1.id, '{$this->name}', 0
+FROM <tokens> T1
+JOIN <tokens_tags> TT
+    ON TT.token_sub_id = T1.id
+WHERE
+    T1.code in ('query',
+                'execute',
+                'fetchAll',
+                'fetchRow',
+                'fetch',
+                'delete',
+                'update',
+                'insert') AND 
+    TT.type='function'
+SQL;
+        $this->exec_query_insert('rapport', $query);
+
+        return true;
+	}
 }
-
 
 ?>

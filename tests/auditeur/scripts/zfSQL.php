@@ -17,38 +17,15 @@
    +----------------------------------------------------------------------+
  */
 
-class clevaleur extends instruction {
-    protected $expression = null;
-    
-    function __construct($expression = null) {
-        parent::__construct(array());
-        
-        $this->cle = $expression[0];
-        $this->valeur = $expression[1];
-    }
 
-    function __toString() {
-        return __CLASS__." ".$this->cle." => ".$this->valeur;
-    }
+$this->db->fetchAll("SHOW COLUMNS FROM documents_permissions") ;
 
-    function getCle() {
-        return $this->cle;
-    }
+$this->db->update("documents_permissions", $data, "id='" . $this->model->getId() . "'");
 
-    function getValeur() {
-        return $this->valeur;
-    }
+$this->db->insert("documents_permissions", array()); 
 
-    function neutralise() {
-        $this->cle->detach();
-        $this->valeur->detach();
-    }
+$this->db->delete("documents_permissions",  "id=" . $this->model->getId()); 
 
-    function getRegex(){
-        return array('clevaleur_regex',
-                    );
-    }
-
-}
+$this->db->fetchRow("SELECT * FROM dp WHERE id = ?",  $this->model->getId()); 
 
 ?>

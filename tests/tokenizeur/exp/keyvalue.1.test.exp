@@ -1,4 +1,4 @@
-tests/tokenizeur/scripts/clevaleur.1.test.php
+tests/tokenizeur/scripts/keyvalue.1.test.php
   codephp <?php
 
   code : 

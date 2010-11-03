@@ -200,6 +200,8 @@ $modules = array(
 'random_functions',
 'if_no_comparison',
 'zfRedirect',
+'zfSQL',
+'zfSession',
 // new analyzers
 );
 

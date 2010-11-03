@@ -136,10 +136,10 @@ class template_stats extends template {
         $this->affiche($noeud->getBlock(), $niveau + 1);
     }
 
-    function affiche_clevaleur($noeud, $niveau) {
+    function affiche_keyvalue($noeud, $niveau) {
         $this->addStat(__FUNCTION__);
-        $this->affiche($noeud->getCle(), $niveau + 1);
-        $this->affiche($noeud->getValeur(), $niveau + 1);
+        $this->affiche($noeud->getKey(), $niveau + 1);
+        $this->affiche($noeud->getValue(), $niveau + 1);
     }
 
     function affiche__clone($noeud, $niveau) {

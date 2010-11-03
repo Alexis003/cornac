@@ -7,7 +7,7 @@ tests/tokenizeur/scripts/method_static.3.test.php
           variable $a
        "=" 
       gauche : 
-          method method method_static 307 "b"::functioncall 307 "c" ( ( ) ) ->functioncall 307 "d" ( arglist(functioncall 360 "array" ( arglist(clevaleur literals e => functioncall 360 "array" ( arglist(clevaleur literals f => literals g) ) ) ) ) ) 
+          method method method_static 307 "b"::functioncall 307 "c" ( ( ) ) ->functioncall 307 "d" ( arglist(functioncall 360 "array" ( arglist(keyvalue literals e => functioncall 360 "array" ( arglist(keyvalue literals f => literals g) ) ) ) ) ) 
           method call : functioncall 307 "h" ( ( ) ) : 
               functioncall h
               function call : h: 

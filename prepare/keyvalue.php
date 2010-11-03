@@ -16,19 +16,48 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
-include('../libs/database.php');
-$ini = array('mysql' => array('active' => 1,
-                              'dsn' => 'mysql:dbname=analyseur;host=127.0.0.1',
-                              'username' => 'root',
-                              'password' => ''),
-             'cornac' => array('prefix' => 'pimcore' ) );
-$DATABASE = new database($ini);
 
-$res = $DATABASE->query('SHOW TABLES LIKE "'.$ini['cornac']['prefix'].'%"');
-if ($res->rowCount() == 0) {
-    print $ini['cornac']['prefix']." doesn't exists in the database. Fix config file. Aborting. \n";
-    die();
+class keyvalue extends instruction {
+    protected $key = null;
+    protected $value = null;
+    
+    function __construct($expression = null) {
+        parent::__construct(array());
+        
+        $this->key = $expression[0];
+        $this->value = $expression[1];
+    }
+
+    function __toString() {
+        return __CLASS__." ".$this->key." => ".$this->value;
+    }
+
+    function getCle() {
+        return $this->getKey();
+    }
+
+    function getKey() {
+        return $this->key;
+    }
+
+    function getValeur() {
+        return $this->getValue();
+    }
+
+    function getValue() {
+        return $this->value;
+    }
+
+    function neutralise() {
+        $this->key->detach();
+        $this->value->detach();
+    }
+
+    function getRegex(){
+        return array('keyvalue_regex',
+                    );
+    }
+
 }
-
 
 ?>

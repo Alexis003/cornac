@@ -291,13 +291,13 @@ class template_cache extends template {
         $node->cache = 'clone '.$expression->cache;
     }
 
-    function affiche_clevaleur($node, $level) {
-        $cle = $node->getCle();
-        $this->affiche($cle, $level + 1);
-        $valeur = $node->getValeur();
-        $this->affiche($valeur, $level + 1);
+    function affiche_keyvalue($node, $level) {
+        $key = $node->getKey();
+        $this->affiche($key, $level + 1);
+        $value = $node->getValue();
+        $this->affiche($value, $level + 1);
 
-        $node->cache = $cle->cache.' => '.$valeur->cache;
+        $node->cache = $key->cache.' => '.$value->cache;
     }
 
     function affiche_comparison($node, $level) {
@@ -420,9 +420,9 @@ class template_cache extends template {
             $node->cache .= $key.' => ';
         }
 
-        $valeur = $node->getValue();
-        $this->affiche($valeur, $level + 1);
-        $node->cache .= $valeur.')';
+        $value = $node->getValue();
+        $this->affiche($value, $level + 1);
+        $node->cache .= $value.')';
 
         $this->affiche($node->getBlock(), $level + 1);
         // on ignore

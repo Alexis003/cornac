@@ -1,4 +1,4 @@
-tests/tokenizeur/scripts/clevaleur.4.test.php
+tests/tokenizeur/scripts/keyvalue.3.test.php
   codephp <?php
 
   code : 
@@ -11,17 +11,17 @@ tests/tokenizeur/scripts/clevaleur.4.test.php
           function call : array: 
               arglist 
               0 : 
-                  literals bouton0 => postplusplus 296 "--"variable $nbtab
+                  literals bouton0 => preplusplus variable $nbtab297 "++"
                       literals bouton0
-                      variable $nbtab296 "--" 
+                      297 "++"variable $nbtab 
                           variable $nbtab
               1 : 
-                  literals bouton1 => postplusplus 296 "--"variable $nbtab
+                  literals bouton1 => preplusplus variable $nbtab297 "++"
                       literals bouton1
-                      variable $nbtab296 "--" 
+                      297 "++"variable $nbtab 
                           variable $nbtab
               2 : 
-                  literals bouton2 => postplusplus 296 "--"variable $nbtab
+                  literals bouton2 => preplusplus variable $nbtab297 "++"
                       literals bouton2
-                      variable $nbtab296 "--" 
+                      297 "++"variable $nbtab 
                           variable $nbtab

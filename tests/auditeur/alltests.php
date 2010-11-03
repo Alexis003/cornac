@@ -135,6 +135,8 @@ $tests = array(
 'class.random_functions.test.php',
 'class.if_no_comparison.test.php',
 'class.zfRedirect.test.php',
+'class.zfSession.test.php',
+'class.zfSQL.test.php',
 // new tests
 );
 
