@@ -202,6 +202,7 @@ $modules = array(
 'zfRedirect',
 'zfSQL',
 'zfSession',
+'zfTypeView',
 // new analyzers
 );
 
