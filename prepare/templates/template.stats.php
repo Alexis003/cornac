@@ -239,7 +239,7 @@ class template_stats extends template {
     function affiche__foreach($node, $niveau) {
         $this->addStat(__FUNCTION__);
 
-        $gets = array('getTableau','getKey','getValue','getBlock');
+        $gets = array('getArray','getKey','getValue','getBlock');
 
         foreach($gets as $get) {
             $list = $node->$get();
@@ -419,7 +419,7 @@ class template_stats extends template {
         $this->affiche($node->getBlock(), $niveau + 1);
     }
 
-    function affiche_tableau($node, $niveau) {
+    function affiche__array($node, $niveau) {
         $this->addStat(__FUNCTION__);
         $this->affiche($node->getVariable(), $niveau + 1);
         $this->affiche($node->getIndex(), $niveau + 1);

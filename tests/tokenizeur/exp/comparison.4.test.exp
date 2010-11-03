@@ -7,6 +7,6 @@ tests/tokenizeur/scripts/comparison.4.test.php
           variable $x
       operateur :  ">"
       gauche : 
-          tableau
+          _array
               variable $y
               literals 1

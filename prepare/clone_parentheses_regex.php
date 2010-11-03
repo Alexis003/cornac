@@ -29,7 +29,7 @@ class clone_parentheses_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasNext()) { return false; }
         if ($t->getNext()->checkNotCode('(')) { return false; }
-        if ($t->getNext(1)->checkNotClass(array('variable','tableau',
+        if ($t->getNext(1)->checkNotClass(array('variable','_array',
                                                 'property','property_static',
                                                 'method','method_static',
                                                'functioncall'))) { return false; }

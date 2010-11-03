@@ -5,8 +5,8 @@ tests/tokenizeur/scripts/affectation.38.test.php
       affectation 
       droite : 
           noscream @
-              tableau
-                  tableau
+              _array
+                  _array
                       variable $a
                       variable $b
                   variable $c

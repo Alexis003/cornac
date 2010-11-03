@@ -3,6 +3,6 @@ tests/tokenizeur/scripts/throw.5.test.php
 
   code : 
       _throw 
-          tableau
+          _array
               variable $x
-              literals tableau
+              literals index

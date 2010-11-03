@@ -410,9 +410,9 @@ class template_cache extends template {
     function affiche__foreach($node, $level) {
         $node->cache = 'foreach(';
 
-        $tableau = $node->getTableau();
-        $this->affiche($tableau, $level + 1);
-        $node->cache .= $tableau->cache.' as ';
+        $array = $node->getArray();
+        $this->affiche($array, $level + 1);
+        $node->cache .= $array->cache.' as ';
         
         $key = $node->getKey();
         if (!is_null($key)) {
@@ -733,7 +733,7 @@ class template_cache extends template {
         $node->cache = '<switch>';
     }
 
-    function affiche_tableau($node, $level) {
+    function affiche__array($node, $level) {
         $variable = $node->getVariable();
         $this->affiche($variable, $level + 1);
         $index = $node->getIndex();

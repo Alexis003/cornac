@@ -17,13 +17,13 @@ tests/tokenizeur/scripts/foreach.17.test.php
                   1 : 
                       literals 3
       1 : 
-          _foreach (variable $x as tableau variable $y[literals 1] => reference &tableau variable $z[literals 3])
+          _foreach (variable $x as _array variable $y[literals 1] => reference &_array variable $z[literals 3])
               block 
               0 : 
                   functioncall print
                   function call : print: 
                       arglist 
                       0 : 
-                          tableau
+                          _array
                               variable $y
                               literals 1

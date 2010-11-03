@@ -548,7 +548,7 @@ class Token {
     }
 
     function checkForVariable() {
-        $liste = array('variable','tableau','property');
+        $liste = array('variable','_array','property');
         return $this->checkClass($liste);
     }
     

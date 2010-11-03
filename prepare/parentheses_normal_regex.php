@@ -42,7 +42,7 @@ class parentheses_normal_regex extends analyseur_regex {
             } else {
                 return false; 
             }
-        } elseif ($t->getPrev()->checkClass(array('property','tableau','property_static')) ||
+        } elseif ($t->getPrev()->checkClass(array('property','_array','property_static')) ||
                   $t->getPrev()->checkOperator(']')) {
             // @note this may be a $obj->$array[1]() call
             return false; 

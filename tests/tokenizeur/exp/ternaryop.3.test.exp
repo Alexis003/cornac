@@ -8,15 +8,15 @@ tests/tokenizeur/scripts/ternaryop.3.test.php
        "=" 
       gauche : 
           ternaryop ?
-          functioncall 350 "isset" ( arglist(tableau variable $_REQUEST[literals rech_ven]) )  ? tableau variable $_REQUEST[literals rech_ven] : literals 
+          functioncall 350 "isset" ( arglist(_array variable $_REQUEST[literals rech_ven]) )  ? _array variable $_REQUEST[literals rech_ven] : literals 
               functioncall isset
               function call : isset: 
                   arglist 
                   0 : 
-                      tableau
+                      _array
                           variable $_REQUEST
                           literals rech_ven
-              tableau
+              _array
                   variable $_REQUEST
                   literals rech_ven
               literals 

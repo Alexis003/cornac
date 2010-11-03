@@ -1,7 +1,7 @@
-tests/tokenizeur/scripts/tableau.8.test.php
+tests/tokenizeur/scripts/array.8.test.php
   codephp <?php
 
   code : 
-      tableau
+      _array
           property variable $xliterals y->
           literals 0

@@ -12,14 +12,14 @@ tests/tokenizeur/scripts/operation.22.test.php
           function call : $sorter: 
               arglist 
               0 : 
-                  tableau
+                  _array
                       variable $a
-                      tableau
+                      _array
                           variable $GLOBALS
                           literals callback_sort_by
               1 : 
-                  tableau
+                  _array
                       variable $b
-                      tableau
+                      _array
                           variable $GLOBALS
                           literals callback_sort_by

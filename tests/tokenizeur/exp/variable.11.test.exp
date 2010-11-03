@@ -4,7 +4,7 @@ tests/tokenizeur/scripts/variable.11.test.php
   code : 
       affectation 
       droite : 
-          variable tableau variable $c[literals d]
+          variable _array variable $c[literals d]
        "=" 
       gauche : 
           literals 1

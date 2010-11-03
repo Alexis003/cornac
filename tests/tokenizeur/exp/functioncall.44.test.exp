@@ -23,6 +23,6 @@ tests/tokenizeur/scripts/functioncall.44.test.php
                   function call : $d: 
                       arglist 
                       0 : 
-                          tableau
+                          _array
                               variable $e
                               variable $f

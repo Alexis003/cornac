@@ -2,8 +2,8 @@ tests/tokenizeur/scripts/functioncall.50.test.php
   codephp <?php
 
   code : 
-      method tableau variable $object[literals 0]
-      method call : functioncall tableau variable $object[literals 1] ( arglist(variable $arg) ) : 
+      method _array variable $object[literals 0]
+      method call : functioncall _array variable $object[literals 1] ( arglist(variable $arg) ) : 
           functioncall $object
           function call : $object: 
               arglist 

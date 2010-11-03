@@ -2,7 +2,7 @@ tests/tokenizeur/scripts/foreach.14.test.php
   codephp <?php
 
   code : 
-      _foreach (variable $x as  => tableau variable $y[literals 1])
+      _foreach (variable $x as  => _array variable $y[literals 1])
           block 
           0 : 
               affectation 

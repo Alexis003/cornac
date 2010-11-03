@@ -1,12 +1,12 @@
-tests/tokenizeur/scripts/tableau.5.test.php
+tests/tokenizeur/scripts/array.5.test.php
   codephp <?php
 
   code : 
-      tableau
-          tableau
+      _array
+          _array
               variable $GLOBALS
               literals _TABLE_CORRESPONDANCE_MENU
-          tableau
+          _array
               variable $tb_menu_racc
               operation 
               droite : 

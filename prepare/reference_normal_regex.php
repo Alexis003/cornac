@@ -40,7 +40,7 @@ class reference_normal_regex extends analyseur_regex {
             return false; 
         }
         
-        if ($t->getNext()->checkClass(array('variable','_new','method','functioncall','_new','property','tableau','property_static','method_static','opappend'))) {
+        if ($t->getNext()->checkClass(array('variable','_new','method','functioncall','_new','property','_array','property_static','method_static','opappend'))) {
 
             $this->args = array(1);
             $this->remove = array(1);

@@ -4,8 +4,8 @@ tests/tokenizeur/scripts/opappend.2.test.php
   code : 
       affectation 
       droite : 
-          tableau variable $x[literals 1][]
-              tableau
+          _array variable $x[literals 1][]
+              _array
                   variable $x
                   literals 1
        "=" 

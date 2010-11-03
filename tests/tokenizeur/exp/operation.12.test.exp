@@ -9,7 +9,7 @@ tests/tokenizeur/scripts/operation.12.test.php
       gauche : 
           affectation 
           droite : 
-              tableau
+              _array
                   variable $y
                   literals 1
            "=" 

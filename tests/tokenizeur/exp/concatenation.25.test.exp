@@ -12,8 +12,8 @@ tests/tokenizeur/scripts/concatenation.25.test.php
               literals &nbsp;(
           1 : 
               noscream @
-                  297 "++"tableau variable $n[variable $boucle] 
-                      tableau
+                  297 "++"_array variable $n[variable $boucle] 
+                      _array
                           variable $n
                           variable $boucle
           2 : 

@@ -36,8 +36,8 @@ class property_static_regex extends analyseur_regex {
         if ($t->getNext(1)->checkCode(array('('))) { return false;}
 
         if ( ($t->getPrev()->checkToken(array(T_STRING,T_STATIC)) || 
-              $t->getPrev()->checkClass(array('variable','tableau'))) &&
-              $t->getNext()->checkClass(array('variable','tableau')) &&
+              $t->getPrev()->checkClass(array('variable','_array'))) &&
+              $t->getNext()->checkClass(array('variable','_array')) &&
               $t->getNext(1)->checkNotClass('arglist')
             ) {
 

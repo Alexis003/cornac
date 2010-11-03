@@ -16,30 +16,24 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
+include_once('Analyseur_Framework_TestCase.php');
 
-class tableau_accolade_regex extends analyseur_regex {
-    function __construct() {
-        parent::__construct(array());
-    }
+class array_Test extends Analyseur_Framework_TestCase
+{
+    /* 12 methodes */
+    public function testarray1()  { $this->generic_test('array.1'); }
+    public function testarray2()  { $this->generic_test('array.2'); }
+    public function testarray3()  { $this->generic_test('array.3'); }
+    public function testarray4()  { $this->generic_test('array.4'); }
+    public function testarray5()  { $this->generic_test('array.5'); }
+    public function testarray6()  { $this->generic_test('array.6'); }
+    public function testarray7()  { $this->generic_test('array.7'); }
+    public function testarray8()  { $this->generic_test('array.8'); }
+    public function testarray9()  { $this->generic_test('array.9'); }
+    public function testarray10()  { $this->generic_test('array.10'); }
+    public function testarray11()  { $this->generic_test('array.11'); }
+    public function testarray12()  { $this->generic_test('array.12'); }
 
-    function getTokens() {
-        return array(Token::ANY_TOKEN);
-    }
-    
-    function check($t) {
-        if (!$t->hasPrev() ) { return false; }
-        if (!$t->hasNext() ) { return false; }
-
-        if ($t->checkNotClass(array('variable','property','tableau'))) { return false; } 
-        if ($t->getNext()->checkNotOperator('{')) { return false; }
-        if ($t->getNext(1)->checkClass('Token')) { return false; }
-        if ($t->getNext(2)->checkNotOperator('}')) { return false; }
-
-        $this->args   = array(0, 2);
-        $this->remove = array(1,2,3);
-
-        mon_log(get_class($t)." => ".__CLASS__);
-        return true; 
-    }
 }
+
 ?>

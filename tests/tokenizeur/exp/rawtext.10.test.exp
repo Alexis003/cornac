@@ -42,7 +42,7 @@ tests/tokenizeur/scripts/rawtext.10.test.php
                       function call : dhtmlspecialchars: 
                           arglist 
                           0 : 
-                              tableau
+                              _array
                                   variable $medal
                                   literals permission
           6 : 
@@ -53,7 +53,7 @@ tests/tokenizeur/scripts/rawtext.10.test.php
               function call : echo: 
                   arglist 
                   0 : 
-                      tableau
+                      _array
                           variable $lang
                           literals creditwizard_current_formula_notice
           8 : 

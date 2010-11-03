@@ -2,4 +2,4 @@ tests/tokenizeur/scripts/property.3.test.php
   codephp <?php
 
   code : 
-      property tableau variable $x[literals x]literals y->
+      property _array variable $x[literals x]literals y->

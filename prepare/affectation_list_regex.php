@@ -36,7 +36,7 @@ class affectation_list_regex extends analyseur_regex {
         
         if (($t->getPrev()->checkClass('functioncall') && $t->getPrev()->getCode() == 'list') &&
             ($t->getNext()->checkSubclass(array('instruction'))  || 
-             $t->getNext()->checkClass(array('variable','tableau','property','method','functioncall'))) &&
+             $t->getNext()->checkClass(array('variable','_array','property','method','functioncall'))) &&
              $t->getNext(1)->checkCode(array(';',')'))) {
                 $this->args = array(-1, 0, 1);
                 $this->remove = array( -1, 1);

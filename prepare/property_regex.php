@@ -34,10 +34,10 @@ class property_regex extends analyseur_regex {
         if ($t->getPrev()->checkCode('->') ) { return false; }
 
         if ( ($t->checkToken(T_VARIABLE) || 
-              $t->checkClass(array('variable','property','tableau','method_static','method','functioncall','property_static','opappend')) ) && 
+              $t->checkClass(array('variable','property','_array','method_static','method','functioncall','property_static','opappend')) ) && 
               $t->getNext()->checkCode('->') &&
               ($t->getNext(1)->checkToken(T_STRING) ||
-               $t->getNext(1)->checkClass(array('variable','tableau'))) && 
+               $t->getNext(1)->checkClass(array('variable','_array'))) && 
               ($t->getNext(2)->checkNotCode(array('(')) ||
                $t->getNext(2)->checkClass(array('literals')))
               

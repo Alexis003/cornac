@@ -14,18 +14,18 @@ tests/tokenizeur/scripts/sequence.17.test.php
                   logique 
                   droite : 
                       parentheses 
-                      ( "decalage functioncall 307 "ord" ( arglist(tableau variable $data[preplusplus variable $index297 "++"]) )   287 "<<"  literals 16 " )
+                      ( "decalage functioncall 307 "ord" ( arglist(_array variable $data[preplusplus variable $index297 "++"]) )   287 "<<"  literals 16 " )
                   operateur :  "|"
                   gauche : 
                       parentheses 
-                      ( "decalage functioncall 307 "ord" ( arglist(tableau variable $data[preplusplus variable $index297 "++"]) )   287 "<<"  literals 8 " )
+                      ( "decalage functioncall 307 "ord" ( arglist(_array variable $data[preplusplus variable $index297 "++"]) )   287 "<<"  literals 8 " )
               operateur :  "|"
               gauche : 
                   functioncall ord
                   function call : ord: 
                       arglist 
                       0 : 
-                          tableau
+                          _array
                               variable $data
                               297 "++"variable $index 
                                   variable $index

@@ -42,7 +42,7 @@ class sequence_regex extends analyseur_regex {
                                                               T_IS_NOT_EQUAL, T_IS_IDENTICAL, T_IS_GREATER_OR_EQUAL,
                                                               T_INSTANCEOF, T_ELSE, T_ABSTRACT, T_DO, T_CASE
                                                               ))                        )            { return false; }
-        if ( $t->hasPrev()  && $t->getPrev( )->checkClass(array('tableau','variable','property')))   { return false; }
+        if ( $t->hasPrev()  && $t->getPrev( )->checkClass(array('_array','variable','property')))   { return false; }
         if ( $t->hasPrev(1) && $t->getPrev(1)->checkToken(array(T_FOR,T_WHILE)))                     { return false; }
         if ( $t->checkClass(array('_catch')))                                                        { return false; }
         

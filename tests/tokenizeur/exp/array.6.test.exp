@@ -1,4 +1,4 @@
-tests/tokenizeur/scripts/tableau.6.test.php
+tests/tokenizeur/scripts/array.6.test.php
   codephp <?php
 
   code : 
@@ -6,7 +6,7 @@ tests/tokenizeur/scripts/tableau.6.test.php
       function call : echo: 
           arglist 
           0 : 
-              tableau
+              _array
                   variable $TABINDEX
                   concatenation 
                   0 : 

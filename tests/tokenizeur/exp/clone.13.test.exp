@@ -8,16 +8,16 @@ tests/tokenizeur/scripts/clone.13.test.php
        "=" 
       gauche : 
           ternaryop ?
-          functioncall 350 "isset" ( arglist(tableau property variable $b->literals c[literals d]) )  ? _clone clone : method method variable $f->functioncall 307 "g" ( ( ) ) ->functioncall 307 "h" ( arglist(literals i) ) 
+          functioncall 350 "isset" ( arglist(_array property variable $b->literals c[literals d]) )  ? _clone clone : method method variable $f->functioncall 307 "g" ( ( ) ) ->functioncall 307 "h" ( arglist(literals i) ) 
               functioncall isset
               function call : isset: 
                   arglist 
                   0 : 
-                      tableau
+                      _array
                           property variable $bliterals c->
                           literals d
               _clone 
-                  tableau
+                  _array
                       property variable $cliterals d->
                       literals e
               method method variable $f->functioncall 307 "g" ( ( ) ) 

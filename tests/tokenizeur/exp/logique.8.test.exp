@@ -9,18 +9,18 @@ tests/tokenizeur/scripts/logique.8.test.php
       gauche : 
           logique 
           droite : 
-              method tableau variable $b[literals c]
-              method call : functioncall 307 "d" ( arglist(tableau variable $e[literals 0]) ) : 
+              method _array variable $b[literals c]
+              method call : functioncall 307 "d" ( arglist(_array variable $e[literals 0]) ) : 
                   functioncall d
                   function call : d: 
                       arglist 
                       0 : 
-                          tableau
+                          _array
                               variable $e
                               literals 0
           operateur : 263 "or"
           gauche : 
-              method tableau variable $f[literals g]
+              method _array variable $f[literals g]
               method call : functioncall 307 "h" ( ( ) ) : 
                   functioncall h
                   function call : h: 

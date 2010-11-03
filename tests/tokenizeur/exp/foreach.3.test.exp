@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/foreach.3.test.php
       ifthen if
       Condition 0) 
           parentheses 
-          ( "comparison property tableau variable $_SESSION[literals cligraph]->literals nbtuples 283 "==" literals 0" )
+          ( "comparison property _array variable $_SESSION[literals cligraph]->literals nbtuples 283 "==" literals 0" )
           block 
           0 : 
               affectation 
@@ -32,12 +32,12 @@ tests/tokenizeur/scripts/foreach.3.test.php
                   0 : 
                       affectation 
                       droite : 
-                          tableau
+                          _array
                               variable $date_mess_stock
                               variable $i
                        "=" 
                       gauche : 
-                          tableau
+                          _array
                               variable $ligne
                               literals 0
                   1 : 
@@ -53,7 +53,7 @@ tests/tokenizeur/scripts/foreach.3.test.php
                               2 : 
                                   literals ]=\
                               3 : 
-                                  tableau
+                                  _array
                                       variable $date_mess_stock
                                       variable $i
                               4 : 

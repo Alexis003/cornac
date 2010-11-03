@@ -26,7 +26,7 @@ class analyseur {
                                   'ifthen',
                                   'literals', 
                                   'variable', 
-                                  'tableau', 
+                                  '_array', 
                                   'rawtext', 
                                   'parentheses', 
                                   'affectation', 

@@ -1,6 +1,0 @@
-tests/tokenizeur/scripts/tableau.10.test.php
-  codephp <?php
-
-  code : 
-      parentheses 
-      ( "comparison tableau variable $seq[variable $i] 282 "!=" tableau variable $seq[parentheses (operation variable $i  "+" literals 1)]" )

@@ -29,7 +29,7 @@ class block_normal_regex extends analyseur_regex {
     function check($t) {
         if ($t->checkNotCode('{') )   { return false; }
         if ($t->hasPrev() && $t->getPrev()->checkCode(array('->',']')))   { return false; }
-        if ($t->hasPrev() && $t->getPrev()->checkClass(array('property','variable','property_static','tableau')))  { return false; }
+        if ($t->hasPrev() && $t->getPrev()->checkClass(array('property','variable','property_static','_array')))  { return false; }
         if ($t->checkClass('block') ) { return false; }
         if (!$t->hasNext())           { return false; }
 

@@ -9,7 +9,7 @@ tests/tokenizeur/scripts/operation.28.test.php
       gauche : 
           operation 
           droite : 
-              property_static 307 "self"::tableau variable $b[variable $c]->
+              property_static 307 "self"::_array variable $b[variable $c]->
           operation :  "*"
           gauche : 
               literals 86400

@@ -30,7 +30,7 @@ class variable_variable_regex extends analyseur_regex {
     
         if (!$t->hasNext() ) { return false; }
 
-        if ($t->getNext()->checkNotClass(array('variable','tableau'))) { return false; }
+        if ($t->getNext()->checkNotClass(array('variable','_array'))) { return false; }
         if ($t->getNext(1)->checkOperator('[')) { return false; }
 
         $this->args   = array(0, 1);

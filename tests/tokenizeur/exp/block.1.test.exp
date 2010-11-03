@@ -5,12 +5,12 @@ tests/tokenizeur/scripts/block.1.test.php
       ifthen if
       Condition 0) 
           parentheses 
-          ( "functioncall 351 "empty" ( arglist(tableau variable $row[literals 0]) ) " )
+          ( "functioncall 351 "empty" ( arglist(_array variable $row[literals 0]) ) " )
           block 
           0 : 
               affectation 
               droite : 
-                  tableau
+                  _array
                       variable $date_choisie
                       literals 0
                "=" 
@@ -23,7 +23,7 @@ tests/tokenizeur/scripts/block.1.test.php
           1 : 
               affectation 
               droite : 
-                  tableau
+                  _array
                       variable $date_choisie
                       literals 1
                "=" 
@@ -36,7 +36,7 @@ tests/tokenizeur/scripts/block.1.test.php
           2 : 
               affectation 
               droite : 
-                  tableau
+                  _array
                       variable $date_choisie
                       literals 2
                "=" 

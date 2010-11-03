@@ -5,8 +5,8 @@ tests/tokenizeur/scripts/noscream.12.test.php
       sequence 
       0 : 
           noscream @
-              297 "++"tableau variable $a[literals b] 
-                  tableau
+              297 "++"_array variable $a[literals b] 
+                  _array
                       variable $a
                       literals b
       1 : 

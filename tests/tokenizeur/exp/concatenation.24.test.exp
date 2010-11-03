@@ -9,7 +9,7 @@ tests/tokenizeur/scripts/concatenation.24.test.php
       gauche : 
           concatenation 
           0 : 
-              tableau
+              _array
                   property variable $thisliterals properties->
                   literals prefix
           1 : 

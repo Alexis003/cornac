@@ -5,6 +5,6 @@ tests/tokenizeur/scripts/foreach.42.test.php
       _foreach (property variable $a->literals b as  => variable $c)
           block 
           0 : 
-              tableau
+              _array
                   property variable $thisliterals d->
                   literals 3

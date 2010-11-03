@@ -31,7 +31,7 @@ class method_accolade_regex extends analyseur_regex {
         if (!$t->hasPrev() ) { return false; }
         if (!$t->hasNext(3) ) { return false; }
 
-        if ( ($t->checkClass(array('variable','property','tableau','method','method_static','functioncall')) ) && 
+        if ( ($t->checkClass(array('variable','property','_array','method','method_static','functioncall')) ) && 
               $t->getNext()->checkCode('->') &&
               $t->getNext(1)->checkCode('{') &&
               $t->getNext(2)->checkNotClass('Token') &&

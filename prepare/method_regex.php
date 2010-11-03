@@ -33,7 +33,7 @@ class method_regex extends analyseur_regex {
 
         if ($t->checkNotClass(array('variable',
                                     'property',
-                                    'tableau',
+                                    '_array',
                                     'method',
                                     'functioncall',
                                     'property_static',

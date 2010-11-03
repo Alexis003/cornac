@@ -23,7 +23,7 @@ class concatenation_interpole_regex extends analyseur_regex {
         
         $this->sequence_classes = array('literals',
                                         'variable',
-                                        'tableau',
+                                        '_array',
                                         'property',
                                         'property_static',
                                         'method',
@@ -74,7 +74,7 @@ class concatenation_interpole_regex extends analyseur_regex {
                 $var->getNext()->checkClass($this->sequence_classes) && 
                 $var->getNext(1)->checkOperator('}')) {
                 
-                if ($var->getNext()->checkClass(array('tableau','property'))) {
+                if ($var->getNext()->checkClass(array('_array','property'))) {
                     $this->args[] = $pos + 1;
                     
                     $this->remove[] = $pos; 

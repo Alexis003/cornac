@@ -8,7 +8,7 @@ tests/tokenizeur/scripts/functioncall.41.test.php
           function call : list: 
               arglist 
               0 : 
-                  property_static 307 "a"::tableau variable $b[literals c]->
+                  property_static 307 "a"::_array variable $b[literals c]->
               1 : 
                   variable $d
        "=" 

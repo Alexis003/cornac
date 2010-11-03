@@ -11,8 +11,8 @@ tests/tokenizeur/scripts/keyvalue.8.test.php
           function call : array: 
               arglist 
               0 : 
-                  literals a => tableau variable $b[variable $c]
+                  literals a => _array variable $b[variable $c]
                       literals a
-                      tableau
+                      _array
                           variable $b
                           variable $c

@@ -47,7 +47,7 @@ class foreach_simple_regex extends analyseur_regex {
 
                     mon_log(get_class($t)." => block (".__CLASS__.")");
                     return false; 
-                } elseif ($t->getNext(5)->checkClass(array('variable','tableau','property','property_static'))) {
+                } elseif ($t->getNext(5)->checkClass(array('variable','_array','property','property_static'))) {
                     if ($t->getNext(6)->checkNotCode(';')) { return false; }
                     $regex = new modele_regex('block',array(0), array());
                     Token::applyRegex($t->getNext(5), 'block', $regex);

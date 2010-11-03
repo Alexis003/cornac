@@ -40,7 +40,7 @@ class functioncall_list_regex extends analyseur_regex {
         $pos = 1;
         
         while($var->checkNotCode(')')) {
-            if ($var->checkClass(array('variable','tableau','property','property_static'))) {
+            if ($var->checkClass(array('variable','_array','property','property_static'))) {
                 $args[] = $pos;
                 $remove[] = $pos;                
                 

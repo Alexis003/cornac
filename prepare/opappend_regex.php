@@ -32,7 +32,7 @@ class opappend_regex extends analyseur_regex {
         if ($t->hasPrev(1) && $t->getPrev(1)->checkCode(array('::','->'))) { return false; }
 
         if ($t->getNext()->checkNotCode(']')) { return false; }
-        if ($t->getPrev()->checkNotClass(array('variable','property','tableau','property_static','opappend'))) { return false; }
+        if ($t->getPrev()->checkNotClass(array('variable','property','_array','property_static','opappend'))) { return false; }
 
         $this->args = array(-1);
         $this->remove = array(-1, 0, 1);

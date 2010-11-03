@@ -17,7 +17,7 @@ tests/tokenizeur/scripts/ifthen.16.test.php
                   0 : 
                       literals  AND acces_ip=\
                   1 : 
-                      tableau
+                      _array
                           variable $_SERVER
                           literals REMOTE_ADDR
                   2 : 

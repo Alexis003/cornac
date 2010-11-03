@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/comparison.3.test.php
       ifthen if
       Condition 0) 
           parentheses 
-          ( "comparison tableau variable $ligne[literals 0] 282 "!=" tableau variable $ligne[literals 1]" )
+          ( "comparison _array variable $ligne[literals 0] 282 "!=" _array variable $ligne[literals 1]" )
           block 
           0 : 
               literals 1

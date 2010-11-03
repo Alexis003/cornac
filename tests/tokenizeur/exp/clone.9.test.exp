@@ -8,6 +8,6 @@ tests/tokenizeur/scripts/clone.9.test.php
        "=" 
       gauche : 
           _clone 
-              tableau
+              _array
                   variable $y
                   literals 0

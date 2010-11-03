@@ -30,7 +30,7 @@ class preplusplus_regex extends analyseur_regex {
         if (!$t->hasNext()) { return false; }
 
         if ($t->checkToken(array(T_DEC,T_INC)) &&
-            $t->getNext()->checkClass(array('variable','tableau','property','property_static')) && 
+            $t->getNext()->checkClass(array('variable','_array','property','property_static')) && 
             $t->getNext(1)->checkNotCode(array('[','->'))
             ) {
 

@@ -5,6 +5,6 @@ tests/tokenizeur/scripts/codephp.14.test.php
       function call : echo: 
           arglist 
           0 : 
-              tableau
+              _array
                   variable $lang
                   literals forum

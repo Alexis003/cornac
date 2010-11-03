@@ -33,7 +33,7 @@ class arglist_regex extends analyseur_regex {
         // @note for it to be a function call, one need all this before
         if ($t->getPrev()->checkNotToken(array(T_STATIC)) && // @note crazy case 
             ($t->getPrev()->checkNotFunction() &&
-             $t->getPrev()->checkNotClass(array('variable','tableau')) &&
+             $t->getPrev()->checkNotClass(array('variable','_array')) &&
              $t->getPrev()->checkNotCode('}'))) { return false; }
         
        if ($t->getPrev()->checkOperator('}') && 

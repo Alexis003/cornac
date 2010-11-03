@@ -6,7 +6,7 @@ tests/tokenizeur/scripts/functioncall.35.test.php
       0 : 
           affectation 
           droite : 
-              tableau
+              _array
                   variable $x
                   literals 1
            "=" 

@@ -244,7 +244,7 @@ class template_tree extends template {
     }
 
     function affiche__foreach($noeud, $level) {
-        print str_repeat('  ', $level).get_class($noeud)." (".$noeud->getTableau()." as ".$noeud->getKey()." => ".$noeud->getValue().")\n";
+        print str_repeat('  ', $level).get_class($noeud)." (".$noeud->getArray()." as ".$noeud->getKey()." => ".$noeud->getValue().")\n";
          $this->affiche($noeud->getBlock(), $level + 1);
     }
 
@@ -437,7 +437,7 @@ class template_tree extends template {
         $this->affiche($noeud->getBlock(), $level + 1);
     }
 
-    function affiche_tableau($noeud, $level) {
+    function affiche__array($noeud, $level) {
         print str_repeat('  ', $level).get_class($noeud)."\n";
         $this->affiche($noeud->getVariable(), $level + 1);
         $this->affiche($noeud->getIndex(), $level + 1);

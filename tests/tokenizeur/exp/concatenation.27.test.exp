@@ -10,8 +10,8 @@ tests/tokenizeur/scripts/concatenation.27.test.php
               0 : 
                   literals a
               1 : 
-                  tableau
-                      tableau
+                  _array
+                      _array
                           variable $GLOBALS
                           literals b
                       literals c

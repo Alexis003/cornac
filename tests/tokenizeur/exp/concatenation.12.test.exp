@@ -9,18 +9,18 @@ tests/tokenizeur/scripts/concatenation.12.test.php
               concatenation 
               0 : 
                   method_static 
-                  307 "a"::functioncall 307 "b" ( arglist(tableau variable $c[constante d]) ) : 
+                  307 "a"::functioncall 307 "b" ( arglist(_array variable $c[constante d]) ) : 
                       functioncall b
                       function call : b: 
                           arglist 
                           0 : 
-                              tableau
+                              _array
                                   variable $c
                                   constante (                                  d )
               1 : 
                   literals e
               2 : 
-                  tableau
+                  _array
                       variable $f
                       literals g
               3 : 

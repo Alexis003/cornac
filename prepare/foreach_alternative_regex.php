@@ -35,12 +35,12 @@ class foreach_alternative_regex extends analyseur_regex {
             $t->getNext(2)->checkToken(T_AS)) {
             $posi = 3;
             
-            if ($t->getNext(3)->checkClass(array('variable','tableau','property','reference'))  &&
+            if ($t->getNext(3)->checkClass(array('variable','_array','property','reference'))  &&
                 $t->getNext(4)->checkToken(T_DOUBLE_ARROW)) {
                 $posi = 5;    
             }
 
-            if ( $t->getNext($posi)->checkNotClass(array('variable','tableau','property','reference'))  ||
+            if ( $t->getNext($posi)->checkNotClass(array('variable','_array','property','reference'))  ||
                  $t->getNext($posi + 1)->checkNotCode(')')) {
                  return false;
             } 

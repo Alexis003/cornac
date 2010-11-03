@@ -8,12 +8,12 @@ tests/tokenizeur/scripts/ternaryop.6.test.php
        "=" 
       gauche : 
           ternaryop ?
-          literals 1 ? literals 2 : tableau tableau tableau variable $x[literals 1][literals 2][literals 3]
+          literals 1 ? literals 2 : _array _array _array variable $x[literals 1][literals 2][literals 3]
               literals 1
               literals 2
-              tableau
-                  tableau
-                      tableau
+              _array
+                  _array
+                      _array
                           variable $x
                           literals 1
                       literals 2

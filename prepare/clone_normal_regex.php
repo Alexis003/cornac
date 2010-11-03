@@ -30,7 +30,7 @@ class clone_normal_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasNext()) { return false; }
 
-        if ($t->getNext()->checkClass(array('variable','tableau',
+        if ($t->getNext()->checkClass(array('variable','_array',
                                             'property','property_static',
                                             'method','method_static',
                                             'functioncall')) &&

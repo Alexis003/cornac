@@ -6,6 +6,6 @@ tests/tokenizeur/scripts/functioncall.10.test.php
       function call : x: 
           arglist 
           0 : 
-              tableau
+              _array
                   variable $x
                   literals 0

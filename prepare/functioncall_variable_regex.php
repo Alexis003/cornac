@@ -29,7 +29,7 @@ class functioncall_variable_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasNext() ) { return false; }
 
-        if ($t->checkClass(array('variable','tableau')) &&
+        if ($t->checkClass(array('variable','_array')) &&
             $t->getNext()->checkClass(array('parentheses','arglist'))
             ) {
                 $this->args = array(0 , 1);

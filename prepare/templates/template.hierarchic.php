@@ -121,7 +121,7 @@ class template_hierarchic extends template {
         }
     }
 
-    function affiche_tableau($noeud, $niveau) {
+    function affiche__array($noeud, $niveau) {
         print str_repeat('  ', $niveau).get_class($noeud)." \n";
         $this->affiche($noeud->getVariable(), $niveau + 1);
         $this->affiche($noeud->getIndex(), $niveau + 1);

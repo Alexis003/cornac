@@ -38,7 +38,7 @@ tests/tokenizeur/scripts/global.8.test.php
               0 : 
                   _global 
                   0 : 
-                      variable tableau variable $c[literals d]
+                      variable _array variable $c[literals d]
               1 : 
                   functioncall print_r
                   function call : print_r: 

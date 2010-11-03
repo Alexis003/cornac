@@ -1,8 +1,8 @@
-tests/tokenizeur/scripts/tableau.7.test.php
+tests/tokenizeur/scripts/array.7.test.php
   codephp <?php
 
   code : 
-      tableau
+      _array
           property variable $aliterals b->
           concatenation 
           0 : 

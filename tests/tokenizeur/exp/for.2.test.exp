@@ -12,8 +12,8 @@ tests/tokenizeur/scripts/for.2.test.php
           1 : 
               affectation 
               droite : 
-                  tableau
-                      tableau
+                  _array
+                      _array
                           variable $x
                           literals 1
                       literals 2

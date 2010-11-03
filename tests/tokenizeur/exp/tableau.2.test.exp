@@ -1,9 +1,0 @@
-tests/tokenizeur/scripts/tableau.2.test.php
-  codephp <?php
-
-  code : 
-      tableau
-          tableau
-              variable $tableau
-              literals 1
-          literals 1

@@ -14,7 +14,7 @@ tests/tokenizeur/scripts/concatenation.22.test.php
                   function call : empty: 
                       arglist 
                       0 : 
-                          tableau
+                          _array
                               variable $b
                               literals d
               concatenation 

@@ -7,6 +7,6 @@ tests/tokenizeur/scripts/affectation.12.test.php
           variable $row
        "=" 
       gauche : 
-          tableau
+          _array
               variable $result
               literals 0

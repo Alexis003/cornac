@@ -500,7 +500,7 @@ class template_db extends template {
         $node->setCode('');
 
         $tags = array();
-        $tags['array'][] = $this->affiche($node->getTableau(), $level + 1);
+        $tags['array'][] = $this->affiche($node->getArray(), $level + 1);
 
         $key = $node->getKey();
         if (!is_null($key)) {
@@ -903,7 +903,7 @@ class template_db extends template {
         return $this->savenode($node, $level);
     }
 
-    function affiche_tableau($node, $level) {
+    function affiche__array($node, $level) {
         $node->myId = $this->getNextId();
         $node->myDroite = $this->getIntervalleId();
         $node->setCode('');

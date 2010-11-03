@@ -6,7 +6,7 @@ tests/tokenizeur/scripts/literals.7.test.php
       0 : 
           affectation 
           droite : 
-              tableau
+              _array
                   variable $r
                   literals 0
            "=" 
@@ -21,6 +21,6 @@ tests/tokenizeur/scripts/literals.7.test.php
                   0 : 
                       literals ABC
                   1 : 
-                      tableau
+                      _array
                           variable $r
                           literals 0

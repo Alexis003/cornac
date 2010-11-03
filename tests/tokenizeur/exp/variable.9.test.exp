@@ -9,4 +9,4 @@ tests/tokenizeur/scripts/variable.9.test.php
       gauche : 
           concatenation 
           0 : 
-              variable tableau variable b[literals c]
+              variable _array variable b[literals c]

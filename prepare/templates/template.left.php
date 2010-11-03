@@ -125,7 +125,7 @@ class template_left extends template {
     function affiche__foreach($noeud, $niveau) {
         
 
-        $gets = array('getTableau','getKey','getValue','getBlock');
+        $gets = array('getArray','getKey','getValue','getBlock');
 
         foreach($gets as $get) {
             $list = $noeud->$get();
@@ -240,7 +240,7 @@ class template_left extends template {
         }
     }
 
-    function affiche_tableau($noeud, $niveau) {
+    function affiche__array($noeud, $niveau) {
         
         $this->affiche($noeud->getVariable(), $niveau + 1);
         $this->affiche($noeud->getIndex(), $niveau + 1);

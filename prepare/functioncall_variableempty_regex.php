@@ -29,7 +29,7 @@ class functioncall_variableempty_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasNext(2) ) { return false; }
 
-        if ($t->checkClass(array('variable','tableau')) &&
+        if ($t->checkClass(array('variable','_array')) &&
             $t->getNext()->checkCode('(') && 
             $t->getNext(1)->checkCode(')')
             ) {

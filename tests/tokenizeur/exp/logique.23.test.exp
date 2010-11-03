@@ -4,9 +4,9 @@ tests/tokenizeur/scripts/logique.23.test.php
   code : 
       logique 
       droite : 
-          tableau
-              tableau
-                  tableau
+          _array
+              _array
+                  _array
                       variable $a
                       literals b
                   property variable $dliterals e->

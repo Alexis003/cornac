@@ -15,7 +15,7 @@ tests/tokenizeur/scripts/logique.9.test.php
                       function call : echo: 
                           arglist 
                           0 : 
-                              tableau
+                              _array
                                   variable $LANG_ACTION
                                   literals dateecheance
                   1 : 
@@ -40,7 +40,7 @@ tests/tokenizeur/scripts/logique.9.test.php
                       function call : echo: 
                           arglist 
                           0 : 
-                              tableau
+                              _array
                                   variable $LANG_ACTION
                                   literals limitevalidite
                   1 : 

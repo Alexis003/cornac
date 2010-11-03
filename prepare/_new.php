@@ -42,7 +42,7 @@ class _new extends instruction {
             } else {
                 $this->args = $expression[1];
             }
-        } elseif ($constructeur->checkClass(array('variable','tableau','property','property_static','method_static'))) {
+        } elseif ($constructeur->checkClass(array('variable','_array','property','property_static','method_static'))) {
             $this->classe = $constructeur;
 
             if (!isset($expression[1])) {

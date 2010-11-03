@@ -30,7 +30,7 @@ class new_variable_regex extends analyseur_regex {
         if (!$t->hasNext(1)) { return false; }
 
         if ($t->getNext()->checkNotClass(array('variable',
-                                               'tableau',
+                                               '_array',
                                                'method',
                                                'property',
                                                'property_static',

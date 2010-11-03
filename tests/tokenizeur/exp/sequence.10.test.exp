@@ -9,7 +9,7 @@ tests/tokenizeur/scripts/sequence.10.test.php
               property variable $paginationliterals enregistrement->
            "=" 
           gauche : 
-              property tableau variable $_SESSION[literals init_infos]literals nb_pet_liste->
+              property _array variable $_SESSION[literals init_infos]literals nb_pet_liste->
       1 : 
           affectation 
           droite : 
@@ -40,7 +40,7 @@ tests/tokenizeur/scripts/sequence.10.test.php
       4 : 
           logique 
           droite : 
-              method tableau variable $_SESSION[literals cligraph]
+              method _array variable $_SESSION[literals cligraph]
               method call : functioncall 307 "connect" ( ( ) ) : 
                   functioncall connect
                   function call : connect: 
@@ -52,4 +52,4 @@ tests/tokenizeur/scripts/sequence.10.test.php
               function call : die: 
                   arglist 
                   0 : 
-                      property tableau variable $_SESSION[literals cligraph]literals errormsg->
+                      property _array variable $_SESSION[literals cligraph]literals errormsg->

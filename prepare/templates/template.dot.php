@@ -394,7 +394,7 @@ die("cas de l'argument null ou inexistant");
     }
 
     function affiche__foreach($noeud, $level) {
-        $noeud->getTableau()->dotId    = $this->getNextId();
+        $noeud->getArray()->dotId    = $this->getNextId();
         if (!is_null($noeud->getKey())) {
             $noeud->getKey()->dotId = $this->getNextId();
             $this->dot_link($noeud->dotId.":f1", $noeud->getKey()->dotId);
@@ -406,13 +406,13 @@ die("cas de l'argument null ou inexistant");
         $labels = range(0,3);
         $titre = 'for';
 
-        $this->dot_link($noeud->dotId.":f0", $noeud->getTableau()->dotId);
+        $this->dot_link($noeud->dotId.":f0", $noeud->getArray()->dotId);
         $this->dot_link($noeud->dotId.":f2", $noeud->getValue()->dotId);
         $this->dot_link($noeud->dotId.":f3", $noeud->getBlock()->dotId);
 
         $this->dot_struct($noeud->dotId, $labels, 'foreach');
 
-        $this->affiche($noeud->getTableau(), $level + 1);
+        $this->affiche($noeud->getArray(), $level + 1);
         $this->affiche($noeud->getValue(), $level + 1);
         $this->affiche($noeud->getBlock(), $level + 1);
     }
@@ -625,9 +625,9 @@ die("cas de l'argument null ou inexistant");
         $this->dot_standard($noeud, $level, $methods, $titre);
     }
 
-    function affiche_tableau($noeud, $level) {
+    function affiche__array($noeud, $level) {
         $methods = array('getIndex','getVariable');
-        $titre = 'tableau';
+        $titre = 'array';
         
         $this->dot_standard($noeud, $level, $methods, $titre);
     }

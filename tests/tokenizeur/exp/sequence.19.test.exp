@@ -41,7 +41,7 @@ tests/tokenizeur/scripts/sequence.19.test.php
           function call : echo: 
               arglist 
               0 : 
-                  tableau
+                  _array
                       variable $sort
                       literals 0
       5 : 
@@ -53,15 +53,15 @@ tests/tokenizeur/scripts/sequence.19.test.php
               arglist 
               0 : 
                   ternaryop ?
-                  functioncall 350 "isset" ( arglist(tableau variable $sort[literals 1]) )  ? tableau variable $sort[literals 1] : literals asc
+                  functioncall 350 "isset" ( arglist(_array variable $sort[literals 1]) )  ? _array variable $sort[literals 1] : literals asc
                       functioncall isset
                       function call : isset: 
                           arglist 
                           0 : 
-                              tableau
+                              _array
                                   variable $sort
                                   literals 1
-                      tableau
+                      _array
                           variable $sort
                           literals 1
                       literals asc

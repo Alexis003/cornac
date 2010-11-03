@@ -3,6 +3,6 @@ tests/tokenizeur/scripts/not.3.test.php
 
   code : 
       not !
-          tableau
+          _array
               variable $x
               literals 1

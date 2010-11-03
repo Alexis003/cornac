@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class tableau extends variable {
+class _array extends variable {
     protected $variable = null;
     protected $index = null;
 
@@ -50,8 +50,8 @@ class tableau extends variable {
     }
 
     function getRegex(){
-        return array('tableau_regex',
-                     'tableau_accolade_regex',
+        return array('array_regex',
+                     'array_curly_regex',
                      );
     }
 }

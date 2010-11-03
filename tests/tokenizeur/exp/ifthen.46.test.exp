@@ -9,7 +9,7 @@ tests/tokenizeur/scripts/ifthen.46.test.php
           block 
           0 : 
               _return 
-              return : "tableau variable $matches[literals 1]"
+              return : "_array variable $matches[literals 1]"
        else 
           block 
           0 : 

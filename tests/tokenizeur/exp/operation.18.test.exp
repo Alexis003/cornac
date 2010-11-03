@@ -7,6 +7,6 @@ tests/tokenizeur/scripts/operation.18.test.php
           literals 1
       operation :  "+"
       gauche : 
-          tableau
+          _array
               variable $code
               literals 2

@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/ifthen.17.test.php
       ifthen if
       Condition 0) 
           parentheses 
-          ( "logique comparison logique comparison logique comparison variable $jj 282 "!=" literals  279 "&&" variable $mm 282 "!=" literals  279 "&&" variable $yy 282 "!=" literals  279 "&&" comparison tableau tableau tableau variable $_SESSION[literals prmt_mdl][literals news][literals 0] 283 "==" literals 1" )
+          ( "logique comparison logique comparison logique comparison variable $jj 282 "!=" literals  279 "&&" variable $mm 282 "!=" literals  279 "&&" variable $yy 282 "!=" literals  279 "&&" comparison _array _array _array variable $_SESSION[literals prmt_mdl][literals news][literals 0] 283 "==" literals 1" )
           block 
           0 : 
               affectation 

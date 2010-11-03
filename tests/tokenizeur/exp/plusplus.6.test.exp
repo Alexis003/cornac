@@ -2,7 +2,7 @@ tests/tokenizeur/scripts/plusplus.6.test.php
   codephp <?php
 
   code : 
-      tableau variable $x[literals 1]297 "++" 
-          tableau
+      _array variable $x[literals 1]297 "++" 
+          _array
               variable $x
               literals 1

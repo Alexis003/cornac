@@ -23,7 +23,7 @@ class variable extends token {
     function __construct($expression = null) {
         parent::__construct(array());
 
-        if (is_null($expression)) { // @note  coming from class tableau
+        if (is_null($expression)) { // @note  coming from class _array
             return ;
         }
 

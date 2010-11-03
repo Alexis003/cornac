@@ -12,8 +12,8 @@ tests/tokenizeur/scripts/ifthen.43.test.php
               0 : 
                   affectation 
                   droite : 
-                      tableau
-                          tableau
+                      _array
+                          _array
                               property variable $bliterals c->
                               literals 0
                           literals d
@@ -29,7 +29,7 @@ tests/tokenizeur/scripts/ifthen.43.test.php
               0 : 
                   affectation 
                   droite : 
-                      tableau
+                      _array
                           property property variable $b->literals cliterals d->
                           literals e
                   273 ".=" 

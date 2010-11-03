@@ -15,7 +15,7 @@ tests/tokenizeur/scripts/concatenation.8.test.php
           2 : 
               literals c
           3 : 
-              tableau
+              _array
                   variable $d
                   literals e
           4 : 

@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/block.4.test.php
       ifthen if
       Condition 0) 
           parentheses 
-          ( "functioncall 351 "empty" ( arglist(tableau variable $row[literals 0]) ) " )
+          ( "functioncall 351 "empty" ( arglist(_array variable $row[literals 0]) ) " )
           block 
           0 : 
               literals 1

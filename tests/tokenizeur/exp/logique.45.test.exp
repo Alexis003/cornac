@@ -9,7 +9,7 @@ tests/tokenizeur/scripts/logique.45.test.php
       gauche : 
           logique 
           droite : 
-              tableau
+              _array
                   variable $a
                   concatenation 
                   0 : 

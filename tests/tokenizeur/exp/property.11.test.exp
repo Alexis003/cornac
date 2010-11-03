@@ -7,4 +7,4 @@ tests/tokenizeur/scripts/property.11.test.php
           variable $a
        "=" 
       gauche : 
-          property method tableau property variable $b->literals c[literals 0]->functioncall 307 "d" ( ( ) ) literals e->
+          property method _array property variable $b->literals c[literals 0]->functioncall 307 "d" ( ( ) ) literals e->

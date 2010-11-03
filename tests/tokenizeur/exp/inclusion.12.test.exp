@@ -3,6 +3,6 @@ tests/tokenizeur/scripts/inclusion.12.test.php
 
   code : 
       inclusion include
-          tableau
+          _array
               variable $a
               literals b

@@ -10,13 +10,13 @@ tests/tokenizeur/scripts/logique.37.test.php
                   logique 
                   droite : 
                       parentheses 
-                      ( "comparison tableau variable $property[literals emp_id] 283 "==" sign  "-"literals 1" )
+                      ( "comparison _array variable $property[literals emp_id] 283 "==" sign  "-"literals 1" )
                   operateur :  "|"
                   gauche : 
                       ternaryop ?
-                      parentheses (comparison tableau variable $property[literals emp_id] 283 "==" literals ) ? literals selected : literals 
+                      parentheses (comparison _array variable $property[literals emp_id] 283 "==" literals ) ? literals selected : literals 
                           parentheses 
-                          ( "comparison tableau variable $property[literals emp_id] 283 "==" literals " )
+                          ( "comparison _array variable $property[literals emp_id] 283 "==" literals " )
                           literals selected
                           literals 
       1 : 

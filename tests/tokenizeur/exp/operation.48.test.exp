@@ -4,7 +4,7 @@ tests/tokenizeur/scripts/operation.48.test.php
       ifthen if
       Condition 0) 
           parentheses 
-          ( "functioncall 350 "isset" ( arglist(tableau variable $x[method variable $y->functioncall 307 "z" ( ( ) ) ]) ) " )
+          ( "functioncall 350 "isset" ( arglist(_array variable $x[method variable $y->functioncall 307 "z" ( ( ) ) ]) ) " )
           block 
           0 : 
               rawtext 
@@ -16,7 +16,7 @@ tests/tokenizeur/scripts/operation.48.test.php
                   0 : 
                       operation 
                       droite : 
-                          method tableau variable $x[method variable $y->functioncall 307 "z" ( ( ) ) ]
+                          method _array variable $x[method variable $y->functioncall 307 "z" ( ( ) ) ]
                           method call : functioncall 307 "z" ( ( ) ) : 
                               functioncall z
                               function call : z: 

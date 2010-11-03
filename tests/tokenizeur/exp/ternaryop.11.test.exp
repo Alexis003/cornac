@@ -4,7 +4,7 @@ tests/tokenizeur/scripts/ternaryop.11.test.php
   code : 
       affectation 
       droite : 
-          tableau
+          _array
               variable $a
               ternaryop ?
               parentheses (variable $b) ? functioncall 307 "strtoupper" ( arglist(property variable $e->literals f) )  : property variable $e->literals f

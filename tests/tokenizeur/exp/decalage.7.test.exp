@@ -8,4 +8,4 @@ tests/tokenizeur/scripts/decalage.7.test.php
        "=" 
       gauche : 
           parentheses 
-          ( "decalage tableau variable $y[literals z]  286 ">>"  literals 1 " )
+          ( "decalage _array variable $y[literals z]  286 ">>"  literals 1 " )

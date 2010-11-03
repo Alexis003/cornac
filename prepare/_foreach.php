@@ -18,17 +18,17 @@
  */
 
 class _foreach extends instruction {
-    protected $tableau = array();
+    protected $array = array();
     protected $key = null;
     protected $value = null;
     protected $block = null;
     
-    static $incoming_vars = array('variable','tableau','property', 'property_static',
+    static $incoming_vars = array('variable','_array','property', 'property_static',
                                   'functioncall','method','cast','method_static','_new',
                                   'affectation','ternaryop','parentheses','noscream');
 
-    static $blind_values = array('variable','tableau','property','reference','parentheses','property_static');
-    static $blind_keys = array('variable','tableau','property','reference','parentheses','property_static');
+    static $blind_values = array('variable','_array','property','reference','parentheses','property_static');
+    static $blind_keys = array('variable','_array','property','reference','parentheses','property_static');
 
     function __construct($expression) {
         parent::__construct(array());
@@ -46,12 +46,12 @@ class _foreach extends instruction {
         }
         
         if (count($expression) == 4) {
-            $this->tableau = $expression[0];
+            $this->array = $expression[0];
             $this->key = $expression[1];
             $this->value = $expression[2];
             $this->block = $expression[3];
         } else {
-            $this->tableau = $expression[0];
+            $this->array = $expression[0];
             $this->key =  null;
             $this->value = $expression[1];
             $this->block = $expression[2];
@@ -59,11 +59,11 @@ class _foreach extends instruction {
     }
     
     function __toString() {
-        return __CLASS__." foreach (".$this->tableau.") { ".$this->block." } ";
+        return __CLASS__." foreach (".$this->array.") { ".$this->block." } ";
     }
 
-    function getTableau() {
-        return $this->tableau;
+    function getArray() {
+        return $this->array;
     }
 
     function getKey() {
@@ -79,7 +79,7 @@ class _foreach extends instruction {
     }
 
     function neutralise() {
-        $this->tableau->detach();
+        $this->array->detach();
         if (!is_null($this->key)) { 
             $this->key->detach();
         }

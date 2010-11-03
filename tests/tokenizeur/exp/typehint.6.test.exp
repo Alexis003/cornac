@@ -29,7 +29,7 @@ tests/tokenizeur/scripts/typehint.6.test.php
                       5 : 
                           literals ,e,
                       6 : 
-                          tableau
+                          _array
                               variable $r
                               constante (                              g )
           2 : 

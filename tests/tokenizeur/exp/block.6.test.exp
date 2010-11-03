@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/block.6.test.php
       ifthen if
       Condition 0) 
           parentheses 
-          ( "comparison variable $a 282 "!=" tableau tableau tableau variable $b[literals c][literals d][literals 0]" )
+          ( "comparison variable $a 282 "!=" _array _array _array variable $b[literals c][literals d][literals 0]" )
           block 
           0 : 
               affectation 
@@ -13,9 +13,9 @@ tests/tokenizeur/scripts/block.6.test.php
                   variable $a
                "=" 
               gauche : 
-                  tableau
-                      tableau
-                          tableau
+                  _array
+                      _array
+                          _array
                               variable $b
                               literals c
                           literals d

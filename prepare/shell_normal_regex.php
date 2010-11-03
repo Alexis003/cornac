@@ -23,7 +23,7 @@ class shell_normal_regex extends analyseur_regex {
         
         $this->sequence_classes = array('literals',
                                         'variable',
-                                        'tableau',
+                                        '_array',
                                         'property',
                                         'property_static',
                                         'method',

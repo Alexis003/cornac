@@ -2,7 +2,7 @@ tests/tokenizeur/scripts/property.13.test.php
   codephp <?php
 
   code : 
-      method property property variable $a->literals b->tableau variable $c[literals 0]
+      method property property variable $a->literals b->_array variable $c[literals 0]
       method call : functioncall 307 "d" ( arglist(literals e, literals f) ) : 
           functioncall d
           function call : d: 

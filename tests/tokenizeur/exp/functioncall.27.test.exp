@@ -12,6 +12,6 @@ tests/tokenizeur/scripts/functioncall.27.test.php
               1 : 
                   literals b
               2 : 
-                  tableau
+                  _array
                       variable $t
                       literals 3

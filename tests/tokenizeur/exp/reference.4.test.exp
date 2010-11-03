@@ -8,6 +8,6 @@ tests/tokenizeur/scripts/reference.4.test.php
        "=" 
       gauche : 
           reference &
-              tableau
+              _array
                   variable $x
                   literals 1
