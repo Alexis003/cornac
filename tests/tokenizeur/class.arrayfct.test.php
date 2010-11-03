@@ -18,21 +18,21 @@
  */
 include_once('Analyseur_Framework_TestCase.php');
 
-class Array_Test extends Analyseur_Framework_TestCase
+class arrayfct_Test extends Analyseur_Framework_TestCase
 {
     /* 12 methodes */
-    public function testArray1()  { $this->generic_test('array.1'); }
-    public function testArray2()  { $this->generic_test('array.2'); }
-    public function testArray3()  { $this->generic_test('array.3'); }
-    public function testArray4()  { $this->generic_test('array.4'); }
-    public function testArray5()  { $this->generic_test('array.5'); }
-    public function testArray6()  { $this->generic_test('array.6'); }
-    public function testArray7()  { $this->generic_test('array.7'); }
-    public function testArray8()  { $this->generic_test('array.8'); }
-    public function testArray9()  { $this->generic_test('array.9'); }
-    public function testArray10()  { $this->generic_test('array.10'); }
-    public function testArray11()  { $this->generic_test('array.11'); }
-    public function testArray12()  { $this->generic_test('array.12'); }
+    public function testarrayfct1()  { $this->generic_test('arrayfct.1'); }
+    public function testarrayfct2()  { $this->generic_test('arrayfct.2'); }
+    public function testarrayfct3()  { $this->generic_test('arrayfct.3'); }
+    public function testarrayfct4()  { $this->generic_test('arrayfct.4'); }
+    public function testarrayfct5()  { $this->generic_test('arrayfct.5'); }
+    public function testarrayfct6()  { $this->generic_test('arrayfct.6'); }
+    public function testarrayfct7()  { $this->generic_test('arrayfct.7'); }
+    public function testarrayfct8()  { $this->generic_test('arrayfct.8'); }
+    public function testarrayfct9()  { $this->generic_test('arrayfct.9'); }
+    public function testarrayfct10()  { $this->generic_test('arrayfct.10'); }
+    public function testarrayfct11()  { $this->generic_test('arrayfct.11'); }
+    public function testarrayfct12()  { $this->generic_test('arrayfct.12'); }
 
 }
 

@@ -1,4 +1,4 @@
-tests/tokenizeur/scripts/array.8.test.php
+tests/tokenizeur/scripts/arrayfct.7.test.php
   codephp <?php
 
   code : 
@@ -11,11 +11,11 @@ tests/tokenizeur/scripts/array.8.test.php
           function call : array: 
               arglist 
               0 : 
-                  literals b => affectation variable $a  "=" constante true
+                  literals b => affectation variable $a 273 ".=" constante true
                       literals b
                       affectation 
                       droite : 
                           variable $a
-                       "=" 
+                      273 ".=" 
                       gauche : 
                           constante (                          true )

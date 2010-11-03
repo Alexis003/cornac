@@ -49,7 +49,7 @@ $tests = array(
 'class.break.test.php',
 'class.new.test.php',
 'class.rawtext.test.php',
-'class.array.test.php',
+'class.arrayfct.test.php',
 'class.switch.test.php',
 'class.global.test.php',
 'class.return.test.php',
