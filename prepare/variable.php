@@ -57,8 +57,8 @@ class variable extends token {
 
     function getRegex(){
         return array('variable_regex',
-                     'variable_accolade_regex',
-                     'variable_accoladeseparee_regex',
+                     'variable_separatedcurly_regex',
+                     'variable_curly_regex',
                      'variable_variable_regex',
                      );
     }

@@ -17,27 +17,27 @@
    +----------------------------------------------------------------------+
  */
 
-class variable_accoladeseparee_regex extends analyseur_regex {
+class variable_curly_regex extends analyseur_regex {
     function __construct() {
         parent::__construct(array());
     }
 
     function getTokens() {
-        return array('$');
+        return array('${');
     }
     
     function check($t) {
-        if (!$t->hasNext(3) ) { return false; }
+        if (!$t->hasNext(1) ) { return false; }
 
-        if ($t->checkNotCode('$')) { return false;}
-        if ($t->getNext()->checkNotCode('{')) { return false;}
-        if ($t->getNext(1)->checkClass('Token')) { return false;}
-        if ($t->getNext(2)->checkNotCode('}')) { return false;}
+        if ($t->checkNotCode('${')) { return false;}
+        if ($t->getNext()->checkNotClass(array('variable','_array'))) { return false;}
+        if ($t->getNext(1)->checkNotCode('}')) { return false;}
         
-        $this->args   = array(1, 2);
-        $this->remove = array(1,2,3);
+        $this->args   = array(0, 1);
+        $this->remove = array(1,2);
 
-        return true;
+        mon_log(get_class($t)." => ".__CLASS__);
+        return true; 
     }
 }
 ?>
