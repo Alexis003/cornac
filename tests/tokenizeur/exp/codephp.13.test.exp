@@ -4,10 +4,10 @@ tests/tokenizeur/scripts/codephp.13.test.php
       sequence 
       0 : 
           affectation 
-          droite : 
+          left : 
               variable $x
            "=" 
-          gauche : 
+          right : 
               literals 1
       1 : 
           rawtext 

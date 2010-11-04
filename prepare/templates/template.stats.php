@@ -69,7 +69,7 @@ class template_stats extends template {
     function affiche_arginit($node, $niveau) {
         $this->addStat(__FUNCTION__);
         $this->affiche($node->getVariable(), $niveau + 1);
-        $this->affiche($node->getValeur(), $niveau + 1);
+        $this->affiche($node->getValue(), $niveau + 1);
     }
 
     function affiche_arglist($node, $niveau) {
@@ -86,9 +86,9 @@ class template_stats extends template {
 
     function affiche_affectation($node, $niveau) {
         $this->addStat(__FUNCTION__);
-        $this->affiche($node->getDroite(), $niveau + 1);
-        $this->affiche($node->getOperateur(), $niveau + 1);
-        $this->affiche($node->getGauche(), $niveau + 1);
+        $this->affiche($node->getLeft(), $niveau + 1);
+        $this->affiche($node->getOperator(), $niveau + 1);
+        $this->affiche($node->getRight(), $niveau + 1);
     }
 
     function affiche_block($node, $niveau) {
@@ -149,8 +149,8 @@ class template_stats extends template {
 
     function affiche_comparison($node, $niveau) {
         $this->addStat(__FUNCTION__);
-        $this->affiche($node->getDroite(), $niveau + 1);
-        $this->affiche($node->getGauche(), $niveau + 1);
+        $this->affiche($node->getLeft(), $niveau + 1);
+        $this->affiche($node->getRight(), $niveau + 1);
     }
     
     function affiche_ternaryop($node, $niveau) {
@@ -195,9 +195,9 @@ class template_stats extends template {
 
     function affiche_decalage($node, $niveau) {
         $this->addStat(__FUNCTION__);
-         $this->affiche($node->getDroite(), $niveau + 1);
-         $this->affiche($node->getOperateur(), $niveau + 1);
-         $this->affiche($node->getGauche(), $niveau + 1);
+         $this->affiche($node->getLeft(), $niveau + 1);
+         $this->affiche($node->getOperator(), $niveau + 1);
+         $this->affiche($node->getRight(), $niveau + 1);
     }
 
     function affiche__declare($node, $niveau) {
@@ -308,9 +308,9 @@ class template_stats extends template {
 
     function affiche_logique($node, $niveau) {
         $this->addStat(__FUNCTION__);
-        $this->affiche($node->getDroite(), $niveau + 1);
-        $this->affiche($node->getOperateur(), $niveau + 1);
-        $this->affiche($node->getGauche(), $niveau + 1);
+        $this->affiche($node->getLeft(), $niveau + 1);
+        $this->affiche($node->getOperator(), $niveau + 1);
+        $this->affiche($node->getRight(), $niveau + 1);
     }
 
     function affiche_literals($node, $niveau) {
@@ -350,8 +350,8 @@ class template_stats extends template {
 
     function affiche_operation($node, $niveau) {
         $this->addStat(__FUNCTION__);
-        $this->affiche($node->getDroite(), $niveau + 1);
-        $this->affiche($node->getGauche(), $niveau + 1);
+        $this->affiche($node->getLeft(), $niveau + 1);
+        $this->affiche($node->getRight(), $niveau + 1);
     }
 
     function affiche_parentheses($node, $niveau) {
@@ -360,7 +360,7 @@ class template_stats extends template {
 
     function affiche_preplusplus($node, $niveau) {
         $this->addStat(__FUNCTION__);
-        $this->affiche($node->getOperateur(), $niveau + 1);
+        $this->affiche($node->getOperator(), $niveau + 1);
         $this->affiche($node->getVariable(), $niveau + 1);
     }
     
@@ -374,7 +374,7 @@ class template_stats extends template {
 
     function affiche_postplusplus($node, $niveau) {
         $this->addStat(__FUNCTION__);
-        $this->affiche($node->getOperateur(), $niveau + 1);
+        $this->affiche($node->getOperator(), $niveau + 1);
         $this->affiche($node->getVariable(), $niveau + 1);
     }
 

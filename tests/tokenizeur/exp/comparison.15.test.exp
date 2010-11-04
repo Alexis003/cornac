@@ -3,13 +3,13 @@ tests/tokenizeur/scripts/comparison.15.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $x
        "=" 
-      gauche : 
+      right : 
           comparison 
-          droite : 
+          left : 
                new 307 "a" arglist(variable $b) 
           operateur : 288 "instanceof"
-          gauche : 
+          right : 
               constante (              d )

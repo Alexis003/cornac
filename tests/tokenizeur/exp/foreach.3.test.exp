@@ -9,10 +9,10 @@ tests/tokenizeur/scripts/foreach.3.test.php
           block 
           0 : 
               affectation 
-              droite : 
+              left : 
                   variable $date_mess_stock
                "=" 
-              gauche : 
+              right : 
                   functioncall array
                   function call : array: 
                       arglist 
@@ -21,22 +21,22 @@ tests/tokenizeur/scripts/foreach.3.test.php
           block 
           0 : 
               affectation 
-              droite : 
+              left : 
                   variable $i
                "=" 
-              gauche : 
+              right : 
                   literals 0
           1 : 
               _foreach (variable $result2 as  => variable $ligne)
                   block 
                   0 : 
                       affectation 
-                      droite : 
+                      left : 
                           _array
                               variable $date_mess_stock
                               variable $i
                        "=" 
-                      gauche : 
+                      right : 
                           _array
                               variable $ligne
                               literals 0

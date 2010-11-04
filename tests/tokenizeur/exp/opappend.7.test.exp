@@ -3,12 +3,12 @@ tests/tokenizeur/scripts/opappend.7.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           opappend [[][]
               opappend [[][]
                   opappend [[][]
                       variable $lines[]
                           variable $lines
        "=" 
-      gauche : 
+      right : 
           literals 1

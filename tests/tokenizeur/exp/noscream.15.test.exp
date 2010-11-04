@@ -3,10 +3,10 @@ tests/tokenizeur/scripts/noscream.15.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $x
        "=" 
-      gauche : 
+      right : 
           noscream @
               _clone 
                   variable $y

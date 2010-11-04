@@ -12,10 +12,10 @@ tests/tokenizeur/scripts/foreach.11.test.php
                       variable $address
                   1 : 
                       operation 
-                      droite : 
+                      left : 
                           variable $key
                       operation :  "-"
-                      gauche : 
+                      right : 
                           parentheses 
                           ( "operation operation variable $keypos  "*" literals 2  "+" literals 1" )
                   2 : 

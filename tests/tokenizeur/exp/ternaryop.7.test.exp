@@ -3,10 +3,10 @@ tests/tokenizeur/scripts/ternaryop.7.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $x
        "=" 
-      gauche : 
+      right : 
           ternaryop ?
           literals 1 ? literals 2 : method variable $x->functioncall 307 "y" ( ( ) ) 
               literals 1

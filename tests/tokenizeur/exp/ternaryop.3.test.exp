@@ -3,10 +3,10 @@ tests/tokenizeur/scripts/ternaryop.3.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $rech_ven
        "=" 
-      gauche : 
+      right : 
           ternaryop ?
           functioncall 350 "isset" ( arglist(_array variable $_REQUEST[literals rech_ven]) )  ? _array variable $_REQUEST[literals rech_ven] : literals 
               functioncall isset

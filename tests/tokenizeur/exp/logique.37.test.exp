@@ -8,11 +8,11 @@ tests/tokenizeur/scripts/logique.37.test.php
               arglist 
               0 : 
                   logique 
-                  droite : 
+                  left : 
                       parentheses 
                       ( "comparison _array variable $property[literals emp_id] 283 "==" sign  "-"literals 1" )
                   operateur :  "|"
-                  gauche : 
+                  right : 
                       ternaryop ?
                       parentheses (comparison _array variable $property[literals emp_id] 283 "==" literals ) ? literals selected : literals 
                           parentheses 

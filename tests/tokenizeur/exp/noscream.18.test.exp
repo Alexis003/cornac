@@ -3,16 +3,16 @@ tests/tokenizeur/scripts/noscream.18.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $a
        "=" 
-      gauche : 
+      right : 
           noscream @
               _array
                   variable $b
                   operation 
-                  droite : 
+                  left : 
                       variable $i
                   operation :  "+"
-                  gauche : 
+                  right : 
                       literals 1

@@ -11,10 +11,10 @@ tests/tokenizeur/scripts/ifthen.36.test.php
               block 
               0 : 
                   affectation 
-                  droite : 
+                  left : 
                       variable $x
                    "=" 
-                  gauche : 
+                  right : 
                       literals 1
            else 
               block 
@@ -29,22 +29,22 @@ tests/tokenizeur/scripts/ifthen.36.test.php
                               block 
                               0 : 
                                   affectation 
-                                  droite : 
+                                  left : 
                                       variable $e[]
                                           variable $e
                                    "=" 
-                                  gauche : 
+                                  right : 
                                       reference &
                                            new 307 "f" arglist(literals ) 
                            else 
                               block 
                               0 : 
                                   affectation 
-                                  droite : 
+                                  left : 
                                       variable $g[]
                                           variable $g
                                    "=" 
-                                  gauche : 
+                                  right : 
                                       reference &
                                           functioncall h
                                           function call : h: 
@@ -53,9 +53,9 @@ tests/tokenizeur/scripts/ifthen.36.test.php
                                                   variable $e
       1 : 
           affectation 
-          droite : 
+          left : 
               variable $dd[]
                   variable $dd
            "=" 
-          gauche : 
+          right : 
               literals 1

@@ -3,8 +3,8 @@ tests/tokenizeur/scripts/logique.7.test.php
 
   code : 
       logique 
-      droite : 
+      left : 
           variable $x
       operateur : 278 "||"
-      gauche : 
+      right : 
           property variable $yliterals z->

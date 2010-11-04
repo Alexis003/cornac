@@ -5,17 +5,17 @@ tests/tokenizeur/scripts/sequence.26.test.php
       sequence 
       0 : 
           affectation 
-          droite : 
+          left : 
               variable $a
            "=" 
-          gauche : 
+          right : 
               literals 
       1 : 
           affectation 
-          droite : 
+          left : 
               variable $b
            "=" 
-          gauche : 
+          right : 
               literals c
       2 : 
           _for 
@@ -25,8 +25,8 @@ tests/tokenizeur/scripts/sequence.26.test.php
               block 
               0 : 
                   affectation 
-                  droite : 
+                  left : 
                       variable $f
                    "=" 
-                  gauche : 
+                  right : 
                       literals g

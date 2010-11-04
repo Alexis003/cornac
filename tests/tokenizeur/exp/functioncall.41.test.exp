@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/functioncall.41.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           functioncall list
           function call : list: 
               arglist 
@@ -12,7 +12,7 @@ tests/tokenizeur/scripts/functioncall.41.test.php
               1 : 
                   variable $d
        "=" 
-      gauche : 
+      right : 
           method_static 
           307 "e"::functioncall 307 "f" ( ( ) ) : 
               functioncall f

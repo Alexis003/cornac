@@ -3,12 +3,12 @@ tests/tokenizeur/scripts/logique.8.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $a
        "=" 
-      gauche : 
+      right : 
           logique 
-          droite : 
+          left : 
               method _array variable $b[literals c]
               method call : functioncall 307 "d" ( arglist(_array variable $e[literals 0]) ) : 
                   functioncall d
@@ -19,7 +19,7 @@ tests/tokenizeur/scripts/logique.8.test.php
                               variable $e
                               literals 0
           operateur : 263 "or"
-          gauche : 
+          right : 
               method _array variable $f[literals g]
               method call : functioncall 307 "h" ( ( ) ) : 
                   functioncall h

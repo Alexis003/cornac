@@ -3,8 +3,8 @@ tests/tokenizeur/scripts/affectation.20.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $x
       267 ">>=" 
-      gauche : 
+      right : 
           variable $b

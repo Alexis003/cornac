@@ -11,18 +11,18 @@ tests/tokenizeur/scripts/sequence.9.test.php
               block 
               0 : 
                   affectation 
-                  droite : 
+                  left : 
                       variable $a
                    "=" 
-                  gauche : 
+                  right : 
                       literals 2
       1 : 
           rawtext 
           Texte : "311 " 3 ""
       2 : 
           affectation 
-          droite : 
+          left : 
               variable $b
            "=" 
-          gauche : 
+          right : 
               literals 3

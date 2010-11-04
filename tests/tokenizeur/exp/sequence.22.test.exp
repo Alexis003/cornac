@@ -5,10 +5,10 @@ tests/tokenizeur/scripts/sequence.22.test.php
       sequence 
       0 : 
           affectation 
-          droite : 
+          left : 
               variable $ignore
            "=" 
-          gauche : 
+          right : 
               literals 1
       1 : 
           functioncall $errorfn

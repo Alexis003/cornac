@@ -11,8 +11,8 @@ arginit variable $c = literals 3  };
           block 
           0 : 
               affectation 
-              droite : 
+              left : 
                   variable $w
                "=" 
-              gauche : 
+              right : 
                   literals 1

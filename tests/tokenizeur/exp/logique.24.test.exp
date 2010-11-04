@@ -3,9 +3,9 @@ tests/tokenizeur/scripts/logique.24.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $x
        "=" 
-      gauche : 
+      right : 
           parentheses 
           ( "comparison parentheses (logique method variable $b->functioncall 307 "c" ( arglist(variable $d) )   "&" property variable $e->literals f) 280 "!==" literals 5" )

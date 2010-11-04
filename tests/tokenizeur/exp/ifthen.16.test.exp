@@ -9,10 +9,10 @@ tests/tokenizeur/scripts/ifthen.16.test.php
           block 
           0 : 
               affectation 
-              droite : 
+              left : 
                   variable $acces_ip
                "=" 
-              gauche : 
+              right : 
                   concatenation 
                   0 : 
                       literals  AND acces_ip=\
@@ -26,8 +26,8 @@ tests/tokenizeur/scripts/ifthen.16.test.php
           block 
           0 : 
               affectation 
-              droite : 
+              left : 
                   variable $acces_ip
                "=" 
-              gauche : 
+              right : 
                   literals 

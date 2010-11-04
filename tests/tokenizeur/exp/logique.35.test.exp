@@ -6,10 +6,10 @@ tests/tokenizeur/scripts/logique.35.test.php
           arglist 
           0 : 
               logique 
-              droite : 
+              left : 
                   parentheses 
                   ( "literals 1" )
               operateur :  "|"
-              gauche : 
+              right : 
                   parentheses 
                   ( "comparison _array variable $a[literals b] 283 "==" literals " )

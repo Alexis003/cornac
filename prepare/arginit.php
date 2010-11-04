@@ -19,30 +19,30 @@
 
 class arginit extends instruction {
     protected $variable = array();
-    protected $valeur = null;
+    protected $value = null;
 
     function __construct($expression) {
         parent::__construct(array());
 
         $this->variable = $expression[0];
-        $this->valeur = $expression[1];
+        $this->value = $expression[1];
     }
     
     function __toString() {
-        return __CLASS__." ".$this->variable." = ".$this->valeur." ";
+        return __CLASS__." ".$this->variable." = ".$this->value." ";
     }
 
     function getVariable() {
         return $this->variable;
     }
 
-    function getValeur() {
-        return $this->valeur;
+    function getValue() {
+        return $this->value;
     }
 
     function neutralise() {
         $this->variable->detach();
-        $this->valeur->detach();
+        $this->value->detach();
     }
 
     function getRegex() {

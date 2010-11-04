@@ -5,12 +5,12 @@ tests/tokenizeur/scripts/functioncall.35.test.php
       sequence 
       0 : 
           affectation 
-          droite : 
+          left : 
               _array
                   variable $x
                   literals 1
            "=" 
-          gauche : 
+          right : 
               literals phpinfo
       1 : 
           functioncall $x

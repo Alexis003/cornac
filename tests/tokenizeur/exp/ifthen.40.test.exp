@@ -9,10 +9,10 @@ tests/tokenizeur/scripts/ifthen.40.test.php
           block 
           0 : 
               affectation 
-              droite : 
+              left : 
                   property variable $cliterals d->
               270 "|=" 
-              gauche : 
+              right : 
                   method variable $e
                   method call : functioncall 307 "f" ( ( ) ) : 
                       functioncall f

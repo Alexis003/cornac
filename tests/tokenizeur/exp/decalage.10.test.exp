@@ -3,15 +3,12 @@ tests/tokenizeur/scripts/decalage.10.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $x
        "=" 
-      gauche : 
+      right : 
           decalage 
-          droite : 
-              literals 24
-          operation : 287 "<<"
-          gauche : 
+          left : 
               method_static 
               307 "self"::functioncall 307 "a" ( arglist(variable $i, literals 8) ) : 
                   functioncall a
@@ -21,3 +18,6 @@ tests/tokenizeur/scripts/decalage.10.test.php
                           variable $i
                       1 : 
                           literals 8
+          operation : 287 "<<"
+          right : 
+              literals 24

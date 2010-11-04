@@ -3,13 +3,13 @@ tests/tokenizeur/scripts/affectation.3.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $x
        "=" 
-      gauche : 
+      right : 
           operation 
-          droite : 
+          left : 
               literals 1
           operation :  "+"
-          gauche : 
+          right : 
               literals 2

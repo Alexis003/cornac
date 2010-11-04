@@ -18,38 +18,38 @@
  */
 
 class decalage extends instruction {
-    protected $gauche = null;
-    protected $operateur = null;
-    protected $droite = null;
+    protected $left = null;
+    protected $operator = null;
+    protected $right = null;
     
     function __construct($expression = null) {
         parent::__construct(array());
 
-        $this->gauche = $expression[0];
-        $this->operateur = $this->makeToken_traite($expression[1]);
-        $this->droite = $expression[2];
+        $this->left = $expression[0];
+        $this->operator = $this->makeToken_traite($expression[1]);
+        $this->right = $expression[2];
     }
 
     function __toString() {
-        return __CLASS__." ".$this->gauche." "." ".$this->operateur." "." ".$this->droite." ";
+        return __CLASS__." ".$this->left." "." ".$this->operator." "." ".$this->right." ";
     }
 
-    function getDroite() {
-        return $this->droite;
+    function getRight() {
+        return $this->right;
     }
 
-    function getOperateur() {
-        return $this->operateur;
+    function getOperator() {
+        return $this->operator;
     }
 
-    function getGauche() {
-        return $this->gauche;
+    function getLeft() {
+        return $this->left;
     }
 
     function neutralise() {
-        $this->gauche->detach();
-        $this->operateur->detach();
-        $this->droite->detach();
+        $this->left->detach();
+        $this->operator->detach();
+        $this->right->detach();
     }
 
     function getRegex(){

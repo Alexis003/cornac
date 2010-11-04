@@ -13,17 +13,17 @@ tests/tokenizeur/scripts/affectation.56.test.php
           block 
           0 : 
               affectation 
-              droite : 
+              left : 
                   variable $b
                "=" 
-              gauche : 
+              right : 
                   literals 6
        else 
           block 
           0 : 
               affectation 
-              droite : 
+              left : 
                   variable $a
                "=" 
-              gauche : 
+              right : 
                   literals 5

@@ -3,19 +3,19 @@ tests/tokenizeur/scripts/operation.30.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $base
        "=" 
-      gauche : 
+      right : 
           operation 
-          droite : 
+          left : 
               variable $pad
           operation :  "+"
-          gauche : 
+          right : 
               operation 
-              droite : 
+              left : 
                   variable $width
               operation :  "*"
-              gauche : 
+              right : 
                   variable $i297 "++" 
                       variable $i

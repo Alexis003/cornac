@@ -3,10 +3,10 @@ tests/tokenizeur/scripts/array.9.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $v
        "=" 
-      gauche : 
+      right : 
           _array
               _array
                   variable $ret

@@ -8,8 +8,8 @@ tests/tokenizeur/scripts/declare.10.test.php
           block 
           0 : 
               affectation 
-              droite : 
+              left : 
                   variable $b
                "=" 
-              gauche : 
+              right : 
                   variable $a

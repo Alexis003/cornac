@@ -3,10 +3,10 @@ tests/tokenizeur/scripts/ternaryop.2.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $categorie
        "=" 
-      gauche : 
+      right : 
           ternaryop ?
           parentheses (comparison variable $categorie_id 282 "!=" literals ) ? concatenation variable $categorie_id . literals  -  . variable $categorie_nom   : literals 
               parentheses 

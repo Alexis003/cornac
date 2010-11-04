@@ -3,8 +3,8 @@ tests/tokenizeur/scripts/logique.12.test.php
 
   code : 
       logique 
-      droite : 
+      left : 
           literals 1
       operateur :  "|"
-      gauche : 
+      right : 
           literals 2

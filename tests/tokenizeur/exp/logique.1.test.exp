@@ -3,8 +3,8 @@ tests/tokenizeur/scripts/logique.1.test.php
 
   code : 
       logique 
-      droite : 
+      left : 
           literals 1
       operateur : 263 "or"
-      gauche : 
+      right : 
           literals 2

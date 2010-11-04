@@ -3,10 +3,10 @@ tests/tokenizeur/scripts/clone.11.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $x
        "=" 
-      gauche : 
+      right : 
           _clone 
               method_static 
               307 "y"::functioncall 307 "w" ( ( ) ) : 

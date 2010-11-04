@@ -6,8 +6,8 @@ tests/tokenizeur/scripts/foreach.41.test.php
           block 
           0 : 
               affectation 
-              droite : 
+              left : 
                   property variable $thisliterals d->
               277 "+=" 
-              gauche : 
+              right : 
                   literals 3

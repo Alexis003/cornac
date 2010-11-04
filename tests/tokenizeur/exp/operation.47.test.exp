@@ -3,30 +3,30 @@ tests/tokenizeur/scripts/operation.47.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $x
        "=" 
-      gauche : 
+      right : 
           operation 
-          droite : 
+          left : 
               operation 
-              droite : 
+              left : 
                   parentheses 
                   ( "operation property variable $c->literals y  "-" property property variable $a->literals b->literals c" )
               operation :  "*"
-              gauche : 
+              right : 
                   operation 
-                  droite : 
+                  left : 
                       property variable $dliterals e->
                   operation :  "+"
-                  gauche : 
+                  right : 
                       property property variable $f->literals gliterals h->
           operation :  "+"
-          gauche : 
+          right : 
               operation 
-              droite : 
+              left : 
                   property variable $iliterals j->
               operation :  "*"
-              gauche : 
+              right : 
                   parentheses 
                   ( "operation literals 1  "-" variable $k" )

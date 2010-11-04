@@ -3,14 +3,14 @@ tests/tokenizeur/scripts/affectation.35.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           functioncall list
           function call : list: 
               arglist 
               0 : 
                   variable $x
        "=" 
-      gauche : 
+      right : 
           functioncall explode
           function call : explode: 
               arglist 

@@ -6,8 +6,8 @@ tests/tokenizeur/scripts/foreach.16.test.php
           block 
           0 : 
               affectation 
-              droite : 
+              left : 
                   variable $t
                "=" 
-              gauche : 
+              right : 
                   literals 1

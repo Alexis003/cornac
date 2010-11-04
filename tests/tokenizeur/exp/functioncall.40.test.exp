@@ -5,10 +5,10 @@ tests/tokenizeur/scripts/functioncall.40.test.php
       sequence 
       0 : 
           affectation 
-          droite : 
+          left : 
               variable $histo_fct
            "=" 
-          gauche : 
+          right : 
               concatenation 
               0 : 
                   literals insert_histo_

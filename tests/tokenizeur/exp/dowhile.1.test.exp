@@ -6,10 +6,10 @@ tests/tokenizeur/scripts/dowhile.1.test.php
           block 
           0 : 
               affectation 
-              droite : 
+              left : 
                   variable $x
                "=" 
-              gauche : 
+              right : 
                   literals 1
           parentheses 
           ( "comparison variable $x 283 "==" literals 3" )

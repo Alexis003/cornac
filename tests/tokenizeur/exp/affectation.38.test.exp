@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/affectation.38.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           noscream @
               _array
                   _array
@@ -11,5 +11,5 @@ tests/tokenizeur/scripts/affectation.38.test.php
                       variable $b
                   variable $c
       273 ".=" 
-      gauche : 
+      right : 
           variable $d

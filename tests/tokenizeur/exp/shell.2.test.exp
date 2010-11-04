@@ -3,10 +3,10 @@ tests/tokenizeur/scripts/shell.2.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $x
        "=" 
-      gauche : 
+      right : 
           shell 
           0 : 
               variable property variable $file->literals x

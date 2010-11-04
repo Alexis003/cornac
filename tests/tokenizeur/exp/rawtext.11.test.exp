@@ -8,10 +8,10 @@ tests/tokenizeur/scripts/rawtext.11.test.php
       sequence 
       0 : 
           affectation 
-          droite : 
+          left : 
               variable $a
            "=" 
-          gauche : 
+          right : 
               literals 1
       1 : 
           rawtext 
@@ -19,10 +19,10 @@ tests/tokenizeur/scripts/rawtext.11.test.php
 ""
       2 : 
           affectation 
-          droite : 
+          left : 
               variable $b
            "=" 
-          gauche : 
+          right : 
               literals 2
   rawtext 
   Texte : "311 "c""

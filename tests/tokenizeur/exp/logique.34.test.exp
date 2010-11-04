@@ -3,22 +3,22 @@ tests/tokenizeur/scripts/logique.34.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $a
        "=" 
-      gauche : 
+      right : 
           logique 
-          droite : 
+          left : 
               functioncall b
               function call : b: 
                   arglist 
                   0 : 
                       variable $q
           operateur : 263 "or"
-          gauche : 
+          right : 
               affectation 
-              droite : 
+              left : 
                   variable $x
               270 "|=" 
-              gauche : 
+              right : 
                   literals 2

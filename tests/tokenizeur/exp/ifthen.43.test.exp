@@ -11,14 +11,14 @@ tests/tokenizeur/scripts/ifthen.43.test.php
               block 
               0 : 
                   affectation 
-                  droite : 
+                  left : 
                       _array
                           _array
                               property variable $bliterals c->
                               literals 0
                           literals d
                   273 ".=" 
-                  gauche : 
+                  right : 
                       literals e
       1 : 
           ifthen if
@@ -28,10 +28,10 @@ tests/tokenizeur/scripts/ifthen.43.test.php
               block 
               0 : 
                   affectation 
-                  droite : 
+                  left : 
                       _array
                           property property variable $b->literals cliterals d->
                           literals e
                   273 ".=" 
-                  gauche : 
+                  right : 
                       literals f

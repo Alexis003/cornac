@@ -3,12 +3,12 @@ tests/tokenizeur/scripts/logique.45.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $x
        "=" 
-      gauche : 
+      right : 
           logique 
-          droite : 
+          left : 
               _array
                   variable $a
                   concatenation 
@@ -19,10 +19,10 @@ tests/tokenizeur/scripts/logique.45.test.php
                   2 : 
                       literals d
           operateur : 279 "&&"
-          gauche : 
+          right : 
               comparison 
-              droite : 
+              left : 
                   variable $e
               operateur :  ">"
-              gauche : 
+              right : 
                   literals 3

@@ -3,31 +3,31 @@ tests/tokenizeur/scripts/sign.20.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $a
        "=" 
-      gauche : 
+      right : 
           comparison 
-          droite : 
+          left : 
               variable $b
           operateur : 283 "=="
-          gauche : 
+          right : 
               operation 
-              droite : 
+              left : 
                   operation 
-                  droite : 
+                  left : 
                       functioncall count
                       function call : count: 
                           arglist 
                           0 : 
                               variable $c
                   operation :  "-"
-                  gauche : 
+                  right : 
                       ternaryop ?
                       literals 1 ? variable $d : variable $r
                           literals 1
                           variable $d
                           variable $r
               operation :  "+"
-              gauche : 
+              right : 
                   variable $f

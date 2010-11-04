@@ -3,10 +3,10 @@ tests/tokenizeur/scripts/not.7.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $x
        "=" 
-      gauche : 
+      right : 
           concatenation 
           0 : 
               variable $a

@@ -3,11 +3,11 @@ tests/tokenizeur/scripts/affectation.54.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           cast (292 "(array)")variable $x
               variable $x
        "=" 
-      gauche : 
+      right : 
           method variable $a
           method call : functioncall 307 "b" ( arglist(variable $c) ) : 
               functioncall b

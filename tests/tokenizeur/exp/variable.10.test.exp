@@ -5,28 +5,28 @@ tests/tokenizeur/scripts/variable.10.test.php
       sequence 
       0 : 
           affectation 
-          droite : 
+          left : 
               variable $x
            "=" 
-          gauche : 
+          right : 
               concatenation 
               0 : 
                   variable $y
       1 : 
           affectation 
-          droite : 
+          left : 
               variable $x
            "=" 
-          gauche : 
+          right : 
               concatenation 
               0 : 
                   variable variable z
       2 : 
           affectation 
-          droite : 
+          left : 
               variable $x
            "=" 
-          gauche : 
+          right : 
               concatenation 
               0 : 
                   variable variable $a

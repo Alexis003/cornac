@@ -134,24 +134,24 @@ class template_cache extends template {
     }
 
     function affiche_affectation($node, $level) {
-        $droite = $node->getDroite();
-        $this->affiche($droite, $level + 1);
-        $operateur = $node->getOperateur();
-        $this->affiche($operateur, $level + 1);
-        $gauche = $node->getGauche();
-        $this->affiche($gauche, $level + 1);
+        $left = $node->getLeft();
+        $this->affiche($left, $level + 1);
+        $operator = $node->getOperator();
+        $this->affiche($operator, $level + 1);
+        $right = $node->getRight();
+        $this->affiche($right, $level + 1);
         
-        $node->cache = $droite->cache.' '.$operateur->cache.' '.$gauche->cache;
+        $node->cache = $left->cache.' '.$operator->cache.' '.$right->cache;
         return $this->savenode($node);
     }
 
     function affiche_arginit($node, $level) {
         $var = $node->getVariable();
         $this->affiche($var, $level + 1);
-        $valeur = $node->getValeur();
-        $this->affiche($valeur, $level + 1);
+        $value = $node->getValue();
+        $this->affiche($value, $level + 1);
         
-        $node->cache = $var->cache." = ".$valeur->cache;
+        $node->cache = $var->cache." = ".$value->cache;
         return $this->savenode($node);
     }
 
@@ -301,14 +301,14 @@ class template_cache extends template {
     }
 
     function affiche_comparison($node, $level) {
-        $droite = $node->getDroite();
-        $this->affiche($droite, $level + 1);
-        $operateur = $node->getOperateur();
-        $this->affiche($operateur, $level + 1);
-        $gauche = $node->getGauche();
-        $this->affiche($gauche, $level + 1);
+        $left = $node->getLeft();
+        $this->affiche($left, $level + 1);
+        $operator = $node->getOperator();
+        $this->affiche($operator, $level + 1);
+        $right = $node->getRight();
+        $this->affiche($right, $level + 1);
         
-        $node->cache = $droite->cache.' '.$operateur->cache.' '.$gauche->cache;
+        $node->cache = $left->cache.' '.$operator->cache.' '.$right->cache;
         return $this->savenode($node);
     }
 
@@ -349,14 +349,14 @@ class template_cache extends template {
     }
 
    function affiche_decalage($node, $level) {
-        $droite = $node->getDroite();
-        $this->affiche($droite, $level + 1);
-        $operateur = $node->getOperateur();
-        $this->affiche($operateur, $level + 1);
-        $gauche = $node->getGauche();
-        $this->affiche($gauche, $level + 1);
+        $left = $node->getLeft();
+        $this->affiche($left, $level + 1);
+        $operator = $node->getOperator();
+        $this->affiche($operator, $level + 1);
+        $right = $node->getRight();
+        $this->affiche($right, $level + 1);
         
-        $node->cache = $droite->cache.' '.$operateur->cache.' '.$gauche->cache;
+        $node->cache = $left->cache.' '.$operator->cache.' '.$right->cache;
         return $this->savenode($node);
     }
 
@@ -535,14 +535,14 @@ class template_cache extends template {
     }
 
     function affiche_logique($node, $level) {
-        $droite = $node->getDroite();
-        $this->affiche($droite, $level + 1);
-        $operateur = $node->getOperateur();
-        $this->affiche($operateur, $level + 1);
-        $gauche = $node->getGauche();
-        $this->affiche($gauche, $level + 1);
+        $left = $node->getLeft();
+        $this->affiche($left, $level + 1);
+        $operator = $node->getOperator();
+        $this->affiche($operator, $level + 1);
+        $right = $node->getRight();
+        $this->affiche($right, $level + 1);
         
-        $node->cache = $droite->cache.' '.$operateur->cache.' '.$gauche->cache;
+        $node->cache = $left->cache.' '.$operator->cache.' '.$right->cache;
     }
 
     function affiche_method($node, $level) {
@@ -599,14 +599,14 @@ class template_cache extends template {
     }
 
     function affiche_operation($node, $level) {
-        $droite = $node->getDroite();
-        $this->affiche($droite, $level + 1);
+        $left = $node->getLeft();
+        $this->affiche($left, $level + 1);
         $operation = $node->getOperation();
         $this->affiche($operation, $level + 1);
-        $gauche = $node->getGauche();
-        $this->affiche($gauche, $level + 1);
+        $right = $node->getRight();
+        $this->affiche($right, $level + 1);
         
-        $node->cache = $droite->cache.' '.$operation->cache.' '.$gauche->cache;
+        $node->cache = $left->cache.' '.$operation->cache.' '.$right->cache;
     }
 
     function affiche_parentheses($node, $level) {
@@ -620,20 +620,20 @@ class template_cache extends template {
     function affiche_preplusplus($node, $level) {
         $var = $node->getVariable();
         $this->affiche($var, $level + 1);
-        $operateur = $node->getOperateur();
-        $this->affiche($operateur, $level + 1);
+        $operator = $node->getOperator();
+        $this->affiche($operator, $level + 1);
         
-        $node->cache = $operateur->cache.$var->cache;
+        $node->cache = $operator->cache.$var->cache;
         return $this->savenode($node);    
     }
 
     function affiche_postplusplus($node, $level) {
         $var = $node->getVariable();
         $this->affiche($var, $level + 1);
-        $operateur = $node->getOperateur();
-        $this->affiche($operateur, $level + 1);
+        $operator = $node->getOperator();
+        $this->affiche($operator, $level + 1);
         
-        $node->cache = $var->cache.$operateur->cache;
+        $node->cache = $var->cache.$operator->cache;
         return $this->savenode($node);    
     }
 

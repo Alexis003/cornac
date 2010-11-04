@@ -3,9 +3,9 @@ tests/tokenizeur/scripts/affectation.52.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $x
        "=" 
-      gauche : 
+      right : 
           inclusion include
               literals b.php

@@ -5,22 +5,22 @@ tests/tokenizeur/scripts/sequence.17.test.php
       sequence 
       0 : 
           affectation 
-          droite : 
+          left : 
               variable $number
            "=" 
-          gauche : 
+          right : 
               logique 
-              droite : 
+              left : 
                   logique 
-                  droite : 
+                  left : 
                       parentheses 
                       ( "decalage functioncall 307 "ord" ( arglist(_array variable $data[preplusplus variable $index297 "++"]) )   287 "<<"  literals 16 " )
                   operateur :  "|"
-                  gauche : 
+                  right : 
                       parentheses 
                       ( "decalage functioncall 307 "ord" ( arglist(_array variable $data[preplusplus variable $index297 "++"]) )   287 "<<"  literals 8 " )
               operateur :  "|"
-              gauche : 
+              right : 
                   functioncall ord
                   function call : ord: 
                       arglist 

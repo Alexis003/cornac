@@ -8,10 +8,10 @@ tests/tokenizeur/scripts/foreach.12.test.php
               block 
               0 : 
                   affectation 
-                  droite : 
+                  left : 
                       variable $pattern
                    "=" 
-                  gauche : 
+                  right : 
                       functioncall str_replace
                       function call : str_replace: 
                           arglist 
@@ -27,10 +27,10 @@ tests/tokenizeur/scripts/foreach.12.test.php
                               variable $pattern
       1 : 
           affectation 
-          droite : 
+          left : 
               variable $pattern
            "=" 
-          gauche : 
+          right : 
               functioncall str_replace
               function call : str_replace: 
                   arglist 

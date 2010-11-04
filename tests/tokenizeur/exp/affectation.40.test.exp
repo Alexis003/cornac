@@ -9,8 +9,8 @@ tests/tokenizeur/scripts/affectation.40.test.php
                   block 
                   0 : 
                       affectation 
-                      droite : 
+                      left : 
                           property property variable $this->literals valuevariable $key->
                        "=" 
-                      gauche : 
+                      right : 
                           variable $value

@@ -3,9 +3,9 @@ tests/tokenizeur/scripts/decalage.7.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $x
        "=" 
-      gauche : 
+      right : 
           parentheses 
           ( "decalage _array variable $y[literals z]  286 ">>"  literals 1 " )

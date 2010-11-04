@@ -4,10 +4,10 @@ tests/tokenizeur/scripts/ternaryop.20.test.php
       sequence 
       0 : 
           affectation 
-          droite : 
+          left : 
               variable $_tag
            "=" 
-          gauche : 
+          right : 
               ternaryop ?
               method variable $x->functioncall 307 "y" ( ( ) )  ? method variable $x->functioncall 307 "z" ( ( ) )  : literals literal
                   method variable $x

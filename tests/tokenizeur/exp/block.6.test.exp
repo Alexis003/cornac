@@ -9,10 +9,10 @@ tests/tokenizeur/scripts/block.6.test.php
           block 
           0 : 
               affectation 
-              droite : 
+              left : 
                   variable $a
                "=" 
-              gauche : 
+              right : 
                   _array
                       _array
                           _array

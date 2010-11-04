@@ -38,8 +38,8 @@ class template_sqlite extends template_db {
         
         $this->database->query('DELETE FROM '.$this->table.' WHERE fichier = "'.$fichier.'"');
         $this->database->query('CREATE TABLE IF NOT EXISTS '.$this->table.' (id       INTEGER PRIMARY KEY AUTOINCREMENT, 
-                                                          droite   INT UNSIGNED CONSTRAINT KEY DEFAULT "0",
-                                                          gauche   INT UNSIGNED CONSTRAINT KEY DEFAULT "0",
+                                                          left   INT UNSIGNED CONSTRAINT KEY DEFAULT "0",
+                                                          right   INT UNSIGNED CONSTRAINT KEY DEFAULT "0",
                                                           type     CHAR(20) CONSTRAINT KEY DEFAULT "",
                                                           code     VARCHAR(255) CONSTRAINT KEY DEFAULT "",
                                                           fichier  VARCHAR(255) CONSTRAINT KEY DEFAULT "prec",

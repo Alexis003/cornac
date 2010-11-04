@@ -3,9 +3,9 @@ tests/tokenizeur/scripts/cast.2.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $x
        "=" 
-      gauche : 
+      right : 
           cast (294 "(double)")literals 1
               literals 1

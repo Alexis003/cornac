@@ -8,17 +8,17 @@ tests/tokenizeur/scripts/dowhile.2.test.php
               block 
               0 : 
                   affectation 
-                  droite : 
+                  left : 
                       variable $x
                    "=" 
-                  gauche : 
+                  right : 
                       literals 1
               parentheses 
               ( "comparison property variable $this->literals _code  "<" literals 200" )
       1 : 
           affectation 
-          droite : 
+          left : 
               property variable $thisliterals _ready->
            "=" 
-          gauche : 
+          right : 
               constante (              true )

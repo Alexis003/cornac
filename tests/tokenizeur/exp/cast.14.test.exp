@@ -3,10 +3,10 @@ tests/tokenizeur/scripts/cast.14.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $a
        "=" 
-      gauche : 
+      right : 
           functioncall array_merge
           function call : array_merge: 
               arglist 

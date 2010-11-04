@@ -3,8 +3,8 @@ tests/tokenizeur/scripts/opappend.5.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           property opappend [[]literals url->
        "=" 
-      gauche : 
+      right : 
           variable $file

@@ -5,12 +5,12 @@ tests/tokenizeur/scripts/sequence.27.test.php
       sequence 
       0 : 
           affectation 
-          droite : 
+          left : 
               variable $s
            "=" 
-          gauche : 
+          right : 
               comparison 
-              droite : 
+              left : 
                   functioncall intval
                   function call : intval: 
                       arglist 
@@ -25,7 +25,7 @@ tests/tokenizeur/scripts/sequence.27.test.php
                               2 : 
                                   literals 2
               operateur :  "<"
-              gauche : 
+              right : 
                   ternaryop ?
                   literals 12 ? literals c : literals d
                       literals 12

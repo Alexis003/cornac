@@ -5,25 +5,25 @@ tests/tokenizeur/scripts/property_static.6.test.php
       sequence 
       0 : 
           affectation 
-          droite : 
+          left : 
               property_static 307 "self"::_array variable $a[literals b][]
                   property_static 307 "self"::_array variable $a[literals b]->
            "=" 
-          gauche : 
+          right : 
               variable $d
       1 : 
           affectation 
-          droite : 
+          left : 
               property_static 307 "self"::_array _array variable $a[variable $b][literals 1][]
                   property_static 307 "self"::_array _array variable $a[variable $b][literals 1]->
            "=" 
-          gauche : 
+          right : 
               variable $d
       2 : 
           affectation 
-          droite : 
+          left : 
               property_static 307 "self"::_array _array _array variable $a[variable $b][literals 1][constante true][]
                   property_static 307 "self"::_array _array _array variable $a[variable $b][literals 1][constante true]->
            "=" 
-          gauche : 
+          right : 
               variable $d

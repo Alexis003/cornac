@@ -10,8 +10,8 @@ tests/tokenizeur/scripts/logique.25.test.php
                   variable $fichier
               1 : 
                   logique 
-                  droite : 
+                  left : 
                       constante (                      _SPIP_CHMOD )
                   operateur :  "&"
-                  gauche : 
+                  right : 
                       literals 0666

@@ -9,7 +9,7 @@ tests/tokenizeur/scripts/logique.43.test.php
               variable $global
       1 : 
           logique 
-          droite : 
+          left : 
               method_static 
               307 "Classe"::functioncall 307 "method" ( ( ) ) : 
                   functioncall method
@@ -17,7 +17,7 @@ tests/tokenizeur/scripts/logique.43.test.php
                       arglist 
                       Liste d'argument vide
           operateur : 263 "or"
-          gauche : 
+          right : 
               functioncall functioncall
               function call : functioncall: 
                   arglist 

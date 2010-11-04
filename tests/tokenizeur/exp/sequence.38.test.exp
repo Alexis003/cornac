@@ -5,10 +5,10 @@ tests/tokenizeur/scripts/sequence.38.test.php
       sequence 
       0 : 
           affectation 
-          droite : 
+          left : 
               variable $a
            "=" 
-          gauche : 
+          right : 
               literals 1
       1 : 
            new 307 "StdClass" ( ) 

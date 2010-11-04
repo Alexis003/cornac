@@ -6,10 +6,10 @@ tests/tokenizeur/scripts/logique.36.test.php
           arglist 
           0 : 
               logique 
-              droite : 
+              left : 
                   parentheses 
                   ( "comparison _array variable $property[literals emp_id] 283 "==" literals " )
               operateur :  "|"
-              gauche : 
+              right : 
                   parentheses 
                   ( "literals 1" )

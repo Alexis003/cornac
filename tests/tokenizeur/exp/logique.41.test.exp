@@ -2,13 +2,13 @@ tests/tokenizeur/scripts/logique.41.test.php
   codephp <?php 
   code : 
       logique 
-      droite : 
+      left : 
           functioncall die
           function call : die: 
               arglist 
               0 : 
                   literals 1
       operateur :  "|"
-      gauche : 
+      right : 
           parentheses 
           ( "comparison _array variable $a[literals b] 283 "==" literals " )

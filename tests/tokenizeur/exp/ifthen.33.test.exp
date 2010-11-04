@@ -9,10 +9,10 @@ tests/tokenizeur/scripts/ifthen.33.test.php
           block 
           0 : 
               affectation 
-              droite : 
+              left : 
                   variable $c
                "=" 
-              gauche : 
+              right : 
                   method variable $d
                   method call : functioncall 307 "e" ( arglist(literals f) ) : 
                       functioncall e
@@ -24,10 +24,10 @@ tests/tokenizeur/scripts/ifthen.33.test.php
           block 
           0 : 
               affectation 
-              droite : 
+              left : 
                   variable $g
                "=" 
-              gauche : 
+              right : 
                   method variable $h
                   method call : functioncall 307 "e" ( arglist(literals i) ) : 
                       functioncall e

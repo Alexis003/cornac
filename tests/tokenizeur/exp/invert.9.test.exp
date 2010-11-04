@@ -3,9 +3,9 @@ tests/tokenizeur/scripts/invert.9.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $mod
       271 "&=" 
-      gauche : 
+      right : 
           invert ~
               property_static 307 "y"::variable $x->

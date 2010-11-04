@@ -9,10 +9,10 @@ tests/tokenizeur/scripts/classe.14.test.php
                   block 
                   0 : 
                       affectation 
-                      droite : 
+                      left : 
                           variable $x
                        "=" 
-                      gauche : 
+                      right : 
                           literals 1
           1 : 
               343 "protected"346 "abstract"347 "static"function literals b ( )

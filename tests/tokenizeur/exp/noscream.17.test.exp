@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/noscream.17.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           noscream @
               _array variable $rows[_array variable $row[literals fichier]][]
                   _array
@@ -12,5 +12,5 @@ tests/tokenizeur/scripts/noscream.17.test.php
                           variable $row
                           literals fichier
        "=" 
-      gauche : 
+      right : 
           variable $row

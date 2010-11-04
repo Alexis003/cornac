@@ -8,10 +8,10 @@ tests/tokenizeur/scripts/ifthen.29.test.php
           block 
           0 : 
               affectation 
-              droite : 
+              left : 
                   variable $x
                "=" 
-              gauche : 
+              right : 
                   literals 1
           1 : 
               rawtext 
@@ -23,10 +23,10 @@ tests/tokenizeur/scripts/ifthen.29.test.php
           block 
           0 : 
               affectation 
-              droite : 
+              left : 
                   variable $y
                "=" 
-              gauche : 
+              right : 
                   literals 2
           1 : 
               rawtext 
@@ -39,10 +39,10 @@ tests/tokenizeur/scripts/ifthen.29.test.php
           block 
           0 : 
               affectation 
-              droite : 
+              left : 
                   variable $z
                "=" 
-              gauche : 
+              right : 
                   literals 2
           1 : 
               rawtext 

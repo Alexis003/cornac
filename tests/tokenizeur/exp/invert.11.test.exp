@@ -3,10 +3,10 @@ tests/tokenizeur/scripts/invert.11.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $x
        "=" 
-      gauche : 
+      right : 
           invert ~
               cast (295 "(int)")variable $b
                   variable $b

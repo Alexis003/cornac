@@ -3,11 +3,11 @@ tests/tokenizeur/scripts/operation.22.test.php
 
   code : 
       operation 
-      droite : 
+      left : 
           parentheses 
           ( "ternaryop ?" )
       operation :  "*"
-      gauche : 
+      right : 
           functioncall $sorter
           function call : $sorter: 
               arglist 

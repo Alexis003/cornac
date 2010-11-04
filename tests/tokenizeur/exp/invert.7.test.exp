@@ -3,9 +3,9 @@ tests/tokenizeur/scripts/invert.7.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $mod
       271 "&=" 
-      gauche : 
+      right : 
           invert ~
               constante_static (              0 "$y"::constante x )

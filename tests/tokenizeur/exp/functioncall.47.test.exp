@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/functioncall.47.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           noscream @
               functioncall list
               function call : list: 
@@ -13,7 +13,7 @@ tests/tokenizeur/scripts/functioncall.47.test.php
                   1 : 
                       variable $b
        "=" 
-      gauche : 
+      right : 
           functioncall func_get_args
           function call : func_get_args: 
               arglist 

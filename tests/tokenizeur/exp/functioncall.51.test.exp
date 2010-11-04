@@ -5,10 +5,10 @@ tests/tokenizeur/scripts/functioncall.51.test.php
       ternaryop ?
       logique property variable $a->literals b  "&" constante C ? functioncall 300 "exit" ( arglist() )  : constante null
           logique 
-          droite : 
+          left : 
               property variable $aliterals b->
           operateur :  "&"
-          gauche : 
+          right : 
               constante (              C )
           functioncall exit
           function call : exit: 

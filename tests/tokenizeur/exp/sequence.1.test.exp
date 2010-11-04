@@ -3,8 +3,8 @@ tests/tokenizeur/scripts/sequence.1.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $a
        "=" 
-      gauche : 
+      right : 
           literals 1

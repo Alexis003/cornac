@@ -3,8 +3,8 @@ tests/tokenizeur/scripts/affectation.11.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           property variable $xliterals y->
        "=" 
-      gauche : 
+      right : 
           literals 1

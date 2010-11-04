@@ -18,42 +18,42 @@
  */
 
 class comparison extends instruction {
-    protected $droite = null;
-    protected $operateur = null;
-    protected $gauche = null;
+    protected $left = null;
+    protected $operator = null;
+    protected $right = null;
     
     function __construct($expression) {
         parent::__construct(array());
         
         if (is_array($expression) && count($expression) == 3) {
-            $this->droite = $expression[0];
-            $this->operateur = $this->makeToken_traite($expression[1]);
-            $this->gauche = $expression[2];
+            $this->left = $expression[0];
+            $this->operator = $this->makeToken_traite($expression[1]);
+            $this->right = $expression[2];
         } else {
             $this->stopOnError("Wrong number of arguments  : '".count($expression)."' in ".__METHOD__);
         }
     }
 
     function __toString() {
-        return __CLASS__." ".$this->droite." ".$this->operateur." ".$this->gauche;
+        return __CLASS__." ".$this->left." ".$this->operator." ".$this->right;
     }
 
-    function getDroite() {
-        return $this->droite;
+    function getRight() {
+        return $this->right;
     }
 
-    function getOperateur() {
-        return $this->operateur;
+    function getOperator() {
+        return $this->operator;
     }
 
-    function getGauche() {
-        return $this->gauche;
+    function getLeft() {
+        return $this->left;
     }
 
     function neutralise() {
-       $this->droite->detach();
-       $this->operateur->detach();
-       $this->gauche->detach();
+       $this->left->detach();
+       $this->operator->detach();
+       $this->right->detach();
     }
 
     static function getRegex() {

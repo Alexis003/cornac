@@ -3,9 +3,9 @@ tests/tokenizeur/scripts/affectation.42.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $sort
        "=" 
-      gauche : 
+      right : 
           parentheses 
           ( "ternaryop ?" )

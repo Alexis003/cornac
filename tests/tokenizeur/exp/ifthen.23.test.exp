@@ -15,8 +15,8 @@ tests/tokenizeur/scripts/ifthen.23.test.php
                   block 
                   0 : 
                       affectation 
-                      droite : 
+                      left : 
                           variable $a
                        "=" 
-                      gauche : 
+                      right : 
                           literals 1

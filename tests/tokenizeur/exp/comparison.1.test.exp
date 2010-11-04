@@ -3,8 +3,8 @@ tests/tokenizeur/scripts/comparison.1.test.php
 
   code : 
       comparison 
-      droite : 
+      left : 
           literals 1
       operateur :  ">"
-      gauche : 
+      right : 
           literals 2

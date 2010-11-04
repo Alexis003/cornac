@@ -8,12 +8,12 @@ affectation variable $nb  "=" _array variable $a[literals b] };
         Fin  : variable $c;
         Incr : preplusplus variable $d296 "--";
           affectation 
-          droite : 
+          left : 
               _array variable $e[literals x][]
                   _array
                       variable $e
                       literals x
            "=" 
-          gauche : 
+          right : 
               variable $i297 "++" 
                   variable $i

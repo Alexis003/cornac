@@ -9,17 +9,17 @@ tests/tokenizeur/scripts/affectation.43.test.php
           block 
           0 : 
               affectation 
-              droite : 
+              left : 
                   property variable $xliterals a->
                "=" 
-              gauche : 
+              right : 
                   variable $b
           1 : 
               affectation 
-              droite : 
+              left : 
                   property variable $xliterals b->
               273 ".=" 
-              gauche : 
+              right : 
                   concatenation 
                   0 : 
                       literals  c: 

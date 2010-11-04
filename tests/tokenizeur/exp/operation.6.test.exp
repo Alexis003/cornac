@@ -3,23 +3,23 @@ tests/tokenizeur/scripts/operation.6.test.php
 
   code : 
       operation 
-      droite : 
+      left : 
           operation 
-          droite : 
+          left : 
               operation 
-              droite : 
+              left : 
                   operation 
-                  droite : 
+                  left : 
                       literals 1
                   operation :  "+"
-                  gauche : 
+                  right : 
                       literals 1
               operation :  "-"
-              gauche : 
+              right : 
                   literals 1
           operation :  "+"
-          gauche : 
+          right : 
               literals 1
       operation :  "-"
-      gauche : 
+      right : 
           literals 1

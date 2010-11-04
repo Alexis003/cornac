@@ -3,19 +3,19 @@ tests/tokenizeur/scripts/keyvalue.5.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $TABINDEX
        "=" 
-      gauche : 
+      right : 
           functioncall array
           function call : array: 
               arglist 
               0 : 
                   operation 
-                  droite : 
+                  left : 
                       literals bouton0 => literals 1
                           literals bouton0
                           literals 1
                   operation :  "+"
-                  gauche : 
+                  right : 
                       literals 2

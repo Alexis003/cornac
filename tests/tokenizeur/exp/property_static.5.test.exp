@@ -3,8 +3,8 @@ tests/tokenizeur/scripts/property_static.5.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           property_static 307 "self"::_array variable $t[literals i]->
        "=" 
-      gauche : 
+      right : 
           literals 0

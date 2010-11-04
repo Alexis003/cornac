@@ -24,15 +24,15 @@ tests/tokenizeur/scripts/logique.9.test.php
           1 : 
               _case 
                   logique 
-                  droite : 
+                  left : 
                       logique 
-                      droite : 
+                      left : 
                           literals devis
                       operateur : 278 "||"
-                      gauche : 
+                      right : 
                           literals commande
                   operateur : 278 "||"
-                  gauche : 
+                  right : 
                       literals avoir
                   block 
                   0 : 

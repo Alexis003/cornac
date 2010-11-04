@@ -7,8 +7,8 @@ tests/tokenizeur/scripts/functioncall.15.test.php
           arglist 
           0 : 
               operation 
-              droite : 
+              left : 
                   literals 1
               operation :  "+"
-              gauche : 
+              right : 
                   literals 1

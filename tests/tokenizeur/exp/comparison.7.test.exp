@@ -9,10 +9,10 @@ tests/tokenizeur/scripts/comparison.7.test.php
           block 
           0 : 
               affectation 
-              droite : 
+              left : 
                   _array
                       variable $c
                       literals d
                "=" 
-              gauche : 
+              right : 
                   property_static 307 "e"::_array variable $f[literals g]->

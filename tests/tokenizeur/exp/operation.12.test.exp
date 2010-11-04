@@ -3,15 +3,15 @@ tests/tokenizeur/scripts/operation.12.test.php
 
   code : 
       operation 
-      droite : 
+      left : 
           variable $x
       operation :  "+"
-      gauche : 
+      right : 
           affectation 
-          droite : 
+          left : 
               _array
                   variable $y
                   literals 1
            "=" 
-          gauche : 
+          right : 
               variable $z

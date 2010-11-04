@@ -5,17 +5,17 @@ tests/tokenizeur/scripts/sequence.10.test.php
       sequence 
       0 : 
           affectation 
-          droite : 
+          left : 
               property variable $paginationliterals enregistrement->
            "=" 
-          gauche : 
+          right : 
               property _array variable $_SESSION[literals init_infos]literals nb_pet_liste->
       1 : 
           affectation 
-          droite : 
+          left : 
               property variable $paginationliterals col_nom->
            "=" 
-          gauche : 
+          right : 
               concatenation 
               0 : 
                   literals nom_col
@@ -25,10 +25,10 @@ tests/tokenizeur/scripts/sequence.10.test.php
                   literals _9
       2 : 
           affectation 
-          droite : 
+          left : 
               property variable $paginationliterals col_sens->
            "=" 
-          gauche : 
+          right : 
               literals DESC
       3 : 
           method variable $pagination
@@ -39,7 +39,7 @@ tests/tokenizeur/scripts/sequence.10.test.php
                   Liste d'argument vide
       4 : 
           logique 
-          droite : 
+          left : 
               method _array variable $_SESSION[literals cligraph]
               method call : functioncall 307 "connect" ( ( ) ) : 
                   functioncall connect
@@ -47,7 +47,7 @@ tests/tokenizeur/scripts/sequence.10.test.php
                       arglist 
                       Liste d'argument vide
           operateur : 263 "or"
-          gauche : 
+          right : 
               functioncall die
               function call : die: 
                   arglist 

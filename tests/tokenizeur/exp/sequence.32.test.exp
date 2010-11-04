@@ -11,19 +11,19 @@ tests/tokenizeur/scripts/sequence.32.test.php
                   variable $b
       1 : 
           logique 
-          droite : 
+          left : 
               comparison 
-              droite : 
+              left : 
                   functioncall c
                   function call : c: 
                       arglist 
                       0 : 
                           variable $d
               operateur : 282 "!="
-              gauche : 
+              right : 
                   variable $e
           operateur : 279 "&&"
-          gauche : 
+          right : 
               functioncall f
               function call : f: 
                   arglist 

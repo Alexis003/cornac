@@ -3,14 +3,14 @@ tests/tokenizeur/scripts/operation.41.test.php
 
   code : 
       operation 
-      droite : 
+      left : 
           variable $a
       operation :  "*"
-      gauche : 
+      right : 
           affectation 
-          droite : 
+          left : 
               variable $b
            "=" 
-          gauche : 
+          right : 
               parentheses 
               ( "operation variable $c  "-" literals 2" )

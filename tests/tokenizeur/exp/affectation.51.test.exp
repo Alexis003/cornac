@@ -3,13 +3,13 @@ tests/tokenizeur/scripts/affectation.51.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $x
        "=" 
-      gauche : 
+      right : 
           affectation 
-          droite : 
+          left : 
               variable $z
           276 "-=" 
-          gauche : 
+          right : 
               variable $d

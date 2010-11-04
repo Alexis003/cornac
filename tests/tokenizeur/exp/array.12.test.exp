@@ -3,11 +3,11 @@ tests/tokenizeur/scripts/array.12.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           _array
               variable $a[]
                   variable $a
               constante (              b )
        "=" 
-      gauche : 
+      right : 
           variable $c

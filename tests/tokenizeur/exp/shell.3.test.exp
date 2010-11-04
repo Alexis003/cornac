@@ -3,10 +3,10 @@ tests/tokenizeur/scripts/shell.3.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $x
        "=" 
-      gauche : 
+      right : 
           functioncall strtolower
           function call : strtolower: 
               arglist 

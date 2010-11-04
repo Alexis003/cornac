@@ -8,11 +8,11 @@ tests/tokenizeur/scripts/while.13.test.php
           block 
           0 : 
               affectation 
-              droite : 
+              left : 
                   variable $b[]
                       variable $b
               273 ".=" 
-              gauche : 
+              right : 
                   concatenation 
                   0 : 
                       literals 

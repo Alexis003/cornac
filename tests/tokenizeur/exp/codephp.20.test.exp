@@ -8,18 +8,18 @@ XML
       sequence 
       0 : 
           affectation 
-          droite : 
+          left : 
               variable $x
            "=" 
-          gauche : 
+          right : 
               literals 1
       1 : 
           rawtext 
           Texte : "311 """
       2 : 
           affectation 
-          droite : 
+          left : 
               variable $y
            "=" 
-          gauche : 
+          right : 
               literals 1

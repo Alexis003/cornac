@@ -3,14 +3,14 @@ tests/tokenizeur/scripts/literals.12.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $x
        "=" 
-      gauche : 
+      right : 
           operation 
-          droite : 
+          left : 
               parentheses 
               ( "operation variable $y  "/" sign  "-"literals 2" )
           operation :  "+"
-          gauche : 
+          right : 
               literals 0.3

@@ -3,10 +3,10 @@ tests/tokenizeur/scripts/method_static.6.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $result
        "=" 
-      gauche : 
+      right : 
           method_static 
           307 "parent"::functioncall variable $a ( arglist(variable $b, variable $c, variable $d) ) : 
               functioncall $a

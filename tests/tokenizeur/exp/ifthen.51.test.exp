@@ -9,10 +9,10 @@ tests/tokenizeur/scripts/ifthen.51.test.php
           block 
           0 : 
               affectation 
-              droite : 
+              left : 
                   variable $b
                "=" 
-              gauche : 
+              right : 
                   literals 1
        else 
           block 
@@ -36,26 +36,26 @@ tests/tokenizeur/scripts/ifthen.51.test.php
                           block 
                           0 : 
                               affectation 
-                              droite : 
+                              left : 
                                   variable $e
                                "=" 
-                              gauche : 
+                              right : 
                                   literals 4
                        else 
                           block 
                           0 : 
                               affectation 
-                              droite : 
+                              left : 
                                   variable $f
                                "=" 
-                              gauche : 
+                              right : 
                                   literals 5
                   2 : 
                       affectation 
-                      droite : 
+                      left : 
                           variable $g
                        "=" 
-                      gauche : 
+                      right : 
                           literals 6
               Condition 1) 
                   parentheses 

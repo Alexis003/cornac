@@ -7,11 +7,11 @@ tests/tokenizeur/scripts/for.23.test.php
         Fin  : comparison variable $i  "<" literals 1;
         Incr : postplusplus 297 "++"variable $i;
           affectation 
-          droite : 
+          left : 
               variable $a[]
                   variable $a
            "=" 
-          gauche : 
+          right : 
               method variable $b
               method call : functioncall 307 "c" ( arglist(variable $d) ) : 
                   functioncall c

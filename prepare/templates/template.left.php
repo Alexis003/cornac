@@ -68,8 +68,8 @@ class template_left extends template {
 
     function affiche_affectation($noeud, $niveau) {
         
-        $this->affiche($noeud->getDroite(), $niveau + 1);
-        $this->affiche($noeud->getGauche(), $niveau + 1);
+        $this->affiche($noeud->getLeft(), $niveau + 1);
+        $this->affiche($noeud->getRight(), $niveau + 1);
     }
 
     function affiche_block($noeud, $niveau) {
@@ -86,8 +86,8 @@ class template_left extends template {
 
     function affiche_comparison($noeud, $niveau) {
         
-        $this->affiche($noeud->getDroite(), $niveau + 1);
-        $this->affiche($noeud->getGauche(), $niveau + 1);
+        $this->affiche($noeud->getLeft(), $niveau + 1);
+        $this->affiche($noeud->getRight(), $niveau + 1);
     }
     
     function affiche_ternaryop($noeud, $niveau) {
@@ -173,9 +173,9 @@ class template_left extends template {
 
     function affiche_logique($noeud, $niveau) {
         
-        $this->affiche($noeud->getDroite(), $niveau + 1);
-        $this->affiche($noeud->getOperateur(), $niveau + 1);
-        $this->affiche($noeud->getGauche(), $niveau + 1);
+        $this->affiche($noeud->getLeft(), $niveau + 1);
+        $this->affiche($noeud->getOperator(), $niveau + 1);
+        $this->affiche($noeud->getRight(), $niveau + 1);
     }
 
     function affiche_literals($noeud, $niveau) {
@@ -204,8 +204,8 @@ class template_left extends template {
 
     function affiche_operation($noeud, $niveau) {
         
-        $this->affiche($noeud->getDroite(), $niveau + 1);
-        $this->affiche($noeud->getGauche(), $niveau + 1);
+        $this->affiche($noeud->getLeft(), $niveau + 1);
+        $this->affiche($noeud->getRight(), $niveau + 1);
     }
 
     function affiche_parentheses($noeud, $niveau) {
@@ -214,7 +214,7 @@ class template_left extends template {
 
     function affiche_preplusplus($noeud, $niveau) {
         
-        $this->affiche($noeud->getOperateur(), $niveau + 1);
+        $this->affiche($noeud->getOperator(), $niveau + 1);
         $this->affiche($noeud->getVariable(), $niveau + 1);
     }
     
@@ -224,7 +224,7 @@ class template_left extends template {
 
     function affiche_postplusplus($noeud, $niveau) {
         
-        $this->affiche($noeud->getOperateur(), $niveau + 1);
+        $this->affiche($noeud->getOperator(), $niveau + 1);
         $this->affiche($noeud->getVariable(), $niveau + 1);
     }
 

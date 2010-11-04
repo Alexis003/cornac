@@ -10,8 +10,8 @@ affectation variable $a  "=" literals 1 };
           block 
           0 : 
               affectation 
-              droite : 
+              left : 
                   variable $w
                "=" 
-              gauche : 
+              right : 
                   literals 1

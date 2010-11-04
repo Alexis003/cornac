@@ -3,14 +3,14 @@ tests/tokenizeur/scripts/logique.46.test.php
 
   code : 
       comparison 
-      droite : 
+      left : 
           comparison 
-          droite : 
+          left : 
               variable $a
           operateur : 281 "==="
-          gauche : 
+          right : 
               logique 
-              droite : 
+              left : 
                   concatenation 
                   0 : 
                       variable $b
@@ -19,10 +19,10 @@ tests/tokenizeur/scripts/logique.46.test.php
                   2 : 
                       variable $d
               operateur : 278 "||"
-              gauche : 
+              right : 
                   variable $e
       operateur : 281 "==="
-      gauche : 
+      right : 
           concatenation 
           0 : 
               literals f.

@@ -54,8 +54,8 @@ class template_hierarchic extends template {
 
     function affiche_affectation($noeud, $niveau) {
         print str_repeat('  ', $niveau).get_class($noeud)." \n";
-        $this->affiche($noeud->getDroite(), $niveau + 1);
-        $this->affiche($noeud->getGauche(), $niveau + 1);
+        $this->affiche($noeud->getLeft(), $niveau + 1);
+        $this->affiche($noeud->getRight(), $niveau + 1);
     }
     
     function affiche_ternaryop($noeud, $niveau) {
@@ -101,8 +101,8 @@ class template_hierarchic extends template {
 
     function affiche_operation($noeud, $niveau) {
         print str_repeat('  ', $niveau).get_class($noeud)." \n";
-        $this->affiche($noeud->getDroite(), $niveau + 1);
-        $this->affiche($noeud->getGauche(), $niveau + 1);
+        $this->affiche($noeud->getLeft(), $niveau + 1);
+        $this->affiche($noeud->getRight(), $niveau + 1);
     }
 
     function affiche_parentheses($noeud, $niveau) {

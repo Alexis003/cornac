@@ -5,10 +5,10 @@ tests/tokenizeur/scripts/sequence.19.test.php
       sequence 
       0 : 
           affectation 
-          droite : 
+          left : 
               variable $sort
            "=" 
-          gauche : 
+          right : 
               parentheses 
               ( "ternaryop ?" )
       1 : 
@@ -22,10 +22,10 @@ tests/tokenizeur/scripts/sequence.19.test.php
               block 
               0 : 
                   affectation 
-                  droite : 
+                  left : 
                       variable $sort
                    "=" 
-                  gauche : 
+                  right : 
                       functioncall array
                       function call : array: 
                           arglist 

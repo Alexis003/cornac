@@ -3,14 +3,14 @@ tests/tokenizeur/scripts/sign.14.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $tm
        "=" 
-      gauche : 
+      right : 
           sign  "-"operation variable $tm  "*" variable $y
               operation 
-              droite : 
+              left : 
                   variable $tm
               operation :  "*"
-              gauche : 
+              right : 
                   variable $y

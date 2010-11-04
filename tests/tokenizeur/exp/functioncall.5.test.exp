@@ -13,8 +13,8 @@ tests/tokenizeur/scripts/functioncall.5.test.php
               literals 3
           3 : 
               operation 
-              droite : 
+              left : 
                   literals 1
               operation :  "+"
-              gauche : 
+              right : 
                   literals 1

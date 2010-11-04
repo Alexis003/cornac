@@ -9,8 +9,8 @@ tests/tokenizeur/scripts/for.12.test.php
           block 
           0 : 
               affectation 
-              droite : 
+              left : 
                   variable $c
                "=" 
-              gauche : 
+              right : 
                   literals 0

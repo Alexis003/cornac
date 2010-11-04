@@ -3,10 +3,10 @@ tests/tokenizeur/scripts/affectation.16.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $select_increment1
        "=" 
-      gauche : 
+      right : 
           functioncall substr
           function call : substr: 
               arglist 
@@ -16,12 +16,12 @@ tests/tokenizeur/scripts/affectation.16.test.php
                   literals 1
               2 : 
                   operation 
-                  droite : 
+                  left : 
                       functioncall strlen
                       function call : strlen: 
                           arglist 
                           0 : 
                               variable $select_increment1
                   operation :  "-"
-                  gauche : 
+                  right : 
                       literals 1

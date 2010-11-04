@@ -5,10 +5,10 @@ tests/tokenizeur/scripts/sequence.30.test.php
       sequence 
       0 : 
           affectation 
-          droite : 
+          left : 
               variable $a
            "=" 
-          gauche : 
+          right : 
               ternaryop ?
               parentheses (comparison variable $b 283 "==" literals 1) ? variable $d : variable $e
                   parentheses 

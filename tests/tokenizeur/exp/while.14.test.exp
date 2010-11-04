@@ -6,10 +6,10 @@ tests/tokenizeur/scripts/while.14.test.php
           block 
           0 : 
               affectation 
-              droite : 
+              left : 
                   variable $a
                "=" 
-              gauche : 
+              right : 
                   functioncall sha1
                   function call : sha1: 
                       arglist 

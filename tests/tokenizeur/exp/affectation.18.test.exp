@@ -6,18 +6,18 @@ tests/tokenizeur/scripts/affectation.18.test.php
           block 
           0 : 
               affectation 
-              droite : 
+              left : 
                   variable $a
                "=" 
-              gauche : 
+              right : 
                   literals 1
           1 : 
               _foreach (variable $b as  => variable $c)
                   block 
                   0 : 
                       affectation 
-                      droite : 
+                      left : 
                           variable $d
                        "=" 
-                      gauche : 
+                      right : 
                           literals 2

@@ -3,10 +3,10 @@ tests/tokenizeur/scripts/variable.9.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $a
        "=" 
-      gauche : 
+      right : 
           concatenation 
           0 : 
               variable _array variable b[literals c]

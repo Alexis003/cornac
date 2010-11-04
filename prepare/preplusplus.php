@@ -19,30 +19,30 @@
 
 class preplusplus extends instruction {
     protected $variable = null;
-    protected $operateur = null;
+    protected $operator = null;
     
     function __construct($expression) {
         parent::__construct(array());
         
-        $this->operateur = $this->makeToken_traite($expression[0]);
+        $this->operator = $this->makeToken_traite($expression[0]);
         $this->variable  = $expression[1];
     }
 
     function __toString() {
-        return __CLASS__." ".$this->variable.$this->operateur;
+        return __CLASS__." ".$this->variable.$this->operator;
     }
 
     function getVariable() {
         return $this->variable;
     }
 
-    function getOperateur() {
-        return $this->operateur;
+    function getOperator() {
+        return $this->operator;
     }
 
     function neutralise() {
         $this->variable->detach();
-        $this->operateur->detach();
+        $this->operator->detach();
     }
 
     function getRegex(){

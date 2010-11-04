@@ -3,8 +3,8 @@ tests/tokenizeur/scripts/logique.2.test.php
 
   code : 
       logique 
-      droite : 
+      left : 
           literals 1
       operateur : 265 "and"
-      gauche : 
+      right : 
           literals 2

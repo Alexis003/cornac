@@ -3,10 +3,10 @@ tests/tokenizeur/scripts/opappend.6.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           opappend [[][]
               variable $lines[]
                   variable $lines
        "=" 
-      gauche : 
+      right : 
           literals 1

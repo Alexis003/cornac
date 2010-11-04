@@ -3,14 +3,14 @@ tests/tokenizeur/scripts/sign.24.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $a
       269 "^=" 
-      gauche : 
+      right : 
           decalage 
-          droite : 
+          left : 
+              variable $b
+          operation : 287 "<<"
+          right : 
               sign  "-"literals 16
                   literals 16
-          operation : 287 "<<"
-          gauche : 
-              variable $b

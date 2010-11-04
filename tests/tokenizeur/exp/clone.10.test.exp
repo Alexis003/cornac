@@ -3,9 +3,9 @@ tests/tokenizeur/scripts/clone.10.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $x
        "=" 
-      gauche : 
+      right : 
           _clone 
               property_static 307 "y"::variable $C->

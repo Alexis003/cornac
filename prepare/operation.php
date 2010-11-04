@@ -18,42 +18,42 @@
  */
 
 class operation extends instruction {
-    protected $droite = null;
+    protected $left = null;
     protected $operation = null;
-    protected $gauche = null;
+    protected $right = null;
     
     function __construct($expression) {
         parent::__construct(array());
         
         if (count($expression) == 3) {
-            $this->droite = $expression[0];
+            $this->left = $expression[0];
             $this->operation = $this->makeToken_traite($expression[1]);
-            $this->gauche = $expression[2];
+            $this->right = $expression[2];
         } else {
             $this->stopOnError("We shouldn't reach here");
         }
     }
 
     function __toString() {
-        return __CLASS__." ".$this->droite." ".$this->operation." ".$this->gauche;
+        return __CLASS__." ".$this->left." ".$this->operation." ".$this->right;
     }
 
-    function getDroite() {
-        return $this->droite;
+    function getRight() {
+        return $this->right;
     }
 
     function getOperation() {
         return $this->operation;
     }
 
-    function getGauche() {
-        return $this->gauche;
+    function getLeft() {
+        return $this->left;
     }
 
     function neutralise() {
-       $this->droite->detach();
+       $this->left->detach();
        $this->operation->detach();
-       $this->gauche->detach();
+       $this->right->detach();
     }
 
     function getRegex(){

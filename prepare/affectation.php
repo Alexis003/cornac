@@ -18,11 +18,11 @@
  */
 
 class affectation extends instruction {
-    protected $_static    = null;
+    protected $_static        = null;
     protected $_visibility    = null;
-    protected $droite    = null;
-    protected $operateur = null;
-    protected $gauche    = null;
+    protected $left           = null;
+    protected $operator       = null;
+    protected $right          = null;
     
     function __construct($expression) {
         parent::__construct(array());
@@ -43,30 +43,30 @@ class affectation extends instruction {
                 $this->stopOnError("Affectation with unexpected number of valudes : ".count($expression)." received\n");
             }
 
-            $this->droite = $expression[0];
+            $this->left = $expression[0];
             $expression[1]->setLine($expression[0]->getLine());
-            $this->operateur = $this->makeToken_traite($expression[1]);
-            $this->gauche = $expression[2];
-            $this->setLine($this->droite->getLine());
+            $this->operator = $this->makeToken_traite($expression[1]);
+            $this->right = $expression[2];
+            $this->setLine($this->left->getLine());
         } else {
             $this->stopOnError("Affectation received strange number of values : ".count($expression)." received\n");
         }
     }
 
     function __toString() {
-        return __CLASS__." ".$this->droite." ".$this->operateur." ".$this->gauche;
+        return __CLASS__." ".$this->left." ".$this->operator." ".$this->right;
     }
 
-    function getDroite() {
-        return $this->droite;
+    function getLeft() {
+        return $this->left;
     }
 
-    function getOperateur() {
-        return $this->operateur;
+    function getOperator() {
+        return $this->operator;
     }
 
-    function getGauche() {
-        return $this->gauche;
+    function getRight() {
+        return $this->right;
     }
 
     function getVisibility() {
@@ -88,9 +88,9 @@ class affectation extends instruction {
         if (!is_null($this->_static)) {
             $this->_static->detach();
         }
-        $this->droite->detach();
-        $this->operateur->detach();
-        $this->gauche->detach();
+        $this->left->detach();
+        $this->operator->detach();
+        $this->right->detach();
     }
 
     function getRegex(){

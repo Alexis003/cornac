@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/affectation.32.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           functioncall list
           function call : list: 
               arglist 
@@ -14,7 +14,7 @@ tests/tokenizeur/scripts/affectation.32.test.php
               3 : 
                   variable $y
        "=" 
-      gauche : 
+      right : 
           functioncall explode
           function call : explode: 
               arglist 

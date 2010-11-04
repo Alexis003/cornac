@@ -6,8 +6,8 @@ tests/tokenizeur/scripts/function.10.test.php
           block 
           0 : 
               affectation 
-              droite : 
+              left : 
                   variable $x
                "=" 
-              gauche : 
+              right : 
                   literals 1

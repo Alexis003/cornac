@@ -6,8 +6,8 @@ tests/tokenizeur/scripts/foreach.48.test.php
           block 
           0 : 
               affectation 
-              droite : 
+              left : 
                   property variable $adminTabvariable $var->
                "=" 
-              gauche : 
+              right : 
                   property variable $thisvariable $value->

@@ -9,8 +9,8 @@ tests/tokenizeur/scripts/property_static.11.test.php
           block 
           0 : 
               affectation 
-              droite : 
+              left : 
                   variable $d
                "=" 
-              gauche : 
+              right : 
                   literals 1

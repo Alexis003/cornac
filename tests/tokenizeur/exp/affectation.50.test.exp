@@ -3,9 +3,9 @@ tests/tokenizeur/scripts/affectation.50.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $x
        "=" 
-      gauche : 
+      right : 
           noscream @
               variable $b

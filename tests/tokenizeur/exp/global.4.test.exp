@@ -5,10 +5,10 @@ tests/tokenizeur/scripts/global.4.test.php
       sequence 
       0 : 
           affectation 
-          droite : 
+          left : 
               variable $a
            "=" 
-          gauche : 
+          right : 
               literals 1
       1 : 
           _global 

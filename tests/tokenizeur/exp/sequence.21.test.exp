@@ -3,12 +3,12 @@ tests/tokenizeur/scripts/sequence.21.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $h
        "=" 
-      gauche : 
+      right : 
           logique 
-          droite : 
+          left : 
               functioncall a
               function call : a: 
                   arglist 
@@ -19,7 +19,7 @@ tests/tokenizeur/scripts/sequence.21.test.php
                           0 : 
                               property variable $cliterals d->
           operateur :  "^"
-          gauche : 
+          right : 
               functioncall e
               function call : e: 
                   arglist 

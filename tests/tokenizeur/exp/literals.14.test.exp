@@ -3,9 +3,9 @@ tests/tokenizeur/scripts/literals.14.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $x
        "=" 
-      gauche : 
+      right : 
           literals $y $f 
 

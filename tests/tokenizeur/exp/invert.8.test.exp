@@ -3,10 +3,10 @@ tests/tokenizeur/scripts/invert.8.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $mod
       271 "&=" 
-      gauche : 
+      right : 
           invert ~
               method_static 
               307 "y"::functioncall 307 "x" ( ( ) ) : 

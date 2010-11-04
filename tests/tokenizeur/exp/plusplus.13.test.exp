@@ -3,9 +3,9 @@ tests/tokenizeur/scripts/plusplus.13.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           property variable $thisliterals a->
        "=" 
-      gauche : 
+      right : 
           property_static 307 "self"::variable $b297 "++" 
               property_static 307 "self"::variable $b->

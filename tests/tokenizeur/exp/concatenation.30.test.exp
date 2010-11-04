@@ -3,10 +3,10 @@ tests/tokenizeur/scripts/concatenation.30.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $x
        "=" 
-      gauche : 
+      right : 
           functioncall array
           function call : array: 
               arglist 

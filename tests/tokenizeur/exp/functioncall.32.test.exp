@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/functioncall.32.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           functioncall list
           function call : list: 
               arglist 
@@ -14,7 +14,7 @@ tests/tokenizeur/scripts/functioncall.32.test.php
               2 : 
                   variable $z
        "=" 
-      gauche : 
+      right : 
           functioncall range
           function call : range: 
               arglist 

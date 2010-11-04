@@ -3,10 +3,10 @@ tests/tokenizeur/scripts/reference.7.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $x
        "=" 
-      gauche : 
+      right : 
           reference &
               method_static 
               307 "classe"::functioncall 307 "method_static" ( ( ) ) : 

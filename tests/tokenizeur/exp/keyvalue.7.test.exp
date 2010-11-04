@@ -3,10 +3,10 @@ tests/tokenizeur/scripts/keyvalue.7.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $a
        "=" 
-      gauche : 
+      right : 
           method method_static 307 "b"::functioncall 307 "c" ( arglist(literals d) ) 
           method call : functioncall 307 "e" ( arglist(functioncall 360 "array" ( arglist(keyvalue method_static 0 "$f"::functioncall 307 "g" ( ( ) )  => variable $h) ) ) ) : 
               functioncall e

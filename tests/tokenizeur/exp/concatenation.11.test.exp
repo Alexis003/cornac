@@ -3,10 +3,10 @@ tests/tokenizeur/scripts/concatenation.11.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $z
        "=" 
-      gauche : 
+      right : 
           concatenation 
           0 : 
               noscream @

@@ -5,10 +5,10 @@ tests/tokenizeur/scripts/functioncall.44.test.php
       sequence 
       0 : 
           affectation 
-          droite : 
+          left : 
               variable $a
            "=" 
-          gauche : 
+          right : 
               concatenation 
               0 : 
                   literals b

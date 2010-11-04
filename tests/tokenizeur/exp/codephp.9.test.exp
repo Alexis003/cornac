@@ -5,22 +5,22 @@ tests/tokenizeur/scripts/codephp.9.test.php
       sequence 
       0 : 
           affectation 
-          droite : 
+          left : 
               variable $x
            "=" 
-          gauche : 
+          right : 
               literals 1
       1 : 
           affectation 
-          droite : 
+          left : 
               variable $y
            "=" 
-          gauche : 
+          right : 
               literals 2
       2 : 
           affectation 
-          droite : 
+          left : 
               variable $z
            "=" 
-          gauche : 
+          right : 
               literals 3

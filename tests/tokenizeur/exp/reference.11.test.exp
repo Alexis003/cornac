@@ -3,9 +3,9 @@ tests/tokenizeur/scripts/reference.11.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $x
        "=" 
-      gauche : 
+      right : 
           parentheses 
           ( "functioncall 307 "chr" ( arglist(decalage logique literals 0xC0  "|" variable $char  286 ">>"  literals 12 ) ) " )

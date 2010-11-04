@@ -56,10 +56,10 @@ class tree extends template {
 
     function affiche_affectation($noeud, $niveau) {
         print str_repeat('  ', $niveau).get_class($noeud)." \n";
-        print str_repeat('  ', $niveau)."droite : \n";
-        $this->affiche($noeud->getDroite(), $niveau + 1);
-        print str_repeat('  ', $niveau)."gauche : \n";
-        $this->affiche($noeud->getGauche(), $niveau + 1);
+        print str_repeat('  ', $niveau)."left : \n";
+        $this->affiche($noeud->getLeft(), $niveau + 1);
+        print str_repeat('  ', $niveau)."right : \n";
+        $this->affiche($noeud->getRight(), $niveau + 1);
     }
 
     function affiche_codephp($noeud, $niveau) {
@@ -74,11 +74,11 @@ class tree extends template {
 
     function affiche_operation($noeud, $niveau) {
          print str_repeat('  ', $niveau).__CLASS__." \n";
-         print str_repeat('  ', $niveau)."droite : \n";
-         $this->affiche($noeud->getDroite(), $niveau + 1);
+         print str_repeat('  ', $niveau)."left : \n";
+         $this->affiche($noeud->getLeft(), $niveau + 1);
          print str_repeat('  ', $niveau)."operation : ".$noeud->getOperation()."\n";
-         print str_repeat('  ', $niveau)."gauche : \n";
-         $this->affiche($noeud->getGauche(), $niveau + 1);
+         print str_repeat('  ', $niveau)."right : \n";
+         $this->affiche($noeud->getRight(), $niveau + 1);
     }
     
     function affiche_sequence($noeud, $niveau) {

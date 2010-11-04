@@ -9,10 +9,10 @@ tests/tokenizeur/scripts/ifthen.21.test.php
           block 
           0 : 
               affectation 
-              droite : 
+              left : 
                   variable $y
                "=" 
-              gauche : 
+              right : 
                   literals 1
       Condition 1) 
           parentheses 
@@ -20,8 +20,8 @@ tests/tokenizeur/scripts/ifthen.21.test.php
           block 
           0 : 
               affectation 
-              droite : 
+              left : 
                   variable $y
                "=" 
-              gauche : 
+              right : 
                   literals 2

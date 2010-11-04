@@ -5,10 +5,10 @@ tests/tokenizeur/scripts/sequence.12.test.php
       sequence 
       0 : 
           affectation 
-          droite : 
+          left : 
               variable $x
            "=" 
-          gauche : 
+          right : 
               ternaryop ?
               parentheses (literals 1) ? literals 2 : literals 3
                   parentheses 
@@ -17,10 +17,10 @@ tests/tokenizeur/scripts/sequence.12.test.php
                   literals 3
       1 : 
           affectation 
-          droite : 
+          left : 
               variable $y
            "=" 
-          gauche : 
+          right : 
               ternaryop ?
               parentheses (literals 4) ? literals 5 : literals 6
                   parentheses 

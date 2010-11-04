@@ -3,10 +3,10 @@ tests/tokenizeur/scripts/reference.4.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $y
        "=" 
-      gauche : 
+      right : 
           reference &
               _array
                   variable $x

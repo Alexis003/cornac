@@ -3,10 +3,10 @@ tests/tokenizeur/scripts/ternaryop.10.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $a
       273 ".=" 
-      gauche : 
+      right : 
           concatenation 
           0 : 
               parentheses 

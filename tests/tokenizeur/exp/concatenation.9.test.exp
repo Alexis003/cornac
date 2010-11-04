@@ -3,10 +3,10 @@ tests/tokenizeur/scripts/concatenation.9.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $query
        "=" 
-      gauche : 
+      right : 
           concatenation 
           0 : 
               literals a

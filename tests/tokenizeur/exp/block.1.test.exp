@@ -9,12 +9,12 @@ tests/tokenizeur/scripts/block.1.test.php
           block 
           0 : 
               affectation 
-              droite : 
+              left : 
                   _array
                       variable $date_choisie
                       literals 0
                "=" 
-              gauche : 
+              right : 
                   functioncall date
                   function call : date: 
                       arglist 
@@ -22,12 +22,12 @@ tests/tokenizeur/scripts/block.1.test.php
                           literals Y
           1 : 
               affectation 
-              droite : 
+              left : 
                   _array
                       variable $date_choisie
                       literals 1
                "=" 
-              gauche : 
+              right : 
                   functioncall date
                   function call : date: 
                       arglist 
@@ -35,12 +35,12 @@ tests/tokenizeur/scripts/block.1.test.php
                           literals m
           2 : 
               affectation 
-              droite : 
+              left : 
                   _array
                       variable $date_choisie
                       literals 2
                "=" 
-              gauche : 
+              right : 
                   functioncall date
                   function call : date: 
                       arglist 

@@ -20,15 +20,15 @@ tests/tokenizeur/scripts/sequence.16.test.php
               block 
               0 : 
                   affectation 
-                  droite : 
+                  left : 
                       variable $a
                    "=" 
-                  gauche : 
+                  right : 
                       literals 2
       1 : 
           affectation 
-          droite : 
+          left : 
               variable $x
            "=" 
-          gauche : 
+          right : 
               literals 1

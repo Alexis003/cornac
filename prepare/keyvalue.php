@@ -32,16 +32,8 @@ class keyvalue extends instruction {
         return __CLASS__." ".$this->key." => ".$this->value;
     }
 
-    function getCle() {
-        return $this->getKey();
-    }
-
     function getKey() {
         return $this->key;
-    }
-
-    function getValeur() {
-        return $this->getValue();
     }
 
     function getValue() {

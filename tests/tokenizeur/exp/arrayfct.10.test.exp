@@ -7,7 +7,7 @@ tests/tokenizeur/scripts/arrayfct.10.test.php
           arglist 
           0 : 
               operation 
-              droite : 
+              left : 
                   literals x => functioncall 307 "a" ( ( ) ) 
                       literals x
                       functioncall a
@@ -15,12 +15,12 @@ tests/tokenizeur/scripts/arrayfct.10.test.php
                           arglist 
                           Liste d'argument vide
               operation :  "-"
-              gauche : 
+              right : 
                   operation 
-                  droite : 
+                  left : 
                       literals 100
                   operation :  "*"
-                  gauche : 
+                  right : 
                       functioncall b
                       function call : b: 
                           arglist 

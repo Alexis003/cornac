@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/ternaryop.11.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           _array
               variable $a
               ternaryop ?
@@ -17,5 +17,5 @@ tests/tokenizeur/scripts/ternaryop.11.test.php
                           property variable $eliterals f->
                   property variable $eliterals f->
        "=" 
-      gauche : 
+      right : 
           variable $f

@@ -9,8 +9,8 @@ tests/tokenizeur/scripts/ifthen.22.test.php
           block 
           0 : 
               affectation 
-              droite : 
+              left : 
                   variable $y
                "=" 
-              gauche : 
+              right : 
                   literals 1

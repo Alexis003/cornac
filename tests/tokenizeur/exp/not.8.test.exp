@@ -9,8 +9,8 @@ tests/tokenizeur/scripts/not.8.test.php
           block 
           0 : 
               affectation 
-              droite : 
+              left : 
                   variable $b
                "=" 
-              gauche : 
+              right : 
                   constante (                  false )

@@ -3,13 +3,13 @@ tests/tokenizeur/scripts/operation.28.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $a
       277 "+=" 
-      gauche : 
+      right : 
           operation 
-          droite : 
+          left : 
               property_static 307 "self"::_array variable $b[variable $c]->
           operation :  "*"
-          gauche : 
+          right : 
               literals 86400

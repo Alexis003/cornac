@@ -7,10 +7,10 @@ tests/tokenizeur/scripts/sign.12.test.php
           arglist 
           0 : 
               operation 
-              droite : 
+              left : 
                   variable $a
               operation :  "-"
-              gauche : 
+              right : 
                   sign  "+"sign  "+"sign  "-"sign  "+"sign  "+"variable $b
                       sign  "+"sign  "-"sign  "+"sign  "+"variable $b
                           sign  "-"sign  "+"sign  "+"variable $b

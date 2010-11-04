@@ -3,10 +3,10 @@ tests/tokenizeur/scripts/ternaryop.18.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $a
        "=" 
-      gauche : 
+      right : 
           ternaryop ?
           functioncall 351 "empty" ( arglist(variable $b) )  ? variable $d : affectation variable $d 273 ".=" concatenation literals   . variable $e  
               functioncall empty
@@ -16,10 +16,10 @@ tests/tokenizeur/scripts/ternaryop.18.test.php
                       variable $b
               variable $d
               affectation 
-              droite : 
+              left : 
                   variable $d
               273 ".=" 
-              gauche : 
+              right : 
                   concatenation 
                   0 : 
                       literals  

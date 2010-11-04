@@ -5,27 +5,27 @@ tests/tokenizeur/scripts/sign.25.test.php
       sequence 
       0 : 
           affectation 
-          droite : 
+          left : 
               variable $a
            "=" 
-          gauche : 
+          right : 
               logique 
-              droite : 
+              left : 
                   variable $b
               operateur :  "&"
-              gauche : 
+              right : 
                   sign  "-"literals 0xf
                       literals 0xf
       1 : 
           affectation 
-          droite : 
+          left : 
               variable $c
            "=" 
-          gauche : 
+          right : 
               logique 
-              droite : 
+              left : 
                   variable $d
               operateur :  "|"
-              gauche : 
+              right : 
                   sign  "-"literals 0xf
                       literals 0xf

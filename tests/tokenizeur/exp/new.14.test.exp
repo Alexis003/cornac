@@ -3,8 +3,8 @@ tests/tokenizeur/scripts/new.14.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $a
        "=" 
-      gauche : 
+      right : 
            new _array variable $b[literals d.e] arglist(variable $f) 

@@ -5,10 +5,10 @@ tests/tokenizeur/scripts/affectation.8.test.php
       sequence 
       0 : 
           affectation 
-          droite : 
+          left : 
               variable $x
            "=" 
-          gauche : 
+          right : 
               concatenation 
               0 : 
                   literals a
@@ -16,10 +16,10 @@ tests/tokenizeur/scripts/affectation.8.test.php
                   literals b
       1 : 
           affectation 
-          droite : 
+          left : 
               variable $y
            "=" 
-          gauche : 
+          right : 
               concatenation 
               0 : 
                   literals c

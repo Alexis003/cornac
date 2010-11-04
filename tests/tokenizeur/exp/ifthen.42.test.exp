@@ -9,19 +9,19 @@ tests/tokenizeur/scripts/ifthen.42.test.php
           block 
           0 : 
               affectation 
-              droite : 
+              left : 
                   property_static 307 "C"::variable $b->
                "=" 
-              gauche : 
+              right : 
                   variable $d
        else 
           block 
           0 : 
               affectation 
-              droite : 
+              left : 
                   variable $e
                "=" 
-              gauche : 
+              right : 
                   functioncall f
                   function call : f: 
                       arglist 

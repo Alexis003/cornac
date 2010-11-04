@@ -3,9 +3,9 @@ tests/tokenizeur/scripts/clone.7.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $x
        "=" 
-      gauche : 
+      right : 
           _clone 
               variable $y

@@ -11,12 +11,12 @@ tests/tokenizeur/scripts/for.2.test.php
               literals 1
           1 : 
               affectation 
-              droite : 
+              left : 
                   _array
                       _array
                           variable $x
                           literals 1
                       literals 2
                "=" 
-              gauche : 
+              right : 
                   literals 2

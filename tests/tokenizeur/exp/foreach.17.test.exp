@@ -5,10 +5,10 @@ tests/tokenizeur/scripts/foreach.17.test.php
       sequence 
       0 : 
           affectation 
-          droite : 
+          left : 
               variable $x
            "=" 
-          gauche : 
+          right : 
               functioncall range
               function call : range: 
                   arglist 

@@ -3,10 +3,10 @@ tests/tokenizeur/scripts/logique.22.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $salt
       273 ".=" 
-      gauche : 
+      right : 
           functioncall substr
           function call : substr: 
               arglist 
@@ -14,13 +14,13 @@ tests/tokenizeur/scripts/logique.22.test.php
                   literals a./
               1 : 
                   logique 
-                  droite : 
+                  left : 
                       functioncall mt_rand
                       function call : mt_rand: 
                           arglist 
                           Liste d'argument vide
                   operateur :  "&"
-                  gauche : 
+                  right : 
                       literals 63
               2 : 
                   literals 1

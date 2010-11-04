@@ -3,8 +3,8 @@ tests/tokenizeur/scripts/new.6.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           property variable $aliterals c->
        "=" 
-      gauche : 
+      right : 
            new method variable $b->functioncall 307 "a" ( ( ) )  ( ) 

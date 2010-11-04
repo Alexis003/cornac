@@ -38,7 +38,7 @@ $tests = array(
 'class.property.test.php',
 'class.logique.test.php',
 'class.not.test.php',
-'class.tableau.test.php',
+'class.array.test.php',
 'class.method.test.php',
 'class.plusplus.test.php',
 'class.block.test.php',

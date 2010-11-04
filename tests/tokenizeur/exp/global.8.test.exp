@@ -5,17 +5,17 @@ tests/tokenizeur/scripts/global.8.test.php
       sequence 
       0 : 
           affectation 
-          droite : 
+          left : 
               variable $a
            "=" 
-          gauche : 
+          right : 
               literals 3
       1 : 
           affectation 
-          droite : 
+          left : 
               variable $c
            "=" 
-          gauche : 
+          right : 
               functioncall array
               function call : array: 
                   arglist 

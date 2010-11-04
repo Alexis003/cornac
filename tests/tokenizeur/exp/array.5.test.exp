@@ -9,8 +9,8 @@ tests/tokenizeur/scripts/array.5.test.php
           _array
               variable $tb_menu_racc
               operation 
-              droite : 
+              left : 
                   variable $i
               operation :  "-"
-              gauche : 
+              right : 
                   literals 1

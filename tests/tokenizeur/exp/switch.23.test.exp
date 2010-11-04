@@ -18,17 +18,17 @@ tests/tokenizeur/scripts/switch.23.test.php
                   block 
                   0 : 
                       affectation 
-                      droite : 
+                      left : 
                           variable $a
                        "=" 
-                      gauche : 
+                      right : 
                           literals 1
                   1 : 
                       affectation 
-                      droite : 
+                      left : 
                           variable $b
                        "=" 
-                      gauche : 
+                      right : 
                           literals 2
                   2 : 
                       _break 
@@ -49,24 +49,24 @@ tests/tokenizeur/scripts/switch.23.test.php
                   block 
                   0 : 
                       affectation 
-                      droite : 
+                      left : 
                           variable $a
                        "=" 
-                      gauche : 
+                      right : 
                           literals 1
                   1 : 
                       affectation 
-                      droite : 
+                      left : 
                           variable $b
                        "=" 
-                      gauche : 
+                      right : 
                           literals 2
                   2 : 
                       affectation 
-                      droite : 
+                      left : 
                           variable $c
                        "=" 
-                      gauche : 
+                      right : 
                           literals 3
                   3 : 
                       _break 
@@ -83,17 +83,17 @@ tests/tokenizeur/scripts/switch.23.test.php
                   block 
                   0 : 
                       affectation 
-                      droite : 
+                      left : 
                           variable $a
                        "=" 
-                      gauche : 
+                      right : 
                           literals 1
                   1 : 
                       affectation 
-                      droite : 
+                      left : 
                           variable $b
                        "=" 
-                      gauche : 
+                      right : 
                           literals 2
                   2 : 
                       _break 

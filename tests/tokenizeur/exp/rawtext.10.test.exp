@@ -61,8 +61,8 @@ tests/tokenizeur/scripts/rawtext.10.test.php
               Texte : "311 "G""
           9 : 
               affectation 
-              droite : 
+              left : 
                   variable $y
                "=" 
-              gauche : 
+              right : 
                   literals 1

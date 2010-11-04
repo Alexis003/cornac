@@ -5,15 +5,15 @@ tests/tokenizeur/scripts/codephp.10.test.php
       sequence 
       0 : 
           logique 
-          droite : 
+          left : 
               variable $x
           operateur :  "|"
-          gauche : 
+          right : 
               variable $y
       1 : 
           affectation 
-          droite : 
+          left : 
               variable $x
            "=" 
-          gauche : 
+          right : 
               literals 1

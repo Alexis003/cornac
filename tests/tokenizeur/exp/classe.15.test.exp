@@ -9,28 +9,28 @@ tests/tokenizeur/scripts/classe.15.test.php
                   block 
                   0 : 
                       affectation 
-                      droite : 
+                      left : 
                           variable $x
                        "=" 
-                      gauche : 
+                      right : 
                           literals 1
           1 : 
               344 "private"function literals b ( )
                   block 
                   0 : 
                       affectation 
-                      droite : 
+                      left : 
                           variable $x
                        "=" 
-                      gauche : 
+                      right : 
                           literals 1
           2 : 
               343 "protected"function literals c ( )
                   block 
                   0 : 
                       affectation 
-                      droite : 
+                      left : 
                           variable $x
                        "=" 
-                      gauche : 
+                      right : 
                           literals 1

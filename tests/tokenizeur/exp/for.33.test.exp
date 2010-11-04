@@ -10,8 +10,8 @@ postplusplus 297 "++"variable $c };
           block 
           0 : 
               affectation 
-              droite : 
+              left : 
                   variable $d
                "=" 
-              gauche : 
+              right : 
                   literals 1

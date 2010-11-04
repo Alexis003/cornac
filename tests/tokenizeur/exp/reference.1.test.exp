@@ -3,9 +3,9 @@ tests/tokenizeur/scripts/reference.1.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $y
        "=" 
-      gauche : 
+      right : 
           reference &
               variable $x

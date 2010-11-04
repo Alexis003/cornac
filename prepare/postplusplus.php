@@ -19,30 +19,30 @@
 
 class postplusplus extends instruction {
     protected $variable = null;
-    protected $operateur = null;
+    protected $operator = null;
     
     function __construct($expression) {
         parent::__construct(array());
             
         $this->variable  = $expression[0];
-        $this->operateur = $this->makeToken_traite($expression[1]);
+        $this->operator = $this->makeToken_traite($expression[1]);
     }
 
     function __toString() {
-        return __CLASS__." ".$this->operateur.$this->variable;
+        return __CLASS__." ".$this->operator.$this->variable;
     }
 
     function getVariable() {
         return $this->variable;
     }
 
-    function getOperateur() {
-        return $this->operateur;
+    function getOperator() {
+        return $this->operator;
     }
 
     function neutralise() {
         $this->variable->detach();
-        $this->operateur->detach();
+        $this->operator->detach();
     }
 
     function getRegex(){

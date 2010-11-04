@@ -3,9 +3,9 @@ tests/tokenizeur/scripts/cast.11.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $x
        "=" 
-      gauche : 
+      right : 
           cast (289 "(unset)")_new 
                new  "StdClass" ( ) 

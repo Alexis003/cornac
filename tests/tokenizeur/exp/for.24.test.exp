@@ -7,7 +7,7 @@ tests/tokenizeur/scripts/for.24.test.php
         Fin  : comparison variable $j  "<" variable $n;
         Incr : postplusplus 297 "++"variable $j;
           affectation 
-          droite : 
+          left : 
               _array
                   _array
                       _array
@@ -30,7 +30,7 @@ tests/tokenizeur/scripts/for.24.test.php
                           variable $j
                       literals l
            "=" 
-          gauche : 
+          right : 
               _array
                   _array
                       _array

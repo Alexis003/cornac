@@ -76,7 +76,7 @@ class template_tree extends template {
     function affiche_arginit($noeud, $level) {
         print str_repeat('  ', $level)." argument et initialisation \n";
         $this->affiche($noeud->getVariable(), $level + 1);
-         $this->affiche($noeud->getValeur(), $level + 1);
+         $this->affiche($noeud->getValue(), $level + 1);
     }
 
     function affiche_arglist($noeud, $level) {
@@ -96,11 +96,11 @@ class template_tree extends template {
 
     function affiche_affectation($noeud, $level) {
         print str_repeat('  ', $level).get_class($noeud)." \n";
-        print str_repeat('  ', $level)."droite : \n";
-        $this->affiche($noeud->getDroite(), $level + 1);
-        print str_repeat('  ', $level).$noeud->getOperateur()." \n";
-        print str_repeat('  ', $level)."gauche : \n";
-        $this->affiche($noeud->getGauche(), $level + 1);
+        print str_repeat('  ', $level)."left : \n";
+        $this->affiche($noeud->getLeft(), $level + 1);
+        print str_repeat('  ', $level).$noeud->getOperator()." \n";
+        print str_repeat('  ', $level)."right : \n";
+        $this->affiche($noeud->getRight(), $level + 1);
     }
 
     function affiche_block($noeud, $level) {
@@ -161,11 +161,11 @@ class template_tree extends template {
 
     function affiche_comparison($noeud, $level) {
          print str_repeat('  ', $level).get_class($noeud)." \n";
-         print str_repeat('  ', $level)."droite : \n";
-         $this->affiche($noeud->getDroite(), $level + 1);
-         print str_repeat('  ', $level)."operateur : ".$noeud->getOperateur()."\n";
-         print str_repeat('  ', $level)."gauche : \n";
-         $this->affiche($noeud->getGauche(), $level + 1);
+         print str_repeat('  ', $level)."left : \n";
+         $this->affiche($noeud->getLeft(), $level + 1);
+         print str_repeat('  ', $level)."operateur : ".$noeud->getOperator()."\n";
+         print str_repeat('  ', $level)."right : \n";
+         $this->affiche($noeud->getRight(), $level + 1);
     }
 
     function affiche__continue($noeud, $level) {
@@ -213,11 +213,11 @@ class template_tree extends template {
 
     function affiche_decalage($noeud, $level) {
          print str_repeat('  ', $level).get_class($noeud)." \n";
-         print str_repeat('  ', $level)."droite : \n";
-         $this->affiche($noeud->getDroite(), $level + 1);
-         print str_repeat('  ', $level)."operation : ".$noeud->getOperateur()."\n";
-         print str_repeat('  ', $level)."gauche : \n";
-         $this->affiche($noeud->getGauche(), $level + 1);
+         print str_repeat('  ', $level)."left : \n";
+         $this->affiche($noeud->getLeft(), $level + 1);
+         print str_repeat('  ', $level)."operation : ".$noeud->getOperator()."\n";
+         print str_repeat('  ', $level)."right : \n";
+         $this->affiche($noeud->getRight(), $level + 1);
     }
 
     function affiche__declare($noeud, $level) {
@@ -312,11 +312,11 @@ class template_tree extends template {
 
     function affiche_logique($noeud, $level) {
          print str_repeat('  ', $level).get_class($noeud)." \n";
-         print str_repeat('  ', $level)."droite : \n";
-         $this->affiche($noeud->getDroite(), $level + 1);
-         print str_repeat('  ', $level)."operateur : ".$noeud->getOperateur()."\n";
-         print str_repeat('  ', $level)."gauche : \n";
-         $this->affiche($noeud->getGauche(), $level + 1);
+         print str_repeat('  ', $level)."left : \n";
+         $this->affiche($noeud->getLeft(), $level + 1);
+         print str_repeat('  ', $level)."operateur : ".$noeud->getOperator()."\n";
+         print str_repeat('  ', $level)."right : \n";
+         $this->affiche($noeud->getRight(), $level + 1);
     }
 
     function affiche_not($noeud, $level) {
@@ -358,11 +358,11 @@ class template_tree extends template {
 
     function affiche_operation($noeud, $level) {
          print str_repeat('  ', $level).get_class($noeud)." \n";
-         print str_repeat('  ', $level)."droite : \n";
-         $this->affiche($noeud->getDroite(), $level + 1);
+         print str_repeat('  ', $level)."left : \n";
+         $this->affiche($noeud->getLeft(), $level + 1);
          print str_repeat('  ', $level)."operation : ".$noeud->getOperation()."\n";
-         print str_repeat('  ', $level)."gauche : \n";
-         $this->affiche($noeud->getGauche(), $level + 1);
+         print str_repeat('  ', $level)."right : \n";
+         $this->affiche($noeud->getRight(), $level + 1);
     }
 
     function affiche_parentheses($noeud, $level) {
@@ -371,12 +371,12 @@ class template_tree extends template {
     }
 
     function affiche_preplusplus($noeud, $level) {
-         print str_repeat('  ', $level).$noeud->getOperateur().$noeud->getVariable()." \n";
+         print str_repeat('  ', $level).$noeud->getOperator().$noeud->getVariable()." \n";
          $this->affiche($noeud->getVariable(), $level + 1);
     }
 
     function affiche_postplusplus($noeud, $level) {
-         print str_repeat('  ', $level).$noeud->getVariable().$noeud->getOperateur()." \n";
+         print str_repeat('  ', $level).$noeud->getVariable().$noeud->getOperator()." \n";
          $this->affiche($noeud->getVariable(), $level + 1);
     }
 

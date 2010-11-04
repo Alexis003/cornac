@@ -96,8 +96,8 @@ class template_db extends template {
         
         $requete = "INSERT INTO {$this->table} VALUES 
             (NULL ,
-             '".$node->myDroite."',
-             '".$node->myGauche."',
+             '".$node->myleft."',
+             '".$node->myright."',
              '".get_class($node)."',
              ".$this->database->quote($node->getCode()).",
              '$file',
@@ -145,41 +145,41 @@ class template_db extends template {
 ////////////////////////////////////////////////////////////////////////
     function affiche_token_traite($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
-        $node->myGauche = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);        
     }
 
     function affiche_affectation($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
         $node->setCode('');
 
         $tags = array();
-        $tags['left'][] = $this->affiche($node->getDroite(), $level + 1);
-        $tags['operator'][] = $this->affiche($node->getOperateur(), $level + 1);
-        $tags['right'][] = $this->affiche($node->getGauche(), $level + 1);
+        $tags['left'][] = $this->affiche($node->getLeft(), $level + 1);
+        $tags['operator'][] = $this->affiche($node->getOperator(), $level + 1);
+        $tags['right'][] = $this->affiche($node->getRight(), $level + 1);
 
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         $this->tags = $tags;
         return $this->savenode($node, $level);
     }
 
     function affiche_arginit($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
         $node->setCode('');
         
         $this->affiche($node->getVariable(), $level + 1);
         $this->affiche($node->getValue(), $level + 1);
 
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);
     }
 
     function affiche_arglist($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
         $node->setCode('');
 
         $elements = $node->getList();
@@ -198,13 +198,13 @@ class template_db extends template {
             }
         }
 
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);
     }
 
     function affiche_block($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
         if ($node->checkCode('{')) {
             $node->setCode('');
         }
@@ -213,25 +213,25 @@ class template_db extends template {
         foreach($elements as $id => &$e) {
             $this->affiche($e, $level + 1);
         }
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         $return = $this->savenode($node, $level);
         return $return;
     }
 
     function affiche__break($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
         $node->setCode('');
 
         $this->affiche($node->getLevels(), $level + 1);
 
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);
     }
 
     function affiche__case($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
         $node->setCode('');
 
         if (!is_null($m = $node->getComparant())) {
@@ -239,51 +239,51 @@ class template_db extends template {
         }
         $this->affiche($node->getBlock(), $level + 1);
 
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);
     }
 
     function affiche_cast($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
 
         $this->affiche($node->getExpression(), $level + 1);
 
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);
     }
 
     function affiche__catch($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
 
         $this->affiche($node->getException(), $level + 1);
         $this->affiche($node->getVariable(), $level + 1);
         $this->affiche($node->getBlock(), $level + 1);
 
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);
     }
 
     function affiche__continue($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
 
         $this->affiche($node->getLevels(), $level + 1);
 
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);
     }
     
     function affiche_ternaryop($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
 
         $this->affiche($node->getCondition(), $level + 1);
         $this->affiche($node->getThen(), $level + 1);
         $this->affiche($node->getElse(), $level + 1);
 
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);
     }
 
@@ -292,17 +292,17 @@ class template_db extends template {
             $node->dotId = $this->getNextId();
         }
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
 
         $this->affiche($node->getphp_code(), $level + 1);
 
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);
     }
 
     function affiche__class($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
         $node->setCode('');
         $classe_precedent = $this->class;
         $this->class = $node->getName()->getCode();
@@ -329,7 +329,7 @@ class template_db extends template {
 
         $tags['block'][] = $this->affiche($node->getBlock(), $level + 1);            
 
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         $this->tags = $tags;
         $res = $this->savenode($node, $level);
         $this->class = $classe_precedent;
@@ -338,43 +338,43 @@ class template_db extends template {
 
     function affiche__clone($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
 
         $this->affiche($node->getExpression(), $level + 1);
 
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);
     }
 
     function affiche_keyvalue($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
 
         $this->affiche($node->getKey(), $level + 1);
         $this->affiche($node->getValue(), $level + 1);
 
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);
     }
 
     function affiche_comparison($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
-        $node->setCode($node->getOperateur()->getCode());
+        $node->myleft = $this->getIntervalleId();
+        $node->setCode($node->getOperator()->getCode());
 
         $tags = array();
-        $tags['right'][] = $this->affiche($node->getDroite(), $level + 1);
-        $tags['operator'][] = $this->affiche($node->getOperateur(), $level + 1);
-        $tags['left'][] = $this->affiche($node->getGauche(), $level + 1);
+        $tags['right'][] = $this->affiche($node->getLeft(), $level + 1);
+        $tags['operator'][] = $this->affiche($node->getOperator(), $level + 1);
+        $tags['left'][] = $this->affiche($node->getRight(), $level + 1);
         $this->tags = $tags;
         
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);
     }
 
     function affiche_concatenation($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
         $node->setCode('');
 
         $elements = $node->getList();
@@ -384,60 +384,60 @@ class template_db extends template {
             $this->affiche($e, $level + 1);            
         }
 
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);
     }
 
     function affiche_constante($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
         
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);
     }
 
     function affiche_constante_static($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
 
         $classe = $node->getClass();
         $this->affiche($classe, $level + 1);
         $method = $node->getConstant();
         $this->affiche($method, $level + 1);
 
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);
     }
 
     function affiche_constante_classe($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
 
         $classe = $node->getName();
         $this->affiche($classe, $level + 1);
         $method = $node->getConstante();
         $this->affiche($method, $level + 1);
 
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);
     }
 
    function affiche_decalage($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
         $node->setCode('');
 
-        $this->affiche($node->getDroite(), $level + 1);
-        $this->affiche($node->getOperateur(), $level + 1);
-        $this->affiche($node->getGauche(), $level + 1);
+        $this->affiche($node->getLeft(), $level + 1);
+        $this->affiche($node->getOperator(), $level + 1);
+        $this->affiche($node->getRight(), $level + 1);
 
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);
     }
 
     function affiche__declare($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
         $node->setCode('');
 
         $tags = array();
@@ -456,24 +456,24 @@ class template_db extends template {
         }
         $this->tags = $tags;
 
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);
     }
     
     function affiche__default($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
         $node->setCode('');
 
         $this->affiche($node->getBlock(), $level + 1);
 
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);
     }
 
     function affiche__for($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
         $node->setCode('');
 
         $tags = array();
@@ -490,13 +490,13 @@ class template_db extends template {
         $tags['block'][] = $this->affiche($node->getBlock(), $level + 1);
         $this->tags = $tags;
 
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);
     }
 
     function affiche__foreach($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
         $node->setCode('');
 
         $tags = array();
@@ -509,14 +509,14 @@ class template_db extends template {
         $tags['value'][] = $this->affiche($node->getValue(), $level + 1);
         $tags['block'][] = $this->affiche($node->getBlock(), $level + 1);
 
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         $this->tags = $tags;
         return $this->savenode($node, $level);
     }
 
     function affiche__function($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
         $scope_precedent = $this->scope;
         $this->scope = $node->getName()->getCode();
 
@@ -536,7 +536,7 @@ class template_db extends template {
         $tags['args'][] = $this->affiche($node->getArgs(), $level + 1);
         $tags['block'][] = $this->affiche($node->getBlock(), $level + 1);
 
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
 
         $this->tags = $tags;
         $res = $this->savenode($node, $level);
@@ -546,34 +546,34 @@ class template_db extends template {
 
     function affiche_functioncall($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
 
         $tags = array();
         $tags['function'][] = $this->affiche($node->getFunction(), $level + 1);
         $node->setCode($node->getFunction()->getCode());
         $tags['args'][] = $this->affiche($node->getArgs(), $level + 1);
 
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         $this->tags = $tags;
         return $this->savenode($node, $level);
     }
 
     function affiche__global($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
         
         $elements = $node->getVariables();
         foreach($elements as $id => $e) {
             $this->affiche($e, $level + 1);
         }
 
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);    
     }
 
     function affiche_ifthen($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
 
         $conditions = $node->getCondition();
         $thens = $node->getThen();
@@ -593,24 +593,24 @@ class template_db extends template {
             $tags['else'][] = $this->affiche($else, $level + 1);
         }
 
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         $this->tags = $tags;
         return $this->savenode($node, $level);
     }
 
     function affiche_inclusion($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
 
         $this->affiche($node->getInclusion(), $level + 1);
 
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);        
     }
 
     function affiche__interface($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
         $classe_precedent = $this->class;
         $this->class = $node->getName()->getCode();
 
@@ -622,7 +622,7 @@ class template_db extends template {
         }
         $this->affiche($node->getBlock(), $level + 1);
 
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         $res = $this->savenode($node, $level);
         $this->class = $classe_precedent;
         return $res;
@@ -630,68 +630,68 @@ class template_db extends template {
 
     function affiche_invert($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
         
         $this->affiche($node->getExpression(), $level + 1);
         
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);        
     }
 
     function affiche_literals($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
-        $node->myGauche = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);        
     }
 
     function affiche_logique($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
 
-        $this->affiche($node->getDroite(), $level + 1);
-        $this->affiche($node->getOperateur(), $level + 1);
-        $this->affiche($node->getGauche(), $level + 1);
+        $this->affiche($node->getLeft(), $level + 1);
+        $this->affiche($node->getOperator(), $level + 1);
+        $this->affiche($node->getRight(), $level + 1);
         
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);        
     }
 
     function affiche_method($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
 
         $tags = array();
         $tags['object'][] = $this->affiche($node->getObject(), $level + 1);
         $tags['method'][] = $this->affiche($node->getMethod(), $level + 1);        
         
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         $this->tags = $tags;
         return $this->savenode($node, $level);        
     }
 
     function affiche_method_static($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
 
         $tags = array();
         $tags['class'][] = $this->affiche($node->getClass(), $level + 1);
         $tags['method'][] = $this->affiche($node->getMethod(), $level + 1);
         
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         $this->tags = $tags;
         return $this->savenode($node, $level);        
     }
 
     function affiche__new($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
 
         $tags = array();
         $tags['name'][] = $this->affiche($node->getClasse(), $level + 1);
         $tags['args'][] = $this->affiche($node->getArgs(), $level + 1);
         
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         $this->tags = $tags;
         return $this->savenode($node, $level);        
     }
@@ -699,94 +699,94 @@ class template_db extends template {
     
     function affiche_noscream($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
 
         $this->affiche($node->getExpression(), $level + 1);
         
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);        
     }
 
     function affiche_not($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
         
         $this->affiche($node->getExpression(), $level + 1);
         
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);        
     }
 
     function affiche_opappend($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
         
         $this->affiche($node->getVariable(), $level + 1);
         
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);        
     }
 
     function affiche_operation($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
         
-        $this->affiche($node->getDroite(), $level + 1);
+        $this->affiche($node->getLeft(), $level + 1);
         $this->affiche($node->getOperation(), $level + 1);
-        $this->affiche($node->getGauche(), $level + 1);
+        $this->affiche($node->getRight(), $level + 1);
         
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);        
     }
 
     function affiche_parentheses($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
         
         $this->affiche($node->getContenu(), $level + 1);
         
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);        
     }
 
     function affiche_preplusplus($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
         
         $this->affiche($node->getVariable(), $level + 1);
-        $this->affiche($node->getOperateur(), $level + 1);
+        $this->affiche($node->getOperator(), $level + 1);
         
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);    
     }
 
     function affiche_postplusplus($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
         
         $this->affiche($node->getVariable(), $level + 1);
-        $this->affiche($node->getOperateur(), $level + 1);
+        $this->affiche($node->getOperator(), $level + 1);
         
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);    
     }
 
     function affiche_property($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
         
         $tags = array();
         $tags['object'][] = $this->affiche($node->getObject(), $level + 1);
         $tags['property'][] = $this->affiche($node->getProperty(), $level + 1);
         
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         $this->tags = $tags;
         return $this->savenode($node, $level);        
     }
 
     function affiche_property_static($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
         
         $this->affiche($node->getClass(), $level + 1);
         $this->affiche($node->getProperty(), $level + 1);
@@ -795,44 +795,44 @@ class template_db extends template {
         $tags['class'][] = $this->affiche($node->getClass(), $level + 1);
         $tags['property'][] = $this->affiche($node->getProperty(), $level + 1);
         
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         $this->tags = $tags;
         return $this->savenode($node, $level);        
     }
 
     function affiche_rawtext($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
 
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);
     }
 
     function affiche_reference($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
 
         $this->affiche($node->getExpression(), $level + 1);
 
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);
     }
 
     function affiche__return($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
         
         if (!is_null($return = $node->getReturn())) {
             $this->affiche($return, $level + 1);
         }
 
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);
     }
 
     function affiche_sequence($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
         $node->setCode('');
 
         $elements = $node->getElements();
@@ -850,13 +850,13 @@ class template_db extends template {
             }
         }
 
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);
     }
 
     function affiche_shell($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
         $node->setCode('');
 
         $elements = $node->getExpression();
@@ -864,48 +864,48 @@ class template_db extends template {
             $this->affiche($e, $level + 1);
         }
 
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);
     }
 
     function affiche_sign($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
         $node->setCode('');
 
         $this->affiche($node->getSign(), $level + 1);
         $this->affiche($node->getExpression(), $level + 1);
         
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);
     }
 
     function affiche__static($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
         $node->setCode('');
 
         $this->affiche($node->getExpression(), $level + 1);
         
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);
     }
 
     function affiche__switch($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
         $node->setCode('');
 
         $this->affiche($node->getCondition(), $level + 1);
         $this->affiche($node->getBlock(), $level + 1);
         
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);
     }
 
     function affiche__array($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
         $node->setCode('');
 
         $tags = array();
@@ -913,24 +913,24 @@ class template_db extends template {
         $tags['index'][] = $this->affiche($node->getIndex(), $level + 1);
         $this->tags = $tags;
         
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);
     }
 
     function affiche__throw($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
         $node->setCode('');
 
         $this->affiche($node->getException(), $level + 1);
 
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);
     }
 
     function affiche__try($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
         $node->setCode('');
 
         $this->affiche($node->getBlock(), $level + 1);
@@ -940,25 +940,25 @@ class template_db extends template {
             $this->affiche($e, $level + 1);
         }
         
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);
     }
 
     function affiche_typehint($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
         $node->setCode('');
 
         $this->affiche($node->getType(), $level + 1);
         $this->affiche($node->getName(), $level + 1);
 
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);
     }
 
     function affiche__var($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
         $node->setCode('');
         
         if (!is_null($node->getVisibility())) {
@@ -979,13 +979,13 @@ class template_db extends template {
         
         }
 
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);
     }
 
     function affiche_variable($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
         
         $name = $node->getName();
         if (is_object($name)) {
@@ -993,31 +993,31 @@ class template_db extends template {
             $node->setCode("$".$name->getCode());
         }
 
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);
     }
 
     function affiche__while($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
 
         $tags = array();
         $tags['condition'][] = $this->affiche($node->getCondition(), $level + 1);
         $tags['block'][] = $this->affiche($node->getBlock(), $level + 1);
         $this->tags = $tags;
 
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);
     }
 
     function affiche__dowhile($node, $level) {
         $node->myId = $this->getNextId();
-        $node->myDroite = $this->getIntervalleId();
+        $node->myleft = $this->getIntervalleId();
 
         $this->affiche($node->getBlock(), $level + 1);
         $this->affiche($node->getCondition(), $level + 1);
 
-        $node->myGauche = $this->getIntervalleId();
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);
     }
     

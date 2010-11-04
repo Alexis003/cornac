@@ -3,10 +3,10 @@ tests/tokenizeur/scripts/sign.19.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $a
        "=" 
-      gauche : 
+      right : 
           cast (295 "(int)")sign  "-"literals 3
               sign  "-"literals 3
                   literals 3

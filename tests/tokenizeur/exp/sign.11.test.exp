@@ -3,10 +3,10 @@ tests/tokenizeur/scripts/sign.11.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $CurrNav
        "=" 
-      gauche : 
+      right : 
           functioncall array
           function call : array: 
               arglist 

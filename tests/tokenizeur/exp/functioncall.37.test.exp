@@ -5,14 +5,14 @@ tests/tokenizeur/scripts/functioncall.37.test.php
       sequence 
       0 : 
           affectation 
-          droite : 
+          left : 
               variable $x
            "=" 
-          gauche : 
+          right : 
               literals 3
       1 : 
           affectation 
-          droite : 
+          left : 
               functioncall list
               function call : list: 
                   arglist 
@@ -23,7 +23,7 @@ tests/tokenizeur/scripts/functioncall.37.test.php
                   2 : 
                       variable $z
            "=" 
-          gauche : 
+          right : 
               functioncall range
               function call : range: 
                   arglist 

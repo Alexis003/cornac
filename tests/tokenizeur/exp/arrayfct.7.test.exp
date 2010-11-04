@@ -3,10 +3,10 @@ tests/tokenizeur/scripts/arrayfct.7.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $x
        "=" 
-      gauche : 
+      right : 
           functioncall array
           function call : array: 
               arglist 
@@ -14,8 +14,8 @@ tests/tokenizeur/scripts/arrayfct.7.test.php
                   literals b => affectation variable $a 273 ".=" constante true
                       literals b
                       affectation 
-                      droite : 
+                      left : 
                           variable $a
                       273 ".=" 
-                      gauche : 
+                      right : 
                           constante (                          true )

@@ -6,22 +6,22 @@ tests/tokenizeur/scripts/sequence.15.test.php
           block 
           0 : 
               affectation 
-              droite : 
+              left : 
                   variable $z
                "=" 
-              gauche : 
+              right : 
                   literals 1
           1 : 
               affectation 
-              droite : 
+              left : 
                   variable $y
                "=" 
-              gauche : 
+              right : 
                   literals 2
           2 : 
               affectation 
-              droite : 
+              left : 
                   variable $w
                "=" 
-              gauche : 
+              right : 
                   literals 3

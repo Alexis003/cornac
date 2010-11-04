@@ -44,11 +44,11 @@ class _var extends instruction {
                 $this->variable[] = $e;
                 $this->init[] = null;
             } elseif ($e->checkClass('affectation')) {
-                $this->variable[] = $e->getDroite();
-                $this->init[] = $e->getGauche();
+                $this->variable[] = $e->getLeft();
+                $this->init[] = $e->getRight();
             } elseif ($e->checkClass('arginit')) {
                 $this->variable[] = $e->getVariable();
-                $this->init[] = $e->getValeur();        
+                $this->init[] = $e->getValue();        
             } else {
                 $this->stopOnError(" Unexpected class for ".__CLASS__." : ".get_class($e)." $e $id in ".__METHOD__);
             }

@@ -3,10 +3,10 @@ tests/tokenizeur/scripts/clone.13.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $a
        "=" 
-      gauche : 
+      right : 
           ternaryop ?
           functioncall 350 "isset" ( arglist(_array property variable $b->literals c[literals d]) )  ? _clone clone : method method variable $f->functioncall 307 "g" ( ( ) ) ->functioncall 307 "h" ( arglist(literals i) ) 
               functioncall isset

@@ -3,10 +3,10 @@ tests/tokenizeur/scripts/noscream.9.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           property variable $thisliterals a->
        "=" 
-      gauche : 
+      right : 
           noscream @
               functioncall $b
               function call : $b: 

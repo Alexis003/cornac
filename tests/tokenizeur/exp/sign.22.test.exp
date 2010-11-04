@@ -3,9 +3,9 @@ tests/tokenizeur/scripts/sign.22.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $x
        "=" 
-      gauche : 
+      right : 
           parentheses 
           ( "operation functioncall 307 "intval" ( arglist(constante y) )   "+" sign  "-"literals 1" )

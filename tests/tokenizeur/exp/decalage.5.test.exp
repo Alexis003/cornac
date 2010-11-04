@@ -3,9 +3,9 @@ tests/tokenizeur/scripts/decalage.5.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $x
        "=" 
-      gauche : 
+      right : 
           parentheses 
           ( "decalage method variable $y->functioncall 307 "z" ( arglist(variable $a) )   286 ">>"  literals 1 " )

@@ -11,8 +11,8 @@ tests/tokenizeur/scripts/try.4.test.php
                   block 
       1 : 
           affectation 
-          droite : 
+          left : 
               variable $x
            "=" 
-          gauche : 
+          right : 
               literals 1

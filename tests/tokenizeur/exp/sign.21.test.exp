@@ -3,10 +3,10 @@ tests/tokenizeur/scripts/sign.21.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $u
        "=" 
-      gauche : 
+      right : 
           sign  "-"cast (int)
               cast (295 "(int)")method variable $a->functioncall 307 "b" ( ( ) ) 
                   method variable $a

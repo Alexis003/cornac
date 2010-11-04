@@ -3,9 +3,9 @@ tests/tokenizeur/scripts/affectation.49.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $x
        "=" 
-      gauche : 
+      right : 
           not !
               variable $b

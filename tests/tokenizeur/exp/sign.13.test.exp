@@ -3,10 +3,10 @@ tests/tokenizeur/scripts/sign.13.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $x
        "=" 
-      gauche : 
+      right : 
           sign  "-"parentheses (operation literals 1  "+" literals 2)
               parentheses 
               ( "operation literals 1  "+" literals 2" )

@@ -3,12 +3,12 @@ tests/tokenizeur/scripts/logique.16.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           property variable $thisliterals z->
        "=" 
-      gauche : 
+      right : 
           logique 
-          droite : 
+          left : 
               method variable $this
               method call : functioncall 307 "a" ( ( ) ) : 
                   functioncall a
@@ -16,12 +16,12 @@ tests/tokenizeur/scripts/logique.16.test.php
                       arglist 
                       Liste d'argument vide
           operateur : 263 "or"
-          gauche : 
+          right : 
               affectation 
-              droite : 
+              left : 
                   property variable $thisliterals b->
                "=" 
-              gauche : 
+              right : 
                   method variable $this
                   method call : functioncall 307 "c" ( ( ) ) : 
                       functioncall c

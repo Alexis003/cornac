@@ -9,8 +9,8 @@ tests/tokenizeur/scripts/sign.15.test.php
           block 
           0 : 
               affectation 
-              droite : 
+              left : 
                   variable $x
                "=" 
-              gauche : 
+              right : 
                   literals 1

@@ -19,10 +19,10 @@ tests/tokenizeur/scripts/switch.17.test.php
                               Liste d'argument vide
                   1 : 
                       affectation 
-                      droite : 
+                      left : 
                           property variable $cliterals d->
                        "=" 
-                      gauche : 
+                      right : 
                           constante (                          true )
                   2 : 
                       _break 

@@ -9,10 +9,10 @@ tests/tokenizeur/scripts/functioncall.16.test.php
               literals 1
           1 : 
               operation 
-              droite : 
+              left : 
                   constante (                  x )
               operation :  "+"
-              gauche : 
+              right : 
                   literals 1
           2 : 
               literals  

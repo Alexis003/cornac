@@ -18,42 +18,42 @@
  */
 
 class logique extends instruction {
-    protected $droite = null;
-    protected $operateur = null;
-    protected $gauche = null;
+    protected $left = null;
+    protected $operator = null;
+    protected $right = null;
     
     function __construct($expression) {
         parent::__construct(array());
         
         if (is_array($expression)) {
-            $this->droite = $expression[0];
-            $this->operateur = $this->makeToken_traite($expression[1]);
-            $this->gauche = $expression[2];
+            $this->left = $expression[0];
+            $this->operator = $this->makeToken_traite($expression[1]);
+            $this->right = $expression[2];
         } else {
             $this->stopOnError("Must receive an array as argument : ".count($expression)." received\n");
         }
     }
 
     function __toString() {
-        return __CLASS__." ".$this->droite." ".$this->operateur." ".$this->gauche;
+        return __CLASS__." ".$this->left." ".$this->operator." ".$this->right;
     }
 
-    function getDroite() {
-        return $this->droite;
+    function getLeft() {
+        return $this->left;
     }
 
-    function getOperateur() {
-        return $this->operateur;
+    function getOperator() {
+        return $this->operator;
     }
 
-    function getGauche() {
-        return $this->gauche;
+    function getRight() {
+        return $this->right;
     }
 
     function neutralise() {
-       $this->droite->detach();
-       $this->operateur->detach();
-       $this->gauche->detach();
+       $this->right->detach();
+       $this->operator->detach();
+       $this->left->detach();
     }
 
     static function getRegex() {

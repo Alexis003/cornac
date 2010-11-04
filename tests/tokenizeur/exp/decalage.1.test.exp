@@ -3,8 +3,8 @@ tests/tokenizeur/scripts/decalage.1.test.php
 
   code : 
       decalage 
-      droite : 
-          literals 25
-      operation : 287 "<<"
-      gauche : 
+      left : 
           variable $x
+      operation : 287 "<<"
+      right : 
+          literals 25

@@ -3,10 +3,10 @@ tests/tokenizeur/scripts/affectation.14.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $x
        "=" 
-      gauche : 
+      right : 
           method variable $y
           method call : functioncall 307 "z" ( ( ) ) : 
               functioncall z

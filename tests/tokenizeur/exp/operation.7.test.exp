@@ -3,19 +3,19 @@ tests/tokenizeur/scripts/operation.7.test.php
 
   code : 
       operation 
-      droite : 
+      left : 
           operation 
-          droite : 
+          left : 
               operation 
-              droite : 
+              left : 
                   literals 1
               operation :  "+"
-              gauche : 
+              right : 
                   literals 1
           operation :  "-"
-          gauche : 
+          right : 
               literals 1
       operation :  "+"
-      gauche : 
+      right : 
           parentheses 
           ( "operation literals 1  "-" literals 1" )

@@ -5,22 +5,22 @@ tests/tokenizeur/scripts/logique.21.test.php
       sequence 
       0 : 
           logique 
-          droite : 
+          left : 
               variable $x
           operateur :  "|"
-          gauche : 
+          right : 
               variable $y
       1 : 
           logique 
-          droite : 
+          left : 
               variable $a
           operateur :  "|"
-          gauche : 
+          right : 
               variable $b
       2 : 
           logique 
-          droite : 
+          left : 
               variable $c
           operateur :  "|"
-          gauche : 
+          right : 
               variable $d

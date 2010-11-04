@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/opappend.8.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           _array opappend [[][literals adf][]
               _array
                   opappend [[][]
@@ -11,5 +11,5 @@ tests/tokenizeur/scripts/opappend.8.test.php
                           variable $lines
                   literals adf
        "=" 
-      gauche : 
+      right : 
           literals 1

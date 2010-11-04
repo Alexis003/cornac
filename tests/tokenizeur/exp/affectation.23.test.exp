@@ -3,10 +3,10 @@ tests/tokenizeur/scripts/affectation.23.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $ping
        "=" 
-      gauche : 
+      right : 
           method_static 
           307 "Net_Ping"::functioncall 307 "factory" ( ( ) ) : 
               functioncall factory

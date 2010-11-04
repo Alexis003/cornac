@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/logique.23.test.php
 
   code : 
       logique 
-      droite : 
+      left : 
           _array
               _array
                   _array
@@ -12,5 +12,5 @@ tests/tokenizeur/scripts/logique.23.test.php
                   property variable $dliterals e->
               literals f
       operateur :  "&"
-      gauche : 
+      right : 
           property variable $gliterals h->

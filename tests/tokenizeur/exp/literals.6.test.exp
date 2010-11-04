@@ -3,10 +3,10 @@ tests/tokenizeur/scripts/literals.6.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $x
        "=" 
-      gauche : 
+      right : 
           functioncall range
           function call : range: 
               arglist 

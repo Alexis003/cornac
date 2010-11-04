@@ -3,10 +3,10 @@ tests/tokenizeur/scripts/noscream.8.test.php
 
   code : 
       affectation 
-      droite : 
+      left : 
           variable $functions
        "=" 
-      gauche : 
+      right : 
           ternaryop ?
           noscream @ ? literals  : literals bzopen
               noscream @
