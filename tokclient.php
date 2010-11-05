@@ -5,7 +5,7 @@ ini_set('memory_limit',1024*1024*1024);
 error_reporting(E_ALL);
 ini_set('display_errors', 'on');
 
-include('prepare/commun.php');
+include('prepare/common.php');
 include("prepare/analyseur.php");
 include('libs/tok.php');
 include('prepare/templates/template.php');
@@ -236,7 +236,7 @@ function process_file($scriptsPHP, $limit) {
             if (VERBOSE) {
                 print "$i) ".$t->getCode()."---- \n";
                 $template = getTemplate($root, $file, 'tree');
-                $template['tree']->affiche();
+                $template['tree']->display();
                 unset($template);
                 print "$i) ".$t->getCode()."---- \n";
            }
@@ -294,14 +294,14 @@ function process_file($scriptsPHP, $limit) {
 
     $templates = getTemplate($root, $file, $config['template']);
     foreach($templates as $template) {
-        $template->affiche();
+        $template->display();
         $template->save();
     }
 
     if (STATS) {
         include('prepare/template.stats.php');
         $template = new template_stats($root);
-        $template->affiche();
+        $template->display();
 
         print $analyseur->verifs." checks were made\n";
         $stats = array_count_values($analyseur->rates);

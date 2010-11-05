@@ -334,7 +334,7 @@ class Token {
         print get_class($this)." didn't overload ".__METHOD__."\n";
     }
 
-    function affiche($d = 0 , $f = 0) {
+    function display($d = 0 , $f = 0) {
         for($i = $d; $i < $f; $i++) {
             if ($i < 0) {
                 print "$i) ".$this->getPrev(abs($i))."\n";
@@ -571,7 +571,7 @@ class Token {
     }
 }
 
-function affiche_entree($entree) {
+function display_entree($entree) {
         foreach($entree as $id => $e) {
             print "$id) $e\n";
         }

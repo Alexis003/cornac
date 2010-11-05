@@ -22,7 +22,7 @@ abstract class template {
 
     function __construct() { }
     
-    abstract function affiche($noeud = null, $niveau = 0); 
+    abstract function display($node = null, $niveau = 0); 
 }
 
 class tree extends template {
@@ -34,74 +34,74 @@ class tree extends template {
         $this->root = $root;
     }
     
-    function affiche($noeud = null, $niveau = 0) {
-        if (is_null($noeud)) {
-            $noeud = $this->root;
+    function display($node = null, $niveau = 0) {
+        if (is_null($node)) {
+            $node = $this->root;
         }
         
-        $class = get_class($noeud);
-        $method = "affiche_$class";
+        $class = get_class($node);
+        $method = "display_$class";
         
         if (method_exists($this, $method)) {
-            $this->$method($noeud, $niveau + 1);
+            $this->$method($node, $niveau + 1);
         } else {
             print "Affichage tree de '".$method."'\n";die;
         }
-        if (!is_null($noeud->getNext())){
-            $this->affiche($noeud->getNext(), $niveau);
+        if (!is_null($node->getNext())){
+            $this->display($node->getNext(), $niveau);
         }
         
         
     }
 
-    function affiche_affectation($noeud, $niveau) {
-        print str_repeat('  ', $niveau).get_class($noeud)." \n";
+    function display_affectation($node, $niveau) {
+        print str_repeat('  ', $niveau).get_class($node)." \n";
         print str_repeat('  ', $niveau)."left : \n";
-        $this->affiche($noeud->getLeft(), $niveau + 1);
+        $this->display($node->getLeft(), $niveau + 1);
         print str_repeat('  ', $niveau)."right : \n";
-        $this->affiche($noeud->getRight(), $niveau + 1);
+        $this->display($node->getRight(), $niveau + 1);
     }
 
-    function affiche_codephp($noeud, $niveau) {
-        print str_repeat('  ', $niveau).get_class($noeud)." ".$noeud->getCode()."\n";
+    function display_codephp($node, $niveau) {
+        print str_repeat('  ', $niveau).get_class($node)." ".$node->getCode()."\n";
         print str_repeat('  ', $niveau)."code : \n";
-        $this->affiche($noeud->getphp_code(), $niveau + 1);
+        $this->display($node->getphp_code(), $niveau + 1);
     }
 
-    function affiche_literals($noeud, $niveau) {
-        print str_repeat('  ', $niveau).get_class($noeud)." ".$noeud->getCode()."\n";
+    function display_literals($node, $niveau) {
+        print str_repeat('  ', $niveau).get_class($node)." ".$node->getCode()."\n";
     }
 
-    function affiche_operation($noeud, $niveau) {
+    function display_operation($node, $niveau) {
          print str_repeat('  ', $niveau).__CLASS__." \n";
          print str_repeat('  ', $niveau)."left : \n";
-         $this->affiche($noeud->getLeft(), $niveau + 1);
-         print str_repeat('  ', $niveau)."operation : ".$noeud->getOperation()."\n";
+         $this->display($node->getLeft(), $niveau + 1);
+         print str_repeat('  ', $niveau)."operation : ".$node->getOperation()."\n";
          print str_repeat('  ', $niveau)."right : \n";
-         $this->affiche($noeud->getRight(), $niveau + 1);
+         $this->display($node->getRight(), $niveau + 1);
     }
     
-    function affiche_sequence($noeud, $niveau) {
-        print str_repeat('  ', $niveau).get_class($noeud)." \n";
-        $elements = $noeud->getElements();
+    function display_sequence($node, $niveau) {
+        print str_repeat('  ', $niveau).get_class($node)." \n";
+        $elements = $node->getElements();
         foreach($elements as $id => $e) {
             print str_repeat('  ', $niveau)."$id : \n";
-            $this->affiche($e, $niveau + 1);
+            $this->display($e, $niveau + 1);
         }
     }
 
-    function affiche__array($noeud, $niveau) {
-        print str_repeat('  ', $niveau).get_class($noeud)." ".$noeud->getCode()."\n";
-        $this->affiche($noeud->getVariable(), $niveau + 1);
-        $this->affiche($noeud->getIndex(), $niveau + 1);
+    function display__array($node, $niveau) {
+        print str_repeat('  ', $niveau).get_class($node)." ".$node->getCode()."\n";
+        $this->display($node->getVariable(), $niveau + 1);
+        $this->display($node->getIndex(), $niveau + 1);
     }
 
-    function affiche_variable($noeud, $niveau) {
-        print str_repeat('  ', $niveau).get_class($noeud)." ".$noeud->getCode()."\n";
+    function display_variable($node, $niveau) {
+        print str_repeat('  ', $niveau).get_class($node)." ".$node->getCode()."\n";
     }
     
-    function affiche_Token($noeud, $niveau) {
-        print str_repeat('  ', $niveau).get_class($noeud)." ".$noeud->getCode()." ( Affichage par défaut)\n";
+    function display_Token($node, $niveau) {
+        print str_repeat('  ', $niveau).get_class($node)." ".$node->getCode()." ( Affichage par défaut)\n";
     }
 
 }

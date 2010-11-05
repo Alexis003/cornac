@@ -18,7 +18,7 @@
    +----------------------------------------------------------------------+
  */
 // @synopsis : inclusions
-include('prepare/commun.php');
+//include('prepare/commun.php');
 include('libs/tok.php');
 include("prepare/analyseur.php");
 

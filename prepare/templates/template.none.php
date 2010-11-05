@@ -27,7 +27,7 @@ class template_none extends template {
         return false;
     }
     
-    function affiche($noeud = null, $niveau = 0) {
+    function display($node = null, $niveau = 0) {
         return;
     }
 }

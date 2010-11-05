@@ -27,26 +27,26 @@ class template_left extends template {
         $this->root = $root;
     }
     
-    function affiche($noeud = null, $niveau = 0) {
-        if (is_null($noeud)) {
-            $noeud = $this->root;
+    function display($node = null, $niveau = 0) {
+        if (is_null($node)) {
+            $node = $this->root;
         }
         
-        if (!is_object($noeud)) {
+        if (!is_object($node)) {
             print "Fatal : attemptint to display a non-object in ".__METHOD__."\n\n";
             debug_print_backtrace();
             die();
         }
-        $class = get_class($noeud);
-        $method = "affiche_$class";
+        $class = get_class($node);
+        $method = "display_$class";
 
         if (method_exists($this, $method)) {
-            $this->$method($noeud, $niveau + 1);
+            $this->$method($node, $niveau + 1);
         } else {
             $this->stats['missing'][$method] = 1;
         }
-        if (!is_null($noeud->getNext())){
-            $this->affiche($noeud->getNext(), $niveau);
+        if (!is_null($node->getNext())){
+            $this->display($node->getNext(), $niveau);
         } else {
             if ($niveau == 0) {
                 if (count($this->stats['missing']) == 0) { 
@@ -56,81 +56,81 @@ class template_left extends template {
         }
     }
     
-    function affiche_arglist($noeud, $niveau) {
+    function display_arglist($node, $niveau) {
         
-        $elements = $noeud->getList();
+        $elements = $node->getList();
         if (is_array($elements)) {
             foreach($elements as $id => $e) {
-                $this->affiche($e, $niveau + 1);
+                $this->display($e, $niveau + 1);
             }
         }
     }
 
-    function affiche_affectation($noeud, $niveau) {
+    function display_affectation($node, $niveau) {
         
-        $this->affiche($noeud->getLeft(), $niveau + 1);
-        $this->affiche($noeud->getRight(), $niveau + 1);
+        $this->display($node->getLeft(), $niveau + 1);
+        $this->display($node->getRight(), $niveau + 1);
     }
 
-    function affiche_block($noeud, $niveau) {
+    function display_block($node, $niveau) {
         
-        $elements = $noeud->getList();
+        $elements = $node->getList();
         foreach($elements as $id => $e) {
-            $this->affiche($e, $niveau + 1);
+            $this->display($e, $niveau + 1);
         }
     }
 
-    function affiche__break($noeud, $niveau) {
+    function display__break($node, $niveau) {
         
     }
 
-    function affiche_comparison($noeud, $niveau) {
+    function display_comparison($node, $niveau) {
         
-        $this->affiche($noeud->getLeft(), $niveau + 1);
-        $this->affiche($noeud->getRight(), $niveau + 1);
+        $this->display($node->getLeft(), $niveau + 1);
+        $this->display($node->getRight(), $niveau + 1);
     }
     
-    function affiche_ternaryop($noeud, $niveau) {
+    function display_ternaryop($node, $niveau) {
         
-        $this->affiche($noeud->getCondition(), $niveau + 1);
-        $this->affiche($noeud->getThen(), $niveau + 1);
-        $this->affiche($noeud->getElse(), $niveau + 1);
+        $this->display($node->getCondition(), $niveau + 1);
+        $this->display($node->getThen(), $niveau + 1);
+        $this->display($node->getElse(), $niveau + 1);
     }
 
-    function affiche_codephp($noeud, $niveau) {
+    function display_codephp($node, $niveau) {
         
-        $this->affiche($noeud->getphp_code(), $niveau + 1);
+        $this->display($node->getphp_code(), $niveau + 1);
     }
 
-    function affiche_concatenation($noeud, $niveau) {
+    function display_concatenation($node, $niveau) {
         
-        $elements = $noeud->getList();
+        $elements = $node->getList();
         foreach($elements as $id => $e) {
-            $this->affiche($e, $niveau + 1);
+            $this->display($e, $niveau + 1);
         }
     }
 
-    function affiche_constante($noeud, $niveau) {
+    function display_constante($node, $niveau) {
         
     }
 
-    function affiche__for($noeud, $niveau) {
+    function display__for($node, $niveau) {
         
-        $this->affiche($noeud->getInit(), $niveau + 1);
-        $this->affiche($noeud->getFin(), $niveau + 1);
-        $this->affiche($noeud->getIncrement(), $niveau + 1);
-        $this->affiche($noeud->getBlock(), $niveau + 1);
+        $this->display($node->getInit(), $niveau + 1);
+        $this->display($node->getFin(), $niveau + 1);
+        $this->display($node->getIncrement(), $niveau + 1);
+        $this->display($node->getBlock(), $niveau + 1);
     }
 
-    function affiche__foreach($noeud, $niveau) {
+    function display__foreach($node, $niveau) {
         
 
         $gets = array('getArray','getKey','getValue','getBlock');
 
         foreach($gets as $get) {
-            $list = $noeud->$get();
+            $list = $node->$get();
             if (!is_null($list)) {
-                $this->affiche($list, $niveau + 1);
+                $this->display($list, $niveau + 1);
             }
         }
     }
@@ -145,123 +145,123 @@ class template_left extends template {
 
     function getBlock() {    }
 
-    function affiche_functioncall($noeud, $niveau) {
+    function display_functioncall($node, $niveau) {
         
 
-        $args = $noeud->getArgs();
-        $this->affiche($args, $niveau + 1);
+        $args = $node->getArgs();
+        $this->display($args, $niveau + 1);
     }
 
-    function affiche_ifthen($noeud, $niveau) {
+    function display_ifthen($node, $niveau) {
         
-        $conditions = $noeud->getCondition();
-        $thens = $noeud->getThen();
+        $conditions = $node->getCondition();
+        $thens = $node->getThen();
         foreach($conditions as $id => $condition) {
-            $this->affiche($condition, $niveau + 1);
-            $this->affiche($thens[$id], $niveau + 1);
+            $this->display($condition, $niveau + 1);
+            $this->display($thens[$id], $niveau + 1);
         }
-        if (!is_null($noeud->getElse())){
-            $this->affiche($noeud->getElse(), $niveau + 1);
+        if (!is_null($node->getElse())){
+            $this->display($node->getElse(), $niveau + 1);
         }
     }
 
-    function affiche_inclusion($noeud, $niveau) {
+    function display_inclusion($node, $niveau) {
         
-        $inclusion = $noeud->getInclusion();
-        $this->affiche($inclusion, $niveau + 1);
+        $inclusion = $node->getInclusion();
+        $this->display($inclusion, $niveau + 1);
     }
 
-    function affiche_logique($noeud, $niveau) {
+    function display_logique($node, $niveau) {
         
-        $this->affiche($noeud->getLeft(), $niveau + 1);
-        $this->affiche($noeud->getOperator(), $niveau + 1);
-        $this->affiche($noeud->getRight(), $niveau + 1);
+        $this->display($node->getLeft(), $niveau + 1);
+        $this->display($node->getOperator(), $niveau + 1);
+        $this->display($node->getRight(), $niveau + 1);
     }
 
-    function affiche_literals($noeud, $niveau) {
-        
-    }
-
-    function affiche_method($noeud, $niveau) {
-        
-        $this->affiche($noeud->getObject(), $niveau + 1);
-        $this->affiche($noeud->getMethod(), $niveau + 1);
-    }
-
-    function affiche__new($noeud, $niveau) {
-         print str_repeat('  ', $niveau).' new '.$noeud->getClasse()." ".$noeud->getArgs()." \n";
-    }
-
-    function affiche_noscream($noeud, $niveau) {
-        
-        $this->affiche($noeud->getExpression(), $niveau + 1);
-    }
-
-    function affiche_opappend($noeud, $niveau) {
-        
-        $this->affiche($noeud->getVariable(), $niveau + 1);
-    }
-
-    function affiche_operation($noeud, $niveau) {
-        
-        $this->affiche($noeud->getLeft(), $niveau + 1);
-        $this->affiche($noeud->getRight(), $niveau + 1);
-    }
-
-    function affiche_parentheses($noeud, $niveau) {
+    function display_literals($node, $niveau) {
         
     }
 
-    function affiche_preplusplus($noeud, $niveau) {
+    function display_method($node, $niveau) {
         
-        $this->affiche($noeud->getOperator(), $niveau + 1);
-        $this->affiche($noeud->getVariable(), $niveau + 1);
+        $this->display($node->getObject(), $niveau + 1);
+        $this->display($node->getMethod(), $niveau + 1);
+    }
+
+    function display__new($node, $niveau) {
+         print str_repeat('  ', $niveau).' new '.$node->getClasse()." ".$node->getArgs()." \n";
+    }
+
+    function display_noscream($node, $niveau) {
+        
+        $this->display($node->getExpression(), $niveau + 1);
+    }
+
+    function display_opappend($node, $niveau) {
+        
+        $this->display($node->getVariable(), $niveau + 1);
+    }
+
+    function display_operation($node, $niveau) {
+        
+        $this->display($node->getLeft(), $niveau + 1);
+        $this->display($node->getRight(), $niveau + 1);
+    }
+
+    function display_parentheses($node, $niveau) {
+        
+    }
+
+    function display_preplusplus($node, $niveau) {
+        
+        $this->display($node->getOperator(), $niveau + 1);
+        $this->display($node->getVariable(), $niveau + 1);
     }
     
-    function affiche_property($noeud, $niveau) {
+    function display_property($node, $niveau) {
         
     }
 
-    function affiche_postplusplus($noeud, $niveau) {
+    function display_postplusplus($node, $niveau) {
         
-        $this->affiche($noeud->getOperator(), $niveau + 1);
-        $this->affiche($noeud->getVariable(), $niveau + 1);
+        $this->display($node->getOperator(), $niveau + 1);
+        $this->display($node->getVariable(), $niveau + 1);
     }
 
-    function affiche_rawtext($noeud, $niveau) {
+    function display_rawtext($node, $niveau) {
         
     }
 
-    function affiche_sequence($noeud, $niveau) {
+    function display_sequence($node, $niveau) {
         
-        $elements = $noeud->getElements();
+        $elements = $node->getElements();
         foreach($elements as $id => $e) {
-            $this->affiche($e, $niveau + 1);
+            $this->display($e, $niveau + 1);
         }
     }
 
-    function affiche__array($noeud, $niveau) {
+    function display__array($node, $niveau) {
         
-        $this->affiche($noeud->getVariable(), $niveau + 1);
-        $this->affiche($noeud->getIndex(), $niveau + 1);
+        $this->display($node->getVariable(), $niveau + 1);
+        $this->display($node->getIndex(), $niveau + 1);
     }
 
-    function affiche_variable($noeud, $niveau) {
-        
-    }
-
-    function affiche_token_traite($noeud, $niveau) {
+    function display_variable($node, $niveau) {
         
     }
 
-    function affiche__while($noeud, $niveau) {
+    function display_token_traite($node, $niveau) {
         
-        $this->affiche($noeud->getCondition(), $niveau + 1);
-        $this->affiche($noeud->getBlock(), $niveau + 1);
     }
 
-    function affiche_Token($noeud, $niveau) {
-        print $noeud."".$noeud->getId()."\n";
+    function display__while($node, $niveau) {
+        
+        $this->display($node->getCondition(), $niveau + 1);
+        $this->display($node->getBlock(), $niveau + 1);
+    }
+
+    function display_Token($node, $niveau) {
+        print $node."".$node->getId()."\n";
         $this->stats++;
     }
 

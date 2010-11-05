@@ -17,21 +17,25 @@
    +----------------------------------------------------------------------+
  */
 
-include('prepare/token.php');
-include('prepare/token_traite.php');
-include('prepare/instruction.php');
-include('prepare/analyseur_regex.php');
-include('prepare/variable.php');
+// @note must be included first
+$includes = array_flip(glob('prepare/*.php'));
+unset($includes['prepare/common.php']);
+unset($includes['prepare/analyseur.php']);
 
-$includes = glob('prepare/*.php');
+$firsts = array('prepare/token.php',
+                'prepare/token_traite.php',
+                'prepare/instruction.php',
+                'prepare/analyseur_regex.php',
+                'prepare/variable.php',
+                );
+foreach($firsts as $file) {
+    include($file);
+    unset($includes[$file]);
+}
+$includes = array_keys($includes);
+
+// @note including everything is faster than JIT
 foreach($includes as $include) {
-    if ($include == "prepare/instruction.php") { continue; }
-    if ($include == "prepare/token.php") { continue; }
-    if ($include == "prepare/analyseur_regex.php") { continue; }
-    if ($include == "prepare/variable.php") { continue; }
-    if ($include == "prepare/token_traite.php") { continue; }
-    if ($include == "prepare/analyseur.php") { continue; }
-    if ($include == "prepare/commun.php") { continue; }
     include($include);
 }
 ?>

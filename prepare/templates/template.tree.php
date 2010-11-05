@@ -30,14 +30,14 @@ class template_tree extends template {
         return false;
     }
     
-    function affiche($noeud = null, $level = 0, $follow = true) {
+    function display($node = null, $level = 0, $follow = true) {
         if ($level > 100) {
             print "Fatal : more than 100 level of recursion : aborting\n"; 
             die(__METHOD__."\n");
         }
-        if (is_null($noeud)) {
+        if (is_null($node)) {
             if ($level == 0) {
-                $noeud = $this->root;
+                $node = $this->root;
             } else {
                 print_r(xdebug_get_function_stack());        
                 print "Attempting to send null to display.";
@@ -45,436 +45,436 @@ class template_tree extends template {
             }
         }
         
-        if (!is_object($noeud)) {
+        if (!is_object($node)) {
             debug_print_backtrace();
             print "Fatal : attempting to display a non-object in ".__METHOD__."\n\n";
             die(__METHOD__."\n");
         }
-        $class = get_class($noeud);
-        $method = "affiche_$class";
+        $class = get_class($node);
+        $method = "display_$class";
         
         if (method_exists($this, $method)) {
-            $this->$method($noeud, $level + 1);
+            $this->$method($node, $level + 1);
         } else {
             print "Displaying ".__CLASS__." in '".$method."'\n";
             die(__METHOD__."\n");
         }
 
         if ($follow == true) {
-            $noeuds = array();
-            $next = $noeud;
+            $nodes = array();
+            $next = $node;
             while($next = $next->getNext()) {
-                $noeuds[] = $next;
+                $nodes[] = $next;
             }
             
-            foreach($noeuds as $n) {
-                $this->affiche($n, $level, false);
+            foreach($nodes as $n) {
+                $this->display($n, $level, false);
             }
         }
     }
     
-    function affiche_arginit($noeud, $level) {
+    function display_arginit($node, $level) {
         print str_repeat('  ', $level)." argument et initialisation \n";
-        $this->affiche($noeud->getVariable(), $level + 1);
-         $this->affiche($noeud->getValue(), $level + 1);
+        $this->display($node->getVariable(), $level + 1);
+         $this->display($node->getValue(), $level + 1);
     }
 
-    function affiche_arglist($noeud, $level) {
-        print str_repeat('  ', $level).get_class($noeud)." \n";
-        $elements = $noeud->getList();
+    function display_arglist($node, $level) {
+        print str_repeat('  ', $level).get_class($node)." \n";
+        $elements = $node->getList();
         if (count($elements) == 0) {
             print str_repeat('  ', $level)."Liste d'argument vide\n";
         } else {
             foreach($elements as $id => $e) {
                 print str_repeat('  ', $level)."$id : \n";
                 if (!is_null($e)) {
-                    $this->affiche($e, $level + 1);
+                    $this->display($e, $level + 1);
                 }
             }
         }
     }
 
-    function affiche_affectation($noeud, $level) {
-        print str_repeat('  ', $level).get_class($noeud)." \n";
+    function display_affectation($node, $level) {
+        print str_repeat('  ', $level).get_class($node)." \n";
         print str_repeat('  ', $level)."left : \n";
-        $this->affiche($noeud->getLeft(), $level + 1);
-        print str_repeat('  ', $level).$noeud->getOperator()." \n";
+        $this->display($node->getLeft(), $level + 1);
+        print str_repeat('  ', $level).$node->getOperator()." \n";
         print str_repeat('  ', $level)."right : \n";
-        $this->affiche($noeud->getRight(), $level + 1);
+        $this->display($node->getRight(), $level + 1);
     }
 
-    function affiche_block($noeud, $level) {
-        print str_repeat('  ', $level).get_class($noeud)." \n";
-        $elements = $noeud->getList();
+    function display_block($node, $level) {
+        print str_repeat('  ', $level).get_class($node)." \n";
+        $elements = $node->getList();
         foreach($elements as $id => $e) {
             print str_repeat('  ', $level)."$id : \n";
-            $this->affiche($e, $level + 1);
+            $this->display($e, $level + 1);
         }
     }
 
-    function affiche__break($noeud, $level) {
-         print str_repeat('  ', $level).get_class($noeud)." \n";
-         print str_repeat('  ', $level)."Number : \"".$noeud->getLevels()."\"\n";    
+    function display__break($node, $level) {
+         print str_repeat('  ', $level).get_class($node)." \n";
+         print str_repeat('  ', $level)."Number : \"".$node->getLevels()."\"\n";    
     }
 
-    function affiche__case($noeud, $level) {
-        print str_repeat('  ', $level).get_class($noeud)." \n";
-        $this->affiche($noeud->getComparant(), $level + 1);
-        $this->affiche($noeud->getBlock(), $level + 1);
+    function display__case($node, $level) {
+        print str_repeat('  ', $level).get_class($node)." \n";
+        $this->display($node->getComparant(), $level + 1);
+        $this->display($node->getBlock(), $level + 1);
     }
 
-    function affiche_cast($noeud, $level) {
-        print str_repeat('  ', $level).get_class($noeud)." (".$noeud->getCast().")".$noeud->getExpression()."\n";
-        $this->affiche($noeud->getExpression(), $level + 1);
+    function display_cast($node, $level) {
+        print str_repeat('  ', $level).get_class($node)." (".$node->getCast().")".$node->getExpression()."\n";
+        $this->display($node->getExpression(), $level + 1);
     }
     
 
-    function affiche__catch($noeud, $level) {
-        print str_repeat('  ', $level).get_class($noeud)." (".$noeud->getException().")".$noeud->getVariable()."\n";
-         $this->affiche($noeud->getBlock(), $level + 1);
+    function display__catch($node, $level) {
+        print str_repeat('  ', $level).get_class($node)." (".$node->getException().")".$node->getVariable()."\n";
+         $this->display($node->getBlock(), $level + 1);
     }
 
-    function affiche__class($noeud, $level) {
-        print str_repeat('  ', $level).$noeud->getAbstract().' class '.$noeud->getName();
-        $extends = $noeud->getExtends();
+    function display__class($node, $level) {
+        print str_repeat('  ', $level).$node->getAbstract().' class '.$node->getName();
+        $extends = $node->getExtends();
         if (!is_null($extends)) {
             print " extends ".$extends;
         }
-        $implements = $noeud->getImplements();
+        $implements = $node->getImplements();
         if (count($implements) > 0) {
             print " implements ".join(', ', $implements);
         }
         print "\n";
-        $this->affiche($noeud->getBlock(), $level + 1);
+        $this->display($node->getBlock(), $level + 1);
     }
 
-    function affiche__clone($noeud, $level) {
-        print str_repeat('  ', $level).get_class($noeud)." \n";
-        $this->affiche($noeud->getExpression(), $level + 1);
+    function display__clone($node, $level) {
+        print str_repeat('  ', $level).get_class($node)." \n";
+        $this->display($node->getExpression(), $level + 1);
     }
 
-    function affiche_keyvalue($noeud, $level) {
-        print str_repeat('  ', $level).$noeud->getKey()." => ".$noeud->getValue()."\n";
-        $this->affiche($noeud->getKey(), $level + 1);
-        $this->affiche($noeud->getValue(), $level + 1);
+    function display_keyvalue($node, $level) {
+        print str_repeat('  ', $level).$node->getKey()." => ".$node->getValue()."\n";
+        $this->display($node->getKey(), $level + 1);
+        $this->display($node->getValue(), $level + 1);
     }
 
-    function affiche_comparison($noeud, $level) {
-         print str_repeat('  ', $level).get_class($noeud)." \n";
+    function display_comparison($node, $level) {
+         print str_repeat('  ', $level).get_class($node)." \n";
          print str_repeat('  ', $level)."left : \n";
-         $this->affiche($noeud->getLeft(), $level + 1);
-         print str_repeat('  ', $level)."operateur : ".$noeud->getOperator()."\n";
+         $this->display($node->getLeft(), $level + 1);
+         print str_repeat('  ', $level)."operateur : ".$node->getOperator()."\n";
          print str_repeat('  ', $level)."right : \n";
-         $this->affiche($noeud->getRight(), $level + 1);
+         $this->display($node->getRight(), $level + 1);
     }
 
-    function affiche__continue($noeud, $level) {
-         print str_repeat('  ', $level).get_class($noeud).$noeud->getLevels()." \n";
+    function display__continue($node, $level) {
+         print str_repeat('  ', $level).get_class($node).$node->getLevels()." \n";
     }
     
-    function affiche_ternaryop($noeud, $level) {
-        print str_repeat('  ', $level).get_class($noeud)." ".$noeud->getCode()."\n";
-        print str_repeat('  ', $level).$noeud->getCondition();
-        print " ? ".$noeud->getThen()." : ".$noeud->getElse()."\n";
-        $this->affiche($noeud->getCondition(), $level + 1);
-        $this->affiche($noeud->getThen(), $level + 1);
-        $this->affiche($noeud->getElse(), $level + 1);
+    function display_ternaryop($node, $level) {
+        print str_repeat('  ', $level).get_class($node)." ".$node->getCode()."\n";
+        print str_repeat('  ', $level).$node->getCondition();
+        print " ? ".$node->getThen()." : ".$node->getElse()."\n";
+        $this->display($node->getCondition(), $level + 1);
+        $this->display($node->getThen(), $level + 1);
+        $this->display($node->getElse(), $level + 1);
     }
 
-    function affiche_codephp($noeud, $level) {
-        print str_repeat('  ', $level).get_class($noeud)." ".$noeud->getCode()."\n";
+    function display_codephp($node, $level) {
+        print str_repeat('  ', $level).get_class($node)." ".$node->getCode()."\n";
         print str_repeat('  ', $level)."code : \n";
-        $this->affiche($noeud->getphp_code(), $level + 1);
+        $this->display($node->getphp_code(), $level + 1);
     }
 
-    function affiche_concatenation($noeud, $level) {
-        print str_repeat('  ', $level).get_class($noeud)." \n";
-        $elements = $noeud->getList();
+    function display_concatenation($node, $level) {
+        print str_repeat('  ', $level).get_class($node)." \n";
+        $elements = $node->getList();
         foreach($elements as $id => $e) {
             print str_repeat('  ', $level)."$id : \n";
-            $this->affiche($e, $level + 1);
+            $this->display($e, $level + 1);
         }
     }
 
-    function affiche_constante($noeud, $level) {
-         print str_repeat('  ', $level).get_class($noeud)." (";
-         print str_repeat('  ', $level)."".$noeud->getName()." )\n";    
+    function display_constante($node, $level) {
+         print str_repeat('  ', $level).get_class($node)." (";
+         print str_repeat('  ', $level)."".$node->getName()." )\n";    
     }
 
-    function affiche_constante_static($noeud, $level) {
-         print str_repeat('  ', $level).get_class($noeud)." (";
-         print str_repeat('  ', $level)."".$noeud->getClass()."::".$noeud->getConstant()." )\n";    
+    function display_constante_static($node, $level) {
+         print str_repeat('  ', $level).get_class($node)." (";
+         print str_repeat('  ', $level)."".$node->getClass()."::".$node->getConstant()." )\n";    
     }
 
-    function affiche_constante_classe($noeud, $level) {
-         print str_repeat('  ', $level).get_class($noeud)." ";
-         print str_repeat('  ', $level)."".$noeud->getName()." = ".$noeud->getConstante()." \n";    
+    function display_constante_classe($node, $level) {
+         print str_repeat('  ', $level).get_class($node)." ";
+         print str_repeat('  ', $level)."".$node->getName()." = ".$node->getConstante()." \n";    
     }
 
-    function affiche_decalage($noeud, $level) {
-         print str_repeat('  ', $level).get_class($noeud)." \n";
+    function display_decalage($node, $level) {
+         print str_repeat('  ', $level).get_class($node)." \n";
          print str_repeat('  ', $level)."left : \n";
-         $this->affiche($noeud->getLeft(), $level + 1);
-         print str_repeat('  ', $level)."operation : ".$noeud->getOperator()."\n";
+         $this->display($node->getLeft(), $level + 1);
+         print str_repeat('  ', $level)."operation : ".$node->getOperator()."\n";
          print str_repeat('  ', $level)."right : \n";
-         $this->affiche($noeud->getRight(), $level + 1);
+         $this->display($node->getRight(), $level + 1);
     }
 
-    function affiche__declare($noeud, $level) {
-         print str_repeat('  ', $level).get_class($noeud)." \n";
-         print str_repeat('  ', $level + 1).' ticks = '.$noeud->getTicks()."\n";
-         print str_repeat('  ', $level + 1).' encoding = '.$noeud->getEncoding()."\n";
-         $n = $noeud->getBlock();
+    function display__declare($node, $level) {
+         print str_repeat('  ', $level).get_class($node)." \n";
+         print str_repeat('  ', $level + 1).' ticks = '.$node->getTicks()."\n";
+         print str_repeat('  ', $level + 1).' encoding = '.$node->getEncoding()."\n";
+         $n = $node->getBlock();
          if (!is_null($n)) {
-             $this->affiche($n, $level + 1);
+             $this->display($n, $level + 1);
          }
     }
     
-    function affiche__default($noeud, $level) {
-        print str_repeat('  ', $level).get_class($noeud)." \n";
-        $this->affiche($noeud->getBlock(), $level + 1);
+    function display__default($node, $level) {
+        print str_repeat('  ', $level).get_class($node)." \n";
+        $this->display($node->getBlock(), $level + 1);
     }
 
-    function affiche__for($noeud, $level) {
-        print str_repeat('  ', $level).get_class($noeud)." \n";
-        print str_repeat('  ', $level)."  Init : ".$noeud->getInit().";\n";
-        print str_repeat('  ', $level)."  Fin  : ".$noeud->getFin().";\n";
-        print str_repeat('  ', $level)."  Incr : ".$noeud->getIncrement().";\n";
-        $this->affiche($noeud->getBlock(), $level + 1);
+    function display__for($node, $level) {
+        print str_repeat('  ', $level).get_class($node)." \n";
+        print str_repeat('  ', $level)."  Init : ".$node->getInit().";\n";
+        print str_repeat('  ', $level)."  Fin  : ".$node->getFin().";\n";
+        print str_repeat('  ', $level)."  Incr : ".$node->getIncrement().";\n";
+        $this->display($node->getBlock(), $level + 1);
     }
 
-    function affiche__foreach($noeud, $level) {
-        print str_repeat('  ', $level).get_class($noeud)." (".$noeud->getArray()." as ".$noeud->getKey()." => ".$noeud->getValue().")\n";
-         $this->affiche($noeud->getBlock(), $level + 1);
+    function display__foreach($node, $level) {
+        print str_repeat('  ', $level).get_class($node)." (".$node->getArray()." as ".$node->getKey()." => ".$node->getValue().")\n";
+         $this->display($node->getBlock(), $level + 1);
     }
 
-    function affiche__function($noeud, $level) {
-        print str_repeat('  ', $level).$noeud->getVisibility().$noeud->getAbstract().$noeud->getStatic()."function ".$noeud->getName()." ".$noeud->getArgs()."\n";
-        $this->affiche($noeud->getBlock(), $level + 1);
+    function display__function($node, $level) {
+        print str_repeat('  ', $level).$node->getVisibility().$node->getAbstract().$node->getStatic()."function ".$node->getName()." ".$node->getArgs()."\n";
+        $this->display($node->getBlock(), $level + 1);
     }
 
-    function affiche_functioncall($noeud, $level) {
-        print str_repeat('  ', $level).get_class($noeud)." ".$noeud->getCode()."\n";
-        print str_repeat('  ', $level)."function call : ".$noeud->getFunction()->getCode().": \n";
+    function display_functioncall($node, $level) {
+        print str_repeat('  ', $level).get_class($node)." ".$node->getCode()."\n";
+        print str_repeat('  ', $level)."function call : ".$node->getFunction()->getCode().": \n";
 
-        $args = $noeud->getArgs();
-        $this->affiche($args, $level + 1);
+        $args = $node->getArgs();
+        $this->display($args, $level + 1);
     }
 
-    function affiche__global($noeud, $level) {
-        print str_repeat('  ', $level).get_class($noeud)." \n";
-        $elements = $noeud->getVariables();
+    function display__global($node, $level) {
+        print str_repeat('  ', $level).get_class($node)." \n";
+        $elements = $node->getVariables();
         foreach($elements as $id => $e) {
             print str_repeat('  ', $level)."$id : \n";
-            $this->affiche($e, $level + 1);
+            $this->display($e, $level + 1);
         }
     }
 
-    function affiche____halt_compiler($noeud, $level) {
-        print str_repeat('  ', $level).get_class($noeud)." \n";
+    function display____halt_compiler($node, $level) {
+        print str_repeat('  ', $level).get_class($node)." \n";
     }
 
-    function affiche_ifthen($noeud, $level) {
-        print str_repeat('  ', $level).get_class($noeud)." ".$noeud->getCode()."\n";
-        $conditions = $noeud->getCondition();
-        $thens = $noeud->getThen();
+    function display_ifthen($node, $level) {
+        print str_repeat('  ', $level).get_class($node)." ".$node->getCode()."\n";
+        $conditions = $node->getCondition();
+        $thens = $node->getThen();
         foreach($conditions as $id => $condition) {
             print str_repeat('  ', $level)."Condition $id) \n";
-            $this->affiche($condition, $level + 1);
-            $this->affiche($thens[$id], $level + 1);
+            $this->display($condition, $level + 1);
+            $this->display($thens[$id], $level + 1);
         }
-        if (!is_null($noeud->getElse())){
+        if (!is_null($node->getElse())){
             print str_repeat('  ', $level)." else \n";
-            $this->affiche($noeud->getElse(), $level + 1);
+            $this->display($node->getElse(), $level + 1);
         }
     }
 
-    function affiche_inclusion($noeud, $level) {
-        print str_repeat('  ', $level).get_class($noeud)." ".$noeud->getCode()."\n";
+    function display_inclusion($node, $level) {
+        print str_repeat('  ', $level).get_class($node)." ".$node->getCode()."\n";
 
-        $inclusion = $noeud->getInclusion();
-        $this->affiche($inclusion, $level + 1);
+        $inclusion = $node->getInclusion();
+        $this->display($inclusion, $level + 1);
     }
 
-    function affiche__interface($noeud, $level) {
-        print str_repeat('  ', $level).get_class($noeud)." ".$noeud->getName()."\n";
-        $e = $noeud->getExtends();
+    function display__interface($node, $level) {
+        print str_repeat('  ', $level).get_class($node)." ".$node->getName()."\n";
+        $e = $node->getExtends();
         if (count($e) > 0) {
             print str_repeat('  ', $level).' extends '.join(', ', $e)."\n";
         }
-        $this->affiche($noeud->getBlock(), $level + 1);
+        $this->display($node->getBlock(), $level + 1);
     }
 
-    function affiche_invert($noeud, $level) {
-        print str_repeat('  ', $level).get_class($noeud)." ~\n";
-        $this->affiche($noeud->getExpression(), $level + 1);
+    function display_invert($node, $level) {
+        print str_repeat('  ', $level).get_class($node)." ~\n";
+        $this->display($node->getExpression(), $level + 1);
     }
 
-    function affiche_logique($noeud, $level) {
-         print str_repeat('  ', $level).get_class($noeud)." \n";
+    function display_logique($node, $level) {
+         print str_repeat('  ', $level).get_class($node)." \n";
          print str_repeat('  ', $level)."left : \n";
-         $this->affiche($noeud->getLeft(), $level + 1);
-         print str_repeat('  ', $level)."operateur : ".$noeud->getOperator()."\n";
+         $this->display($node->getLeft(), $level + 1);
+         print str_repeat('  ', $level)."operateur : ".$node->getOperator()."\n";
          print str_repeat('  ', $level)."right : \n";
-         $this->affiche($noeud->getRight(), $level + 1);
+         $this->display($node->getRight(), $level + 1);
     }
 
-    function affiche_not($noeud, $level) {
-        print str_repeat('  ', $level).get_class($noeud)." ".$noeud->getCode()."\n";
-         $this->affiche($noeud->getExpression(), $level + 1);
+    function display_not($node, $level) {
+        print str_repeat('  ', $level).get_class($node)." ".$node->getCode()."\n";
+         $this->display($node->getExpression(), $level + 1);
     }
 
-    function affiche_literals($noeud, $level) {
-        print str_repeat('  ', $level).get_class($noeud)." ".$noeud->getLiteral()."\n";
+    function display_literals($node, $level) {
+        print str_repeat('  ', $level).get_class($node)." ".$node->getLiteral()."\n";
     }
 
-    function affiche_method($noeud, $level) {
-        print str_repeat('  ', $level).get_class($noeud)." ".$noeud->getObject()."\n";
-        $method = $noeud->getMethod();
+    function display_method($node, $level) {
+        print str_repeat('  ', $level).get_class($node)." ".$node->getObject()."\n";
+        $method = $node->getMethod();
         print str_repeat('  ', $level)."method call : ".$method.": \n";
-        $this->affiche($method, $level + 1);
+        $this->display($method, $level + 1);
     }
 
-    function affiche_method_static($noeud, $level) {
-        print str_repeat('  ', $level).get_class($noeud)." \n";
-        $method = $noeud->getMethod();
-        print str_repeat('  ', $level).$noeud->getClass()."::".$method.": \n";
-        $this->affiche($method, $level + 1);
+    function display_method_static($node, $level) {
+        print str_repeat('  ', $level).get_class($node)." \n";
+        $method = $node->getMethod();
+        print str_repeat('  ', $level).$node->getClass()."::".$method.": \n";
+        $this->display($method, $level + 1);
     }
 
-    function affiche__new($noeud, $level) {
-         print str_repeat('  ', $level).' new '.$noeud->getClasse()." ".$noeud->getArgs()." \n";
+    function display__new($node, $level) {
+         print str_repeat('  ', $level).' new '.$node->getClasse()." ".$node->getArgs()." \n";
     }
     
-    function affiche_noscream($noeud, $level) {
-        print str_repeat('  ', $level).get_class($noeud)." @\n";
-        $this->affiche($noeud->getExpression(), $level + 1);
+    function display_noscream($node, $level) {
+        print str_repeat('  ', $level).get_class($node)." @\n";
+        $this->display($node->getExpression(), $level + 1);
     }
 
-    function affiche_opappend($noeud, $level) {
-        print str_repeat('  ', $level).$noeud->getVariable()."[]\n";
-         $this->affiche($noeud->getVariable(), $level + 1);
+    function display_opappend($node, $level) {
+        print str_repeat('  ', $level).$node->getVariable()."[]\n";
+         $this->display($node->getVariable(), $level + 1);
     }
 
-    function affiche_operation($noeud, $level) {
-         print str_repeat('  ', $level).get_class($noeud)." \n";
+    function display_operation($node, $level) {
+         print str_repeat('  ', $level).get_class($node)." \n";
          print str_repeat('  ', $level)."left : \n";
-         $this->affiche($noeud->getLeft(), $level + 1);
-         print str_repeat('  ', $level)."operation : ".$noeud->getOperation()."\n";
+         $this->display($node->getLeft(), $level + 1);
+         print str_repeat('  ', $level)."operation : ".$node->getOperation()."\n";
          print str_repeat('  ', $level)."right : \n";
-         $this->affiche($noeud->getRight(), $level + 1);
+         $this->display($node->getRight(), $level + 1);
     }
 
-    function affiche_parentheses($noeud, $level) {
-         print str_repeat('  ', $level).get_class($noeud)." \n";
-         print str_repeat('  ', $level)."( \"".$noeud->getContenu()."\" )\n";    
+    function display_parentheses($node, $level) {
+         print str_repeat('  ', $level).get_class($node)." \n";
+         print str_repeat('  ', $level)."( \"".$node->getContenu()."\" )\n";    
     }
 
-    function affiche_preplusplus($noeud, $level) {
-         print str_repeat('  ', $level).$noeud->getOperator().$noeud->getVariable()." \n";
-         $this->affiche($noeud->getVariable(), $level + 1);
+    function display_preplusplus($node, $level) {
+         print str_repeat('  ', $level).$node->getOperator().$node->getVariable()." \n";
+         $this->display($node->getVariable(), $level + 1);
     }
 
-    function affiche_postplusplus($noeud, $level) {
-         print str_repeat('  ', $level).$noeud->getVariable().$noeud->getOperator()." \n";
-         $this->affiche($noeud->getVariable(), $level + 1);
+    function display_postplusplus($node, $level) {
+         print str_repeat('  ', $level).$node->getVariable().$node->getOperator()." \n";
+         $this->display($node->getVariable(), $level + 1);
     }
 
-    function affiche_property($noeud, $level) {
-        print str_repeat('  ', $level).get_class($noeud)." ".$noeud->getObject()."".$noeud->getProperty()."->\n";
+    function display_property($node, $level) {
+        print str_repeat('  ', $level).get_class($node)." ".$node->getObject()."".$node->getProperty()."->\n";
     }
 
-    function affiche_property_static($noeud, $level) {
-        print str_repeat('  ', $level).get_class($noeud)." ".$noeud->getClass()."::".$noeud->getProperty()."->\n";
+    function display_property_static($node, $level) {
+        print str_repeat('  ', $level).get_class($node)." ".$node->getClass()."::".$node->getProperty()."->\n";
     }
 
-    function affiche_rawtext($noeud, $level) {
-         print str_repeat('  ', $level).get_class($noeud)." \n";
-         print str_repeat('  ', $level)."Texte : \"".$noeud->getText()."\"\n";    
+    function display_rawtext($node, $level) {
+         print str_repeat('  ', $level).get_class($node)." \n";
+         print str_repeat('  ', $level)."Texte : \"".$node->getText()."\"\n";    
     }
 
-    function affiche_reference($noeud, $level) {
-        print str_repeat('  ', $level).get_class($noeud)." &\n";
-        $this->affiche($noeud->getExpression(), $level + 1);
+    function display_reference($node, $level) {
+        print str_repeat('  ', $level).get_class($node)." &\n";
+        $this->display($node->getExpression(), $level + 1);
     }
 
-    function affiche__return($noeud, $level) {
-        print str_repeat('  ', $level).get_class($noeud)." \n";
-        print str_repeat('  ', $level)."return : \"".$noeud->getReturn()."\"\n";    
+    function display__return($node, $level) {
+        print str_repeat('  ', $level).get_class($node)." \n";
+        print str_repeat('  ', $level)."return : \"".$node->getReturn()."\"\n";    
     }
 
-    function affiche_sequence($noeud, $level) {
-        print str_repeat('  ', $level).get_class($noeud)." \n";
-        $elements = $noeud->getElements();
+    function display_sequence($node, $level) {
+        print str_repeat('  ', $level).get_class($node)." \n";
+        $elements = $node->getElements();
         foreach($elements as $id => $e) {
             print str_repeat('  ', $level)."$id : \n";
-            $this->affiche($e, $level + 1);
+            $this->display($e, $level + 1);
         }
     }
 
-    function affiche_shell($noeud, $level) {
-        print str_repeat('  ', $level).get_class($noeud)." \n";
-        $elements = $noeud->getExpression();
+    function display_shell($node, $level) {
+        print str_repeat('  ', $level).get_class($node)." \n";
+        $elements = $node->getExpression();
         foreach($elements as $id => $e) {
             print str_repeat('  ', $level)."$id : \n";
-            $this->affiche($e, $level + 1);
+            $this->display($e, $level + 1);
         }
     }
 
-    function affiche_sign($noeud, $level) {
-        print str_repeat('  ', $level).get_class($noeud)." ".$noeud->getsign().$noeud->getExpression()."\n";
-        $this->affiche($noeud->getExpression(), $level + 1);
+    function display_sign($node, $level) {
+        print str_repeat('  ', $level).get_class($node)." ".$node->getsign().$node->getExpression()."\n";
+        $this->display($node->getExpression(), $level + 1);
     }
 
-    function affiche__static($noeud, $level) {
-         print str_repeat('  ', $level).get_class($noeud)." \n";
-         $this->affiche($noeud->getExpression(), $level + 1);
+    function display__static($node, $level) {
+         print str_repeat('  ', $level).get_class($node)." \n";
+         $this->display($node->getExpression(), $level + 1);
     }
 
-    function affiche__switch($noeud, $level) {
-        print str_repeat('  ', $level).get_class($noeud)." \n";
-        $this->affiche($noeud->getCondition(), $level + 1);
-        $this->affiche($noeud->getBlock(), $level + 1);
+    function display__switch($node, $level) {
+        print str_repeat('  ', $level).get_class($node)." \n";
+        $this->display($node->getCondition(), $level + 1);
+        $this->display($node->getBlock(), $level + 1);
     }
 
-    function affiche__array($noeud, $level) {
-        print str_repeat('  ', $level).get_class($noeud)."\n";
-        $this->affiche($noeud->getVariable(), $level + 1);
-        $this->affiche($noeud->getIndex(), $level + 1);
+    function display__array($node, $level) {
+        print str_repeat('  ', $level).get_class($node)."\n";
+        $this->display($node->getVariable(), $level + 1);
+        $this->display($node->getIndex(), $level + 1);
     }
 
-    function affiche__throw($noeud, $level) {
-        print str_repeat('  ', $level).get_class($noeud)." \n";
-        $this->affiche($noeud->getException(), $level + 1);
+    function display__throw($node, $level) {
+        print str_repeat('  ', $level).get_class($node)." \n";
+        $this->display($node->getException(), $level + 1);
     }
 
-    function affiche_token_traite($noeud, $level) {
-        print get_class($noeud);
+    function display_token_traite($node, $level) {
+        print get_class($node);
     
-        print str_repeat('  ', $level).$noeud->getCode()." \n";
+        print str_repeat('  ', $level).$node->getCode()." \n";
     }
 
-    function affiche_typehint($noeud, $level) {
-        print str_repeat('  ', $level).get_class($noeud)."\n";
-        $this->affiche($noeud->getType(), $level + 1);
-        $this->affiche($noeud->getName(), $level + 1);
+    function display_typehint($node, $level) {
+        print str_repeat('  ', $level).get_class($node)."\n";
+        $this->display($node->getType(), $level + 1);
+        $this->display($node->getName(), $level + 1);
     }
 
-    function affiche__try($noeud, $level) {
-        print str_repeat('  ', $level).get_class($noeud)." \n";
-        $this->affiche($noeud->getBlock(), $level + 1);
-        $elements = $noeud->getCatch();
+    function display__try($node, $level) {
+        print str_repeat('  ', $level).get_class($node)." \n";
+        $this->display($node->getBlock(), $level + 1);
+        $elements = $node->getCatch();
         foreach($elements as $id => $e) {
             print str_repeat('  ', $level)."$id : \n";
-            $this->affiche($e, $level + 1);
+            $this->display($e, $level + 1);
         }
     }
 
-    function affiche__var($noeud, $level) {
-        print str_repeat('  ', $level)." ".$noeud->getVisibility().$noeud->getStatic();
+    function display__var($node, $level) {
+        print str_repeat('  ', $level)." ".$node->getVisibility().$node->getStatic();
         
-        $vars = $noeud->getVariable();
-        $inits = $noeud->getInit();
+        $vars = $node->getVariable();
+        $inits = $node->getInit();
         $r = array();
         foreach($vars as $id => $var) {
             if (isset($inits[$id])) {
@@ -487,24 +487,24 @@ class template_tree extends template {
         print join(', ', $r)."\n";
     }
 
-    function affiche_variable($noeud, $level) {
-        print str_repeat('  ', $level).get_class($noeud)." ".$noeud->getName()."\n";
+    function display_variable($node, $level) {
+        print str_repeat('  ', $level).get_class($node)." ".$node->getName()."\n";
     }
 
-    function affiche__while($noeud, $level) {
-        print str_repeat('  ', $level).get_class($noeud)." \n";
-        $this->affiche($noeud->getCondition(), $level + 1);
-        $this->affiche($noeud->getBlock(), $level + 1);
+    function display__while($node, $level) {
+        print str_repeat('  ', $level).get_class($node)." \n";
+        $this->display($node->getCondition(), $level + 1);
+        $this->display($node->getBlock(), $level + 1);
     }
 
-    function affiche__dowhile($noeud, $level) {
-        print str_repeat('  ', $level).get_class($noeud)." \n";
-        $this->affiche($noeud->getBlock(), $level + 1);
-        $this->affiche($noeud->getCondition(), $level + 1);
+    function display__dowhile($node, $level) {
+        print str_repeat('  ', $level).get_class($node)." \n";
+        $this->display($node->getBlock(), $level + 1);
+        $this->display($node->getCondition(), $level + 1);
     }
     
-    function affiche_Token($noeud, $level) {
-        print str_repeat('  ', $level).get_class($noeud)." ".$noeud->getCode()." (default display)\n";
+    function display_Token($node, $level) {
+        print str_repeat('  ', $level).get_class($node)." ".$node->getCode()." (default display)\n";
     }
 
 }
