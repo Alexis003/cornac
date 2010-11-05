@@ -14,11 +14,11 @@ tests/tokenizeur/scripts/sequence.17.test.php
                   logique 
                   left : 
                       parentheses 
-                      ( "decalage functioncall 307 "ord" ( arglist(_array variable $data[preplusplus variable $index297 "++"]) )   287 "<<"  literals 16 " )
+                      ( "bitshift functioncall 307 "ord" ( arglist(_array variable $data[preplusplus variable $index297 "++"]) )   287 "<<"  literals 16 " )
                   operateur :  "|"
                   right : 
                       parentheses 
-                      ( "decalage functioncall 307 "ord" ( arglist(_array variable $data[preplusplus variable $index297 "++"]) )   287 "<<"  literals 8 " )
+                      ( "bitshift functioncall 307 "ord" ( arglist(_array variable $data[preplusplus variable $index297 "++"]) )   287 "<<"  literals 8 " )
               operateur :  "|"
               right : 
                   functioncall ord

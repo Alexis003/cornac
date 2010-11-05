@@ -1,4 +1,4 @@
-tests/tokenizeur/scripts/decalage.10.test.php
+tests/tokenizeur/scripts/bitshift.10.test.php
   codephp <?php
 
   code : 
@@ -7,7 +7,7 @@ tests/tokenizeur/scripts/decalage.10.test.php
           variable $x
        "=" 
       right : 
-          decalage 
+          bitshift 
           left : 
               method_static 
               307 "self"::functioncall 307 "a" ( arglist(variable $i, literals 8) ) : 

@@ -360,7 +360,7 @@ die("cas de l'argument null ou inexistant");
         $this->dot_label($node->dotId, $node->getName() );
     }
 
-   function display_decalage($node, $level) {
+   function display_bitshift($node, $level) {
         $this->dot_standard_one($node, $level, 'getLeft');
         $this->dot_standard_one($node, $level, 'getOperator');
         $this->dot_standard_one($node, $level, 'getRight');

@@ -16,33 +16,22 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
+include_once('Analyseur_Framework_TestCase.php');
 
-class decalage_regex extends analyseur_regex {
-    function __construct() {
-        parent::__construct(array());
-    }
+class bitshift_Test extends Analyseur_Framework_TestCase
+{
+    /* 10 methodes */
+    public function testbitshift1()  { $this->generic_test('bitshift.1'); }
+    public function testbitshift2()  { $this->generic_test('bitshift.2'); }
+    public function testbitshift3()  { $this->generic_test('bitshift.3'); }
+    public function testbitshift4()  { $this->generic_test('bitshift.4'); }
+    public function testbitshift5()  { $this->generic_test('bitshift.5'); }
+    public function testbitshift6()  { $this->generic_test('bitshift.6'); }
+    public function testbitshift7()  { $this->generic_test('bitshift.7'); }
+    public function testbitshift8()  { $this->generic_test('bitshift.8'); }
+    public function testbitshift9()  { $this->generic_test('bitshift.9'); }
+    public function testbitshift10()  { $this->generic_test('bitshift.10'); }
 
-    function getTokens() {
-        return array(T_SR, T_SL);
-    }
-    
-    function check($t) {
-        if (!$t->hasPrev()) { return false; }
-        if (!$t->hasNext(1)) { return false; }
-
-        if (($t->hasPrev(1) && $t->getPrev(1)->checkNotCode(array('->','::'))) &&
-            $t->getPrev()->checkNotClass(array('Token','arglist'))  &&
-            $t->getNext()->checkNotClass('Token')  &&
-            $t->getNext(1)->checkNotCode(array('[','->','{'))
-            ) {
-
-            $this->args = array(-1, 0, 1);
-            $this->remove = array(-1, 1);
-
-            mon_log(get_class($t)." => ".__CLASS__);
-            return true; 
-        } 
-        return false;
-    }
 }
+
 ?>

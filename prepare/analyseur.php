@@ -79,7 +79,7 @@ class analyseur {
                                   '_static',
                                   '_try',
                                   '_catch',
-                                  'decalage',
+                                  'bitshift',
                                   '_throw',
                                   '_clone',
                                   '_declare',

@@ -1,4 +1,4 @@
-tests/tokenizeur/scripts/decalage.8.test.php
+tests/tokenizeur/scripts/bitshift.8.test.php
   codephp <?php
 
   code : 
@@ -13,21 +13,21 @@ tests/tokenizeur/scripts/decalage.8.test.php
               0 : 
                   literals b
               1 : 
-                  decalage 
+                  bitshift 
                   left : 
                       variable $c
                   operation : 286 ">>"
                   right : 
                       literals 24
               2 : 
-                  decalage 
+                  bitshift 
                   left : 
                       variable $d
                   operation : 286 ">>"
                   right : 
                       literals 16
               3 : 
-                  decalage 
+                  bitshift 
                   left : 
                       variable $e
                   operation : 286 ">>"

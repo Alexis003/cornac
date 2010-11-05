@@ -348,7 +348,7 @@ class template_cache extends template {
         return $this->savenode($node);        
     }
 
-   function display_decalage($node, $level) {
+   function display_bitshift($node, $level) {
         $left = $node->getLeft();
         $this->display($left, $level + 1);
         $operator = $node->getOperator();

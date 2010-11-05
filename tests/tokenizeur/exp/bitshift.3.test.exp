@@ -1,10 +1,10 @@
-tests/tokenizeur/scripts/decalage.4.test.php
+tests/tokenizeur/scripts/bitshift.3.test.php
   codephp <?php
 
   code : 
-      decalage 
+      bitshift 
       left : 
           literals 1
-      operation : 286 ">>"
+      operation : 287 "<<"
       right : 
           literals 3

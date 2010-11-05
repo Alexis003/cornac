@@ -7,7 +7,7 @@ tests/tokenizeur/scripts/sign.24.test.php
           variable $a
       269 "^=" 
       right : 
-          decalage 
+          bitshift 
           left : 
               variable $b
           operation : 287 "<<"

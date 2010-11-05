@@ -17,46 +17,32 @@
    +----------------------------------------------------------------------+
  */
 
-class decalage extends instruction {
-    protected $left = null;
-    protected $operator = null;
-    protected $right = null;
-    
-    function __construct($expression = null) {
+class bitshift_regex extends analyseur_regex {
+    function __construct() {
         parent::__construct(array());
-
-        $this->left = $expression[0];
-        $this->operator = $this->makeToken_traite($expression[1]);
-        $this->right = $expression[2];
     }
 
-    function __toString() {
-        return __CLASS__." ".$this->left." "." ".$this->operator." "." ".$this->right." ";
+    function getTokens() {
+        return array(T_SR, T_SL);
     }
+    
+    function check($t) {
+        if (!$t->hasPrev()) { return false; }
+        if (!$t->hasNext(1)) { return false; }
 
-    function getRight() {
-        return $this->right;
+        if (($t->hasPrev(1) && $t->getPrev(1)->checkNotCode(array('->','::'))) &&
+            $t->getPrev()->checkNotClass(array('Token','arglist'))  &&
+            $t->getNext()->checkNotClass('Token')  &&
+            $t->getNext(1)->checkNotCode(array('[','->','{'))
+            ) {
+
+            $this->args = array(-1, 0, 1);
+            $this->remove = array(-1, 1);
+
+            mon_log(get_class($t)." => ".__CLASS__);
+            return true; 
+        } 
+        return false;
     }
-
-    function getOperator() {
-        return $this->operator;
-    }
-
-    function getLeft() {
-        return $this->left;
-    }
-
-    function neutralise() {
-        $this->left->detach();
-        $this->operator->detach();
-        $this->right->detach();
-    }
-
-    function getRegex(){
-        return array('decalage_regex',
-                    );
-    }
-
 }
-
 ?>

@@ -1,4 +1,4 @@
-tests/tokenizeur/scripts/decalage.6.test.php
+tests/tokenizeur/scripts/bitshift.7.test.php
   codephp <?php
 
   code : 
@@ -8,4 +8,4 @@ tests/tokenizeur/scripts/decalage.6.test.php
        "=" 
       right : 
           parentheses 
-          ( "decalage property variable $y->literals z  286 ">>"  literals 1 " )
+          ( "bitshift _array variable $y[literals z]  286 ">>"  literals 1 " )

@@ -422,7 +422,7 @@ class template_db extends template {
         return $this->savenode($node, $level);
     }
 
-   function display_decalage($node, $level) {
+   function display_bitshift($node, $level) {
         $node->myId = $this->getNextId();
         $node->myleft = $this->getIntervalleId();
         $node->setCode('');

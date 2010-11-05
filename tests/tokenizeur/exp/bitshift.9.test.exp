@@ -1,4 +1,4 @@
-tests/tokenizeur/scripts/decalage.9.test.php
+tests/tokenizeur/scripts/bitshift.9.test.php
   codephp <?php
 
   code : 
@@ -11,35 +11,35 @@ tests/tokenizeur/scripts/decalage.9.test.php
           function call : pack: 
               arglist 
               0 : 
-                  decalage 
+                  bitshift 
                   left : 
                       variable $c
                   operation : 286 ">>"
                   right : 
                       literals 36
               1 : 
-                  decalage 
+                  bitshift 
                   left : 
                       variable $c
                   operation : 286 ">>"
                   right : 
                       literals 24
               2 : 
-                  decalage 
+                  bitshift 
                   left : 
                       variable $d
                   operation : 286 ">>"
                   right : 
                       literals 16
               3 : 
-                  decalage 
+                  bitshift 
                   left : 
                       variable $e
                   operation : 286 ">>"
                   right : 
                       literals 8
               4 : 
-                  decalage 
+                  bitshift 
                   left : 
                       variable $c
                   operation : 286 ">>"

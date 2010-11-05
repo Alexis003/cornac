@@ -16,21 +16,46 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
-include_once('Analyseur_Framework_TestCase.php');
 
-class Decalage_Test extends Analyseur_Framework_TestCase
-{
-    /* 10 methodes */
-    public function testDecalage1()  { $this->generic_test('decalage.1'); }
-    public function testDecalage2()  { $this->generic_test('decalage.2'); }
-    public function testDecalage3()  { $this->generic_test('decalage.3'); }
-    public function testDecalage4()  { $this->generic_test('decalage.4'); }
-    public function testDecalage5()  { $this->generic_test('decalage.5'); }
-    public function testDecalage6()  { $this->generic_test('decalage.6'); }
-    public function testDecalage7()  { $this->generic_test('decalage.7'); }
-    public function testDecalage8()  { $this->generic_test('decalage.8'); }
-    public function testDecalage9()  { $this->generic_test('decalage.9'); }
-    public function testDecalage10()  { $this->generic_test('decalage.10'); }
+class bitshift extends instruction {
+    protected $left = null;
+    protected $operator = null;
+    protected $right = null;
+    
+    function __construct($expression = null) {
+        parent::__construct(array());
+
+        $this->left = $expression[0];
+        $this->operator = $this->makeToken_traite($expression[1]);
+        $this->right = $expression[2];
+    }
+
+    function __toString() {
+        return __CLASS__." ".$this->left." "." ".$this->operator." "." ".$this->right." ";
+    }
+
+    function getRight() {
+        return $this->right;
+    }
+
+    function getOperator() {
+        return $this->operator;
+    }
+
+    function getLeft() {
+        return $this->left;
+    }
+
+    function neutralise() {
+        $this->left->detach();
+        $this->operator->detach();
+        $this->right->detach();
+    }
+
+    function getRegex(){
+        return array('bitshift_regex',
+                    );
+    }
 
 }
 
