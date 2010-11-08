@@ -73,7 +73,7 @@ class _function extends instruction {
                 $this->block = new block();
             } else {
             // @note this is an error. We should log this
-                print $e." (".get_class($e).") Unknown\n";die();
+                $this->stopOnError( $e." (".get_class($e).") Unknown\n");
             }
         }
     }
