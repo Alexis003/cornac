@@ -1014,8 +1014,10 @@ class template_db extends template {
         $node->myId = $this->getNextId();
         $node->myleft = $this->getIntervalleId();
 
-        $this->display($node->getBlock(), $level + 1);
-        $this->display($node->getCondition(), $level + 1);
+        $tags = array();
+        $tags['condition'][] = $this->display($node->getCondition(), $level + 1);
+        $tags['block'][] = $this->display($node->getBlock(), $level + 1);
+        $this->tags = $tags;
 
         $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);
