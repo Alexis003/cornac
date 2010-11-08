@@ -18,8 +18,8 @@
  */
 
 class statiques extends modules {
-	protected	$title = 'Statiques';
-	protected	$description = 'Liste des statiques (methodes, classes et propriétés)';
+	protected	$title = 'Statics';
+	protected	$description = 'List of static structures (methods, classes et properties)';
 
     function __construct($mid) {
         parent::__construct($mid);

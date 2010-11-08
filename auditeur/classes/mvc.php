@@ -66,11 +66,11 @@ SQL;
 // @doc the rest is undecided
 	    $query = <<<SQL
 SELECT NULL, mvc.fichier, 'undecided', 0, '{$this->name}', 0
-    FROM mvc
-    LEFT JOIN <rapport> TR
-        ON mvc.fichier = TR.fichier AND
-           module='mvc'  
-    WHERE TR.fichier IS NULL
+FROM mvc
+LEFT JOIN <rapport> TR
+    ON mvc.fichier = TR.fichier AND
+       module='mvc'  
+WHERE TR.fichier IS NULL
 SQL;
         $this->exec_query_insert('rapport', $query);
 

@@ -18,8 +18,8 @@
  */
 
 class unused_args extends modules {
-	protected	$title = 'Arguments inutilisés';
-	protected	$description = 'Liste des arguments inutilisés dans une fonction/method';
+	protected	$title = 'Unused arguments';
+	protected	$description = 'Function/method that request arguments, but never use them.';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -69,9 +69,9 @@ WHERE T1.id = $args AND T2.code NOT IN (
            T2.droite BETWEEN T1.droite AND T1.gauche AND
            T2.type = 'variable'
      WHERE T1.id = $block 
-     );
+     )
 SQL;
-    
+
            $res = $this->exec_query($query);
            if ($res->rowCount() > 0) {
               $row = $res->fetch(PDO::FETCH_ASSOC);

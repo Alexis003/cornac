@@ -36,11 +36,11 @@ class literals_reused extends modules {
         $query = <<<SQL
 CREATE TEMPORARY TABLE {$this->name}_TMP 
 SELECT TRIM(code) AS code
-    FROM <tokens> TR1
-    WHERE type = 'literals' AND 
-          TRIM(code) != ''
-    GROUP BY BINARY TRIM(code) 
-    HAVING COUNT(*) > 1
+FROM <tokens> TR1
+WHERE type = 'literals' AND 
+      TRIM(code) != ''
+GROUP BY BINARY TRIM(code) 
+HAVING COUNT(*) > 1
 SQL;
         $this->exec_query($query);
 

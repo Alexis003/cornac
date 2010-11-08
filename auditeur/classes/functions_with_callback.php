@@ -18,8 +18,8 @@
  */
 
 class functions_with_callback extends modules {
-	protected	$title = 'Fonctions avec callback';
-	protected	$description = 'Liste des fonctions PHP utilisant une fontion de callback';
+	protected	$title = 'Callback functions';
+	protected	$description = 'List of PHP functions, using a callback, and used in the code.';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -70,9 +70,9 @@ class functions_with_callback extends modules {
 // @todo of course, update this useless query. :)
 	    $query = <<<SQL
 SELECT NULL, TR1.fichier, TR1.element, TR1.id, '{$this->name}', 0
-    FROM <rapport> TR1
-    WHERE TR1.module="php_functions" AND 
-          TR1.element IN ($functions)
+FROM <rapport> TR1
+WHERE TR1.module="php_functions" AND 
+      TR1.element IN ($functions)
 SQL;
         $this->exec_query_insert('rapport', $query);
         

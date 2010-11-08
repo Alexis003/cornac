@@ -18,8 +18,8 @@
  */
 
 class tableaux extends modules {
-	protected	$title = 'Tableaux';
-	protected	$description = 'Liste des tableaux (array) utilisés';
+	protected	$title = 'Arrays';
+	protected	$description = 'Array usage.';
 
 	function __construct($mid) {
         parent::__construct($mid);

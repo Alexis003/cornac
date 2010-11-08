@@ -47,7 +47,7 @@ ON T1.fichier = T3.fichier AND
 WHERE T1.type = 'method' AND
       T3.type IS NULL 
 GROUP BY T1.id
-HAVING nb > 1;
+HAVING nb > 1
 SQL;
         $res = $this->exec_query($query);
         
@@ -55,20 +55,20 @@ SQL;
         while($row = $res->fetch(PDO::FETCH_ASSOC)) {
     	    $query = <<<SQL
 SELECT NULL, T1.fichier, CONCAT(T1.code, '->', GROUP_CONCAT(T4.code ORDER BY T4.droite  SEPARATOR '->')), T1.id, '{$this->name}', 0
-    FROM <tokens> T1
-    JOIN <tokens> T2 
-        ON T2.fichier = T1.fichier AND
-           T2.droite BETWEEN T1.droite + 1 AND T1.droite + {$row['nb']}
-    JOIN <tokens_tags> TT
-        ON TT.token_id = T2.id AND
-           TT.type='method'
-    JOIN <tokens> T3
-        ON T3.fichier = T2.fichier AND
-           T3.id = TT.token_sub_id
-    JOIN <tokens> T4
-        ON T4.fichier = T1.fichier AND
-           T4.droite = T3.droite + 1
-    WHERE T1.id = {$row['id']}
+FROM <tokens> T1
+JOIN <tokens> T2 
+    ON T2.fichier = T1.fichier AND
+       T2.droite BETWEEN T1.droite + 1 AND T1.droite + {$row['nb']}
+JOIN <tokens_tags> TT
+    ON TT.token_id = T2.id AND
+       TT.type='method'
+JOIN <tokens> T3
+    ON T3.fichier = T2.fichier AND
+       T3.id = TT.token_sub_id
+JOIN <tokens> T4
+    ON T4.fichier = T1.fichier AND
+       T4.droite = T3.droite + 1
+WHERE T1.id = {$row['id']}
 SQL;
             $this->exec_query_insert('rapport', $query);
         }

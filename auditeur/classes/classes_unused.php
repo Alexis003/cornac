@@ -18,8 +18,8 @@
  */
 
 class classes_unused extends modules {
-	protected	$title = 'Classes inutilisées';
-	protected	$description = 'Liste des classes qui ne sont pas utilisées';
+	protected	$title = 'Unused classes';
+	protected	$description = 'Unused classes';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -57,7 +57,7 @@ SQL;
 
         $query = <<<SQL
 DELETE FROM <rapport> 
-    WHERE module='{$this->name}' AND element IN ('$in')
+WHERE module='{$this->name}' AND element IN ('$in')
 SQL;
         $res = $this->exec_query($query);
 
@@ -66,9 +66,9 @@ SQL;
 SELECT TRD2.a
 FROM <rapport>  TR1
 JOIN <rapport_dot> TRD1
-  ON TRD1.b = TR1.element
+    ON TRD1.b = TR1.element
 JOIN <rapport_dot> TRD2
-  ON TRD2.b = TRD1.a
+    ON TRD2.b = TRD1.a
 WHERE TR1.module = '_new' AND 
       TRD1.module = 'classes_hierarchie' AND
       TRD2.module = 'classes_hierarchie'
@@ -81,7 +81,7 @@ SQL;
 
         $query = <<<SQL
 DELETE FROM <rapport> 
-    WHERE module='{$this->name}' AND element IN ('$in')
+WHERE module='{$this->name}' AND element IN ('$in')
 SQL;
         $res = $this->exec_query($query);
 
@@ -90,11 +90,11 @@ SQL;
 SELECT TRD3.a
 FROM <rapport>  TR1
 JOIN <rapport_dot> TRD1
-  ON TRD1.b = TR1.element
+    ON TRD1.b = TR1.element
 JOIN <rapport_dot> TRD2
-  ON TRD2.b = TRD1.a
+    ON TRD2.b = TRD1.a
 JOIN <rapport_dot> TRD3
-  ON TRD3.b = TRD2.a
+    ON TRD3.b = TRD2.a
 WHERE TR1.module = '_new' AND 
       TRD1.module = 'classes_hierarchie' AND
       TRD2.module = 'classes_hierarchie' AND 
@@ -108,7 +108,8 @@ SQL;
 
         $query = <<<SQL
 DELETE FROM <rapport> 
-    WHERE module='{$this->name}' AND element IN ('$in')
+WHERE module='{$this->name}' AND
+      element IN ('$in')
 SQL;
         $res = $this->exec_query($query);
 
@@ -117,13 +118,13 @@ SQL;
 SELECT TRD4.a
 FROM <rapport>  TR1
 JOIN <rapport_dot> TRD1
-  ON TRD1.b = TR1.element
+    ON TRD1.b = TR1.element
 JOIN <rapport_dot> TRD2
-  ON TRD2.b = TRD1.a
+    ON TRD2.b = TRD1.a
 JOIN <rapport_dot> TRD3
-  ON TRD3.b = TRD2.a
+    ON TRD3.b = TRD2.a
 JOIN <rapport_dot> TRD4
-  ON TRD4.b = TRD3.a
+    ON TRD4.b = TRD3.a
 WHERE TR1.module = '_new' AND 
       TRD1.module = 'classes_hierarchie' AND
       TRD2.module = 'classes_hierarchie' AND 
@@ -137,7 +138,8 @@ SQL;
 
         $query = <<<SQL
 DELETE FROM <rapport> 
-    WHERE module='{$this->name}' AND element IN ('$in')
+WHERE module='{$this->name}' AND 
+      element IN ('$in')
 SQL;
         $res = $this->exec_query($query);
 

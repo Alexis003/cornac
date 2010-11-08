@@ -18,8 +18,8 @@
  */
 
 class variables_unaffected extends modules {
-	protected	$title = 'Variables jamais initialisées';
-	protected	$description = 'Liste des variables utilisées sans initialisation';
+	protected	$title = 'Never initialised variables';
+	protected	$description = 'List of variables being used without initialisation';
 
     function __construct($mid) {
         parent::__construct($mid);
@@ -65,9 +65,9 @@ SQL;
 
         $query = <<<SQL
 DELETE FROM <rapport> 
-    WHERE element IN ('\$GLOBALS','\$_SESSION','\$_REQUEST',
-                          '\$_GET','\$_POST','\$this','\$_FILES') AND
-          module='{$this->name}'
+WHERE element IN ('\$GLOBALS','\$_SESSION','\$_REQUEST',
+                      '\$_GET','\$_POST','\$this','\$_FILES') AND
+      module='{$this->name}'
 SQL;
     	$this->exec_query($query);
 

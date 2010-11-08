@@ -18,8 +18,8 @@
  */
 
 class sql_queries extends noms {
-	protected	$title = 'Requêtes SQL';
-	protected	$description = 'Liste des requêtes SQL dans le texte';
+	protected	$title = 'SQL queries';
+	protected	$description = 'SQL queries spotted in the literals';
 
 	function __construct($mid) {
         parent::__construct($mid);

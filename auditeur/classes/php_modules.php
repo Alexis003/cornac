@@ -18,8 +18,8 @@
  */
 
 class php_modules extends modules {
-	protected	$title = 'Extensions PHP nécessaires';
-	protected	$description = 'Liste des modules PHP utilisés';
+	protected	$title = 'Needed PHP extension';
+	protected	$description = 'List of needed PHP extensions';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -37,15 +37,15 @@ class php_modules extends modules {
 	    // @section : searching via functions usage
 	    $query = <<<SQL
 SELECT NULL, fichier, element, token_id, '{$this->name}' , 0
-    FROM <rapport> 
-    WHERE module = 'php_functions'
+FROM <rapport> 
+WHERE module = 'php_functions'
 SQL;
 	    $res = $this->exec_query_insert('rapport',$query);
 
 	    $query = <<<SQL
 SELECT DISTINCT element 
-    FROM <rapport> 
-    WHERE module = '{$this->name}'
+FROM <rapport> 
+WHERE module = '{$this->name}'
 SQL;
 	    $res = $this->exec_query($query);
 
@@ -70,8 +70,8 @@ SQL;
                 $query = <<<SQL
 UPDATE <rapport> 
     SET element = '$ext' 
-    WHERE module = '{$this->name}' AND 
-          element in ( '$in')
+WHERE module = '{$this->name}' AND 
+      element in ( '$in')
     
 SQL;
                 $res = $this->exec_query($query);
@@ -87,7 +87,7 @@ SQL;
             $query = <<<SQL
 UPDATE <rapport> 
     SET element = 'standard' 
-    WHERE module = '{$this->name}' AND 
+WHERE module = '{$this->name}' AND 
     element in ( '$in')
 SQL;
             $res = $this->exec_query($query);
@@ -101,16 +101,16 @@ SQL;
 	    // @section : searching via classes usage
 	    $query = <<<SQL
 INSERT INTO <rapport>
-    SELECT NULL, fichier, element, token_id, '{$this->name}_tmp', 0
-    FROM <rapport> 
-    WHERE module = 'php_classes'
+SELECT NULL, fichier, element, token_id, '{$this->name}_tmp', 0
+FROM <rapport> 
+WHERE module = 'php_classes'
 SQL;
 	    $res = $this->exec_query($query);
 
 	    $query = <<<SQL
 SELECT DISTINCT element 
     FROM <rapport> 
-    WHERE module = '{$this->name}_tmp'
+WHERE module = '{$this->name}_tmp'
 SQL;
 	    $res = $this->exec_query($query);
 
@@ -138,8 +138,8 @@ SQL;
         	    $query = <<<SQL
 UPDATE <rapport> SET element = '$ext',
                      module='{$this->name}'
-    WHERE module = '{$this->name}_tmp' AND 
-          element in ( '$in')
+WHERE module = '{$this->name}_tmp' AND 
+      element in ( '$in')
 SQL;
         	    $res = $this->exec_query($query);
             }

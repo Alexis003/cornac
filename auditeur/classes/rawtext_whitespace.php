@@ -34,9 +34,9 @@ class rawtext_whitespace extends modules {
 
 	    $query = <<<SQL
 SELECT NULL, T1.fichier, CONCAT('line ',T1.line), T1.id, '{$this->name}', 0
-    FROM <tokens> T1
-    WHERE T1.type='rawtext' AND 
-    TRIM(code) = ''
+FROM <tokens> T1
+WHERE T1.type='rawtext' AND 
+TRIM(code) = ''
 SQL;
         $this->exec_query_insert('rapport', $query);
 

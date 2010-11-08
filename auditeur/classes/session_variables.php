@@ -18,8 +18,8 @@
  */
 
 class session_variables extends modules {
-	protected	$title = 'Variables de session';
-	protected	$description = 'Liste les variables en session, manipulées dans $_SESSION';
+	protected	$title = 'Session variables';
+	protected	$description = 'Variables sessions, as seen in $_SESSION';
 
 	function __construct($mid) {
         parent::__construct($mid);

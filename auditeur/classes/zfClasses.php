@@ -17,8 +17,8 @@
    +----------------------------------------------------------------------+
  */
 
-class zfClasses extends modules {
-	protected	$title = 'Classes du Zend Framework';
+class zfClasses extends modules { 
+	protected	$title = 'Zend Framework classes';
 	protected	$description = 'Repère les classes issues du Zend Framework';
 
 	function __construct($mid) {

@@ -17,8 +17,8 @@
    +----------------------------------------------------------------------+
  */
 class php_classes_name_conflict extends modules {
-	protected	$title = 'Constant name conflicts';
-	protected	$description = 'Those constants may have conflicting name with PHP\'s constant, or some PHP extension\'s constant.';
+	protected	$title = 'Classe name conflicts';
+	protected	$description = 'Those classes may have conflicting name with PHP\'s constant, or some PHP extension\'s constant.';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -36,9 +36,9 @@ class php_classes_name_conflict extends modules {
 
 	    $query = <<<SQL
 SELECT NULL, T1.fichier, T1.element, T1.id, '{$this->name}', 0
-    FROM <rapport> T1
-    WHERE   T1.module = 'classes' AND
-            T1.element IN ($in)
+FROM <rapport> T1
+WHERE   T1.module = 'classes' AND
+        T1.element IN ($in)
 SQL;
         $this->exec_query_insert('rapport', $query);
         

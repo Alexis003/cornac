@@ -18,8 +18,8 @@
  */
 
 class php_keywords extends modules {
-	protected	$title = 'Mots clés PHP';
-	protected	$description = 'Ceci est l\'analyseur php_keywords par défaut. ';
+	protected	$title = 'PHP keyword';
+	protected	$description = 'Usage of PHP keywords in the application. ';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -39,29 +39,29 @@ class php_keywords extends modules {
 // @note used as literals
 	    $query = <<<SQL
 SELECT NULL, T1.fichier, T1.code, T1.id, '{$this->name}', 0
-    FROM <tokens> T1
-    WHERE T1.code IN ($in) AND
-          T1.type = 'literals'
+FROM <tokens> T1
+WHERE T1.code IN ($in) AND
+      T1.type = 'literals'
 SQL;
         $this->exec_query_insert('rapport', $query);
 
 // @note search in variables/properties
 	    $query = <<<SQL
 SELECT NULL, T1.fichier, T1.code, T1.id, '{$this->name}', 0
-    FROM <tokens> T1
-    WHERE RIGHT(T1.code, LENGTH(T1.code) - 1) IN ($in) AND 
-          T1.type = 'variable'
+FROM <tokens> T1
+WHERE RIGHT(T1.code, LENGTH(T1.code) - 1) IN ($in) AND 
+      T1.type = 'variable'
 SQL;
         $this->exec_query_insert('rapport', $query);
 
 // @note used as function name
 	    $query = <<<SQL
 SELECT NULL, T1.fichier, T1.code, T1.id, '{$this->name}', 0
-    FROM <tokens_tags> TT
-    JOIN <tokens> T1
-        ON TT.token_sub_id = T1.id
-    WHERE T1.code IN ($in) AND
-          TT.type IN ('name')
+FROM <tokens_tags> TT
+JOIN <tokens> T1
+    ON TT.token_sub_id = T1.id
+WHERE T1.code IN ($in) AND
+      TT.type IN ('name')
 SQL;
         $this->exec_query_insert('rapport', $query);
 

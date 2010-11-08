@@ -18,8 +18,8 @@
  */
 
 class inclusions2 extends modules {
-	protected	$title = 'Réseau d\'inclusions';
-	protected	$description = 'Liste des dépendances d\'inclusions entre les fichiers';
+	protected	$title = 'Inclusion network';
+	protected	$description = 'Relations between files, based on inclusions';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -34,25 +34,25 @@ class inclusions2 extends modules {
 INSERT INTO <rapport_dot> 
 SELECT distinct T1.fichier, T3.code,T1.fichier, '{$this->name}'
 FROM <tokens> T1
-    JOIN <tokens> T2
-        ON T2.droite  = T1.droite + 1 AND
-           T2.fichier = T1.fichier
-    JOIN <tokens_cache> T3
-        ON T3.id = T2.id
-          AND T3.fichier = T2.fichier
-	    WHERE T1.type='inclusion'
+JOIN <tokens> T2
+    ON T2.droite  = T1.droite + 1 AND
+       T2.fichier = T1.fichier
+JOIN <tokens_cache> T3
+    ON T3.id = T2.id
+      AND T3.fichier = T2.fichier
+WHERE T1.type='inclusion'
 SQL;
         $res = $this->exec_query($query);
         
        $query = <<<SQL
 INSERT INTO <rapport_dot> 
 SELECT distinct T1.fichier, T2.code, T1.fichier, '{$this->name}'
-    FROM <tokens> T1
-    JOIN <tokens> T2
-        ON T2.droite  = T1.droite + 1 AND
-           T2.fichier = T1.fichier
-	    WHERE T1.type='inclusion' AND
-	          T2.type in ('literals','variable');
+FROM <tokens> T1
+JOIN <tokens> T2
+    ON T2.droite  = T1.droite + 1 AND
+       T2.fichier = T1.fichier
+WHERE T1.type='inclusion' AND
+      T2.type in ('literals','variable')
 SQL;
         $res = $this->exec_query($query);
 
@@ -60,19 +60,19 @@ SQL;
         
        $query = <<<SQL
 INSERT INTO <rapport_dot> 
-  SELECT T1.fichier, REPLACE($concat,'"', ''), T1.fichier, '{$this->name}' 
-  FROM <tokens> T1
-  JOIN <tokens_tags> TT 
+SELECT T1.fichier, REPLACE($concat,'"', ''), T1.fichier, '{$this->name}' 
+FROM <tokens> T1
+JOIN <tokens_tags> TT 
     ON TT.token_id = T1.id
-  JOIN <tokens> T2
+JOIN <tokens> T2
     ON TT.token_sub_id = T2.id AND T1.fichier = T2.fichier and TT.type='function' and T2.code='loadLibrary'
-  JOIN <tokens_tags> TT2 
+JOIN <tokens_tags> TT2 
     ON TT2.token_id = T1.id
-  JOIN <tokens> T3
+JOIN <tokens> T3
     ON TT2.token_sub_id = T3.id AND T1.fichier = T3.fichier and TT2.type='args'
-  JOIN <tokens> T4
+JOIN <tokens> T4
     ON T1.fichier = T4.fichier and T4.type='literals' AND T4.droite between T3.droite and T3.gauche
-  WHERE T1.type='functioncall';
+WHERE T1.type='functioncall'
 SQL;
         $res = $this->exec_query($query);
 

@@ -18,8 +18,8 @@
  */
 
 class tableaux_gpc_seuls extends modules {
-	protected	$title = 'Tableaux GPC';
-	protected	$description = 'Liste des tableaux spéciaux de PHP';
+	protected	$title = 'GPC arrays';
+	protected	$description = 'Usage of PHP super global array (GPC, GLOBALS, SESSION, FILES, etc)';
 
 	function __construct($mid) {
         parent::__construct($mid);

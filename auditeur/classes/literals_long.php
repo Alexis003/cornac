@@ -34,9 +34,9 @@ class literals_long extends modules {
 
         $query = <<<SQL
 SELECT NULL, TR1.fichier, TRIM(code), TR1.id, '{$this->name}', 0
-    FROM <tokens> TR1
-    WHERE type = 'literals' AND
-          LENGTH(code) > 1024
+FROM <tokens> TR1
+WHERE type = 'literals' AND
+      LENGTH(code) > 1024
 SQL;
         $this->exec_query_insert('rapport', $query);
 

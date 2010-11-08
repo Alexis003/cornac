@@ -17,8 +17,8 @@
    +----------------------------------------------------------------------+
  */
 class php_constant_name_conflict extends modules {
-	protected	$title = 'Conflits de noms avec des constantes PHP';
-	protected	$description = 'Identifie des constantes dont le nom est en conflit avec celles courantes de PHP';
+	protected	$title = 'PHP constants name conflicts';
+	protected	$description = 'Constante, defined by the application, that conflict PHP\'s constant';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -37,9 +37,9 @@ class php_constant_name_conflict extends modules {
 
 	    $query = <<<SQL
 SELECT NULL, T1.fichier, T1.element, T1.id, '{$this->name}', 0
-    FROM <rapport> T1
-    WHERE   T1.module = 'defconstantes' AND
-            T1.element IN ($in)
+FROM <rapport> T1
+WHERE   T1.module = 'defconstantes' AND
+        T1.element IN ($in)
 SQL;
         $this->exec_query_insert('rapport', $query);
         

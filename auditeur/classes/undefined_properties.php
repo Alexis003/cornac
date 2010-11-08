@@ -35,10 +35,10 @@ SQL;
 
         $query = <<<SQL
 CREATE TEMPORARY TABLE {$this->name}_tmp
-    SELECT DISTINCT right(code, length(code) - 1) as code, class 
-    FROM <tokens> 
-    WHERE scope='global'  AND 
-          type ='variable'
+SELECT DISTINCT right(code, length(code) - 1) as code, class 
+FROM <tokens> 
+WHERE scope='global'  AND 
+      type ='variable'
 SQL;
         $this->exec_query($query);
 

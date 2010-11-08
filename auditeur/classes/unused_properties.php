@@ -18,8 +18,8 @@
  */
 
 class unused_properties extends modules {
-	protected	$title = 'Propriétés non utilisées';
-	protected	$description = 'Liste des propriétés définies, mais pas utilisées. ';
+	protected	$title = 'Unused properties';
+	protected	$description = 'List unused properties : they are defined in a class, but never used in the code.';
 
     function __construct($mid) {
         parent::__construct($mid);

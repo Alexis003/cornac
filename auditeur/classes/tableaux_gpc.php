@@ -18,8 +18,8 @@
  */
 
 class tableaux_gpc extends modules {
-	protected	$title = 'Tableaux et leur index';
-	protected	$description = 'Liste des tableaux et de leur usage, avec leurs index';
+	protected	$title = 'Super global array, and their index';
+	protected	$description = 'PHP super global usage, and their corresponding index.';
 
 	function __construct($mid) {
         parent::__construct($mid);

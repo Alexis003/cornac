@@ -18,8 +18,8 @@
  */
 
 class variables_relations extends modules {
-	protected	$title = 'Liens entre variables';
-	protected	$description = 'Lien entre les variables';
+	protected	$title = 'Link between variables';
+	protected	$description = 'Linked variables : when two variables are in the same instructures ($x = $a + $b), then, they are in relation.';
 
 	function __construct($mid) {
         parent::__construct($mid);

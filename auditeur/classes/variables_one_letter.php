@@ -18,8 +18,8 @@
  */
 
 class variables_one_letter extends modules {
-	protected	$title = 'Variables d\'une seule lettre';
-	protected	$description = 'Liste des variables dont le nom est une seule lettre';
+	protected	$title = 'One lettre variables';
+	protected	$description = 'Variable whose name consists in one letter.';
 
 	function __construct($mid) {
         parent::__construct($mid);

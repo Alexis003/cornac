@@ -18,8 +18,8 @@
  */
 
 class gpc_variables extends modules {
-	protected	$title = 'Variables Web';
-	protected	$description = 'Liste les variables provenant du web, manipulées dans $_GET, $_FILES, $_POST, $_COOKIE';
+	protected	$title = 'Web variables';
+	protected	$description = 'Usage of web variables : those variables, set by PHP, and coming from external sources.';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -30,17 +30,17 @@ class gpc_variables extends modules {
 
         $query = <<<SQL
 SELECT NULL, T1.fichier, T3.code, T1.id, '{$this->name}', 0
-    FROM <tokens> T1
-    JOIN <tokens> T2
-        ON T2.droite = T1.droite + 1 AND
-           T1.fichier = T2.fichier AND
-           T2.type = 'variable' AND
-           T2.code IN ('\$_GET','\$_REQUEST','\$_POST','\$_COOKIE','\$_FILES')
-    JOIN <tokens> T3
-        ON T3.droite = T2.gauche + 1 AND
-           T3.gauche < T1.gauche     AND
-           T1.fichier = T3.fichier
-    WHERE T1.type='tableau'
+FROM <tokens> T1
+JOIN <tokens> T2
+    ON T2.droite = T1.droite + 1 AND
+       T1.fichier = T2.fichier AND
+       T2.type = 'variable' AND
+       T2.code IN ('\$_GET','\$_REQUEST','\$_POST','\$_COOKIE','\$_FILES')
+JOIN <tokens> T3
+    ON T3.droite = T2.gauche + 1 AND
+       T3.gauche < T1.gauche     AND
+       T1.fichier = T3.fichier
+WHERE T1.type='tableau'
 SQL;
         $res = $this->exec_query_insert('rapport', $query);
 	}

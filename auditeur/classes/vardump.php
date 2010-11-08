@@ -18,8 +18,8 @@
  */
 
 class vardump extends functioncalls {
-	protected	$title = 'Var_dump et autre débug';
-	protected	$description = 'Liste des var_dump, print_r, debug_backtrace';
+	protected	$title = 'Var_dump and other debug';
+	protected	$description = 'List usage of var_dump, print_r and debug_backtrace functions.';
 
 	function __construct($mid) {
         parent::__construct($mid);

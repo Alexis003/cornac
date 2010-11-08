@@ -38,8 +38,7 @@ LEFT JOIN <rapport> TR2
     ON TR2.module='arglist_def' AND
     LEFT(TR1.element, locate('(', TR1.element) - 1) = LEFT(TR2.element, locate('(', TR2.element) -1) AND
     TR1.element = TR2.element
-    WHERE TR1.module = 'arglist_call' AND TR2.element IS NULL;
-
+WHERE TR1.module = 'arglist_call' AND TR2.element IS NULL
 SQL;
         $this->exec_query_insert('rapport', $query);
 

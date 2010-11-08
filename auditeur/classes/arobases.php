@@ -30,10 +30,10 @@ class arobases extends modules {
 
         $query = <<<SQL
 SELECT NULL, TC.fichier, TC.code AS code, T1.id, '{$this->name}', 0
-    FROM <tokens> T1
-    LEFT JOIN <tokens_cache>  TC 
+FROM <tokens> T1
+LEFT JOIN <tokens_cache>  TC 
     ON T1.id = TC.id 
-    WHERE T1.type='noscream' 
+WHERE T1.type='noscream' 
 SQL;
         $this->exec_query_insert('rapport', $query);
         

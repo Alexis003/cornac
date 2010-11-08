@@ -18,8 +18,8 @@
  */
 
 class zfElements extends modules {
-	protected	$title = 'Element ZF non validés';
-	protected	$description = 'Liste des elements de formulaire qui ne sont pas validés!';
+	protected	$title = 'Non-validated ZF element';
+	protected	$description = 'Form element that were not validated';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -28,22 +28,36 @@ class zfElements extends modules {
 	public function analyse() {
         $this->clean_rapport();
         
-        $classes = array('Zend_Form_Element_Hidden', 
-                         'Zend_Form_Element_Submit', 
-                         'Zend_Form_Element_Text',
-                         'Zend_Form_Element_TextArea',
-                         'Zend_Form_Element_Password',
-                         'Zend_Form_Element_Submit');
+        $classes = array(
+'Zend_Form_Element_Button',
+'Zend_Form_Element_Captcha',
+'Zend_Form_Element_Checkbox',
+'Zend_Form_Element_Exception',
+'Zend_Form_Element_File',
+'Zend_Form_Element_Hash',
+'Zend_Form_Element_Hidden',
+'Zend_Form_Element_Image',
+'Zend_Form_Element_Multi',
+'Zend_Form_Element_MultiCheckbox',
+'Zend_Form_Element_Multiselect',
+'Zend_Form_Element_Password',
+'Zend_Form_Element_Radio',
+'Zend_Form_Element_Reset',
+'Zend_Form_Element_Select',
+'Zend_Form_Element_Submit',
+'Zend_Form_Element_Text',
+'Zend_Form_Element_Textarea',
+'Zend_Form_Element_Xhtml',
+);
         
         $in = join("', '", $classes);
 	    $query = <<<SQL
 SELECT T1.droite, T1.gauche, T1.fichier , T1.id, T2.code
 FROM <tokens> T1
-    JOIN <tokens> T2
+JOIN <tokens> T2
     ON T2.fichier = T1.fichier AND T2.droite BETWEEN T1.droite AND T1.gauche 
-    WHERE T2.code in ('$in') AND 
-          T1.type='affectation'
-;
+WHERE T2.code in ('$in') AND 
+      T1.type='affectation'
 SQL;
 
     $res = $this->exec_query($query);
@@ -55,13 +69,12 @@ SQL;
 	        $query = <<<SQL
 SELECT T1.droite, T1.gauche, T1.fichier, SUM(if (T2.code='addElement', 1, 0)) AS addElement
 FROM <tokens> T1
-    JOIN <tokens> T2
+JOIN <tokens> T2
     ON T2.fichier=  T1.fichier AND
        T2.droite BETWEEN T1.droite AND T1.gauche
-    WHERE T1.droite = $droite AND 
-          T1.fichier='{$row["fichier"]}'
-    GROUP BY T1.droite, T1.gauche, T1.fichier
-;
+WHERE T1.droite = $droite AND 
+      T1.fichier='{$row["fichier"]}'
+GROUP BY T1.droite, T1.gauche, T1.fichier
 SQL;
 
             $res2 = $this->exec_query($query);
@@ -74,8 +87,9 @@ SQL;
         
         $query = <<<SQL
 SELECT sum(if (T1.code IN ('addValidator','addFilter'), 1, 0)) AS addValidator, T1.fichier 
-    FROM <tokens> T1 
-    WHERE fichier = '{$row['fichier']}' AND droite BETWEEN {$row['droite']} AND {$row2['gauche']}
+FROM <tokens> T1 
+WHERE fichier = '{$row['fichier']}' AND 
+      droite BETWEEN {$row['droite']} AND {$row2['gauche']}
 SQL;
         $res2 = $this->exec_query($query);
         $row2 = $res2->fetch();
