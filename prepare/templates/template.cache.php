@@ -131,6 +131,7 @@ class template_cache extends template {
 ////////////////////////////////////////////////////////////////////////
     function display_token_traite($node, $level) {
         $node->cache = $node->getCode();
+        return $this->savenode($node);
     }
 
     function display_affectation($node, $level) {
@@ -161,7 +162,7 @@ class template_cache extends template {
             $token_traite = new token_traite(new Token());
             $this->display($token_traite, $level + 1);
             $node->cache = '()';
-            return;
+            return $this->savenode($node);
         } else {
             $labels = array();
             foreach($elements as $id => &$e) {
@@ -179,6 +180,7 @@ class template_cache extends template {
             }
             $node->cache = '('.join(', ', $labels).')';
         }
+        return $this->savenode($node);
     }
 
     function display_block($node, $level) {
@@ -188,6 +190,7 @@ class template_cache extends template {
         }
         
         $node->cache = ' { block }';
+        return $this->savenode($node);
     }
 
     function display__break($node, $level) {
@@ -195,6 +198,7 @@ class template_cache extends template {
         $this->display($levels, $level + 1);
 
         $node->cache = 'break '.$levels->cache;
+        return $this->savenode($node);
     }
 
     function display__case($node, $level) {
@@ -215,6 +219,7 @@ class template_cache extends template {
         $this->display($expression, $level + 1);
 
         $node->cache = '('.$expression->cache.')';
+        return $this->savenode($node);
     }
 
     function display__catch($node, $level) {
@@ -223,6 +228,7 @@ class template_cache extends template {
         $this->display($node->getBlock(), $level + 1);
         
         $node->cache = 'catch';
+        return $this->savenode($node);
     }
 
     function display__continue($node, $level) {
@@ -230,6 +236,17 @@ class template_cache extends template {
         $this->display($levels, $level + 1);
 
         $node->cache = 'continue '.$levels->cache;
+        return $this->savenode($node);
+    }
+
+    function display__switch($node, $level) {
+        $condition = $node->getCondition();
+        $this->display($condition, $level + 1);
+        $this->display($node->getBlock(), $level + 1);
+
+        $node->cache = 'switch '.$condition->cache.'';
+        // @note $condition->cache already have the () 
+        return $this->savenode($node);
     }
     
     function display_ternaryop($node, $level) {
@@ -249,6 +266,7 @@ class template_cache extends template {
     function display_codephp($node, $level) {
         $this->display($node->getphp_code(), $level + 1);
         $node->cache = "<?php ?>";
+        return $this->savenode($node);
     }
 
     function display__class($node, $level) {
@@ -289,6 +307,7 @@ class template_cache extends template {
         $this->display($expression, $level + 1);
 
         $node->cache = 'clone '.$expression->cache;
+        return $this->savenode($node);
     }
 
     function display_keyvalue($node, $level) {
@@ -298,6 +317,7 @@ class template_cache extends template {
         $this->display($value, $level + 1);
 
         $node->cache = $key->cache.' => '.$value->cache;
+        return $this->savenode($node);
     }
 
     function display_comparison($node, $level) {
@@ -326,6 +346,7 @@ class template_cache extends template {
 
     function display_constante($node, $level) {
         $node->cache = $node->getCode();
+        return $this->savenode($node);
     }
 
     function display_constante_static($node, $level) {
@@ -348,7 +369,7 @@ class template_cache extends template {
         return $this->savenode($node);        
     }
 
-   function display_bitshift($node, $level) {
+    function display_bitshift($node, $level) {
         $left = $node->getLeft();
         $this->display($left, $level + 1);
         $operator = $node->getOperator();
@@ -387,6 +408,7 @@ class template_cache extends template {
     function display__default($node, $level) {
         $this->display($node->getBlock(), $level + 1);
         $node->cache = 'default'; 
+        return $this->savenode($node);
     }
 
     function display__for($node, $level) {
@@ -404,7 +426,8 @@ class template_cache extends template {
             $node->cache .= $f->cache.')';
         }
         $this->display($node->getBlock(), $level + 1);
-        // on ignore le block
+        // @note no need for display cache
+        return $this->savenode($node);
     }
 
     function display__foreach($node, $level) {
@@ -425,7 +448,8 @@ class template_cache extends template {
         $node->cache .= $value.')';
 
         $this->display($node->getBlock(), $level + 1);
-        // on ignore
+        return $this->savenode($node);
+        // @note no need for display cache 
     }
 
     function display__function($node, $level) {
@@ -464,7 +488,7 @@ class template_cache extends template {
         $this->display($args, $level + 1);
         
         $node->cache = $function->cache.''.$args->cache;
-        $this->savenode($node);
+        return $this->savenode($node);
     }
 
     function display__global($node, $level) {
@@ -494,6 +518,7 @@ class template_cache extends template {
         }
         
         $node->cache = "<if then>";
+        return $this->savenode($node);
     }
 
     function display_inclusion($node, $level) {
@@ -532,6 +557,7 @@ class template_cache extends template {
 
     function display_literals($node, $level) {
         $node->cache = $node->getCode();
+        return $this->savenode($node);
     }
 
     function display_logique($node, $level) {
@@ -543,6 +569,7 @@ class template_cache extends template {
         $this->display($right, $level + 1);
         
         $node->cache = $left->cache.' '.$operator->cache.' '.$right->cache;
+        return $this->savenode($node);
     }
 
     function display_method($node, $level) {
@@ -552,7 +579,7 @@ class template_cache extends template {
         $this->display($method, $level + 1);        
         
         $node->cache = $object->cache."->".$method->cache;
-        $this->savenode($node);
+        return $this->savenode($node);
     }
 
     function display_method_static($node, $level) {
@@ -572,6 +599,7 @@ class template_cache extends template {
         $tags['args'][] = $this->display($args, $level + 1);
         
         $node->cache = 'new '.$name->cache.''.$args->cache;
+        return $this->savenode($node);
     }
     
     function display_noscream($node, $level) {
@@ -607,6 +635,7 @@ class template_cache extends template {
         $this->display($right, $level + 1);
         
         $node->cache = $left->cache.' '.$operation->cache.' '.$right->cache;
+        return $this->savenode($node);
     }
 
     function display_parentheses($node, $level) {
@@ -644,7 +673,7 @@ class template_cache extends template {
         $this->display($property, $level + 1);
         
         $node->cache = $object->cache."->".$property->cache;
-        $this->savenode($node);
+        return $this->savenode($node);
     }
 
     function display_property_static($node, $level) {
@@ -654,11 +683,12 @@ class template_cache extends template {
         $this->display($property, $level + 1);
         
         $node->cache = $classe->cache."->".$property->cache;
-        $this->savenode($node);
+        return $this->savenode($node);
     }
 
     function display_rawtext($node, $level) {
         $node->cache = '';
+        return $this->savenode($node);
     }
 
     function display_reference($node, $level) {
@@ -697,7 +727,7 @@ class template_cache extends template {
             }
             $node->cache = join('', $labels);
         }
-
+        return $this->savenode($node);
     }
 
     function display_sign($node, $level) {
@@ -707,6 +737,7 @@ class template_cache extends template {
         $this->display($sign, $level + 1);
         
         $node->cache = $sign->cache.$expression->cache;
+        return $this->savenode($node);
     }
 
     function display_shell($node, $level) {
@@ -718,6 +749,7 @@ class template_cache extends template {
         }
 
         $node->cache = $cache;
+        return $this->savenode($node);
     }
 
     function display__static($node, $level) {
@@ -725,12 +757,7 @@ class template_cache extends template {
         $this->display($expression, $level + 1);
         
         $node->cache = 'static '.$expression->cache;
-    }
-
-    function display__switch($node, $level) {
-        $this->display($node->getCondition(), $level + 1);
-        $this->display($node->getBlock(), $level + 1);
-        $node->cache = '<switch>';
+        return $this->savenode($node);
     }
 
     function display__array($node, $level) {
@@ -748,6 +775,7 @@ class template_cache extends template {
         $this->display($exception, $level + 1);
 
         $node->cache = 'throw '.$exception->cache;
+        return $this->savenode($node);
     }
 
     function display__try($node, $level) {
@@ -760,7 +788,8 @@ class template_cache extends template {
             $this->display($e, $level + 1);
             $labels[]=  $e->cache;
         }
-        $node->cache = '<try>';        
+        $node->cache = '<try>';
+        return $this->savenode($node);
     }
 
     function display_typehint($node, $level) {
@@ -770,6 +799,7 @@ class template_cache extends template {
         $this->display($name, $level + 1);
         
         $node->cache = $type->cache." ".$name->cache;
+        return $this->savenode($node);
     }
 
     function display__var($node, $level) {
@@ -823,12 +853,14 @@ class template_cache extends template {
         $this->display($node->getCondition(), $level + 1);
         $this->display($node->getBlock(), $level + 1);
         $node->cache = '<while>';        
+        return $this->savenode($node);
     }
 
     function display__dowhile($node, $level) {
         $this->display($node->getCondition(), $level + 1);
         $this->display($node->getBlock(), $level + 1);
         $node->cache = '<do_while>';        
+        return $this->savenode($node);
     }
     
     function display_Token($node, $level) {
