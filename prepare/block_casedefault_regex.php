@@ -23,7 +23,6 @@ class block_casedefault_regex extends analyseur_regex {
     }
 
     function getTokens() {
-//        return array('{');
         return array(Token::ANY_TOKEN);
     }
     

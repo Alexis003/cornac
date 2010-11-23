@@ -56,7 +56,6 @@ class _function extends instruction {
             }
             
             // @note we should raise an error here... 
-            // $this->stopOnError("On ne devrait pas arriver ici : ".__CLASS__);
         }
 
         

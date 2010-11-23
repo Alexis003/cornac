@@ -56,6 +56,7 @@ class function_typehintreference_regex extends analyseur_regex {
                         mon_log(get_class($t)." => typehint = (".__CLASS__.")");
 
                         $var = $var->getNext();
+                        if (is_null($var)) { return false; }
                         continue; 
                 } elseif ($var->getNext(2)->checkNotCode('=')) {
                     $regex = new modele_regex('reference',array(1), array(1));
@@ -69,6 +70,7 @@ class function_typehintreference_regex extends analyseur_regex {
                     mon_log(get_class($t)." => typehint init =2 (".__CLASS__.")");
                     
                     $var = $var->getNext();
+                    if (is_null($var)) { return false; }
                     continue; 
                 } elseif ($var->getNext(2)->checkCode(array(',',')'))) {
                     $regex = new modele_regex('reference',array(1), array(1));
@@ -82,22 +84,23 @@ class function_typehintreference_regex extends analyseur_regex {
                     mon_log(get_class($t)." => typehint =3 (".__CLASS__.")");
                     
                     $var = $var->getNext();
+                    if (is_null($var)) { return false; }
                     continue; 
                 } 
             }
             // cas des typehint avec initialisation
             
             if ($var->checkOperator('(')) {
-                // On veut pas de collision avec une autre structure
+                // @note typehing can't be followed by an opening bracket
                 return false; 
             }
             
+            // @note there must be something beyond...
             if (!$var->hasNext()) { return false; }
             $var = $var->getNext();
+            if (is_null($var)) { return false; }
         }
-            
-            
-            
+
         return false;
     }
 }
