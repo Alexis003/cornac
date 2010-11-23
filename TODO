@@ -1,27 +1,10 @@
-Add information code when tokclient fail at parsing a file. (php not compile, etc.)
-Check tokclient for memory leaks. 
-Check fudforum binary protector (install.php)
-update tokeniseur.sh to run tokenizeur on all the Reference project and check output automatically (also, collect stats on volume, and processing time).
-
-identify 'tainted' values (either from GPC, or from arguments)
-identify returned values (used in return)
-identify tainted function (one that return transformed incoming values)
-identify variable class by method/property/constant usage. 
-
-Set up a version system, so that it is easier to know which version is being used (upon a phing publication? ) 
-Have a tar.gz packaged automatically. 
-
-Spot function declaration in the middle of nowhere
-Suggest gathering code, depending on calling graph (a->b, b->c, so a,b,c should be a class by itself)
-
-Vérifier les fichiers 
-./References/phpmyfaq-2.6.9/inc/libs/tcpdf/fonts/arialunicid0.php
-
-check tokclient, to make sure he keeps going on when a script can't be processed. 
-
 [cornac]
+Have a tar.gz packaged automatically (create a phing build)
+Set up a version system, so that it is easier to know which version is being used (upon a phing publication? ) 
 process extension as case unsensitive. 
 check for default values of .ini in the code, so as to make sure we have a nice list
+
+update tokeniseur.sh to run tokenizeur on all the Reference project and check output automatically (also, collect stats on volume, and processing time).
 
 update tokinit, to have a list of excluded/included file extension. 
 
@@ -51,10 +34,10 @@ Check that one can update code with cornac (cleaning old reports)
 Add multi-processing for tokenizeur/auditeur (should be easy, given the task are all concurrent and distinct)
 Be able to use another PHP than the system one (specify PHP path?)
 Have fast in-progress report (report built while tokenizeur is working...)
-Make analyses paralelle (gearman or DB task list? Faire les fichiers récents ou qui n'ont pas été finis.. )
+Make analyses paralelle (gearman or DB task list? process recently edited files only
 
 Add more unit tests for the auditeur (check track.php)
-Move to English (messages, names...)
+Move to English (messages, names...) : Comparant (_case)
 Check for code coverage
 
 Move the chained list to SPL
@@ -67,7 +50,8 @@ Display dots when processing analyzers (auditeur)
 Add a file lister, that will also display ignored files from tokenizeur (export current function to external scripts/)
 
 [tokenizeur]
-Check for table structure before using. 
+Check for table structure before using 
+check tokclient, to make sure he keeps going on when a script can't be processed. 
 
 Run tokenizeur regularly on Open source project : make a script for automation, and extract some stats on how much was tested, compare applications (function used, extension used, pattern spotted, number of files...)
 check that tokenizeur works on one file only, without database
@@ -75,10 +59,6 @@ check that tokenizeur works on one file only, without database
 Spot php error during execution, and report it. 
 Could it be possible to chain results? Atm, one can do it manually, or creating a new analyzer
 Use JMF's style
-
-Make a function call tree (which function calls which)
-
-Add an option for the tokenizeur to clean the tables before working (default : append new files). 
 
 Add support for comments
 
@@ -93,6 +73,8 @@ For each tokem note scope, class, method, variable, array, fichier
 Add -log option to log information in a log file
 
 see how tokclient may not stop stupidly, and keep going when there are still some tasks to do : Test this now
+
+Add information code when tokclient fail at parsing a file. (php not compile, etc.)
 
 [auditeur]
 Check for table structure before using. 
@@ -130,6 +112,15 @@ Have ratio calculated on top of analyzers (TDB)
 Support dot format for testing
 
 [analysers ideas]
+
+identify 'tainted' values (either from GPC, or from arguments)
+identify returned values (used in return)
+identify tainted function (one that return transformed incoming values)
+identify variable class by method/property/constant usage. 
+
+
+Make a function call tree (which function calls which)
+
 add 'variable' as a scope, so that we can actually work context by context
 
 affected only variables (not used anywhere else that affectations)
@@ -157,7 +148,7 @@ undefined properties used (in class) : must support hierarchy too.
 
 Note variable type, when it is possible (intval, new, etc...)
 
-Liste of type variable we might guess.
+List of type variable we might guess.
 Variable that never gets affected (is this register_globals?)
 Long list of parameters (called or defined...)
 Long list of public methods
@@ -205,6 +196,10 @@ Support some framework : drupal, joomla, zend, symfony, magento
     Support for : templating, modele, controler, usage of internals recommanded libraries
 
 htmlentities used without encoding information
+
+Spot function declaration in the middle of nowhere
+
+Suggest gathering code, depending on calling graph (a->b, b->c, so a,b,c should be a class by itself)
 
 [web]
 use .ini for the web folder too
