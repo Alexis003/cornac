@@ -30,12 +30,12 @@ class ifsanselse extends modules {
 
         $concat = $this->concat("T2.class","'->'","T2.code");
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, SUM(TT.type = 'else')  AS elsee, T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, SUM(TT.type = 'else')  AS elsee, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 LEFT join <tokens_tags> TT 
     ON T1.id = TT.token_id
 WHERE T1.type = 'ifthen' 
-GROUP BY fichier, droite
+GROUP BY file, left
 HAVING elsee = 0;
 SQL;
         $this->exec_query_insert('rapport', $query);

@@ -21,8 +21,8 @@
 // @todo : mettre en parmètre 
 abstract class modules {
     protected  $occurrences = 0;
-    protected  $fichiers_identifies = 0;
-    protected  $total_de_fichiers = 0;
+    protected  $files_identifies = 0;
+    protected  $total_de_files = 0;
     protected  $ini = array();
     public static    $mid   = null;
     public static    $table = null;
@@ -89,8 +89,8 @@ abstract class modules {
         <table>
             <tr><td><a href=\"index.html\">Index</td><td>&nbsp;</td></tr>
             <tr><td>Production</td><td>$date</td></tr>
-            <tr><td>Nombre de fichiers</td><td>{$this->total_de_fichiers}</td></tr>
-            <tr><td>Nombre de fichiers identifi&eacute;s</td><td>{$this->fichiers_identifies}</td></tr>
+            <tr><td>Nombre de files</td><td>{$this->total_de_files}</td></tr>
+            <tr><td>Nombre de files identifi&eacute;s</td><td>{$this->files_identifies}</td></tr>
             <tr><td>Nombre d'occurrences</td><td>{$this->occurrences}</td></tr>
         </table>
         <p>&nbsp;</p>
@@ -170,7 +170,7 @@ abstract class modules {
         $this->mid->query('
 CREATE TEMPORARY TABLE IF NOT EXISTS tmp_rapport (
   `id` tinyint(10),
-  `fichier` varchar(500) NOT NULL,
+  `file` varchar(500) NOT NULL,
   `element` varchar(10000) NOT NULL,
   `token_id` int(10) unsigned NOT NULL,
   `module` varchar(50) NOT NULL,

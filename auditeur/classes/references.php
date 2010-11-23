@@ -34,11 +34,11 @@ class references extends modules {
         $this->clean_rapport();
 
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, TC.code, T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, TC.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens> T2
-    ON T1.fichier = T2.fichier AND
-       T1.droite + 1 = T2.droite
+    ON T1.file = T2.file AND
+       T1.left + 1 = T2.left
 JOIN <tokens_cache> TC
     ON TC.id = T2.id
 WHERE T1.type = 'reference' 

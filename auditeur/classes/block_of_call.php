@@ -32,12 +32,12 @@ class block_of_call extends modules {
 // @todo           LEFT(TC1.code, GREATEST(LOCATE('(', TC1.code), LOCATE(' ', TC1.code))) = LEFT(TC3.code, GREATEST(LOCATE('(', TC3.code), LOCATE(' ', TC3.code)))
 
         $query = <<<SQL
-SELECT T1.id AS id1, T2.id AS id2, T3.id AS id3, T1.droite, T3.gauche, TC1.code AS code1, TC2.code AS code2, TC3.code AS code3, T1.fichier, LEFT(TC1.code, LOCATE('(', TC1.code) ) AS code
+SELECT T1.id AS id1, T2.id AS id2, T3.id AS id3, T1.left, T3.right, TC1.code AS code1, TC2.code AS code2, TC3.code AS code3, T1.file, LEFT(TC1.code, LOCATE('(', TC1.code) ) AS code
 FROM <tokens> T1
 JOIN <tokens> T2 
-    ON T1.fichier=  T2.fichier AND T2.droite = T1.gauche + 1
+    ON T1.file=  T2.file AND T2.left = T1.right + 1
 JOIN <tokens> T3
-    ON T1.fichier=  T3.fichier AND T3.droite = T2.gauche + 1
+    ON T1.file=  T3.file AND T3.left = T2.right + 1
 JOIN <tokens_cache> TC1 
     ON T1.id=  TC1.id
 JOIN <tokens_cache> TC2 
@@ -63,26 +63,26 @@ SQL;
            $resultats[$row['id1']] = array($row['id1'] => $row['code1'],
                                              $row['id2'] => $row['code2'],
                                              $row['id3'] => $row['code3']);
-           $already[$row['id1']] = $row['fichier'];
-           $already[$row['id2']] = $row['fichier'];
-           $already[$row['id3']] = $row['fichier'];
+           $already[$row['id1']] = $row['file'];
+           $already[$row['id2']] = $row['file'];
+           $already[$row['id3']] = $row['file'];
 
            $id = $row['id3'];
            while ($id > 0) {
                $query2 = <<<SQL
-SELECT T2.id, T1.droite, T1.type, T2.type, TC2.code AS code, T1.fichier
+SELECT T2.id, T1.left, T1.type, T2.type, TC2.code AS code, T1.file
 FROM <tokens> T1
 LEFT JOIN <tokens> T2 
-    ON T2.fichier = '{$row['fichier']}' AND T2.droite = T1.gauche + 1
+    ON T2.file = '{$row['file']}' AND T2.left = T1.right + 1
 JOIN <tokens_cache> TC2 
     ON T2.id=  TC2.id
 WHERE T1.id = {$id} AND
-      T1.fichier = '{$row['fichier']}' AND 
+      T1.file = '{$row['file']}' AND 
       '{$row['code']}' = LEFT(TC2.code, LOCATE('(', TC2.code) )
 SQL;
                 $res2 = $this->exec_query($query2);
                 if ($row2 = $res2->fetch()) {
-                   $already[$row2['id']] = $row['fichier'];
+                   $already[$row2['id']] = $row['file'];
                    $resultats[$row['id1']][$row2['id']] = $row2['code'];
                    $id = $row2['id'];
                 } else {

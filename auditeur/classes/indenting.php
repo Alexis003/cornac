@@ -30,7 +30,7 @@ class indenting extends modules {
 
 /* @example
 +---------+----------+--------------------------------------------------------------+
-| id      | COUNT(*) | GROUP_CONCAT(P.type ORDER BY P.droite)                       |
+| id      | COUNT(*) | GROUP_CONCAT(P.type ORDER BY P.left)                       |
 +---------+----------+--------------------------------------------------------------+
 | 1754692 |        1 | ifthen                                                       |
 | 1754718 |        1 | ifthen                                                       |
@@ -40,11 +40,11 @@ class indenting extends modules {
 
 */
         $query = <<<SQL
-SELECT NULL, N.fichier, GROUP_CONCAT(P.type ORDER BY P.droite) AS code, N.id, '{$this->name}', 0
+SELECT NULL, N.file, GROUP_CONCAT(P.type ORDER BY P.left) AS code, N.id, '{$this->name}', 0
 FROM <tokens> N, <tokens> P 
 WHERE N.type IN ('ifthen','_class','_function','_while','_dowhile','_foreach','_case','_for','_switch') AND
-      N.fichier = P.fichier AND
-      N.droite BETWEEN P.droite AND P.gauche AND
+      N.file = P.file AND
+      N.left BETWEEN P.left AND P.right AND
       P.type IN ('ifthen','_class','_function','_while','_dowhile','_foreach','_case','_for','_switch')
       GROUP BY N.id
 SQL;

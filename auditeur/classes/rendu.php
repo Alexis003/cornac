@@ -22,29 +22,29 @@ class rendu {
         $this->mid = $mid;
     }
     
-    function rendu($droite, $gauche, $fichier) {
-        $this->fichier = $fichier;
-        $sql_fichier = $this->mid->quote($fichier);
+    function rendu($left, $right, $file) {
+        $this->file = $file;
+        $sql_file = $this->mid->quote($file);
 
         $query = <<<SQL
 SELECT * FROM rd
-WHERE droite >= $droite AND 
-      gauche <= $gauche AND 
-      fichier = $sql_fichier 
-ORDER BY droite
+WHERE left >= $left AND 
+      right <= $right AND 
+      file = $sql_file 
+ORDER BY left
 SQL;
         $res = $this->mid->query($query);
         
         $this->lignes = array();
         while($ligne = $res->fetch(PDO::FETCH_ASSOC)) {
-            $this->lignes[$ligne['droite']] = $ligne;
+            $this->lignes[$ligne['left']] = $ligne;
             if (!isset($debut)) {
-                $debut = $ligne['droite'];
+                $debut = $ligne['left'];
             }
         }
         
         if (!isset($debut)) {
-            print "$droite $gauche, $fichier\n$query\n";
+            print "$left $right, $file\n$query\n";
             return '';
             die();
         }
@@ -53,164 +53,164 @@ SQL;
         return $this->lignes[$debut];
     }
     
-    function traite($droite) {
-        if (!isset($this->lignes[$droite])) { return ; } // @note already done
-        if (is_string($this->lignes[$droite])) { return ; } //  @note already done
+    function traite($left) {
+        if (!isset($this->lignes[$left])) { return ; } // @note already done
+        if (is_string($this->lignes[$left])) { return ; } //  @note already done
 
-          $method = "affiche_".$this->lignes[$droite]['type'];
+          $method = "affiche_".$this->lignes[$left]['type'];
           if (method_exists($this, $method)){
-              $this->lignes[$droite] = $this->$method($this->lignes[$droite]["droite"]);
+              $this->lignes[$left] = $this->$method($this->lignes[$left]["left"]);
           } else {
-              print __CLASS__." lack a method to process $method ($droite)\n";
-              print_r( $this->lignes[$droite]);
+              print __CLASS__." lack a method to process $method ($left)\n";
+              print_r( $this->lignes[$left]);
               die();
           }
     }
 
-    function affiche_affectation($droite) {
+    function affiche_affectation($left) {
         $retour = array();
 
         foreach($this->lignes as $ligne) {
-            if ($ligne['gauche'] < $this->lignes[$droite]['gauche'] &&
-                $ligne['droite'] > $this->lignes[$droite]['droite']) {
-                $this->traite($ligne['droite']);
-                if (!isset($this->lignes[$ligne['droite']])) { continue; }
+            if ($ligne['right'] < $this->lignes[$left]['right'] &&
+                $ligne['left'] > $this->lignes[$left]['left']) {
+                $this->traite($ligne['left']);
+                if (!isset($this->lignes[$ligne['left']])) { continue; }
 
-                $retour[] = $this->lignes[$ligne['droite']];
-                unset($this->lignes[$ligne['droite']]);
+                $retour[] = $this->lignes[$ligne['left']];
+                unset($this->lignes[$ligne['left']]);
             }
         }
         $r = join(' ',$retour).' ';
         return $r;
     }
-    function affiche_arginit($droite) {
+    function affiche_arginit($left) {
         return __METHOD__;
     }
 
-    function affiche_arglist($droite) {
+    function affiche_arglist($left) {
         $retour = array();
 
         foreach($this->lignes as $ligne) {
-            if ($ligne['gauche'] < $this->lignes[$droite]['gauche'] &&
-                $ligne['droite'] > $this->lignes[$droite]['droite']) {
-                $this->traite($ligne['droite']);
-                if (!isset($this->lignes[$ligne['droite']])) { continue; }
-                $retour[] = $this->lignes[$ligne['droite']];
-                unset($this->lignes[$ligne['droite']]);
+            if ($ligne['right'] < $this->lignes[$left]['right'] &&
+                $ligne['left'] > $this->lignes[$left]['left']) {
+                $this->traite($ligne['left']);
+                if (!isset($this->lignes[$ligne['left']])) { continue; }
+                $retour[] = $this->lignes[$ligne['left']];
+                unset($this->lignes[$ligne['left']]);
             }
         }
         $r = '('.join(', ',$retour).')';
         return $r;
     }
 
-    function affiche_block($droite) {
+    function affiche_block($left) {
         $retour = array();
         foreach($this->lignes as $ligne) {
-            if ($ligne['gauche'] < $this->lignes[$droite]['gauche'] &&
-                $ligne['droite'] > $this->lignes[$droite]['droite']) {
-                if (!isset($this->lignes[$ligne['droite']])) { continue; }
+            if ($ligne['right'] < $this->lignes[$left]['right'] &&
+                $ligne['left'] > $this->lignes[$left]['left']) {
+                if (!isset($this->lignes[$ligne['left']])) { continue; }
 
-                $this->traite($ligne['droite']);
-                $retour[] = $this->lignes[$ligne['droite']];
-                unset($this->lignes[$ligne['droite']]);
+                $this->traite($ligne['left']);
+                $retour[] = $this->lignes[$ligne['left']];
+                unset($this->lignes[$ligne['left']]);
             }
         }
         $r = "{\n".join(";\n",$retour)."\n}";
         return $r;
     }
 
-    function affiche__break($droite) {
-        if ($this->lignes[$droite]['droite'] + 1 == $this->lignes[$droite]['gauche']) {
+    function affiche__break($left) {
+        if ($this->lignes[$left]['left'] + 1 == $this->lignes[$left]['right']) {
             return "break 1;"; 
             // @doc implict level : break uses the default value
         } else {
-            return "break ".$this->lignes[$droite + 1]['code'].";";
+            return "break ".$this->lignes[$left + 1]['code'].";";
         }
     }
 
-    function affiche__case($droite) {
+    function affiche__case($left) {
         return __METHOD__;
     }
 
-    function affiche_cast($droite) {
-         $this->traite($droite + 1);
-         $expr = $this->lignes[$droite + 1];
-         $retour =  $this->lignes[$droite]['code']." {$expr}";
-         unset($this->lignes[$droite + 1]);
+    function affiche_cast($left) {
+         $this->traite($left + 1);
+         $expr = $this->lignes[$left + 1];
+         $retour =  $this->lignes[$left]['code']." {$expr}";
+         unset($this->lignes[$left + 1]);
 
          return $retour; 
     }
 
-    function affiche_comparison($droite) {
+    function affiche_comparison($left) {
         $retour = array();
 
         foreach($this->lignes as $ligne) {
-            if ($ligne['gauche'] < $this->lignes[$droite]['gauche'] &&
-                $ligne['droite'] > $this->lignes[$droite]['droite']) {
-                $this->traite($ligne['droite']);
-                if (!isset($this->lignes[$ligne['droite']])) { continue; }
+            if ($ligne['right'] < $this->lignes[$left]['right'] &&
+                $ligne['left'] > $this->lignes[$left]['left']) {
+                $this->traite($ligne['left']);
+                if (!isset($this->lignes[$ligne['left']])) { continue; }
 
-                $retour[] = $this->lignes[$ligne['droite']];
-                unset($this->lignes[$ligne['droite']]);
+                $retour[] = $this->lignes[$ligne['left']];
+                unset($this->lignes[$ligne['left']]);
             }
         }
         $r = join(' ',$retour).' ';
         return $r;
     }
     
-    function affiche_concatenation($droite) {
+    function affiche_concatenation($left) {
         $retour = array();
         foreach($this->lignes as $ligne) {
-            if ($ligne['gauche'] < $this->lignes[$droite]['gauche'] &&
-                $ligne['droite'] > $this->lignes[$droite]['droite']) {
-                $this->traite($ligne['droite']);
-                if (isset($this->lignes[$ligne['droite']])) {
-                    $retour[] = $this->lignes[$ligne['droite']];
-                    unset($this->lignes[$ligne['droite']]);
+            if ($ligne['right'] < $this->lignes[$left]['right'] &&
+                $ligne['left'] > $this->lignes[$left]['left']) {
+                $this->traite($ligne['left']);
+                if (isset($this->lignes[$ligne['left']])) {
+                    $retour[] = $this->lignes[$ligne['left']];
+                    unset($this->lignes[$ligne['left']]);
                 }
             }
         }
         return join('.', $retour);
     }
 
-    function affiche_constante($droite) {
-        return $this->lignes[$droite]['code'];
+    function affiche_constante($left) {
+        return $this->lignes[$left]['code'];
     }
 
-    function affiche__continue($droite) {
-        if ($this->lignes[$droite]['droite'] + 1 == $this->lignes[$droite]['gauche']) {
+    function affiche__continue($left) {
+        if ($this->lignes[$left]['left'] + 1 == $this->lignes[$left]['right']) {
             return "continue 1;"; 
             // @doc implicit continue : default value
         } else {
-            return "continue ".$this->lignes[$droite + 1]['code'].";";
+            return "continue ".$this->lignes[$left + 1]['code'].";";
         }
     }
 
-    function affiche__default($droite) {
+    function affiche__default($left) {
         return __METHOD__;
     }
 
-    function affiche__for($droite) {
+    function affiche__for($left) {
         return __METHOD__;
     }
     
-    function affiche__foreach($droite) {
+    function affiche__foreach($left) {
         return __METHOD__;
     }
 
-    function affiche__function($droite) {
+    function affiche__function($left) {
         return __METHOD__;
     }
     
-    function affiche_functioncall($droite) {
+    function affiche_functioncall($left) {
         $retour = array();
         foreach($this->lignes as $ligne) {
-            if ($ligne['gauche'] < $this->lignes[$droite]['gauche'] &&
-                $ligne['droite'] > $this->lignes[$droite]['droite']) {
-                $this->traite($ligne['droite']);
-                if (isset($this->lignes[$ligne['droite']])) {
-                    $retour[] = $this->lignes[$ligne['droite']];
-                    unset($this->lignes[$ligne['droite']]);
+            if ($ligne['right'] < $this->lignes[$left]['right'] &&
+                $ligne['left'] > $this->lignes[$left]['left']) {
+                $this->traite($ligne['left']);
+                if (isset($this->lignes[$ligne['left']])) {
+                    $retour[] = $this->lignes[$ligne['left']];
+                    unset($this->lignes[$ligne['left']]);
                 }
             }
         }
@@ -219,155 +219,155 @@ SQL;
         return $r;
     }
 
-    function affiche_ifthen($droite) {
+    function affiche_ifthen($left) {
     // @todo this only process simple ifthen. 
-        $suivant = $this->lignes[$droite + 1]['gauche'] + 1 ;
-        $this->traite($droite + 1); 
+        $suivant = $this->lignes[$left + 1]['right'] + 1 ;
+        $this->traite($left + 1); 
         $this->traite($suivant); 
-        return " if ".$this->lignes[$droite + 1]." \n".$this->lignes[$suivant]."\n";
+        return " if ".$this->lignes[$left + 1]." \n".$this->lignes[$suivant]."\n";
     }
 
-    function affiche_inclusion($droite) {
+    function affiche_inclusion($left) {
         $retour = array();
         foreach($this->lignes as $ligne) {
-            if ($ligne['gauche'] < $this->lignes[$droite]['gauche'] &&
-                $ligne['droite'] > $this->lignes[$droite]['droite']) {
-                $this->traite($ligne['droite']);
-                if (isset($this->lignes[$ligne['droite']])) {
-                    $retour[] = $this->lignes[$ligne['droite']];
-                    unset($this->lignes[$ligne['droite']]);
+            if ($ligne['right'] < $this->lignes[$left]['right'] &&
+                $ligne['left'] > $this->lignes[$left]['left']) {
+                $this->traite($ligne['left']);
+                if (isset($this->lignes[$ligne['left']])) {
+                    $retour[] = $this->lignes[$ligne['left']];
+                    unset($this->lignes[$ligne['left']]);
                 }
             }
         }
         // doc a name, and an argument list
-        $r = $this->lignes[$droite]['code'].'('.$retour[0].')';
+        $r = $this->lignes[$left]['code'].'('.$retour[0].')';
         return $r;    
     }
     
-    function affiche_literals($droite) {
-        return "'".$this->lignes[$droite]['code']."'";
+    function affiche_literals($left) {
+        return "'".$this->lignes[$left]['code']."'";
     }
 
-    function affiche_logique($droite) {
+    function affiche_logique($left) {
         $retour = array();
 
         foreach($this->lignes as $ligne) {
-            if ($ligne['gauche'] < $this->lignes[$droite]['gauche'] &&
-                $ligne['droite'] > $this->lignes[$droite]['droite']) {
-                $this->traite($ligne['droite']);
-                if (!isset($this->lignes[$ligne['droite']])) { continue; }
+            if ($ligne['right'] < $this->lignes[$left]['right'] &&
+                $ligne['left'] > $this->lignes[$left]['left']) {
+                $this->traite($ligne['left']);
+                if (!isset($this->lignes[$ligne['left']])) { continue; }
 
-                $retour[] = $this->lignes[$ligne['droite']];
-                unset($this->lignes[$ligne['droite']]);
+                $retour[] = $this->lignes[$ligne['left']];
+                unset($this->lignes[$ligne['left']]);
             }
         }
         $r = join(' ',$retour).' ';
         return $r;
     }
 
-    function affiche_method($droite) {
-        $suivant = $this->lignes[$droite + 1]['gauche'] + 1 ;
-        $this->traite($droite + 1); 
+    function affiche_method($left) {
+        $suivant = $this->lignes[$left + 1]['right'] + 1 ;
+        $this->traite($left + 1); 
         $this->traite($suivant); 
-        return "".$this->lignes[$droite + 1]['code']."->".$this->lignes[$suivant];
+        return "".$this->lignes[$left + 1]['code']."->".$this->lignes[$suivant];
     }
 
-    function affiche_method_static($droite) {
+    function affiche_method_static($left) {
         return __METHOD__;
     }
 
-    function affiche__new($droite) {
-        $this->traite($droite + 1); 
-        return " new ".$this->lignes[$droite + 1]['code']."";
+    function affiche__new($left) {
+        $this->traite($left + 1); 
+        return " new ".$this->lignes[$left + 1]['code']."";
     }
 
-    function affiche_noscream($droite) {
-         $this->traite($droite + 1);
-         $expr = $this->lignes[$droite + 1];
+    function affiche_noscream($left) {
+         $this->traite($left + 1);
+         $expr = $this->lignes[$left + 1];
          $retour = "@{$expr}";
-         unset($this->lignes[$droite + 1]);
+         unset($this->lignes[$left + 1]);
 
          return $retour; 
     }
 
-    function affiche_not($droite) {
+    function affiche_not($left) {
         return __METHOD__;
     }
 
-    function affiche_opappend($droite) {
-        $this->traite($droite + 1); 
-        return " ".$this->lignes[$droite + 1]['code']."[]";
+    function affiche_opappend($left) {
+        $this->traite($left + 1); 
+        return " ".$this->lignes[$left + 1]['code']."[]";
     }
 
-    function affiche_operation($droite) {
+    function affiche_operation($left) {
         $retour = array();
 
         foreach($this->lignes as $ligne) {
-            if ($ligne['gauche'] < $this->lignes[$droite]['gauche'] &&
-                $ligne['droite'] > $this->lignes[$droite]['droite']) {
-                $this->traite($ligne['droite']);
-                if (!isset($this->lignes[$ligne['droite']])) { continue; }
+            if ($ligne['right'] < $this->lignes[$left]['right'] &&
+                $ligne['left'] > $this->lignes[$left]['left']) {
+                $this->traite($ligne['left']);
+                if (!isset($this->lignes[$ligne['left']])) { continue; }
 
-                $retour[] = $this->lignes[$ligne['droite']];
-                unset($this->lignes[$ligne['droite']]);
+                $retour[] = $this->lignes[$ligne['left']];
+                unset($this->lignes[$ligne['left']]);
             }
         }
         $r = join(' ',$retour).' ';
         return $r;
     }
     
-    function affiche_parentheses($droite) {
-        $this->traite($droite + 1); 
-        return "(".$this->lignes[$droite + 1]['code'].")";
+    function affiche_parentheses($left) {
+        $this->traite($left + 1); 
+        return "(".$this->lignes[$left + 1]['code'].")";
     }
 
-    function affiche_property($droite) {
-        $this->traite($droite + 1); 
-        $this->traite($droite + 3); 
-        $retour = "".$this->lignes[$droite + 1]."->".$this->lignes[$droite + 3];
-        unset($this->lignes[$droite + 1]);
-        unset($this->lignes[$droite + 3]);
+    function affiche_property($left) {
+        $this->traite($left + 1); 
+        $this->traite($left + 3); 
+        $retour = "".$this->lignes[$left + 1]."->".$this->lignes[$left + 3];
+        unset($this->lignes[$left + 1]);
+        unset($this->lignes[$left + 3]);
         return $retour; 
     }
 
-    function affiche_postplusplus($droite) {
-         $this->traite($droite + 1);
-         $expr = $this->lignes[$droite + 1];
+    function affiche_postplusplus($left) {
+         $this->traite($left + 1);
+         $expr = $this->lignes[$left + 1];
          $retour = "{$expr}++";
-         unset($this->lignes[$droite + 1]);
+         unset($this->lignes[$left + 1]);
 
          return $retour; 
     }
 
-    function affiche_rawtext($droite) {
+    function affiche_rawtext($left) {
         return __METHOD__;
     }
 
-    function affiche__return($droite) {
-        if ($this->lignes[$droite]['droite'] + 1 == $this->lignes[$droite]['gauche']) {
+    function affiche__return($left) {
+        if ($this->lignes[$left]['left'] + 1 == $this->lignes[$left]['right']) {
             return "return NULL;"; 
             // @doc implicit NULL : return was alone.
         } else {
-            return "return ".$this->lignes[$droite + 1]['code'].";";
+            return "return ".$this->lignes[$left + 1]['code'].";";
         }
     }
 
-    function affiche_signe($droite) {
+    function affiche_signe($left) {
         return __METHOD__;
     }
 
-    function affiche__switch($droite) {
+    function affiche__switch($left) {
         return __METHOD__;
     }
 
-    function affiche__array($droite) {
+    function affiche__array($left) {
         $retour = array();
         foreach($this->lignes as $ligne) {
-            if ($ligne['gauche'] < $this->lignes[$droite]['gauche'] &&
-                $ligne['droite'] > $this->lignes[$droite]['droite']) {
-                $this->traite($ligne['droite']);
-                if (isset($this->lignes[$ligne['droite']])) {
-                    $retour[] = $this->lignes[$ligne['droite']];
+            if ($ligne['right'] < $this->lignes[$left]['right'] &&
+                $ligne['left'] > $this->lignes[$left]['left']) {
+                $this->traite($ligne['left']);
+                if (isset($this->lignes[$ligne['left']])) {
+                    $retour[] = $this->lignes[$ligne['left']];
                 }
             }
         }
@@ -375,19 +375,19 @@ SQL;
         return $r;
     }
 
-    function affiche_token_traite($droite) {
-        return $this->lignes[$droite]['code'];
+    function affiche_token_traite($left) {
+        return $this->lignes[$left]['code'];
     }
 
-    function affiche_variable($droite) {
-        return $this->lignes[$droite]['code'];
+    function affiche_variable($left) {
+        return $this->lignes[$left]['code'];
     }
     
-    function affiche__while($droite) {
-        $suivant = $this->lignes[$droite + 1]['gauche'] + 1 ;
-        $this->traite($droite + 1); 
+    function affiche__while($left) {
+        $suivant = $this->lignes[$left + 1]['right'] + 1 ;
+        $this->traite($left + 1); 
         $this->traite($suivant); 
-        return " while ".$this->lignes[$droite + 1]." \n".$this->lignes[$suivant]."\n";
+        return " while ".$this->lignes[$left + 1]." \n".$this->lignes[$suivant]."\n";
     }
 
 }

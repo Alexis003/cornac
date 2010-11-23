@@ -29,7 +29,7 @@ class interfaces extends noms {
         $this->clean_rapport();
 
         $query = <<<SQL
-SELECT NULL, T1.fichier, T1.class, T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, T1.class, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 WHERE T1.type = '_interface'
 SQL;

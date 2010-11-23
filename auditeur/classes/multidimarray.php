@@ -34,15 +34,15 @@ class multidimarray extends modules {
 
 // @note the comment /* JOIN */ here is important
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, TC.code ,T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, TC.code ,T1.id, '{$this->name}', 0
 FROM <tokens> T1
 /* JOIN */
 JOIN <tokens_cache> TC
     ON TC.id = T1.id
 LEFT JOIN <tokens> TX
     ON TX.type IN ('_array','opappend') AND 
-       T1.fichier = TX.fichier AND
-       T1.droite - 1 = TX.droite
+       T1.file = TX.file AND
+       T1.left - 1 = TX.left
 LEFT JOIN <rapport> TR
     ON TR.module='{$this->name}' AND
        TR.token_id = T1.id
@@ -56,12 +56,12 @@ for($i = 2; $i < 7; $i++) {
     $join = <<<SQL
 JOIN <tokens> T$i
     ON T$i.type IN ('_array','opappend') AND 
-       T1.fichier = T$i.fichier AND
-       T$h.droite + 1 = T$i.droite
+       T1.file = T$i.file AND
+       T$h.left + 1 = T$i.left
 /* JOIN */
 SQL;
     $query = str_replace('/* JOIN */', $join, $query);
-    $query = str_replace('       T'.$h.'.droite + 1 = TX.droite','       T'.$i.'.droite + 1 = TX.droite', $query);
+    $query = str_replace('       T'.$h.'.left + 1 = TX.left','       T'.$i.'.left + 1 = TX.left', $query);
 
     $this->exec_query_insert('rapport', $query);
 }

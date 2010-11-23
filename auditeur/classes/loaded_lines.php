@@ -33,10 +33,10 @@ class loaded_lines extends modules {
         $this->clean_rapport();
 
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, CONCAT('line ',T1.line), T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, CONCAT('line ',T1.line), T1.id, '{$this->name}', 0
 FROM <tokens> T1
 WHERE T1.type != 'literals'
-GROUP BY fichier, line 
+GROUP BY file, line 
 HAVING COUNT(*) > 10
 SQL;
         $this->exec_query_insert('rapport', $query);

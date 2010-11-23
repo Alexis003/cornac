@@ -35,17 +35,17 @@ class appelsfonctions extends modules {
         $concat2 = $this->concat("T3.code","'->'","T4.code");
         $query = <<<SQL
 INSERT INTO <rapport_dot> 
-SELECT $concat1, $concat2, T1.fichier, '{$this->name}', 0
+SELECT $concat1, $concat2, T1.file, '{$this->name}', 0
   from <tokens> T1
   join <tokens_cache> T2 
     on T1.id = T2.id
   join <tokens> T3
-    on T1.fichier = T3.fichier AND
-       T3.droite = T1.droite + 1 AND
+    on T1.file = T3.file AND
+       T3.left = T1.left + 1 AND
        T3.code != '\$this'
   join <tokens> T4
-    on T1.fichier = T4.fichier AND
-       T4.droite = T1.droite + 4
+    on T1.file = T4.file AND
+       T4.left = T1.left + 4
 where 
  T1.type='method_static' ;
 SQL;
@@ -55,17 +55,17 @@ SQL;
         $concat2 = $this->concat("T1.class","'->'","T4.code");
         $query = <<<SQL
 INSERT INTO <rapport_dot> 
-SELECT $concat1, $concat2, T1.fichier, '{$this->name}', 0
+SELECT $concat1, $concat2, T1.file, '{$this->name}', 0
   from <tokens> T1
   join <tokens_cache> T2 
     on T1.id = T2.id
   join <tokens> T3
-    on T1.fichier = T3.fichier AND
-       T3.droite = T1.droite + 1 AND
+    on T1.file = T3.file AND
+       T3.left = T1.left + 1 AND
        T3.code = '\$this'
   join <tokens> T4
-    on T1.fichier = T4.fichier AND
-       T4.droite = T1.droite + 4
+    on T1.file = T4.file AND
+       T4.left = T1.left + 4
 where 
  T1.type='method' 
 SQL;
@@ -77,12 +77,12 @@ SELECT T4.code AS method, T1.class as classe
   join <tokens_cache> T2 
     on T1.id = T2.id
   join <tokens> T3
-    on T1.fichier = T3.fichier AND
-       T3.droite = T1.droite + 1 AND
+    on T1.file = T3.file AND
+       T3.left = T1.left + 1 AND
        T3.code != '\$this'
   join <tokens> T4
-    on T1.fichier = T4.fichier AND
-       T4.droite = T1.droite + 4
+    on T1.file = T4.file AND
+       T4.left = T1.left + 4
 where 
  T1.type='method' 
 SQL;

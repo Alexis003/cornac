@@ -38,7 +38,7 @@ class php_keywords extends modules {
 
 // @note used as literals
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, T1.code, T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, T1.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 WHERE T1.code IN ($in) AND
       T1.type = 'literals'
@@ -47,7 +47,7 @@ SQL;
 
 // @note search in variables/properties
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, T1.code, T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, T1.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 WHERE RIGHT(T1.code, LENGTH(T1.code) - 1) IN ($in) AND 
       T1.type = 'variable'
@@ -56,7 +56,7 @@ SQL;
 
 // @note used as function name
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, T1.code, T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, T1.code, T1.id, '{$this->name}', 0
 FROM <tokens_tags> TT
 JOIN <tokens> T1
     ON TT.token_sub_id = T1.id

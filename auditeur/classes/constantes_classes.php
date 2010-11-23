@@ -30,7 +30,7 @@ class constantes_classes extends modules {
 
 // @note cas simple : variable -> method
         $query = <<<SQL
-SELECT NULL, T1.fichier, TC.code AS code, T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, TC.code AS code, T1.id, '{$this->name}', 0
 FROM <tokens> T1 
 JOIN <tokens_cache> TC 
     ON T1.id = TC.id

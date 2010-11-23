@@ -34,7 +34,7 @@ class zfSession extends modules {
 
 // @todo of course, update this useless query. :)
 	    $query = <<<SQL
-SELECT NULL, TR.fichier, TR.element, TR.id, '{$this->name}', 0
+SELECT NULL, TR.file, TR.element, TR.id, '{$this->name}', 0
 FROM <rapport> TR
 WHERE module = '_new' AND
       element = 'Zend_Session_Namespace' 

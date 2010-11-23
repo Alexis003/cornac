@@ -35,11 +35,11 @@ class case_without_break extends modules {
 
 // @todo of course, update this useless query. :)
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, TC.code, T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, TC.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 LEFT JOIN <tokens> T2 
-    ON T2.droite BETWEEN T1.droite AND T1.gauche AND
-       T1.fichier = T2.fichier AND
+    ON T2.left BETWEEN T1.left AND T1.right AND
+       T1.file = T2.file AND
        T2.type = '_break'
 JOIN <tokens_cache> TC
     ON TC.id = T1.id

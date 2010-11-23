@@ -35,7 +35,7 @@ class php_classes_name_conflict extends modules {
         $in = '"'.join('","', $constants).'"';
 
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, T1.element, T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, T1.element, T1.id, '{$this->name}', 0
 FROM <rapport> T1
 WHERE   T1.module = 'classes' AND
         T1.element IN ($in)

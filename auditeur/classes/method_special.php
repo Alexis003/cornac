@@ -30,7 +30,7 @@ class method_special extends modules {
 
         $concat = $this->concat("T1.class","'->'","T1.scope");
         $query = <<<SQL
-SELECT NULL, T1.fichier, $concat, T1.id, '{$this->name}' , 0
+SELECT NULL, T1.file, $concat, T1.id, '{$this->name}' , 0
 FROM <tokens> T1
 WHERE scope IN ( '__construct','__toString','__destruct',
                  '__set','__get','__call','__callStatic',
@@ -39,13 +39,13 @@ WHERE scope IN ( '__construct','__toString','__destruct',
                  '__wakeup','__sleep'
                  ) 
        OR scope = class 
-GROUP BY fichier, class, scope;
+GROUP BY file, class, scope;
 
 SQL;
     $this->exec_query_insert('rapport', $query);
 
         $query = <<<SQL
-SELECT NULL, T1.fichier, T1.scope, T1.id, '{$this->name}' , 0
+SELECT NULL, T1.file, T1.scope, T1.id, '{$this->name}' , 0
 FROM <tokens> T1
 WHERE scope IN ( '__autoload' ) AND 
       T1.type='_function'

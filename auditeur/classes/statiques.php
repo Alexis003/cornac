@@ -29,7 +29,7 @@ class statiques extends modules {
         $this->clean_rapport();
 
         $query = <<<SQL
-SELECT NULL, T1.fichier, TC.code,  T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, TC.code,  T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens_cache> TC
     ON TC.id = T1.id 

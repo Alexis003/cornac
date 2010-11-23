@@ -29,19 +29,19 @@ class zfAction extends modules {
         $this->clean_rapport();
 
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, CONCAT(T1.class,'::',T1.code), T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, CONCAT(T1.class,'::',T1.code), T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN  <tokens_tags> TT
     ON TT.token_sub_id = T1.id
 JOIN  <tokens> T2
-ON T2.fichier = T1.fichier AND
-   T1.droite BETWEEN T2.droite AND T2.gauche AND
+ON T2.file = T1.file AND
+   T1.left BETWEEN T2.left AND T2.right AND
    T2.type = '_class'
 JOIN  <tokens_tags> TT2
 ON TT2.token_id = T2.id AND
    TT2.type = 'extends'
 JOIN  <tokens> T3
-ON T3.fichier = T1.fichier AND
+ON T3.file = T1.file AND
    TT2.token_sub_id = T3.id
 WHERE 
     T1.code LIKE "%Action" AND 

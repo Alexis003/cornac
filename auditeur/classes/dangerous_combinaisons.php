@@ -19,7 +19,7 @@
 
 class dangerous_combinaisons extends modules {
 	protected	$title = 'Combinaisons dangereuses';
-	protected	$description = 'Liste de fichiers ayant des combinaisons dangereuses d\'elements (ex. $_POST et shell_exec).';
+	protected	$description = 'Liste de files ayant des combinaisons dangereuses d\'elements (ex. $_POST et shell_exec).';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -42,10 +42,10 @@ class dangerous_combinaisons extends modules {
 // @note : some token duplicate code from other tokens (like functioncall, which have no code by itself, but get a copy of their name for easy reference)
 // @note so, we need to ignore some types. 
             $query = <<<SQL
-SELECT NULL, T1.fichier, '$nom', T1.code, '{$this->name}', 0
+SELECT NULL, T1.file, '$nom', T1.code, '{$this->name}', 0
 FROM <tokens> T1
 WHERE T1.type NOT IN ('functioncall','method')
-GROUP BY fichier
+GROUP BY file
 HAVING SUM(IF (code IN ($in), 1, 0)) >= $count
 SQL;
             $this->exec_query_insert('rapport', $query);

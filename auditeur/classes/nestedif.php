@@ -30,14 +30,14 @@ class nestedif extends modules {
 
         $concat = $this->concat("T1.type","'->'","T2.type");
         $query = <<<SQL
-SELECT NULL, T1.fichier, $concat, T1.id, '{$this->name}' , 0
+SELECT NULL, T1.file, $concat, T1.id, '{$this->name}' , 0
 FROM <tokens> T1
 JOIN <tokens> T2
-    ON T1.fichier = T2.fichier AND 
-       T2.droite BETWEEN T1.droite AND T1.gauche
+    ON T1.file = T2.file AND 
+       T2.left BETWEEN T1.left AND T1.right
 WHERE T1.type in ('ifthen') AND 
       T2.type IN  ('ifthen')
-GROUP BY T1.fichier, T1.droite 
+GROUP BY T1.file, T1.left 
 HAVING COUNT(*) > 1
 SQL;
 

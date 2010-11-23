@@ -52,10 +52,10 @@ class zfElements extends modules {
         
         $in = join("', '", $classes);
 	    $query = <<<SQL
-SELECT T1.droite, T1.gauche, T1.fichier , T1.id, T2.code
+SELECT T1.left, T1.right, T1.file , T1.id, T2.code
 FROM <tokens> T1
 JOIN <tokens> T2
-    ON T2.fichier = T1.fichier AND T2.droite BETWEEN T1.droite AND T1.gauche 
+    ON T2.file = T1.file AND T2.left BETWEEN T1.left AND T1.right 
 WHERE T2.code in ('$in') AND 
       T1.type='affectation'
 SQL;
@@ -63,40 +63,40 @@ SQL;
     $res = $this->exec_query($query);
     
     while($row = $res->fetch()) {
-        $droite = $row['gauche'] + 1;
+        $left = $row['right'] + 1;
         $trouve = false;
         while(!$trouve) {
 	        $query = <<<SQL
-SELECT T1.droite, T1.gauche, T1.fichier, SUM(if (T2.code='addElement', 1, 0)) AS addElement
+SELECT T1.left, T1.right, T1.file, SUM(if (T2.code='addElement', 1, 0)) AS addElement
 FROM <tokens> T1
 JOIN <tokens> T2
-    ON T2.fichier=  T1.fichier AND
-       T2.droite BETWEEN T1.droite AND T1.gauche
-WHERE T1.droite = $droite AND 
-      T1.fichier='{$row["fichier"]}'
-GROUP BY T1.droite, T1.gauche, T1.fichier
+    ON T2.file=  T1.file AND
+       T2.left BETWEEN T1.left AND T1.right
+WHERE T1.left = $left AND 
+      T1.file='{$row["file"]}'
+GROUP BY T1.left, T1.right, T1.file
 SQL;
 
             $res2 = $this->exec_query($query);
             $row2 = $res2->fetch();
             
             $trouve = $row2['addElement'] != 0;
-            $droite = $row2['gauche'] + 1;
+            $left = $row2['right'] + 1;
         
         }
         
         $query = <<<SQL
-SELECT sum(if (T1.code IN ('addValidator','addFilter'), 1, 0)) AS addValidator, T1.fichier 
+SELECT sum(if (T1.code IN ('addValidator','addFilter'), 1, 0)) AS addValidator, T1.file 
 FROM <tokens> T1 
-WHERE fichier = '{$row['fichier']}' AND 
-      droite BETWEEN {$row['droite']} AND {$row2['gauche']}
+WHERE file = '{$row['file']}' AND 
+      left BETWEEN {$row['left']} AND {$row2['right']}
 SQL;
         $res2 = $this->exec_query($query);
         $row2 = $res2->fetch();
         
 	    $query = <<<SQL
 INSERT INTO <rapport> VALUES 
-    (0, '{$row2['fichier']}', '{$row['code']} : {$row2['addValidator']}' , {$row['id']}, '{$this->name}', 0 );
+    (0, '{$row2['file']}', '{$row['code']} : {$row2['addValidator']}' , {$row['id']}, '{$this->name}', 0 );
 SQL;
         $this->exec_query($query);
         }

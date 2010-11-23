@@ -30,25 +30,25 @@ class globals extends modules {
         
         // @note variable global thanks to the global reserved word
         $query = <<<SQL
-SELECT NULL, T2.fichier, T2.code AS code, T2.id, '{$this->name}', 0
+SELECT NULL, T2.file, T2.code AS code, T2.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens> T2 
-    ON T1.droite + 1 = T2.droite AND
-       T1.fichier = T2.fichier
+    ON T1.left + 1 = T2.left AND
+       T1.file = T2.file
 WHERE T1.type='_global' 
 SQL;
         $this->exec_query_insert('rapport', $query);
         
         // @note variables globales because in $GLOBALS
        $query = <<<SQL
-SELECT NULL, T1.fichier, T3.code AS code, T2.id, '{$this->name}', 0
+SELECT NULL, T1.file, T3.code AS code, T2.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens> T2 
-    ON T1.droite + 1 = T2.droite AND
-       T1.fichier = T2.fichier
+    ON T1.left + 1 = T2.left AND
+       T1.file = T2.file
 LEFT JOIN <tokens_cache> T3
     ON T1.id = T3.id AND
-       T1.fichier = T3.fichier
+       T1.file = T3.file
 WHERE T1.type = '_array' AND
       T2.code = '\$GLOBALS';
 SQL;

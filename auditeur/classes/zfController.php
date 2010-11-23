@@ -36,17 +36,17 @@ class zfController extends modules {
 
         $concat = $this->concat("T3.class", "'->'","T3.code");
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, $concat AS code, T3.id, 'zfController', 0
+SELECT NULL, T1.file, $concat AS code, T3.id, 'zfController', 0
 FROM <tokens> T1
 JOIN <tokens_tags> TT 
 ON T1.id = TT.token_id AND
    TT.type='extends'
 JOIN <tokens> T2
 ON T2.id = TT.token_sub_id AND
-   T2.fichier=T1.fichier
+   T2.file=T1.file
 JOIN <tokens> T3
-ON T3.fichier = T2.fichier AND 
-   T3.droite BETWEEN T1.droite AND T1.gauche AND
+ON T3.file = T2.file AND 
+   T3.left BETWEEN T1.left AND T1.right AND
    T3.type = '_function'
 WHERE T1.type = '_class' AND
     T2.code IN ( "Application_Zend_Controller","Zend_Controller" $classes) AND

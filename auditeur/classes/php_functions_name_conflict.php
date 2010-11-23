@@ -39,7 +39,7 @@ class php_functions_name_conflict extends modules {
 
 // @todo of course, update this useless query. :)
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, T1.element, T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, T1.element, T1.id, '{$this->name}', 0
     FROM <rapport> T1
     WHERE   T1.module = 'deffunctions' AND
             T1.element IN ($in)

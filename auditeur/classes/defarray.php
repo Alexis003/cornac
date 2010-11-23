@@ -35,18 +35,18 @@ class defarray extends modules {
 
 // @todo of course, update this useless query. :)
 	    $query = <<<SQL
-SELECT NULL, T2.fichier, CONCAT(SUM(IF(T3.type='token_traite',0,1)), ' elements'), T2.id, '{$this->name}', 0
+SELECT NULL, T2.file, CONCAT(SUM(IF(T3.type='token_traite',0,1)), ' elements'), T2.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens> T2
-    ON T2.fichier = T1.fichier AND
-       T2.droite = T1.gauche + 1
+    ON T2.file = T1.file AND
+       T2.left = T1.right + 1
 JOIN <tokens> T3
-    ON T3.fichier = T1.fichier AND
-       T3.droite BETWEEN T2.droite AND T2.gauche AND
+    ON T3.file = T1.file AND
+       T3.left BETWEEN T2.left AND T2.right AND
        T3.level = T2.level + 1 
 WHERE T1.code='array' AND 
        T2.type='arglist' AND
-       T2.gauche - T2.droite > 1
+       T2.right - T2.left > 1
 GROUP BY T2.id;
 SQL;
         $this->exec_query_insert('rapport', $query);

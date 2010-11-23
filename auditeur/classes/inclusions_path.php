@@ -29,11 +29,11 @@ class inclusions_path extends modules {
         $this->clean_rapport();
 
         $query = <<<SQL
-SELECT NULL, T1.fichier, IFNULL(TC.code, T2.code) AS element, T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, IFNULL(TC.code, T2.code) AS element, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens> T2
-    ON T1.fichier = T2.fichier AND
-       T2.droite = T1.droite + 1
+    ON T1.file = T2.file AND
+       T2.left = T1.left + 1
 LEFT JOIN <tokens_cache> TC
     ON TC.id = T2.id
 WHERE T1.type='inclusion'

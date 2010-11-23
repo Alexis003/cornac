@@ -31,16 +31,16 @@ class properties_used extends modules {
         $concat = $this->concat("T2.class","'->'","T3.code");
 // @note this are the properties used within the class : we rely on $this
         $query = <<<SQL
-SELECT NULL, T1.fichier, $concat AS code, T2.id, '{$this->name}', 0 
+SELECT NULL, T1.file, $concat AS code, T2.id, '{$this->name}', 0 
 FROM <tokens> T1
 JOIN <tokens_tags> TT 
     ON TT.token_id = T1.id AND TT.type='object' 
 JOIN <tokens> T2
-    ON T1.fichier = T2.fichier AND TT.token_sub_id = T2.id AND T2.code='\$this'
+    ON T1.file = T2.file AND TT.token_sub_id = T2.id AND T2.code='\$this'
 JOIN <tokens_tags> TT2
     ON TT2.token_id = T1.id AND TT2.type='property'
 JOIN <tokens> T3
-    ON T1.fichier = T3.fichier AND TT2.token_sub_id = T3.id
+    ON T1.file = T3.file AND TT2.token_sub_id = T3.id
 WHERE T1.type='property'
 SQL;
         $this->exec_query_insert('rapport',$query);
@@ -50,16 +50,16 @@ SQL;
         $concat = $this->concat("T2.code","'->'","T3.code"); 
 
         $query = <<<SQL
-SELECT NULL, T1.fichier, $concat AS code, T2.id, '{$this->name}' , 0
+SELECT NULL, T1.file, $concat AS code, T2.id, '{$this->name}' , 0
 FROM <tokens> T1
 JOIN <tokens_tags> TT 
     ON TT.token_id = T1.id AND TT.type='object' 
 JOIN <tokens> T2
-    ON T1.fichier = T2.fichier AND TT.token_sub_id = T2.id AND T2.code!='\$this'
+    ON T1.file = T2.file AND TT.token_sub_id = T2.id AND T2.code!='\$this'
 JOIN <tokens_tags> TT2
     ON TT2.token_id = T1.id AND TT2.type='property'
 JOIN <tokens> T3
-    ON T1.fichier = T3.fichier AND TT2.token_sub_id = T3.id
+    ON T1.file = T3.file AND TT2.token_sub_id = T3.id
 WHERE T1.type='property'
 SQL;
         $this->exec_query_insert('rapport',$query);

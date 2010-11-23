@@ -35,13 +35,13 @@ class zfDb extends modules {
 
 // @todo of course, update this useless query. :)
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, TC.code, T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, TC.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens_tags> TT 
     ON TT.token_id = T1.id AND 
        TT.type='method'
 JOIN <tokens> T2
-    ON T1.fichier = T2.fichier AND
+    ON T1.file = T2.file AND
        TT.token_sub_id = T2.id AND
        T2.code = 'where'
 JOIN <tokens_cache> TC

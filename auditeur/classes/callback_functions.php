@@ -36,13 +36,13 @@ class callback_functions extends modules {
 
 // @doc spot callback when it's a first argument
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, T4.code, T4.id, '{$this->name}', 0
+SELECT NULL, T1.file, T4.code, T4.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens_tags> TT
     ON TT.token_id = T1.id AND
        TT.type='function'
 JOIN <tokens> T2
-    ON T2.fichier = T1.fichier AND
+    ON T2.file = T1.file AND
        TT.token_sub_id = T2.id AND
        T2.code IN (
 'array_map',
@@ -53,24 +53,24 @@ JOIN <tokens_tags> TT2
     ON TT2.token_id = T1.id AND
        TT2.type='args'
 JOIN <tokens> T3
-    ON T3.fichier = T1.fichier AND
+    ON T3.file = T1.file AND
        TT2.token_sub_id = T3.id
 JOIN <tokens> T4
-    ON T4.fichier = T1.fichier AND
-       T4.droite = T3.droite + 1
+    ON T4.file = T1.file AND
+       T4.left = T3.left + 1
 WHERE T1.type='functioncall';
 SQL;
         $this->exec_query_insert('rapport', $query);
 
 // @doc spot callback when it's a second argument
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, T5.code, T5.id, '{$this->name}', 0
+SELECT NULL, T1.file, T5.code, T5.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens_tags> TT
     ON TT.token_id = T1.id AND
        TT.type='function'
 JOIN <tokens> T2
-    ON T2.fichier = T1.fichier AND
+    ON T2.file = T1.file AND
        TT.token_sub_id = T2.id AND
        T2.code IN (
                     'usort', 
@@ -86,27 +86,27 @@ JOIN <tokens_tags> TT2
     ON TT2.token_id = T1.id AND
        TT2.type='args'
 JOIN <tokens> T3
-    ON T3.fichier = T1.fichier AND
+    ON T3.file = T1.file AND
        TT2.token_sub_id = T3.id
 JOIN <tokens> T4
-    ON T4.fichier = T1.fichier AND
-       T4.droite = T3.droite + 1
+    ON T4.file = T1.file AND
+       T4.left = T3.left + 1
 JOIN <tokens> T5
-    ON T5.fichier = T1.fichier AND
-       T5.droite = T4.gauche + 1
+    ON T5.file = T1.file AND
+       T5.left = T4.right + 1
 WHERE T1.type='functioncall';
 SQL;
         $this->exec_query_insert('rapport', $query);
 
 // @doc spot callback when it's the last argument
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, T4.code, T4.id, '{$this->name}', 0
+SELECT NULL, T1.file, T4.code, T4.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens_tags> TT
     ON TT.token_id = T1.id AND
        TT.type='function'
 JOIN <tokens> T2
-    ON T2.fichier = T1.fichier AND
+    ON T2.file = T1.file AND
        TT.token_sub_id = T2.id AND
        T2.code IN (
                    'array_diff_uassoc',
@@ -126,11 +126,11 @@ JOIN <tokens_tags> TT2
     ON TT2.token_id = T1.id AND
        TT2.type='args'
 JOIN <tokens> T3
-    ON T3.fichier = T1.fichier AND
+    ON T3.file = T1.file AND
        TT2.token_sub_id = T3.id
 JOIN <tokens> T4
-    ON T4.fichier = T1.fichier AND
-       T4.gauche = T3.gauche - 1
+    ON T4.file = T1.file AND
+       T4.right = T3.right - 1
 WHERE T1.type='functioncall';
 SQL;
         $this->exec_query_insert('rapport', $query);

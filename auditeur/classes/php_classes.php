@@ -35,11 +35,11 @@ class php_classes extends functioncalls {
 	    $in = join("', '", modules::getPHPClasses());
 
         $query = <<<SQL
-SELECT NULL, T1.fichier, T2.code AS code, T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, T2.code AS code, T1.id, '{$this->name}', 0
 FROM <tokens> T1 
 JOIN <tokens> T2
-    ON T2.droite = T1.droite + 1 AND
-       T2.fichier = T1.fichier
+    ON T2.left = T1.left + 1 AND
+       T2.file = T1.file
 WHERE T1.type='_new' AND 
       T2.code IN ('$in')
 SQL;

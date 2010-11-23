@@ -35,14 +35,14 @@ class method_without_ppp extends modules {
 
 // @todo of course, update this useless query. :)
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, T1.code, T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, T1.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 LEFT JOIN <tokens> T2
-    ON T2.fichier = T1.fichier AND
+    ON T2.file = T1.file AND
        T2.type = 'token_traite' AND
-       (T2.droite = T1.droite + 1 OR 
-        T2.droite = T1.droite + 3 OR 
-        T2.droite = T1.droite + 5
+       (T2.left = T1.left + 1 OR 
+        T2.left = T1.left + 3 OR 
+        T2.left = T1.left + 5
         )
 WHERE T1.type='_function' AND
       T1.class!= ''

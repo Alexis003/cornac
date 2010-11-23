@@ -33,11 +33,11 @@ class recursive extends modules {
         $this->clean_rapport();
 
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, CONCAT('::',T1.scope), T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, CONCAT('::',T1.scope), T1.id, '{$this->name}', 0
 FROM <tokens> T1
 LEFT JOIN <tokens> T2
-    ON T2.fichier = T1.fichier AND
-       T1.gauche + 1 = T2.gauche AND
+    ON T2.file = T1.file AND
+       T1.right + 1 = T2.right AND
        T2.type = 'method'
 WHERE T1.type = 'functioncall' AND 
       T1.class = '' AND 
@@ -47,11 +47,11 @@ SQL;
         $this->exec_query_insert('rapport', $query);
 
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, CONCAT(T1.class,'::',T1.scope), T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, CONCAT(T1.class,'::',T1.scope), T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens> T2
-    ON T2.fichier = T1.fichier AND
-       T1.gauche + 1 = T2.gauche AND
+    ON T2.file = T1.file AND
+       T1.right + 1 = T2.right AND
        T2.type = 'method'
 WHERE T1.type = 'functioncall' 
       AND T1.class != ''

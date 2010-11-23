@@ -35,13 +35,13 @@ class keyval extends modules {
 
 // @doc values
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, T2.code, T1.id, '{$this->name}',0
+SELECT NULL, T1.file, T2.code, T1.id, '{$this->name}',0
 FROM <tokens> T1
 JOIN <tokens_tags> TT
     ON TT.token_id = T1.id AND
        TT.type='value'
 JOIN <tokens> T2
-    ON T1.fichier = T2.fichier AND
+    ON T1.file = T2.file AND
        TT.token_sub_id = T2.id AND
        T2.type = 'variable'
 WHERE T1.type='_foreach';
@@ -50,17 +50,17 @@ SQL;
 
 // @doc values as references
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, T3.code, T1.id, '{$this->name}',0
+SELECT NULL, T1.file, T3.code, T1.id, '{$this->name}',0
 FROM <tokens> T1
 JOIN <tokens_tags> TT
     ON TT.token_id = T1.id AND
        TT.type='value'
 JOIN <tokens> T2
-    ON T1.fichier = T2.fichier AND
+    ON T1.file = T2.file AND
        TT.token_sub_id = T2.id
 JOIN <tokens> T3
-    ON T1.fichier = T3.fichier   AND
-       T2.droite + 1 = T3.droite AND
+    ON T1.file = T3.file   AND
+       T2.left + 1 = T3.left AND
        T3.type = 'variable'
 WHERE T1.type='_foreach';
 SQL;
@@ -68,13 +68,13 @@ SQL;
 
 // @doc keys
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, T2.code, T1.id, '{$this->name}',0
+SELECT NULL, T1.file, T2.code, T1.id, '{$this->name}',0
 FROM <tokens> T1
 JOIN <tokens_tags> TT
     ON TT.token_id = T1.id AND
        TT.type='key'
 JOIN <tokens> T2
-    ON T1.fichier = T2.fichier AND
+    ON T1.file = T2.file AND
        TT.token_sub_id = T2.id
 WHERE T1.type='_foreach';
 SQL;

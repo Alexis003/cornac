@@ -30,14 +30,14 @@ class affectations_literals extends modules {
 
 // @note affectations that have no variables on the right side (properties, references, list(), noscream...)
         $query = <<<SQL
-SELECT NULL, T1.fichier, TC.code, T1.id,  '{$this->name}' , 0 
+SELECT NULL, T1.file, TC.code, T1.id,  '{$this->name}' , 0 
 FROM <tokens> T1
 JOIN <tokens_tags> TT1
 ON T1.id = TT1.token_id AND TT1.type='right'
 JOIN <tokens> T2
-    ON T1.fichier = T2.fichier AND T2.id = TT1.token_sub_id
+    ON T1.file = T2.file AND T2.id = TT1.token_sub_id
 JOIN <tokens> T3
-    ON T1.fichier = T3.fichier AND T3.droite BETWEEN T2.droite AND T2.gauche 
+    ON T1.file = T3.file AND T3.left BETWEEN T2.left AND T2.right 
 JOIN <tokens_cache> TC
     ON TC.id = T1.id
 WHERE T1.type = 'affectation' 

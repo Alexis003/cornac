@@ -34,7 +34,7 @@ class _this extends modules {
         $this->clean_rapport();
 
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, T1.code, T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, T1.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 WHERE code = '\$this' AND 
       class = ''      AND

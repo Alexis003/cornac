@@ -43,14 +43,14 @@ class popular_libraries extends modules {
 
             // @doc search for usage as class extensions
             $query = <<<SQL
-SELECT NULL, T1.fichier, '$ext', T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, '$ext', T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens_tags> TT 
     ON TT.token_id = T1.id AND
        TT.type = 'extends'
 JOIN <tokens> T2
     ON TT.token_sub_id = T2.id AND
-       T1.fichier = T2.fichier AND 
+       T1.file = T2.file AND 
        T2.code IN ($in)
 WHERE T1.type='_class'; 
 SQL;
@@ -58,7 +58,7 @@ SQL;
 
             // @doc search for usage as instanciation
             $query = <<<SQL
-SELECT NULL, TR.fichier, '$ext', TR.id, '{$this->name}', 0
+SELECT NULL, TR.file, '$ext', TR.id, '{$this->name}', 0
 FROM <rapport> TR
 WHERE TR.element IN ($in); 
 SQL;

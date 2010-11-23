@@ -30,7 +30,7 @@ class defmethodes extends modules {
 
         $concat = $this->concat("T1.class","'->'","T2.code");
         $query = <<<SQL
-SELECT NULL, T1.fichier, $concat AS code, T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, $concat AS code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens_tags> TT
     ON T1.id = TT.token_id  

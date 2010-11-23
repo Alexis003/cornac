@@ -32,7 +32,7 @@ class arglist_disc extends modules {
 	public function analyse() {
         $this->clean_rapport();
         $query = <<<SQL
-SELECT NULL, TR1.fichier, TR1.element AS code, TR1.id, '{$this->name}', 0
+SELECT NULL, TR1.file, TR1.element AS code, TR1.id, '{$this->name}', 0
 FROM <rapport> TR1
 LEFT JOIN <rapport> TR2
     ON TR2.module='arglist_def' AND

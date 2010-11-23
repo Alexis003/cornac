@@ -30,11 +30,11 @@ class returns extends modules {
 
         $concat = $this->concat("sum(type='_return')", "' returns'");
         $query = <<<SQL
-SELECT NULL, T1.fichier, $concat, T1.id, '{$this->name}' , 0
+SELECT NULL, T1.file, $concat, T1.id, '{$this->name}' , 0
 FROM <tokens> T1
 WHERE scope NOT IN ( '__construct','__destruct','__set','__get','__call','__clone','__toString','__wakeup','__sleep') 
  AND scope != class AND (class != 'global' AND scope != 'global')
-GROUP BY fichier, class, scope 
+GROUP BY file, class, scope 
 SQL;
         $this->exec_query_insert('rapport',$query);
 

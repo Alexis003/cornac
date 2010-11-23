@@ -29,7 +29,7 @@ class classes_nb_methods extends modules {
         $this->clean_rapport();
         
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, class AS code, T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, class AS code, T1.id, '{$this->name}', 0
 FROM <tokens> T1 
 WHERE T1.type='_function' AND 
       T1.class != ''      AND

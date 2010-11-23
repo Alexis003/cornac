@@ -33,11 +33,11 @@ class comparison_constant extends modules {
         $this->clean_rapport();
 
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, CONCAT('line ', T1.line, ' : ', T1.code), T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, CONCAT('line ', T1.line, ' : ', T1.code), T1.id, '{$this->name}', 0
 FROM <tokens> T1
 LEFT JOIN <tokens> T2
-    ON T2.fichier = T1.fichier AND
-       T2.droite BETWEEN T1.droite AND T1.gauche AND
+    ON T2.file = T1.file AND
+       T2.left BETWEEN T1.left AND T1.right AND
        ( T2.type = 'variable' OR
          T2.code = 'function_exists')
 WHERE T1.type IN ( 'logique','comparison')

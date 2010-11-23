@@ -33,14 +33,14 @@ class return_with_dead_code extends modules {
         $this->clean_rapport();
 
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, CONCAT(T1.class, "::",T1.scope), T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, CONCAT(T1.class, "::",T1.scope), T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens> T2
-    ON T1.fichier = T2.fichier AND
-       T1.droite BETWEEN T2.droite AND T2.gauche AND
+    ON T1.file = T2.file AND
+       T1.left BETWEEN T2.left AND T2.right AND
        T2.type='_function'
 WHERE T1.type='_return' AND
-      T2.gauche != T1.gauche + 2 AND 
+      T2.right != T1.right + 2 AND 
       T2.level = T1.level - 2
 SQL;
         $this->exec_query_insert('rapport',$query);

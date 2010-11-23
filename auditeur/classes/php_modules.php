@@ -36,7 +36,7 @@ class php_modules extends modules {
 	    
 	    // @section : searching via functions usage
 	    $query = <<<SQL
-SELECT NULL, fichier, element, token_id, '{$this->name}' , 0
+SELECT NULL, file, element, token_id, '{$this->name}' , 0
 FROM <rapport> 
 WHERE module = 'php_functions'
 SQL;
@@ -101,7 +101,7 @@ SQL;
 	    // @section : searching via classes usage
 	    $query = <<<SQL
 INSERT INTO <rapport>
-SELECT NULL, fichier, element, token_id, '{$this->name}_tmp', 0
+SELECT NULL, file, element, token_id, '{$this->name}_tmp', 0
 FROM <rapport> 
 WHERE module = 'php_classes'
 SQL;

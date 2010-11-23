@@ -29,7 +29,7 @@ class arobases extends modules {
         $this->clean_rapport();
 
         $query = <<<SQL
-SELECT NULL, TC.fichier, TC.code AS code, T1.id, '{$this->name}', 0
+SELECT NULL, TC.file, TC.code AS code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 LEFT JOIN <tokens_cache>  TC 
     ON T1.id = TC.id 

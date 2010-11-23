@@ -34,15 +34,15 @@ class tostring_no_arg extends modules {
         $this->clean_rapport();
 
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, T1.class, T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, T1.class, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens> T2
-    ON T2.fichier = T1.fichier AND
-       T2.droite BETWEEN T1.droite AND T1.gauche AND
+    ON T2.file = T1.file AND
+       T2.left BETWEEN T1.left AND T1.right AND
        T2.type = 'arglist'
 LEFT JOIN <tokens> T3
-    ON T3.fichier = T1.fichier AND
-       T3.droite = T2.droite + 1 AND
+    ON T3.file = T1.file AND
+       T3.left = T2.left + 1 AND
        T3.type = 'token_traite'
 WHERE T1.type = '_function' AND
       T1.code = '__toString' AND

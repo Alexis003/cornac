@@ -52,7 +52,7 @@ SQL;
 // @todo make temporary
 	    $query = <<<SQL
 CREATE TABLE literals_as_argref_definitions
-SELECT  T1.fichier AS file, 
+SELECT  T1.file AS file, 
         T4.class AS class, 
         T4.scope AS scope, 
         T3.type,
@@ -60,16 +60,16 @@ SELECT  T1.fichier AS file,
        if (@id = T2.id, @i := @i + 1, LEAST(@id := T2.id , @i := 0 )) AS rank
 FROM <tokens> T1
 JOIN <tokens> T2
-    ON T2.fichier = T1.fichier AND 
-       T2.droite = T1.droite + 3 AND
+    ON T2.file = T1.file AND 
+       T2.left = T1.left + 3 AND
        T2.type = 'arglist'
 JOIN <tokens> T3
-    ON T3.fichier = T1.fichier AND
+    ON T3.file = T1.file AND
        T3.level = T2.level + 1 AND
-       T3.droite BETWEEN T2.droite AND T2.gauche
+       T3.left BETWEEN T2.left AND T2.right
 JOIN <tokens> T4
-    ON T4.fichier = T1.fichier AND
-       T4.droite = T1.droite + 1
+    ON T4.file = T1.file AND
+       T4.left = T1.left + 1
 WHERE T1.type='_function'
 SQL;
         $this->exec_query($query);
@@ -97,24 +97,24 @@ SQL;
 // @todo make TEMPORARY
 	    $query = <<<SQL
 CREATE  TABLE literals_as_argref_calls
-SELECT T3.fichier, 
+SELECT T3.file, 
        T1.code, 
        T2.id, 
        T4.type, 
        if (@id = T3.id, @i := @i + 1, LEAST(@id := T3.id , @i := 0 )) AS rank
 FROM <tokens> T1
 JOIN <tokens> T2
-    ON T2.fichier = T1.fichier AND
-       T2.droite = T1.droite - 1 AND
+    ON T2.file = T1.file AND
+       T2.left = T1.left - 1 AND
        T2.type = 'functioncall'
 JOIN <tokens> T3
-    ON T3.fichier = T1.fichier AND
-       T3.droite = T1.gauche + 1 AND
+    ON T3.file = T1.file AND
+       T3.left = T1.right + 1 AND
        T3.type = 'arglist'
 JOIN <tokens> T4
-    ON T4.fichier = T1.fichier AND
+    ON T4.file = T1.file AND
        T4.level = T3.level + 1 AND
-       T4.droite BETWEEN T3.droite AND T3.gauche
+       T4.left BETWEEN T3.left AND T3.right
 WHERE T1.code IN ($in);
 
 SQL;

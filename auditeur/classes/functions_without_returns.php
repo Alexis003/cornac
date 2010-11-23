@@ -30,7 +30,7 @@ class functions_without_returns extends noms {
 
 // @note for methods
         $query = <<<SQL
-SELECT NULL, T1.fichier, CONCAT(T1.class,'::', T1.scope), T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, CONCAT(T1.class,'::', T1.scope), T1.id, '{$this->name}', 0
 FROM <tokens> T1
 WHERE T1.class != '' AND
       T1.scope!='global' AND 
@@ -42,7 +42,7 @@ SQL;
 
 // @note for functions
         $query = <<<SQL
-SELECT NULL, T1.fichier, T1.scope, T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, T1.scope, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 WHERE T1.class = '' AND 
      T1.scope != 'global'

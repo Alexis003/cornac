@@ -29,11 +29,11 @@ class thrown extends modules {
         $this->clean_rapport();
 
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, T2.code, T1.id, '{$this->name}' , 0
+SELECT NULL, T1.file, T2.code, T1.id, '{$this->name}' , 0
 FROM <tokens> T1
 JOIN <tokens>  T2
-    ON T1.fichier = T2.fichier AND 
-       T1.droite + 2 = T2.droite
+    ON T1.file = T2.file AND 
+       T1.left + 2 = T2.left
 WHERE T1.type = '_throw'
 SQL;
         $this->exec_query_insert('rapport', $query);

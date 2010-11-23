@@ -33,7 +33,7 @@ class doubledeffunctions extends modules {
         $this->clean_rapport();
 
         $query = <<<SQL
-SELECT NULL, fichier, TR.element,  TR.token_id, '{$this->name}', 0
+SELECT NULL, file, TR.element,  TR.token_id, '{$this->name}', 0
 FROM <rapport> TR
 WHERE module='deffunctions'
 GROUP BY element 

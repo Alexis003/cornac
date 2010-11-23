@@ -37,14 +37,14 @@ class infinite_loop extends modules {
 
 // @note while with no variables : probably infinite loop
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, CONCAT('line ', T1.line), T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, CONCAT('line ', T1.line), T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens> T2
-    ON T1.fichier =T2.fichier AND
-       T1.droite + 1 = T2.droite
+    ON T1.file =T2.file AND
+       T1.left + 1 = T2.left
 LEFT JOIN <tokens> T3
-    ON T1.fichier = T3.fichier AND
-       T3.droite BETWEEN T2.droite AND T2.gauche AND
+    ON T1.file = T3.file AND
+       T3.left BETWEEN T2.left AND T2.right AND
        T3.type = 'variable'
 WHERE T1.type = '_while'
 GROUP BY T1.id
@@ -54,7 +54,7 @@ SQL;
         
 // @note for with no middle code
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, CONCAT('line ', T1.line), T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, CONCAT('line ', T1.line), T1.id, '{$this->name}', 0
 FROM <tokens> T1
 LEFT JOIN <tokens_tags> TT
 ON TT.token_id = T1.id AND
@@ -65,17 +65,17 @@ SQL;
         $this->exec_query_insert('rapport', $query);
 
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, CONCAT('line ', T1.line), T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, CONCAT('line ', T1.line), T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens_tags> TT
 ON TT.token_id = T1.id AND
    TT.type='end'
 JOIN <tokens> T2
-    ON T2.fichier = T1.fichier AND
+    ON T2.file = T1.file AND
        TT.token_sub_id = T2.id
 JOIN <tokens> T3
-    ON T3.fichier = T1.fichier AND
-       T3.droite BETWEEN T2.droite AND T2.gauche AND
+    ON T3.file = T1.file AND
+       T3.left BETWEEN T2.left AND T2.right AND
        T3.type = 'variable'
 WHERE T1.type = '_for' 
 GROUP BY T1.id
@@ -85,7 +85,7 @@ SQL;
 
 // @note for with no increment code, or non-variable code
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, CONCAT('line ', T1.line), T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, CONCAT('line ', T1.line), T1.id, '{$this->name}', 0
 FROM <tokens> T1
 LEFT JOIN <tokens_tags> TT
 ON TT.token_id = T1.id AND
@@ -99,17 +99,17 @@ SQL;
         $this->exec_query_insert('rapport', $query);
 
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, CONCAT('line ', T1.line), T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, CONCAT('line ', T1.line), T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens_tags> TT
 ON TT.token_id = T1.id AND
    TT.type='increment'
 JOIN <tokens> T2
-    ON T2.fichier = T1.fichier AND
+    ON T2.file = T1.file AND
        TT.token_sub_id = T2.id
 JOIN <tokens> T3
-    ON T3.fichier = T1.fichier AND
-       T3.droite BETWEEN T2.droite AND T2.gauche AND
+    ON T3.file = T1.file AND
+       T3.left BETWEEN T2.left AND T2.right AND
        T3.type = 'variable'
 WHERE T1.type = '_for' 
 GROUP BY T1.id

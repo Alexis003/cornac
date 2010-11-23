@@ -33,11 +33,11 @@ class finals extends modules {
 
 // @note spot final when in first place in a class
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, T2.class, T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, T2.class, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens> T2
-    ON T2.fichier = T1.fichier AND
-       T2.droite = T1.droite + 1 AND
+    ON T2.file = T1.file AND
+       T2.left = T1.left + 1 AND
        T2.code = 'final'
 WHERE T1.type = '_class'
 SQL;
@@ -45,11 +45,11 @@ SQL;
 
 // @note spot final when in first place in a method
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, CONCAT(T2.class,'::',T2.scope), T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, CONCAT(T2.class,'::',T2.scope), T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens> T2
-    ON T2.fichier = T1.fichier AND
-       T2.droite = T1.droite + 1 AND
+    ON T2.file = T1.file AND
+       T2.left = T1.left + 1 AND
        T2.code = 'final'
 WHERE T1.type = '_function'
 SQL;
@@ -57,11 +57,11 @@ SQL;
 
 // @note spot final when in second place
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, CONCAT(T2.class,'::',T2.scope), T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, CONCAT(T2.class,'::',T2.scope), T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens> T2
-    ON T2.fichier = T1.fichier AND
-       T2.droite = T1.droite + 3 AND
+    ON T2.file = T1.file AND
+       T2.left = T1.left + 3 AND
        T2.code = 'final'
 WHERE T1.type = '_function'
 SQL;
@@ -69,11 +69,11 @@ SQL;
 
 // @note spot final when in third place
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, CONCAT(T2.class,'::',T2.scope), T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, CONCAT(T2.class,'::',T2.scope), T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens> T2
-    ON T2.fichier = T1.fichier AND
-       T2.droite = T1.droite + 5 AND
+    ON T2.file = T1.file AND
+       T2.left = T1.left + 5 AND
        T2.code = 'final'
 WHERE T1.type = '_function'
 SQL;

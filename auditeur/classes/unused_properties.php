@@ -29,7 +29,7 @@ class unused_properties extends modules {
         $this->clean_rapport();
 
         $query = <<<SQL
-SELECT NULL, T1.fichier, T1.code AS code, T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, T1.code AS code, T1.id, '{$this->name}', 0
 FROM <tokens> T1 
 WHERE scope='global'   AND 
       type ='variable' AND  
@@ -38,8 +38,8 @@ WHERE scope='global'   AND
          SELECT CONCAT('$', S2.code)
            FROM <tokens> S1
            JOIN <tokens> S2
-             ON S2.fichier = S1.fichier AND 
-                S2.droite BETWEEN S1.droite AND S1.gauche
+             ON S2.file = S1.file AND 
+                S2.left BETWEEN S1.left AND S1.right
            WHERE S1.class  = T1.class AND 
                  S1.scope != 'global'  AND 
                  S1.type   = 'property' AND 

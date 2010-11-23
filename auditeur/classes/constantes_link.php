@@ -18,8 +18,8 @@
  */
 
 class constantes_link extends modules {
-	protected	$title = 'Liens entre fichier par constante';
-	protected	$description = 'Fichiers qui utilisent une même constante';
+	protected	$title = 'Liens entre file par constante';
+	protected	$description = 'files qui utilisent une même constante';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -37,7 +37,7 @@ class constantes_link extends modules {
 
 	    $query = <<<SQL
 INSERT INTO <rapport_dot>
-SELECT TR1.fichier, TR2.fichier, TR1.element, '{$this->name}'
+SELECT TR1.file, TR2.file, TR1.element, '{$this->name}'
 FROM <rapport>  TR1
 JOIN <rapport> TR2
     ON TR2.module = 'constantes' AND

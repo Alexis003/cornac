@@ -30,7 +30,7 @@ class multi_def_files extends modules {
 
 	    $query = <<<SQL
 CREATE TEMPORARY TABLE multi_def_files
-SELECT DISTINCT T1.fichier AS fichier,  if (class= '', scope, class) AS context
+SELECT DISTINCT T1.file AS file,  if (class= '', scope, class) AS context
 FROM <tokens> T1
 WHERE T1.type NOT IN ('codephp','sequence')
 SQL;
@@ -38,7 +38,7 @@ SQL;
 
 	    $query = <<<SQL
 INSERT INTO <rapport> 
-    SELECT NULL, T1.fichier, T1.context, 0, '{$this->name}', 0
+    SELECT NULL, T1.file, T1.context, 0, '{$this->name}', 0
     FROM multi_def_files T1
 SQL;
         $res = $this->exec_query($query);

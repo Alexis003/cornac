@@ -19,7 +19,7 @@
 
 class globals_link extends modules {
 	protected	$title = 'Réseau des globales';
-	protected	$description = 'Liste des dépendances de globales entre les fichiers';
+	protected	$description = 'Liste des dépendances de globales entre les files';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -32,7 +32,7 @@ class globals_link extends modules {
         
         $query = <<<SQL
 INSERT INTO <rapport_dot>
-SELECT DISTINCT TR1.fichier, TR2.fichier, TR1.element, '{$this->name}'
+SELECT DISTINCT TR1.file, TR2.file, TR1.element, '{$this->name}'
 FROM <rapport> TR1
 JOIN <rapport> TR2
     ON TR1.element = TR2.element AND

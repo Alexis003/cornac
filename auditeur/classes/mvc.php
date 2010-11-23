@@ -35,7 +35,7 @@ class mvc extends modules {
 
 // @doc inclusions are for controlers
 	    $query = <<<SQL
-SELECT DISTINCT NULL, T1.fichier, 'controler', 1, '{$this->name}', 0
+SELECT DISTINCT NULL, T1.file, 'controler', 1, '{$this->name}', 0
 FROM <tokens> T1
 WHERE code IN ('include','require','include_once','require_once')
 SQL;
@@ -43,14 +43,14 @@ SQL;
 
 // @doc echo are for template
 	    $query = <<<SQL
-SELECT DISTINCT NULL, T1.fichier, 'template', 1, '{$this->name}', 0
+SELECT DISTINCT NULL, T1.file, 'template', 1, '{$this->name}', 0
 FROM <tokens> T1
 WHERE code IN ('echo','print','phpinfo')
 SQL;
         $this->exec_query_insert('rapport', $query);
 
 	    $query = <<<SQL
-SELECT DISTINCT NULL, T1.fichier, 'template', 1, '{$this->name}', 0
+SELECT DISTINCT NULL, T1.file, 'template', 1, '{$this->name}', 0
 FROM <tokens> T1
 WHERE type IN ('rawtext')
 SQL;
@@ -59,18 +59,18 @@ SQL;
 // @doc the remaining files are unknown type (no M, V or C) : time to update the analyzer
 	    $query = <<<SQL
 CREATE TEMPORARY TABLE mvc
-SELECT DISTINCT fichier FROM <tokens>
+SELECT DISTINCT file FROM <tokens>
 SQL;
         $this->exec_query($query);
 
 // @doc the rest is undecided
 	    $query = <<<SQL
-SELECT NULL, mvc.fichier, 'undecided', 0, '{$this->name}', 0
+SELECT NULL, mvc.file, 'undecided', 0, '{$this->name}', 0
 FROM mvc
 LEFT JOIN <rapport> TR
-    ON mvc.fichier = TR.fichier AND
+    ON mvc.file = TR.file AND
        module='mvc'  
-WHERE TR.fichier IS NULL
+WHERE TR.file IS NULL
 SQL;
         $this->exec_query_insert('rapport', $query);
 

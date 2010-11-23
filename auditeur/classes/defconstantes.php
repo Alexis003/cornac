@@ -30,14 +30,14 @@ class defconstantes extends modules {
         $this->clean_rapport();
         
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, T3.code, T3.id, '{$this->name}', 0
+SELECT NULL, T1.file, T3.code, T3.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens> T2
-    ON T1.droite + 1 = T2.droite AND 
-       T1.fichier=  T2.fichier
+    ON T1.left + 1 = T2.left AND 
+       T1.file=  T2.file
 JOIN <tokens> T3
-    ON T1.droite + 4 = T3.droite AND
-       T1.fichier=  T3.fichier
+    ON T1.left + 4 = T3.left AND
+       T1.file=  T3.file
 WHERE T1.type='functioncall' AND
       T2.code = 'define';
 SQL;

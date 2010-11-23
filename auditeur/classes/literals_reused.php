@@ -46,7 +46,7 @@ SQL;
 
         $query = <<<SQL
 INSERT INTO <rapport> 
-SELECT NULL, TR1.fichier, TRIM(TR1.code), TR1.id, '{$this->name}', 0
+SELECT NULL, TR1.file, TRIM(TR1.code), TR1.id, '{$this->name}', 0
     FROM <tokens> TR1
     JOIN {$this->name}_TMP TMP
         ON TR1.type = 'literals' AND 

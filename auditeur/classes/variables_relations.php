@@ -39,13 +39,13 @@ FROM <tokens> T1
 JOIN <tokens_tags> TT1
     ON T1.id = TT1.token_id AND TT1.type='left'
 JOIN <tokens> T2
-    ON T2.id = TT1.token_sub_id AND T2.type='variable' AND T1.fichier =T2.fichier
+    ON T2.id = TT1.token_sub_id AND T2.type='variable' AND T1.file =T2.file
 JOIN <tokens_tags> TT2
     ON T1.id = TT2.token_id AND TT2.type='right'
 JOIN <tokens> T3
-    ON T3.fichier = T1.fichier AND T3.id = TT2.token_sub_id
+    ON T3.file = T1.file AND T3.id = TT2.token_sub_id
 JOIN <tokens> T4
-    ON T4.fichier = T1.fichier AND T4.droite BETWEEN T3.droite AND T3.gauche AND T4.type='variable'
+    ON T4.file = T1.file AND T4.left BETWEEN T3.left AND T3.right AND T4.type='variable'
 WHERE T1.type = 'affectation'; 
 SQL;
         $this->exec_query($query);

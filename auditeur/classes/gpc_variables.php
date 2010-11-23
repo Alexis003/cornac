@@ -29,17 +29,17 @@ class gpc_variables extends modules {
         $this->clean_rapport();
 
         $query = <<<SQL
-SELECT NULL, T1.fichier, T3.code, T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, T3.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens> T2
-    ON T2.droite = T1.droite + 1 AND
-       T1.fichier = T2.fichier AND
+    ON T2.left = T1.left + 1 AND
+       T1.file = T2.file AND
        T2.type = 'variable' AND
        T2.code IN ('\$_GET','\$_REQUEST','\$_POST','\$_COOKIE','\$_FILES')
 JOIN <tokens> T3
-    ON T3.droite = T2.gauche + 1 AND
-       T3.gauche < T1.gauche     AND
-       T1.fichier = T3.fichier
+    ON T3.left = T2.right + 1 AND
+       T3.right < T1.right     AND
+       T1.file = T3.file
 WHERE T1.type='_array'
 SQL;
         $res = $this->exec_query_insert('rapport', $query);

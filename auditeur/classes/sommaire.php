@@ -30,8 +30,8 @@ class sommaire {
 
     function sauve() {
         $html = '';
-        $fichiers = scandir('export');
-        sort($fichiers);
+        $files = scandir('export');
+        sort($files);
         setlocale(LC_TIME, "fr_FR");
         $date = strftime("%A %d %B %Y %H:%M:%S ");
         
@@ -44,7 +44,7 @@ class sommaire {
         </head>
         <body>
       <!--  <p><a href="#">Code source à télécharger</a></p> -->
-        <p><a href="liste.txt">Liste des fichiers</a></p>
+        <p><a href="liste.txt">Liste des files</a></p>
         
         <table>';
         $html .= "<tr>

@@ -18,8 +18,8 @@
  */
 
 class function_link extends modules {
-	protected	$title = 'Lien entre les fichiers via les fonctions';
-	protected	$description = 'Établit les liens entre deux fichiers, pour via une fonction : un lien est établit entre le fichier de défintion de la fonction, et son utilisation';
+	protected	$title = 'Lien entre les files via les fonctions';
+	protected	$description = 'Établit les liens entre deux files, pour via une fonction : un lien est établit entre le file de défintion de la fonction, et son utilisation';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -37,7 +37,7 @@ class function_link extends modules {
 
 	    $query = <<<SQL
 INSERT INTO <rapport_dot>
-SELECT TR1.fichier, TR2.fichier, TR1.element, '{$this->name}'
+SELECT TR1.file, TR2.file, TR1.element, '{$this->name}'
 FROM <rapport>  TR1
 JOIN <rapport> TR2
     ON TR2.module = 'functionscalls' AND

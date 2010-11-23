@@ -69,7 +69,7 @@ class functions_with_callback extends modules {
 
 // @todo of course, update this useless query. :)
 	    $query = <<<SQL
-SELECT NULL, TR1.fichier, TR1.element, TR1.id, '{$this->name}', 0
+SELECT NULL, TR1.file, TR1.element, TR1.id, '{$this->name}', 0
 FROM <rapport> TR1
 WHERE TR1.module="php_functions" AND 
       TR1.element IN ($functions)

@@ -33,7 +33,7 @@ class emptyfunctions extends modules {
         $this->clean_rapport();
 
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, T4.code, T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, T4.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1 
 JOIN <tokens_tags> T2
     ON T1.id = T2.token_id
@@ -42,16 +42,16 @@ JOIN <tokens> T3
 JOIN <tokens_tags> T5
     ON T1.id = T5.token_id AND T5.type = 'name'
 JOIN <tokens> T4
-    ON T1.fichier = T4.fichier AND
+    ON T1.file = T4.file AND
        T4.id = T5.token_sub_id
 LEFT JOIN <rapport> TR
-    ON T1.fichier = TR.fichier AND
+    ON T1.file = TR.file AND
        T4.class = TR.element   AND
        TR.module='interfaces'
 WHERE 
     T1.type = '_function'      AND
     T2.type = 'block'          AND
-    T3.gauche - T3.droite = 1  AND
+    T3.right - T3.left = 1  AND
     TR.id IS NULL
 SQL;
 

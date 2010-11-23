@@ -29,7 +29,7 @@ class sql_queries extends noms {
         $this->clean_rapport();
 
         $query = <<<SQL
-SELECT NULL, T1.fichier, T1.code AS code, T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, T1.code AS code, T1.id, '{$this->name}', 0
 FROM <tokens> T1 
 WHERE T1.type = 'literals' and (
     (T1.code LIKE "%SELECT %" AND

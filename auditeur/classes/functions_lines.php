@@ -35,14 +35,14 @@ class functions_lines extends modules {
 
 // @todo of course, update this useless query. :)
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, CONCAT( (T2.line - T1.line)), T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, CONCAT( (T2.line - T1.line)), T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens> T2
-    ON T1.fichier = T2.fichier AND
-       T2.gauche = T1.gauche - 2
+    ON T1.file = T2.file AND
+       T2.right = T1.right - 2
 LEFT JOIN <tokens> T3
-    ON T1.fichier = T3.fichier AND
-       T3.droite BETWEEN T1.droite AND T1.gauche AND
+    ON T1.file = T3.file AND
+       T3.left BETWEEN T1.left AND T1.right AND
        T3.type = 'literals' AND 
        T3.code = 'abstract'
 WHERE T1.type='_function' 

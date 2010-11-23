@@ -31,12 +31,12 @@ class concatenation_gpc extends modules {
         $concat = $this->concat('class','"::"','scope');
         $gpc_regexp = '(\\\\'.join('|\\\\',modules::getPHPGPC()).')';
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, T2.code, T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, T2.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens> T2
-ON T1.fichier= T2.fichier AND 
+ON T1.file= T2.file AND 
     T2.type='variable' AND 
-    T2.droite BETWEEN T1.droite AND T1.gauche AND
+    T2.left BETWEEN T1.left AND T1.right AND
     T2.code REGEXP '^$gpc_regexp'
 WHERE T1.type='concatenation'
 

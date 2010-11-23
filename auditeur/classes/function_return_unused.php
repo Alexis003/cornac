@@ -38,11 +38,11 @@ class function_return_unused extends modules {
 // @todo make another level for noscream, arobases, etc. : or find a way to ignore them
 // @todo check immediatly if return value is used in a foreach 
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, T1.code, T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, T1.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens> T2 
-    ON T2.fichier = T1.fichier AND
-       T1.droite BETWEEN T2.droite AND T2.gauche AND
+    ON T2.file = T1.file AND
+       T1.left BETWEEN T2.left AND T2.right AND
        T2.level = T1.level - 1
 WHERE T1.type = 'functioncall' AND
       T1.code NOT IN ('echo','print','define') AND 

@@ -30,13 +30,13 @@ class variables_unaffected extends modules {
     }
 
 	public function analyse() {
-	    // @question : isn't TR1.fichier = TR2.fichier too restrictive? ç
+	    // @question : isn't TR1.file = TR2.file too restrictive? ç
 	    // @todo take scope/class into account
 	    // @todo take foreach into account
 	    // @todo speed improvement here. 
         $query = <<<SQL
 CREATE TEMPORARY TABLE tmp_variables_unaffected
-SELECT element, fichier
+SELECT element, file
 FROM <rapport> TR1
 WHERE TR1.module = 'affectations_variables'
 SQL;
@@ -48,16 +48,16 @@ SQL;
     	$this->exec_query($query);
 
         $query = <<<SQL
-ALTER TABLE tmp_variables_unaffected ADD INDEX(fichier)
+ALTER TABLE tmp_variables_unaffected ADD INDEX(file)
 SQL;
     	$this->exec_query($query);
     	
         $query = <<<SQL
-SELECT NULL, TR1.fichier, TR1.element AS code, TR1.token_id, '{$this->name}', 0
+SELECT NULL, TR1.file, TR1.element AS code, TR1.token_id, '{$this->name}', 0
 FROM <rapport> TR1
 LEFT JOIN tmp_variables_unaffected TR2
     ON TR1.element = TR2.element AND 
-       TR1.fichier = TR2.fichier
+       TR1.file = TR2.file
 WHERE TR1.module='variables' AND 
       TR2.element IS NULL
 SQL;
@@ -77,7 +77,7 @@ DELETE FROM CR1
 WHERE CR1.module='{$this->name}' AND
       CR2.module='keyval' AND
       CR1.element = CR2.element AND
-      CR1.fichier = CR2.fichier
+      CR1.file = CR2.file
 SQL;
     	$this->exec_query($query);
 

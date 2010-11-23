@@ -30,11 +30,11 @@ class properties_defined extends modules {
 
         $concat = $this->concat("T2.class","'->'","T2.code");
         $query = <<<SQL
-SELECT NULL, T1.fichier, $concat as code, T2.id, '{$this->name}' , 0
+SELECT NULL, T1.file, $concat as code, T2.id, '{$this->name}' , 0
 FROM <tokens> T1
   JOIN <tokens> T2 
-  ON T2.fichier = T1.fichier AND 
-  T2.droite BETWEEN T1.droite AND T1.gauche 
+  ON T2.file = T1.file AND 
+  T2.left BETWEEN T1.left AND T1.right 
   AND T2.type='variable'
 WHERE T1.class != 'global' AND T1.type='_var';
 SQL;

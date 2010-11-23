@@ -37,14 +37,14 @@ class zfDependencies extends modules {
 //        $in = array_slice($in, 0, 4);
         $in = join('", "', $in);
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, T2.code AS code, T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, T2.code AS code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens_tags> TT 
 ON T1.id = TT.token_id AND
    TT.type='extends'
 JOIN <tokens> T2
 ON T2.id = TT.token_sub_id AND
-   T2.fichier=T1.fichier
+   T2.file=T1.file
 WHERE T1.type = '_class' AND
 T2.code IN ("$in")
 SQL;
@@ -52,11 +52,11 @@ SQL;
 
 // @note direct instantiation with new
         $query = <<<SQL
-SELECT NULL, T1.fichier, T2.code AS code, T2.id, '{$this->name}', 0
+SELECT NULL, T1.file, T2.code AS code, T2.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens> T2
-    ON T2.fichier = T1.fichier AND
-       T2.droite = T1.droite + 1
+    ON T2.file = T1.file AND
+       T2.left = T1.left + 1
 WHERE T1.type='_new' AND
       T2.code IN ("$in")
 SQL;
@@ -64,11 +64,11 @@ SQL;
 
 // @note static usage
         $query = <<<SQL
-SELECT NULL, T1.fichier, T2.code AS code, T2.id, '{$this->name}', 0
+SELECT NULL, T1.file, T2.code AS code, T2.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens> T2
-    ON T2.fichier = T1.fichier AND
-       T2.droite = T1.droite + 1
+    ON T2.file = T1.file AND
+       T2.left = T1.left + 1
 WHERE T1.type='method_static' AND
       T2.code IN ("$in")
 SQL;

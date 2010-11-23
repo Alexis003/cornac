@@ -34,11 +34,11 @@ class addElement extends modules {
         $this->clean_rapport();
 
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, T1.code, T1.id, 'addElement', 0
+SELECT NULL, T1.file, T1.code, T1.id, 'addElement', 0
 FROM <tokens> T1
 JOIN <tokens> T2
-    ON T1.fichier = T2.fichier AND
-       T1.droite BETWEEN T2.droite AND T2.gauche AND
+    ON T1.file = T2.file AND
+       T1.left BETWEEN T2.left AND T2.right AND
        T2.type = 'method' AND
        T2.level = T1.level - 2
 WHERE T1.code = 'addElement'

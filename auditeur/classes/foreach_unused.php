@@ -39,23 +39,23 @@ class foreach_unused extends modules {
 // @doc spot unused variables in index
 	    $query = <<<SQL
 INSERT INTO <rapport> 
-SELECT NULL, T1.fichier, T2.code, T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, T2.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens_tags> TT
     ON TT.token_id = T1.id AND
        TT.type = 'key'
 JOIN <tokens> T2
     ON TT.token_sub_id = T2.id AND
-       T2.fichier = T1.fichier
+       T2.file = T1.file
 JOIN <tokens_tags> TT2
     ON TT2.token_id = T1.id AND
        TT2.type = 'block'
 JOIN <tokens> T3
     ON TT2.token_sub_id = T3.id AND
-       T3.fichier = T1.fichier
+       T3.file = T1.file
 LEFT JOIN <tokens> T4
-    ON T4.fichier = T1.fichier AND
-       T4.droite BETWEEN T3.droite AND T3.gauche AND
+    ON T4.file = T1.file AND
+       T4.left BETWEEN T3.left AND T3.right AND
        T4.code = T2.code
 WHERE T1.type='_foreach' AND
       T4.id IS NULL;
@@ -72,24 +72,24 @@ SQL;
 
 // @doc spot unused variables in value
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, T2.code, T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, T2.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens_tags> TT
     ON TT.token_id = T1.id AND
        TT.type = 'value'
 JOIN <tokens> T2
     ON TT.token_sub_id = T2.id AND
-       T2.fichier = T1.fichier AND
+       T2.file = T1.file AND
        T2.type = 'variable'
 JOIN <tokens_tags> TT2
     ON TT2.token_id = T1.id AND
        TT2.type = 'block'
 JOIN <tokens> T3
     ON TT2.token_sub_id = T3.id AND
-       T3.fichier = T1.fichier
+       T3.file = T1.file
 LEFT JOIN <tokens> T4
-    ON T4.fichier = T1.fichier AND
-       T4.droite BETWEEN T3.droite AND T3.gauche AND
+    ON T4.file = T1.file AND
+       T4.left BETWEEN T3.left AND T3.right AND
        T4.code = T2.code
 WHERE T1.type='_foreach' AND 
       T4.id IS NULL;
@@ -98,27 +98,27 @@ SQL;
 
 // @doc spot unused variables in value as reference
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, T2.code, T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, T2.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens_tags> TT
     ON TT.token_id = T1.id AND
        TT.type = 'value'
 JOIN <tokens> T2a
     ON TT.token_sub_id = T2a.id AND
-       T2a.fichier = T1.fichier AND 
+       T2a.file = T1.file AND 
        T2a.type = 'reference'
 JOIN <tokens> T2
-    ON T2.fichier = T1.fichier AND 
-       T2a.droite + 1 = T2.droite
+    ON T2.file = T1.file AND 
+       T2a.left + 1 = T2.left
 JOIN <tokens_tags> TT2
     ON TT2.token_id = T1.id AND
        TT2.type = 'block'
 JOIN <tokens> T3
     ON TT2.token_sub_id = T3.id AND
-       T3.fichier = T1.fichier
+       T3.file = T1.file
 LEFT JOIN <tokens> T4
-    ON T4.fichier = T1.fichier AND
-       T4.droite BETWEEN T3.droite AND T3.gauche AND
+    ON T4.file = T1.file AND
+       T4.left BETWEEN T3.left AND T3.right AND
        T4.code = T2.code
 WHERE T1.type='_foreach' AND 
       T4.id IS NULL;

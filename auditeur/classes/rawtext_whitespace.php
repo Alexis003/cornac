@@ -33,7 +33,7 @@ class rawtext_whitespace extends modules {
         $this->clean_rapport();
 
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, CONCAT('line ',T1.line), T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, CONCAT('line ',T1.line), T1.id, '{$this->name}', 0
 FROM <tokens> T1
 WHERE T1.type='rawtext' AND 
 TRIM(code) = ''

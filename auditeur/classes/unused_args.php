@@ -32,7 +32,7 @@ class unused_args extends modules {
         // @todo display class/method 
 
 	    $query = <<<SQL
-SELECT T1.id, T1.code, T1.fichier, TT.type, TT.token_sub_id , TC.code AS signature
+SELECT T1.id, T1.code, T1.file, TT.type, TT.token_sub_id , TC.code AS signature
 FROM <tokens> T1
 JOIN <tokens_tags> TT
     ON TT.token_id = T1.id 
@@ -47,7 +47,7 @@ SQL;
         while($row = $res->fetch()) {
             $functions[$row['id']][$row['type']] = $row['token_sub_id'];
             $functions[$row['id']]['function'] = $row['code'];
-            $functions[$row['id']]['fichier'] = $row['fichier'];
+            $functions[$row['id']]['file'] = $row['file'];
             $functions[$row['id']]['signature'] = $row['signature'];
         }
         
@@ -61,12 +61,12 @@ SQL;
         	$query = <<<SQL
 SELECT T2.code FROM <tokens> T1
 JOIN <tokens> T2
-    ON T2.fichier = T1.fichier and T2.droite between T1.droite and T1.gauche AND T2.type = 'variable'
+    ON T2.file = T1.file and T2.left between T1.left and T1.right AND T2.type = 'variable'
 WHERE T1.id = $args AND T2.code NOT IN (
     SELECT T2.code FROM <tokens> T1
     JOIN <tokens> T2
-        ON T2.fichier = T1.fichier AND 
-           T2.droite BETWEEN T1.droite AND T1.gauche AND
+        ON T2.file = T1.file AND 
+           T2.left BETWEEN T1.left AND T1.right AND
            T2.type = 'variable'
      WHERE T1.id = $block 
      )
@@ -79,7 +79,7 @@ SQL;
         
               $query = <<<SQL
 INSERT INTO <rapport> 
-    VALUES ( 0, '$fichier', '$signature', $id, '{$this->name}', 0 )
+    VALUES ( 0, '$file', '$signature', $id, '{$this->name}', 0 )
 SQL;
               $this->exec_query($query);
           }
