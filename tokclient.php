@@ -175,6 +175,7 @@ function process_file($scriptsPHP, $limit) {
     // @note my PHP crashes at 400852 (511 zend_scan_black, or zval_mark_grey) beyong this limit, 
     // @note over 200k tokens is probably a large library of data. Not the most interesting
     if ($nb_tokens_initial > 200000) {
+        print "Way too many tokens\n";
         return false; 
     }
 
