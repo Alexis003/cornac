@@ -30,7 +30,7 @@ class variable_curly_regex extends analyseur_regex {
         if (!$t->hasNext(1) ) { return false; }
 
         if ($t->checkNotCode('${')) { return false;}
-        if ($t->getNext()->checkNotClass(array('variable','_array'))) { return false;}
+        if ($t->getNext()->checkClass(array('Token'))) { return false;}
         if ($t->getNext(1)->checkNotCode('}')) { return false;}
         
         $this->args   = array(0, 1);
