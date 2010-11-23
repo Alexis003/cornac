@@ -18,8 +18,8 @@
  */
 
 class gpc_affectations extends modules {
-	protected	$title = 'Assignations de GPC';
-	protected	$description = 'Liste des variables GPC qui se voient assigné une valeur (mauvaise pratique)';
+	protected	$title = 'GPC assignations';
+	protected	$description = 'GPC variables being assigned during a script';
 
 	function __construct($mid) {
         parent::__construct($mid);
