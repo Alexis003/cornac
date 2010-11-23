@@ -49,18 +49,18 @@ if (!empty($_CLEAN['element'])) {
     $res = $DATABASE->query($query);
     print $res->rowCount() ? 'yes' : '';
 } elseif (!empty($_CLEAN['elementfile'])) {
-    $query = "SELECT element, fichier FROM <rapport> WHERE id = ".$DATABASE->quote($_CLEAN['elementfile'])."";
+    $query = "SELECT element, file FROM <rapport> WHERE id = ".$DATABASE->quote($_CLEAN['elementfile'])."";
     $res = $DATABASE->query($query);
     $id = $res->fetch(PDO::FETCH_ASSOC);
-    $file = $id['fichier'];
+    $file = $id['file'];
     $element = $id['element'];
 
-    $query = "UPDATE <rapport> SET checked = 1 - checked WHERE element = ".$DATABASE->quote($element)." AND fichier = ".$DATABASE->quote($file)." AND module=".$DATABASE->quote($_CLEAN['module'])."";
+    $query = "UPDATE <rapport> SET checked = 1 - checked WHERE element = ".$DATABASE->quote($element)." AND file = ".$DATABASE->quote($file)." AND module=".$DATABASE->quote($_CLEAN['module'])."";
     
     $res = $DATABASE->query($query);
     print $res->rowCount() ? 'yes' : '';
 } elseif (!empty($_CLEAN['file'])) {
-    $query = "UPDATE <rapport> SET checked = 1 - checked WHERE fichier = ".$DATABASE->quote($_CLEAN['file'])." AND module=".$DATABASE->quote($_CLEAN['module'])."";
+    $query = "UPDATE <rapport> SET checked = 1 - checked WHERE file = ".$DATABASE->quote($_CLEAN['file'])." AND module=".$DATABASE->quote($_CLEAN['module'])."";
     
     $res = $DATABASE->query($query);
     print $res->rowCount() ? 'yes' : '';

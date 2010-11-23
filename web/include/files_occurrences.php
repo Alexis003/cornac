@@ -19,19 +19,19 @@
 
 $query = <<<SQL
 SELECT element AS element, 
-       fichier AS fichier, 
+       file AS file, 
        COUNT(*) AS nb,
        id,
        COUNT(*) = SUM(checked) AS checked
 FROM <rapport> TR 
 WHERE TR.module='{$_CLEAN['module']}'
-GROUP BY TR.fichier, TR.element
+GROUP BY TR.file, TR.element
 SQL;
     $res = $DATABASE->query($query);
     
     $rows = array();
     while($row = $res->fetch(PDO::FETCH_ASSOC)) {
-        $rows[$row['fichier']][] = $row; 
+        $rows[$row['file']][] = $row; 
     }
         
     print get_html_level2($rows, $_CLEAN['module']);

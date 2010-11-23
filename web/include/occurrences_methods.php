@@ -18,7 +18,7 @@
  */
  $query = <<<SQL
     SELECT CONCAT(if (class = '', 'global',class) ,'::', scope) AS element, 
-            element AS fichier, 
+            element AS file, 
             COUNT(*) AS nb,
             COUNT(*) = SUM(checked) AS checked,
             CR.id
@@ -33,7 +33,7 @@ SQL;
 
         $rows = array();
         while($row = $res->fetch(PDO::FETCH_ASSOC)) {
-            @$rows[$row['fichier']][] = $row;
+            @$rows[$row['file']][] = $row;
         }
 
         print get_html_level2($rows, $_CLEAN['module']);

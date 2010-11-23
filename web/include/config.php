@@ -21,7 +21,7 @@ $ini = array('mysql' => array('active' => 1,
                               'dsn' => 'mysql:dbname=analyseur;host=127.0.0.1',
                               'username' => 'root',
                               'password' => ''),
-             'cornac' => array('prefix' => 'pimcore' ) );
+             'cornac' => array('prefix' => 'dotclear' ) );
 $DATABASE = new database($ini);
 
 $res = $DATABASE->query('SHOW TABLES LIKE "'.$ini['cornac']['prefix'].'%"');

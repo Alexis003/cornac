@@ -25,7 +25,7 @@ function get_html_level2($lines) {
     
     include('../libs/write_ini_file.php');
 
-    $query = "SELECT DISTINCT concat(fichier,';','white') AS all_files FROM <tokens> ";
+    $query = "SELECT DISTINCT concat(file,';','white') AS all_files FROM <tokens> ";
     $res = $DATABASE->query($query);
     $rows = pdo_fetch_one_col($res);
     
