@@ -18,7 +18,7 @@
  */
 
 class zfSession extends modules {
-	protected	$title = 'zf : sessions';
+	protected	$title = 'ZF : sessions';
 	protected	$description = 'Using session in Zend Framework. Only Zend_Session_Namespace, no heritage supported. ';
 
 	function __construct($mid) {

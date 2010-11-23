@@ -44,7 +44,7 @@ JOIN <tokens> T3
 JOIN <tokens_cache> TC
     ON TC.id = T3.id
 WHERE T1.type = 'affectation' AND
-      TC.code REGEXP '^$gpc_regexp'
+      BINARY TC.code REGEXP '^$gpc_regexp'
 SQL;
         $this->exec_query_insert('rapport', $query);
 
@@ -72,7 +72,7 @@ JOIN <tokens_cache> TC
 WHERE T1.fichier like "%affectations_gpc%" AND
       T1.type = 'affectation' AND
       (T4.type IS NULL OR T4.type != 'tableau') AND 
-      TC.code REGEXP '^$gpc_regexp'
+      BINARY TC.code REGEXP '^$gpc_regexp'
 SQL;
         $this->exec_query_insert('rapport', $query);
     }

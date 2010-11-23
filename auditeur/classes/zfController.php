@@ -18,8 +18,8 @@
  */
 
 class zfController extends modules {
-	protected	$title = 'Controleurs ZF';
-	protected	$description = 'Liste des fonctions méthodes de contrôleur pour le ZF (*Action)';
+	protected	$title = 'ZF : controllers';
+	protected	$description = 'List of *Action methods from the ZF';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -27,6 +27,12 @@ class zfController extends modules {
 	
 	public function analyse() {
         $this->clean_rapport();
+        
+        if (isset($this->ini)) {
+            $classes = ', "'.join('", "', explode(',',$this->ini['classes'])).'"';
+        } else {
+            $classes = "";
+        }
 
         $concat = $this->concat("T3.class", "'->'","T3.code");
 	    $query = <<<SQL
@@ -43,8 +49,8 @@ ON T3.fichier = T2.fichier AND
    T3.droite BETWEEN T1.droite AND T1.gauche AND
    T3.type = '_function'
 WHERE T1.type = '_class' AND
-T2.code IN ( "Application_Zend_Controller","Zend_Controller") AND
-T3.code like "%Action"
+    T2.code IN ( "Application_Zend_Controller","Zend_Controller" $classes) AND
+    T3.code LIKE "%Action"
 SQL;
         $this->exec_query_insert('rapport', $query);
         

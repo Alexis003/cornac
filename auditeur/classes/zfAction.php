@@ -18,7 +18,7 @@
  */
 
 class zfAction extends modules {
-	protected	$title = 'ZF Actions';
+	protected	$title = 'ZF : action';
 	protected	$description = 'List of methods for the Zend Framework ';
 
 	function __construct($mid) {

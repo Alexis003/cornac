@@ -17,8 +17,8 @@
    +----------------------------------------------------------------------+
  */
 class zfDependencies extends modules {
-	protected	$title = 'Dépendances au Zend Framework';
-	protected	$description = 'Liste des classes du ZF dont l\'application dépend : par héritage ou par utilisation directe';
+	protected	$title = 'ZF : Zend Framework dependance';
+	protected	$description = 'Dependances toward ZF  : by heritage or composition, those classes from the ZF are needed.';
 
 	function __construct($mid) {
         parent::__construct($mid);

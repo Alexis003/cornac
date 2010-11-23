@@ -35,7 +35,7 @@ SELECT NULL, T1.fichier, T3.code, T1.id, '{$this->name}', 0
         ON T2.droite = T1.droite + 1 AND
            T1.fichier = T2.fichier AND
            T2.type = 'variable' AND
-           T2.code = '\$_SESSION'
+           T2.code =  BINARY '\$_SESSION'
     JOIN <tokens> T3
         ON T3.droite = T2.gauche + 1 AND
            T3.gauche < T1.gauche     AND

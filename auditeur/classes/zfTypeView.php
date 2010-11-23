@@ -18,7 +18,7 @@
  */
 
 class zfTypeView extends modules {
-	protected	$title = 'zf : style of view';
+	protected	$title = 'ZF : style of view';
 	protected	$description = 'List what kind of view handles the exit of those ';
 
 	function __construct($mid) {

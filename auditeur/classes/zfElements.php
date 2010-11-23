@@ -18,7 +18,7 @@
  */
 
 class zfElements extends modules {
-	protected	$title = 'Non-validated ZF element';
+	protected	$title = 'ZF : non-validated ZF element';
 	protected	$description = 'Form element that were not validated';
 
 	function __construct($mid) {

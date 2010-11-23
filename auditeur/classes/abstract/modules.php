@@ -23,6 +23,7 @@ abstract class modules {
     protected  $occurrences = 0;
     protected  $fichiers_identifies = 0;
     protected  $total_de_fichiers = 0;
+    protected  $ini = array();
     public static    $mid   = null;
     public static    $table = null;
     
@@ -304,6 +305,10 @@ SQL;
 	    $ext_array = array('iterator_to_array', 'sqlite_array_query', 'sqlite_fetch_array', 'call_user_func_array', 'call_user_method_array', 'forward_static_call_array', 'is_array', 'array_walk', 'array_walk_recursive', 'in_array', 'array_search', 'array_fill', 'array_fill_keys', 'array_multisort', 'array_push', 'array_pop', 'array_shift', 'array_unshift', 'array_splice', 'array_slice', 'array_merge', 'array_merge_recursive', 'array_replace', 'array_replace_recursive', 'array_keys', 'array_values', 'array_count_values', 'array_reverse', 'array_reduce', 'array_pad', 'array_flip', 'array_change_key_case', 'array_rand', 'array_unique', 'array_intersect', 'array_intersect_key', 'array_intersect_ukey', 'array_uintersect', 'array_intersect_assoc', 'array_uintersect_assoc', 'array_intersect_uassoc', 'array_uintersect_uassoc', 'array_diff', 'array_diff_key', 'array_diff_ukey', 'array_udiff', 'array_diff_assoc', 'array_udiff_assoc', 'array_diff_uassoc', 'array_udiff_uassoc', 'array_sum', 'array_product', 'array_filter', 'array_map', 'array_chunk', 'array_combine', 'array_key_exists');
 	    
 	    return array_merge($ext_array, $language_structures);
+    }
+    
+    public function init($ini) {
+        $this->ini = $ini;
     }
     
     function concat() {
