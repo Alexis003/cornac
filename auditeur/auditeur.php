@@ -252,14 +252,14 @@ if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
     }
     $DATABASE->query('CREATE TABLE IF NOT EXISTS <rapport> (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `fichier` varchar(500) NOT NULL,
+  `file` varchar(500) NOT NULL,
   `element` varchar(10000) NOT NULL,
   `token_id` int(10) unsigned NOT NULL,
   `module` varchar(50) NOT NULL,
   `checked` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `element` (`element`),
-  KEY `fichier` (`fichier`),
+  KEY `file` (`file`),
   KEY `module` (`module`)
 ) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1');
 
@@ -286,16 +286,16 @@ if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
 
 } elseif (isset($INI['sqlite'])  && $INI['sqlite']['active'] == true) {
 // @todo : support drop of table with option -K
-// @code $database->query('DELETE FROM '.$INI['cornac']['prefix'].'_rapport WHERE fichier = "'.$fichier.'"');
+// @code $database->query('DELETE FROM '.$INI['cornac']['prefix'].'_rapport WHERE file = "'.$file.'"');
     $DATABASE->query('CREATE TABLE IF NOT EXISTS <rapport>
   (id       INTEGER PRIMARY KEY   AUTOINCREMENT  ,
-  `fichier` varchar(500) NOT NULL,
+  `file` varchar(500) NOT NULL,
   `element` varchar(10000) NOT NULL,
   `token_id` int unsigned NOT NULL,
   `module` varchar(50) NOT NULL
 )');
 
-//    $DATABASE->query('DELETE FROM '.$INI['cornac']['prefix'].'_rapport_dot WHERE cluster = "'.$fichier.'"');
+//    $DATABASE->query('DELETE FROM '.$INI['cornac']['prefix'].'_rapport_dot WHERE cluster = "'.$file.'"');
     $DATABASE->query('CREATE TABLE IF NOT EXISTS <rapport_dot> (
   `a` varchar(255) NOT NULL,
   `b` varchar(255) NOT NULL,

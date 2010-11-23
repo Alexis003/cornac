@@ -60,8 +60,8 @@ $code .= "
  */
 
 class $analyzer extends modules {
-	protected	\$title = 'Titre pour $analyzer';
-	protected	\$description = 'Ceci est l\'analyseur $analyzer par défaut. ';
+	protected	\$title = 'Title for $analyzer';
+	protected	\$description = 'This is the special analyzer $analyzer (default doc).';
 
 	function __construct(\$mid) {
         parent::__construct(\$mid);
@@ -77,9 +77,9 @@ class $analyzer extends modules {
 
 // @todo of course, update this useless query. :)
 	    \$query = <<<SQL
-SELECT NULL, T1.fichier, T1.code, T1.id, '{\$this->name}', 0
+SELECT NULL, T1.file, T1.code, T1.id, '{\$this->name}', 0
     FROM <tokens> T1
-    WHERE code IS NULL
+    WHERE type = 'variable'
 SQL;
         \$this->exec_query_insert('rapport', \$query);
 

@@ -87,13 +87,13 @@ if (!$row) {
     // @attention : should also support _dot reports
     $query = 'SELECT * FROM <rapport> WHERE module='.$DATABASE->quote($INI['reader']['module']);
     if (!empty($INI['reader']['file'])) {
-        $query .= ' AND fichier='.$DATABASE->quote($INI['reader']['file']);
+        $query .= ' AND file='.$DATABASE->quote($INI['reader']['file']);
     }
 } elseif ($row['format'] == 'dot') {
     // @attention : should also support _dot reports
     $query = 'SELECT * FROM <rapport_dot> WHERE module='.$DATABASE->quote($INI['reader']['module']);
     if (!empty($INI['reader']['file'])) {
-        $query .= ' AND fichier='.$DATABASE->quote($INI['reader']['file']);
+        $query .= ' AND file='.$DATABASE->quote($INI['reader']['file']);
     }
 } else {
     print "Format '{$row['format']}' is not understood. Aborting\n";

@@ -70,7 +70,7 @@ if (!is_null($ini)) {
     $INI = parse_ini_file(INI, true);
 } else {
     define('INI',null);
-    $INI = array("reader" => array( 'fichier' => '', ));
+    $INI = array("reader" => array( 'file' => '', ));
 }
 unset($ini);
 
@@ -98,7 +98,7 @@ if (isset($INI['cornac']['prefix'])) {
 
 // @todo internationalize this!
 $headers = array('Variables' => 'SELECT COUNT(DISTINCT element)  FROM <rapport> WHERE module="variables"',
-                 'Files'  => 'SELECT COUNT(DISTINCT fichier) FROM <rapport>',
+                 'Files'  => 'SELECT COUNT(DISTINCT file) FROM <rapport>',
                  'Classes'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <rapport> WHERE module="classes"',
                  'Constants'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <rapport> WHERE module="defconstantes"',
                  'Uses Zend Framework'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <rapport> WHERE module="zfClasses"',
@@ -132,12 +132,12 @@ $names = array("PHP extensions" => array('query' => 'SELECT DISTINCT element FRO
                "Constants" => array('query' => 'SELECT element, COUNT(*) as NB FROM <rapport> WHERE module="defconstantes" GROUP BY element ORDER BY NB DESC',
                                     'headers' => array('Constant','Number'),
                                     'columns' => array('element','NB')),
-               "Classes" => array('query' => 'SELECT T1.class, T1.fichier AS file, IFNULL(T2.code, "") AS abstract
+               "Classes" => array('query' => 'SELECT T1.class, T1.file AS file, IFNULL(T2.code, "") AS abstract
 FROM <tokens> T1
 LEFT JOIN <tokens> T2
-    ON T2.fichier = T1.fichier AND
+    ON T2.file = T1.file AND
        T2.code != T1.class AND
-       (T2.droite = T1.droite + 1 ) AND
+       (T2.left = T1.left + 1 ) AND
        T2.type = "token_traite"
 WHERE T1.type="_class" AND
       T1.class!= "" 
@@ -147,7 +147,7 @@ ORDER BY T1.class',
                "Interfaces" => array('query' => 'SELECT element, COUNT(*) as NB FROM <rapport> WHERE module="interface" GROUP BY element ORDER BY NB DESC',
                                     'headers' => array('Interface','Number'),
                                     'columns' => array('element','NB')),
-               "Methods" => array('query' => 'SELECT T1.class, T1.scope AS method, T1.fichier AS file, 
+               "Methods" => array('query' => 'SELECT T1.class, T1.scope AS method, T1.file AS file, 
 if (SUM(if(T2.code="private",1,0))>0, "private","") AS private,
 if (SUM(if(T2.code="protected",1,0))>0, "protected","") AS protected,
 if ((SUM(if(T2.code="public",1,0))>0) OR 
@@ -157,31 +157,31 @@ if (SUM(if(T2.code="final",1,0))>0, "final","") as final,
 if (SUM(if(T2.code="static",1,0))>0, "static","") as static
 FROM <tokens> T1
 LEFT JOIN <tokens> T2
-    ON T2.fichier = T1.fichier AND
+    ON T2.file = T1.file AND
        T2.type = "token_traite" AND
-       (T2.droite = T1.droite + 1 OR 
-        T2.droite = T1.droite + 3 OR 
-        T2.droite = T1.droite + 5
+       (T2.left = T1.left + 1 OR 
+        T2.left = T1.left + 3 OR 
+        T2.left = T1.left + 5
         )
 WHERE T1.type="_function" AND
       T1.class!= ""
-GROUP BY T1.class, T1.scope, T1.fichier
+GROUP BY T1.class, T1.scope, T1.file
 ORDER BY T1.class, T1.scope
 ',
                                     'headers' => array('Class','Method','private','protected','public','static','final','abstract','File'),
                                     'columns' => array('class','method','private','protected','public','static','final','abstract','file')),
-               "Properties" => array('query' => 'SELECT T1.class, T1.code AS property, T1.fichier AS file, 
+               "Properties" => array('query' => 'SELECT T1.class, T1.code AS property, T1.file AS file, 
 if (SUM(if(T2.code="public",1,0))>0, "public","") as public,
 if (SUM(if(T2.code="protected",1,0))>0, "protected","") as protected,
 if (SUM(if(T2.code="private",1,0))>0, "private","") as private,
 if (SUM(if(T2.code="static",1,0))>0, "static","") as static
 FROM <tokens> T1
 LEFT JOIN <tokens> T2
-    ON T2.fichier = T1.fichier AND
+    ON T2.file = T1.file AND
        T2.code != T1.class AND
-       (T2.droite = T1.droite + 1 OR
-        T2.droite = T1.droite + 3 OR
-        T2.droite = T1.droite + 5) AND
+       (T2.left = T1.left + 1 OR
+        T2.left = T1.left + 3 OR
+        T2.left = T1.left + 5) AND
        T2.type = "token_traite"
 WHERE T1.type="_var" AND
       T1.class!= ""
@@ -190,9 +190,9 @@ ORDER BY T1.class
 ',
                                     'headers' => array('Class','Property','private','protected','public','static','File'),
                                     'columns' => array('class','property','private','protected','public','static','file')),
-               "Functions" => array('query' => 'SELECT element, fichier FROM <rapport> WHERE module="deffunctions" ORDER BY element',
+               "Functions" => array('query' => 'SELECT element, file FROM <rapport> WHERE module="deffunctions" ORDER BY element',
                                     'headers' => array('Functions','Number'),
-                                    'columns' => array('element','fichier')),
+                                    'columns' => array('element','file')),
                "Paramètres" => array('query' => 'SELECT element, COUNT(*) as NB FROM <rapport> WHERE module="gpc_variables" GROUP BY element ORDER BY NB DESC',
                                     'headers' => array('Variable','Number'),
                                     'columns' => array('element','NB')),
@@ -202,9 +202,9 @@ ORDER BY T1.class
                "Variables" => array('query' => 'SELECT element, COUNT(*) as NB FROM <rapport> WHERE module="variables" GROUP BY element ORDER BY NB DESC',
                                     'headers' => array('Variable','Number'),
                                     'columns' => array('element','NB')),
-               "Fichiers" => array('query' => 'SELECT DISTINCT fichier FROM <rapport> GROUP BY fichier ORDER BY fichier DESC',
-                                    'headers' => array('Fichier'),
-                                    'columns' => array('fichier')),
+               "Fichiers" => array('query' => 'SELECT DISTINCT file FROM <rapport> GROUP BY file ORDER BY file DESC',
+                                    'headers' => array('file'),
+                                    'columns' => array('file')),
           );
 
 foreach($names as $name => $conf) {

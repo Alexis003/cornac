@@ -77,7 +77,7 @@ class Render_html {
     }
 
     function render_classe_freq($analyzer) {
-        $query = "SELECT fichier, element, COUNT(*) AS nb FROM <rapport> WHERE module='{$analyzer}' GROUP BY fichier, element ORDER BY nb DESC";
+        $query = "SELECT fichier, element, COUNT(*) AS nb FROM <rapport> WHERE module='{$analyzer}' GROUP BY file, element ORDER BY nb DESC";
         $res = $this->db->query($query);
 
         $html = '';
@@ -102,7 +102,7 @@ class Render_html {
     }
 
     function render_fichier_freq($analyzer) {
-        $query = "SELECT fichier, element, COUNT(*) AS nb FROM <rapport> WHERE module='{$analyzer}' GROUP BY fichier, element ORDER BY nb DESC";
+        $query = "SELECT file, element, COUNT(*) AS nb FROM <rapport> WHERE module='{$analyzer}' GROUP BY file, element ORDER BY nb DESC";
         $res = $this->db->query($query);
 
         $html = '';
@@ -146,7 +146,7 @@ class Render_html {
     }
     
     function render_occurrence_fichier($analyzer) {
-        $query = "SELECT element, fichier FROM <rapport> WHERE module='{$analyzer}' GROUP BY element, fichier";
+        $query = "SELECT element, file FROM <rapport> WHERE module='{$analyzer}' GROUP BY element, file";
         $res = $this->db->query($query);
         
         $html = '';
@@ -170,12 +170,12 @@ class Render_html {
     
     function render_scope_freq($analyzer) {
         $query = "
-            SELECT concat(CR.fichier, ': <br /><b>', class,'->', scope,'</b>') as class, element, COUNT(*) AS nb 
+            SELECT concat(CR.file, ': <br /><b>', class,'->', scope,'</b>') as class, element, COUNT(*) AS nb 
             FROM <rapport> CR
             JOIN <tokens> T1
                 ON CR.token_id = T1.id
                 WHERE module='{$analyzer}' 
-            GROUP BY concat(CR.fichier, class , scope), element";
+            GROUP BY concat(CR.file, class , scope), element";
         $res = $this->db->query($query);
 
         if ($res) {
@@ -198,7 +198,7 @@ class Render_html {
         }
 
         $html = $this->entete().
-                $this->menu($analyzer, 'occurrence_fichier').
+                $this->menu($analyzer, 'occurrence_file').
                 "<p>Total : $total<br />Entrées : ".count($lignes)."</p><ul>$html</ul>".
                 $this->pieddepage();
         file_put_contents($this->folder."/".$analyzer.".scope-freq.html", $html);        
