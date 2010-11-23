@@ -1,5 +1,6 @@
 tests/tokenizeur/scripts/constante.6.test.php
-  codephp <?php 
+  codephp <?php
+
   code : 
       functioncall chdir
       function call : chdir: 

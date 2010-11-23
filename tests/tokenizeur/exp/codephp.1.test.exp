@@ -1,5 +1,6 @@
 tests/tokenizeur/scripts/codephp.1.test.php
-  codephp <?php 
+  codephp <?php
+
   code : 
       affectation 
       left : 

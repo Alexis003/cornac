@@ -1,5 +1,6 @@
 tests/tokenizeur/scripts/ternaryop.14.test.php
-  codephp <?php 
+  codephp <?php
+
   code : 
       _foreach (variable $b as  => variable $c)
           block 

@@ -1,5 +1,6 @@
 tests/tokenizeur/scripts/functioncall.43.test.php
-  codephp <?php 
+  codephp <?php
+
   code : 
       functioncall PRINT
       function call : PRINT: 

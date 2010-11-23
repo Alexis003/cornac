@@ -1,5 +1,6 @@
 tests/tokenizeur/scripts/ternaryop.13.test.php
-  codephp <?php 
+  codephp <?php
+
   code : 
       _for 
         Init : affectation variable $b  "=" literals 0;

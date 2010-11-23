@@ -1,5 +1,6 @@
 tests/tokenizeur/scripts/global.6.test.php
-  codephp <?php 
+  codephp <?php
+
   code : 
       sequence 
       0 : 

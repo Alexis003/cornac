@@ -1,5 +1,6 @@
 tests/tokenizeur/scripts/rawtext.12.test.php
-  codephp <?php 
+  codephp <?php
+
   code : 
       _foreach (property variable $this->literals data as variable $size => variable $source)
           block 

@@ -1,5 +1,6 @@
 tests/tokenizeur/scripts/method.16.test.php
-  codephp <?php 
+  codephp <?php
+
   code : 
       functioncall echo
       function call : echo: 

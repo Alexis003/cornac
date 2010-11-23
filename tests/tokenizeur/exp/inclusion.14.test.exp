@@ -1,5 +1,6 @@
 tests/tokenizeur/scripts/inclusion.14.test.php
-  codephp <?php 
+  codephp <?php
+
   code : 
       sequence 
       0 : 

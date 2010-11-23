@@ -1,5 +1,6 @@
 tests/tokenizeur/scripts/foreach.25.test.php
-  codephp <?php 
+  codephp <?php
+
   code : 
       _for 
         Init : literals 1;

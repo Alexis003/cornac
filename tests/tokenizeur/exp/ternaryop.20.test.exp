@@ -1,5 +1,6 @@
 tests/tokenizeur/scripts/ternaryop.20.test.php
-  codephp <?php 
+  codephp <?php
+
   code : 
       sequence 
       0 : 

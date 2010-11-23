@@ -1,5 +1,6 @@
 tests/tokenizeur/scripts/ifthen.31.test.php
-  codephp <?php 
+  codephp <?php
+
   code : 
       ifthen if
       Condition 0) 

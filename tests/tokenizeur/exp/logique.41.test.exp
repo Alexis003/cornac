@@ -1,5 +1,6 @@
 tests/tokenizeur/scripts/logique.41.test.php
-  codephp <?php 
+  codephp <?php
+
   code : 
       logique 
       left : 
