@@ -18,8 +18,8 @@
  */
 
 class nestedload extends modules {
-	protected	$title = 'Boucles chargées';
-	protected	$description = 'Liste des boucles contenant un appel de fonction lourd';
+	protected	$title = 'Loaded loops';
+	protected	$description = 'Loops applied on a heavy function/method';
 
 	function __construct($mid) {
         parent::__construct($mid);

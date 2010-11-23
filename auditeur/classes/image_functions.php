@@ -18,8 +18,8 @@
  */
 
 class image_functions extends functioncalls {
-	protected	$title = 'Fonctions d\'images';
-	protected	$description = 'Liste des fonctions de l\'extension de gd de PHP';
+	protected	$title = 'Image functions';
+	protected	$description = 'List of ext/image functions being used';
 
 	function __construct($mid) {
         parent::__construct($mid);

@@ -18,8 +18,8 @@
  */
 
 class inclusions_path extends modules {
-	protected	$title = 'Chemin d\'inclusion';
-	protected	$description = 'Liste des chemins d\inclusions utilisés (hors __autoload)';
+	protected	$title = 'Inclusion path';
+	protected	$description = 'List of identified list paths, in inclusions()';
 
 	function __construct($mid) {
         parent::__construct($mid);

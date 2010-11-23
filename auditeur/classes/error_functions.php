@@ -18,8 +18,8 @@
  */
 
 class error_functions extends functioncalls {
-	protected	$title = 'Fonctions d\'erreur';
-	protected	$description = 'Liste des fonctions de l\'extension errorfunc de PHP';
+	protected	$title = 'Error functions';
+	protected	$description = 'List all error handling functions';
 
 	function __construct($mid) {
         parent::__construct($mid);

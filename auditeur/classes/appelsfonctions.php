@@ -19,7 +19,7 @@
 
 class appelsfonctions extends modules {
 	protected	$title = 'Function call through the code';
-	protected	$description = 'Appels d\'une fonction par une autre';
+	protected	$description = 'List of functioncall, from within another function';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -36,18 +36,17 @@ class appelsfonctions extends modules {
         $query = <<<SQL
 INSERT INTO <rapport_dot> 
 SELECT $concat1, $concat2, T1.file, '{$this->name}', 0
-  from <tokens> T1
-  join <tokens_cache> T2 
-    on T1.id = T2.id
-  join <tokens> T3
-    on T1.file = T3.file AND
+FROM <tokens> T1
+JOIN <tokens_cache> T2 
+    ON T1.id = T2.id
+JOIN <tokens> T3
+    ON T1.file = T3.file     AND
        T3.left = T1.left + 1 AND
        T3.code != '\$this'
-  join <tokens> T4
-    on T1.file = T4.file AND
+JOIN <tokens> T4
+    ON T1.file = T4.file     AND
        T4.left = T1.left + 4
-where 
- T1.type='method_static' ;
+WHERE  T1.type='method_static'
 SQL;
         $res = $this->exec_query($query);
 
@@ -56,35 +55,33 @@ SQL;
         $query = <<<SQL
 INSERT INTO <rapport_dot> 
 SELECT $concat1, $concat2, T1.file, '{$this->name}', 0
-  from <tokens> T1
-  join <tokens_cache> T2 
-    on T1.id = T2.id
-  join <tokens> T3
-    on T1.file = T3.file AND
+FROM <tokens> T1
+JOIN <tokens_cache> T2 
+    ON T1.id = T2.id
+JOIN <tokens> T3
+    ON T1.file = T3.file     AND
        T3.left = T1.left + 1 AND
        T3.code = '\$this'
-  join <tokens> T4
-    on T1.file = T4.file AND
+JOIN <tokens> T4
+    ON T1.file = T4.file     AND
        T4.left = T1.left + 4
-where 
- T1.type='method' 
+WHERE T1.type='method' 
 SQL;
         $res = $this->exec_query($query);
 
         $query = <<<SQL
 SELECT T4.code AS method, T1.class as classe
-  from <tokens> T1
-  join <tokens_cache> T2 
-    on T1.id = T2.id
-  join <tokens> T3
-    on T1.file = T3.file AND
+FROM <tokens> T1
+JOIN <tokens_cache> T2 
+    ON T1.id = T2.id
+JOIN <tokens> T3
+    ON T1.file = T3.file     AND
        T3.left = T1.left + 1 AND
        T3.code != '\$this'
-  join <tokens> T4
-    on T1.file = T4.file AND
+JOIN <tokens> T4
+    ON T1.file = T4.file     AND
        T4.left = T1.left + 4
-where 
- T1.type='method' 
+WHERE T1.type='method'
 SQL;
         $res = $this->exec_query($query);
         
@@ -93,9 +90,8 @@ SQL;
         while($row = $res->fetch(PDO::FETCH_ASSOC)) {
             $query = <<<SQL
 SELECT T1.element
-  from <rapport> T1
-where 
- T1.module='defmethodes' AND 
+  FROM <rapport> T1
+WHERE  T1.module='defmethodes'             AND 
  T1.element NOT LIKE "{$row["classe"]}->%" AND
  T1.element LIKE "%->{$row["method"]}"
 SQL;

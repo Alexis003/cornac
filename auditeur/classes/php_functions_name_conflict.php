@@ -17,8 +17,8 @@
    +----------------------------------------------------------------------+
  */
 class php_functions_name_conflict extends modules {
-	protected	$title = 'Conflits de noms avec des fonctions PHP';
-	protected	$description = 'Identifie des fonctions dont le nom est en conflit avec celles courantes de PHP';
+	protected	$title = 'Potential conflict with PHP functions';
+	protected	$description = 'Spot functions whose name may end up in conflict with PHP\'s own.';
 
 	function __construct($mid) {
         parent::__construct($mid);

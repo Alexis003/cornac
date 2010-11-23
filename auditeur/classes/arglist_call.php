@@ -18,8 +18,8 @@
  */
 
 class arglist_call extends modules {
-	protected	$title = 'Arguments utilisés';
-	protected	$description = 'Liste des arguments par appel de fonction';
+	protected	$title = 'Used arguments';
+	protected	$description = 'List all argument being used in functioncall';
 
 	function __construct($mid) {
         parent::__construct($mid);

@@ -18,8 +18,8 @@
  */
 
 class emptyfunctions extends modules {
-	protected	$title = 'Fonctions vides';
-	protected	$description = 'Liste des fonctions avec un corps vide';
+	protected	$title = 'Empty functions';
+	protected	$description = 'Functions which body is empty (not abstract or interface functions).';
 
 	function __construct($mid) {
         parent::__construct($mid);

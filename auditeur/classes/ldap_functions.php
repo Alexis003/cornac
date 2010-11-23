@@ -18,8 +18,8 @@
  */
 
 class ldap_functions extends functioncalls {
-	protected	$title = 'Fonctions LDAP';
-	protected	$description = 'Liste des fonctions LDAP';
+	protected	$title = 'LDAP functions';
+	protected	$description = 'LDAP function list';
 
 	function __construct($mid) {
         parent::__construct($mid);

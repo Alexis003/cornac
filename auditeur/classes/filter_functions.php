@@ -18,22 +18,15 @@
  */
 
 class filter_functions extends functioncalls {
-	protected	$title = 'Fonctions de filter';
-	protected	$description = 'Liste des fonctions de l\'extension de filter de PHP';
+	protected	$title = 'filter functions';
+	protected	$description = 'List of all ext/filter functions';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
 	
 	public function analyse() {
-	    $this->functions = array(   'filter_input',
-                                    'filter_var',
-                                    'filter_input_array',
-                                    'filter_var_array',
-                                    'filter_list',
-                                    'filter_has_var',
-                                    'filter_id',
-	    );
+	    $this->functions = modules::getPHPFunctions("filter");
 	    parent::analyse();
 	    
 	    return true;

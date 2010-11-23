@@ -18,8 +18,8 @@
  */
 
 class function_link extends modules {
-	protected	$title = 'Lien entre les files via les fonctions';
-	protected	$description = 'Établit les liens entre deux files, pour via une fonction : un lien est établit entre le file de défintion de la fonction, et son utilisation';
+	protected	$title = 'Relations between functions';
+	protected	$description = 'Identify links between files, when a function defined in one file is called in another.';
 
 	function __construct($mid) {
         parent::__construct($mid);

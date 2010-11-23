@@ -18,8 +18,8 @@
  */
 
 class ereg_functions extends functioncalls {
-	protected	$title = 'Fonctions ereg';
-	protected	$description = 'Liste des fonctions de ereg et associées';
+	protected	$title = 'ereg functions';
+	protected	$description = 'List of ext/ereg functions';
 
 	function __construct($mid) {
         parent::__construct($mid);

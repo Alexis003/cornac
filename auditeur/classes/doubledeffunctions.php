@@ -18,8 +18,8 @@
  */
 
 class doubledeffunctions extends modules {
-	protected	$title = 'Défintions de fonctions en double';
-	protected	$description = 'Liste des défintions doubles de fonctions';
+	protected	$title = 'Functions being defined twice';
+	protected	$description = 'List functions being defined twice, at least. Hopefully, no one will try to use them simultaneously.';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -37,7 +37,7 @@ SELECT NULL, file, TR.element,  TR.token_id, '{$this->name}', 0
 FROM <rapport> TR
 WHERE module='deffunctions'
 GROUP BY element 
-HAVING count(*) > 1;
+HAVING COUNT(*) > 1
 SQL;
     
         $this->exec_query_insert('rapport', $query);

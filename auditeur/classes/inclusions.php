@@ -19,7 +19,7 @@
 
 class inclusions extends modules {
 	protected	$title = 'Inclusions';
-	protected	$description = 'Liste des inclusions (fonctions utilisées)';
+	protected	$description = 'Inclusion list (function being used for such)';
 
 	function __construct($mid) {
         parent::__construct($mid);

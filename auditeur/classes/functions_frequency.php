@@ -18,8 +18,8 @@
  */
 
 class functions_frequency extends noms {
-	protected	$title = 'Fréquence des fonctions';
-	protected	$description = 'Liste des appels de fonctions';
+	protected	$title = 'Function frequency';
+	protected	$description = 'List all function call, and their frequency.';
 
 	function __construct($mid) {
         parent::__construct($mid);

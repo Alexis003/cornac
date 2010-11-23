@@ -18,8 +18,8 @@
  */
 
 class functionscalls extends modules {
-    protected $description = "Liste des appels de fonctions"; 
-    protected $title = "Appels de fonctions"; 
+    protected $description = "Function calls"; 
+    protected $title = "List all PHP function calls"; 
 
 	function __construct($mid) {
         parent::__construct($mid);

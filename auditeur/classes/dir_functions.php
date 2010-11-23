@@ -18,8 +18,8 @@
  */
 
 class dir_functions extends functioncalls {
-	protected	$title = 'Fonctions de dossier';
-	protected	$description = 'Liste des fonctions de l\'extension de dir de PHP';
+	protected	$title = 'Dir functions';
+	protected	$description = 'List all dir functions';
 
 	function __construct($mid) {
         parent::__construct($mid);
