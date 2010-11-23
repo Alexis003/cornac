@@ -22,8 +22,8 @@ include_once('Auditeur_Framework_TestCase.php');
 class case_without_break_Test extends Auditeur_Framework_TestCase
 {
     public function testcase_without_break()  {
-        $this->expected = array( '');
-        $this->unexpected = array(/*'',*/);
+        $this->expected = array( 'case b');
+        $this->unexpected = array('case a','default');
 
         parent::generic_test();
 //        parent::generic_counted_test();

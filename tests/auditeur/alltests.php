@@ -137,6 +137,8 @@ $tests = array(
 'class.zfRedirect.test.php',
 'class.zfSession.test.php',
 'class.zfSQL.test.php',
+'class.switch_without_default.test.php',
+'class.case_without_break.test.php',
 // new tests
 );
 
