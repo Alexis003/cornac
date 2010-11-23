@@ -140,7 +140,11 @@ detect impossible condition (if (false), ...)
 
 PHP configuration function usage
 
-check for case without break, of switch without default. 
+uninitialised variables (first to be used in a function/main).
+
+Structures of other languages (JS, HTML, ...)   
+
+default before other cases (this is useless)
 useless lines (like 1; array(); etc.)
 Identify variables that where not initialized (less args, less foreach)
 
