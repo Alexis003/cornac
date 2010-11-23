@@ -92,7 +92,13 @@ $liste = array_slice($liste, 0, $INI['limit']);
 $comments = array();
 foreach($liste as $file) {
     $php = file_get_contents($file);
+    print "$file\n";
     $tokens = token_get_all($php);
+    if (count($tokens) == 0) {
+        print "Can't compile '$file' with PHP; Ignoring\n";
+        continue; 
+    }
+    
     $comments_this_file = 0;
     foreach($tokens as $token) {
         if (is_array($token) && $token[0] == T_COMMENT) {
