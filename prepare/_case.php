@@ -18,21 +18,21 @@
  */
 
 class _case extends instruction {
-    protected $expression = null;
+    protected $condition = null;
     protected $block      = null;
     
     function __construct($expression = null) {
         parent::__construct(array());
         
         if ($expression[0]->checkToken(T_CASE)) {
-            $this->comparant = $expression[1];
+            $this->condition = $expression[1];
             if (isset($expression[2])) {
                 $this->block     = $expression[2];
             } else {
                 $this->block     = new block();
             }
         } elseif ($expression[0]->checkToken(T_DEFAULT)) {
-            $this->comparant = new block();
+            $this->condition = new block();
             if (isset($expression[1])) {
                 $this->block     = $expression[1];
             } else {
@@ -47,11 +47,11 @@ class _case extends instruction {
         return __CLASS__." ".$this->code;
     }
 
-    function getComparant() {
-        if ($this->comparant == 'default') {
+    function getCondition() {
+        if ($this->condition == 'default') {
             return null;
         } else {
-            return $this->comparant;
+            return $this->condition;
         }
     }
 
@@ -60,8 +60,8 @@ class _case extends instruction {
     }
 
     function neutralise() {
-        if ($this->comparant != 'default') {
-            $this->comparant->detach();
+        if ($this->condition != 'default') {
+            $this->condition->detach();
         }
         $this->block->detach();
     }

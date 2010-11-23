@@ -204,7 +204,7 @@ die("cas de l'argument null ou inexistant");
     }
 
     function display__case($node, $level) {
-        $methods = array('getComparant','getBlock');
+        $methods = array('getCondition','getBlock');
         $titre = 'case';
         
         $this->dot_standard($node, $level, $methods, $titre);

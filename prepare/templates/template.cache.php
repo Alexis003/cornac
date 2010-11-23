@@ -203,7 +203,7 @@ class template_cache extends template {
 
     function display__case($node, $level) {
         $case = 'case';
-        if (!is_null($m = $node->getComparant())) {
+        if (!is_null($m = $node->getCondition())) {
             $this->display($m, $level + 1);
             $case .= " ".$m->cache;
         }

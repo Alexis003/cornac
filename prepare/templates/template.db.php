@@ -234,7 +234,7 @@ class template_db extends template {
         $node->myleft = $this->getIntervalleId();
         $node->setCode('');
 
-        if (!is_null($m = $node->getComparant())) {
+        if (!is_null($m = $node->getCondition())) {
             $this->display($m, $level + 1);
         }
         $this->display($node->getBlock(), $level + 1);

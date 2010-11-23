@@ -119,7 +119,7 @@ class template_tree extends template {
 
     function display__case($node, $level) {
         print str_repeat('  ', $level).get_class($node)." \n";
-        $this->display($node->getComparant(), $level + 1);
+        $this->display($node->getCondition(), $level + 1);
         $this->display($node->getBlock(), $level + 1);
     }
 

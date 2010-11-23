@@ -105,7 +105,7 @@ class template_stats extends template {
 
     function display__case($node, $niveau) {
         $this->addStat(__FUNCTION__);
-        $this->display($node->getComparant(), $niveau + 1);
+        $this->display($node->getCondition(), $niveau + 1);
         $this->display($node->getBlock(), $niveau + 1);
     }
 
