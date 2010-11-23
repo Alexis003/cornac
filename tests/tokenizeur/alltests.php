@@ -63,7 +63,7 @@ $tests = array(
 'class.method_static.test.php',
 'class.static.test.php',
 'class.try.test.php',
-'class.decalage.test.php',
+'class.bitshift.test.php',
 'class.throw.test.php',
 'class.constante_static.test.php',
 'class.dowhile.test.php',
