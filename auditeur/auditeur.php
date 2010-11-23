@@ -204,6 +204,8 @@ $modules = array(
 'zfSession',
 'zfTypeView',
 'zfDb',
+'case_without_break',
+'switch_without_default',
 // new analyzers
 );
 
