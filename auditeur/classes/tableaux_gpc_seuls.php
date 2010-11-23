@@ -35,7 +35,7 @@ FROM <tokens> T1
 LEFT JOIN <tokens> T2 ON T1.droite - 1 = T2.droite AND T1.fichier = T2.fichier
 WHERE T1.type="variable" AND
       T1.code IN ('\$_GET','\$_SERVER','\$GLOBALS','\$_POST','\$_REQUEST','\$_ENV','\$_COOKIE','\$_SESSION') AND 
-      T2.type != 'tableau'
+      T2.type != '_array'
 SQL;
         $this->exec_query_insert('rapport', $query);
 

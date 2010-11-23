@@ -49,7 +49,7 @@ JOIN <tokens> T2
 LEFT JOIN <tokens_cache> T3
     ON T1.id = T3.id AND
        T1.fichier = T3.fichier
-WHERE T1.type = 'tableau' AND
+WHERE T1.type = '_array' AND
       T2.code = '\$GLOBALS';
 SQL;
         $this->exec_query_insert('rapport', $query);

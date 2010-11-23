@@ -360,7 +360,7 @@ SQL;
         return __METHOD__;
     }
 
-    function affiche_tableau($droite) {
+    function affiche__array($droite) {
         $retour = array();
         foreach($this->lignes as $ligne) {
             if ($ligne['gauche'] < $this->lignes[$droite]['gauche'] &&

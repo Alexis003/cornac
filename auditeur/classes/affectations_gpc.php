@@ -18,8 +18,8 @@
  */
 
 class affectations_gpc extends modules {
-	protected	$title = 'Assignation des variables GPC';
-	protected	$description = 'Affectations des variables GPC (pb de sécurité)';
+	protected	$title = 'Affectation in GPC variables';
+	protected	$description = 'GPC variables that receive new values.';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -40,7 +40,7 @@ JOIN <tokens> T2
 ON T2.fichier = T1.fichier AND TT.token_sub_id = T2.id
 JOIN <tokens> T3
 ON T3.fichier = T1.fichier AND 
-T3.type='tableau' AND 
+T3.type='_array' AND 
 T3.droite between T2.droite AND T2.gauche 
 JOIN <tokens_cache> TC
   ON TC.id = T3.id
@@ -67,7 +67,7 @@ T4.droite=T3.droite -1
 JOIN <tokens_cache> TC
   ON TC.id = T3.id
 WHERE T1.fichier like "%affectations_gpc%" and T1.type = 'affectation' AND
-(T4.type IS NULL OR T4.type != 'tableau') AND 
+(T4.type IS NULL OR T4.type != '_array') AND 
 TC.code REGEXP '^$gpc_regexp';
 SQL;
         $this->exec_query_insert('rapport', $query);

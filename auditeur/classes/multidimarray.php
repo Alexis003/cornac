@@ -40,13 +40,13 @@ FROM <tokens> T1
 JOIN <tokens_cache> TC
     ON TC.id = T1.id
 LEFT JOIN <tokens> TX
-    ON TX.type IN ('tableau','opappend') AND 
+    ON TX.type IN ('_array','opappend') AND 
        T1.fichier = TX.fichier AND
        T1.droite - 1 = TX.droite
 LEFT JOIN <rapport> TR
     ON TR.module='{$this->name}' AND
        TR.token_id = T1.id
-WHERE T1.type IN ('tableau','opappend') AND
+WHERE T1.type IN ('_array','opappend') AND
       TR.id IS NULL AND
       TX.id IS NULL
 SQL;
@@ -55,7 +55,7 @@ for($i = 2; $i < 7; $i++) {
     $h = $i - 1;
     $join = <<<SQL
 JOIN <tokens> T$i
-    ON T$i.type IN ('tableau','opappend') AND 
+    ON T$i.type IN ('_array','opappend') AND 
        T1.fichier = T$i.fichier AND
        T$h.droite + 1 = T$i.droite
 /* JOIN */

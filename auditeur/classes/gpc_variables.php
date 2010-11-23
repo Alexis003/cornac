@@ -40,7 +40,7 @@ JOIN <tokens> T3
     ON T3.droite = T2.gauche + 1 AND
        T3.gauche < T1.gauche     AND
        T1.fichier = T3.fichier
-WHERE T1.type='tableau'
+WHERE T1.type='_array'
 SQL;
         $res = $this->exec_query_insert('rapport', $query);
 	}

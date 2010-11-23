@@ -36,7 +36,7 @@ JOIN <tokens> T2
     ON T1.droite + 1 = T2.droite AND T1.fichier = T2.fichier
 JOIN <tokens_cache> TC 
     ON T1.id = TC.id
-WHERE T1.type="tableau" AND
+WHERE T1.type="_array" AND
       T2.code IN ('\$_GET','\$_SERVER','\$GLOBALS','\$_POST','\$_REQUEST','\$_ENV','\$_COOKIE','\$_SESSION')
 SQL;
         $this->exec_query_insert('rapport', $query);

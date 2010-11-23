@@ -1,4 +1,4 @@
-<?php
+<?php 
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -17,43 +17,37 @@
    +----------------------------------------------------------------------+
  */
 
-class zfController extends modules {
-	protected	$title = 'ZF : controllers';
-	protected	$description = 'List of *Action methods from the ZF';
+class switch_without_default extends modules {
+	protected	$title = 'switch without default';
+	protected	$description = 'Check that all switch structure has a default case. It should be checked then, even if this may be valid.';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
-	
+
+// @doc if this analyzer is based on previous result, use this to make sure the results are here
+	function dependsOn() {
+	    return array();
+	}
+
 	public function analyse() {
         $this->clean_rapport();
-        
-        if (isset($this->ini['classes']) && is_array($this->ini['classes']) ) {
-            $classes = ', "'.join('", "', explode(',',$this->ini['classes'])).'"';
-        } else {
-            $classes = "";
-        }
 
-        $concat = $this->concat("T3.class", "'->'","T3.code");
+// @todo of course, update this useless query. :)
 	    $query = <<<SQL
-SELECT NULL, T1.fichier, $concat AS code, T3.id, 'zfController', 0
+SELECT NULL, T1.fichier, TC.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
-JOIN <tokens_tags> TT 
-ON T1.id = TT.token_id AND
-   TT.type='extends'
-JOIN <tokens> T2
-ON T2.id = TT.token_sub_id AND
-   T2.fichier=T1.fichier
-JOIN <tokens> T3
-ON T3.fichier = T2.fichier AND 
-   T3.droite BETWEEN T1.droite AND T1.gauche AND
-   T3.type = '_function'
-WHERE T1.type = '_class' AND
-    T2.code IN ( "Application_Zend_Controller","Zend_Controller" $classes) AND
-    T3.code LIKE "%Action"
+LEFT JOIN <tokens> T2 
+    ON T2.droite BETWEEN T1.droite AND T1.gauche AND
+       T1.fichier = T2.fichier AND
+       T2.type = '_default'
+JOIN <tokens_cache> TC
+    ON TC.id = T1.id
+WHERE T1.type = '_switch' AND
+      T2.id IS NULL
 SQL;
         $this->exec_query_insert('rapport', $query);
-        
+
         return true;
 	}
 }

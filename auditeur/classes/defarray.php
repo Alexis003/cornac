@@ -18,8 +18,8 @@
  */
 
 class defarray extends modules {
-	protected	$title = 'Listes en tableaux ';
-	protected	$description = 'Liste les tableaux qui contiennent des listes de valeurs';
+	protected	$title = 'Arrays as lists';
+	protected	$description = 'Long arrays, that contains data dictionaries, or lists';
 
 	function __construct($mid) {
         parent::__construct($mid);

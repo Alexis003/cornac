@@ -46,7 +46,7 @@ JOIN <tokens> T2
     ON T1.fichier = T2.fichier AND T2.droite = T1.droite + 1
 JOIN <tokens> T3
     ON T1.fichier = T3.fichier AND T3.droite = T1.droite + 2
-WHERE T1.type = 'affectation'  AND T2.type = 'tableau'
+WHERE T1.type = 'affectation'  AND T2.type = '_array'
 SQL;
         $this->exec_query_insert('rapport', $query);    
 

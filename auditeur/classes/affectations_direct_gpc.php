@@ -18,8 +18,8 @@
  */
 
 class affectations_direct_gpc extends modules {
-	protected	$title = 'Assignation GPC';
-	protected	$description = 'Affectations des variables GPC (pb de sécurité)';
+	protected	$title = 'GPC assignation';
+	protected	$description = 'Assigning directly GPC variables';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -71,7 +71,7 @@ JOIN <tokens_cache> TC
   ON TC.id = T3.id
 WHERE T1.fichier like "%affectations_gpc%" AND
       T1.type = 'affectation' AND
-      (T4.type IS NULL OR T4.type != 'tableau') AND 
+      (T4.type IS NULL OR T4.type != '_array') AND 
       BINARY TC.code REGEXP '^$gpc_regexp'
 SQL;
         $this->exec_query_insert('rapport', $query);
