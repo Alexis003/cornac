@@ -27,7 +27,7 @@ class template_cache extends template {
     private $table = 'tokens';
     private $tags = array();
     
-    function __construct($root, $fichier = null) {
+    function __construct($root, $file = null) {
         parent::__construct();
         
         global $INI;
@@ -37,20 +37,20 @@ class template_cache extends template {
         if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
             $this->database = new pdo($INI['mysql']['dsn'],$INI['mysql']['username'], $INI['mysql']['password']);
 
-            $this->database->query('DELETE FROM '.$this->table.'_cache WHERE fichier = "'.$fichier.'"');
+            $this->database->query('DELETE FROM '.$this->table.'_cache WHERE file = "'.$file.'"');
             $this->database->query('CREATE TABLE IF NOT EXISTS '.$this->table.'_cache (
                                                           id       INTEGER PRIMARY KEY AUTO_INCREMENT, 
                                                           code     VARCHAR(255),
-                                                          fichier  VARCHAR(255)
+                                                          file  VARCHAR(255)
                                                           )');
         } elseif (isset($INI['sqlite']) && $INI['sqlite']['active'] == true) {
             $this->database = new pdo($INI['sqlite']['dsn']);
 
-            $this->database->query('DELETE FROM '.$this->table.'_cache WHERE fichier = "'.$fichier.'"');
+            $this->database->query('DELETE FROM '.$this->table.'_cache WHERE file = "'.$file.'"');
             $this->database->query('CREATE TABLE IF NOT EXISTS '.$this->table.'_cache (
                                                           id       INTEGER PRIMARY KEY AUTOINCREMENT, 
                                                           code     VARCHAR(255),
-                                                          fichier  VARCHAR(255)
+                                                          file  VARCHAR(255)
                                                           )');
         } else {
             print "No database configuration provided (no db)\n";

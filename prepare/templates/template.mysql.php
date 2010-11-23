@@ -23,8 +23,8 @@ class template_mysql extends template_db {
     protected $root = null;
     protected $database = null;
     
-    function __construct($root, $fichier = null) {
-        parent::__construct($root, $fichier);
+    function __construct($root, $file = null) {
+        parent::__construct($root, $file);
         
         global $INI;
         
@@ -38,27 +38,28 @@ class template_mysql extends template_db {
             die();
         }
 
-        $this->database->query('DELETE FROM '.$this->table.' WHERE fichier = "'.$fichier.'"');
-        $this->database->query('CREATE TABLE IF NOT EXISTS '.$this->table.' (id       INT NOT NULL AUTO_INCREMENT, 
-                                                          droite   INT UNSIGNED, 
-                                                          gauche   INT UNSIGNED,
-                                                          type     CHAR(20),
-                                                          code     VARCHAR(10000),
-                                                          fichier  VARCHAR(255) DEFAULT "prec",
-                                                          line     INT,
-                                                          scope    VARCHAR(255),
-                                                          class    VARCHAR(255),
-                                                          level    TINYINT UNSIGNED,
+        $this->database->query('DELETE FROM '.$this->table.' WHERE file = "'.$file.'"');
+        $this->database->query('CREATE TABLE IF NOT EXISTS '.$this->table.' (
+                                                          `id`       INT NOT NULL AUTO_INCREMENT, 
+                                                          `left`     INT UNSIGNED, 
+                                                          `right`    INT UNSIGNED,
+                                                          `type`     CHAR(20),
+                                                          `code`     VARCHAR(10000),
+                                                          `file`     VARCHAR(255) DEFAULT "prec",
+                                                          `line`     INT,
+                                                          `scope`    VARCHAR(255),
+                                                          `class`    VARCHAR(255),
+                                                          `level`    TINYINT UNSIGNED,
                                                           PRIMARY KEY (`id`),
                                                           UNIQUE KEY `id` (`id`),
-                                                          KEY `fichier` (`fichier`),
+                                                          KEY `file` (`file`),
                                                           KEY `type` (`type`),
-                                                          KEY `droite` (`droite`),
-                                                          KEY `gauche` (`gauche`),
+                                                          KEY `left` (`left`),
+                                                          KEY `right` (`right`),
                                                           KEY `code` (`code`)
                                                           ) ENGINE=MyISAM DEFAULT CHARSET=latin1');
 
-        $this->database->query('DELETE FROM '.$this->table_tags.' WHERE fichier = "'.$fichier.'"');
+        $this->database->query('DELETE FROM '.$this->table_tags.' WHERE file = "'.$file.'"');
         $this->database->query('CREATE TABLE IF NOT EXISTS '.$this->table_tags.' (
   `token_id` int(10) unsigned NOT NULL,
   `token_sub_id` int(10) unsigned NOT NULL,
