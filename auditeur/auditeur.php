@@ -203,6 +203,7 @@ $modules = array(
 'zfSQL',
 'zfSession',
 'zfTypeView',
+'zfDb',
 // new analyzers
 );
 
@@ -396,6 +397,9 @@ function analyse_module($module_name) {
     }
 
     $init_time = microtime(true);
+    if (isset($INI['auditeur.'.$module_name])) {
+        $module->init($INI['auditeur.'.$module_name]);
+    }
     $module->analyse();
     // @todo add an option for this
     $finish_time = microtime(true);
