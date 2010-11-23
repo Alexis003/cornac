@@ -39,9 +39,9 @@ class template_mysql extends template_db {
         }
 
         $this->database->query('DELETE FROM '.$this->table.' WHERE fichier = "'.$fichier.'"');
-        $this->database->query('CREATE TABLE IF NOT EXISTS '.$this->table.' (id       INT AUTO_INCREMENT, 
-                                                          left   INT UNSIGNED, 
-                                                          right   INT UNSIGNED,
+        $this->database->query('CREATE TABLE IF NOT EXISTS '.$this->table.' (id       INT NOT NULL AUTO_INCREMENT, 
+                                                          droite   INT UNSIGNED, 
+                                                          gauche   INT UNSIGNED,
                                                           type     CHAR(20),
                                                           code     VARCHAR(10000),
                                                           fichier  VARCHAR(255) DEFAULT "prec",
@@ -53,8 +53,8 @@ class template_mysql extends template_db {
                                                           UNIQUE KEY `id` (`id`),
                                                           KEY `fichier` (`fichier`),
                                                           KEY `type` (`type`),
-                                                          KEY `left` (`left`),
-                                                          KEY `right` (`right`),
+                                                          KEY `droite` (`droite`),
+                                                          KEY `gauche` (`gauche`),
                                                           KEY `code` (`code`)
                                                           ) ENGINE=MyISAM DEFAULT CHARSET=latin1');
 
