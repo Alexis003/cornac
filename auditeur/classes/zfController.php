@@ -28,8 +28,12 @@ class zfController extends modules {
 	public function analyse() {
         $this->clean_rapport();
         
-        if (isset($this->ini['classes']) && is_array($this->ini['classes']) ) {
-            $classes = ', "'.join('", "', explode(',',$this->ini['classes'])).'"';
+        if (isset($this->ini['classes'])) {
+            if (is_array($this->ini['classes']) ) {
+                $classes = ', "'.join('", "', explode(',',$this->ini['classes'])).'"';
+            } else {
+                $classes = ", '{$this->ini['classes']}' ";
+            }
         } else {
             $classes = "";
         }
