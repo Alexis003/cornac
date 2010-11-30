@@ -44,15 +44,17 @@ class ifthenelse_simples_regex extends analyseur_regex {
             return false; 
         } 
 
-        if ( $t->getNext()->checkSubClass('instruction') &&
+        if (// $t->getNext()->checkSubClass('instruction') &&
              ($t->getNext()->checkForBlock(true) ||
               $t->getNext()->checkClass(array('concatenation','constante','sign','not','noscream','invert')) ||
               $t->getNext()->checkForVariable()
-              ) &&
-             ($t->getNext(1)->checkNotCode(array('=')) || 
-              $t->getNext(1)->checkNotClass('Token'))
+              )
             ) {
-
+            if ($t->getNext(1)->checkForAssignation()) { return false; }
+            if ($t->getNext(1)->checkCode(array('.','->','[','::'))) { return false; }
+            if ($t->getNext(1)->checkClass('Token') &&
+                $t->getNext(1)->checkNotOperator(';')) { return false; }
+            
             $regex = new modele_regex('block',array(0), array());
             Token::applyRegex($t->getNext(), 'block', $regex);
 
