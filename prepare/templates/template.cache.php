@@ -109,6 +109,13 @@ class template_cache extends template {
     function savenode($node) {
         global $file;
         
+        if (!isset($node->database_id)) {
+            print get_class($node)."\n";
+            print_r(xdebug_get_function_stack());
+            print_r($node);
+            die();
+        }
+        
         $requete = "INSERT INTO {$this->table}_cache VALUES 
             (
              '".$node->database_id."',
@@ -159,8 +166,6 @@ class template_cache extends template {
     function display_arglist($node, $level) {
         $elements = $node->getList();
         if (count($elements) == 0) {
-            $token_traite = new token_traite(new Token());
-            $this->display($token_traite, $level + 1);
             $node->cache = '()';
             return $this->savenode($node);
         } else {
