@@ -121,7 +121,7 @@ $modules = array(
 'variablesvariables',
 'xdebug_functions',
 'xml_functions',
-'zfAction',
+//'zfAction', @_ 
 'zfController',
 'zfElements',
 'zfGetGPC',
@@ -160,7 +160,6 @@ $modules = array(
 'globals_link',
 'defarray',
 'multidimarray',
-'zfClasses',
 'popular_libraries',
 'addElement',
 'addElement_unaffected',
@@ -206,6 +205,10 @@ $modules = array(
 'zfDb',
 'case_without_break',
 'switch_without_default',
+'zfViewVariables',
+'Zf',
+'Zf_Action',
+'Zf_Classes',
 // new analyzers
 );
 
@@ -355,8 +358,17 @@ while (1) {
     print "Processed $counter tasks. Waiting for 5s\n";
 }
 
+function __autoload($classname) {
+    $path = str_replace('_','/', $classname);
+
+    if (file_exists('classes/'.$path.'.php')) {
+        require_once('classes/'.$path.'.php');
+    } elseif (file_exists('classes/'.$classname.'.php')) {
+        require_once('classes/'.$classname.'.php');
+    }
+}
+
 function analyse_module($module_name) {
-    require_once('classes/'.$module_name.'.php');
     global  $DATABASE, $sommaire, $INI;
 
     $res = $DATABASE->query("SELECT completed FROM <tasks> WHERE target='$module_name'");

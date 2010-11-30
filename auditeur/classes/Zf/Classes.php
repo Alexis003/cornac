@@ -17,26 +17,37 @@
    +----------------------------------------------------------------------+
  */
 
-class ifsanselse extends modules {
-	protected	$title = 'If sans else';
-	protected	$description = 'Liste des if sans else';
+class Zf_Classes extends modules { 
+	protected	$title = 'ZF : classes';
+	protected	$description = 'Names of ZF classes being used';
 
 	function __construct($mid) {
         parent::__construct($mid);
+	}
+
+// @doc if this analyzer is based on previous result, use this to make sure the results are here
+	function dependsOn() {
+	    return array();
 	}
 	
 	public function analyse() {
         $this->clean_rapport();
 
-        $concat = $this->concat("T2.class","'->'","T2.code");
+        $list = modules::getZendFrameworkClasses();
+        $in = "'".join("', '", $list)."'";
+        
+        // @note classes extended
 	    $query = <<<SQL
-SELECT NULL, T1.file, SUM(TT.type = 'else')  AS elsee, T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, T2.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
-LEFT join <tokens_tags> TT 
-    ON T1.id = TT.token_id
-WHERE T1.type = 'ifthen' 
-GROUP BY file, `left`
-HAVING elsee = 0
+JOIN <tokens_tags> TT 
+    ON TT.token_id = T1.id AND
+       TT.type = 'extends'
+JOIN <tokens> T2
+    ON TT.token_sub_id = T2.id AND
+       T1.file = T2.file AND 
+       T2.code IN ($in)
+WHERE T1.type='_class'; 
 SQL;
         $this->exec_query_insert('rapport', $query);
         

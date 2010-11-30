@@ -1,4 +1,4 @@
-<?php
+<?php 
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -17,9 +17,9 @@
    +----------------------------------------------------------------------+
  */
 
-class zfClasses extends modules { 
-	protected	$title = 'ZF : classes';
-	protected	$description = 'Names of ZF classes being used';
+class zfViewVariables extends modules {
+	protected	$title = 'Title for zfViewVariables';
+	protected	$description = 'This is the special analyzer zfViewVariables (default doc).';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -29,28 +29,29 @@ class zfClasses extends modules {
 	function dependsOn() {
 	    return array();
 	}
-	
+
 	public function analyse() {
         $this->clean_rapport();
 
-        $list = modules::getZendFrameworkClasses();
-        $in = "'".join("', '", $list)."'";
-        
-        // @note classes extended
+// @todo of course, update this useless query. :)
 	    $query = <<<SQL
 SELECT NULL, T1.file, T2.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
-JOIN <tokens_tags> TT 
-    ON TT.token_id = T1.id AND
-       TT.type = 'extends'
+JOIN <tokens_cache> TC
+ON TC.id = T1.id
+JOIN <tokens_tags> TT
+ON TT.token_sub_id = T1.id
+JOIN jaguar_tags TT2
+ON TT2.token_id = TT.token_id AND
+   TT2.type = 'property'
 JOIN <tokens> T2
-    ON TT.token_sub_id = T2.id AND
-       T1.file = T2.file AND 
-       T2.code IN ($in)
-WHERE T1.type='_class'; 
+ON T2.file = T1.file AND
+   T2.id = TT2.token_sub_id
+WHERE T1.type = 'property' AND
+      TC.code LIKE "\$this->view"
 SQL;
         $this->exec_query_insert('rapport', $query);
-        
+
         return true;
 	}
 }

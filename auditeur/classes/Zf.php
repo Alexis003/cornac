@@ -1,4 +1,4 @@
-<?php
+<?php 
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -17,39 +17,18 @@
    +----------------------------------------------------------------------+
  */
 
-class zfAction extends modules {
-	protected	$title = 'ZF : action';
-	protected	$description = 'List of methods for the Zend Framework ';
-
+class Zf extends modules {
 	function __construct($mid) {
         parent::__construct($mid);
 	}
-	
-	public function analyse() {
-        $this->clean_rapport();
 
-	    $query = <<<SQL
-SELECT NULL, T1.file, CONCAT(T1.class,'::',T1.code), T1.id, '{$this->name}', 0
-FROM <tokens> T1
-JOIN  <tokens_tags> TT
-    ON TT.token_sub_id = T1.id
-JOIN  <tokens> T2
-ON T2.file = T1.file AND
-   T1.left BETWEEN T2.left AND T2.right AND
-   T2.type = '_class'
-JOIN  <tokens_tags> TT2
-ON TT2.token_id = T2.id AND
-   TT2.type = 'extends'
-JOIN  <tokens> T3
-ON T3.file = T1.file AND
-   TT2.token_sub_id = T3.id
-WHERE 
-    T1.code LIKE "%Action" AND 
-    TT.type = 'name' AND
-    T3.code = "Zend_Controller"
-SQL;
-        $this->exec_query_insert('rapport',$query);
-        
+// @doc if this analyzer is based on previous result, use this to make sure the results are here
+	function dependsOn() {
+	    return array('Zf_Action',
+	                 'Zf_Classes',);
+	}
+
+	public function analyse() {
         return true;
 	}
 }

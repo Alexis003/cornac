@@ -17,9 +17,9 @@
    +----------------------------------------------------------------------+
  */
 
-class ifsanselse extends modules {
-	protected	$title = 'If sans else';
-	protected	$description = 'Liste des if sans else';
+class Zf_Action extends modules {
+	protected	$title = 'ZF : action';
+	protected	$description = 'List of methods for the Zend Framework ';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -28,17 +28,37 @@ class ifsanselse extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
-        $concat = $this->concat("T2.class","'->'","T2.code");
+        if (isset($this->ini['classes'])) {
+            if (is_array($this->ini['classes']) ) {
+                $classes = ', "'.join('", "', explode(',',$this->ini['classes'])).'"';
+            } else {
+                $classes = ", '{$this->ini['classes']}' ";
+            }
+        } else {
+            $classes = "";
+        }
+
 	    $query = <<<SQL
-SELECT NULL, T1.file, SUM(TT.type = 'else')  AS elsee, T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, CONCAT(T1.class,'::',T1.code), T1.id, '{$this->name}', 0
 FROM <tokens> T1
-LEFT join <tokens_tags> TT 
-    ON T1.id = TT.token_id
-WHERE T1.type = 'ifthen' 
-GROUP BY file, `left`
-HAVING elsee = 0
+JOIN  <tokens_tags> TT
+    ON TT.token_sub_id = T1.id
+JOIN  <tokens> T2
+ON T2.file = T1.file AND
+   T1.left BETWEEN T2.left AND T2.right AND
+   T2.type = '_class'
+JOIN  <tokens_tags> TT2
+ON TT2.token_id = T2.id AND
+   TT2.type = 'extends'
+JOIN  <tokens> T3
+ON T3.file = T1.file AND
+   TT2.token_sub_id = T3.id
+WHERE 
+    T1.code LIKE "%Action" AND 
+    TT.type = 'name' AND
+    T3.code IN ( "Application_Zend_Controller","Zend_Controller" $classes)
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('rapport',$query);
         
         return true;
 	}
