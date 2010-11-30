@@ -18,7 +18,7 @@
  */
 include_once('Auditeur_Framework_TestCase.php');
 
-class classes_nb_methods_Test extends Auditeur_Framework_TestCase
+class Classes_MethodsCount_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
         $this->expected = array(
