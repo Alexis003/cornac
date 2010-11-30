@@ -19,9 +19,9 @@
 
 include_once('Auditeur_Framework_TestCase.php');
 
-class zfAction_Test extends Auditeur_Framework_TestCase
+class Zf_Action_Test extends Auditeur_Framework_TestCase
 {
-    public function testzfAction()  {
+    public function testZf_Action_Test()  {
         $this->expected = array(  'ZF_controller::staticrealAction',
                                   'ZF_controller::realAction',
                                   );
@@ -37,7 +37,6 @@ class zfAction_Test extends Auditeur_Framework_TestCase
                                   );
 
         parent::generic_test();
-//        parent::generic_counted_test();
     }
 }
 ?>
