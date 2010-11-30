@@ -30,7 +30,7 @@ class concatenation_regex extends analyseur_regex {
         if (!$t->hasNext() ) { return false; }
         if (!$t->hasPrev( 1 )) { return false; }
 
-        if ($t->getPrev()->checkClass(array('Token','arglist','block'))) { return false; }
+        if ($t->getPrev()->checkClass(array('Token','arglist','block','ifthen'))) { return false; }
         if ($t->getPrev(1)->checkOperator(array('.','->','@','::','++','--'))) { return false; }
         if ($t->getPrev(1)->checkCode(array('new'))) { return false; }
         
