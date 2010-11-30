@@ -53,7 +53,9 @@ class case_between_regex extends analyseur_regex {
             $remove = array();
             $pos = 0;
             
-            while(!$var->checkGenericCase() && $var->checkNotCode('}') && $var->checkNotToken(T_ENDSWITCH)) {
+            while(!$var->checkGenericCase() && 
+                   $var->checkNotCode('}')  && 
+                   $var->checkNotToken(T_ENDSWITCH)) {
                 if ($var->checkCode(';')) { 
                     $remove[] = $pos;
                     $pos++;
@@ -61,28 +63,29 @@ class case_between_regex extends analyseur_regex {
                     continue;
                 }    
                 // @note waiting for all structures to be processed
-                if ($var->checkClass(array('Token'))) { return false; }
+                if ($var->checkClass(array('Token')))                      { return false; }
                 if ($var->checkCode('{') && $var->checkNotClass('block'))  { return false; } 
+
                 $args[] = $pos;
                 $remove[] = $pos;
                 $pos++;
                 $var = $var->getNext();
             }
             
-            if (empty($args)) { 
+            if (empty($args) && empty($remove)) { 
                 // @note empty cas, but case nonetheless. 
                 mon_log(get_class($t)." => ".__CLASS__);
                 return true; 
-            } else {
-                // @note cleaning regex before leaving
-                $this->args = array();
-                $this->remove = array();
-            }
+            } 
 
             $regex = new modele_regex('block',$args, $remove);
             Token::applyRegex($init, 'block', $regex);
 
             mon_log(get_class($t)." => block (".__CLASS__.")");
+
+            $this->args = $args;
+            $this->remove = $remove;
+
             return false; 
         } 
         return false;
