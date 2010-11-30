@@ -850,16 +850,20 @@ class template_cache extends template {
     }
 
     function display__while($node, $level) {
-        $this->display($node->getCondition(), $level + 1);
+        $condition = $node->getCondition();
+        $this->display($condition, $level + 1);
+        
         $this->display($node->getBlock(), $level + 1);
-        $node->cache = '<while>';        
+        $node->cache = 'while ('.$condition->cache.')';
         return $this->savenode($node);
     }
 
     function display__dowhile($node, $level) {
-        $this->display($node->getCondition(), $level + 1);
+        $condition = $node->getCondition();
+        $this->display($condition, $level + 1);
         $this->display($node->getBlock(), $level + 1);
-        $node->cache = '<do_while>';        
+
+        $node->cache = 'do {} while ('.$condition->cache.')';
         return $this->savenode($node);
     }
     
