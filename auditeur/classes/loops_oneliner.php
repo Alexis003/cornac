@@ -34,8 +34,8 @@ class loops_oneliner extends modules {
 
 	    $query = <<<SQL
 SELECT NULL, T1.file, REPLACE(T1.type,'_',''), T1.id, '{$this->name}', 0
-FROM dotclear T1
-JOIN dotclear T2
+FROM <tokens> T1
+JOIN <tokens> T2
     ON T2.file = T1.file AND
        T2.left = T1.right + 1
 WHERE T1.type IN ('_for','_while','_do','_foreach') AND
