@@ -60,8 +60,8 @@ $modules = array(
 'affectations_variables',
 //'appelsfonctions', // @_
 'arobases',
-'classes',
-'classes_hierarchie',
+//'classes', @_
+//'classes_hierarchie', @_
 'constantes',
 'constantes_classes',
 'defconstantes',
@@ -127,11 +127,11 @@ $modules = array(
 //'zfGetGPC',@_
 'properties_defined',
 'properties_used',
-'classes_unused',
-'classes_undefined',
+//'classes_unused', @_
+//'classes_undefined', @_
 'html_tags',
 //'affectations_gpc', @_
-'classes_nb_methods',
+//'classes_nb_methods', @_
 'unused_properties',
 'undefined_properties',
 'indenting',
@@ -220,6 +220,12 @@ $modules = array(
 'Zf_TypeView',
 'Zf_ViewVariables',
 
+'Classes',
+'Classes_Hierarchy',
+'Classes_MethodsCount',
+'Classes_Undefined',
+'Classes_Unused',
+'Classes_Used',
 // new analyzers
 );
 

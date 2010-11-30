@@ -17,9 +17,9 @@
    +----------------------------------------------------------------------+
  */
 
-class classes_nb_methods extends modules {
-	protected	$title = 'Nombre de méthodes par classe';
-	protected	$description = 'Nombre de methodes par classe';
+class Classes_MethodsCount extends modules {
+	protected	$title = 'Method count';
+	protected	$description = 'Method counts by classes';
 
 	function __construct($mid) {
         parent::__construct($mid);

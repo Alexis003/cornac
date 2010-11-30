@@ -17,16 +17,16 @@
    +----------------------------------------------------------------------+
  */
 
-class classes_unused extends modules {
+class Classes_Unused extends modules {
 	protected	$title = 'Unused classes';
-	protected	$description = 'Unused classes';
+	protected	$description = 'Unused classes : they are defined in the code, and never instantiated. They may, if a variable new was, though.';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
 
 	function dependsOn() {
-	    return array('classes','_new','classes_hierarchie');
+	    return array('Classes_Name','_new','Classes_Hierarchy');
 	}
 	
 	public function analyse() {

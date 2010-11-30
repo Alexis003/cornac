@@ -54,6 +54,12 @@ WHERE
     T3.right - T3.left = 1  AND
     TR.id IS NULL
 SQL;
+/*
+SELECT name 
+FROM functions
+WHERE abstract = false AND
+      in_interface = false
+*/        
 
         $this->exec_query_insert('rapport', $query);
 	}

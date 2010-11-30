@@ -17,24 +17,33 @@
    +----------------------------------------------------------------------+
  */
 
-class ereg_functions extends functioncalls {
-	protected	$title = 'ereg functions';
-	protected	$description = 'List of ext/ereg functions';
+class Classes_Undefined extends modules {
+	protected	$title = 'Undefined classes';
+	protected	$description = 'List of classes used, but never defined. PHP classes are omitted.';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
+
+	function dependsOn() {
+	    return array('classes','_new');
+	}
 	
 	public function analyse() {
-	    $this->functions = modules::getPHPFunctions("ereg");
-	    parent::analyse();
-	    
-/*
-SELECT name 
-FROM functioncalls
-WHERE name in ('ereg',...)
-*/
-	    return true;
+        $this->clean_rapport();
+
+        $in = "'".join("','", modules::getPHPClasses())."'";
+        $query = <<<SQL
+SELECT NULL, TR1.file, TR1.element AS code, TR1.id, '{$this->name}', 0
+    FROM <rapport>  TR1
+    LEFT JOIN <rapport>  TR2 
+        ON TR1.element = TR2.element AND TR2.module='classes' 
+    WHERE TR1.module = '_new' AND 
+          TR2.element IS NULL AND
+          TR1.element NOT IN ($in)
+SQL;
+        $this->exec_query_insert('rapport', $query);
+        return true;
 	}
 }
 

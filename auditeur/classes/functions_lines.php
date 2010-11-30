@@ -19,7 +19,7 @@
 
 class functions_lines extends modules {
 	protected	$title = 'Lines of code';
-	protected	$description = 'Line of code count, function by function';
+	protected	$description = 'Line of code, function by function';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -33,7 +33,6 @@ class functions_lines extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
-// @todo of course, update this useless query. :)
 	    $query = <<<SQL
 SELECT NULL, T1.file, CONCAT( (T2.line - T1.line)), T1.id, '{$this->name}', 0
 FROM <tokens> T1
@@ -48,7 +47,18 @@ LEFT JOIN <tokens> T3
 WHERE T1.type='_function' 
 SQL;
         $this->exec_query_insert('rapport', $query);
-        
+
+/*
+select min(line)
+from functions 
+
+select max(line)
+from functions
+
+
+
+*/
+
         return true;
 	}
 }

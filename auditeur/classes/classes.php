@@ -1,4 +1,4 @@
-<?php
+<?php 
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -17,20 +17,29 @@
    +----------------------------------------------------------------------+
  */
 
-class classes extends noms {
-	protected	$title = 'Classes';
-	protected	$description = 'Liste des classes définies dans l\'application';
+class classes extends modules {
+	protected	$title = 'Title for classes';
+	protected	$description = 'This is the special analyzer classes (default doc).';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
-	
-	public function analyse() {
-	    $this->noms['type_token'] = '_class';
-	    $this->noms['type_tags'] = 'name';
+
+// @doc if this analyzer is based on previous result, use this to make sure the results are here
+	function dependsOn() {
+	    return array(
+'MethodeCount',
+'Undefined',
+'Unused',
+'Used',
+'Hierarchy',
+
 	    
-	    parent::analyse();
-	    return true;
+	    );
+	}
+
+	public function analyse() {
+        return true;
 	}
 }
 
