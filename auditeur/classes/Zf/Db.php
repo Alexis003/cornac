@@ -1,4 +1,4 @@
-<?php
+<?php 
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -17,47 +17,38 @@
    +----------------------------------------------------------------------+
  */
 
-class zfController extends modules {
-	protected	$title = 'ZF : controllers';
-	protected	$description = 'List of *Action methods from the ZF';
+class Zf_Db extends modules {
+	protected	$title = 'ZF : usage of Zend_Db API';
+	protected	$description = 'Usage of where() method';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
-	
+
+// @doc if this analyzer is based on previous result, use this to make sure the results are here
+	function dependsOn() {
+	    return array();
+	}
+
 	public function analyse() {
         $this->clean_rapport();
-        
-        if (isset($this->ini['classes'])) {
-            if (is_array($this->ini['classes']) ) {
-                $classes = ', "'.join('", "', explode(',',$this->ini['classes'])).'"';
-            } else {
-                $classes = ", '{$this->ini['classes']}' ";
-            }
-        } else {
-            $classes = "";
-        }
 
-        $concat = $this->concat("T3.class", "'->'","T3.code");
 	    $query = <<<SQL
-SELECT NULL, T1.file, $concat AS code, T3.id, 'zfController', 0
+SELECT NULL, T1.file, TC.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens_tags> TT 
-ON T1.id = TT.token_id AND
-   TT.type='extends'
+    ON TT.token_id = T1.id AND 
+       TT.type='method'
 JOIN <tokens> T2
-ON T2.id = TT.token_sub_id AND
-   T2.file=T1.file
-JOIN <tokens> T3
-ON T3.file = T2.file AND 
-   T3.left BETWEEN T1.left AND T1.right AND
-   T3.type = '_function'
-WHERE T1.type = '_class' AND
-    T2.code IN ( "Application_Zend_Controller","Zend_Controller" $classes) AND
-    T3.code LIKE "%Action"
+    ON T1.file = T2.file AND
+       TT.token_sub_id = T2.id AND
+       T2.code = 'where'
+JOIN <tokens_cache> TC
+    ON T1.id = TC.id
+WHERE T1.type = 'method';
 SQL;
         $this->exec_query_insert('rapport', $query);
-        
+
         return true;
 	}
 }

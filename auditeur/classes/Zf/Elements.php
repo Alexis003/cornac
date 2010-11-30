@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class zfElements extends modules {
+class Zf_Elements extends modules {
 	protected	$title = 'ZF : non-validated ZF element';
 	protected	$description = 'Form element that were not validated';
 

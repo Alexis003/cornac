@@ -17,15 +17,14 @@
    +----------------------------------------------------------------------+
  */
 
-class zfDb extends modules {
-	protected	$title = 'ZF : usage of Zend_Db API';
-	protected	$description = 'Usage of where() method';
+class Zf_TypeView extends modules {
+	protected	$title = 'ZF : style of view';
+	protected	$description = 'List what kind of view handles the exit of those ';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
 
-// @doc if this analyzer is based on previous result, use this to make sure the results are here
 	function dependsOn() {
 	    return array();
 	}
@@ -33,20 +32,16 @@ class zfDb extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
-// @todo of course, update this useless query. :)
 	    $query = <<<SQL
-SELECT NULL, T1.file, TC.code, T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, T2.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
-JOIN <tokens_tags> TT 
-    ON TT.token_id = T1.id AND 
-       TT.type='method'
-JOIN <tokens> T2
-    ON T1.file = T2.file AND
-       TT.token_sub_id = T2.id AND
-       T2.code = 'where'
-JOIN <tokens_cache> TC
-    ON T1.id = TC.id
-WHERE T1.type = 'method';
+LEFT JOIN <tokens> T2
+ON T2.file = T1.file AND
+   T2.left BETWEEN T1.left AND T1.right AND
+   T2.code IN ('json','encode','readfile','echo','removeViewRenderer','_redirect','redirect','die','exit','render') AND
+   T2.type='functioncall'
+WHERE T1.code LIKE "%Action" AND 
+      T1.type = '_function'
 SQL;
         $this->exec_query_insert('rapport', $query);
 

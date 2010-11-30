@@ -17,9 +17,9 @@
    +----------------------------------------------------------------------+
  */
 
-class zfSQL extends modules {
-	protected	$title = 'ZF : SQL query execution';
-	protected	$description = 'Spot SQL query execution in Zend Framework Zend_DB style.';
+class Zf_ViewVariables extends modules {
+	protected	$title = 'ZF : View variables';
+	protected	$description = 'Catalog all variables assigned the view member of ZF controllers. This will help detect conflict between chained controllers.';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -33,22 +33,21 @@ class zfSQL extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
-// @todo of course, update this useless query. :)
 	    $query = <<<SQL
-SELECT NULL, T1.file, T1.code, T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, T2.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
+JOIN <tokens_cache> TC
+ON TC.id = T1.id
 JOIN <tokens_tags> TT
-    ON TT.token_sub_id = T1.id
-WHERE
-    T1.code in ('query',
-                'execute',
-                'fetchAll',
-                'fetchRow',
-                'fetch',
-                'delete',
-                'update',
-                'insert') AND 
-    TT.type='function'
+ON TT.token_sub_id = T1.id
+JOIN jaguar_tags TT2
+ON TT2.token_id = TT.token_id AND
+   TT2.type = 'property'
+JOIN <tokens> T2
+ON T2.file = T1.file AND
+   T2.id = TT2.token_sub_id
+WHERE T1.type = 'property' AND
+      TC.code LIKE "\$this->view"
 SQL;
         $this->exec_query_insert('rapport', $query);
 

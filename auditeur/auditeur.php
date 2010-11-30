@@ -122,9 +122,9 @@ $modules = array(
 'xdebug_functions',
 'xml_functions',
 //'zfAction', @_ 
-'zfController',
-'zfElements',
-'zfGetGPC',
+//'zfController', @_
+//'zfElements',@_
+//'zfGetGPC',@_
 'properties_defined',
 'properties_used',
 'classes_unused',
@@ -179,7 +179,7 @@ $modules = array(
 'php_functions_name_conflict',
 'php_constant_name_conflict',
 'php_classes_name_conflict',
-'zfDependencies',
+//'zfDependencies', @_
 'abstracts',
 'finals',
 'function_args_reference',
@@ -198,17 +198,28 @@ $modules = array(
 'comparison_constant',
 'random_functions',
 'if_no_comparison',
-'zfRedirect',
-'zfSQL',
-'zfSession',
-'zfTypeView',
-'zfDb',
+//'zfRedirect', @_
+//'zfSQL', @_
+// 'zfSession',@_
+// 'zfTypeView', @_
+// 'zfDb', @_
 'case_without_break',
 'switch_without_default',
-'zfViewVariables',
+//'zfViewVariables', @_
 'Zf',
 'Zf_Action',
 'Zf_Classes',
+'Zf_Controller',
+'Zf_Db',
+'Zf_Dependencies',
+'Zf_Elements',
+'Zf_GetGPC',
+'Zf_Redirect',
+'Zf_SQL',
+'Zf_Session',
+'Zf_TypeView',
+'Zf_ViewVariables',
+
 // new analyzers
 );
 

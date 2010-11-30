@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class zfRedirect extends modules {
+class Zf_Redirect extends modules {
 	protected	$title = 'ZF : redirection';
 	protected	$description = 'List of redirection using Zend Framework. ';
 
@@ -32,7 +32,6 @@ class zfRedirect extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
-// @todo of course, update this useless query. :)
 	    $query = <<<SQL
 SELECT NULL, T1.file, T1.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1

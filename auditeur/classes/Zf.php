@@ -24,8 +24,20 @@ class Zf extends modules {
 
 // @doc if this analyzer is based on previous result, use this to make sure the results are here
 	function dependsOn() {
-	    return array('Zf_Action',
-	                 'Zf_Classes',);
+	    return array(
+                    'Action.php',
+                    'Classes.php',
+                    'Controller.php',
+                    'Db.php',
+                    'Dependencies.php',
+                    'Elements.php',
+                    'GetGPC.php',
+                    'Redirect.php',
+                    'SQL.php',
+                    'Session.php',
+                    'TypeView.php',
+                    'ViewVariables.php',
+	                 );
 	}
 
 	public function analyse() {

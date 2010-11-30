@@ -16,7 +16,7 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
-class zfDependencies extends modules {
+class Zf_Dependencies extends modules {
 	protected	$title = 'ZF : Zend Framework dependance';
 	protected	$description = 'Dependances toward ZF  : by heritage or composition, those classes from the ZF are needed.';
 

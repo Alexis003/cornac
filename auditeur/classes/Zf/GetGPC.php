@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class zfGetGPC extends modules {
+class Zf_GetGpc extends modules {
 	protected	$title = 'ZF : incoming values from HTTP request';
 	protected	$description = 'Methods from ZF controllers that gives access to GPC values';
 

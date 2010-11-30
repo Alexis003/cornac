@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -17,35 +17,47 @@
    +----------------------------------------------------------------------+
  */
 
-class zfTypeView extends modules {
-	protected	$title = 'ZF : style of view';
-	protected	$description = 'List what kind of view handles the exit of those ';
+class Zf_Controller extends modules {
+	protected	$title = 'ZF : controllers';
+	protected	$description = 'List of *Action methods from the ZF';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
-
-	function dependsOn() {
-	    return array();
-	}
-
+	
 	public function analyse() {
         $this->clean_rapport();
+        
+        if (isset($this->ini['classes'])) {
+            if (is_array($this->ini['classes']) ) {
+                $classes = ', "'.join('", "', explode(',',$this->ini['classes'])).'"';
+            } else {
+                $classes = ", '{$this->ini['classes']}' ";
+            }
+        } else {
+            $classes = "";
+        }
 
-// @todo of course, update this useless query. :)
+        $concat = $this->concat("T3.class", "'->'","T3.code");
 	    $query = <<<SQL
-SELECT NULL, T1.file, T2.code, T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, $concat AS code, T3.id, 'zfController', 0
 FROM <tokens> T1
-LEFT JOIN <tokens> T2
-ON T2.file = T1.file AND
-   T2.left BETWEEN T1.left AND T1.right AND
-   T2.code IN ('json','encode','readfile','echo','removeViewRenderer','_redirect','redirect','die','exit','render') AND
-   T2.type='functioncall'
-WHERE T1.code LIKE "%Action" AND 
-      T1.type = '_function'
+JOIN <tokens_tags> TT 
+ON T1.id = TT.token_id AND
+   TT.type='extends'
+JOIN <tokens> T2
+ON T2.id = TT.token_sub_id AND
+   T2.file=T1.file
+JOIN <tokens> T3
+ON T3.file = T2.file AND 
+   T3.left BETWEEN T1.left AND T1.right AND
+   T3.type = '_function'
+WHERE T1.type = '_class' AND
+    T2.code IN ( "Application_Zend_Controller","Zend_Controller" $classes) AND
+    T3.code LIKE "%Action"
 SQL;
         $this->exec_query_insert('rapport', $query);
-
+        
         return true;
 	}
 }

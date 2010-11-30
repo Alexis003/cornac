@@ -17,27 +17,37 @@
    +----------------------------------------------------------------------+
  */
 
-class zfSession extends modules {
-	protected	$title = 'ZF : sessions';
-	protected	$description = 'Using session in Zend Framework. Only Zend_Session_Namespace, no heritage supported. ';
+class Zf_Sql extends modules {
+	protected	$title = 'ZF : SQL query execution';
+	protected	$description = 'Spot SQL query execution in Zend Framework Zend_DB style.';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
 
+// @doc if this analyzer is based on previous result, use this to make sure the results are here
 	function dependsOn() {
-	    return array('_new');
+	    return array();
 	}
 
 	public function analyse() {
         $this->clean_rapport();
 
-// @todo of course, update this useless query. :)
 	    $query = <<<SQL
-SELECT NULL, TR.file, TR.element, TR.id, '{$this->name}', 0
-FROM <rapport> TR
-WHERE module = '_new' AND
-      element = 'Zend_Session_Namespace' 
+SELECT NULL, T1.file, T1.code, T1.id, '{$this->name}', 0
+FROM <tokens> T1
+JOIN <tokens_tags> TT
+    ON TT.token_sub_id = T1.id
+WHERE
+    T1.code in ('query',
+                'execute',
+                'fetchAll',
+                'fetchRow',
+                'fetch',
+                'delete',
+                'update',
+                'insert') AND 
+    TT.type='function'
 SQL;
         $this->exec_query_insert('rapport', $query);
 
