@@ -139,6 +139,8 @@ $tests = array(
 'class.zfSQL.test.php',
 'class.switch_without_default.test.php',
 'class.case_without_break.test.php',
+'class.long_loops.test.php',
+'class.loops_oneliner.test.php',
 // new tests
 );
 
