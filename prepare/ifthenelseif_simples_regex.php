@@ -35,12 +35,13 @@ class ifthenelseif_simples_regex extends analyseur_regex {
                 return false;
             }
 
-            if ($t->hasNext(2) && $t->getNext(2)->checkCode(array('->','['))) {
+            if ($t->hasNext(2) && $t->getNext(2)->checkCode(array('->','[','::'))) {
                 return false;
             }
             
             $remove = array();
-            if ($t->hasNext(2) && $t->getNext(2)->checkCode(';')) {
+            if ($t->hasNext(2) && 
+                $t->getNext(2)->checkCode(';')) {
                 $remove = array(1);
             }
             $regex = new modele_regex('block',array(0),$remove);
