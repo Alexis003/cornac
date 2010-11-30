@@ -111,6 +111,8 @@ Have ratio calculated on top of analyzers (TDB)
 
 Support dot format for testing
 
+Organize tests hierarchically (Common/Zend/Sf) and allow some arbitrary gathering
+
 [analysers ideas]
 
 identify 'tainted' values (either from GPC, or from arguments)
@@ -200,6 +202,13 @@ htmlentities used without encoding information
 Spot function declaration in the middle of nowhere
 
 Suggest gathering code, depending on calling graph (a->b, b->c, so a,b,c should be a class by itself)
+
+List variables used in a view (ZF)
+List des variables dans les vues
+différences entre les variables de vue et de controleur
+
+conflit de noms pour les variables PHP réservé
+
 
 [web]
 use .ini for the web folder too
