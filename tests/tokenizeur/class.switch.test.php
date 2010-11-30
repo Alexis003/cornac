@@ -3,7 +3,7 @@ include_once('Analyseur_Framework_TestCase.php');
 
 class Switch_Test extends Analyseur_Framework_TestCase
 {
-    /* 26 methodes */
+    /* 27 methodes */
     public function testSwitch1()  { $this->generic_test('switch.1'); }
     public function testSwitch2()  { $this->generic_test('switch.2'); }
     public function testSwitch3()  { $this->generic_test('switch.3'); }
@@ -30,6 +30,7 @@ class Switch_Test extends Analyseur_Framework_TestCase
     public function testSwitch24()  { $this->generic_test('switch.24'); }
     public function testSwitch25()  { $this->generic_test('switch.25'); }
     public function testSwitch26()  { $this->generic_test('switch.26'); }
+    public function testSwitch27()  { $this->generic_test('switch.27'); }
 
 }
 
