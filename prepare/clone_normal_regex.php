@@ -30,20 +30,17 @@ class clone_normal_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasNext()) { return false; }
 
-        if ($t->getNext()->checkClass(array('variable','_array',
+        if ($t->getNext()->checkNotClass(array('variable','_array',
                                             'property','property_static',
                                             'method','method_static',
-                                            'functioncall')) &&
-                $t->getNext(1)->checkEndInstruction()
-            ) {
+                                            'functioncall', '_new'))) { return false; }
+        if (!$t->getNext(1)->checkEndInstruction()) { return false; }
 
-            $this->args = array(1);
-            $this->remove = array(1);
+        $this->args = array(1);
+        $this->remove = array(1);
 
-            mon_log(get_class($t)." => ".__CLASS__);
-            return true; 
-        } 
-        return false;
+        mon_log(get_class($t)." => ".__CLASS__);
+        return true; 
     }
 }
 ?>
