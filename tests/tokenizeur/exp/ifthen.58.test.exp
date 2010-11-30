@@ -1,4 +1,4 @@
-tests/tokenizeur/scripts/ifthen.53.test.php
+tests/tokenizeur/scripts/ifthen.58.test.php
   codephp <?php
 
   code : 
@@ -8,16 +8,12 @@ tests/tokenizeur/scripts/ifthen.53.test.php
           ( "variable $x" )
           block 
           0 : 
-              concatenation 
-              0 : 
+              _array
+                  variable $z
                   literals y
-              1 : 
-                  literals z
        else 
           block 
           0 : 
-              concatenation 
-              0 : 
-                  literals a
-              1 : 
+              _array
+                  variable $a
                   literals b

@@ -2,7 +2,7 @@ tests/tokenizeur/scripts/concatenation.34.test.php
   codephp <?php
 
   code : 
-      concatenation 
+      sequence 
       0 : 
           ifthen if
           Condition 0) 
@@ -17,3 +17,9 @@ tests/tokenizeur/scripts/concatenation.34.test.php
               0 : 
                   variable $x297 "++" 
                       variable $x
+      1 : 
+          concatenation 
+          0 : 
+              literals a
+          1 : 
+              literals b
