@@ -34,7 +34,7 @@ class sequence_class_regex extends analyseur_regex {
 
         if (!$t->getNext()->checkForBlock(true) && 
             !$t->getNext()->checkForVariable() &&
-             $t->getNext()->checkNotClass(array(/*'parentheses',*/'_new')) ) { return false; } 
+             $t->getNext()->checkNotClass(array(/*'parentheses',*/'_new','concatenation')) ) { return false; } 
 
         if ( (!$t->hasNext(1) || 
                ( $t->getNext(1)->checkNotCode(array('or','and','xor','->','[','::',')','.','^','&','|','||','&&','++','--','+','-','/','*','%')) &&
@@ -52,7 +52,7 @@ class sequence_class_regex extends analyseur_regex {
             $this->args   = array( 0, 1 );
             $this->remove = array( 1 );
                         
-            mon_log(get_class($t)." repère une sequence ( ".get_class($t).", ".get_class($t->getNext())." )  (".__CLASS__.")");
+            mon_log(get_class($t)." identifies a sequence ( ".get_class($t).", ".get_class($t->getNext())." )  (".__CLASS__.")");
             return true; 
         } 
         
