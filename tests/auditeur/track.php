@@ -44,17 +44,27 @@ if(count($diff) != 0) {
 ////////////////////////////////////////////////////////////////////////
 
 
-$analyzers = glob('../../auditeur/classes/*.php');
+$analyzers = array();
 
-foreach($analyzers as $id => $analyzer) {
+$analyzers_level1 = glob('../../auditeur/classes/[A-Z]*/*.php');
+
+foreach($analyzers_level1 as $id => $analyzer) {
+    $analyzer = substr($analyzer,23, -4);
+    $analyzer = str_replace('/','_',$analyzer);
+    
+    $analyzers[] = $analyzer;
+}
+
+$analyzers_level0 = glob('../../auditeur/classes/*.php');
+
+foreach($analyzers_level0 as $id => $analyzer) {
     $analyzer = substr($analyzer,23, -4);
     
     if (in_array($analyzer, array('rendu'))) {
         unset($analyzers[$id]);
     } else {
-        $analyzers[$id] = $analyzer;
+        $analyzers[] = $analyzer;
     }
-    
 }
 
 $diff = array_diff($analyzers, $tests);
