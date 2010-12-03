@@ -18,14 +18,19 @@
  */
 include_once('Auditeur_Framework_TestCase.php');
 
-class foreach_unused_Test extends Auditeur_Framework_TestCase
+class Php_InclusionLinks_Test extends Auditeur_Framework_TestCase
 {
-    public function testforeach_unused()  { 
-        $this->expected = array( '$k_variable','$v_variable','$k_reference','$v_reference');
-        $this->unexpected = array('$K_variable','$V_variable','$K_reference','$V_reference');
+    public function testVariables()  { 
+        $this->expected = array('include',
+                                'include_once',
+                                'require',
+                                'require_once',
+                                
+                                );
+        $this->unexpected = array();
         
         parent::generic_test();
-//        parent::generic_counted_test();
     }
 }
+
 ?>

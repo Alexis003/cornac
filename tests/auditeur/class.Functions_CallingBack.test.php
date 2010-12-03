@@ -15,29 +15,16 @@
    +----------------------------------------------------------------------+
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
- */include_once('Auditeur_Framework_TestCase.php');
+ */
+include_once('Auditeur_Framework_TestCase.php');
 
-class function_args_reference_Test extends Auditeur_Framework_TestCase
+class Functions_CallingBack_Test extends Auditeur_Framework_TestCase
 {
-    public function testfunction_args_reference()  {
-        $this->expected = array( 
-'::function_one_reference',
-'::function_two_references',
-'::function_two_references_b',
-'::function_two_references_c',
-'x::method_one_reference',
-'x::method_two_references',
-'x::method_two_references_b',
-'x::method_two_references_c',
-
-        );
-        $this->unexpected = array(
-'::function_no_reference',
-'x::method_no_reference',
-);
-
+    public function testcallback_functions()  { 
+        $this->expected = array( 'cb_1_1','cb_1_2','cb_1_3','cb_0_1','cb_0_2','cb_2_1' );
+        $this->unexpected = array(/*'',*/);
+        
         parent::generic_test();
-//        parent::generic_counted_test();
     }
 }
 ?>

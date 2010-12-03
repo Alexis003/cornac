@@ -19,7 +19,7 @@
 
 include_once('Auditeur_Framework_TestCase.php');
 
-class php_keywords_Test extends Auditeur_Framework_TestCase
+class Php_Keywords_Test extends Auditeur_Framework_TestCase
 {
     public function testphp_keywords()  {
         $this->expected = array( '$unset','die','$foreach','try');

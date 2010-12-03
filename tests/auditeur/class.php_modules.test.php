@@ -18,7 +18,7 @@
  */
 include_once('Auditeur_Framework_TestCase.php');
 
-class php_modules_Test extends Auditeur_Framework_TestCase
+class Php_Modules_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
         $this->expected = array('simplexml','sqlite','standard','phar','soap','mcrypt','core' );
