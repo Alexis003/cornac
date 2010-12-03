@@ -16,32 +16,35 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
-
-class Functions_Unused extends modules {
-    protected $title = 'Unused functions'; 
-    protected $description = 'List of unused functions'; 
+class Php_FunctionsConflict extends modules {
+	protected	$title = 'Potential conflict with PHP functions';
+	protected	$description = 'Spot functions whose name may end up in conflict with PHP\'s own.';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
-	
+
+// @doc if this analyzer is based on previous result, use this to make sure the results are here
 	function dependsOn() {
-	    return array('functionscalls','Functions_Definitions');
+	    return array('Functions_Definitions');
 	}
 	
 	public function analyse() {
         $this->clean_rapport();
 
-        $query = <<<SQL
-SELECT NULL, TR1.file, TR1.element AS code, TR1.id, '{$this->name}', 0
-FROM <rapport> TR1
-LEFT JOIN <rapport>  TR2 
-ON TR1.element = TR2.element AND TR2.module='functionscalls' 
-WHERE TR1.module = 'Functions_Definitions' AND 
-      TR2.module IS NULL AND
-      TR1.element NOT IN ('__autoload')
+        $functions = modules::getPHPFunctions();
+        $in = '"'.join('","', $functions).'"';
+        // @note removing empty arrays
+        $in = str_replace('"",', '', $in);
+
+	    $query = <<<SQL
+SELECT NULL, T1.file, T1.element, T1.id, '{$this->name}', 0
+    FROM <rapport> T1
+    WHERE   T1.module = 'Functions_Definitions' AND
+            T1.element IN ($in)
 SQL;
         $this->exec_query_insert('rapport', $query);
+        
         return true;
 	}
 }

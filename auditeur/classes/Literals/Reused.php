@@ -17,31 +17,43 @@
    +----------------------------------------------------------------------+
  */
 
-class Functions_Unused extends modules {
-    protected $title = 'Unused functions'; 
-    protected $description = 'List of unused functions'; 
+class Literals_Reused extends modules { 
+	protected	$title = 'Reused literals';
+	protected	$description = 'Literals that are reused throughout the code. May be worth putting in constant, or centralized anyway.';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
-	
+
 	function dependsOn() {
-	    return array('functionscalls','Functions_Definitions');
+	    return array('Literals_Definitions');
 	}
-	
+
 	public function analyse() {
         $this->clean_rapport();
 
+// @note temporary table, so has to avoid concurrency conflict
         $query = <<<SQL
-SELECT NULL, TR1.file, TR1.element AS code, TR1.id, '{$this->name}', 0
-FROM <rapport> TR1
-LEFT JOIN <rapport>  TR2 
-ON TR1.element = TR2.element AND TR2.module='functionscalls' 
-WHERE TR1.module = 'Functions_Definitions' AND 
-      TR2.module IS NULL AND
-      TR1.element NOT IN ('__autoload')
+CREATE TEMPORARY TABLE {$this->name}_TMP 
+SELECT TRIM(code) AS code
+FROM <tokens> TR1
+WHERE type = 'literals' AND 
+      TRIM(code) != ''
+GROUP BY BINARY TRIM(code) 
+HAVING COUNT(*) > 1
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query($query);
+
+        $query = <<<SQL
+INSERT INTO <rapport> 
+SELECT NULL, TR1.file, TRIM(TR1.code), TR1.id, '{$this->name}', 0
+    FROM <tokens> TR1
+    JOIN {$this->name}_TMP TMP
+        ON TR1.type = 'literals' AND 
+           TMP.code = TRIM(TR1.code) 
+SQL;
+        $this->exec_query($query);
+
         return true;
 	}
 }

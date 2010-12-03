@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class literals_as_argref extends modules {
+class Literals_InArglist extends modules {
 	protected	$title = 'Litéraux passés comme arguments';
 	protected	$description = 'Literal values passed as argument of function, when the former expect';
 
@@ -34,7 +34,7 @@ class literals_as_argref extends modules {
         $this->clean_rapport();
 
 	    $query = <<<SQL
-DROP TABLES IF EXISTS literals_as_argref_calls, literals_as_argref_definitions
+DROP TABLES IF EXISTS Literals_InArglist_calls, Literals_InArglist_definitions
 SQL;
         $this->exec_query($query);
 // @todo drop the above
@@ -51,7 +51,7 @@ SQL;
 
 // @todo make temporary
 	    $query = <<<SQL
-CREATE TABLE literals_as_argref_definitions
+CREATE TABLE Literals_InArglist_definitions
 SELECT  T1.file AS file, 
         T4.class AS class, 
         T4.scope AS scope, 
@@ -77,7 +77,7 @@ SQL;
 // @note process only functions (not methods yet)
 	    $query = <<<SQL
 SELECT GROUP_CONCAT(distinct scope SEPARATOR "','") AS list 
-FROM literals_as_argref_definitions 
+FROM Literals_InArglist_definitions 
 WHERE class=''
 SQL;
         $res = $this->exec_query($query);
@@ -96,7 +96,7 @@ SQL;
 
 // @todo make TEMPORARY
 	    $query = <<<SQL
-CREATE  TABLE literals_as_argref_calls
+CREATE  TABLE Literals_InArglist_calls
 SELECT T3.file, 
        T1.code, 
        T2.id, 
@@ -121,7 +121,7 @@ SQL;
         $this->exec_query($query);
 
 	    $query = <<<SQL
-DROP TABLES literals_as_argref_calls, literals_as_argref_definitions
+DROP TABLES Literals_InArglist_calls, Literals_InArglist_definitions
 SQL;
         $this->exec_query($query);
 // @todo activate this

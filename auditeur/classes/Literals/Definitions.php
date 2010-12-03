@@ -17,18 +17,21 @@
    +----------------------------------------------------------------------+
  */
 
-class php_functions extends functioncalls {
-	protected	$title = 'PHP function list';
-	protected	$description = 'List of PHP function being used, with their frequency.';
+class Literals_Definitions extends typecalls {
+	protected	$title = 'Literals';
+	protected	$description = 'List of all used literal values (strings (quoted, heredoc), numbers)';
 
-	function __construct($mid) {
+    function __construct($mid) {
         parent::__construct($mid);
+    }
+
+	public function analyse() {
+	    $this->type = 'literals';
+	    parent::analyse();
+	    
+	    return true;
 	}
 	
-	public function analyse() {
-	    $this->functions = modules::getPHPFunctions();
-	    parent::analyse();
-	}
 }
 
 ?>

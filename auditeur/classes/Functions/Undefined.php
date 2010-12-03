@@ -17,31 +17,27 @@
    +----------------------------------------------------------------------+
  */
 
-class Functions_Unused extends modules {
-    protected $title = 'Unused functions'; 
-    protected $description = 'List of unused functions'; 
+class Functions_Undefined extends modules {
+	protected	$title = 'Undefined functions';
+	protected	$description = 'List of function without defintions nor declaration. They may be actually forgotten (dead code), native to PHP (unusual ext), or included in standard library (__autoload and PEAR).';
 
 	function __construct($mid) {
         parent::__construct($mid);
-	}
-	
-	function dependsOn() {
-	    return array('functionscalls','Functions_Definitions');
 	}
 	
 	public function analyse() {
         $this->clean_rapport();
 
         $query = <<<SQL
-SELECT NULL, TR1.file, TR1.element AS code, TR1.id, '{$this->name}', 0
+SELECT NULL, TR1.file, TR1.element, TR1.id, '{$this->name}', 0
 FROM <rapport> TR1
-LEFT JOIN <rapport>  TR2 
-ON TR1.element = TR2.element AND TR2.module='functionscalls' 
-WHERE TR1.module = 'Functions_Definitions' AND 
-      TR2.module IS NULL AND
-      TR1.element NOT IN ('__autoload')
+LEFT JOIN <rapport> TR2 
+  ON TR1.element = TR2.element AND TR2.module='Functions_Definitions'
+WHERE TR1.module='functionscalls' AND
+      TR2.element IS NULL;
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('rapport',$query);
+
         return true;
 	}
 }

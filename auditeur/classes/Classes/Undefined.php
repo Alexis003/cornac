@@ -26,7 +26,7 @@ class Classes_Undefined extends modules {
 	}
 
 	function dependsOn() {
-	    return array('Classes_Used','_new');
+	    return array('Classes_Definitions','Classes_News');
 	}
 	
 	public function analyse() {
@@ -37,8 +37,8 @@ class Classes_Undefined extends modules {
 SELECT NULL, TR1.file, TR1.element AS code, TR1.id, '{$this->name}', 0
     FROM <rapport>  TR1
     LEFT JOIN <rapport>  TR2 
-        ON TR1.element = TR2.element AND TR2.module='Classes_Used' 
-    WHERE TR1.module = '_new' AND 
+        ON TR1.element = TR2.element AND TR2.module='Classes_Definitions' 
+    WHERE TR1.module = 'Classes_News' AND 
           TR2.element IS NULL AND
           TR1.element NOT IN ($in)
 SQL;

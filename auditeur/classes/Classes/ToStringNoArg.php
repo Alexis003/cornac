@@ -1,4 +1,4 @@
-<?php
+<?php 
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -17,34 +17,37 @@
    +----------------------------------------------------------------------+
  */
 
-class inclusions extends modules {
-	protected	$title = 'Inclusions';
-	protected	$description = 'Inclusion list (function being used for such)';
+class Classes_ToStringNoArg extends modules {
+	protected	$title = 'tostring without arguments';
+	protected	$description = 'Spot __toString methods with arguments (Incompatible change for PHP 5.3)';
+	protected	$tags = array('PHP_5.3');
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
-	
+
+	function dependsOn() {
+	    return array();
+	}
+
 	public function analyse() {
         $this->clean_rapport();
 
-        $query = <<<SQL
-SELECT NULL, T1.file, T1.code, T1.id, '{$this->name}', 0
+	    $query = <<<SQL
+SELECT NULL, T1.file, T1.class, T1.id, '{$this->name}', 0
 FROM <tokens> T1
-WHERE T1.type = 'inclusion';
-SQL;
-        $this->exec_query_insert('rapport', $query);
-
-        $query = <<<SQL
-SELECT NULL, T1.file, T2.code, T1.id, '{$this->name}', 0
-FROM <tokens> T1
-JOIN <tokens_tags> TT 
-    ON TT.token_id = T1.id
 JOIN <tokens> T2
-    ON TT.token_sub_id = T2.id AND
-       T1.file = T2.file AND
-       TT.type='function'      AND 
-       T2.code='loadLibrary'
+    ON T2.file = T1.file AND
+       T2.left BETWEEN T1.left AND T1.right AND
+       T2.type = 'arglist'
+LEFT JOIN <tokens> T3
+    ON T3.file = T1.file AND
+       T3.left = T2.left + 1 AND
+       T3.type = 'token_traite'
+WHERE T1.type = '_function' AND
+      T1.code = '__toString' AND
+      T1.class != '' AND
+      T3.id IS NULL 
 SQL;
         $this->exec_query_insert('rapport', $query);
 

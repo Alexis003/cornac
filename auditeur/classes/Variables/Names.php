@@ -16,37 +16,26 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
-class php_functions_name_conflict extends modules {
-	protected	$title = 'Potential conflict with PHP functions';
-	protected	$description = 'Spot functions whose name may end up in conflict with PHP\'s own.';
 
-	function __construct($mid) {
+class Variables_Names extends modules {
+	protected	$title = 'Variables';
+	protected	$description = 'Variable names used in the application';
+
+    function __construct($mid) {
         parent::__construct($mid);
-	}
+    }
 
-// @doc if this analyzer is based on previous result, use this to make sure the results are here
-	function dependsOn() {
-	    return array('deffunctions');
-	}
-	
 	public function analyse() {
-        $this->clean_rapport();
-
-        $functions = modules::getPHPFunctions();
-        $in = '"'.join('","', $functions).'"';
-        // @note removing empty arrays
-        $in = str_replace('"",', '', $in);
-
-// @todo of course, update this useless query. :)
-	    $query = <<<SQL
-SELECT NULL, T1.file, T1.element, T1.id, '{$this->name}', 0
-    FROM <rapport> T1
-    WHERE   T1.module = 'deffunctions' AND
-            T1.element IN ($in)
+        $query = <<<SQL
+SELECT NULL, T1.file, T1.code AS code, T1.id, '{$this->name}', 0
+FROM <tokens> T1 
+WHERE T1.type = 'variable' AND 
+      T1.code != '$'       AND 
+      ( T1.class = '' OR T1.scope != 'global') AND
+      T1.code != '\$this'
 SQL;
-        $this->exec_query_insert('rapport', $query);
-        
-        return true;
+	$this->exec_query_insert('rapport',$query);
+	
 	}
 }
 

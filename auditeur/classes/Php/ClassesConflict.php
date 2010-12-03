@@ -16,32 +16,32 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
-
-class Functions_Unused extends modules {
-    protected $title = 'Unused functions'; 
-    protected $description = 'List of unused functions'; 
+class Php_ClassesConflict extends modules {
+	protected	$title = 'Class name conflicts';
+	protected	$description = 'Those classes may have conflicting name with PHP\'s classes, or some PHP extension\'s classes.';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
-	
+
 	function dependsOn() {
-	    return array('functionscalls','Functions_Definitions');
+	    return array('Classes_Definitions');
 	}
 	
 	public function analyse() {
         $this->clean_rapport();
 
-        $query = <<<SQL
-SELECT NULL, TR1.file, TR1.element AS code, TR1.id, '{$this->name}', 0
-FROM <rapport> TR1
-LEFT JOIN <rapport>  TR2 
-ON TR1.element = TR2.element AND TR2.module='functionscalls' 
-WHERE TR1.module = 'Functions_Definitions' AND 
-      TR2.module IS NULL AND
-      TR1.element NOT IN ('__autoload')
+        $constants = modules::getPHPClasses();
+        $in = '"'.join('","', $constants).'"';
+
+	    $query = <<<SQL
+SELECT NULL, T1.file, T1.element, T1.id, '{$this->name}', 0
+FROM <rapport> T1
+WHERE   T1.module = 'Classes_Definitions' AND
+        T1.element IN ($in)
 SQL;
         $this->exec_query_insert('rapport', $query);
+        
         return true;
 	}
 }

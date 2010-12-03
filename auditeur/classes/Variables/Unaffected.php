@@ -17,16 +17,16 @@
    +----------------------------------------------------------------------+
  */
 
-class variables_unaffected extends modules {
-	protected	$title = 'Never initialised variables';
-	protected	$description = 'List of variables being used without initialisation';
+class Variables_Unaffected extends modules {
+	protected	$title = 'Unaffected variables';
+	protected	$description = 'List of variables never assigned any value, but used nonetheless';
 
     function __construct($mid) {
         parent::__construct($mid);
     }
     
     function dependsOn() {
-        return array('variables', 'affectations_variables','keyval');
+        return array('Variables_Names', 'affectations_variables','keyval');
     }
 
 	public function analyse() {
@@ -58,7 +58,7 @@ FROM <rapport> TR1
 LEFT JOIN tmp_variables_unaffected TR2
     ON TR1.element = TR2.element AND 
        TR1.file = TR2.file
-WHERE TR1.module='variables' AND 
+WHERE TR1.module='Variables_Names' AND 
       TR2.element IS NULL
 SQL;
     	$this->exec_query_insert('rapport',$query);
@@ -66,7 +66,7 @@ SQL;
         $query = <<<SQL
 DELETE FROM <rapport> 
 WHERE element IN ('\$GLOBALS','\$_SESSION','\$_REQUEST',
-                      '\$_GET','\$_POST','\$this','\$_FILES') AND
+                  '\$_GET','\$_POST','\$this','\$_FILES') AND
       module='{$this->name}'
 SQL;
     	$this->exec_query($query);

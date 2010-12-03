@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -17,37 +17,27 @@
    +----------------------------------------------------------------------+
  */
 
-class case_without_break extends modules {
-	protected	$title = 'case without break';
-	protected	$description = 'Check that all case structure has a break case. It should be checked then, even if this may be valid.';
+class Php_Throws extends modules {
+	protected	$title = 'Exceptions Php_Throws';
+	protected	$description = 'Liste des emissions d\'exceptions';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
-
-// @doc if this analyzer is based on previous result, use this to make sure the results are here
-	function dependsOn() {
-	    return array();
-	}
-
+	
 	public function analyse() {
         $this->clean_rapport();
 
-// @todo of course, update this useless query. :)
 	    $query = <<<SQL
-SELECT NULL, T1.file, TC.code, T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, T2.code, T1.id, '{$this->name}' , 0
 FROM <tokens> T1
-LEFT JOIN <tokens> T2 
-    ON T2.left BETWEEN T1.left AND T1.right AND
-       T1.file = T2.file AND
-       T2.type = '_break'
-JOIN <tokens_cache> TC
-    ON TC.id = T1.id
-WHERE T1.type = '_case' AND
-      T2.id IS NULL
+JOIN <tokens>  T2
+    ON T1.file = T2.file AND 
+       T1.left + 2 = T2.left
+WHERE T1.type = '_throw'
 SQL;
         $this->exec_query_insert('rapport', $query);
-
+        
         return true;
 	}
 }

@@ -17,31 +17,20 @@
    +----------------------------------------------------------------------+
  */
 
-class variables_one_letter extends modules {
-	protected	$title = 'One lettre variables';
-	protected	$description = 'Variable whose name consists in one letter.';
+class Constants_Usage extends typecalls {
+	protected	$title = 'Constantes (usage)';
+	protected	$description = 'Liste des constantes utilisées';
 
-	function __construct($mid) {
+    function __construct($mid) {
         parent::__construct($mid);
-	}
-
-	function dependsOn() {
-	    return array('variables');
-	}
+    }
 
 	public function analyse() {
-        $this->clean_rapport();
-
-        $query = <<<SQL
-SELECT NULL, TR1.file, TR1.element, TR1.id, '{$this->name}', 0
-FROM <rapport> TR1
-WHERE TR1.module = 'variables' AND LENGTH(REPLACE(TR1.element, '$','')) = 1
-GROUP BY BINARY TR1.id;
-SQL;
-        $this->exec_query_insert('rapport',$query);
-
-        return true;
+	    $this->type = array('constante', 'constante_magique');
+	    parent::analyse();
+	    return true;
 	}
+	
 }
 
 ?>

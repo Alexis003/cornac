@@ -27,7 +27,7 @@ class functions_with_callback extends modules {
 
 // @doc if this analyzer is based on previous result, use this to make sure the results are here
 	function dependsOn() {
-	    return array('functionscalls');
+	    return array('functionscalls','Functions_Php');
 	}
 	
 	public function analyse() {
@@ -71,7 +71,7 @@ class functions_with_callback extends modules {
 	    $query = <<<SQL
 SELECT NULL, TR1.file, TR1.element, TR1.id, '{$this->name}', 0
 FROM <rapport> TR1
-WHERE TR1.module="php_functions" AND 
+WHERE TR1.module="Functions_Php" AND 
       TR1.element IN ($functions)
 SQL;
         $this->exec_query_insert('rapport', $query);

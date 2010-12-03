@@ -26,7 +26,7 @@ class Zf_Session extends modules {
 	}
 
 	function dependsOn() {
-	    return array('_new');
+	    return array('Classes_News');
 	}
 
 	public function analyse() {
@@ -35,7 +35,7 @@ class Zf_Session extends modules {
 	    $query = <<<SQL
 SELECT NULL, TR.file, TR.element, TR.id, '{$this->name}', 0
 FROM <rapport> TR
-WHERE module = '_new' AND
+WHERE module = 'Classes_News' AND
       element = 'Zend_Session_Namespace' 
 SQL;
         $this->exec_query_insert('rapport', $query);

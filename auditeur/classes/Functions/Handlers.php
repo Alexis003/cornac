@@ -16,35 +16,41 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
-
-class function_link extends modules {
-	protected	$title = 'Relations between functions';
-	protected	$description = 'Identify links between files, when a function defined in one file is called in another.';
+class Functions_Handlers extends functioncalls {
+	protected	$title = 'Gestionnaires';
+	protected	$description = 'Recherche les gestionnaires PHP reconfigurés.';
 
 	function __construct($mid) {
         parent::__construct($mid);
-
-        $this->format = modules::FORMAT_DOT;
 	}
 
 // @doc if this analyzer is based on previous result, use this to make sure the results are here
 	function dependsOn() {
-	    return array('functionscalls','Functions_Definitions');
+	    return array();
 	}
 	
 	public function analyse() {
-        $this->clean_rapport();
-
-	    $query = <<<SQL
-INSERT INTO <rapport_dot>
-SELECT TR1.file, TR2.file, TR1.element, '{$this->name}'
-FROM <rapport> TR1
-JOIN <rapport> TR2
-    ON TR2.module = 'functionscalls' AND
-       TR2.element = TR1.element
-WHERE TR1.module='Functions_Definitions'
-SQL;
-        $this->exec_query($query);
+	    $this->functions = array(
+                                'register_tick_function',
+                                'register_shutdown_function',
+                                'unregister_tick_function',
+                                'xpath_register_ns',
+                                'xpath_register_ns_auto',
+                                'w32api_register_function',
+                                'stream_register_wrapper',
+                                'session_register',
+                                'session_unregister',
+                                'spl_autoload_register',
+                                'stream_filter_register',
+                                'xmlrpc_server_register_introspection_callback',
+                                'xmlrpc_server_register_method',
+                                'stream_wrapper_register',
+                                'spl_autoload_unregister',
+                                'stream_wrapper_unregister',
+                                'http_request_method_register',
+                                'http_request_method_unregister',
+);
+        parent::analyse();
         
         return true;
 	}

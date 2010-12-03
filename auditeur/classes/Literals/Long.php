@@ -17,28 +17,28 @@
    +----------------------------------------------------------------------+
  */
 
-class variables_lots_of_letter extends modules { 
-	protected	$title = 'Long variable';
-	protected	$description = 'Nom de variables avec trop de lettres (> 20)';
+class Literals_Long extends modules { 
+	protected	$title = 'Literaux longs';
+	protected	$description = 'Literaux qui sont trop longs (> 1ko)';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
 
 	function dependsOn() {
-	    return array('variables');
+	    return array('Literals_Definitions');
 	}
 
 	public function analyse() {
         $this->clean_rapport();
 
         $query = <<<SQL
-SELECT NULL, TR1.file, CONCAT(TR1.element, ' (', LENGTH(TR1.element),' chars)' ), TR1.id, '{$this->name}', 0
-FROM <rapport> TR1
-WHERE TR1.module = 'variables' AND LENGTH(REPLACE(TR1.element, '$','')) > 19
-GROUP BY BINARY TR1.id;
+SELECT NULL, TR1.file, TRIM(code), TR1.id, '{$this->name}', 0
+FROM <tokens> TR1
+WHERE type = 'literals' AND
+      LENGTH(code) > 1024
 SQL;
-        $this->exec_query_insert('rapport',$query);
+        $this->exec_query_insert('rapport', $query);
 
         return true;
 	}

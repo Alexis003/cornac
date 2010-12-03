@@ -17,20 +17,26 @@
    +----------------------------------------------------------------------+
  */
 
-class constantes extends typecalls {
-	protected	$title = 'Constantes (usage)';
-	protected	$description = 'Liste des constantes utilisées';
-
+abstract class modules_head extends modules  {
     function __construct($mid) {
         parent::__construct($mid);
     }
 
-	public function analyse() {
-	    $this->type = array('constante', 'constante_magique');
-	    parent::analyse();
-	    return true;
+	function dependsOn() {
+        $dependencies = glob(dirname(dirname(__FILE__))."/".get_class($this)."/*");
+        foreach($dependencies as $id => $d) {
+            $d = str_replace(dirname(dirname(__FILE__))."/",'', $d);
+            $d = str_replace('.php','', $d);
+            $d = str_replace('/','_', $d);
+            $dependencies[$id] = $d;
+        }
+        
+        return $dependencies;
 	}
-	
-}
+    
+	public function analyse() {
+        return true;
+	}
 
+}
 ?>

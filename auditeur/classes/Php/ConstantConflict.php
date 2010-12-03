@@ -16,9 +16,9 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
-class handlers extends functioncalls {
-	protected	$title = 'Gestionnaires';
-	protected	$description = 'Recherche les gestionnaires PHP reconfigurés.';
+class Php_ConstantConflict extends modules {
+	protected	$title = 'PHP constants name conflicts';
+	protected	$description = 'Constante, defined by the application, that conflict PHP\'s constant';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -26,31 +26,22 @@ class handlers extends functioncalls {
 
 // @doc if this analyzer is based on previous result, use this to make sure the results are here
 	function dependsOn() {
-	    return array();
+	    return array('Constants_Definitions');
 	}
 	
 	public function analyse() {
-	    $this->functions = array(
-                                'register_tick_function',
-                                'register_shutdown_function',
-                                'unregister_tick_function',
-                                'xpath_register_ns',
-                                'xpath_register_ns_auto',
-                                'w32api_register_function',
-                                'stream_register_wrapper',
-                                'session_register',
-                                'session_unregister',
-                                'spl_autoload_register',
-                                'stream_filter_register',
-                                'xmlrpc_server_register_introspection_callback',
-                                'xmlrpc_server_register_method',
-                                'stream_wrapper_register',
-                                'spl_autoload_unregister',
-                                'stream_wrapper_unregister',
-                                'http_request_method_register',
-                                'http_request_method_unregister',
-);
-        parent::analyse();
+        $this->clean_rapport();
+
+        $constants = modules::getPHPConstants();
+        $in = '"'.join('","', $constants).'"';
+
+	    $query = <<<SQL
+SELECT NULL, T1.file, T1.element, T1.id, '{$this->name}', 0
+FROM <rapport> T1
+WHERE   T1.module = 'Constants_Definitions' AND
+        T1.element IN ($in)
+SQL;
+        $this->exec_query_insert('rapport', $query);
         
         return true;
 	}

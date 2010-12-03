@@ -1,4 +1,4 @@
-<?php
+<?php 
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -17,42 +17,36 @@
    +----------------------------------------------------------------------+
  */
 
-class literals_reused extends modules { 
-	protected	$title = 'Literaux utilisés plusieurs fois';
-	protected	$description = 'Literaux qui sont réutiisés à plusieurs endroits du code';
+class Structures_SwitchWithoutDefault extends modules {
+	protected	$title = 'switch without default';
+	protected	$description = 'Check that all switch structure has a default case. It should be checked then, even if this may be valid.';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
 
+// @doc if this analyzer is based on previous result, use this to make sure the results are here
 	function dependsOn() {
-	    return array('literals');
+	    return array();
 	}
 
 	public function analyse() {
         $this->clean_rapport();
 
-// @note temporary table, so has to avoid concurrency conflict
-        $query = <<<SQL
-CREATE TEMPORARY TABLE {$this->name}_TMP 
-SELECT TRIM(code) AS code
-FROM <tokens> TR1
-WHERE type = 'literals' AND 
-      TRIM(code) != ''
-GROUP BY BINARY TRIM(code) 
-HAVING COUNT(*) > 1
+// @todo of course, update this useless query. :)
+	    $query = <<<SQL
+SELECT NULL, T1.file, TC.code, T1.id, '{$this->name}', 0
+FROM <tokens> T1
+LEFT JOIN <tokens> T2 
+    ON T2.left BETWEEN T1.left AND T1.right AND
+       T1.file = T2.file AND
+       T2.type = '_default'
+JOIN <tokens_cache> TC
+    ON TC.id = T1.id
+WHERE T1.type = '_switch' AND
+      T2.id IS NULL
 SQL;
-        $this->exec_query($query);
-
-        $query = <<<SQL
-INSERT INTO <rapport> 
-SELECT NULL, TR1.file, TRIM(TR1.code), TR1.id, '{$this->name}', 0
-    FROM <tokens> TR1
-    JOIN {$this->name}_TMP TMP
-        ON TR1.type = 'literals' AND 
-           TMP.code = TRIM(TR1.code) 
-SQL;
-        $this->exec_query($query);
+        $this->exec_query_insert('rapport', $query);
 
         return true;
 	}

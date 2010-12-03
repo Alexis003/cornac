@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -17,45 +17,29 @@
    +----------------------------------------------------------------------+
  */
 
-class recursive extends modules {
-	protected	$title = 'Titre pour recursive';
-	protected	$description = 'Ceci est l\'analyseur recursive par défaut. ';
+class Constants_Definitions extends modules {
+	protected	$title = 'Constants definitions';
+	protected	$description = 'List of constants definitions.';
 
 	function __construct($mid) {
         parent::__construct($mid);
+    	$this->format = modules::FORMAT_HTMLLIST;
 	}
-
-	function dependsOn() {
-	    return array();
-	}
-
+	
 	public function analyse() {
         $this->clean_rapport();
-
+        
 	    $query = <<<SQL
-SELECT NULL, T1.file, CONCAT('::',T1.scope), T1.id, '{$this->name}', 0
-FROM <tokens> T1
-LEFT JOIN <tokens> T2
-    ON T2.file = T1.file AND
-       T1.right + 1 = T2.right AND
-       T2.type = 'method'
-WHERE T1.type = 'functioncall' AND 
-      T1.class = '' AND 
-      T1.scope=T1.code  AND
-      T2.id IS NULL;
-SQL;
-        $this->exec_query_insert('rapport', $query);
-
-	    $query = <<<SQL
-SELECT NULL, T1.file, CONCAT(T1.class,'::',T1.scope), T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, T3.code, T3.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens> T2
-    ON T2.file = T1.file AND
-       T1.right + 1 = T2.right AND
-       T2.type = 'method'
-WHERE T1.type = 'functioncall' 
-      AND T1.class != ''
-      AND T1.scope=T1.code;
+    ON T1.left + 1 = T2.left AND 
+       T1.file=  T2.file
+JOIN <tokens> T3
+    ON T1.left + 4 = T3.left AND
+       T1.file=  T3.file
+WHERE T1.type='functioncall' AND
+      T2.code = 'define';
 SQL;
         $this->exec_query_insert('rapport', $query);
 

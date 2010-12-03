@@ -17,23 +17,27 @@
    +----------------------------------------------------------------------+
  */
 
-class regex extends modules {
+class Variables_LongNames extends modules { 
+	protected	$title = 'Long variable names';
+	protected	$description = 'Variables whose name is really long (> 20)';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
-	
+
+	function dependsOn() {
+	    return array('Variables_Names');
+	}
+
 	public function analyse() {
         $this->clean_rapport();
 
         $query = <<<SQL
-SELECT NULL, T1.file, T2.code, T1.id, '{$this->name}', 0
-FROM <tokens> T1
-JOIN <tokens> T2
-    ON T2.file = T1.file AND
-       T2.left = T1.left + 3
-WHERE T1.code IN ('preg_match','preg_replace','preg_replace_callback','preg_match_all')  AND
-      T1.type = 'token_traite'
+SELECT NULL, TR1.file, CONCAT(TR1.element, ' (', LENGTH(TR1.element),' chars)' ), TR1.id, '{$this->name}', 0
+FROM <rapport> TR1
+WHERE TR1.module = 'Variables_Names' AND 
+      LENGTH(REPLACE(TR1.element, '$','')) > 19
+GROUP BY BINARY TR1.id;
 SQL;
         $this->exec_query_insert('rapport',$query);
 

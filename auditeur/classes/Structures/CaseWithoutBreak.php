@@ -1,4 +1,4 @@
-<?php
+<?php 
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -17,29 +17,34 @@
    +----------------------------------------------------------------------+
  */
 
-class defconstantes extends modules {
-	protected	$title = 'Constantes';
-	protected	$description = 'Liste des défintions de constantes';
+class Structures_CaseWithoutBreak extends modules {
+	protected	$title = 'case without break';
+	protected	$description = 'Check that all case structure has a break case. It should be checked then, even if this may be valid.';
 
 	function __construct($mid) {
         parent::__construct($mid);
-    	$this->format = modules::FORMAT_HTMLLIST;
 	}
-	
+
+// @doc if this analyzer is based on previous result, use this to make sure the results are here
+	function dependsOn() {
+	    return array();
+	}
+
 	public function analyse() {
         $this->clean_rapport();
-        
+
+// @todo of course, update this useless query. :)
 	    $query = <<<SQL
-SELECT NULL, T1.file, T3.code, T3.id, '{$this->name}', 0
+SELECT NULL, T1.file, TC.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
-JOIN <tokens> T2
-    ON T1.left + 1 = T2.left AND 
-       T1.file=  T2.file
-JOIN <tokens> T3
-    ON T1.left + 4 = T3.left AND
-       T1.file=  T3.file
-WHERE T1.type='functioncall' AND
-      T2.code = 'define';
+LEFT JOIN <tokens> T2 
+    ON T2.left BETWEEN T1.left AND T1.right AND
+       T1.file = T2.file AND
+       T2.type = '_break'
+JOIN <tokens_cache> TC
+    ON TC.id = T1.id
+WHERE T1.type = '_case' AND
+      T2.id IS NULL
 SQL;
         $this->exec_query_insert('rapport', $query);
 

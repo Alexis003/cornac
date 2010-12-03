@@ -17,30 +17,17 @@
    +----------------------------------------------------------------------+
  */
 
-class literals_long extends modules { 
-	protected	$title = 'Literaux longs';
-	protected	$description = 'Literaux qui sont trop longs (> 1ko)';
+class Functions_Php extends functioncalls {
+	protected	$title = 'PHP function list';
+	protected	$description = 'List of PHP function being used, with their frequency.';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
-
-	function dependsOn() {
-	    return array('literals');
-	}
-
+	
 	public function analyse() {
-        $this->clean_rapport();
-
-        $query = <<<SQL
-SELECT NULL, TR1.file, TRIM(code), TR1.id, '{$this->name}', 0
-FROM <tokens> TR1
-WHERE type = 'literals' AND
-      LENGTH(code) > 1024
-SQL;
-        $this->exec_query_insert('rapport', $query);
-
-        return true;
+	    $this->functions = modules::getPHPFunctions();
+	    parent::analyse();
 	}
 }
 

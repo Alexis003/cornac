@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -17,39 +17,38 @@
    +----------------------------------------------------------------------+
  */
 
-class tostring_no_arg extends modules {
-	protected	$title = 'tostring without arguments';
-	protected	$description = 'Spot __toString methods with arguments (Incompatible change for PHP 5.3)';
-	protected	$tags = array('PHP_5.3');
+class variables_Relations extends modules {
+	protected	$title = 'Link between variables';
+	protected	$description = 'Linked variables : when two variables are in the same instructures ($x = $a + $b), then, they are in relation.';
 
 	function __construct($mid) {
         parent::__construct($mid);
+        
+        $this->format = modules::FORMAT_DOT;
 	}
-
-	function dependsOn() {
-	    return array();
-	}
-
+	
 	public function analyse() {
         $this->clean_rapport();
 
-	    $query = <<<SQL
-SELECT NULL, T1.file, T1.class, T1.id, '{$this->name}', 0
+// @todo : this should be done context by context. How can I do that? 
+// @note I need another table for this        
+        $query = <<<SQL
+INSERT INTO <rapport_dot>
+SELECT  T4.code, T2.code, CONCAT(T1.class,'::',T1.scope), '{$this->name}' 
 FROM <tokens> T1
+JOIN <tokens_tags> TT1
+    ON T1.id = TT1.token_id AND TT1.type='left'
 JOIN <tokens> T2
-    ON T2.file = T1.file AND
-       T2.left BETWEEN T1.left AND T1.right AND
-       T2.type = 'arglist'
-LEFT JOIN <tokens> T3
-    ON T3.file = T1.file AND
-       T3.left = T2.left + 1 AND
-       T3.type = 'token_traite'
-WHERE T1.type = '_function' AND
-      T1.code = '__toString' AND
-      T1.class != '' AND
-      T3.id IS NULL 
+    ON T2.id = TT1.token_sub_id AND T2.type='variable' AND T1.file =T2.file
+JOIN <tokens_tags> TT2
+    ON T1.id = TT2.token_id AND TT2.type='right'
+JOIN <tokens> T3
+    ON T3.file = T1.file AND T3.id = TT2.token_sub_id
+JOIN <tokens> T4
+    ON T4.file = T1.file AND T4.left BETWEEN T3.left AND T3.right AND T4.type='variable'
+WHERE T1.type = 'affectation'; 
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query($query);
 
         return true;
 	}

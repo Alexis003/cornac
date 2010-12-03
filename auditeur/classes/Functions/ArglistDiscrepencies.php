@@ -17,31 +17,32 @@
    +----------------------------------------------------------------------+
  */
 
-class Functions_Unused extends modules {
-    protected $title = 'Unused functions'; 
-    protected $description = 'List of unused functions'; 
+class Functions_ArglistDiscrepencies extends modules {
+	protected	$title = "Too many arguments function call";
+	protected	$description = 'Function call that are providing too many arguments, compared to function definition';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
-	
+
 	function dependsOn() {
-	    return array('functionscalls','Functions_Definitions');
+	    return array('Functions_ArglistDefined','Functions_ArglistCalled');
 	}
-	
+
 	public function analyse() {
         $this->clean_rapport();
-
         $query = <<<SQL
 SELECT NULL, TR1.file, TR1.element AS code, TR1.id, '{$this->name}', 0
 FROM <rapport> TR1
-LEFT JOIN <rapport>  TR2 
-ON TR1.element = TR2.element AND TR2.module='functionscalls' 
-WHERE TR1.module = 'Functions_Definitions' AND 
-      TR2.module IS NULL AND
-      TR1.element NOT IN ('__autoload')
+LEFT JOIN <rapport> TR2
+    ON TR2.module='Functions_ArglistDefined' AND
+       LEFT(TR1.element, locate('(', TR1.element) - 1) = LEFT(TR2.element, locate('(', TR2.element) -1) AND
+       TR1.element = TR2.element
+WHERE TR1.module = 'Functions_ArglistCalled' AND 
+      TR2.element IS NULL
 SQL;
         $this->exec_query_insert('rapport', $query);
+
         return true;
 	}
 }

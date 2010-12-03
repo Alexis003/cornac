@@ -17,9 +17,9 @@
    +----------------------------------------------------------------------+
  */
 
-class thrown extends modules {
-	protected	$title = 'Exceptions thrown';
-	protected	$description = 'Liste des emissions d\'exceptions';
+class Functions_Inclusions extends modules {
+	protected	$title = 'Inclusions';
+	protected	$description = 'Inclusion list (function being used for such)';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -28,16 +28,26 @@ class thrown extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
-	    $query = <<<SQL
-SELECT NULL, T1.file, T2.code, T1.id, '{$this->name}' , 0
+        $query = <<<SQL
+SELECT NULL, T1.file, T1.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
-JOIN <tokens>  T2
-    ON T1.file = T2.file AND 
-       T1.left + 2 = T2.left
-WHERE T1.type = '_throw'
+WHERE T1.type = 'inclusion';
 SQL;
         $this->exec_query_insert('rapport', $query);
-        
+
+        $query = <<<SQL
+SELECT NULL, T1.file, T2.code, T1.id, '{$this->name}', 0
+FROM <tokens> T1
+JOIN <tokens_tags> TT 
+    ON TT.token_id = T1.id
+JOIN <tokens> T2
+    ON TT.token_sub_id = T2.id AND
+       T1.file = T2.file AND
+       TT.type='function'      AND 
+       T2.code='loadLibrary'
+SQL;
+        $this->exec_query_insert('rapport', $query);
+
         return true;
 	}
 }
