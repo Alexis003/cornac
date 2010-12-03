@@ -1,4 +1,4 @@
-<?php
+<?php 
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -16,23 +16,16 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
+
 include_once('Auditeur_Framework_TestCase.php');
 
-class unused_properties_Test extends Auditeur_Framework_TestCase
+class Literals_RawtextWhitespace_Test extends Auditeur_Framework_TestCase
 {
-    public function testVariables()  { 
-        $this->expected = array('$public_defined_inited_unused',
-                                '$protected_defined_inited_unused',
-                                '$private_defined_inited_unused',
-                                '$var_defined_inited_unused',
-                                );
-        $this->unexpected = array('$public_defined_inited',
-                                  '$protected_defined_inited',
-                                  '$private_defined_inited',
-                                  '$var_defined_inited');
-        
+    public function testrawtext_whitespace()  {
+        $this->expected = array( 'line 22');
+        $this->unexpected = array(/*'',*/);
+
         parent::generic_test();
     }
 }
-
 ?>

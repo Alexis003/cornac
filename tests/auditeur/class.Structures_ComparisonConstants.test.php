@@ -19,7 +19,7 @@
 
 include_once('Auditeur_Framework_TestCase.php');
 
-class comparison_constant_Test extends Auditeur_Framework_TestCase
+class Structures_ComparisonConstants_Test extends Auditeur_Framework_TestCase
 {
     public function testcomparison_constant()  {
         $this->expected = array( 'line 20 : ==','line 21 : &&');

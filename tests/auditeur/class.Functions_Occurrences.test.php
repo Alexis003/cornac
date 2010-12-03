@@ -18,13 +18,13 @@
  */
 include_once('Auditeur_Framework_TestCase.php');
 
-class undefined_properties_Test extends Auditeur_Framework_TestCase
+class Functions_Occurrences_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
-        $this->expected = array('undefined');
-        $this->unexpected = array('public_defined_inited','protected_defined_inited','private_defined_inited','var_defined_inited');
+        $this->expected = array('echo','echo','echo');
+        $this->unexpected = array();
         
-        parent::generic_test();
+        parent::generic_counted_test();
     }
 }
 

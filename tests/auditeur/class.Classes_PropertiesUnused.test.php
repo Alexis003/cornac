@@ -18,11 +18,18 @@
  */
 include_once('Auditeur_Framework_TestCase.php');
 
-class properties_defined_Test extends Auditeur_Framework_TestCase
+class Classes_PropertiesUnused_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
-        $this->expected = array('x->$a','x->$b','x->$c','x->$d','x->$e','x->$f','x->$g','x->$h','x->$i','x->$j','x->$k','x->$l','x->$m','x->$n','x->$o','x->$p','x->$q','x->$r','x->$s','x->$es','x->$fs','x->$gs','x->$hs','x->$is','x->$se','x->$sf','x->$sg','x->$sh','x->$si');
-        $this->unexpected = array('$arg','$local','x');
+        $this->expected = array('$public_defined_inited_unused',
+                                '$protected_defined_inited_unused',
+                                '$private_defined_inited_unused',
+                                '$var_defined_inited_unused',
+                                );
+        $this->unexpected = array('$public_defined_inited',
+                                  '$protected_defined_inited',
+                                  '$private_defined_inited',
+                                  '$var_defined_inited');
         
         parent::generic_test();
     }

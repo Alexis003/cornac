@@ -18,13 +18,13 @@
  */
 include_once('Auditeur_Framework_TestCase.php');
 
-class functions_frequency_Test extends Auditeur_Framework_TestCase
+class Classes_Properties_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
-        $this->expected = array('echo','echo','echo');
-        $this->unexpected = array();
+        $this->expected = array('x->$a','x->$b','x->$c','x->$d','x->$e','x->$f','x->$g','x->$h','x->$i','x->$j','x->$k','x->$l','x->$m','x->$n','x->$o','x->$p','x->$q','x->$r','x->$s','x->$es','x->$fs','x->$gs','x->$hs','x->$is','x->$se','x->$sf','x->$sg','x->$sh','x->$si');
+        $this->unexpected = array('$arg','$local','x');
         
-        parent::generic_counted_test();
+        parent::generic_test();
     }
 }
 

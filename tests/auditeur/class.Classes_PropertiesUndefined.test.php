@@ -18,20 +18,14 @@
  */
 include_once('Auditeur_Framework_TestCase.php');
 
-class proprietes_publiques_Test extends Auditeur_Framework_TestCase
+class Classes_PropertiesUndefined_Test extends Auditeur_Framework_TestCase
 {
-    public function testproprietes_publiques()  { 
-        $this->expected = array( 'x::$public_prop',
-                                 'x::$static_public_prop',
-                                 'x::$public_static_prop',
-                                 );
-        $this->unexpected = array('$protected_prop',
-                                  '$private_prop',
-                                  '$static_protected_prop',
-                                  '$static_private_prop');
+    public function testVariables()  { 
+        $this->expected = array('undefined');
+        $this->unexpected = array('public_defined_inited','protected_defined_inited','private_defined_inited','var_defined_inited');
         
         parent::generic_test();
-//        parent::generic_counted_test();
     }
 }
+
 ?>
