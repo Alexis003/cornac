@@ -1,4 +1,4 @@
-<?php
+<?php 
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -17,30 +17,35 @@
    +----------------------------------------------------------------------+
  */
 
-class nestedloops extends modules {
-	protected	$title = 'Nested loops';
-	protected	$description = 'Loops (for, foreach, while) inside other loops. This is usually valid, but one must be cautious when using those, as they easily generate high loads.';
+class Structures_LoopsLong extends modules {
+	protected	$title = 'Long loops';
+	protected	$description = 'Spot loops that have too many lines (more than 10).';
+	protected   $tags = array('quality');
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
-	
+
+	function dependsOn() {
+	    return array();
+	}
+
 	public function analyse() {
         $this->clean_rapport();
 
-        $concat = $this->concat("T1.type","'->'","T2.type");
-        $query = <<<SQL
-SELECT NULL, T1.file, $concat, T1.id, '{$this->name}', 0
+	    $query = <<<SQL
+SELECT NULL, T1.file, TC.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens> T2
-    ON T1.file = T2.file AND 
-       T2.left BETWEEN T1.left AND T1.right
-WHERE T1.type IN ('_while','_for','_foreach') AND 
-      T2.type IN ('_while','_for','_foreach')
-GROUP BY T1.file, T1.left, T1.id, T2.type
+    ON T2.file = T1.file AND
+       T2.left = T1.right + 1
+JOIN <tokens_cache> TC
+    ON T1.id = TC.id
+WHERE T1.type IN ('_for','_while','_do','_foreach') AND
+      T2.line - T1.line > 10
 SQL;
         $this->exec_query_insert('rapport', $query);
-        
+
         return true;
 	}
 }

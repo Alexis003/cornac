@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class iffectations extends modules {
+class Structures_Iffectations extends modules {
 	protected	$title = 'Affectations in a if';
 	protected	$description = 'Affectation in a if, or a while';
 

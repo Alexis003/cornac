@@ -17,9 +17,9 @@
    +----------------------------------------------------------------------+
  */
 
-class nestedif extends modules {
-	protected	$title = 'If imbriqués';
-	protected	$description = 'Liste des if';
+class Structures_IfWithoutElse extends modules {
+	protected	$title = 'If sans else';
+	protected	$description = 'Liste des if sans else';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -28,20 +28,18 @@ class nestedif extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
-        $concat = $this->concat("T1.type","'->'","T2.type");
-        $query = <<<SQL
-SELECT NULL, T1.file, $concat, T1.id, '{$this->name}' , 0
+        $concat = $this->concat("T2.class","'->'","T2.code");
+	    $query = <<<SQL
+SELECT NULL, T1.file, SUM(TT.type = 'else')  AS elsee, T1.id, '{$this->name}', 0
 FROM <tokens> T1
-JOIN <tokens> T2
-    ON T1.file = T2.file AND 
-       T2.left BETWEEN T1.left AND T1.right
-WHERE T1.type in ('ifthen') AND 
-      T2.type IN  ('ifthen')
-GROUP BY T1.file, T1.left 
-HAVING COUNT(*) > 1
+LEFT join <tokens_tags> TT 
+    ON T1.id = TT.token_id
+WHERE T1.type = 'ifthen' 
+GROUP BY file, `left`
+HAVING elsee = 0
 SQL;
-
         $this->exec_query_insert('rapport', $query);
+        
         return true;
 	}
 }

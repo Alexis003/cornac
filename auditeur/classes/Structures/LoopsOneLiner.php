@@ -17,9 +17,9 @@
    +----------------------------------------------------------------------+
  */
 
-class loaded_lines extends modules {
-	protected	$title = 'Loaded lines';
-	protected	$description = 'Lines with too many opcode (except for literals) : this is probably too much processing on one line.';
+class Structures_LoopsOneLiner extends modules {
+	protected	$title = 'One line loops';
+	protected	$description = 'Identify short loops.';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -32,12 +32,17 @@ class loaded_lines extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
+// @note right - 2 reach the last token of the block. The block is always the last sub-element in the loop
 	    $query = <<<SQL
-SELECT NULL, T1.file, CONCAT('line ',T1.line), T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, TC.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
-WHERE T1.type != 'literals'
-GROUP BY file, line 
-HAVING COUNT(*) > 10
+JOIN <tokens> T2
+    ON T2.file = T1.file AND
+       T2.right = T1.right -2
+JOIN <tokens_cache> TC
+    ON T1.id = TC.id
+WHERE T1.type IN ('_for','_while','_do','_foreach') AND
+      T2.line - T1.line < 3
 SQL;
         $this->exec_query_insert('rapport', $query);
 

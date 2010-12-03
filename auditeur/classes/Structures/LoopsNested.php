@@ -17,9 +17,9 @@
    +----------------------------------------------------------------------+
  */
 
-class ifsanselse extends modules {
-	protected	$title = 'If sans else';
-	protected	$description = 'Liste des if sans else';
+class Structures_LoopsNested extends modules {
+	protected	$title = 'Nested loops';
+	protected	$description = 'Loops (for, foreach, while) inside other loops. This is usually valid, but one must be cautious when using those, as they easily generate high loads.';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -28,15 +28,16 @@ class ifsanselse extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
-        $concat = $this->concat("T2.class","'->'","T2.code");
-	    $query = <<<SQL
-SELECT NULL, T1.file, SUM(TT.type = 'else')  AS elsee, T1.id, '{$this->name}', 0
+        $concat = $this->concat("T1.type","'->'","T2.type");
+        $query = <<<SQL
+SELECT NULL, T1.file, $concat, T1.id, '{$this->name}', 0
 FROM <tokens> T1
-LEFT join <tokens_tags> TT 
-    ON T1.id = TT.token_id
-WHERE T1.type = 'ifthen' 
-GROUP BY file, `left`
-HAVING elsee = 0
+JOIN <tokens> T2
+    ON T1.file = T2.file AND 
+       T2.left BETWEEN T1.left AND T1.right
+WHERE T1.type IN ('_while','_for','_foreach') AND 
+      T2.type IN ('_while','_for','_foreach')
+GROUP BY T1.file, T1.left, T1.id, T2.type
 SQL;
         $this->exec_query_insert('rapport', $query);
         

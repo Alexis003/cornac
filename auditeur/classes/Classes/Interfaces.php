@@ -17,19 +17,25 @@
    +----------------------------------------------------------------------+
  */
 
-class nonphp_functions extends functioncalls {
-	protected	$title = 'Userland functions';
-	protected	$description = 'Usage of user-land functions';
+class Classes_Interfaces extends noms {
+	protected	$title = 'Interfaces';
+	protected	$description = 'List of defined interfaces names';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
 	
 	public function analyse() {
-	    $this->functions = modules::getPHPFunctions();
-	    $this->not = true;
+        $this->clean_rapport();
 
-	    parent::analyse();
+        $query = <<<SQL
+SELECT NULL, T1.file, T1.class, T1.id, '{$this->name}', 0
+FROM <tokens> T1
+WHERE T1.type = '_interface'
+SQL;
+        $this->exec_query_insert('rapport', $query);
+        
+        return true; 
 	}
 }
 

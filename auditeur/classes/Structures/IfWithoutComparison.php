@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class if_no_comparison extends modules {
+class Structures_IfWithoutComparison extends modules {
 	protected	$title = 'if without comparison';
 	protected	$description = 'Spot if conditions without explicit comparison, like if ($x) or if (count($t))';
 

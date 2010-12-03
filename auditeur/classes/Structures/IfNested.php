@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -17,35 +17,31 @@
    +----------------------------------------------------------------------+
  */
 
-class long_loops extends modules {
-	protected	$title = 'Long loops';
-	protected	$description = 'Spot loops that have too many lines (more than 10).';
-	protected   $tags = array('quality');
+class Structures_IfNested extends modules {
+	protected	$title = 'If imbriqués';
+	protected	$description = 'Liste des if';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
-
-	function dependsOn() {
-	    return array();
-	}
-
+	
 	public function analyse() {
         $this->clean_rapport();
 
-	    $query = <<<SQL
-SELECT NULL, T1.file, TC.code, T1.id, '{$this->name}', 0
+        $concat = $this->concat("T1.type","'->'","T2.type");
+        $query = <<<SQL
+SELECT NULL, T1.file, $concat, T1.id, '{$this->name}' , 0
 FROM <tokens> T1
 JOIN <tokens> T2
-    ON T2.file = T1.file AND
-       T2.left = T1.right + 1
-JOIN <tokens_cache> TC
-    ON T1.id = TC.id
-WHERE T1.type IN ('_for','_while','_do','_foreach') AND
-      T2.line - T1.line > 10
+    ON T1.file = T2.file AND 
+       T2.left BETWEEN T1.left AND T1.right
+WHERE T1.type in ('ifthen') AND 
+      T2.type IN  ('ifthen')
+GROUP BY T1.file, T1.left 
+HAVING COUNT(*) > 1
 SQL;
-        $this->exec_query_insert('rapport', $query);
 
+        $this->exec_query_insert('rapport', $query);
         return true;
 	}
 }

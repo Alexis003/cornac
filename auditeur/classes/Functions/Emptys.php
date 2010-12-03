@@ -26,7 +26,7 @@ class Functions_Emptys extends modules {
 	}
 
 	function dependsOn() {
-	    return array('interfaces');
+	    return array('Classes_Interfaces');
 	}
 	
 	public function analyse() {
@@ -48,7 +48,7 @@ JOIN <tokens> T4
 LEFT JOIN <rapport> TR
     ON T1.file = TR.file       AND
        T4.class = TR.element   AND
-       TR.module='interfaces'
+       TR.module='Classes_Interfaces'
 WHERE 
     T1.type = '_function'      AND
     T2.type = 'block'          AND

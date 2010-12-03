@@ -1,4 +1,4 @@
-<?php
+<?php 
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -17,25 +17,31 @@
    +----------------------------------------------------------------------+
  */
 
-class interfaces extends noms {
-	protected	$title = 'Interfaces';
-	protected	$description = 'Liste des noms d\'interfaces définies';
+class Structures_LinesLoaded extends modules {
+	protected	$title = 'Loaded lines';
+	protected	$description = 'Lines with too many opcode (except for literals) : this is probably too much processing on one line.';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
-	
+
+	function dependsOn() {
+	    return array();
+	}
+
 	public function analyse() {
         $this->clean_rapport();
 
-        $query = <<<SQL
-SELECT NULL, T1.file, T1.class, T1.id, '{$this->name}', 0
+	    $query = <<<SQL
+SELECT NULL, T1.file, CONCAT('line ',T1.line), T1.id, '{$this->name}', 0
 FROM <tokens> T1
-WHERE T1.type = '_interface'
+WHERE T1.type != 'literals'
+GROUP BY file, line 
+HAVING COUNT(*) > 10
 SQL;
         $this->exec_query_insert('rapport', $query);
-        
-        return true; 
+
+        return true;
 	}
 }
 

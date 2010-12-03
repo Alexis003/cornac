@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class infinite_loop extends modules {
+class Structures_LoopsInfinite extends modules {
 	protected	$title = 'Infinite loops';
 	protected	$description = 'Spot explicit infinite loops : that may be while or for.';
 
