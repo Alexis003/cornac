@@ -8,7 +8,7 @@
    | This source file is subject to version 3.01 of the PHP license,      |
    | that is bundled with this package in the file LICENSE, and is        |
    | available through the world-wide-web at the following url:           |
-   | http://www.php.net/license/3_01.txt                                  |
+   | http://www.net/license/3_01.txt                                  |
    | If you did not receive a copy of the PHP license and are unable to   |
    | obtain it through the world-wide-web, please send a note to          |
    | license@php.net so we can mail you a copy immediately.               |
@@ -25,18 +25,18 @@ class Zf extends modules {
 // @doc if this analyzer is based on previous result, use this to make sure the results are here
 	function dependsOn() {
 	    return array(
-                    'Action.php',
-                    'Classes.php',
-                    'Controller.php',
-                    'Db.php',
-                    'Dependencies.php',
-                    'Elements.php',
-                    'GetGPC.php',
-                    'Redirect.php',
-                    'SQL.php',
-                    'Session.php',
-                    'TypeView.php',
-                    'ViewVariables.php',
+                    'Action',
+                    'Classes',
+                    'Controller',
+                    'Db',
+                    'Dependencies',
+                    'Elements',
+                    'GetGPC',
+                    'Redirect',
+                    'SQL',
+                    'Session',
+                    'TypeView',
+                    'ViewVariables',
 	                 );
 	}
 
