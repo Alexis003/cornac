@@ -859,7 +859,7 @@ class template_cache extends template {
         $this->display($condition, $level + 1);
         
         $this->display($node->getBlock(), $level + 1);
-        $node->cache = 'while ('.$condition->cache.')';
+        $node->cache = 'while '.$condition->cache.'';
         return $this->savenode($node);
     }
 
@@ -868,7 +868,7 @@ class template_cache extends template {
         $this->display($condition, $level + 1);
         $this->display($node->getBlock(), $level + 1);
 
-        $node->cache = 'do {} while ('.$condition->cache.')';
+        $node->cache = 'do {} while '.$condition->cache.'';
         return $this->savenode($node);
     }
     
