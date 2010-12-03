@@ -16,28 +16,39 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
+class Functions_ArglistReferences extends modules {
+	protected	$title = 'Fonctions avec références';
+	protected	$description = 'Fonctions et méthodes avec références';
 
-class parentheses extends modules {
-    protected    $title = 'Parentheses';
-    protected    $description = 'Utilisation des parenthèses';
-
-    function __construct($mid) {
+	function __construct($mid) {
         parent::__construct($mid);
-    }
-    
-    public function analyse() {
+	}
+
+// @doc if this analyzer is based on previous result, use this to make sure the results are here
+	function dependsOn() {
+	    return array();
+	}
+
+	public function analyse() {
         $this->clean_rapport();
 
-        $query = <<<SQL
-SELECT NULL, T1.file, T2.code,  T1.id, 'parentheses', 0
+	    $query = <<<SQL
+SELECT NULL, T1.file, CONCAT(T1.class,'::', T1.scope), T1.id, '{$this->name}', 0
 FROM <tokens> T1
-JOIN <tokens_cache> T2
-    ON T1.id = T2.id
-WHERE T1.type = 'parentheses';
+JOIN <tokens> T2
+    ON T2.file = T1.file AND
+       T2.level = T1.level + 1 AND
+       T2.left BETWEEN T1.left AND T1.right AND
+       T2.type = 'reference'
+JOIN <tokens> T3
+    ON T3.file = T1.file AND
+       T3.left = T2.left + 1
+WHERE T1.type = 'arglist'
 SQL;
         $this->exec_query_insert('rapport', $query);
 
         return true;
-    }
+	}
 }
+
 ?>

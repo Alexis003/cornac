@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class inclusions2 extends modules {
+class Php_InclusionLinks extends modules {
 	protected	$title = 'Inclusion network';
 	protected	$description = 'Relations between files, based on inclusions';
 

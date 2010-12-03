@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class callback_functions extends modules {
+class Functions_CallingBack extends modules {
 	protected	$title = 'Callfunction';
 	protected	$description = 'Name of callback functions used in PHP functions.';
 

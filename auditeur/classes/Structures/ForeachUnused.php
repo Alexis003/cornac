@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class foreach_unused extends modules {
+class Structures_ForeachUnused extends modules {
 	protected	$title = 'Variables non utilisées d\'un foreach';
 	protected	$description = 'Repère les variables d\'un foreach qui ne sont pas utilisées. foreach($a as $k => $v) {     }';
 

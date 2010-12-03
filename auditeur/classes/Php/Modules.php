@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class php_modules extends modules {
+class Php_Modules extends modules {
 	protected	$title = 'Needed PHP extension';
 	protected	$description = 'List of needed PHP extensions';
 
