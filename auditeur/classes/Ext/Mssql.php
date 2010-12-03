@@ -17,16 +17,16 @@
    +----------------------------------------------------------------------+
  */
 
-class xml_functions extends functioncalls {
-	protected	$title = 'XML functions';
-	protected	$description = 'Usage of XML functions';
+class Ext_Mssql extends functioncalls {
+	protected	$title = 'MSSQL functions';
+	protected	$description = 'Usage of mssql functions';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
 	
 	public function analyse() {
-	    $this->functions = get_extension_funcs("xml");
+        $this->functions = modules::getPHPFunctions("mssql");
 	    parent::analyse();
 	    
 	    return true;

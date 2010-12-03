@@ -17,25 +17,16 @@
    +----------------------------------------------------------------------+
  */
 
-class dir_functions extends functioncalls {
-	protected	$title = 'Dir functions';
-	protected	$description = 'List all dir functions';
+class Ext_Upload extends functioncalls {
+	protected	$title = 'Upload functions';
+	protected	$description = 'Usage of upload functions';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
 	
 	public function analyse() {
-	    $this->functions = array(
-'chdir',
-'chroot',
-'dir',
-'closedir',
-'getcwd',
-'opendir',
-'readdir',
-'rewinddir',
-'scandir',);
+	    $this->functions = array('move_uploaded_file','is_uploaded_file','rename','copy');
 	    parent::analyse();
 	    
 	    return true;

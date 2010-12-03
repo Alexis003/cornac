@@ -17,16 +17,16 @@
    +----------------------------------------------------------------------+
  */
 
-class mssql_functions extends functioncalls {
-	protected	$title = 'MSSQL functions';
-	protected	$description = 'Usage of mssql functions';
+class Ext_Xdebug extends functioncalls {
+	protected	$title = 'xdebug functions';
+	protected	$description = 'Usage of xdebug functions';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
 	
 	public function analyse() {
-        $this->functions = modules::getPHPFunctions("mssql");
+	    $this->functions = get_extension_funcs("xdebug");
 	    parent::analyse();
 	    
 	    return true;

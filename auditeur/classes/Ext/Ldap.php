@@ -17,16 +17,16 @@
    +----------------------------------------------------------------------+
  */
 
-class image_functions extends functioncalls {
-	protected	$title = 'Image functions';
-	protected	$description = 'List of ext/image functions being used';
+class Ext_Ldap extends functioncalls {
+	protected	$title = 'LDAP functions';
+	protected	$description = 'LDAP function list';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
 	
 	public function analyse() {
-	    $this->functions = modules::getPHPFunctions("gd");
+	    $this->functions = modules::getPHPFunctions("ldap");
 	    parent::analyse();
 	    
 	    return true;

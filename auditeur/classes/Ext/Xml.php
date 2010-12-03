@@ -17,16 +17,16 @@
    +----------------------------------------------------------------------+
  */
 
-class ldap_functions extends functioncalls {
-	protected	$title = 'LDAP functions';
-	protected	$description = 'LDAP function list';
+class Ext_Xml extends functioncalls {
+	protected	$title = 'XML functions';
+	protected	$description = 'Usage of XML functions';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
 	
 	public function analyse() {
-	    $this->functions = modules::getPHPFunctions("ldap");
+	    $this->functions = get_extension_funcs("xml");
 	    parent::analyse();
 	    
 	    return true;

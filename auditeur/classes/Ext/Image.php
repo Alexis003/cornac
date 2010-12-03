@@ -17,16 +17,16 @@
    +----------------------------------------------------------------------+
  */
 
-class session_functions extends functioncalls {
-	protected	$title = 'Session functions';
-	protected	$description = 'Usage of session functions';
+class Ext_Image extends functioncalls {
+	protected	$title = 'Image functions';
+	protected	$description = 'List of ext/image functions being used';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
 	
 	public function analyse() {
-	    $this->functions = get_extension_funcs("session");
+	    $this->functions = modules::getPHPFunctions("gd");
 	    parent::analyse();
 	    
 	    return true;

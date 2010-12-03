@@ -17,16 +17,25 @@
    +----------------------------------------------------------------------+
  */
 
-class xdebug_functions extends functioncalls {
-	protected	$title = 'xdebug functions';
-	protected	$description = 'Usage of xdebug functions';
+class Ext_Dir extends functioncalls {
+	protected	$title = 'Dir functions';
+	protected	$description = 'List all dir functions';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
 	
 	public function analyse() {
-	    $this->functions = get_extension_funcs("xdebug");
+	    $this->functions = array(
+'chdir',
+'chroot',
+'dir',
+'closedir',
+'getcwd',
+'opendir',
+'readdir',
+'rewinddir',
+'scandir',);
 	    parent::analyse();
 	    
 	    return true;

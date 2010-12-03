@@ -17,16 +17,16 @@
    +----------------------------------------------------------------------+
  */
 
-class upload_functions extends functioncalls {
-	protected	$title = 'Upload functions';
-	protected	$description = 'Usage of upload functions';
+class Ext_Session extends functioncalls {
+	protected	$title = 'Session functions';
+	protected	$description = 'Usage of session functions';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
 	
 	public function analyse() {
-	    $this->functions = array('move_uploaded_file','is_uploaded_file','rename','copy');
+	    $this->functions = get_extension_funcs("session");
 	    parent::analyse();
 	    
 	    return true;
