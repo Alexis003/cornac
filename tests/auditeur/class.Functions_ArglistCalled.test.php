@@ -18,10 +18,15 @@
  */
 include_once('Auditeur_Framework_TestCase.php');
 
-class headers_Test extends Auditeur_Framework_TestCase
+class Functions_ArglistCalled_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
-        $this->expected = array('header', 'setcookie','setrawcookie');
+        $this->expected = array(    'call_one_arg(1 args)',
+    'call_ten_args(10 args)',
+    'call_two_2_arg(2 args)',
+    'call_two_3_arg(2 args)',
+    'call_two_arg(2 args)',
+);
         $this->unexpected = array();
         
         parent::generic_test();

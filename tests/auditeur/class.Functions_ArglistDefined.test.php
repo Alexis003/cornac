@@ -18,7 +18,7 @@
  */
 include_once('Auditeur_Framework_TestCase.php');
 
-class arglist_def_Test extends Auditeur_Framework_TestCase
+class Functions_ArglistDefined_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
         $this->expected = array('one_arg(1 args)',

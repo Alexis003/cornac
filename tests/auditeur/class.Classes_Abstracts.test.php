@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -15,19 +15,28 @@
    +----------------------------------------------------------------------+
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
- */
+ */include_once('Auditeur_Framework_TestCase.php');
 
-include_once('Auditeur_Framework_TestCase.php');
-
-class random_functions_Test extends Auditeur_Framework_TestCase
+class Classes_Abstracts_Test extends Auditeur_Framework_TestCase
 {
-    public function testrandom_functions()  {
-        $this->expected = array( "rand","array_rand","shuffle","mt_rand",'srand',
-	                                           'getrandmax','gmp_random_functions','mt_srand');
-        $this->unexpected = array(/*'',*/);
+    public function testabstracts()  {
+        $this->expected = array( 
+'abstract_class::public_abstract_static_method',
+'abstract_class::abstract_public_static_method',
+'abstract_class::abstract_protected_static_method',
+'abstract_class::protected_abstract_static_method',
+'abstract_class::protected_static_abstract_method',
+'abstract_class::public_static_abstract_method',
+'abstract_class::abstract_protected_method',
+'abstract_class::protected_abstract_method',
+'abstract_class::abstract_public_method',
+'abstract_class::public_abstract_method',
+'abstract_class',
+        );
+        $this->unexpected = array('real_method',);
 
-//        parent::generic_test();
-        parent::generic_counted_test();
+        parent::generic_test();
+//        parent::generic_counted_test();
     }
 }
 ?>

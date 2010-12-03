@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -15,15 +15,13 @@
    +----------------------------------------------------------------------+
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
- */
+ */include_once('Auditeur_Framework_TestCase.php');
 
-include_once('Auditeur_Framework_TestCase.php');
-
-class zfRedirect_Test extends Auditeur_Framework_TestCase
+class Ext_Execs_Test extends Auditeur_Framework_TestCase
 {
-    public function testzfRedirect()  {
-        $this->expected = array( '_redirect','redirect');
-        $this->unexpected = array('x',);
+    public function testexecs()  {
+        $this->expected = array( 'exec','shell_exec','system','passthru');
+        $this->unexpected = array(/*'',*/);
 
         parent::generic_test();
     }

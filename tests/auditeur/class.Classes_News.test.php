@@ -18,7 +18,7 @@
  */
 include_once('Auditeur_Framework_TestCase.php');
 
-class _new_Test extends Auditeur_Framework_TestCase
+class Classes_News_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
         $this->expected = array('$a','$asp','StdClass', 'classe_sans_parenthese','z');

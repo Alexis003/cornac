@@ -15,15 +15,17 @@
    +----------------------------------------------------------------------+
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
- */include_once('Auditeur_Framework_TestCase.php');
+ */
+include_once('Auditeur_Framework_TestCase.php');
 
-class execs_Test extends Auditeur_Framework_TestCase
+class Ext_Headers_Test extends Auditeur_Framework_TestCase
 {
-    public function testexecs()  {
-        $this->expected = array( 'exec','shell_exec','system','passthru');
-        $this->unexpected = array(/*'',*/);
-
+    public function testVariables()  { 
+        $this->expected = array('header', 'setcookie','setrawcookie');
+        $this->unexpected = array();
+        
         parent::generic_test();
     }
 }
+
 ?>

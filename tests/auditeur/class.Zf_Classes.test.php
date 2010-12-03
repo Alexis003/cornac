@@ -20,7 +20,7 @@ include_once('Auditeur_Framework_TestCase.php');
 
 class Zf_Classes_Test extends Auditeur_Framework_TestCase
 {
-    public function testzfClasses()  { 
+    public function test_Zf_Classes()  { 
         $this->expected = array( 'Zend_View',);
         $this->unexpected = array('Zend_View_Not_Existing','getInstance','$x');
         

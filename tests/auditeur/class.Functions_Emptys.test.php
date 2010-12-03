@@ -15,15 +15,23 @@
    +----------------------------------------------------------------------+
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
- */include_once('Auditeur_Framework_TestCase.php');
+ */
+include_once('Auditeur_Framework_TestCase.php');
 
-class evals_Test extends Auditeur_Framework_TestCase
+class Functions_Emptys_Test extends Auditeur_Framework_TestCase
 {
-    public function testevals()  {
-        $this->expected = array( 'eval');
-        $this->unexpected = array(/*'',*/);
+    public function testVariables()  { 
+        $this->expected = array('empty_function',
+                                'comment_in_function',
+                                'semi_colon_function',
 
+                                
+                                );
+        $this->unexpected = array('real_function',
+                                  'interface_empty_function',);
+        
         parent::generic_test();
     }
 }
+
 ?>

@@ -1,4 +1,4 @@
-<?php
+<?php 
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -16,22 +16,21 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
+
 include_once('Auditeur_Framework_TestCase.php');
 
-class emptyfunctions_Test extends Auditeur_Framework_TestCase
+class Zf_SQL_Test extends Auditeur_Framework_TestCase
 {
-    public function testVariables()  { 
-        $this->expected = array('empty_function',
-                                'comment_in_function',
-                                'semi_colon_function',
+    public function test_Zf_SQL()  {
+        $this->expected = array( 'fetchAll',
+                                 'update',
+                                 'insert',
+                                 'delete',
+                                 'fetchRow',);
+        $this->unexpected = array(/*'',*/);
 
-                                
-                                );
-        $this->unexpected = array('real_function',
-                                  'interface_empty_function',);
-        
         parent::generic_test();
+//        parent::generic_counted_test();
     }
 }
-
 ?>

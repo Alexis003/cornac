@@ -1,4 +1,4 @@
-<?php
+<?php 
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -15,28 +15,17 @@
    +----------------------------------------------------------------------+
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
- */include_once('Auditeur_Framework_TestCase.php');
+ */
 
-class abstracts_Test extends Auditeur_Framework_TestCase
+include_once('Auditeur_Framework_TestCase.php');
+
+class Zf_Session_Test extends Auditeur_Framework_TestCase
 {
-    public function testabstracts()  {
-        $this->expected = array( 
-'abstract_class::public_abstract_static_method',
-'abstract_class::abstract_public_static_method',
-'abstract_class::abstract_protected_static_method',
-'abstract_class::protected_abstract_static_method',
-'abstract_class::protected_static_abstract_method',
-'abstract_class::public_static_abstract_method',
-'abstract_class::abstract_protected_method',
-'abstract_class::protected_abstract_method',
-'abstract_class::abstract_public_method',
-'abstract_class::public_abstract_method',
-'abstract_class',
-        );
-        $this->unexpected = array('real_method',);
+    public function test_Zf_Session()  {
+        $this->expected = array( 'Zend_Session_Namespace');
+        $this->unexpected = array('un_namespace_avec_des_donnes_presentes',);
 
         parent::generic_test();
-//        parent::generic_counted_test();
     }
 }
 ?>

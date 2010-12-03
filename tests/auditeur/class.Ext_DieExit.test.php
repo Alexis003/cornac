@@ -15,16 +15,15 @@
    +----------------------------------------------------------------------+
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
- */include_once('Auditeur_Framework_TestCase.php');
+ */
+include_once('Auditeur_Framework_TestCase.php');
 
-class zfController_Test extends Auditeur_Framework_TestCase
+class Ext_DieExit_Test extends Auditeur_Framework_TestCase
 {
-    public function testzfController()  {
-        $this->expected = array( 'Zend_My_Controller->realAction',
-                                 'Zend_My_Second_Controller->anotherrealAction',
-                                 );
-        $this->unexpected = array('X->notarealAction',);
-
+    public function testdieexit()  { 
+        $this->expected = array( 'die','exit','EXIT');
+        $this->unexpected = array(/*'',*/);
+        
         parent::generic_test();
     }
 }

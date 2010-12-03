@@ -21,7 +21,7 @@ include_once('Auditeur_Framework_TestCase.php');
 
 class Zf_Action_Test extends Auditeur_Framework_TestCase
 {
-    public function testZf_Action_Test()  {
+    public function test_Zf_Action()  {
         $this->expected = array(  'ZF_controller::staticrealAction',
                                   'ZF_controller::realAction',
                                   );

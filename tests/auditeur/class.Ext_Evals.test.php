@@ -15,15 +15,14 @@
    +----------------------------------------------------------------------+
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
- */
-include_once('Auditeur_Framework_TestCase.php');
+ */include_once('Auditeur_Framework_TestCase.php');
 
-class dieexit_Test extends Auditeur_Framework_TestCase
+class Ext_Evals_Test extends Auditeur_Framework_TestCase
 {
-    public function testdieexit()  { 
-        $this->expected = array( 'die','exit','EXIT');
+    public function testevals()  {
+        $this->expected = array( 'eval');
         $this->unexpected = array(/*'',*/);
-        
+
         parent::generic_test();
     }
 }

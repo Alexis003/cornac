@@ -1,4 +1,4 @@
-<?php
+<?php 
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -16,14 +16,16 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
+
 include_once('Auditeur_Framework_TestCase.php');
 
-class _this_Test extends Auditeur_Framework_TestCase
+class Ext_Random_Test extends Auditeur_Framework_TestCase
 {
-    public function test_this()  { 
-        $this->expected = array( '$this');
+    public function testrandom_functions()  {
+        $this->expected = array( "rand","array_rand","shuffle","mt_rand",'srand',
+	                                           'getrandmax','gmp_random_functions','mt_srand');
         $this->unexpected = array(/*'',*/);
-        
+
 //        parent::generic_test();
         parent::generic_counted_test();
     }

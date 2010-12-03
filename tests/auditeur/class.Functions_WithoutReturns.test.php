@@ -18,16 +18,14 @@
  */
 include_once('Auditeur_Framework_TestCase.php');
 
-class arglist_call_Test extends Auditeur_Framework_TestCase
+class Functions_WithoutReturns_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
-        $this->expected = array(    'call_one_arg(1 args)',
-    'call_ten_args(10 args)',
-    'call_two_2_arg(2 args)',
-    'call_two_3_arg(2 args)',
-    'call_two_arg(2 args)',
-);
-        $this->unexpected = array();
+        $this->expected = array('function_without_return','fwr_x::method_without_return','fwr_x::static_method_without_return');
+        $this->unexpected = array('function_with_return','method_with_return','static_method_with_return',
+                                  '::function_with_return','::method_with_return','::static_method_with_return',
+                                  'fwr_x::function_with_return','fwr_x::method_with_return','fwr_x::static_method_with_return'
+        );
         
         parent::generic_test();
     }

@@ -18,7 +18,7 @@
  */
 include_once('Auditeur_Framework_TestCase.php');
 
-class functions_unused_Test extends Auditeur_Framework_TestCase
+class Functions_Unused_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
         $this->expected = array('defined_but_not_used');

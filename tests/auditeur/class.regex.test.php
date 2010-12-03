@@ -25,7 +25,6 @@ class regex_Test extends Auditeur_Framework_TestCase
         $this->unexpected = array(/*'',*/);
         
         parent::generic_test();
-//        parent::generic_counted_test();
     }
 }
 ?>

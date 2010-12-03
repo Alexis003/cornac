@@ -19,14 +19,13 @@
 
 include_once('Auditeur_Framework_TestCase.php');
 
-class zfSession_Test extends Auditeur_Framework_TestCase
+class Functions_UnusedReturn_Test extends Auditeur_Framework_TestCase
 {
-    public function testzfSession()  {
-        $this->expected = array( 'Zend_Session_Namespace');
-        $this->unexpected = array('un_namespace_avec_des_donnes_presentes',);
+    public function testfunction_return_unused()  {
+        $this->expected = array( 'md5');
+        $this->unexpected = array('rand','strtolower','strtoupper','echo');
 
         parent::generic_test();
-//        parent::generic_counted_test();
     }
 }
 ?>

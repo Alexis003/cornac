@@ -15,20 +15,15 @@
    +----------------------------------------------------------------------+
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
- */
-include_once('Auditeur_Framework_TestCase.php');
+ */include_once('Auditeur_Framework_TestCase.php');
 
-class functions_without_returns_Test extends Auditeur_Framework_TestCase
+class Zf_Dependencies_Test extends Auditeur_Framework_TestCase
 {
-    public function testVariables()  { 
-        $this->expected = array('function_without_return','fwr_x::method_without_return','fwr_x::static_method_without_return');
-        $this->unexpected = array('function_with_return','method_with_return','static_method_with_return',
-                                  '::function_with_return','::method_with_return','::static_method_with_return',
-                                  'fwr_x::function_with_return','fwr_x::method_with_return','fwr_x::static_method_with_return'
-        );
-        
+    public function test_Zf_Dependencies()  {
+        $this->expected = array( 'Zend_Mail','Zend_Pdf');
+        $this->unexpected = array('$x',);
+
         parent::generic_test();
     }
 }
-
 ?>
