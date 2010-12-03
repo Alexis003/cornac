@@ -15,62 +15,45 @@
    +----------------------------------------------------------------------+
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
- */
-include_once('Auditeur_Framework_TestCase.php');
+ */include_once('Auditeur_Framework_TestCase.php');
 
-class ldap_functions_Test extends Auditeur_Framework_TestCase
+class Ext_Mssql_Test extends Auditeur_Framework_TestCase
 {
-    public function testldap_functions()  { 
+    public function testmssql_functions()  {
         $this->expected = array( 
-'ldap_8859_to_t61',
-'ldap_add',
-'ldap_bind',
-'ldap_close',
-'ldap_compare',
-'ldap_connect',
-'ldap_count_entries',
-'ldap_delete',
-'ldap_dn2ufn',
-'ldap_err2str',
-'ldap_errno',
-'ldap_error',
-'ldap_explode_dn',
-'ldap_first_attribute',
-'ldap_first_entry',
-'ldap_first_reference',
-'ldap_free_result',
-'ldap_get_attributes',
-'ldap_get_dn',
-'ldap_get_entries',
-'ldap_get_option',
-'ldap_get_values_len',
-'ldap_get_values',
-'ldap_list',
-'ldap_mod_add',
-'ldap_mod_del',
-'ldap_mod_replace',
-'ldap_modify',
-'ldap_next_attribute',
-'ldap_next_entry',
-'ldap_next_reference',
-'ldap_parse_reference',
-'ldap_parse_result',
-'ldap_read',
-'ldap_rename',
-'ldap_sasl_bind',
-'ldap_search',
-'ldap_set_option',
-'ldap_set_rebind_proc',
-'ldap_sort',
-'ldap_start_tls',
-'ldap_t61_to_8859',
-'ldap_unbind',
-
-        );
+'mssql_bind',
+'mssql_close',
+'mssql_connect',
+'mssql_data_seek',
+'mssql_execute',
+'mssql_fetch_array',
+'mssql_fetch_assoc',
+'mssql_fetch_batch',
+'mssql_fetch_field',
+'mssql_fetch_object',
+'mssql_fetch_row',
+'mssql_field_length',
+'mssql_field_name',
+'mssql_field_seek',
+'mssql_field_type',
+'mssql_free_result',
+'mssql_free_statement',
+'mssql_get_last_message',
+'mssql_guid_string',
+'mssql_init',
+'mssql_min_error_severity',
+'mssql_min_message_severity',
+'mssql_next_result',
+'mssql_num_fields',
+'mssql_num_rows',
+'mssql_pconnect',
+'mssql_query',
+'mssql_result',
+'mssql_rows_affected',
+'mssql_select_db',);
         $this->unexpected = array(/*'',*/);
-        
+
         parent::generic_test();
-//        parent::generic_counted_test();
     }
 }
 ?>

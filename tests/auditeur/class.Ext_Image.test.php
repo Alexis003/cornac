@@ -18,7 +18,7 @@
  */
 include_once('Auditeur_Framework_TestCase.php');
 
-class image_functions_Test extends Auditeur_Framework_TestCase
+class Ext_Image_Test extends Auditeur_Framework_TestCase
 {
     public function testimage_functions()  { 
         $this->expected = array( 'gd_info',

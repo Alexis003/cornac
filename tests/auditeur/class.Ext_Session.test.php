@@ -15,17 +15,36 @@
    +----------------------------------------------------------------------+
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
- */
-include_once('Auditeur_Framework_TestCase.php');
+ */include_once('Auditeur_Framework_TestCase.php');
 
-class xml_functions_Test extends Auditeur_Framework_TestCase
+class Ext_Session_Test extends Auditeur_Framework_TestCase
 {
-    public function testVariables()  { 
-        $this->expected = array('xml_parser_create','xml_parser_create_ns','xml_set_object','xml_set_element_handler','xml_set_character_data_handler','xml_set_processing_instruction_handler','xml_set_default_handler','xml_set_unparsed_entity_decl_handler','xml_set_notation_decl_handler','xml_set_external_entity_ref_handler','xml_set_start_namespace_decl_handler','xml_set_end_namespace_decl_handler','xml_parse','xml_parse_into_struct','xml_get_error_code','xml_error_string','xml_get_current_line_number','xml_get_current_column_number','xml_get_current_byte_index','xml_parser_free','xml_parser_set_option','xml_parser_get_option','utf8_encode','utf8_decode');
-        $this->unexpected = array();
-        
+    public function testsession_functions()  {
+        $this->expected = array( 
+'session_name',
+'session_module_name',
+'session_save_path',
+'session_id',
+'session_regenerate_id',
+'session_decode',
+'session_register',
+'session_unregister',
+'session_is_registered',
+'session_encode',
+'session_start',
+'session_destroy',
+'session_unset',
+'session_set_save_handler',
+'session_cache_limiter',
+'session_cache_expire',
+'session_set_cookie_params',
+'session_get_cookie_params',
+'session_write_close',
+'session_commit',
+        );
+        $this->unexpected = array(/*'',*/);
+
         parent::generic_test();
     }
 }
-
 ?>

@@ -15,36 +15,62 @@
    +----------------------------------------------------------------------+
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
- */include_once('Auditeur_Framework_TestCase.php');
+ */
+include_once('Auditeur_Framework_TestCase.php');
 
-class session_functions_Test extends Auditeur_Framework_TestCase
+class Ext_Ldap_Test extends Auditeur_Framework_TestCase
 {
-    public function testsession_functions()  {
+    public function testldap_functions()  { 
         $this->expected = array( 
-'session_name',
-'session_module_name',
-'session_save_path',
-'session_id',
-'session_regenerate_id',
-'session_decode',
-'session_register',
-'session_unregister',
-'session_is_registered',
-'session_encode',
-'session_start',
-'session_destroy',
-'session_unset',
-'session_set_save_handler',
-'session_cache_limiter',
-'session_cache_expire',
-'session_set_cookie_params',
-'session_get_cookie_params',
-'session_write_close',
-'session_commit',
+'ldap_8859_to_t61',
+'ldap_add',
+'ldap_bind',
+'ldap_close',
+'ldap_compare',
+'ldap_connect',
+'ldap_count_entries',
+'ldap_delete',
+'ldap_dn2ufn',
+'ldap_err2str',
+'ldap_errno',
+'ldap_error',
+'ldap_explode_dn',
+'ldap_first_attribute',
+'ldap_first_entry',
+'ldap_first_reference',
+'ldap_free_result',
+'ldap_get_attributes',
+'ldap_get_dn',
+'ldap_get_entries',
+'ldap_get_option',
+'ldap_get_values_len',
+'ldap_get_values',
+'ldap_list',
+'ldap_mod_add',
+'ldap_mod_del',
+'ldap_mod_replace',
+'ldap_modify',
+'ldap_next_attribute',
+'ldap_next_entry',
+'ldap_next_reference',
+'ldap_parse_reference',
+'ldap_parse_result',
+'ldap_read',
+'ldap_rename',
+'ldap_sasl_bind',
+'ldap_search',
+'ldap_set_option',
+'ldap_set_rebind_proc',
+'ldap_sort',
+'ldap_start_tls',
+'ldap_t61_to_8859',
+'ldap_unbind',
+
         );
         $this->unexpected = array(/*'',*/);
-
+        
         parent::generic_test();
+//        parent::generic_counted_test();
     }
 }
 ?>

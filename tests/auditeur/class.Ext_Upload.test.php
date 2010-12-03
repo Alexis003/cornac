@@ -15,25 +15,17 @@
    +----------------------------------------------------------------------+
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
- */include_once('Auditeur_Framework_TestCase.php');
+ */
+include_once('Auditeur_Framework_TestCase.php');
 
-class dir_functions_Test extends Auditeur_Framework_TestCase
+class Ext_Upload_Test extends Auditeur_Framework_TestCase
 {
-    public function testdir_functions()  {
-        $this->expected = array( 
-'chdir',
-'chroot',
-'dir',
-'closedir',
-'getcwd',
-'opendir',
-'readdir',
-'rewinddir',
-'scandir',
-);
-        $this->unexpected = array(/*'',*/);
-
+    public function testVariables()  { 
+        $this->expected = array('move_uploaded_file','is_uploaded_file','rename',);
+        $this->unexpected = array();
+        
         parent::generic_test();
     }
 }
+
 ?>
