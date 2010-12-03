@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class rawtext_whitespace extends modules {
+class Literals_RawtextWhitespace extends modules {
 	protected	$title = 'rawtext whitespace';
 	protected	$description = 'Spot out-of-php tags content that is empty (?>   <?php ) : this is probably useless.  ';
 

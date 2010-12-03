@@ -17,9 +17,9 @@
    +----------------------------------------------------------------------+
  */
 
-class proprietes_publiques extends modules {
-	protected	$description = 'Liste des propriétés publiques';
-	protected	$title = 'Propriétés publiques';
+class Classes_PropertiesPublic extends modules {
+	protected	$description = 'Public properties';
+	protected	$title = 'List of public properties in classes. Defined as such, or used as such.';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -30,7 +30,7 @@ class proprietes_publiques extends modules {
         
         // @doc cas of simple public var
         $query = <<<SQL
-SELECT NULL, T1.file, CONCAT(T1.class,'::',T2.code), T1.id,  'proprietes_publiques', 0
+SELECT NULL, T1.file, CONCAT(T1.class,'::',T2.code), T1.id,  '{$this->name}', 0
 FROM <tokens> T1 
 LEFT JOIN <tokens> T2
     ON T1.left + 1 = T2.left AND
@@ -42,7 +42,7 @@ SQL;
 
         // @doc cas of simple public var
         $query = <<<SQL
-SELECT NULL, T1.file, CONCAT(T1.class,'::',T3.code), T1.id,  'proprietes_publiques', 0
+SELECT NULL, T1.file, CONCAT(T1.class,'::',T3.code), T1.id,  '{$this->name}', 0
 FROM <tokens> T1 
 LEFT JOIN <tokens> T2
     ON T1.left + 1 = T2.left AND
@@ -58,7 +58,7 @@ SQL;
         $this->exec_query_insert('rapport',$query);
 
         $query = <<<SQL
-SELECT NULL, T1.file, CONCAT(T1.class,'::',T4.code), T1.id,  'proprietes_publiques', 0
+SELECT NULL, T1.file, CONCAT(T1.class,'::',T4.code), T1.id,  '{$this->name}', 0
 FROM <tokens> T1 
 JOIN <tokens> T2
     ON T1.left + 1 = T2.left AND

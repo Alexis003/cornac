@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -17,36 +17,21 @@
    +----------------------------------------------------------------------+
  */
 
-class comparison_constant extends modules {
-	protected	$title = 'Static comparison';
-	protected	$description = 'Comparison that have no variable part, nor is trying to guess the current PHP installation.';
+class Functions_Occurrences extends noms {
+	protected	$title = 'Function frequency';
+	protected	$description = 'List all function call, and their frequency.';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
-
-	function dependsOn() {
-	    return array();
-	}
-
+	
 	public function analyse() {
-        $this->clean_rapport();
-
-	    $query = <<<SQL
-SELECT NULL, T1.file, CONCAT('line ', T1.line, ' : ', T1.code), T1.id, '{$this->name}', 0
-FROM <tokens> T1
-LEFT JOIN <tokens> T2
-    ON T2.file = T1.file AND
-       T2.left BETWEEN T1.left AND T1.right AND
-       ( T2.type = 'variable' OR
-         T2.code = 'function_exists')
-WHERE T1.type IN ( 'logique','comparison')
-GROUP BY T1.id
-HAVING COUNT(T2.id) = 0
-SQL;
-        $this->exec_query_insert('rapport', $query);
-
-        return true;
+	    $this->noms['type_token'] = 'functioncall';
+	    $this->noms['type_tags'] = 'function';
+	    
+	    parent::analyse();
+	    
+	    return true;
 	}
 }
 

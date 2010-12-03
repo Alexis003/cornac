@@ -1,4 +1,4 @@
-<?php
+<?php 
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -17,36 +17,36 @@
    +----------------------------------------------------------------------+
  */
 
-class unused_properties extends modules {
-	protected	$title = 'Unused properties';
-	protected	$description = 'List unused properties : they are defined in a class, but never used in the code.';
+class Structures_ComparisonConstants extends modules {
+	protected	$title = 'Static comparison';
+	protected	$description = 'Comparison that have no variable part, nor is trying to guess the current PHP installation.';
 
-    function __construct($mid) {
+	function __construct($mid) {
         parent::__construct($mid);
-    }
+	}
+
+	function dependsOn() {
+	    return array();
+	}
 
 	public function analyse() {
         $this->clean_rapport();
 
-        $query = <<<SQL
-SELECT NULL, T1.file, T1.code AS code, T1.id, '{$this->name}', 0
-FROM <tokens> T1 
-WHERE scope='global'   AND 
-      type ='variable' AND  
-      class != '' AND  
-      code NOT IN (  
-         SELECT CONCAT('$', S2.code)
-           FROM <tokens> S1
-           JOIN <tokens> S2
-             ON S2.file = S1.file AND 
-                S2.left BETWEEN S1.left AND S1.right
-           WHERE S1.class  = T1.class AND 
-                 S1.scope != 'global'  AND 
-                 S1.type   = 'property' AND 
-                 S2.type='literals' 
-                  )
+	    $query = <<<SQL
+SELECT NULL, T1.file, CONCAT('line ', T1.line, ' : ', T1.code), T1.id, '{$this->name}', 0
+FROM <tokens> T1
+LEFT JOIN <tokens> T2
+    ON T2.file = T1.file AND
+       T2.left BETWEEN T1.left AND T1.right AND
+       ( T2.type = 'variable' OR
+         T2.code = 'function_exists')
+WHERE T1.type IN ( 'logique','comparison')
+GROUP BY T1.id
+HAVING COUNT(T2.id) = 0
 SQL;
         $this->exec_query_insert('rapport', $query);
+
+        return true;
 	}
 }
 

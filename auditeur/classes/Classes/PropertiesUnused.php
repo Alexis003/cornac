@@ -17,21 +17,36 @@
    +----------------------------------------------------------------------+
  */
 
-class functions_frequency extends noms {
-	protected	$title = 'Function frequency';
-	protected	$description = 'List all function call, and their frequency.';
+class Classes_PropertiesUnused extends modules {
+	protected	$title = 'Unused properties';
+	protected	$description = 'List unused properties : they are defined in a class, but never used in the code.';
 
-	function __construct($mid) {
+    function __construct($mid) {
         parent::__construct($mid);
-	}
-	
+    }
+
 	public function analyse() {
-	    $this->noms['type_token'] = 'functioncall';
-	    $this->noms['type_tags'] = 'function';
-	    
-	    parent::analyse();
-	    
-	    return true;
+        $this->clean_rapport();
+
+        $query = <<<SQL
+SELECT NULL, T1.file, T1.code AS code, T1.id, '{$this->name}', 0
+FROM <tokens> T1 
+WHERE scope='global'   AND 
+      type ='variable' AND  
+      class != '' AND  
+      code NOT IN (  
+         SELECT CONCAT('$', S2.code)
+           FROM <tokens> S1
+           JOIN <tokens> S2
+             ON S2.file = S1.file AND 
+                S2.left BETWEEN S1.left AND S1.right
+           WHERE S1.class  = T1.class AND 
+                 S1.scope != 'global'  AND 
+                 S1.type   = 'property' AND 
+                 S2.type='literals' 
+                  )
+SQL;
+        $this->exec_query_insert('rapport', $query);
 	}
 }
 
