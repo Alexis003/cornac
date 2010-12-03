@@ -15,15 +15,17 @@
    +----------------------------------------------------------------------+
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
- */include_once('Auditeur_Framework_TestCase.php');
+ */
+include_once('Auditeur_Framework_TestCase.php');
 
-class php_classes_name_conflict_Test extends Auditeur_Framework_TestCase
+class Functions_Php_Test extends Auditeur_Framework_TestCase
 {
-    public function testphp_classes_name_conflict()  { 
-        $this->expected = array( 'variant');
-        $this->unexpected = array('stdCLass',);
+    public function testVariables()  { 
+        $this->expected = array('xdebug_get_stack_depth','sqlite_open','echo','ECHO', 'eCHo');
+        $this->unexpected = array();
         
         parent::generic_test();
     }
 }
+
 ?>

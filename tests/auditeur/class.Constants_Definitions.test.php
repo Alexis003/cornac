@@ -18,14 +18,17 @@
  */
 include_once('Auditeur_Framework_TestCase.php');
 
-class Classes_Used_Test extends Auditeur_Framework_TestCase
+class Constants_Definitions_Test extends Auditeur_Framework_TestCase
 {
-    public function testVariables()  { 
-        $this->expected = array('a','b','c');
-        $this->unexpected = array('d');
+    public function testdefconstantes()  { 
+        $this->expected = array( 'DEFINED_CONSTANTS',
+                                  'DEFINED_CONSTANTS2',);
+        $this->unexpected = array('true',
+                                  '__METHOD__',
+                                  'UNDEFINED_CONSTANTE',);
         
         parent::generic_test();
+//        parent::generic_counted_test();
     }
 }
-
 ?>

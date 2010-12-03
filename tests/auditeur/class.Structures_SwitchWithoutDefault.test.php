@@ -19,13 +19,14 @@
 
 include_once('Auditeur_Framework_TestCase.php');
 
-class recursive_Test extends Auditeur_Framework_TestCase
+class Structures_SwitchWithoutDefault_Test extends Auditeur_Framework_TestCase
 {
-    public function testrecursive()  {
-        $this->expected = array( '::recursive_function','x::recursive_method');
-        $this->unexpected = array('not_recursive_function','x::not_recursive_method');
+    public function testswitch_without_default()  {
+        $this->expected = array( 'switch ($y)');
+        $this->unexpected = array('switch ($x)',);
 
         parent::generic_test();
+//        parent::generic_counted_test();
     }
 }
 ?>

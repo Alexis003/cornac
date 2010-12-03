@@ -17,11 +17,11 @@
    +----------------------------------------------------------------------+
  */include_once('Auditeur_Framework_TestCase.php');
 
-class php_functions_name_conflict_Test extends Auditeur_Framework_TestCase
+class Php_ClassesConflict_Test extends Auditeur_Framework_TestCase
 {
-    public function testphp_functions_name_conflict()  { 
-        $this->expected = array( 'fbsql_username');
-        $this->unexpected = array('fbsql_username_hopefully',);
+    public function testphp_classes_name_conflict()  { 
+        $this->expected = array( 'variant');
+        $this->unexpected = array('stdCLass',);
         
         parent::generic_test();
     }

@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -15,19 +15,15 @@
    +----------------------------------------------------------------------+
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
- */
+ */include_once('Auditeur_Framework_TestCase.php');
 
-include_once('Auditeur_Framework_TestCase.php');
-
-class literals_as_argref_Test extends Auditeur_Framework_TestCase
+class Php_ConstantConflict_Test extends Auditeur_Framework_TestCase
 {
-    public function testliterals_as_argref()  {
-        $this->markTestSkipped('Won\'t work on PHP 5.3');
-        $this->expected = array( '');
-        $this->unexpected = array(/*'',*/);
-
+    public function testphp_constant_name_conflict()  { 
+        $this->expected = array( 'FBSQL_ASSOC');
+        $this->unexpected = array('true');
+        
         parent::generic_test();
-//        parent::generic_counted_test();
     }
 }
 ?>

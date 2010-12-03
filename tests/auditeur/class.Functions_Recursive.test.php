@@ -1,4 +1,4 @@
-<?php
+<?php 
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -16,16 +16,16 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
+
 include_once('Auditeur_Framework_TestCase.php');
 
-class undeffunctions_Test extends Auditeur_Framework_TestCase
+class Functions_Recursive_Test extends Auditeur_Framework_TestCase
 {
-    public function testVariables()  { 
-        $this->expected = array('undefined_function');
-        $this->unexpected = array('defined_function',);
-        
+    public function testrecursive()  {
+        $this->expected = array( '::recursive_function','x::recursive_method');
+        $this->unexpected = array('not_recursive_function','x::not_recursive_method');
+
         parent::generic_test();
     }
 }
-
 ?>

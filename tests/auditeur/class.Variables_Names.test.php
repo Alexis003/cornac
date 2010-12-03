@@ -18,11 +18,11 @@
  */
 include_once('Auditeur_Framework_TestCase.php');
 
-class php_functions_Test extends Auditeur_Framework_TestCase
+class Variables_Names_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
-        $this->expected = array('xdebug_get_stack_depth','sqlite_open','echo','ECHO', 'eCHo');
-        $this->unexpected = array();
+        $this->expected = array('$a','$b','$c','$d','$e','$y', '$or', '$x', '$$or', '$$or2', '$or2');
+        $this->unexpected = array('$z','$');
         
         parent::generic_test();
     }

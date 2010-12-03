@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -16,17 +16,16 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
-
 include_once('Auditeur_Framework_TestCase.php');
 
-class switch_without_default_Test extends Auditeur_Framework_TestCase
+class Php_Throws_Test extends Auditeur_Framework_TestCase
 {
-    public function testswitch_without_default()  {
-        $this->expected = array( 'switch ($y)');
-        $this->unexpected = array('switch ($x)',);
-
+    public function testVariables()  { 
+        $this->expected = array('Exception', );
+        $this->unexpected = array();
+        
         parent::generic_test();
-//        parent::generic_counted_test();
     }
 }
+
 ?>

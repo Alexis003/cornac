@@ -18,13 +18,14 @@
  */
 include_once('Auditeur_Framework_TestCase.php');
 
-class regex_Test extends Auditeur_Framework_TestCase
+class Classes_Definitions_Test extends Auditeur_Framework_TestCase
 {
-    public function testregex()  { 
-        $this->expected = array( '/regex/','/regex2/is','/regex3/m',);
-        $this->unexpected = array(/*'',*/);
+    public function testVariables()  { 
+        $this->expected = array('a','b','c');
+        $this->unexpected = array('d');
         
         parent::generic_test();
     }
 }
+
 ?>

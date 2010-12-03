@@ -18,7 +18,7 @@
  */
 include_once('Auditeur_Framework_TestCase.php');
 
-class literals_reused_Test extends Auditeur_Framework_TestCase
+class Literals_Reused_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
         $this->expected = array('b_reused','c_reused_thrice','1');

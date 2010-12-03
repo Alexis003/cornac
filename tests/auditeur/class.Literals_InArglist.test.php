@@ -1,4 +1,4 @@
-<?php
+<?php 
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -16,16 +16,18 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
+
 include_once('Auditeur_Framework_TestCase.php');
 
-class arglist_disc_Test extends Auditeur_Framework_TestCase
+class Literals_InArglist_Test extends Auditeur_Framework_TestCase
 {
-    public function testVariables()  { 
-        $this->expected = array('arglist_def_2(3 args)', );
-        $this->unexpected = array('arglist_def_ok(1 args)','arglist_def_ok_2(1 args)');
-        
+    public function testliterals_as_argref()  {
+        $this->markTestSkipped('Won\'t work on PHP 5.3');
+        $this->expected = array( '');
+        $this->unexpected = array(/*'',*/);
+
         parent::generic_test();
+//        parent::generic_counted_test();
     }
 }
-
 ?>

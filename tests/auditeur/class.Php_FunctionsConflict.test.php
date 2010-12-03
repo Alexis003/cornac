@@ -15,17 +15,15 @@
    +----------------------------------------------------------------------+
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
- */
-include_once('Auditeur_Framework_TestCase.php');
+ */include_once('Auditeur_Framework_TestCase.php');
 
-class variablesvariables_Test extends Auditeur_Framework_TestCase
+class Php_FunctionsConflict_Test extends Auditeur_Framework_TestCase
 {
-    public function testVariables()  { 
-        $this->expected = array('$$c','$$$d','$$d','$$$e','$$e','$$or','$$or2','$curOr.$y');
-        $this->unexpected = array('b','$x','$y','curOr');
+    public function testphp_functions_name_conflict()  { 
+        $this->expected = array( 'fbsql_username');
+        $this->unexpected = array('fbsql_username_hopefully',);
         
         parent::generic_test();
     }
 }
-
 ?>

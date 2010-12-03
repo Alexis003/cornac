@@ -18,7 +18,7 @@
  */
 include_once('Auditeur_Framework_TestCase.php');
 
-class variables_unaffected_Test extends Auditeur_Framework_TestCase
+class Variables_Unaffected_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
         $this->expected = array('$vu_unaffected',);

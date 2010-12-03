@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -16,18 +16,15 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
-
 include_once('Auditeur_Framework_TestCase.php');
 
-class tostring_no_arg_Test extends Auditeur_Framework_TestCase
+class Php_RegexStrings_Test extends Auditeur_Framework_TestCase
 {
-    public function testtostring_no_arg()  {
-        $this->markTestSkipped('Won\'t work on PHP 5.3');
-        $this->expected = array( 'good_tostring');
-        $this->unexpected = array();
-
+    public function testregex()  { 
+        $this->expected = array( '/regex/','/regex2/is','/regex3/m',);
+        $this->unexpected = array(/*'',*/);
+        
         parent::generic_test();
-//        parent::generic_counted_test();
     }
 }
 ?>

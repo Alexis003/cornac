@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */include_once('Auditeur_Framework_TestCase.php');
 
-class handlers_Test extends Auditeur_Framework_TestCase
+class Functions_Handlers_Test extends Auditeur_Framework_TestCase
 {
     public function testhandlers()  { 
         $this->expected = array( 
