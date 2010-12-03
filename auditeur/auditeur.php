@@ -60,8 +60,6 @@ $modules = array(
 'affectations_variables',
 //'appelsfonctions', // @_
 'arobases',
-//'classes', @_
-//'classes_hierarchie', @_
 'constantes',
 'constantes_classes',
 'defconstantes',
@@ -72,16 +70,9 @@ $modules = array(
 'dieexit',
 'dir_functions',
 'emptyfunctions',
-//'ereg_functions' @_, 
-//'ereg_functions' @_, 
-'Ext_Ereg',
 'error_functions',
 'evals',
 'execs',
-//'file_functions' @_, 
-'Ext_File',
-//'filter_functions', @_
-'Ext_Filter',
 'functions_frequency',
 'functions_unused',
 'functionscalls',
@@ -100,10 +91,6 @@ $modules = array(
 'methodscall',
 'multi_def_files',
 'mssql_functions',
-//'mysql_functions' @_, 
-'Ext_Mysql',
-//'mysqli_functions' @_, 
-'Ext_Mysqli',
 'nestedif',
 'nestedloops',
 'parentheses',
@@ -127,14 +114,8 @@ $modules = array(
 'variablesvariables',
 'xdebug_functions',
 'xml_functions',
-//'zfAction', @_ 
-//'zfController', @_
-//'zfElements',@_
-//'zfGetGPC',@_
 'properties_defined',
 'properties_used',
-//'classes_unused', @_
-//'classes_undefined', @_
 'html_tags',
 //'affectations_gpc', @_
 //'classes_nb_methods', @_
@@ -185,7 +166,6 @@ $modules = array(
 'php_functions_name_conflict',
 'php_constant_name_conflict',
 'php_classes_name_conflict',
-//'zfDependencies', @_
 'abstracts',
 'finals',
 'function_args_reference',
@@ -204,14 +184,9 @@ $modules = array(
 'comparison_constant',
 'random_functions',
 'if_no_comparison',
-//'zfRedirect', @_
-//'zfSQL', @_
-// 'zfSession',@_
-// 'zfTypeView', @_
-// 'zfDb', @_
 'case_without_break',
 'switch_without_default',
-//'zfViewVariables', @_
+
 'Zf',
 'Zf_Action',
 'Zf_Classes',
@@ -232,6 +207,14 @@ $modules = array(
 'Classes_Undefined',
 'Classes_Unused',
 'Classes_Used',
+
+'Ext',
+'Ext_Mysql',
+'Ext_File',
+'Ext_Ereg',
+'Ext_Filter',
+'Ext_Mysqli',
+
 // new analyzers
 );
 
