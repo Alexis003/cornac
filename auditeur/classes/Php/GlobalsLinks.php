@@ -17,28 +17,30 @@
    +----------------------------------------------------------------------+
  */
 
-class arobases extends modules {
-    protected    $description = 'Arobases';
-    protected    $title = 'Utilisateur de l\'opérateur @ dans le code';
+class Php_GlobalsLinks extends modules {
+	protected	$title = 'Réseau des globales';
+	protected	$description = 'Liste des dépendances de globales entre les files';
 
-    function __construct($mid) {
+	function __construct($mid) {
         parent::__construct($mid);
-    }
-    
-    public function analyse() {
-        $this->clean_rapport();
-
-        $query = <<<SQL
-SELECT NULL, TC.file, TC.code AS code, T1.id, '{$this->name}', 0
-FROM <tokens> T1
-LEFT JOIN <tokens_cache>  TC 
-    ON T1.id = TC.id 
-WHERE T1.type='noscream' 
-SQL;
-        $this->exec_query_insert('rapport', $query);
         
-        return true;
-    }
+        $this->format = modules::FORMAT_DOT;
+	}
+	
+	public function analyse() {
+        $this->clean_rapport();
+        
+        $query = <<<SQL
+INSERT INTO <rapport_dot>
+SELECT DISTINCT TR1.file, TR2.file, TR1.element, '{$this->name}'
+FROM <rapport> TR1
+JOIN <rapport> TR2
+    ON TR1.element = TR2.element AND
+       TR2.module='globals'
+WHERE TR1.module='globals'
+SQL;
+        $res = $this->exec_query($query);
+	}
 }
 
 ?>

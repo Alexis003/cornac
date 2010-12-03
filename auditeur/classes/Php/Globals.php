@@ -17,29 +17,46 @@
    +----------------------------------------------------------------------+
  */
 
-class returns extends modules {
-	protected	$title = 'Returns';
-	protected	$description = 'Liste des utilisations de la commande return';
+class Php_Globals extends modules {
+    protected    $title = 'Globals';
+    protected    $description = 'Global variables in use';
 
-	function __construct($mid) {
+    function __construct($mid) {
         parent::__construct($mid);
-	}
-	
-	public function analyse() {
+    }
+    
+    public function analyse() {
         $this->clean_rapport();
-
-        $concat = $this->concat("sum(type='_return')", "' returns'");
+        
+        // @note variable global thanks to the global reserved word
         $query = <<<SQL
-SELECT NULL, T1.file, $concat, T1.id, '{$this->name}' , 0
+SELECT NULL, T2.file, T2.code AS code, T2.id, '{$this->name}', 0
 FROM <tokens> T1
-WHERE scope NOT IN ( '__construct','__destruct','__set','__get','__call','__clone','__toString','__wakeup','__sleep') 
- AND scope != class AND (class != 'global' AND scope != 'global')
-GROUP BY file, class, scope 
+JOIN <tokens> T2 
+    ON T1.left + 1 = T2.left AND
+       T1.file = T2.file
+WHERE T1.type='_global' 
 SQL;
-        $this->exec_query_insert('rapport',$query);
-
+        $this->exec_query_insert('rapport', $query);
+        
+        // @note variables globales because in $GLOBALS
+       $query = <<<SQL
+SELECT NULL, T1.file, T3.code AS code, T2.id, '{$this->name}', 0
+FROM <tokens> T1
+JOIN <tokens> T2 
+    ON T1.left + 1 = T2.left AND
+       T1.file = T2.file
+LEFT JOIN <tokens_cache> T3
+    ON T1.id = T3.id AND
+       T1.file = T3.file
+WHERE T1.type = '_array' AND
+      T2.code = '\$GLOBALS';
+SQL;
+        $this->exec_query_insert('rapport', $query);
+        
         return true;
-	}
+    }    
+    
 }
 
 ?>

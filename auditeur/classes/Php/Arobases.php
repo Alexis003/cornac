@@ -17,9 +17,9 @@
    +----------------------------------------------------------------------+
  */
 
-class globals extends modules {
-    protected    $title = 'Globals';
-    protected    $description = 'Global variables in use';
+class Php_Arobases extends modules {
+    protected    $description = 'Arobases';
+    protected    $title = 'Utilisateur de l\'opérateur @ dans le code';
 
     function __construct($mid) {
         parent::__construct($mid);
@@ -27,36 +27,18 @@ class globals extends modules {
     
     public function analyse() {
         $this->clean_rapport();
-        
-        // @note variable global thanks to the global reserved word
+
         $query = <<<SQL
-SELECT NULL, T2.file, T2.code AS code, T2.id, '{$this->name}', 0
+SELECT NULL, TC.file, TC.code AS code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
-JOIN <tokens> T2 
-    ON T1.left + 1 = T2.left AND
-       T1.file = T2.file
-WHERE T1.type='_global' 
-SQL;
-        $this->exec_query_insert('rapport', $query);
-        
-        // @note variables globales because in $GLOBALS
-       $query = <<<SQL
-SELECT NULL, T1.file, T3.code AS code, T2.id, '{$this->name}', 0
-FROM <tokens> T1
-JOIN <tokens> T2 
-    ON T1.left + 1 = T2.left AND
-       T1.file = T2.file
-LEFT JOIN <tokens_cache> T3
-    ON T1.id = T3.id AND
-       T1.file = T3.file
-WHERE T1.type = '_array' AND
-      T2.code = '\$GLOBALS';
+LEFT JOIN <tokens_cache>  TC 
+    ON T1.id = TC.id 
+WHERE T1.type='noscream' 
 SQL;
         $this->exec_query_insert('rapport', $query);
         
         return true;
-    }    
-    
+    }
 }
 
 ?>

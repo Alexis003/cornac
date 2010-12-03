@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class references extends modules {
+class Php_References extends modules {
 	protected	$title = 'References';
 	protected	$description = 'Liste des références faites';
 
