@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -17,52 +17,41 @@
    +----------------------------------------------------------------------+
  */
 
-class pearClasses extends modules {
-	protected	$title = 'Pear usage';
-	protected	$description = 'Spot usage of classes from PEAR.';
+class Functions_WithoutReturns extends modules {
+	protected	$title = 'Functions without return';
+	protected	$description = 'Functions/methods which have no return. They only return null, all the time.';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
-
-	function dependsOn() {
-	    return array();
-	}
-
+	
 	public function analyse() {
         $this->clean_rapport();
 
-        $list = modules::getPearClasses();
-        $in = "'".join("', '", $list)."'";
-        
-        // @note classes extended
-	    $query = <<<SQL
-SELECT NULL, T1.file, T2.code, T1.id, '{$this->name}', 0
+// @note for methods
+        $query = <<<SQL
+SELECT NULL, T1.file, CONCAT(T1.class,'::', T1.scope), T1.id, '{$this->name}', 0
 FROM <tokens> T1
-JOIN <tokens_tags> TT 
-    ON TT.token_id = T1.id AND
-       TT.type = 'extends'
-JOIN <tokens> T2
-    ON TT.token_sub_id = T2.id AND
-       T1.file = T2.file AND 
-       T2.code IN ($in)
-WHERE T1.type='_class'; 
+WHERE T1.class != '' AND
+      T1.scope!='global' AND 
+      T1.scope NOT IN ('__construct','__destruct')
+GROUP BY file, class, scope 
+HAVING SUM(if(type='_return', 1, 0)) = 0
 SQL;
         $this->exec_query_insert('rapport', $query);
 
-        // @note classes directly used
-	    $query = <<<SQL
-SELECT NULL, T1.file, T2.code, T1.id, '{$this->name}', 0
+// @note for functions
+        $query = <<<SQL
+SELECT NULL, T1.file, T1.scope, T1.id, '{$this->name}', 0
 FROM <tokens> T1
-JOIN <tokens> T2
-    ON T2.left = T1.left + 1 AND
-       T1.file = T2.file AND 
-       T2.code IN ($in)
-WHERE T1.type='_new'; 
+WHERE T1.class = '' AND 
+     T1.scope != 'global'
+GROUP BY file, class, scope 
+HAVING SUM(if(type='_return' OR code IN ('die','exit'), 1, 0)) = 0
 SQL;
         $this->exec_query_insert('rapport', $query);
         
-        return true;
+        return true; 
 	}
 }
 

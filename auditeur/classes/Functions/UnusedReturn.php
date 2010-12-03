@@ -1,4 +1,4 @@
-<?php
+<?php 
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -17,31 +17,39 @@
    +----------------------------------------------------------------------+
  */
 
-class functions_unused extends modules {
-    protected $title = 'Unused functions'; 
-    protected $description = 'List of unused functions'; 
+class Functions_UnusedReturn extends modules {
+	protected	$title = 'Unused return values';
+	protected	$description = 'Spot function whose return values are not used. Function is called, but result is just ignored.';
+	protected   $tags = array('quality');
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
-	
+
 	function dependsOn() {
-	    return array('functionscalls','deffunctions');
+	    return array();
 	}
-	
+
 	public function analyse() {
         $this->clean_rapport();
 
-        $query = <<<SQL
-SELECT NULL, TR1.file, TR1.element AS code, TR1.id, '{$this->name}', 0
-FROM <rapport> TR1
-LEFT JOIN <rapport>  TR2 
-ON TR1.element = TR2.element AND TR2.module='functionscalls' 
-WHERE TR1.module = 'deffunctions' AND 
-      TR2.module IS NULL AND
-      TR1.element NOT IN ('__autoload')
+// @todo update list of authorize functions (first IN)
+// @todo check on other application the list of authorized structures (second IN)
+// @todo make another level for noscream, arobases, etc. : or find a way to ignore them
+// @todo check immediatly if return value is used in a foreach 
+	    $query = <<<SQL
+SELECT NULL, T1.file, T1.code, T1.id, '{$this->name}', 0
+FROM <tokens> T1
+JOIN <tokens> T2 
+    ON T2.file = T1.file AND
+       T1.left BETWEEN T2.left AND T2.right AND
+       T2.level = T1.level - 1
+WHERE T1.type = 'functioncall' AND
+      T1.code NOT IN ('echo','print','define') AND 
+      T2.type NOT IN ('noscream','arginit','_array','comparison','logique','clevaleur','cdtternaire','not','concatenation','method_static','parentheses','method','affectation','arglist')
 SQL;
         $this->exec_query_insert('rapport', $query);
+
         return true;
 	}
 }

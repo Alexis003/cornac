@@ -38,11 +38,11 @@ class function_link extends modules {
 	    $query = <<<SQL
 INSERT INTO <rapport_dot>
 SELECT TR1.file, TR2.file, TR1.element, '{$this->name}'
-FROM <rapport>  TR1
+FROM <rapport> TR1
 JOIN <rapport> TR2
     ON TR2.module = 'functionscalls' AND
        TR2.element = TR1.element
-WHERE TR1.module='deffunctions';
+WHERE TR1.module='deffunctions'
 SQL;
         $this->exec_query($query);
         

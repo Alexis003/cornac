@@ -17,36 +17,33 @@
    +----------------------------------------------------------------------+
  */
 
-class php_classes extends functioncalls {
-	protected	$description = 'Liste des classes PHP utilisées';
-	protected	$title = 'Classes PHP';
+class Functions_Unused extends modules {
+    protected $title = 'Unused functions'; 
+    protected $description = 'List of unused functions'; 
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
 	
 	function dependsOn() {
-	    return array('_new');
+	    return array('functionscalls','deffunctions');
 	}
 	
 	public function analyse() {
         $this->clean_rapport();
 
-	    $in = join("', '", modules::getPHPClasses());
-
         $query = <<<SQL
-SELECT NULL, T1.file, T2.code AS code, T1.id, '{$this->name}', 0
-FROM <tokens> T1 
-JOIN <tokens> T2
-    ON T2.left = T1.left + 1 AND
-       T2.file = T1.file
-WHERE T1.type='_new' AND 
-      T2.code IN ('$in')
+SELECT NULL, TR1.file, TR1.element AS code, TR1.id, '{$this->name}', 0
+FROM <rapport> TR1
+LEFT JOIN <rapport>  TR2 
+ON TR1.element = TR2.element AND TR2.module='functionscalls' 
+WHERE TR1.module = 'deffunctions' AND 
+      TR2.module IS NULL AND
+      TR1.element NOT IN ('__autoload')
 SQL;
         $this->exec_query_insert('rapport', $query);
-        
         return true;
-    }
+	}
 }
 
 ?>

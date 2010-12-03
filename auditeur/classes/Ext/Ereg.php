@@ -29,11 +29,6 @@ class Ext_Ereg extends functioncalls {
 	    $this->functions = modules::getPHPFunctions("ereg");
 	    parent::analyse();
 	    
-/*
-SELECT name 
-FROM functioncalls
-WHERE name in ('ereg',...)
-*/
 	    return true;
 	}
 }

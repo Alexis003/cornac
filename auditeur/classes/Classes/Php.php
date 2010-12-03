@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -17,41 +17,36 @@
    +----------------------------------------------------------------------+
  */
 
-class function_return_unused extends modules {
-	protected	$title = 'Unused return values';
-	protected	$description = 'Spot function whose return values are not used. Function is called, but result is just ignored.';
-	protected   $tags = array('quality');
+class Classes_Php extends functioncalls {
+	protected	$description = 'PHP classes used';
+	protected	$title = 'PHP Classes being used';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
-
+	
 	function dependsOn() {
-	    return array();
+	    return array('_new');
 	}
-
+	
 	public function analyse() {
         $this->clean_rapport();
 
-// @todo update list of authorize functions (first IN)
-// @todo check on other application the list of authorized structures (second IN)
-// @todo make another level for noscream, arobases, etc. : or find a way to ignore them
-// @todo check immediatly if return value is used in a foreach 
-	    $query = <<<SQL
-SELECT NULL, T1.file, T1.code, T1.id, '{$this->name}', 0
-FROM <tokens> T1
-JOIN <tokens> T2 
-    ON T2.file = T1.file AND
-       T1.left BETWEEN T2.left AND T2.right AND
-       T2.level = T1.level - 1
-WHERE T1.type = 'functioncall' AND
-      T1.code NOT IN ('echo','print','define') AND 
-      T2.type NOT IN ('noscream','arginit','_array','comparison','logique','clevaleur','cdtternaire','not','concatenation','method_static','parentheses','method','affectation','arglist')
+	    $in = join("', '", modules::getPHPClasses());
+
+        $query = <<<SQL
+SELECT NULL, T1.file, T2.code AS code, T1.id, '{$this->name}', 0
+FROM <tokens> T1 
+JOIN <tokens> T2
+    ON T2.left = T1.left + 1 AND
+       T2.file = T1.file
+WHERE T1.type='_new' AND 
+      T2.code IN ('$in')
 SQL;
         $this->exec_query_insert('rapport', $query);
-
+        
         return true;
-	}
+    }
 }
 
 ?>
