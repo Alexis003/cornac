@@ -22,7 +22,11 @@ include_once('Auditeur_Framework_TestCase.php');
 class loops_oneliner_Test extends Auditeur_Framework_TestCase
 {
     public function testloops_oneliner()  {
-        $this->expected = array( '');
+        $this->expected = array( 
+'foreach($i = 2; $i < 10; $i++)',
+'foreach($t as variable $x)',
+'while ($i++)',
+        );
         $this->unexpected = array(/*'',*/);
 
         parent::generic_test();

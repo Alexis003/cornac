@@ -20,5 +20,25 @@
 foreach($t as $x) 
     $x++;
 
+foreach($t as $y) {
+    $y++;
+}
+
+foreach($t as $z) {
+    $z++;
+    $z;
+}
+
+for($i = 2; $i < 10; $i++) {
+    $I++;
+}
+
+while($i++) {
+    $K++;
+}
+
+do {
+    $J++;
+} while($i--);
 
 ?>

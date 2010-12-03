@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */include_once('Auditeur_Framework_TestCase.php');
 
-class filter_functions_Test extends Auditeur_Framework_TestCase
+class Ext_Filter_Test extends Auditeur_Framework_TestCase
 {
     public function testfilter_functions()  {
         $this->expected = array( 
