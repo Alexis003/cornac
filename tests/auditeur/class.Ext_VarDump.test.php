@@ -18,12 +18,12 @@
  */
 include_once('Auditeur_Framework_TestCase.php');
 
-class doubledeffunctions_Test extends Auditeur_Framework_TestCase
+class Ext_VarDump_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
-        $this->expected = array('double');
-        $this->unexpected = array('single',);
-        
+        $this->expected = array('var_dump','print_r');
+        $this->unexpected = array();
+
         parent::generic_test();
     }
 }

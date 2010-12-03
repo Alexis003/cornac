@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -16,16 +16,16 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
-
 include_once('Auditeur_Framework_TestCase.php');
 
-class return_with_dead_code_Test extends Auditeur_Framework_TestCase
+class Functions_DoubleDeclaration_Test extends Auditeur_Framework_TestCase
 {
-    public function testreturn_with_dead_code()  {
-        $this->expected = array( '::with_dead_return','::with_dead_return_one_several_lines');
-        $this->unexpected = array('without_return','with_return');
-
+    public function testVariables()  { 
+        $this->expected = array('double');
+        $this->unexpected = array('single',);
+        
         parent::generic_test();
     }
 }
+
 ?>
