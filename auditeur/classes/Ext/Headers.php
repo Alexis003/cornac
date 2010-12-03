@@ -17,41 +17,17 @@
    +----------------------------------------------------------------------+
  */
 
-class addElement_unaffected extends modules {
-	protected	$title = 'addElement non affectés ';
-	protected	$description = 'Recherche les utilisations de la méthode addElement qui ne sont pas affectés à une variable';
+class Ext_Headers extends functioncalls {
+	protected	$title = 'Headers and setcookie';
+	protected	$description = 'Spot HTTP header emissions in the PHP code.';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
-
-// @doc if this analyzer is based on previous result, use this to make sure the results are here
-	function dependsOn() {
-	    return array('addElement');
-	}
 	
 	public function analyse() {
-        $this->clean_rapport();
-
-	    $query = <<<SQL
-SELECT NULL, T1.file, concat('line ',T1.line), T1.id, '{$this->name}', 0
-FROM <rapport> TR
-JOIN <tokens> T1
-    ON T1.id = TR.token_id
-LEFT JOIN <tokens> T2
-    ON T1.file = T2.file AND
-       T1.left BETWEEN T2.left AND T2.right AND
-       T2.type = 'affectation'
-LEFT JOIN <tokens_tags> TT
-    ON TT.token_id=  T2.id AND
-       TT.type = 'left'
-LEFT JOIN <tokens> T3
-    ON T1.file = T3.file AND
-       T3.id = TT.token_sub_id
-WHERE TR.module='addElement' AND
-      T3.id IS NULL
-SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->functions = array('header','setcookie','setrawcookie');
+        parent::analyse();
         
         return true;
 	}

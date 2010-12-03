@@ -17,16 +17,16 @@
    +----------------------------------------------------------------------+
  */
 
-class headers extends functioncalls {
-	protected	$title = 'Headers et setcookie';
-	protected	$description = 'Liste des émissions d\'entêtes HTTP';
+class Ext_DieExit extends functioncalls {
+	protected	$title = 'Die et Exit';
+	protected	$description = 'Liste des fins de scripts type die ou exit';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
 	
 	public function analyse() {
-        $this->functions = array('header','setcookie','setrawcookie');
+        $this->functions = array('die','exit');
         parent::analyse();
         
         return true;

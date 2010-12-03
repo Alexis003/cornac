@@ -16,35 +16,69 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
-
-class addElement extends modules {
-	protected	$title = 'addElement utilisés';
-	protected	$description = 'Recherche les utilisations de la méthode addElement';
+class Classes_Finals extends modules {
+	protected	$title = 'final';
+	protected	$description = 'List of final keyword usage. ';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
 
-// @doc if this analyzer is based on previous result, use this to make sure the results are here
 	function dependsOn() {
 	    return array();
 	}
-	
+
 	public function analyse() {
         $this->clean_rapport();
 
+// @note spot final when in first place in a class
 	    $query = <<<SQL
-SELECT NULL, T1.file, T1.code, T1.id, 'addElement', 0
+SELECT NULL, T1.file, T2.class, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens> T2
-    ON T1.file = T2.file AND
-       T1.left BETWEEN T2.left AND T2.right AND
-       T2.type = 'method' AND
-       T2.level = T1.level - 2
-WHERE T1.code = 'addElement'
+    ON T2.file = T1.file AND
+       T2.left = T1.left + 1 AND
+       T2.code = 'final'
+WHERE T1.type = '_class'
 SQL;
         $this->exec_query_insert('rapport', $query);
-        
+
+// @note spot final when in first place in a method
+	    $query = <<<SQL
+SELECT NULL, T1.file, CONCAT(T2.class,'::',T2.scope), T1.id, '{$this->name}', 0
+FROM <tokens> T1
+JOIN <tokens> T2
+    ON T2.file = T1.file AND
+       T2.left = T1.left + 1 AND
+       T2.code = 'final'
+WHERE T1.type = '_function'
+SQL;
+        $this->exec_query_insert('rapport', $query);
+
+// @note spot final when in second place
+	    $query = <<<SQL
+SELECT NULL, T1.file, CONCAT(T2.class,'::',T2.scope), T1.id, '{$this->name}', 0
+FROM <tokens> T1
+JOIN <tokens> T2
+    ON T2.file = T1.file AND
+       T2.left = T1.left + 3 AND
+       T2.code = 'final'
+WHERE T1.type = '_function'
+SQL;
+        $this->exec_query_insert('rapport', $query);
+
+// @note spot final when in third place
+	    $query = <<<SQL
+SELECT NULL, T1.file, CONCAT(T2.class,'::',T2.scope), T1.id, '{$this->name}', 0
+FROM <tokens> T1
+JOIN <tokens> T2
+    ON T2.file = T1.file AND
+       T2.left = T1.left + 5 AND
+       T2.code = 'final'
+WHERE T1.type = '_function'
+SQL;
+        $this->exec_query_insert('rapport', $query);
+
         return true;
 	}
 }

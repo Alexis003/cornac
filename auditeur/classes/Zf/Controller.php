@@ -40,7 +40,7 @@ class Zf_Controller extends modules {
 
         $concat = $this->concat("T3.class", "'->'","T3.code");
 	    $query = <<<SQL
-SELECT NULL, T1.file, $concat AS code, T3.id, 'zfController', 0
+SELECT NULL, T1.file, $concat AS code, T3.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens_tags> TT 
 ON T1.id = TT.token_id AND

@@ -16,70 +16,43 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
-class finals extends modules {
-	protected	$title = 'final';
-	protected	$description = 'List of final keyword usage. ';
+
+class Classes_News extends modules {
+	protected	$title = 'New';
+	protected	$description = 'Liste des utilisations de l\'opérateur';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
-
-	function dependsOn() {
-	    return array();
-	}
-
+	
 	public function analyse() {
         $this->clean_rapport();
 
-// @note spot final when in first place in a class
-	    $query = <<<SQL
-SELECT NULL, T1.file, T2.class, T1.id, '{$this->name}', 0
-FROM <tokens> T1
+// @note new with literals 
+        $query = <<<SQL
+SELECT NULL, T1.file, T2.code, T1.id, '{$this->name}', 0
+FROM <tokens>  T1
 JOIN <tokens> T2
-    ON T2.file = T1.file AND
-       T2.left = T1.left + 1 AND
-       T2.code = 'final'
-WHERE T1.type = '_class'
+   ON T1.left + 1 = T2.left AND 
+      T1.file = T2.file AND
+      T2.type IN ('token_traite','variable')
+WHERE T1.type = '_new'
 SQL;
         $this->exec_query_insert('rapport', $query);
 
-// @note spot final when in first place in a method
-	    $query = <<<SQL
-SELECT NULL, T1.file, CONCAT(T2.class,'::',T2.scope), T1.id, '{$this->name}', 0
-FROM <tokens> T1
+// @note new with variables 
+        $query = <<<SQL
+SELECT NULL, T1.file, TC.code, T1.id, '{$this->name}', 0
+FROM <tokens>  T1
 JOIN <tokens> T2
-    ON T2.file = T1.file AND
-       T2.left = T1.left + 1 AND
-       T2.code = 'final'
-WHERE T1.type = '_function'
+   ON T1.left + 1 = T2.left AND 
+      T1.file = T2.file
+JOIN <tokens_cache> TC
+   ON TC.id = T2.id
+WHERE T1.type = '_new'
 SQL;
         $this->exec_query_insert('rapport', $query);
 
-// @note spot final when in second place
-	    $query = <<<SQL
-SELECT NULL, T1.file, CONCAT(T2.class,'::',T2.scope), T1.id, '{$this->name}', 0
-FROM <tokens> T1
-JOIN <tokens> T2
-    ON T2.file = T1.file AND
-       T2.left = T1.left + 3 AND
-       T2.code = 'final'
-WHERE T1.type = '_function'
-SQL;
-        $this->exec_query_insert('rapport', $query);
-
-// @note spot final when in third place
-	    $query = <<<SQL
-SELECT NULL, T1.file, CONCAT(T2.class,'::',T2.scope), T1.id, '{$this->name}', 0
-FROM <tokens> T1
-JOIN <tokens> T2
-    ON T2.file = T1.file AND
-       T2.left = T1.left + 5 AND
-       T2.code = 'final'
-WHERE T1.type = '_function'
-SQL;
-        $this->exec_query_insert('rapport', $query);
-
-        return true;
 	}
 }
 

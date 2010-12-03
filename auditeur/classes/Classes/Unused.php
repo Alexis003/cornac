@@ -26,7 +26,7 @@ class Classes_Unused extends modules {
 	}
 
 	function dependsOn() {
-	    return array('Classes_Name','_new','Classes_Hierarchy');
+	    return array('Classes_Used','_new','Classes_Hierarchy');
 	}
 	
 	public function analyse() {
@@ -37,18 +37,18 @@ SELECT NULL, TR1.file, TR1.element AS code, TR1.id, '{$this->name}', 0
 FROM <rapport>  TR1
 LEFT JOIN <rapport>  TR2 
     ON TR1.element = TR2.element AND TR2.module='_new' 
-WHERE TR1.module = 'classes' AND TR2.module IS NULL
+WHERE TR1.module = 'Classes_Used' AND TR2.module IS NULL
 SQL;
         $this->exec_query_insert('rapport', $query);
 
-// @note we need to check extensions : we have them in the dot rapport, from classes_hierarchie
+// @note we need to check extensions : we have them in the dot rapport, from Classes_Hierarchy
         $query = <<<SQL
 SELECT TRD.a
 FROM <rapport>  TR1
 JOIN <rapport_dot> TRD
       ON TRD.b = TR1.element
 WHERE TR1.module = '_new' AND 
-      TRD.module = 'classes_hierarchie'
+      TRD.module = 'Classes_Hierarchy'
 SQL;
         $res = $this->exec_query($query);
         $extensions = $res->fetchAll(PDO::FETCH_COLUMN,0);
@@ -70,8 +70,8 @@ JOIN <rapport_dot> TRD1
 JOIN <rapport_dot> TRD2
     ON TRD2.b = TRD1.a
 WHERE TR1.module = '_new' AND 
-      TRD1.module = 'classes_hierarchie' AND
-      TRD2.module = 'classes_hierarchie'
+      TRD1.module = 'Classes_Hierarchy' AND
+      TRD2.module = 'Classes_Hierarchy'
 SQL;
 
         $res = $this->exec_query($query);
@@ -96,9 +96,9 @@ JOIN <rapport_dot> TRD2
 JOIN <rapport_dot> TRD3
     ON TRD3.b = TRD2.a
 WHERE TR1.module = '_new' AND 
-      TRD1.module = 'classes_hierarchie' AND
-      TRD2.module = 'classes_hierarchie' AND 
-      TRD3.module = 'classes_hierarchie'          
+      TRD1.module = 'Classes_Hierarchy' AND
+      TRD2.module = 'Classes_Hierarchy' AND 
+      TRD3.module = 'Classes_Hierarchy'          
 SQL;
 
         $res = $this->exec_query($query);
@@ -126,10 +126,10 @@ JOIN <rapport_dot> TRD3
 JOIN <rapport_dot> TRD4
     ON TRD4.b = TRD3.a
 WHERE TR1.module = '_new' AND 
-      TRD1.module = 'classes_hierarchie' AND
-      TRD2.module = 'classes_hierarchie' AND 
-      TRD3.module = 'classes_hierarchie' AND 
-      TRD4.module = 'classes_hierarchie'          
+      TRD1.module = 'Classes_Hierarchy' AND
+      TRD2.module = 'Classes_Hierarchy' AND 
+      TRD3.module = 'Classes_Hierarchy' AND 
+      TRD4.module = 'Classes_Hierarchy'          
 SQL;
         $res = $this->exec_query($query);
         $extensions = $res->fetchAll(PDO::FETCH_COLUMN,0);

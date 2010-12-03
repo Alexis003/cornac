@@ -23,13 +23,12 @@ class Ext extends modules {
 	}
 
 	function dependsOn() {
-	    
 	    return array(
-                    'Ereg',
-                    'File',
-                    'Filter',
-                    'Mysql',
-                    'Mysqli',
+                    'Ext_Ereg',
+                    'Ext_File',
+                    'Ext_Filter',
+                    'Ext_Mysql',
+                    'Ext_ysqli',
 	                 );
 	}
 

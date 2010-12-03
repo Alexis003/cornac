@@ -17,19 +17,46 @@
    +----------------------------------------------------------------------+
  */
 
-class dieexit extends functioncalls {
-	protected	$title = 'Die et Exit';
-	protected	$description = 'Liste des fins de scripts type die ou exit';
+class Functions_Emptys extends modules {
+	protected	$title = 'Empty functions';
+	protected	$description = 'Functions which body is empty (not abstract or interface functions).';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
+
+	function dependsOn() {
+	    return array('interfaces');
+	}
 	
 	public function analyse() {
-        $this->functions = array('die','exit');
-        parent::analyse();
-        
-        return true;
+        $this->clean_rapport();
+
+	    $query = <<<SQL
+SELECT NULL, T1.file, T4.code, T1.id, '{$this->name}', 0
+FROM <tokens> T1 
+JOIN <tokens_tags> T2
+    ON T1.id = T2.token_id
+JOIN <tokens> T3
+    ON T3.id = T2.token_sub_id
+JOIN <tokens_tags> T5
+    ON T1.id = T5.token_id     AND 
+       T5.type = 'name'
+JOIN <tokens> T4
+    ON T1.file = T4.file       AND
+       T4.id = T5.token_sub_id
+LEFT JOIN <rapport> TR
+    ON T1.file = TR.file       AND
+       T4.class = TR.element   AND
+       TR.module='interfaces'
+WHERE 
+    T1.type = '_function'      AND
+    T2.type = 'block'          AND
+    T3.right - T3.left = 1     AND
+    TR.id IS NULL
+SQL;
+
+        $this->exec_query_insert('rapport', $query);
 	}
 }
 

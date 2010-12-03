@@ -16,9 +16,10 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
-class abstracts extends modules {
-	protected	$title = 'abstracts';
-	protected	$description = 'Classe ou méthodes abstraites';
+
+class Classes_This extends modules {
+	protected	$title = 'Utilisation indue de $this';
+	protected	$description = 'Recherche les utilisations de $this hors d\'une classe.';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -28,59 +29,19 @@ class abstracts extends modules {
 	function dependsOn() {
 	    return array();
 	}
-
+	
 	public function analyse() {
         $this->clean_rapport();
 
-// @note spot abstract when in first place in a class
 	    $query = <<<SQL
-SELECT NULL, T1.file, T2.class, T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, T1.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
-JOIN <tokens> T2
-    ON T2.file = T1.file AND
-       T2.left = T1.left + 1 AND
-       T2.code = 'abstract'
-WHERE T1.type = '_class'
+WHERE code = '\$this' AND 
+      class = ''      AND
+      type = 'variable'
 SQL;
         $this->exec_query_insert('rapport', $query);
-
-
-// @note spot abstract when in first place in a method
-	    $query = <<<SQL
-SELECT NULL, T1.file, CONCAT(T2.class,'::',T2.scope), T1.id, '{$this->name}', 0
-FROM <tokens> T1
-JOIN <tokens> T2
-    ON T2.file = T1.file AND
-       T2.left = T1.left + 1 AND
-       T2.code = 'abstract'
-WHERE T1.type = '_function'
-SQL;
-        $this->exec_query_insert('rapport', $query);
-
-// @note spot abstract when in second place
-	    $query = <<<SQL
-SELECT NULL, T1.file, CONCAT(T2.class,'::',T2.scope), T1.id, '{$this->name}', 0
-FROM <tokens> T1
-JOIN <tokens> T2
-    ON T2.file = T1.file AND
-       T2.left = T1.left + 3 AND
-       T2.code = 'abstract'
-WHERE T1.type = '_function'
-SQL;
-        $this->exec_query_insert('rapport', $query);
-
-// @note spot abstract when in third place
-	    $query = <<<SQL
-SELECT NULL, T1.file, CONCAT(T2.class,'::',T2.scope), T1.id, '{$this->name}', 0
-FROM <tokens> T1
-JOIN <tokens> T2
-    ON T2.file = T1.file AND
-       T2.left = T1.left + 5 AND
-       T2.code = 'abstract'
-WHERE T1.type = '_function'
-SQL;
-        $this->exec_query_insert('rapport', $query);
-
+        
         return true;
 	}
 }

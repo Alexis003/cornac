@@ -17,29 +17,35 @@
    +----------------------------------------------------------------------+
  */
 
-class error_functions extends functioncalls {
-	protected	$title = 'Error functions';
-	protected	$description = 'List all error handling functions';
+class Zf_AddElement extends modules {
+	protected	$title = 'addElement utilisés';
+	protected	$description = 'Recherche les utilisations de la méthode Zf_AddElement';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
+
+// @doc if this analyzer is based on previous result, use this to make sure the results are here
+	function dependsOn() {
+	    return array();
+	}
 	
 	public function analyse() {
-	    $this->functions = array('debug_backtrace', 
-	                             'debug_print_backtrace', 
-	                             'error_get_last', 
-	                             'error_log', 
-	                             'error_reporting', 
-	                             'restore_error_handler', 
-	                             'restore_exception_handler', 
-	                             'set_error_handler', 
-	                             'set_exception_handler', 
-	                             'trigger_error', 
-	                             'user_error');
-	    parent::analyse();
-	    
-	    return true;
+        $this->clean_rapport();
+
+	    $query = <<<SQL
+SELECT NULL, T1.file, T1.code, T1.id, 'addElement', 0
+FROM <tokens> T1
+JOIN <tokens> T2
+    ON T1.file = T2.file AND
+       T1.left BETWEEN T2.left AND T2.right AND
+       T2.type = 'method' AND
+       T2.level = T1.level - 2
+WHERE T1.code = 'addElement'
+SQL;
+        $this->exec_query_insert('rapport', $query);
+        
+        return true;
 	}
 }
 

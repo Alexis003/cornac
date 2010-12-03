@@ -26,7 +26,7 @@ class php_modules extends modules {
 	}
 
 	function dependsOn() {
-	    return array('php_functions','php_classes');
+	    return array('php_functions','Classes_Php');
 	}
 	
 	public function analyse() {
@@ -103,7 +103,7 @@ SQL;
 INSERT INTO <rapport>
 SELECT NULL, file, element, token_id, '{$this->name}_tmp', 0
 FROM <rapport> 
-WHERE module = 'php_classes'
+WHERE module = 'Classes_Php'
 SQL;
 	    $res = $this->exec_query($query);
 

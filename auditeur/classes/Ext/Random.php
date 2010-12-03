@@ -1,4 +1,4 @@
-<?php
+<?php 
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -17,18 +17,19 @@
    +----------------------------------------------------------------------+
  */
 
-class evals extends functioncalls {
-	protected	$description = 'Liste des utilisations de eval';
-	protected	$title = 'Eval';
+class Ext_Random extends functioncalls {
+	protected	$title = 'random_functions';
+	protected	$description = 'Usage of Ext_Random function in the code';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
-	
+
 	public function analyse() {
-        $this->functions = array('eval');
-        parent::analyse();
-        
+	    $this->functions = array("rand","array_rand","shuffle","mt_rand","srand",
+	                             "getrandmax","gmp_random_functions","mt_srand");
+	    parent::analyse();
+	    
         return true;
 	}
 }

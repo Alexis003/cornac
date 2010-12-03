@@ -17,42 +17,19 @@
    +----------------------------------------------------------------------+
  */
 
-class _new extends modules {
-	protected	$title = 'New';
-	protected	$description = 'Liste des utilisations de l\'opérateur';
+class Ext_Evals extends functioncalls {
+	protected	$description = 'Eval usage';
+	protected	$title = 'Usage of the eval function in throughout the application.';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
 	
 	public function analyse() {
-        $this->clean_rapport();
-
-// @note new with literals 
-        $query = <<<SQL
-SELECT NULL, T1.file, T2.code, T1.id, '{$this->name}', 0
-FROM <tokens>  T1
-JOIN <tokens> T2
-   ON T1.left + 1 = T2.left AND 
-      T1.file = T2.file AND
-      T2.type IN ('token_traite','variable')
-WHERE T1.type = '_new'
-SQL;
-        $this->exec_query_insert('rapport', $query);
-
-// @note new with variables 
-        $query = <<<SQL
-SELECT NULL, T1.file, TC.code, T1.id, '{$this->name}', 0
-FROM <tokens>  T1
-JOIN <tokens> T2
-   ON T1.left + 1 = T2.left AND 
-      T1.file = T2.file
-JOIN <tokens_cache> TC
-   ON TC.id = T2.id
-WHERE T1.type = '_new'
-SQL;
-        $this->exec_query_insert('rapport', $query);
-
+        $this->functions = array('eval');
+        parent::analyse();
+        
+        return true;
 	}
 }
 

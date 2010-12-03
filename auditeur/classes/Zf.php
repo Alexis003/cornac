@@ -25,18 +25,18 @@ class Zf extends modules {
 // @doc if this analyzer is based on previous result, use this to make sure the results are here
 	function dependsOn() {
 	    return array(
-                    'Action',
-                    'Classes',
-                    'Controller',
-                    'Db',
-                    'Dependencies',
-                    'Elements',
-                    'GetGPC',
-                    'Redirect',
-                    'SQL',
-                    'Session',
-                    'TypeView',
-                    'ViewVariables',
+                    'Zf_Action',
+                    'Zf_Classes',
+                    'Zf_Controller',
+                    'Zf_Db',
+                    'Zf_Dependencies',
+                    'Zf_Elements',
+                    'Zf_GetGPC',
+                    'Zf_Redirect',
+                    'Zf_SQL',
+                    'Zf_Session',
+                    'Zf_TypeView',
+                    'Zf_ViewVariables',
 	                 );
 	}
 

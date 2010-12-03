@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class arglist_def extends modules {
+class Functions_ArglistDefined extends modules {
 	protected	$title = 'Defined arguments';
 	protected	$description = 'Argument list used in function definitions.';
 

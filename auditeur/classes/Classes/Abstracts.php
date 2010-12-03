@@ -16,9 +16,9 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
-class Zf_Dependencies extends modules {
-	protected	$title = 'ZF : Zend Framework dependance';
-	protected	$description = 'Dependencies toward ZF  : by heritage or composition, those classes from the ZF are needed.';
+class Classes_Abstracts extends modules {
+	protected	$title = 'abstracts';
+	protected	$description = 'Classe ou méthodes abstraites';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -32,44 +32,52 @@ class Zf_Dependencies extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
-// @note heritage
-        $in = modules::getZendFrameworkClasses();
-        $in = join('", "', $in);
+// @note spot abstract when in first place in a class
 	    $query = <<<SQL
-SELECT NULL, T1.file, T2.code AS code, T1.id, '{$this->name}', 0
-FROM <tokens> T1
-JOIN <tokens_tags> TT 
-ON T1.id = TT.token_id AND
-   TT.type='extends'
-JOIN <tokens> T2
-ON T2.id = TT.token_sub_id AND
-   T2.file=T1.file
-WHERE T1.type = '_class' AND
-T2.code IN ("$in")
-SQL;
-        $this->exec_query_insert('rapport', $query);
-
-// @note direct instantiation with new
-        $query = <<<SQL
-SELECT NULL, T1.file, T2.code AS code, T2.id, '{$this->name}', 0
+SELECT NULL, T1.file, T2.class, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens> T2
     ON T2.file = T1.file AND
-       T2.left = T1.left + 1
-WHERE T1.type='_new' AND
-      T2.code IN ("$in")
+       T2.left = T1.left + 1 AND
+       T2.code = 'abstract'
+WHERE T1.type = '_class'
 SQL;
         $this->exec_query_insert('rapport', $query);
 
-// @note static usage
-        $query = <<<SQL
-SELECT NULL, T1.file, T2.code AS code, T2.id, '{$this->name}', 0
+
+// @note spot abstract when in first place in a method
+	    $query = <<<SQL
+SELECT NULL, T1.file, CONCAT(T2.class,'::',T2.scope), T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens> T2
     ON T2.file = T1.file AND
-       T2.left = T1.left + 1
-WHERE T1.type='method_static' AND
-      T2.code IN ("$in")
+       T2.left = T1.left + 1 AND
+       T2.code = 'abstract'
+WHERE T1.type = '_function'
+SQL;
+        $this->exec_query_insert('rapport', $query);
+
+// @note spot abstract when in second place
+	    $query = <<<SQL
+SELECT NULL, T1.file, CONCAT(T2.class,'::',T2.scope), T1.id, '{$this->name}', 0
+FROM <tokens> T1
+JOIN <tokens> T2
+    ON T2.file = T1.file AND
+       T2.left = T1.left + 3 AND
+       T2.code = 'abstract'
+WHERE T1.type = '_function'
+SQL;
+        $this->exec_query_insert('rapport', $query);
+
+// @note spot abstract when in third place
+	    $query = <<<SQL
+SELECT NULL, T1.file, CONCAT(T2.class,'::',T2.scope), T1.id, '{$this->name}', 0
+FROM <tokens> T1
+JOIN <tokens> T2
+    ON T2.file = T1.file AND
+       T2.left = T1.left + 5 AND
+       T2.code = 'abstract'
+WHERE T1.type = '_function'
 SQL;
         $this->exec_query_insert('rapport', $query);
 

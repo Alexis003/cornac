@@ -18,8 +18,6 @@
  */
 
 class regex extends modules {
-	protected	$title = 'Regex';
-	protected	$description = 'Regex being used in the code (PCRE only).';
 
 	function __construct($mid) {
         parent::__construct($mid);

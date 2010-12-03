@@ -56,7 +56,8 @@ include('../libs/getopts.php');
 define('CLEAN_DATABASE', !empty($INI['clean']));
 
 $modules = array(
-'_new',
+//'_new' @_, 
+'Classes_News',
 'affectations_variables',
 //'appelsfonctions', // @_
 'arobases',
@@ -67,20 +68,26 @@ $modules = array(
 'doubledeffunctions',
 'doubledefclass',
 'defmethodes',
-'dieexit',
+//'dieexit' @_, 
+'Ext_DieExit',
 //'dir_functions' @_, 
 'Ext_Dir',
-'emptyfunctions',
-'error_functions',
-'evals',
-'execs',
+//'emptyfunctions' @_, 
+'Functions_Emptys',
+//'error_functions' @_, 
+'Ext_Errors',
+//'evals' @_, 
+'Ext_Evals',
+//'execs' @_, 
+'Ext_Execs',
 'functions_frequency',
 //'functions_unused' @_, 
 'Functions_Unused',
 'functionscalls',
 'globals',
 'gpc',
-'headers',
+//'headers' @_, 
+'Ext_Headers',
 'iffectations',
 'ifsanselse',
 //'image_functions' @_, 
@@ -132,8 +139,10 @@ $modules = array(
 'indenting',
 'block_of_call',
 'variables_relations',
-'arglist_def',
-'arglist_call',
+//'arglist_def' @_, 
+'Functions_ArglistDefined',
+//'arglist_call' @_, 
+'Functions_ArglistCalled',
 'arglist_disc',
 'variables_one_letter',
 'variables_lots_of_letter',
@@ -159,12 +168,15 @@ $modules = array(
 'defarray',
 'multidimarray',
 'popular_libraries',
-'addElement',
-'addElement_unaffected',
+//'addElement' @_, 
+'Zf_AddElement',
+//'addElement_unaffected' @_, 
+'Zf_AddElementUnaffected',
 'constantes_link',
 'function_link',
 'foreach_unused',
-'_this',
+//'_this' @_, 
+'Classes_This',
 'references',
 'keyval',
 'keyval_outside',
@@ -177,8 +189,10 @@ $modules = array(
 'php_functions_name_conflict',
 'php_constant_name_conflict',
 'php_classes_name_conflict',
-'abstracts',
-'finals',
+//'abstracts' @_, 
+'Classes_Abstracts',
+//'finals' @_, 
+'Classes_Finals',
 'function_args_reference',
 'php_keywords',
 //'literals_as_argref', @todo support ogher PHP version for token_get_all before activating
@@ -195,7 +209,8 @@ $modules = array(
 'loaded_lines',
 'infinite_loop',
 'comparison_constant',
-'random_functions',
+//'random_functions' @_, 
+'Ext_Random',
 'if_no_comparison',
 'case_without_break',
 'switch_without_default',
@@ -228,6 +243,7 @@ $modules = array(
 'Ext_Filter',
 'Ext_Mysqli',
 
+'Test',
 // new analyzers
 );
 
@@ -260,7 +276,6 @@ if ($INI['init']) {
     $query = "INSERT INTO <tasks> (task, target, date_update, completed) VALUES ( 'auditeur', '".join("',NOW(), 0) ,('auditeur', '", $modules)."', NOW(), 0)";
     $DATABASE->query($query);
     
-    print count($modules)." modules will be treated : ".join(', ', $modules)."\n";
 // @todo fix the problem with the path
 /*
 if (INI) {
@@ -270,7 +285,11 @@ if (INI) {
 if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
 // @note element column size should match the code column in <tokens>
     if (CLEAN_DATABASE) {
-        $DATABASE->query('DROP TABLE <rapport>');
+        $DATABASE->query('DROP TABLE IF EXISTS <rapport>');
+        $DATABASE->query('DROP TABLE IF EXISTS <rapport_dot>');
+        $DATABASE->query('DROP TABLE IF EXISTS <rapport_module>');
+        print "3 tables cleaned\n";
+        die();
     }
     $DATABASE->query('CREATE TABLE IF NOT EXISTS <rapport> (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -285,9 +304,6 @@ if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
   KEY `module` (`module`)
 ) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1');
 
-    if (CLEAN_DATABASE) {
-        $DATABASE->query('DROP TABLE <rapport_dot>');
-    }
         $DATABASE->query('CREATE TABLE IF NOT EXISTS <rapport_dot> (
   `a` varchar(255) NOT NULL,
   `b` varchar(255) NOT NULL,
@@ -295,9 +311,6 @@ if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
   `module` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1');
 
-    if (CLEAN_DATABASE) {
-        $DATABASE->query('DROP TABLE <rapport_module>');
-    }
         $DATABASE->query('CREATE TABLE IF NOT EXISTS <rapport_module> (
   `module` varchar(255) NOT NULL,
   `fait` datetime NOT NULL,
@@ -337,6 +350,8 @@ if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
     die();
 }
 }
+
+    print count($modules)." modules will be treated : ".join(', ', $modules)."\n";
 
 // validation done
 
@@ -409,23 +424,22 @@ function analyse_module($module_name) {
         $manque = multi2array($manque, 'target');
         if (count($manque) > 0) {
             foreach($manque as $m) {
-                print "  +  $m";
+                $out = "  +  $m ";
                 if ($INI['dependences']) {
                     analyse_module($m);
                 } else {
                     $res = $DATABASE->query('SELECT * FROM <rapport_module> WHERE module="'.$m.'"');
                     $row = $res->fetch();
-                    if (!isset($row['module'])) {
-                        analyse_module($m);
-                        print " done ";
+                    if (isset($row['module'])) {
+                        print "$out omitted (already in base) \n";
                     } else {
-                        print " omitted ";
+                        analyse_module($m);
+                        print "$out done \n";
                     }
                 }
-                print "\n";
             }
         } else {
-            print "Dépendances already processed\n";
+            print "Dependancies already processed\n";
         }
     }
 

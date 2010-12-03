@@ -18,14 +18,14 @@
  */
 class php_classes_name_conflict extends modules {
 	protected	$title = 'Classe name conflicts';
-	protected	$description = 'Those classes may have conflicting name with PHP\'s constant, or some PHP extension\'s constant.';
+	protected	$description = 'Those classes may have conflicting name with PHP\'s classes, or some PHP extension\'s classes.';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
 
 	function dependsOn() {
-	    return array('classes');
+	    return array('Classes_Used');
 	}
 	
 	public function analyse() {
@@ -37,9 +37,10 @@ class php_classes_name_conflict extends modules {
 	    $query = <<<SQL
 SELECT NULL, T1.file, T1.element, T1.id, '{$this->name}', 0
 FROM <rapport> T1
-WHERE   T1.module = 'classes' AND
+WHERE   T1.module = 'Classes_Used' AND
         T1.element IN ($in)
 SQL;
+    print $this->prepare_query($query);
         $this->exec_query_insert('rapport', $query);
         
         return true;

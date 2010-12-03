@@ -26,7 +26,7 @@ class doubledefclass extends modules {
 	}
 	
 	function dependsOn() {
-        return array('classes');	
+        return array('Classes_Used');	
 	}
 
 	public function analyse() {
@@ -35,9 +35,9 @@ class doubledefclass extends modules {
         $query = <<<SQL
 SELECT NULL, file, TR.element,  TR.token_id, '{$this->name}', 0
     FROM <rapport> TR
-    WHERE module='classes'                                  AND
+    WHERE module='Classes_Used'                                  AND
          TR.element IN (SELECT element FROM <rapport> TR
-                            WHERE module='classes'
+                            WHERE module='Classes_Used'
                             GROUP BY element 
                             HAVING count(*) > 1);
 SQL;
