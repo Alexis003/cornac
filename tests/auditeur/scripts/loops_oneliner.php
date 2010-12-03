@@ -27,6 +27,7 @@ foreach($t as $y) {
 foreach($t as $z) {
     $z++;
     $z;
+    $z += 3;
 }
 
 for($i = 2; $i < 10; $i++) {

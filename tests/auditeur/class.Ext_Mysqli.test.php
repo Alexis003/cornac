@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */include_once('Auditeur_Framework_TestCase.php');
 
-class mysqli_functions_Test extends Auditeur_Framework_TestCase
+class Ext_Mysqli_Test extends Auditeur_Framework_TestCase
 {
     public function testmysqli_functions()  {
         $this->expected = array( 

@@ -25,9 +25,13 @@ class loops_oneliner_Test extends Auditeur_Framework_TestCase
         $this->expected = array( 
 'foreach($i = 2; $i < 10; $i++)',
 'foreach($t as variable $x)',
+'foreach($t as variable $y)', 
 'while ($i++)',
         );
-        $this->unexpected = array(/*'',*/);
+
+
+
+$this->unexpected = array('foreach($t as variable $z)',);
 
         parent::generic_test();
 //        parent::generic_counted_test();

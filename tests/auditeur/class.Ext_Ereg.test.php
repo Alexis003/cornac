@@ -18,7 +18,7 @@
  */
 include_once('Auditeur_Framework_TestCase.php');
 
-class ereg_functions_Test extends Auditeur_Framework_TestCase
+class Ext_Ereg_Test extends Auditeur_Framework_TestCase
 {
     public function testereg_functions()  { 
         $this->expected = array( 'ereg_replace',
