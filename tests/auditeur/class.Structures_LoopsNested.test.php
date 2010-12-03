@@ -19,7 +19,7 @@
 
 include_once('Auditeur_Framework_TestCase.php');
 
-class nestedloops_Test extends Auditeur_Framework_TestCase
+class Structures_LoopsNested_Test extends Auditeur_Framework_TestCase
 {
     public function testnestedloops()  {
         $this->expected = array( 

@@ -1,4 +1,4 @@
-<?php
+<?php 
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -16,21 +16,16 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
+
 include_once('Auditeur_Framework_TestCase.php');
 
-class iffectations_Test extends Auditeur_Framework_TestCase
+class Structures_IfWithoutComparison_Test extends Auditeur_Framework_TestCase
 {
-    public function testVariables()  { 
-        $this->expected = array('$x = 1',
-                                '$z = 3',
-                                '$x = $y + 1',
-                                '$b = $c + 1',);
-        $this->unexpected = array('$y = 2',
-                                  '$b = 6',
-                                  '$a = 5',);
-        
+    public function testif_no_comparison()  {
+        $this->expected = array( '$x','$t','count','ACONSTANT');
+        $this->unexpected = array(/*'',*/);
+
         parent::generic_test();
     }
 }
-
 ?>

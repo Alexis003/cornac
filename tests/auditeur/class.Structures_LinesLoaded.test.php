@@ -19,11 +19,11 @@
 
 include_once('Auditeur_Framework_TestCase.php');
 
-class long_loops_Test extends Auditeur_Framework_TestCase
+class Structures_LinesLoaded_Test extends Auditeur_Framework_TestCase
 {
-    public function testlong_loops()  {
-        $this->expected = array( 'while ($x = 1)');
-        $this->unexpected = array('while ($y = 1)',);
+    public function testloaded_lines()  {
+        $this->expected = array( 'line 20');
+        $this->unexpected = array();
 
         parent::generic_test();
     }

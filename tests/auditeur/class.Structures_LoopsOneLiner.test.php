@@ -19,13 +19,22 @@
 
 include_once('Auditeur_Framework_TestCase.php');
 
-class infinite_loop_Test extends Auditeur_Framework_TestCase
+class Structures_LoopsOneLiner_Test extends Auditeur_Framework_TestCase
 {
-    public function testinfinite_loop()  {
-        $this->expected = array( 'line 20','line 22','line 24','line 26');
-        $this->unexpected = array(/*'',*/);
+    public function testloops_oneliner()  {
+        $this->expected = array( 
+'foreach($i = 2; $i < 10; $i++)',
+'foreach($t as variable $x)',
+'foreach($t as variable $y)', 
+'while ($i++)',
+        );
+
+
+
+$this->unexpected = array('foreach($t as variable $z)',);
 
         parent::generic_test();
+//        parent::generic_counted_test();
     }
 }
 ?>

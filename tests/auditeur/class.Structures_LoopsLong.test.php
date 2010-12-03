@@ -1,4 +1,4 @@
-<?php
+<?php 
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -16,16 +16,16 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
+
 include_once('Auditeur_Framework_TestCase.php');
 
-class interfaces_Test extends Auditeur_Framework_TestCase
+class Structures_LoopsLong_Test extends Auditeur_Framework_TestCase
 {
-    public function testVariables()  { 
-        $this->expected = array('interface_a');
-        $this->unexpected = array('interface_a','ArrayObject','x');
-        
+    public function testlong_loops()  {
+        $this->expected = array( 'while ($x = 1)');
+        $this->unexpected = array('while ($y = 1)',);
+
         parent::generic_test();
     }
 }
-
 ?>
