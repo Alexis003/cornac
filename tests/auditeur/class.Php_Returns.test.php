@@ -19,7 +19,7 @@
 
 include_once('Auditeur_Framework_TestCase.php');
 
-class returns_Test extends Auditeur_Framework_TestCase
+class Php_Returns_Test extends Auditeur_Framework_TestCase
 {
     public function testreturns()  {
         $this->expected = array( '0 returns', '1 returns','2 returns');
