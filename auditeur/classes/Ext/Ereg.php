@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class ereg_functions extends functioncalls {
+class Ext_Ereg extends functioncalls {
 	protected	$title = 'ereg functions';
 	protected	$description = 'List of ext/ereg functions';
 

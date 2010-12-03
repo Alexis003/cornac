@@ -32,12 +32,13 @@ class loops_oneliner extends modules {
 	public function analyse() {
         $this->clean_rapport();
 
+// @note right - 2 reach the last token of the block. The block is always the last sub-element in the loop
 	    $query = <<<SQL
-SELECT NULL, T1.file, TC.id, T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, TC.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens> T2
     ON T2.file = T1.file AND
-       T2.left = T1.right + 1
+       T2.right = T1.right -2
 JOIN <tokens_cache> TC
     ON T1.id = TC.id
 WHERE T1.type IN ('_for','_while','_do','_foreach') AND

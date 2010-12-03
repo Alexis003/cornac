@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class filter_functions extends functioncalls {
+class Ext_Filter extends functioncalls {
 	protected	$title = 'filter functions';
 	protected	$description = 'List of all ext/filter functions';
 
