@@ -17,23 +17,9 @@
    +----------------------------------------------------------------------+
  */
 
-class Ext extends modules {
+class Ext extends modules_head {
 	function __construct($mid) {
         parent::__construct($mid);
-	}
-
-	function dependsOn() {
-	    return array(
-                    'Ext_Ereg',
-                    'Ext_File',
-                    'Ext_Filter',
-                    'Ext_Mysql',
-                    'Ext_ysqli',
-	                 );
-	}
-
-	public function analyse() {
-        return true;
 	}
 }
 

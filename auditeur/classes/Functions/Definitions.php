@@ -17,35 +17,31 @@
    +----------------------------------------------------------------------+
  */
 
-class return_with_dead_code extends modules {
-	protected	$title = 'Dead code after return';
-	protected	$description = 'Spot dead code after returns. ';
+class Functions_Definitions extends modules {
+	protected	$title = 'Function definitions';
+	protected	$description = 'Function definitions';
 
 	function __construct($mid) {
         parent::__construct($mid);
-	}
-
-	function dependsOn() {
-	    return array();
 	}
 	
 	public function analyse() {
         $this->clean_rapport();
 
-	    $query = <<<SQL
-SELECT NULL, T1.file, CONCAT(T1.class, "::",T1.scope), T1.id, '{$this->name}', 0
+        $query = <<<SQL
+SELECT NULL, T1.file, T2.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
-JOIN <tokens> T2
-    ON T1.file = T2.file AND
-       T1.left BETWEEN T2.left AND T2.right AND
-       T2.type='_function'
-WHERE T1.type='_return' AND
-      T2.right != T1.right + 2 AND 
-      T2.level = T1.level - 2
+JOIN <tokens_tags> TT
+    ON T1.id = TT.token_id  
+JOIN <tokens> T2 
+    ON TT.token_sub_id = T2.id
+WHERE T1.type='_function'      AND 
+      TT.type = 'name' AND
+      T1.class = '';
 SQL;
-        $this->exec_query_insert('rapport',$query);
-        
-        return true;
+    
+        $this->exec_query_insert('rapport', $query);
+        return false;
 	}
 }
 

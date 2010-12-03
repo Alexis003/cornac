@@ -17,30 +17,34 @@
    +----------------------------------------------------------------------+
  */
 
-class doubledeffunctions extends modules {
-	protected	$title = 'Functions being defined twice';
-	protected	$description = 'List functions being defined twice, at least. Hopefully, no one will try to use them simultaneously.';
+class Functions_CodeAfterReturn extends modules {
+	protected	$title = 'Dead code after return';
+	protected	$description = 'Spot dead code after returns. ';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
-	
-	function dependsOn() {
-        return array('deffunctions');	
-	}
 
+	function dependsOn() {
+	    return array();
+	}
+	
 	public function analyse() {
         $this->clean_rapport();
 
-        $query = <<<SQL
-SELECT NULL, file, TR.element,  TR.token_id, '{$this->name}', 0
-FROM <rapport> TR
-WHERE module='deffunctions'
-GROUP BY element 
-HAVING COUNT(*) > 1
+	    $query = <<<SQL
+SELECT NULL, T1.file, CONCAT(T1.class, "::",T1.scope), T1.id, '{$this->name}', 0
+FROM <tokens> T1
+JOIN <tokens> T2
+    ON T1.file = T2.file AND
+       T1.left BETWEEN T2.left AND T2.right AND
+       T2.type='_function'
+WHERE T1.type='_return' AND
+      T2.right != T1.right + 2 AND 
+      T2.level = T1.level - 2
 SQL;
-    
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('rapport',$query);
+        
         return true;
 	}
 }

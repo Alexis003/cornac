@@ -17,18 +17,19 @@
    +----------------------------------------------------------------------+
  */
 
-class vardump extends functioncalls {
-	protected	$title = 'Var_dump and other debug';
-	protected	$description = 'List usage of var_dump, print_r and debug_backtrace functions.';
+class Classes_Definitions extends noms {
+	protected	$title = 'Classes';
+	protected	$description = 'Catalog of classes defined in the application';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
 	
 	public function analyse() {
-	    $this->functions = array('var_dump','print_r','debug_backtrace','debug_print_backtrace');
-	    parent::analyse();
+	    $this->noms['type_token'] = '_class';
+	    $this->noms['type_tags'] = 'name';
 	    
+	    parent::analyse();
 	    return true;
 	}
 }

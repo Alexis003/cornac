@@ -17,27 +17,9 @@
    +----------------------------------------------------------------------+
  */
 
-class Zf extends modules {
+class Zf extends modules_head {
 	function __construct($mid) {
         parent::__construct($mid);
-	}
-
-// @doc if this analyzer is based on previous result, use this to make sure the results are here
-	function dependsOn() {
-	    return array(
-                    'Zf_Action',
-                    'Zf_Classes',
-                    'Zf_Controller',
-                    'Zf_Db',
-                    'Zf_Dependencies',
-                    'Zf_Elements',
-                    'Zf_GetGPC',
-                    'Zf_Redirect',
-                    'Zf_SQL',
-                    'Zf_Session',
-                    'Zf_TypeView',
-                    'Zf_ViewVariables',
-	                 );
 	}
 
 	public function analyse() {

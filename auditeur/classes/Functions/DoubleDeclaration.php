@@ -17,16 +17,16 @@
    +----------------------------------------------------------------------+
  */
 
-class doubledefclass extends modules {
-	protected	$description = 'Liste des défintions doubles de classes';
-	protected	$title = 'Double définitions de classes : des classes définies plusieurs fois au cours du code';
+class Functions_DoubleDeclaration extends modules {
+	protected	$title = 'Functions defined twice';
+	protected	$description = 'List functions being defined twice, at least. Hopefully, no one will try to use them simultaneously.';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
 	
 	function dependsOn() {
-        return array('Classes_Used');	
+        return array('Functions_Definitions');	
 	}
 
 	public function analyse() {
@@ -34,15 +34,13 @@ class doubledefclass extends modules {
 
         $query = <<<SQL
 SELECT NULL, file, TR.element,  TR.token_id, '{$this->name}', 0
-    FROM <rapport> TR
-    WHERE module='Classes_Used'                                  AND
-         TR.element IN (SELECT element FROM <rapport> TR
-                            WHERE module='Classes_Used'
-                            GROUP BY element 
-                            HAVING count(*) > 1);
+FROM <rapport> TR
+WHERE module='Functions_Definitions'
+GROUP BY file, element 
+HAVING COUNT(*) > 1
 SQL;
+    
         $this->exec_query_insert('rapport', $query);
-
         return true;
 	}
 }

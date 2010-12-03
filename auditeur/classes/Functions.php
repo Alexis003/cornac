@@ -17,20 +17,11 @@
    +----------------------------------------------------------------------+
  */
 
-class Functions extends modules {
+class Functions extends modules_head {
 	function __construct($mid) {
         parent::__construct($mid);
 	}
 
-	function dependsOn() {
-	    return array(
-//                    'Functions_*',
-	                 );
-	}
-
-	public function analyse() {
-        return true;
-	}
 }
 
 ?>

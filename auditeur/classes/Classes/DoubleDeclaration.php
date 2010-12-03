@@ -17,21 +17,42 @@
    +----------------------------------------------------------------------+
  */
 
-class Classes_Used extends noms {
-	protected	$title = 'Classes';
-	protected	$description = 'Catalog of classes defined in the applications';
+class Classes_DoubleDeclaration extends modules {
+	protected	$description = 'Classes defined twice';
+	protected	$title = 'Classes defined twice : classes defined several times (2 or more)';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
 	
+	function dependsOn() {
+        return array('Classes_Definitions');	
+	}
+
 	public function analyse() {
-	    $this->noms['type_token'] = '_class';
-	    $this->noms['type_tags'] = 'name';
-	    
-	    parent::analyse();
-	    return true;
+        $this->clean_rapport();
+
+        $query = <<<SQL
+SELECT NULL, file, TR.element,  TR.token_id, '{$this->name}', 0
+FROM <rapport> TR
+WHERE module='Classes_Definitions'
+GROUP BY file, element 
+HAVING COUNT(*) > 1
+SQL;
+        $this->exec_query_insert('rapport', $query);
+
+        return true;
 	}
 }
+
+/*
+SELECT NULL, file, TR.element,  TR.token_id, '{$this->name}', 0
+    FROM <rapport> TR
+    WHERE module='Classes_Definitions'                            AND
+         TR.element IN (SELECT element FROM <rapport> TR
+                            WHERE module='Classes_Definitions'
+                            GROUP BY element 
+                            HAVING count(*) > 1);
+*/
 
 ?>

@@ -64,9 +64,6 @@ $modules = array(
 'constantes',
 'constantes_classes',
 'defconstantes',
-'deffunctions',
-'doubledeffunctions',
-'doubledefclass',
 'defmethodes',
 //'dieexit' @_, 
 'Ext_DieExit',
@@ -121,8 +118,10 @@ $modules = array(
 'tableaux_gpc_seuls',
 'thrown',
 'undeffunctions',
-'unused_args',
-'vardump',
+//'unused_args' @_, 
+'Functions_ArglistUnused',
+//'vardump' @_, 
+'Ext_VarDump',
 'variables',
 'variablesvariables',
 //'xdebug_functions' @_, 
@@ -180,7 +179,8 @@ $modules = array(
 'references',
 'keyval',
 'keyval_outside',
-'return_with_dead_code',
+//'return_with_dead_code' @_, 
+'Functions_CodeAfterReturn',
 'functions_lines',
 'callback_functions',
 'functions_with_callback',
@@ -234,7 +234,8 @@ $modules = array(
 'Classes_MethodsCount',
 'Classes_Undefined',
 'Classes_Unused',
-'Classes_Used',
+'Classes_Definitions',
+'Classes_DoubleDeclaration',
 
 'Ext',
 'Ext_Mysql',
@@ -242,6 +243,10 @@ $modules = array(
 'Ext_Ereg',
 'Ext_Filter',
 'Ext_Mysqli',
+
+'Functions', 
+'Functions_Definitions',
+'Functions_DoubleDeclaration',
 
 'Test',
 // new analyzers
@@ -362,6 +367,7 @@ $sommaire = new sommaire();
 
 // @inclusions abstract classes
 include 'classes/abstract/modules.php';
+include 'classes/abstract/modules_head.php';
 include 'classes/abstract/functioncalls.php';
 include 'classes/abstract/typecalls.php';
 include 'classes/abstract/noms.php';

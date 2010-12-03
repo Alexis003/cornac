@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class unused_args extends modules {
+class Functions_ArglistUnused extends modules {
 	protected	$title = 'Unused arguments';
 	protected	$description = 'Function/method that request arguments, but never use them.';
 

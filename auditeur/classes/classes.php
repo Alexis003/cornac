@@ -17,29 +17,12 @@
    +----------------------------------------------------------------------+
  */
 
-class classes extends modules {
+class classes extends modules_head {
 	protected	$title = 'Title for classes';
 	protected	$description = 'This is the special analyzer classes (default doc).';
 
 	function __construct($mid) {
         parent::__construct($mid);
-	}
-
-// @doc if this analyzer is based on previous result, use this to make sure the results are here
-	function dependsOn() {
-	    return array(
-'MethodeCount',
-'Undefined',
-'Unused',
-'Used',
-'Hierarchy',
-
-	    
-	    );
-	}
-
-	public function analyse() {
-        return true;
 	}
 }
 
