@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class file_functions extends functioncalls {
+class Ext_File extends functioncalls {
 	protected	$title = 'Files functions';
 	protected	$description = 'Native PHP function to handle files, being used.';
 

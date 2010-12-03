@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class mysqli_functions extends functioncalls {
+class Ext_Mysqli extends functioncalls {
 	protected	$title = 'mysqli functions';
 	protected	$description = 'Usage of mysqli functions';
 
