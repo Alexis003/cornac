@@ -16,10 +16,16 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
+include_once('Auditeur_Framework_TestCase.php');
 
-$x = $_GET['x'];
-$y = $_POST['y'];
-$z = $_COOKIE['z'];
-$a = $_REQUEST['a'];
-
+class Quality_ExternalLibraries_Test extends Auditeur_Framework_TestCase
+{
+    public function testpopular_libraries()  { 
+        $this->expected = array( 'fpdf','tcpdf');
+        $this->unexpected = array('Third_Party_Lib',);
+        
+        parent::generic_test();
+//        parent::generic_counted_test();
+    }
+}
 ?>

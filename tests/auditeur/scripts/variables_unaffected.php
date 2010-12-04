@@ -18,6 +18,7 @@
  */
 
 $vu_affected = 1;
+print $vu_affected;
 print $vu_unaffected;
 
 ?>

@@ -16,21 +16,28 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
+include_once('Auditeur_Framework_TestCase.php');
 
-$a = $_GET['a'];
-$b = $_POST['b'];
-$c = $_SESSION['c'];
-$d = $_REQUEST['d'];
-$e = $HTTP_GET_VARS['e'];
-$f = $HTTP_POST_VARS['f'];
-$g = $HTTP_COOKIE_VARS['g'];
-$h = $_COOKIE['h'];
-$i = 1;
-$j = PHP_VERSION;
-$k = _COOKIE;
-
-foreach($_GET as $l => $m) {
-    
+class Structures_BlockOfCalls_Test extends Auditeur_Framework_TestCase
+{
+    public function testVariables()  { 
+        $this->expected = array('block4(0)
+block4(1)
+block4(2)
+block4(3)',
+'block5(0)
+block5(1)
+block5(2)
+block5(3)
+block5(4)',
+'block3()
+block3(1)
+block3(2)'
+                                );
+        $this->unexpected = array();
+        
+        parent::generic_test();
+    }
 }
 
 ?>

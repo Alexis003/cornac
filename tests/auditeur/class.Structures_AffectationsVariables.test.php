@@ -18,15 +18,22 @@
  */
 include_once('Auditeur_Framework_TestCase.php');
 
-class inclusions_path_Test extends Auditeur_Framework_TestCase
+class Structures_AffectationsVariables_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
-        $this->expected = array('inclusion.php',
-                                '$this->inclusion()',
-                                'PATH.$fichier'
+        $this->expected = array('$a','$b',
+                                '$c','$d',
+                                '$e','$g',
+                                '$j','$objet',
+                                '$statique','$k',
+                                '$l','$m',
+                                '$fe_key',
+                                '$fe_value','$fe_value2',
                                 );
-        $this->unexpected = array();
-        
+        $this->unexpected = array('$e','$h','$i',
+                                  'propriete','$fe_array',
+                                  '$fe_array2','$fe_array3',
+                                  '$fe_key3',);
         parent::generic_test();
     }
 }

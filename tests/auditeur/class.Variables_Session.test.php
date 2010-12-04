@@ -18,21 +18,13 @@
  */
 include_once('Auditeur_Framework_TestCase.php');
 
-class defarray_Test extends Auditeur_Framework_TestCase
+class Variables_Session_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
-        $this->expected = array(   
-        '0 elements', 
-        '1 elements',
-        '2 elements',
-        '2 elements',
-        '2 elements',
-        '2 elements',
-        '5 elements',
-        );
+        $this->expected = array('x');
         $this->unexpected = array();
         
-        parent::generic_counted_test();
+        parent::generic_test();
     }
 }
 

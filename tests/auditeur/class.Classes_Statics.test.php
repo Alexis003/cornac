@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -16,36 +16,16 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
-
 include_once('Auditeur_Framework_TestCase.php');
 
-class method_without_ppp_Test extends Auditeur_Framework_TestCase
+class Classes_Statics_Test extends Auditeur_Framework_TestCase
 {
-    function  testmethod_without_ppp()  {
-        $this->expected = array( 
-'method_without_ppp',
-'static_method_without_ppp',
-'final_method_without_ppp',
-);
-        $this->unexpected = array(
-'method_with_private',
-'static_method_with_private',
-'final_method_with_private',
-'static_method_with_private2',
-'final_method_with_private2',
-'method_with_protected',
-'static_method_with_protected',
-'final_method_with_protected',
-'static_method_with_protected2',
-'final_method_with_protected2',
-'on method_with_public',
-'static_method_with_public',
-'final_method_with_public',
-'static_method_with_public2',
-'final_method_with_public2',
-        );
-
+    public function testVariables()  { 
+        $this->expected = array('a->$propriete','parent::methode3()','self::methode2()','a::method(2)','a::constante');
+        $this->unexpected = array();
+        
         parent::generic_test();
     }
 }
+
 ?>

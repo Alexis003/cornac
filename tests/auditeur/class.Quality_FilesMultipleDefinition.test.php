@@ -18,11 +18,11 @@
  */
 include_once('Auditeur_Framework_TestCase.php');
 
-class statiques_Test extends Auditeur_Framework_TestCase
+class Quality_FilesMultipleDefinition_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
-        $this->expected = array('a->$propriete','parent::methode3()','self::methode2()','a::method(2)','a::constante');
-        $this->unexpected = array();
+        $this->expected = array('global', 'scope_class', 'scope_function');
+        $this->unexpected = array('scope_class::global','::global');
         
         parent::generic_test();
     }

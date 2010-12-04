@@ -15,14 +15,15 @@
    +----------------------------------------------------------------------+
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
- */include_once('Auditeur_Framework_TestCase.php');
+ */
+include_once('Auditeur_Framework_TestCase.php');
 
-class keyval_outside_Test extends Auditeur_Framework_TestCase
+class Functions_CalledBack_Test extends Auditeur_Framework_TestCase
 {
-    public function testkeyval_outside()  {
-        $this->expected = array( '$b_outside','$c_outside');
-        $this->unexpected = array('$a_inside','$a_outside','$b_inside','$c_inside');
-
+    public function testcallback_functions()  { 
+        $this->expected = array( 'cb_1_1','cb_1_2','cb_1_3','cb_0_1','cb_0_2','cb_2_1' );
+        $this->unexpected = array(/*'',*/);
+        
         parent::generic_test();
     }
 }

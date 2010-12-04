@@ -18,18 +18,13 @@
  */
 include_once('Auditeur_Framework_TestCase.php');
 
-class affectations_direct_gpc_Test extends Auditeur_Framework_TestCase
+class Structures_AffectationLiterals_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
-        $this->expected = array('$_COOKIE',
-'$_GET',
-'$_POST',
-'$_REQUEST',
-'$HTTP_GET_VARS',
-'$HTTP_POST_VARS',
-'$_SESSION', 
-'$HTTP_COOKIE_VARS',);
-        $this->unexpected = array('$i','$j','$k','$a','$b','$c','$d','$e','$g','$h');
+        $this->expected = array('$a = 1',
+'$b = 2 + 3',
+'$e = array()',);
+        $this->unexpected = array('$c = $d',);
         
         parent::generic_test();
     }

@@ -18,11 +18,11 @@
  */
 include_once('Auditeur_Framework_TestCase.php');
 
-class tableaux_Test extends Auditeur_Framework_TestCase
+class Classes_MethodsSpecial_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
-        $this->expected = array('$a[1]','$b[2]','$b[2][3]','$e[$f[1]]','$f[1]','$d[$e[$f[1]]]');
-        $this->unexpected = array('$c','$g' );
+        $this->expected = array('a->__toString','a->__construct','a->a','a->__destruct','a->__clone','a->__set','a->__get','a->__call','a->__callStatic','a->__unset','a->__isset','a->__wakeup','a->__set_state','a->__sleep','a->__invoke','__autoload');
+        $this->unexpected = array();
         
         parent::generic_test();
     }

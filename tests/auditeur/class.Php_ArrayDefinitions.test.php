@@ -18,13 +18,21 @@
  */
 include_once('Auditeur_Framework_TestCase.php');
 
-class concatenation_gpc_Test extends Auditeur_Framework_TestCase
+class Php_ArrayDefinitions_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
-        $this->expected = array('$_GET','$_REQUEST',);
-        $this->unexpected = array('$_POST');
+        $this->expected = array(   
+        '0 elements', 
+        '1 elements',
+        '2 elements',
+        '2 elements',
+        '2 elements',
+        '2 elements',
+        '5 elements',
+        );
+        $this->unexpected = array();
         
-        parent::generic_test();
+        parent::generic_counted_test();
     }
 }
 

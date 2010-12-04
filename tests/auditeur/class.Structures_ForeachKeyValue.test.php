@@ -18,14 +18,19 @@
  */
 include_once('Auditeur_Framework_TestCase.php');
 
-class gpc_affectations_Test extends Auditeur_Framework_TestCase
+class Structures_ForeachKeyValue_Test extends Auditeur_Framework_TestCase
 {
-    public function testVariables()  { 
-        $this->expected = array('$_POST','$_GET');
-        $this->unexpected = array('$_COOKIE' );
+    public function testkeyval()  { 
+        $this->expected = array('$b',
+                                '$c',
+                                '$f',
+                                '$h',
+                                '$k',
+                                '$l',
+                                );
+        $this->unexpected = array();
         
         parent::generic_test();
     }
 }
-
 ?>
