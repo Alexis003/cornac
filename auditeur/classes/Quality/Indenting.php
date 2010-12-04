@@ -17,32 +17,39 @@
    +----------------------------------------------------------------------+
  */
 
-class Functions_Unused extends modules {
-    protected $title = 'Unused functions'; 
-    protected $description = 'List of unused functions'; 
+class Quality_Indenting extends modules {
+	protected	$title = 'Indentations';
+	protected	$description = 'List of indentation level expected. We expect a new level with the following scopes : classes, functions, loops and switch.';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
-	
-	function dependsOn() {
-	    return array('Structures_FunctionsCalls','Functions_Definitions');
-	}
-	
+
 	public function analyse() {
         $this->clean_rapport();
 
+/* @example
++---------+----------+--------------------------------------------------------------+
+| id      | COUNT(*) | GROUP_CONCAT(P.type ORDER BY P.left)                       |
++---------+----------+--------------------------------------------------------------+
+| 1754692 |        1 | ifthen                                                       |
+| 1754718 |        1 | ifthen                                                       |
+| 1754765 |        1 | ifthen                                                       |
+| 1754802 |        2 | ifthen,ifthen                                                |
+| 1754897 |        2 | ifthen,ifthen                                                |
+
+*/
         $query = <<<SQL
-SELECT NULL, TR1.file, TR1.element AS code, TR1.id, '{$this->name}', 0
-FROM <rapport> TR1
-LEFT JOIN <rapport>  TR2 
-ON TR1.element = TR2.element AND 
-   TR2.module='Structures_FunctionsCalls' 
-WHERE TR1.module = 'Functions_Definitions' AND 
-      TR2.module IS NULL AND
-      TR1.element NOT IN ('__autoload')
+SELECT NULL, N.file, GROUP_CONCAT(P.type ORDER BY P.left) AS code, N.id, '{$this->name}', 0
+FROM <tokens> N, <tokens> P 
+WHERE N.type IN ('ifthen','_class','_function','_while','_dowhile','_foreach','_case','_for','_switch') AND
+      N.file = P.file AND
+      N.left BETWEEN P.left AND P.right AND
+      P.type IN ('ifthen','_class','_function','_while','_dowhile','_foreach','_case','_for','_switch')
+      GROUP BY N.id
 SQL;
         $this->exec_query_insert('rapport', $query);
+
         return true;
 	}
 }

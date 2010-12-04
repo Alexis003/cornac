@@ -25,6 +25,11 @@ class Functions_Undefined extends modules {
         parent::__construct($mid);
 	}
 	
+	function dependsOn() {
+	    return array('Structures_FunctionsCalls','Functions_Definitions');
+	}
+
+	
 	public function analyse() {
         $this->clean_rapport();
 
@@ -32,9 +37,10 @@ class Functions_Undefined extends modules {
 SELECT NULL, TR1.file, TR1.element, TR1.id, '{$this->name}', 0
 FROM <rapport> TR1
 LEFT JOIN <rapport> TR2 
-  ON TR1.element = TR2.element AND TR2.module='Functions_Definitions'
-WHERE TR1.module='functionscalls' AND
-      TR2.element IS NULL;
+  ON TR1.element = TR2.element AND 
+     TR2.module='Functions_Definitions'
+WHERE TR1.module='Structures_FunctionsCalls' AND
+      TR2.element IS NULL
 SQL;
         $this->exec_query_insert('rapport',$query);
 

@@ -17,32 +17,57 @@
    +----------------------------------------------------------------------+
  */
 
-class Functions_Unused extends modules {
-    protected $title = 'Unused functions'; 
-    protected $description = 'List of unused functions'; 
+class Php_ArrayMultiDim extends modules {
+	protected	$title = 'Multi-dimensionnal arrays';
+	protected	$description = 'List of arrays that are multidimensionnal : $x[1][2], $x[1][2][3], and more.';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
-	
+
 	function dependsOn() {
-	    return array('Structures_FunctionsCalls','Functions_Definitions');
+	    return array();
 	}
 	
 	public function analyse() {
         $this->clean_rapport();
 
-        $query = <<<SQL
-SELECT NULL, TR1.file, TR1.element AS code, TR1.id, '{$this->name}', 0
-FROM <rapport> TR1
-LEFT JOIN <rapport>  TR2 
-ON TR1.element = TR2.element AND 
-   TR2.module='Structures_FunctionsCalls' 
-WHERE TR1.module = 'Functions_Definitions' AND 
-      TR2.module IS NULL AND
-      TR1.element NOT IN ('__autoload')
+// @note the comment /* JOIN */ here is important
+	    $query = <<<SQL
+SELECT NULL, T1.file, TC.code ,T1.id, '{$this->name}', 0
+FROM <tokens> T1
+/* JOIN */
+JOIN <tokens_cache> TC
+    ON TC.id = T1.id
+LEFT JOIN <tokens> TX
+    ON TX.type IN ('_array','opappend') AND 
+       T1.file = TX.file AND
+       T1.left - 1 = TX.left
+LEFT JOIN <rapport> TR
+    ON TR.module='{$this->name}' AND
+       TR.token_id = T1.id
+WHERE T1.type IN ('_array','opappend') AND
+      TR.id IS NULL AND
+      TX.id IS NULL
 SQL;
-        $this->exec_query_insert('rapport', $query);
+
+for($i = 2; $i < 7; $i++) {
+    $h = $i - 1;
+    $join = <<<SQL
+JOIN <tokens> T$i
+    ON T$i.type IN ('_array','opappend') AND 
+       T1.file = T$i.file AND
+       T$h.left + 1 = T$i.left
+/* JOIN */
+SQL;
+    $query = str_replace('/* JOIN */', $join, $query);
+    $query = str_replace('       T'.$h.'.left + 1 = TX.left','       T'.$i.'.left + 1 = TX.left', $query);
+
+    $this->exec_query_insert('rapport', $query);
+}
+
+        // @todo spot array(array());
+        
         return true;
 	}
 }

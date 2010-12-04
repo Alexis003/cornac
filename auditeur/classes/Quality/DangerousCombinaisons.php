@@ -17,32 +17,39 @@
    +----------------------------------------------------------------------+
  */
 
-class Functions_Unused extends modules {
-    protected $title = 'Unused functions'; 
-    protected $description = 'List of unused functions'; 
+class Quality_DangerousCombinaisons extends modules {
+	protected	$title = 'Combinaisons dangereuses';
+	protected	$description = 'Liste de files ayant des combinaisons dangereuses d\'elements (ex. $_POST et shell_exec).';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
-	
+
 	function dependsOn() {
-	    return array('Structures_FunctionsCalls','Functions_Definitions');
+	    return array('affectations_variables');
 	}
-	
+
 	public function analyse() {
         $this->clean_rapport();
+        
+        $combinaisons = parse_ini_file('../dict/combinaisons.ini', true);
 
-        $query = <<<SQL
-SELECT NULL, TR1.file, TR1.element AS code, TR1.id, '{$this->name}', 0
-FROM <rapport> TR1
-LEFT JOIN <rapport>  TR2 
-ON TR1.element = TR2.element AND 
-   TR2.module='Structures_FunctionsCalls' 
-WHERE TR1.module = 'Functions_Definitions' AND 
-      TR2.module IS NULL AND
-      TR1.element NOT IN ('__autoload')
+        foreach ($combinaisons as $nom => $combinaison) {
+            $in = "'".join("','", $combinaison['combinaison'])."'";
+            $count = count($combinaison['combinaison']);
+            // @todo : this shouldn't be sufficient. One must work on distinct occurences... may be a sub query will do
+
+// @note : some token duplicate code from other tokens (like functioncall, which have no code by itself, but get a copy of their name for easy reference)
+// @note so, we need to ignore some types. 
+            $query = <<<SQL
+SELECT NULL, T1.file, '$nom', T1.code, '{$this->name}', 0
+FROM <tokens> T1
+WHERE T1.type NOT IN ('functioncall','method')
+GROUP BY file
+HAVING SUM(IF (code IN ($in), 1, 0)) >= $count
 SQL;
-        $this->exec_query_insert('rapport', $query);
+            $this->exec_query_insert('rapport', $query);
+        }
         return true;
 	}
 }

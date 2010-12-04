@@ -17,40 +17,42 @@
    +----------------------------------------------------------------------+
  */
 
-class functioncalls extends modules {
-    protected $not = false; 
-    protected $functions = array();
+class Classes_MethodsSpecial extends modules {
+	protected	$title = 'Méthodes spéciales';
+	protected	$description = 'Liste des méthodes spéciales de PHP';
 
-    function __construct($mid) {
+	function __construct($mid) {
         parent::__construct($mid);
-    }
-    
-    public function analyse() {
-        if (!is_array($this->functions) || empty($this->functions)) {
-            print "No function name provided for class ".get_class($this)." Aborting.\n";
-            die();
-        }
-        $in = join("','", $this->functions);
-        $this->functions = array();
-
-        if ($this->not) {
-            $not = ' not ';
-        } else {
-            $not = '';
-        }
-        
+	}
+	
+	public function analyse() {
         $this->clean_rapport();
 
+        $concat = $this->concat("T1.class","'->'","T1.scope");
         $query = <<<SQL
-SELECT NULL, T1.file, T2.code AS code, T1.id, '{$this->name}', 0
-FROM <tokens> T1 
-JOIN <tokens> T2
-    ON T2.left = T1.left + 1 AND
-       T2.file = T1.file
-WHERE T1.type='functioncall' AND T2.code $not in ('$in')
+SELECT NULL, T1.file, $concat, T1.id, '{$this->name}' , 0
+FROM <tokens> T1
+WHERE scope IN ( '__construct','__toString','__destruct',
+                 '__set','__get','__call','__callStatic',
+                 '__clone','__toString','__unset','__isset','__set_state',
+                 '__invoke',
+                 '__wakeup','__sleep'
+                 ) 
+       OR scope = class 
+GROUP BY file, class, scope;
+
+SQL;
+    $this->exec_query_insert('rapport', $query);
+
+        $query = <<<SQL
+SELECT NULL, T1.file, T1.scope, T1.id, '{$this->name}' , 0
+FROM <tokens> T1
+WHERE scope IN ( '__autoload' ) AND 
+      T1.type='_function'
+
 SQL;
         $this->exec_query_insert('rapport', $query);
-    }
+	}
 }
 
 ?>

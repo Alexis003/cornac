@@ -34,7 +34,19 @@ if (preg_match_all('/[^a-zA-Z0-9_]/', $analyzer, $r)) {
     die();
 }
 
-if (file_exists('classes/'.$analyzer.'.php')) {
+if (count(explode('_', $analyzer)) != 2) {
+    print "'$analyzer' name should contains only one _. ";
+    die();
+}
+
+$analyzer_path = str_replace('_', '/', $analyzer);
+
+if (file_exists('classes/'.basename($analyzer_path))) {
+    print "'$analyzer' : folder non-existant. \n";
+    die();
+}
+
+if (file_exists('classes/'.$analyzer_path.'.php')) {
     print "'$analyzer' already exists.\n";
     die();
 }
@@ -90,12 +102,12 @@ SQL;
 "
 .'?'.'>';
 
-file_put_contents('classes/'.$analyzer.'.php', $code);
+file_put_contents('classes/'.$analyzer_path.'.php', $code);
 
 $auditeur = file_get_contents('./auditeur.php');
 $auditeur = str_replace("// new analyzers\n", "'$analyzer',\n// new analyzers\n", $auditeur);
 file_put_contents('auditeur.php', $auditeur);
-shell_exec('git add classes/'.$analyzer.'.php');
+shell_exec('git add classes/'.$analyzer_path.'.php');
 
 print "$analyzer created\n";
 ?>

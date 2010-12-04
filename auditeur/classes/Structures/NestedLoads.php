@@ -17,40 +17,33 @@
    +----------------------------------------------------------------------+
  */
 
-class functioncalls extends modules {
-    protected $not = false; 
-    protected $functions = array();
+class Structures_NestedLoads extends modules {
+	protected	$title = 'Loaded loops';
+	protected	$description = 'Loops applied on a heavy function/method';
 
-    function __construct($mid) {
+	function __construct($mid) {
         parent::__construct($mid);
-    }
-    
-    public function analyse() {
-        if (!is_array($this->functions) || empty($this->functions)) {
-            print "No function name provided for class ".get_class($this)." Aborting.\n";
-            die();
-        }
-        $in = join("','", $this->functions);
-        $this->functions = array();
-
-        if ($this->not) {
-            $not = ' not ';
-        } else {
-            $not = '';
-        }
-        
+	}
+	
+	public function analyse() {
         $this->clean_rapport();
 
         $query = <<<SQL
-SELECT NULL, T1.file, T2.code AS code, T1.id, '{$this->name}', 0
-FROM <tokens> T1 
+SELECT NULL, T1.file, T2.code, T1.id, '{$this->name}', 0
+FROM <tokens> T1
 JOIN <tokens> T2
-    ON T2.left = T1.left + 1 AND
-       T2.file = T1.file
-WHERE T1.type='functioncall' AND T2.code $not in ('$in')
+    ON T1.file = T2.file AND 
+       T2.left BETWEEN T1.left AND T1.right
+WHERE T1.type in ('_while','_for','_foreach') AND 
+      T2.type IN  ('token_traite')
+GROUP BY T1.file, T1.left, T2.type
+HAVING COUNT(*) > 1
 SQL;
+
         $this->exec_query_insert('rapport', $query);
-    }
+        
+        return true;
+	}
 }
 
 ?>

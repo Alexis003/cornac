@@ -17,40 +17,50 @@
    +----------------------------------------------------------------------+
  */
 
-class functioncalls extends modules {
-    protected $not = false; 
-    protected $functions = array();
+class Functions_LinesCount extends modules {
+	protected	$title = 'Lines of code';
+	protected	$description = 'Line of code, function by function';
 
-    function __construct($mid) {
+	function __construct($mid) {
         parent::__construct($mid);
-    }
-    
-    public function analyse() {
-        if (!is_array($this->functions) || empty($this->functions)) {
-            print "No function name provided for class ".get_class($this)." Aborting.\n";
-            die();
-        }
-        $in = join("','", $this->functions);
-        $this->functions = array();
+	}
 
-        if ($this->not) {
-            $not = ' not ';
-        } else {
-            $not = '';
-        }
-        
+// @doc if this analyzer is based on previous result, use this to make sure the results are here
+	function dependsOn() {
+	    return array();
+	}
+	
+	public function analyse() {
         $this->clean_rapport();
 
-        $query = <<<SQL
-SELECT NULL, T1.file, T2.code AS code, T1.id, '{$this->name}', 0
-FROM <tokens> T1 
+	    $query = <<<SQL
+SELECT NULL, T1.file, CONCAT( (T2.line - T1.line)), T1.id, '{$this->name}', 0
+FROM <tokens> T1
 JOIN <tokens> T2
-    ON T2.left = T1.left + 1 AND
-       T2.file = T1.file
-WHERE T1.type='functioncall' AND T2.code $not in ('$in')
+    ON T1.file = T2.file AND
+       T2.right = T1.right - 2
+LEFT JOIN <tokens> T3
+    ON T1.file = T3.file AND
+       T3.left BETWEEN T1.left AND T1.right AND
+       T3.type = 'literals' AND 
+       T3.code = 'abstract'
+WHERE T1.type='_function' 
 SQL;
         $this->exec_query_insert('rapport', $query);
-    }
+
+/*
+select min(line)
+from functions 
+
+select max(line)
+from functions
+
+
+
+*/
+
+        return true;
+	}
 }
 
 ?>

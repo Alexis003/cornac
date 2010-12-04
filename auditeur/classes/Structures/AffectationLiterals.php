@@ -17,39 +17,37 @@
    +----------------------------------------------------------------------+
  */
 
-class functioncalls extends modules {
-    protected $not = false; 
-    protected $functions = array();
+class Structures_AffectationLiterals extends modules {
+	protected	$title = 'Literals assignations';
+	protected	$description = 'List of literals affectations';
 
-    function __construct($mid) {
+	function __construct($mid) {
         parent::__construct($mid);
-    }
-    
-    public function analyse() {
-        if (!is_array($this->functions) || empty($this->functions)) {
-            print "No function name provided for class ".get_class($this)." Aborting.\n";
-            die();
-        }
-        $in = join("','", $this->functions);
-        $this->functions = array();
-
-        if ($this->not) {
-            $not = ' not ';
-        } else {
-            $not = '';
-        }
-        
+	}
+	
+	public function analyse() {
         $this->clean_rapport();
 
+// @note affectations that have no variables on the right side (properties, references, list(), noscream...)
         $query = <<<SQL
-SELECT NULL, T1.file, T2.code AS code, T1.id, '{$this->name}', 0
-FROM <tokens> T1 
+SELECT NULL, T1.file, TC.code, T1.id,  '{$this->name}' , 0 
+FROM <tokens> T1
+JOIN <tokens_tags> TT1
+    ON T1.id = TT1.token_id AND 
+       TT1.type='right'
 JOIN <tokens> T2
-    ON T2.left = T1.left + 1 AND
-       T2.file = T1.file
-WHERE T1.type='functioncall' AND T2.code $not in ('$in')
+    ON T1.file = T2.file AND 
+       T2.id = TT1.token_sub_id
+JOIN <tokens> T3
+    ON T1.file = T3.file AND 
+       T3.left BETWEEN T2.left AND T2.right 
+JOIN <tokens_cache> TC
+    ON TC.id = T1.id
+WHERE T1.type = 'affectation' 
+GROUP BY T1.id
+HAVING SUM(IF(T3.type = 'variable', 1,0)) = 0
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('rapport', $query);    
     }
 }
 

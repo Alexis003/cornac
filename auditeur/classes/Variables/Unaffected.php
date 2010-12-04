@@ -26,7 +26,7 @@ class Variables_Unaffected extends modules {
     }
     
     function dependsOn() {
-        return array('Variables_Names', 'affectations_variables','keyval');
+        return array('Variables_Names', 'Structures_AffectationsVariables','Structures_ForeachKeyValue');
     }
 
 	public function analyse() {
@@ -36,9 +36,9 @@ class Variables_Unaffected extends modules {
 	    // @todo speed improvement here. 
         $query = <<<SQL
 CREATE TEMPORARY TABLE tmp_variables_unaffected
-SELECT element, file
+SELECT DISTINCT element, file, token_id
 FROM <rapport> TR1
-WHERE TR1.module = 'affectations_variables'
+WHERE TR1.module = 'Variables_Names'
 SQL;
     	$this->exec_query($query);
 
@@ -53,16 +53,18 @@ SQL;
     	$this->exec_query($query);
     	
         $query = <<<SQL
-SELECT NULL, TR1.file, TR1.element AS code, TR1.token_id, '{$this->name}', 0
-FROM <rapport> TR1
-LEFT JOIN tmp_variables_unaffected TR2
-    ON TR1.element = TR2.element AND 
-       TR1.file = TR2.file
-WHERE TR1.module='Variables_Names' AND 
-      TR2.element IS NULL
+SELECT DISTINCT NULL, TR1.file, TR1.element AS code, TR1.token_id, '{$this->name}', 0
+FROM tmp_variables_unaffected TR1
+LEFT JOIN <rapport> TR2
+    ON TR1.element = TR2.element AND
+       TR1.file = TR2.file AND
+       TR2.module='Structures_AffectationsVariables' 
+WHERE TR2.element IS NULL
 SQL;
     	$this->exec_query_insert('rapport',$query);
 
+        // @note remove PHP variables, that don't need any assignation.
+        // @todo make a better list of PHP reserved variables
         $query = <<<SQL
 DELETE FROM <rapport> 
 WHERE element IN ('\$GLOBALS','\$_SESSION','\$_REQUEST',
@@ -75,7 +77,7 @@ SQL;
 DELETE FROM CR1 
     USING <rapport> CR1, <rapport> CR2
 WHERE CR1.module='{$this->name}' AND
-      CR2.module='keyval' AND
+      CR2.module='Structures_ForeachKeyValue' AND
       CR1.element = CR2.element AND
       CR1.file = CR2.file
 SQL;

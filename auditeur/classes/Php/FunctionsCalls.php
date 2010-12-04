@@ -17,40 +17,37 @@
    +----------------------------------------------------------------------+
  */
 
-class functioncalls extends modules {
-    protected $not = false; 
-    protected $functions = array();
+class Php_FunctionsCalls extends modules {
+    protected $description = "Function calls"; 
+    protected $title = "List all PHP function calls"; 
 
-    function __construct($mid) {
+	function __construct($mid) {
         parent::__construct($mid);
-    }
-    
-    public function analyse() {
-        if (!is_array($this->functions) || empty($this->functions)) {
-            print "No function name provided for class ".get_class($this)." Aborting.\n";
-            die();
-        }
-        $in = join("','", $this->functions);
-        $this->functions = array();
-
-        if ($this->not) {
-            $not = ' not ';
-        } else {
-            $not = '';
-        }
-        
+	}
+	
+	public function analyse() {
         $this->clean_rapport();
+
+	    $total = modules::getPHPFunctions();
+	    $in = join("', '", $total);
 
         $query = <<<SQL
 SELECT NULL, T1.file, T2.code AS code, T1.id, '{$this->name}', 0
-FROM <tokens> T1 
-JOIN <tokens> T2
-    ON T2.left = T1.left + 1 AND
-       T2.file = T1.file
-WHERE T1.type='functioncall' AND T2.code $not in ('$in')
+  FROM <tokens> T1
+  JOIN <tokens> T2
+       ON T1.file = T2.file AND
+          T1.left = T2.left - 1
+  LEFT JOIN <tokens_tags> TT
+       ON T1.id = TT.token_sub_id
+where 
+ T1.type='functioncall' AND
+( TT.token_id IS NULL OR TT.type != 'method') AND
+T2.code NOT IN ('$in')
 SQL;
+
         $this->exec_query_insert('rapport', $query);
-    }
+        return true;
+	}
 }
 
 ?>

@@ -17,40 +17,30 @@
    +----------------------------------------------------------------------+
  */
 
-class functioncalls extends modules {
-    protected $not = false; 
-    protected $functions = array();
+class Quality_GpcUsage extends modules {
+	protected	$title = 'GPC arrays';
+	protected	$description = 'Usage of PHP super global array (GPC, GLOBALS, SESSION, FILES, etc)';
 
-    function __construct($mid) {
+	function __construct($mid) {
         parent::__construct($mid);
-    }
-    
-    public function analyse() {
-        if (!is_array($this->functions) || empty($this->functions)) {
-            print "No function name provided for class ".get_class($this)." Aborting.\n";
-            die();
-        }
-        $in = join("','", $this->functions);
-        $this->functions = array();
-
-        if ($this->not) {
-            $not = ' not ';
-        } else {
-            $not = '';
-        }
-        
+	}
+	
+	public function analyse() {
         $this->clean_rapport();
 
+// @note cas simple : variable -> method
         $query = <<<SQL
-SELECT NULL, T1.file, T2.code AS code, T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, T1.code AS code, T1.id, '{$this->name}', 0
 FROM <tokens> T1 
-JOIN <tokens> T2
-    ON T2.left = T1.left + 1 AND
-       T2.file = T1.file
-WHERE T1.type='functioncall' AND T2.code $not in ('$in')
+LEFT JOIN <tokens> T2 ON T1.left - 1 = T2.left AND T1.file = T2.file
+WHERE T1.type="variable" AND
+      T1.code IN ('\$_GET','\$_SERVER','\$GLOBALS','\$_POST','\$_REQUEST','\$_ENV','\$_COOKIE','\$_SESSION') AND 
+      T2.type != '_array'
 SQL;
         $this->exec_query_insert('rapport', $query);
-    }
+
+        return true;
+	}
 }
 
 ?>

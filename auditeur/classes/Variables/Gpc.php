@@ -17,40 +17,23 @@
    +----------------------------------------------------------------------+
  */
 
-class functioncalls extends modules {
-    protected $not = false; 
-    protected $functions = array();
+class Variables_Gpc extends typecalls {
+	protected	$title = 'Web variables';
+	protected	$description = 'Usage of web variables : those variables, set by PHP, and coming from external sources.';
 
     function __construct($mid) {
         parent::__construct($mid);
     }
-    
-    public function analyse() {
-        if (!is_array($this->functions) || empty($this->functions)) {
-            print "No function name provided for class ".get_class($this)." Aborting.\n";
-            die();
-        }
-        $in = join("','", $this->functions);
-        $this->functions = array();
 
-        if ($this->not) {
-            $not = ' not ';
-        } else {
-            $not = '';
-        }
-        
-        $this->clean_rapport();
-
-        $query = <<<SQL
-SELECT NULL, T1.file, T2.code AS code, T1.id, '{$this->name}', 0
-FROM <tokens> T1 
-JOIN <tokens> T2
-    ON T2.left = T1.left + 1 AND
-       T2.file = T1.file
-WHERE T1.type='functioncall' AND T2.code $not in ('$in')
-SQL;
-        $this->exec_query_insert('rapport', $query);
-    }
+	public function analyse() {
+	    $this->type = 'variable';
+	    $this->code = array('$_GET','$_POST','$_COOKIE','$_SERVER','_FILES','$_REQUEST','$_SESSION','$_ENV',
+	                        '$PHP_SELF','$HTTP_RAW_POST_DATA',
+	                        '$HTTP_GET_VARS','$HTTP_POST_VARS',
+	                        '$GLOBALS');
+	    parent::analyse();
+	}
+	
 }
 
 ?>

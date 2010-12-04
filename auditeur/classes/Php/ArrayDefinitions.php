@@ -17,40 +17,42 @@
    +----------------------------------------------------------------------+
  */
 
-class functioncalls extends modules {
-    protected $not = false; 
-    protected $functions = array();
+class Php_ArrayDefinitions extends modules {
+	protected	$title = 'Arrays as lists';
+	protected	$description = 'Long arrays, that contains data dictionaries, or lists';
 
-    function __construct($mid) {
+	function __construct($mid) {
         parent::__construct($mid);
-    }
-    
-    public function analyse() {
-        if (!is_array($this->functions) || empty($this->functions)) {
-            print "No function name provided for class ".get_class($this)." Aborting.\n";
-            die();
-        }
-        $in = join("','", $this->functions);
-        $this->functions = array();
+	}
 
-        if ($this->not) {
-            $not = ' not ';
-        } else {
-            $not = '';
-        }
-        
+// @doc if this analyzer is based on previous result, use this to make sure the results are here
+	function dependsOn() {
+	    return array( );
+	}
+	
+	public function analyse() {
         $this->clean_rapport();
 
-        $query = <<<SQL
-SELECT NULL, T1.file, T2.code AS code, T1.id, '{$this->name}', 0
-FROM <tokens> T1 
+// @todo of course, update this useless query. :)
+	    $query = <<<SQL
+SELECT NULL, T2.file, CONCAT(SUM(IF(T3.type='token_traite',0,1)), ' elements'), T2.id, '{$this->name}', 0
+FROM <tokens> T1
 JOIN <tokens> T2
-    ON T2.left = T1.left + 1 AND
-       T2.file = T1.file
-WHERE T1.type='functioncall' AND T2.code $not in ('$in')
+    ON T2.file = T1.file AND
+       T2.left = T1.right + 1
+JOIN <tokens> T3
+    ON T3.file = T1.file AND
+       T3.left BETWEEN T2.left AND T2.right AND
+       T3.level = T2.level + 1 
+WHERE T1.code='array' AND 
+       T2.type='arglist' AND
+       T2.right - T2.left > 1
+GROUP BY T2.id;
 SQL;
         $this->exec_query_insert('rapport', $query);
-    }
+        
+        return true;
+	}
 }
 
 ?>

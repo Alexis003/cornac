@@ -17,39 +17,38 @@
    +----------------------------------------------------------------------+
  */
 
-class functioncalls extends modules {
-    protected $not = false; 
-    protected $functions = array();
+class Quality_FilesMultipleDefinition extends modules {
+	protected	$title = 'Multi declaration files';
+	protected	$description = 'Files that declare several structures (classes, functions and global code).';
 
-    function __construct($mid) {
+	function __construct($mid) {
         parent::__construct($mid);
-    }
-    
-    public function analyse() {
-        if (!is_array($this->functions) || empty($this->functions)) {
-            print "No function name provided for class ".get_class($this)." Aborting.\n";
-            die();
-        }
-        $in = join("','", $this->functions);
-        $this->functions = array();
-
-        if ($this->not) {
-            $not = ' not ';
-        } else {
-            $not = '';
-        }
-        
+	}
+	
+	public function analyse() {
         $this->clean_rapport();
 
-        $query = <<<SQL
-SELECT NULL, T1.file, T2.code AS code, T1.id, '{$this->name}', 0
-FROM <tokens> T1 
-JOIN <tokens> T2
-    ON T2.left = T1.left + 1 AND
-       T2.file = T1.file
-WHERE T1.type='functioncall' AND T2.code $not in ('$in')
+	    $query = <<<SQL
+CREATE TEMPORARY TABLE Quality_FilesMultipleDefinition
+SELECT DISTINCT T1.file AS file,  if (class= '', scope, class) AS context
+FROM <tokens> T1
+WHERE T1.type NOT IN ('codephp','sequence')
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $res = $this->exec_query($query);
+
+	    $query = <<<SQL
+INSERT INTO <rapport> 
+    SELECT NULL, T1.file, T1.context, 0, '{$this->name}', 0
+    FROM Quality_FilesMultipleDefinition T1
+SQL;
+        $res = $this->exec_query($query);
+
+	    $query = <<<SQL
+DROP TABLE Quality_FilesMultipleDefinition
+SQL;
+        $res = $this->exec_query($query);
+
+        return true;
     }
 }
 
