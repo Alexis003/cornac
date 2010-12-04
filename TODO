@@ -113,6 +113,10 @@ Support dot format for testing
 
 Organize tests hierarchically (Common/Zend/Sf) and allow some arbitrary gathering
 
+-> multiple (fluid interfaces on properties)
+List of undefined/unused interfaces
+GPC used in functions... 
+
 [analysers ideas]
 
 identify 'tainted' values (either from GPC, or from arguments)
