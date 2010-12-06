@@ -139,6 +139,7 @@ $tests = array(
 'class.Zf_SQL.test.php',
 // 'class.Php_InclusionLinks.test.php',  @todo tests with dot format will come later
 'class.Literals_Definitions.test.php',
+'class.Classes_PropertiesChained.test.php',
 // new tests
 );
 
