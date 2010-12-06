@@ -1,3 +1,6 @@
+Add a way to display code within cornac
+Exploiter les analyseurs
+
 [cornac]
 Have a tar.gz packaged automatically (create a phing build)
 Set up a version system, so that it is easier to know which version is being used (upon a phing publication? ) 
@@ -113,9 +116,13 @@ Support dot format for testing
 
 Organize tests hierarchically (Common/Zend/Sf) and allow some arbitrary gathering
 
--> multiple (fluid interfaces on properties)
+ multiple -> (fluent interfaces on properties)
 List of undefined/unused interfaces
 GPC used in functions... 
+
+Structure (Function, method, class) must use, have return, call such method, etc... 
+
+check tokens? and version. 
 
 [analysers ideas]
 

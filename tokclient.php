@@ -72,7 +72,9 @@ $DATABASE = new database();
 
 // @todo : make a sleeping client here, that waits, not die.
 $files_processed = 0;
-while(1 ) {
+$total = 0;
+while( 1 ) {
+    $total++;
     if ($INI['slave'] > 0 && ($files_processed >= intval($INI['slave']))) {
         print "Processed all $files_processed files. Finishing.\n";
         die();
@@ -102,11 +104,25 @@ while(1 ) {
 
     $DATABASE->query('UPDATE <tasks> SET completed = 1, date_update=NOW() WHERE id = '.$DATABASE->quote($row['id']).' LIMIT 1');
 
+    print $row['target']."\n";
     $scriptsPHP = array($row['target'] => $row);
-    if (process_file($scriptsPHP, $limit)) { 
+    $pf = new file_processor();
+    
+    if ($pf->process_file($scriptsPHP, $limit)) {
+        if ($pf->messages['templates']) { 
+//            print ".";
+        } else {
+            // @todo write to a lof file, or wait till the end to produce a long list. 
+            print "T";
+        }
         $completed = 100; 
     } else {
         $completed = 2;
+        // @todo write to a lof file, or wait till the end to produce a long list. 
+//        print "F";
+    }
+    if ($total % 60 == 0) {
+        print " / $total\n";
     }
 
     $times['fin'] = microtime(true);
@@ -122,195 +138,214 @@ while(1 ) {
 }
 mon_die();
 
-function process_file($scriptsPHP, $limit) {
-    global $file, $files_processed, $INI;
-    $FIN['fait'] = 0;
-    $FIN['trouves'] = 0;
+class file_processor {
 
-    list($file, $config) = each($scriptsPHP);
-
-//foreach($scriptsPHP as $file => $config){
-    $FIN['trouves']++;
-    print $file."\n";
-    if (!file_exists($file)) {
-        print "'$file' doesn't exist. Aborting\n";
-        continue;
+    function __construct() {
+        $this->messages = array();
+        $this->error = false;
     }
-
-// @doc 4177 is error_reporting for  E_COMPILE_ERROR|E_RECOVERABLE_ERROR|E_ERROR|E_CORE_ERROR (compilations error only)
-    $exec = shell_exec('php -d short_open_tag=1 -d error_reporting=4177  -l '.escapeshellarg($file).' ');
-    if (trim($exec) != 'No syntax errors detected in '.$file) {
-        print "Script \"$file\" can't be compiled by PHP\n$exec\n";
-        return false;
-    }
-
-    $code = file_get_contents($file);
-
-    // @doc one must leave <?php and <?xml untouched
-    // @doc one must also leave <?R& (\w\W), which are binary, not PI
-    // @note only take into account <?\s
-
-    if ($c = preg_match_all('/<\\?(?!php)(\w?\s)/is', $code, $r) ) {
-        if (VERBOSE) {
-            print "Fixing $c opening tags\n";
-        }
-        $code = preg_replace('/<\\?(?!php)(\w?\s)/is', '<?php'." ".'\1', $code);
-    }
-    // @todo this is too simple, but it works until now (binary, beware!)
-    $code = str_replace('<?=', '<?php echo ', $code);
-
-    // @todo abstract this function, so one can choose the PHP version for tokenization
-    $raw = @token_get_all($code);
-    if (count($raw) == 0) {
-        print "No token found. Aborting\n";
-        return false;
-    }
-    if ($INI['tokens']) {
-        print "Displaying tokens\n";
-        print_r($raw);
-        die();
-    }
-    $nb_tokens_initial = count($raw);
     
-    // @note my PHP crashes at 400852 (511 zend_scan_black, or zval_mark_grey) beyong this limit, 
-    // @note over 200k tokens is probably a large library of data. Not the most interesting
-    if ($nb_tokens_initial > 200000) {
-        print "Way too many tokens\n";
-        return false; 
-    }
-
-    $root = new Token();
-    $suite = null;
-    $ligne = 0;
-
-    foreach($raw as $id => $b) {
-        // @note actually removing all coments and whitespace even before turning them into token
-        if (is_array($b) && in_array($b[0], array(T_COMMENT, T_DOC_COMMENT, T_WHITESPACE))) { continue; }
-        $t = new Token();
-
-        $t->setId($id);
-        if (is_array($b)) {
-            $t->setToken($b[0]);
-            $t->setCode($b[1]);
-            $t->setLine($b[2]);
-            $ligne = $b[2];
-        } else {
-            $t->setCode($b);
-            $t->setLine($ligne);
+    function process_file($scriptsPHP, $limit) {
+        global $file, $files_processed, $INI;
+        $result = array();
+    
+        $FIN['fait'] = 0;
+        $FIN['trouves'] = 0;
+    
+        list($file, $config) = each($scriptsPHP);
+    
+        $FIN['trouves']++;
+        if (!file_exists($file)) {
+            $this->messages['compile'] = "'$file' doesn't exist. Aborting\n";
+            $this->error = true;
+            continue;
         }
-
-        if (is_null($suite)) {
-            $suite = $t;
-            $root = $t;
-        } else {
-            $suite->append($t);
-            $suite = $suite->getNext();
+    
+    // @doc 4177 is error_reporting for  E_COMPILE_ERROR|E_RECOVERABLE_ERROR|E_ERROR|E_CORE_ERROR (compilations error only)
+        $exec = shell_exec('php -d short_open_tag=1 -d error_reporting=4177  -l '.escapeshellarg($file).' ');
+        if (trim($exec) != 'No syntax errors detected in '.$file) {
+            $this->messages['compile'] = "Script \"$file\" can't be compiled by PHP\n$exec\n";
+            $this->error = true;
+            return false;
         }
-    }
-    // @note this is less costly in terms of garbage collecting
-    unset($raw);
-
-    $analyseur = new analyseur();
-
-    $nb_tokens_courant = -1;
-    $nb_tokens_precedent = array(-1);
-
-    mon_log("Init cycles\n");
-    $i = 0;
-    while (1) {
-        $i++;
-        $t = $root;
-        mon_log("\nCycle : ".$i."\n");
-        $nb_tokens_precedent[] = $nb_tokens_courant;
-        if (count($nb_tokens_precedent) > 3) {
-            array_shift($nb_tokens_precedent);
-        }
-        $nb_tokens_courant = 0;
-        do {
-            $t = $analyseur->upgrade($t);
-            if (get_class($t) == 'Token') { $nb_tokens_courant++; }
-            if ($t->getId() == 0 && $t != $root) {
-                mon_log("New root : ".$t."");
-                $root = $t;
-            }
-
+    
+        $code = file_get_contents($file);
+    
+        // @doc one must leave <?php and <?xml untouched
+        // @doc one must also leave <?R& (\w\W), which are binary, not PI
+        // @note only take into account <?\s
+    
+        if ($c = preg_match_all('/<\\?(?!php)(\w?\s)/is', $code, $r) ) {
             if (VERBOSE) {
-                print "$i) ".$t->getCode()."---- \n";
-                $template = getTemplate($root, $file, 'tree');
-                $template['tree']->display();
-                unset($template);
-                print "$i) ".$t->getCode()."---- \n";
-           }
-        } while ($t = $t->getNext());
-
-        mon_log("Remaining tokens : ".$nb_tokens_courant."");
-
-        if ($nb_tokens_courant == 0) {
-            break 1;
+                // print "Fixing $c opening tags\n";
+            }
+            $code = preg_replace('/<\\?(?!php)(\w?\s)/is', '<?php'." ".'\1', $code);
         }
-
-        if ($nb_tokens_courant == $nb_tokens_precedent[0] &&
-            $nb_tokens_courant == $nb_tokens_precedent[1] &&
-            $nb_tokens_courant == $nb_tokens_precedent[2]
-            ) {
-            print "No more update at cycle #$i \n";
-            // @note just abort the loop, so we may go on
-            break 1;
-//            return false; 
+        // @todo this is too simple, but it works until now (binary, beware!)
+        $code = str_replace('<?=', '<?php echo ', $code);
+    
+        // @todo abstract this function, so one can choose the PHP version for tokenization
+        $raw = @token_get_all($code);
+        if (count($raw) == 0) {
+            $this->messages['compile'] = "No token found. Aborting\n";
+            $this->error = true;
+            return false;
         }
-
-        if ($i == $limit) {
-            break 1;
+        if ($INI['tokens']) {
+            print "Displaying tokens\n";
+            print_r($raw);
+            die();
         }
-    }
-    $nb_cycles_final = $i;
-
-    if (TEST) {
-        if ($nb_tokens_courant == 0) {
-            print "OK\n";
-        } else {
-            print "$nb_tokens_courant remain to be processed\n";
+        $nb_tokens_initial = count($raw);
+        
+        // @note my PHP crashes at 400852 (511 zend_scan_black, or zval_mark_grey) beyong this limit, 
+        // @note over 200k tokens is probably a large library of data. Not the most interesting
+        if ($nb_tokens_initial > 200000) {
+            $this->messages['compile'] = "Way too many tokens (> 200000)\n";
+            $this->error = true;
+            return false; 
         }
-        return false;
-    }
-
-    if (VERBOSE) {
-        if ($nb_tokens_courant == 0) {
-            print "Some tokens were not processed\n";
-        } else {
-            print "$nb_tokens_courant remain to be processed\n";
+    
+        $root = new Token();
+        $suite = null;
+        $ligne = 0;
+    
+        foreach($raw as $id => $b) {
+            // @note actually removing all coments and whitespace even before turning them into token
+            if (is_array($b) && in_array($b[0], array(T_COMMENT, T_DOC_COMMENT, T_WHITESPACE))) { continue; }
+            $t = new Token();
+    
+            $t->setId($id);
+            if (is_array($b)) {
+                $t->setToken($b[0]);
+                $t->setCode($b[1]);
+                $t->setLine($b[2]);
+                $ligne = $b[2];
+            } else {
+                $t->setCode($b);
+                $t->setLine($ligne);
+            }
+    
+            if (is_null($suite)) {
+                $suite = $t;
+                $root = $t;
+            } else {
+                $suite->append($t);
+                $suite = $suite->getNext();
+            }
         }
-    }
-
-    $token = 0;
-    $loop = $root;
-    $id = 0;
-    while(!is_null($loop)) {
-        if (get_class($loop) == "Token") {
-            $token++;
+        // @note this is less costly in terms of garbage collecting
+        unset($raw);
+    
+        $analyseur = new analyseur();
+    
+        $nb_tokens_courant = -1;
+        $nb_tokens_precedent = array(-1);
+    
+        mon_log("Init cycles\n");
+        $i = 0;
+        while (1) {
+            $i++;
+            $t = $root;
+            mon_log("\nCycle : ".$i."\n");
+            $nb_tokens_precedent[] = $nb_tokens_courant;
+            if (count($nb_tokens_precedent) > 3) {
+                array_shift($nb_tokens_precedent);
+            }
+            $nb_tokens_courant = 0;
+            do {
+                $t = $analyseur->upgrade($t);
+                if (get_class($t) == 'Token') { $nb_tokens_courant++; }
+                if ($t->getId() == 0 && $t != $root) {
+                    mon_log("New root : ".$t."");
+                    $root = $t;
+                }
+    
+                if (VERBOSE) {
+                    print "$i) ".$t->getCode()."---- \n";
+                    $template = getTemplate($root, $file, 'tree');
+                    $template['tree']->display();
+                    unset($template);
+                    print "$i) ".$t->getCode()."---- \n";
+               }
+            } while ($t = $t->getNext());
+    
+            mon_log("Remaining tokens : ".$nb_tokens_courant."");
+    
+            if ($nb_tokens_courant == 0) {
+                break 1;
+            }
+    
+            if ($nb_tokens_courant == $nb_tokens_precedent[0] &&
+                $nb_tokens_courant == $nb_tokens_precedent[1] &&
+                $nb_tokens_courant == $nb_tokens_precedent[2]
+                ) {
+                $this->messages['process'] = "No more update at cycle #$i \n";
+                $this->error = true;
+                // @note just abort the loop, so we may go on
+                break 1;
+            }
+    
+            if ($i == $limit) {
+                break 1;
+            }
         }
-        $loop = $loop->getNext();
-        $id++;
+        $nb_cycles_final = $i;
+    
+        if (TEST || VERBOSE) {
+            if ($nb_tokens_courant != 0) {
+                $this->messages['process'] .= "$nb_tokens_courant remain to be processed\n";
+                $this->error = true;
+                return false;
+            }
+        }
+/*
+        if (VERBOSE) {
+            if ($nb_tokens_courant == 0) {
+                print "Some tokens were not processed\n";
+            } else {
+                print "$nb_tokens_courant remain to be processed\n";
+            }
+        }
+*/
+        $token = 0;
+        $loop = $root;
+        $id = 0;
+        while(!is_null($loop)) {
+            if (get_class($loop) == "Token") {
+                $token++;
+            }
+            $loop = $loop->getNext();
+            $id++;
+        }
+    
+        $templates = getTemplate($root, $file, $config['template']);
+        $this->messages['templates'] = true;
+        foreach($templates as $name => $template) {
+            $template->display();
+            if ( $template->save() ) {
+                $this->messages[$name] = '.';
+            } else {
+                $this->messages[$name] = 'F';
+                $this->messages['templates'] = false;
+                // @todo note down the failure, report it later.
+            }
+        }
+    
+        if (STATS) {
+            include('prepare/template.stats.php');
+            $template = new template_stats($root);
+            $template->display();
+    
+            print $analyseur->verifs." checks were made\n";
+            $stats = array_count_values($analyseur->rates);
+            asort($stats);
+            print_r($stats);
+        }
+    
+        $files_processed++;
+        return true;
     }
 
-    $templates = getTemplate($root, $file, $config['template']);
-    foreach($templates as $template) {
-        $template->display();
-        $template->save();
-    }
-
-    if (STATS) {
-        include('prepare/template.stats.php');
-        $template = new template_stats($root);
-        $template->display();
-
-        print $analyseur->verifs." checks were made\n";
-        $stats = array_count_values($analyseur->rates);
-        asort($stats);
-        print_r($stats);
-    }
-    $files_processed++;
-    return true;
 }
-
 ?>
