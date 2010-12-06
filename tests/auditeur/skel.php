@@ -44,7 +44,8 @@ if (file_exists('scripts/'.$analyzer.'.php')) {
     die();
 }
 
-if (!file_exists('../../auditeur/classes/'.$analyzer.'.php')) {
+$analyzer_path = str_replace('_','/', $analyzer);
+if (!file_exists('../../auditeur/classes/'.$analyzer_path.'.php')) {
     print "'$analyzer' analyzers doesn't exist. Create the analyzer first.\n";
     die();
 }

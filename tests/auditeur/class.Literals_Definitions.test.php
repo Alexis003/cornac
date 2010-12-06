@@ -1,4 +1,4 @@
-<?php
+<?php 
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -16,29 +16,17 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
+
 include_once('Auditeur_Framework_TestCase.php');
 
-class Quality_Indenting_Test extends Auditeur_Framework_TestCase
+class Literals_Definitions_Test extends Auditeur_Framework_TestCase
 {
-    public function testVariables()  { 
-        $this->expected = array(
-/*
-'_class,_function,ifthen,_foreach,ifthen,_switch,_case,_while,_dowhile',
-'_class,_function,ifthen,_foreach,ifthen,_switch,_case,_while',
-'_class,_function,ifthen,_foreach,ifthen,_switch,_case',
-'_class,_function,ifthen,_foreach,ifthen,_switch',
-'_class,_function,ifthen,_foreach,ifthen',
-'_class,_function,ifthen,_foreach',
-*/
-'_class,_function,ifthen',
-'_class,_function',
-'_class',
-'_function',
- );
-        $this->unexpected = array();
-        
+    public function testLiterals_Definitions()  {
+        $this->expected = array( '');
+        $this->unexpected = array(/*'',*/);
+
         parent::generic_test();
+//        parent::generic_counted_test();
     }
 }
-
 ?>

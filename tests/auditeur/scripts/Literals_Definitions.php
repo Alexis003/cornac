@@ -16,29 +16,17 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
-include_once('Auditeur_Framework_TestCase.php');
 
-class Quality_Indenting_Test extends Auditeur_Framework_TestCase
-{
-    public function testVariables()  { 
-        $this->expected = array(
-/*
-'_class,_function,ifthen,_foreach,ifthen,_switch,_case,_while,_dowhile',
-'_class,_function,ifthen,_foreach,ifthen,_switch,_case,_while',
-'_class,_function,ifthen,_foreach,ifthen,_switch,_case',
-'_class,_function,ifthen,_foreach,ifthen,_switch',
-'_class,_function,ifthen,_foreach,ifthen',
-'_class,_function,ifthen,_foreach',
-*/
-'_class,_function,ifthen',
-'_class,_function',
-'_class',
-'_function',
- );
-        $this->unexpected = array();
-        
-        parent::generic_test();
-    }
-}
+$x = 1;
+$y = 2 + 3;
+
+$z = 'a';
+$a = "b";
+$b = "c $d e";
+$f = <<<SQL
+g
+SQL;
+
+
 
 ?>

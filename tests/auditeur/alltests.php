@@ -20,6 +20,8 @@
 require_once 'PHPUnit/Autoload.php'; 
 
 $tests = array( 
+'class.Constantes_Definitions.test.php',
+'class.Quality_Indenting.test.php',
 'class.Classes_Abstracts.test.php',
 'class.Classes_Definitions.test.php',
 'class.Classes_DoubleDeclaration.test.php',
@@ -136,6 +138,7 @@ $tests = array(
 'class.Zf_Session.test.php',
 'class.Zf_SQL.test.php',
 // 'class.Php_InclusionLinks.test.php',  @todo tests with dot format will come later
+'class.Literals_Definitions.test.php',
 // new tests
 );
 
