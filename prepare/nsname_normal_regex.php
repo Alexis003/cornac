@@ -17,28 +17,41 @@
    +----------------------------------------------------------------------+
  */
 
-class constante_normal_regex extends analyseur_regex {
+class nsname_normal_regex extends analyseur_regex {
     function __construct() {
         parent::__construct(array());
     }
 
     function getTokens() {
-        return array(T_STRING,Token::ANY_TOKEN);
+        return array(T_NS_SEPARATOR);
     }
     
     function check($t) {
         if (!$t->hasNext()) { return false; }
         if (!$t->hasPrev()) { return false; }
+
+// @note NSname may actually start by \ \htmlentities
+        if ($t->getPrev()->checkToken(array(T_STRING))) { 
+            $this->args = array(-1);
+            $this->remove = array(-1);
+        } 
+
+        if ($t->getNext()->checkNotClass('Token')) { return false; }
+        $this->args[] = 1;
+        $this->remove[] = 0;
+        $this->remove[] = 1;
         
-        if ($t->checkNotClass('Token')) { return false; } 
-        if ($t->checkNotToken(array(T_STRING, T_DIR, T_FILE, T_FUNC_C, T_LINE, T_METHOD_C, T_NS_C, T_CLASS_C))) { return false; }
-        if ($t->getNext()->checkCode(array('(','::','{', '\\'))) { return false; }
-        if ($t->getNext()->checkToken(T_VARIABLE)) { return false; }
-        if ($t->getNext()->checkClass(array('variable','affectation'))) { return false; }
-
-        if ($t->getPrev()->checkCode(array('->','\\'))) { return false; }
-        if ($t->getPrev()->checkToken(array(T_CLASS, T_EXTENDS, T_IMPLEMENTS, T_NAMESPACE, T_USE))) { return false; }
-
+        $var = $t->getNext(1);
+        $pos = 1;
+        while($var->checkOperator('\\')) {
+            $this->args[] = $pos + 2;
+            $this->remove[] = $pos + 1;
+            $this->remove[] = $pos + 2;
+            
+            $var = $var->getNext(1);
+            $pos += 2;
+        }
+        
         mon_log(get_class($t)." => ".__CLASS__);
         return true; 
     }

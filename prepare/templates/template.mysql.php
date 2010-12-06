@@ -59,8 +59,39 @@ class template_mysql extends template_db {
                                                           KEY `code` (`code`)
                                                           ) ENGINE=MyISAM DEFAULT CHARSET=latin1');
 
+        $this->database->query('DELETE FROM '.$this->table.'_TMP');
+        $this->database->query('CREATE TABLE IF NOT EXISTS '.$this->table.'_TMP (
+                                                          `id`       INT NOT NULL AUTO_INCREMENT, 
+                                                          `left`     INT UNSIGNED, 
+                                                          `right`    INT UNSIGNED,
+                                                          `type`     CHAR(20),
+                                                          `code`     VARCHAR(10000),
+                                                          `file`     VARCHAR(255) DEFAULT "prec",
+                                                          `line`     INT,
+                                                          `scope`    VARCHAR(255),
+                                                          `class`    VARCHAR(255),
+                                                          `level`    TINYINT UNSIGNED,
+                                                          PRIMARY KEY (`id`),
+                                                          UNIQUE KEY `id` (`id`),
+                                                          KEY `file` (`file`),
+                                                          KEY `type` (`type`),
+                                                          KEY `left` (`left`),
+                                                          KEY `right` (`right`),
+                                                          KEY `code` (`code`)
+                                                          ) ENGINE=MyISAM DEFAULT CHARSET=latin1');
+
         $this->database->query('DELETE FROM '.$this->table_tags.' WHERE file = "'.$file.'"');
-        $this->database->query('CREATE TABLE IF NOT EXISTS '.$this->table_tags.' (
+        $this->database->query('CREATE TEMPORARY TABLE '.$this->table_tags.' (
+  `token_id` int(10) unsigned NOT NULL,
+  `token_sub_id` int(10) unsigned NOT NULL,
+  `type` varchar(50) NOT NULL,
+  KEY `token_id` (`token_id`),
+  KEY `token_sub_id` (`token_sub_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1');
+
+// @todo if exists => stop! 
+        $this->database->query('DELETE FROM '.$this->table_tags.'_TMP');
+        $this->database->query('CREATE TEMPORARY TABLE '.$this->table_tags.'_TMP (
   `token_id` int(10) unsigned NOT NULL,
   `token_sub_id` int(10) unsigned NOT NULL,
   `type` varchar(50) NOT NULL,
@@ -78,8 +109,17 @@ END;
         $this->database->query('delimiter ;');
         
         $this->root = $root;
-
     }
+    
+    function save($filename = null) {
+        $this->database->query('INSERT INTO '.$this->table.' SELECT * FROM '.$this->table.'_TMP');
+//        $this->database->query('DROP TABLE '.$this->table.'');
+        
+        $this->database->query('INSERT INTO '.$this->table_tags.' SELECT * FROM '.$this->table_tags.'_TMP');
+//        $this->database->query('DROP TABLE '.$this->table_tags.'');
+        return true;
+    }
+
 }
 
 ?>

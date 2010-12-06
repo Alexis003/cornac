@@ -40,6 +40,8 @@ class functioncall extends instruction {
             $this->args = new arglist(array( null ));
             $this->args->setLine($expression[0]->getLine());
         }
+        
+        $this->setCode($this->function);
     }
 
     function __toString() {

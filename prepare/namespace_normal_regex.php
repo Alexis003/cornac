@@ -17,30 +17,37 @@
    +----------------------------------------------------------------------+
  */
 
-class constante_normal_regex extends analyseur_regex {
+class namespace_normal_regex extends analyseur_regex {
     function __construct() {
         parent::__construct(array());
     }
 
     function getTokens() {
-        return array(T_STRING,Token::ANY_TOKEN);
+        return array(T_NAMESPACE);
     }
     
     function check($t) {
         if (!$t->hasNext()) { return false; }
-        if (!$t->hasPrev()) { return false; }
+
+        if ($t->getNext()->checkNotClass(array('_nsname','Token'))) { return false; }
         
-        if ($t->checkNotClass('Token')) { return false; } 
-        if ($t->checkNotToken(array(T_STRING, T_DIR, T_FILE, T_FUNC_C, T_LINE, T_METHOD_C, T_NS_C, T_CLASS_C))) { return false; }
-        if ($t->getNext()->checkCode(array('(','::','{', '\\'))) { return false; }
-        if ($t->getNext()->checkToken(T_VARIABLE)) { return false; }
-        if ($t->getNext()->checkClass(array('variable','affectation'))) { return false; }
+        if ($t->getNext()->checkClass('_nsname')) {
+            $this->args[] = 1;
+            $this->remove[] = 1;
 
-        if ($t->getPrev()->checkCode(array('->','\\'))) { return false; }
-        if ($t->getPrev()->checkToken(array(T_CLASS, T_EXTENDS, T_IMPLEMENTS, T_NAMESPACE, T_USE))) { return false; }
+            mon_log(get_class($t)." => ".__CLASS__);
+            return true; 
+        } elseif ($t->getNext()->checkClass('Token')) {
+            // @note allow \ to appear after. 
+            if ($t->getNext(1)->checkOperator('\\')) { return false; }
+            
+            $regex = new modele_regex('_nsname',array(0), array());
+            Token::applyRegex($t->getNext(), '_nsname', $regex);
 
-        mon_log(get_class($t)." => ".__CLASS__);
-        return true; 
+            mon_log(get_class($t)." => _nsname");
+
+            return false;
+        } // @empty_elseif
     }
 }
 ?>

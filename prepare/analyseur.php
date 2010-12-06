@@ -85,6 +85,9 @@ class analyseur {
                                   '_declare',
                                   'shell',
                                   '___halt_compiler',
+                                  '_nsname',
+                                  '_namespace',
+                                  '_use',
                                   );
         $this->regex = array();
         foreach ($this->structures as $id => $structure) {
@@ -97,7 +100,7 @@ class analyseur {
                 
                 if ($tokens === false) { 
                     $this->regex[0][$r] = $object;
-                    print "$r manque de getToken()\n"; 
+                    print "$r doesn\'t have getToken()\n"; 
                 } elseif (count($tokens) > 0) {
                     foreach($tokens as $token) {
                         $this->regex[$token][$r] = $object;

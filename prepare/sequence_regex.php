@@ -34,7 +34,7 @@ class sequence_regex extends analyseur_regex {
         if ( $t->checkClass('_case','_default'))                        { return false; }
         if ( $t->hasPrev() && $t->getPrev()->checkCode(array('=',')','->','(',',','.','new','!==','::',':',
                 '?','or','and','xor','var','$','/','+','-','*','%','@','&','|','^','"',
-                '<','>','+')))                                          { return false; }
+                '<','>','+','\\')))                                          { return false; }
 
         if ( $t->hasPrev() && $t->getPrev()->checkToken(array(T_PRIVATE, T_PUBLIC, T_PROTECTED, T_STATIC, T_THROW, 
                                                               T_LOGICAL_OR, T_LOGICAL_AND, T_LOGICAL_XOR, 

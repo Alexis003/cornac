@@ -410,16 +410,21 @@ class Token {
     }
 
     public function checkFunction() {
-        return in_array($this->token,array(T_STRING, 
-                                           T_ARRAY, 
-                                           T_ISSET, 
-                                           T_PRINT, 
-                                           T_ECHO, 
-                                           T_EXIT, 
-                                           T_EMPTY, 
-                                           T_LIST, 
-                                           T_UNSET,
-                                           T_EVAL));
+        if (get_class($this) == '_nsname') {
+        // @note name with namespace
+            return true; 
+        } else {
+            return in_array($this->token,array(T_STRING, 
+                                               T_ARRAY, 
+                                               T_ISSET, 
+                                               T_PRINT, 
+                                               T_ECHO, 
+                                               T_EXIT, 
+                                               T_EMPTY, 
+                                               T_LIST, 
+                                               T_UNSET,
+                                               T_EVAL));
+        }
     }
 
     public function checkNotFunction() {

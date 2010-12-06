@@ -63,8 +63,7 @@ class template_cache extends template {
     }
     
     function save($filename = null) {
-        print "Cache mis à jour\n";
-        unset($this->database);
+        return true; 
     }
     
     function display($node = null, $level = 0) {
@@ -185,6 +184,16 @@ class template_cache extends template {
             }
             $node->cache = '('.join(', ', $labels).')';
         }
+        return $this->savenode($node);
+    }
+
+    function display__array($node, $level) {
+        $variable = $node->getVariable();
+        $this->display($variable, $level + 1);
+        $index = $node->getIndex();
+        $this->display($index, $level + 1);
+        
+        $node->cache = $variable->cache.'['.$index->cache.']';
         return $this->savenode($node);
     }
 
@@ -606,7 +615,12 @@ class template_cache extends template {
         $node->cache = 'new '.$name->cache.''.$args->cache;
         return $this->savenode($node);
     }
-    
+
+    function display__namespace($node, $level) {
+    // use code value instead
+        return true; 
+    }
+
     function display_noscream($node, $level) {
         $expression = $node->getExpression();
         $this->display($expression, $level + 1);
@@ -765,14 +779,9 @@ class template_cache extends template {
         return $this->savenode($node);
     }
 
-    function display__array($node, $level) {
-        $variable = $node->getVariable();
-        $this->display($variable, $level + 1);
-        $index = $node->getIndex();
-        $this->display($index, $level + 1);
-        
-        $node->cache = $variable->cache.'['.$index->cache.']';
-        return $this->savenode($node);
+    function display__use($node, $level) {
+    // use code value instead
+        return true; 
     }
 
     function display__throw($node, $level) {

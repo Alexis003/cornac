@@ -27,7 +27,7 @@ class template_tree extends template {
     }
     
     function save($filename = null) {
-        return false;
+        return true;
     }
     
     function display($node = null, $level = 0, $follow = true) {
@@ -101,6 +101,12 @@ class template_tree extends template {
         print str_repeat('  ', $level).$node->getOperator()." \n";
         print str_repeat('  ', $level)."right : \n";
         $this->display($node->getRight(), $level + 1);
+    }
+
+    function display__array($node, $level) {
+        print str_repeat('  ', $level).get_class($node)."\n";
+        $this->display($node->getVariable(), $level + 1);
+        $this->display($node->getIndex(), $level + 1);
     }
 
     function display_block($node, $level) {
@@ -255,6 +261,7 @@ class template_tree extends template {
 
     function display_functioncall($node, $level) {
         print str_repeat('  ', $level).get_class($node)." ".$node->getCode()."\n";
+// @todo        print str_repeat('  ', $level)."function call : ".$node->getFunction()->getCode().": \n";
         print str_repeat('  ', $level)."function call : ".$node->getFunction()->getCode().": \n";
 
         $args = $node->getArgs();
@@ -344,6 +351,14 @@ class template_tree extends template {
 
     function display__new($node, $level) {
          print str_repeat('  ', $level).' new '.$node->getClasse()." ".$node->getArgs()." \n";
+    }
+
+    function display__namespace($node, $level) {
+        print str_repeat('  ', $level).'namespace '.$node->getNamespace()."\n";
+    }
+    
+    function display__nsname($node, $level) {
+        print str_repeat('  ', $level).' NSName '.$node->getNamespace()."\n";
     }
     
     function display_noscream($node, $level) {
@@ -437,10 +452,9 @@ class template_tree extends template {
         $this->display($node->getBlock(), $level + 1);
     }
 
-    function display__array($node, $level) {
-        print str_repeat('  ', $level).get_class($node)."\n";
-        $this->display($node->getVariable(), $level + 1);
-        $this->display($node->getIndex(), $level + 1);
+    function display__use($node, $level) {
+    
+        print str_repeat('  ', $level).'use '.$node->getNamespace()."\n";;
     }
 
     function display__throw($node, $level) {

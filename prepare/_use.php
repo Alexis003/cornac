@@ -17,30 +17,33 @@
    +----------------------------------------------------------------------+
  */
 
-class constante_normal_regex extends analyseur_regex {
-    function __construct() {
-        parent::__construct(array());
-    }
-
-    function getTokens() {
-        return array(T_STRING,Token::ANY_TOKEN);
-    }
+class _use extends instruction {
+    protected $namespace = null;
     
-    function check($t) {
-        if (!$t->hasNext()) { return false; }
-        if (!$t->hasPrev()) { return false; }
+    function __construct($expression) {
+        parent::__construct(array());
         
-        if ($t->checkNotClass('Token')) { return false; } 
-        if ($t->checkNotToken(array(T_STRING, T_DIR, T_FILE, T_FUNC_C, T_LINE, T_METHOD_C, T_NS_C, T_CLASS_C))) { return false; }
-        if ($t->getNext()->checkCode(array('(','::','{', '\\'))) { return false; }
-        if ($t->getNext()->checkToken(T_VARIABLE)) { return false; }
-        if ($t->getNext()->checkClass(array('variable','affectation'))) { return false; }
-
-        if ($t->getPrev()->checkCode(array('->','\\'))) { return false; }
-        if ($t->getPrev()->checkToken(array(T_CLASS, T_EXTENDS, T_IMPLEMENTS, T_NAMESPACE, T_USE))) { return false; }
-
-        mon_log(get_class($t)." => ".__CLASS__);
-        return true; 
+        $this->namespace = $expression[0];
+        // @todo check for too many arguments?
     }
+
+    function __toString() {
+        return "use ".$this->expression;
+    }
+
+    function getNamespace() {
+        return $this->namespace;
+    }
+
+    function neutralise() {
+        $this->namespace->detach();
+    }
+
+    function getRegex(){
+        return array('use_normal_regex',
+                    );
+    }
+
 }
+
 ?>

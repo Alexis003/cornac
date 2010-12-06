@@ -35,6 +35,9 @@ class arglist_regex extends analyseur_regex {
             ($t->getPrev()->checkNotFunction() &&
              $t->getPrev()->checkNotClass(array('variable','_array')) &&
              $t->getPrev()->checkNotCode('}'))) { return false; }
+             
+        // @note wait for the namespace to be identified
+        if ($t->getPrev(1)->checkOperator('\\')) { return false; }
         
        if ($t->getPrev()->checkOperator('}') && 
         // @todo add limitations on getPrev(1) values? 

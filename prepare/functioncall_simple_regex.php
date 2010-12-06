@@ -29,13 +29,17 @@ class functioncall_simple_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasNext() ) { return false; }
 
+// @note _nsname
+        if ($t->hasPrev() && 
+            $t->getPrev()->checkOperator('\\')) { return false; }
+
         if ($t->hasPrev(2) && 
             $t->getPrev()->checkOperator('&') &&
             $t->getPrev(1)->checkToken(T_FUNCTION)) { return false; }
 
         if ((!$t->hasPrev() || 
               $t->getPrev()->checkNotToken(T_FUNCTION)) &&
-              ($t->checkFunction() || $t->checkToken(array(T_STATIC))) &&
+              ($t->checkFunction() || $t->checkToken(array(T_STATIC)) || $t->checkClass(array('_nsname'))) &&
               $t->getNext()->checkClass('arglist')) {
 
             if ($t->getNext(1)->checkOperator(array('{','(')) ||

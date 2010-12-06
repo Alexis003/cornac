@@ -683,6 +683,15 @@ class template_db extends template {
         return $this->savenode($node, $level);        
     }
 
+    function display__namespace($node, $level) {
+        $node->myId = $this->getNextId();
+        $node->myleft = $this->getIntervalleId();
+        $node->setCode(join('\\', $node->getNamespace()));
+
+        $node->myright = $this->getIntervalleId();
+        return $this->savenode($node, $level);
+    }
+
     function display__new($node, $level) {
         $node->myId = $this->getNextId();
         $node->myleft = $this->getIntervalleId();
@@ -696,7 +705,6 @@ class template_db extends template {
         return $this->savenode($node, $level);        
     }
 
-    
     function display_noscream($node, $level) {
         $node->myId = $this->getNextId();
         $node->myleft = $this->getIntervalleId();
@@ -951,6 +959,15 @@ class template_db extends template {
 
         $this->display($node->getType(), $level + 1);
         $this->display($node->getName(), $level + 1);
+
+        $node->myright = $this->getIntervalleId();
+        return $this->savenode($node, $level);
+    }
+
+    function display__use($node, $level) {
+        $node->myId = $this->getNextId();
+        $node->myleft = $this->getIntervalleId();
+        $node->setCode(join('\\', $node->getNamespace()));
 
         $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);

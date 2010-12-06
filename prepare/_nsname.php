@@ -17,30 +17,34 @@
    +----------------------------------------------------------------------+
  */
 
-class constante_normal_regex extends analyseur_regex {
-    function __construct() {
-        parent::__construct(array());
-    }
-
-    function getTokens() {
-        return array(T_STRING,Token::ANY_TOKEN);
-    }
+class _nsname extends instruction {
+    protected $namespace = null;
     
-    function check($t) {
-        if (!$t->hasNext()) { return false; }
-        if (!$t->hasPrev()) { return false; }
+    function __construct($expression) {
+        parent::__construct(array());
         
-        if ($t->checkNotClass('Token')) { return false; } 
-        if ($t->checkNotToken(array(T_STRING, T_DIR, T_FILE, T_FUNC_C, T_LINE, T_METHOD_C, T_NS_C, T_CLASS_C))) { return false; }
-        if ($t->getNext()->checkCode(array('(','::','{', '\\'))) { return false; }
-        if ($t->getNext()->checkToken(T_VARIABLE)) { return false; }
-        if ($t->getNext()->checkClass(array('variable','affectation'))) { return false; }
-
-        if ($t->getPrev()->checkCode(array('->','\\'))) { return false; }
-        if ($t->getPrev()->checkToken(array(T_CLASS, T_EXTENDS, T_IMPLEMENTS, T_NAMESPACE, T_USE))) { return false; }
-
-        mon_log(get_class($t)." => ".__CLASS__);
-        return true; 
+        $this->namespace = $expression;
     }
+
+    function __toString() {
+        return join('\\', $this->namespace);
+    }
+
+    function getNamespace() {
+        return $this->namespace;
+    }
+
+    function neutralise() {
+        foreach($this->namespace as $e) {
+            $e->detach();
+        }
+    }
+
+    function getRegex(){
+        return array('nsname_normal_regex',
+                    );
+    }
+
 }
+
 ?>
