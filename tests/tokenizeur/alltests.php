@@ -77,6 +77,8 @@ $tests = array(
 'class.declare.test.php',
 'class.shell.test.php',
 'class.halt_compiler.test.php',
+'class.namespace.test.php',
+'class.use.test.php',
 // Prochain tests
 );
 

@@ -1,0 +1,21 @@
+tests/tokenizeur/scripts/functioncall.52.test.php
+  codephp <?php
+
+  code : 
+      sequence 
+      0 : 
+          functioncall \
+          function call : \: 
+              arglist 
+              0 : 
+                  literals a
+      1 : 
+          functioncall print
+          function call : print: 
+              arglist 
+              0 : 
+                  functioncall \
+                  function call : \: 
+                      arglist 
+                      0 : 
+                          literals a

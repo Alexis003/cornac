@@ -1,0 +1,43 @@
+tests/tokenizeur/scripts/dowhile.3.test.php
+  codephp <?php
+
+  code : 
+      function literals h ( )
+          block 
+          0 : 
+              ifthen if
+              Condition 0) 
+                  parentheses 
+                  ( "comparison constante false 281 "===" method_static 307 "f"::functioncall 307 "g" ( ( ) ) " )
+                  block 
+                  0 : 
+                      _dowhile 
+                          block 
+                          0 : 
+                              affectation 
+                              left : 
+                                  variable $command
+                               "=" 
+                              right : 
+                                  method_static 
+                                  307 "a"::functioncall 307 "b" ( ( ) ) : 
+                                      functioncall b
+                                      function call : b: 
+                                          arglist 
+                                          Liste d'argument vide
+                          parentheses 
+                          ( "postplusplus 297 "++"variable $i" )
+               else 
+                  block 
+                  0 : 
+                      affectation 
+                      left : 
+                          variable $c
+                       "=" 
+                      right : 
+                          method variable $d
+                          method call : functioncall 307 "e" ( ( ) ) : 
+                              functioncall e
+                              function call : e: 
+                                  arglist 
+                                  Liste d'argument vide
