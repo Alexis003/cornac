@@ -27,11 +27,11 @@ class dowhile_apres_regex extends analyseur_regex {
     }
     
     function check($t) {
+        return false;
         if (!$t->hasNext(2)) { return false; }
         if (!$t->hasPrev()) { return false; }
 
-        if ($t->checkToken(T_WHILE) &&
-            $t->getNext()->checkClass('parentheses') &&
+        if ($t->getNext()->checkClass('parentheses') &&
             $t->getNext(1)->checkCode(';') &&
             $t->getPrev()->checkClass('block')
             ) {

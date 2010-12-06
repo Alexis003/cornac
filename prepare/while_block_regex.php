@@ -29,8 +29,11 @@ class while_block_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasNext(1)) { return false; }
 
-        if ($t->checkToken(T_WHILE) &&
-            $t->getNext()->checkClass('parentheses') &&
+        if (($t->getPrev()->checkClass('block') && 
+             $t->getPrev(1)->checkToken(T_DO) ) ||  
+            $t->getPrev()->checkOperator('}')) { return false; }
+        
+        if ($t->getNext()->checkClass('parentheses') &&
             $t->getNext(1)->checkClass('block')
             ) {
 

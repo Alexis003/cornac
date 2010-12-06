@@ -31,12 +31,17 @@ class while_noblock_regex extends analyseur_regex {
 
         if ($t->getNext()->checkNotClass('parentheses')) { return false; }
 
-        if ($t->getNext(1)->checkCode(';') &&
-            $t->getPrev()->checkNotOperator('}')) {
+        if ( $t->getNext(1)->checkOperator(';')) {
+            
+            // @note we wait for the block to be processed
+            if ($t->getPrev()->checkOperator('}')) { return false; }
+            // @note this is definitely not a while block
+            if ($t->getPrev()->checkClass('block') &&              
+                $t->getPrev(1)->checkToken(T_DO))  { return false; }
             $regex = new modele_regex('block',array(), array());
             Token::applyRegex($t->getNext(1), 'block', $regex);
 
-            mon_log(get_class($t)." => block point-virgule (from ".get_class($t->getNext(1)).") (".__CLASS__.")");
+            mon_log(get_class($t)." => block semi-colon (from ".get_class($t->getNext(1)).") (".__CLASS__.")");
             return false; 
         }
 
