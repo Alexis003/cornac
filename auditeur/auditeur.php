@@ -238,6 +238,7 @@ $modules = array(
 'Variables_Affected',
 'Structures_FunctionsCalls',
 'Ext_CallingBack',
+'Classes_PropertiesChained',
 // new analyzers
 );
 
