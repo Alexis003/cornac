@@ -34,7 +34,7 @@
    +----------------------------------------------------------------------+
  */
 
-class Zf extends modules_head {
+class Variables extends modules_head {
 	function __construct($mid) {
         parent::__construct($mid);
 	}

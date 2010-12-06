@@ -34,7 +34,7 @@
    +----------------------------------------------------------------------+
  */
 
-class Zf extends modules_head {
+class Literals extends modules_head {
 	function __construct($mid) {
         parent::__construct($mid);
 	}
