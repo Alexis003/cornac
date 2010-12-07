@@ -1,0 +1,17 @@
+tests/tokenizeur/scripts/reference.13.test.php
+  codephp <?php
+
+  code : 
+      ifthen if
+      Condition 0) 
+          parentheses 
+          ( "comparison logique comparison variable $d 283 "==" literals 0  "&" method variable $a->functioncall 307 "b" ( ( ) )  283 "==" variable $c" )
+          block 
+          0 : 
+              _return 
+              return : "constante true"
+       else 
+          block 
+          0 : 
+              _return 
+              return : "constante false"

@@ -79,6 +79,7 @@ $tests = array(
 'class.halt_compiler.test.php',
 'class.namespace.test.php',
 'class.use.test.php',
+'class.closure.test.php',
 // Prochain tests
 );
 
