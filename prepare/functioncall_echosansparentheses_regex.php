@@ -56,6 +56,8 @@ class functioncall_echosansparentheses_regex extends analyseur_regex {
             $var->getNext()->checkEndInstruction() &&
             $var->getNext()->checkNotClass('parentheses')
             ) {
+            
+            if ($var->getNext()->checkOperator(array('?'))) { return false; }
             $args[]    = $pos;
             $remove[]  = $pos;
 

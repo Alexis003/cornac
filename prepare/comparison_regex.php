@@ -32,7 +32,7 @@ class comparison_regex extends analyseur_regex {
         if (!$t->hasPrev() ) { return false; }
         if (!$t->hasNext() ) { return false; }
         
-        if ($t->hasPrev(2) && ($t->getPrev(1)->checkCode(array('->','$','::','++','--','new','-','+')) ||
+        if ($t->hasPrev(2) && ($t->getPrev(1)->checkCode(array('->','$','::','++','--','new','-','+','&')) ||
                                $t->getPrev(1)->checkClass(array('variable')) ||
                                $t->getPrev(1)->checkForComparison() )) { return false; }
 

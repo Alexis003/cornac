@@ -31,7 +31,7 @@ class arglist_regex extends analyseur_regex {
         if (!$t->hasNext(1)) { return false; }
 
         // @note for it to be a function call, one need all this before
-        if ($t->getPrev()->checkNotToken(array(T_STATIC)) && // @note crazy case 
+        if ($t->getPrev()->checkNotToken(array(T_STATIC, T_USE)) && // @note crazy case 
             ($t->getPrev()->checkNotFunction() &&
              $t->getPrev()->checkNotClass(array('variable','_array')) &&
              $t->getPrev()->checkNotCode('}'))) { return false; }
@@ -39,7 +39,7 @@ class arglist_regex extends analyseur_regex {
         // @note wait for the namespace to be identified
         if ($t->getPrev(1)->checkOperator('\\')) { return false; }
         
-       if ($t->getPrev()->checkOperator('}') && 
+        if ($t->getPrev()->checkOperator('}') && 
         // @todo add limitations on getPrev(1) values? 
            $t->getPrev(2)->checkNotCode('{')) {
                 return false;

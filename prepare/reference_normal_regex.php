@@ -30,7 +30,8 @@ class reference_normal_regex extends analyseur_regex {
         if (!$t->hasNext()) { return false; }
 
         if ( $t->checkClass('literals')) { return false; }
-        if ( $t->getNext(1)->checkCode(array('->','[','(','::'))) { return false; }
+        if ( $t->getNext(1)->checkOperator(array('->','[','(','::'))) { return false; }
+        if ( $t->getNext(1)->checkClass(array('arglist'))) { return false; }
 
         if ($t->getPrev()->checkToken(T_AS)) {
             // continue, c'est une exception

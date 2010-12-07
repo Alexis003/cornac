@@ -48,7 +48,8 @@ class affectation_normal_regex extends analyseur_regex {
                                              'parentheses','_new','cast','constante','invert',
                                              'not','affectation','shell','bitshift','comparison',
                                              'reference','concatenation','variable',
-                                             'property_static','postplusplus','preplusplus','inclusion')))
+                                             'property_static','postplusplus','preplusplus','inclusion',
+                                             '_closure')))
             
             ) {
                 $this->args = array(-1, 0, 1);

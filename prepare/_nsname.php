@@ -23,7 +23,13 @@ class _nsname extends instruction {
     function __construct($expression) {
         parent::__construct(array());
         
-        $this->namespace = $expression;
+        foreach($expression as $e) {
+            if ($e->checkClass('Token')) {
+                $this->namespace[] = $this->makeToken_traite($e);
+            } else {
+                $this->namespace[] = $e;
+            }
+        }
     }
 
     function __toString() {

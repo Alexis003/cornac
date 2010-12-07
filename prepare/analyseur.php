@@ -85,6 +85,7 @@ class analyseur {
                                   '_declare',
                                   'shell',
                                   '___halt_compiler',
+                                  '_closure',
                                   '_nsname',
                                   '_namespace',
                                   '_use',

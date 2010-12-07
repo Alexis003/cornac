@@ -22,6 +22,7 @@ include_once('template.db.php');
 class template_mysql extends template_db {
     protected $root = null;
     protected $database = null;
+    static public $auto_increment = 0;
     
     function __construct($root, $file = null) {
         parent::__construct($root, $file);
@@ -59,8 +60,7 @@ class template_mysql extends template_db {
                                                           KEY `code` (`code`)
                                                           ) ENGINE=MyISAM DEFAULT CHARSET=latin1');
 
-        $this->database->query('DELETE FROM '.$this->table.'_TMP');
-        $this->database->query('CREATE TABLE IF NOT EXISTS '.$this->table.'_TMP (
+        $this->database->query('CREATE TEMPORARY TABLE IF NOT EXISTS '.$this->table.'_TMP (
                                                           `id`       INT NOT NULL AUTO_INCREMENT, 
                                                           `left`     INT UNSIGNED, 
                                                           `right`    INT UNSIGNED,
@@ -81,7 +81,7 @@ class template_mysql extends template_db {
                                                           ) ENGINE=MyISAM DEFAULT CHARSET=latin1');
 
         $this->database->query('DELETE FROM '.$this->table_tags.' WHERE file = "'.$file.'"');
-        $this->database->query('CREATE TEMPORARY TABLE '.$this->table_tags.' (
+        $this->database->query('CREATE TABLE IF NOT EXISTS '.$this->table_tags.' (
   `token_id` int(10) unsigned NOT NULL,
   `token_sub_id` int(10) unsigned NOT NULL,
   `type` varchar(50) NOT NULL,
@@ -90,14 +90,14 @@ class template_mysql extends template_db {
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1');
 
 // @todo if exists => stop! 
-        $this->database->query('DELETE FROM '.$this->table_tags.'_TMP');
-        $this->database->query('CREATE TEMPORARY TABLE '.$this->table_tags.'_TMP (
+        $this->database->query('CREATE TEMPORARY TABLE IF NOT EXISTS '.$this->table_tags.'_TMP (
   `token_id` int(10) unsigned NOT NULL,
   `token_sub_id` int(10) unsigned NOT NULL,
   `type` varchar(50) NOT NULL,
   KEY `token_id` (`token_id`),
   KEY `token_sub_id` (`token_sub_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1');
+        $this->database->query('DELETE FROM '.$this->table_tags.'_TMP');
 
         $this->database->query('delimiter //');
         $this->database->query('CREATE TRIGGER auto_tag BEFORE DELETE ON `tokens`
@@ -112,11 +112,17 @@ END;
     }
     
     function save($filename = null) {
-        $this->database->query('INSERT INTO '.$this->table.' SELECT * FROM '.$this->table.'_TMP');
-//        $this->database->query('DROP TABLE '.$this->table.'');
+    // @todo take into account initial auto_increment in table, to add in table_tmp and tags_tmp
+        $res = $this->database->query('SHOW TABLE STATUS LIKE "'.$this->table.'"');
+        $row = $res->fetch();
         
-        $this->database->query('INSERT INTO '.$this->table_tags.' SELECT * FROM '.$this->table_tags.'_TMP');
-//        $this->database->query('DROP TABLE '.$this->table_tags.'');
+        self::$auto_increment = $row['Auto_increment'];
+
+        $this->database->query('INSERT INTO '.$this->table.' SELECT id + '.$row['Auto_increment'].', `left`, `right`, type, code, file, line, scope, class, level FROM '.$this->table.'_TMP');
+        $this->database->query('DROP TABLE '.$this->table.'_TMP');
+        
+        $this->database->query('INSERT INTO '.$this->table_tags.' SELECT token_id + '.$row['Auto_increment'].', token_sub_id + '.$row['Auto_increment'].', type FROM '.$this->table_tags.'_TMP');
+        $this->database->query('DROP TABLE '.$this->table_tags.'_TMP');
         return true;
     }
 

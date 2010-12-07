@@ -43,6 +43,12 @@ class template_cache extends template {
                                                           code     VARCHAR(255),
                                                           file  VARCHAR(255)
                                                           )');
+
+            $this->database->query('CREATE TABLE IF NOT EXISTS '.$this->table.'_cache_TMP (
+                                                          id       INTEGER PRIMARY KEY AUTO_INCREMENT, 
+                                                          code     VARCHAR(255),
+                                                          file  VARCHAR(255)
+                                                          )');
         } elseif (isset($INI['sqlite']) && $INI['sqlite']['active'] == true) {
             $this->database = new pdo($INI['sqlite']['dsn']);
 
@@ -63,6 +69,10 @@ class template_cache extends template {
     }
     
     function save($filename = null) {
+        $auto_increment = template_mysql::$auto_increment;
+
+        $this->database->query('INSERT INTO '.$this->table.'_cache SELECT id + '.$auto_increment.', `code`, `file` FROM '.$this->table.'_cache_TMP');
+        $this->database->query('DROP TABLE '.$this->table.'_cache_TMP');
         return true; 
     }
     
@@ -93,7 +103,8 @@ class template_cache extends template {
         if (method_exists($this, $method)) {
             $return = $this->$method($node, $level + 1);
         } else {
-            print "Affichage ".__CLASS__." de '".$method."'\n";die;
+            print "Displays ".__CLASS__." at '".$method."'\n";
+            die(__METHOD__);
         }
         if (!is_null($node->getNext())){
             $this->display($node->getNext(), $level);
@@ -115,7 +126,7 @@ class template_cache extends template {
             die();
         }
         
-        $requete = "INSERT INTO {$this->table}_cache VALUES 
+        $requete = "INSERT INTO {$this->table}_cache_TMP VALUES 
             (
              '".$node->database_id."',
              ".$this->database->quote($node->cache).",
@@ -617,8 +628,22 @@ class template_cache extends template {
     }
 
     function display__namespace($node, $level) {
-    // use code value instead
-        return true; 
+        $ns = $node->getNamespace();
+        $this->display($ns, $level + 1);
+
+        $node->cache = 'namespace '.$ns->cache;
+        return $this->savenode($node);
+    }
+
+    function display__nsname($node, $level) {
+        $ns = $node->getNamespace();
+        $node->cache = '';
+        foreach($ns as $n) {
+            $this->cache .= $n->getCode().'\\';
+        }
+
+        $node->cache = substr($this->cache, 0, -1);
+        return $this->savenode($node);
     }
 
     function display_noscream($node, $level) {
@@ -780,8 +805,11 @@ class template_cache extends template {
     }
 
     function display__use($node, $level) {
-    // use code value instead
-        return true; 
+        $ns = $node->getNamespace();
+        $this->display($ns, $level + 1);
+
+        $node->cache = 'use '.$ns->cache;
+        return $this->savenode($node);
     }
 
     function display__throw($node, $level) {

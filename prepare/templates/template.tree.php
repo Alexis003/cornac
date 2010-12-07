@@ -159,6 +159,13 @@ class template_tree extends template {
         $this->display($node->getExpression(), $level + 1);
     }
 
+    function display__closure($node, $level) {
+        print str_repeat('  ', $level)."function() using ";
+        print $node->getArgs()." ".$node->getBlock()." \n";
+        $this->display($node->getArgs(), $level + 1);
+        $this->display($node->getBlock(), $level + 1);
+    }
+
     function display_keyvalue($node, $level) {
         print str_repeat('  ', $level).$node->getKey()." => ".$node->getValue()."\n";
         $this->display($node->getKey(), $level + 1);
@@ -453,7 +460,6 @@ class template_tree extends template {
     }
 
     function display__use($node, $level) {
-    
         print str_repeat('  ', $level).'use '.$node->getNamespace()."\n";;
     }
 

@@ -94,7 +94,7 @@ class template_db extends template {
             $this->line = $node->getline() + 0;
         } 
         
-        $requete = "INSERT INTO {$this->table} VALUES 
+        $requete = "INSERT INTO {$this->table}_TMP VALUES 
             (NULL ,
              '".$node->myleft."',
              '".$node->myright."',
@@ -119,7 +119,7 @@ class template_db extends template {
         if (is_array($this->tags) && count($this->tags) > 0) {
             foreach($this->tags as $label => $tokens) {
                 foreach($tokens as $token) {
-                    $requete = "INSERT INTO {$this->table_tags} VALUES 
+                    $requete = "INSERT INTO {$this->table_tags}_TMP VALUES 
                     ($return ,
                      '".$token."',
                      '".$label."')";
@@ -683,15 +683,6 @@ class template_db extends template {
         return $this->savenode($node, $level);        
     }
 
-    function display__namespace($node, $level) {
-        $node->myId = $this->getNextId();
-        $node->myleft = $this->getIntervalleId();
-        $node->setCode(join('\\', $node->getNamespace()));
-
-        $node->myright = $this->getIntervalleId();
-        return $this->savenode($node, $level);
-    }
-
     function display__new($node, $level) {
         $node->myId = $this->getNextId();
         $node->myleft = $this->getIntervalleId();
@@ -702,6 +693,26 @@ class template_db extends template {
         
         $node->myright = $this->getIntervalleId();
         $this->tags = $tags;
+        return $this->savenode($node, $level);        
+    }
+
+    function display__namespace($node, $level) {
+        $node->myId = $this->getNextId();
+        $node->myleft = $this->getIntervalleId();
+
+        $tags = array();
+        $tags['name'][] = $this->display($node->getNamespace(), $level + 1);
+        
+        $node->myright = $this->getIntervalleId();
+        $this->tags = $tags;
+        return $this->savenode($node, $level);        
+    }
+    
+    function display__nsname($node, $level) {
+        $node->myId = $this->getNextId();
+        $node->myleft = $this->getIntervalleId();
+
+        $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);        
     }
 
@@ -911,6 +922,18 @@ class template_db extends template {
         return $this->savenode($node, $level);
     }
 
+    function display__use($node, $level) {
+        $node->myId = $this->getNextId();
+        $node->myleft = $this->getIntervalleId();
+
+        $tags = array();
+        $tags['name'][] = $this->display($node->getNamespace(), $level + 1);
+        
+        $node->myright = $this->getIntervalleId();
+        $this->tags = $tags;
+        return $this->savenode($node, $level);        
+    }
+
     function display__array($node, $level) {
         $node->myId = $this->getNextId();
         $node->myleft = $this->getIntervalleId();
@@ -959,15 +982,6 @@ class template_db extends template {
 
         $this->display($node->getType(), $level + 1);
         $this->display($node->getName(), $level + 1);
-
-        $node->myright = $this->getIntervalleId();
-        return $this->savenode($node, $level);
-    }
-
-    function display__use($node, $level) {
-        $node->myId = $this->getNextId();
-        $node->myleft = $this->getIntervalleId();
-        $node->setCode(join('\\', $node->getNamespace()));
 
         $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);
