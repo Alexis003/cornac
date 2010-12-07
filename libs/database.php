@@ -42,14 +42,14 @@ class database  {
             $this->prefix = $INI['cornac']['prefix'];
         }
         
-        $this->tables = array('<rapport>' => $this->prefix.'_rapport',
+        $this->tables = array('<report>' => $this->prefix.'_report',
                               '<tokens>' => $this->prefix.'',
                               '<cache>' => $this->prefix.'_cache',
                               '<tokens_cache>' => $this->prefix.'_cache',
                               '<tags>' => $this->prefix.'_tags',
                               '<tokens_tags>' => $this->prefix.'_tags',
-                              '<rapport_module>' => $this->prefix.'_rapport_module',
-                              '<rapport_dot>' => $this->prefix.'_rapport_dot',
+                              '<report_module>' => $this->prefix.'_report_module',
+                              '<report_dot>' => $this->prefix.'_report_dot',
                               '<tasks>' => $this->prefix.'_tasks',
                             );
     }
