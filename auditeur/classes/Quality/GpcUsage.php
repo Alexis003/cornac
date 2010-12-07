@@ -26,7 +26,7 @@ class Quality_GpcUsage extends modules {
 	}
 	
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
 // @note cas simple : variable -> method
         $query = <<<SQL
@@ -37,7 +37,7 @@ WHERE T1.type="variable" AND
       T1.code IN ('\$_GET','\$_SERVER','\$GLOBALS','\$_POST','\$_REQUEST','\$_ENV','\$_COOKIE','\$_SESSION') AND 
       T2.type != '_array'
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 
         return true;
 	}

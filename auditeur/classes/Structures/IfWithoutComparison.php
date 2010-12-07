@@ -31,7 +31,7 @@ class Structures_IfWithoutComparison extends modules {
 	}
 
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
 // @doc check for everything except logique and (not or noscream)
 	    $query = <<<SQL
@@ -43,7 +43,7 @@ ON T2.file = T1.file AND
    T2.type NOT IN ('logique','not','noscream')
 WHERE T1.type IN ('ifthen', '_while')
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 
 // @doc check for everything in a not or noscream except logique
 // @not one can mix not and noscream.... 
@@ -60,7 +60,7 @@ ON T3.file = T1.file AND
    T3.type NOT IN ('logique')
 WHERE T1.type IN ('ifthen', '_while')
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 
         return true;
 	}

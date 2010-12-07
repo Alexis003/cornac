@@ -30,7 +30,7 @@ class Zf_Dependencies extends modules {
 	}
 
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
 // @note heritage
         $in = modules::getZendFrameworkClasses();
@@ -47,7 +47,7 @@ ON T2.id = TT.token_sub_id AND
 WHERE T1.type = '_class' AND
 T2.code IN ("$in")
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 
 // @note direct instantiation with new
         $query = <<<SQL
@@ -59,7 +59,7 @@ JOIN <tokens> T2
 WHERE T1.type='_new' AND
       T2.code IN ("$in")
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 
 // @note static usage
         $query = <<<SQL
@@ -71,7 +71,7 @@ JOIN <tokens> T2
 WHERE T1.type='method_static' AND
       T2.code IN ("$in")
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 
         return true;
 	}

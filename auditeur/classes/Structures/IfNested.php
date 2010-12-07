@@ -26,7 +26,7 @@ class Structures_IfNested extends modules {
 	}
 	
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
         $concat = $this->concat("T1.type","'->'","T2.type");
         $query = <<<SQL
@@ -41,7 +41,7 @@ GROUP BY T1.file, T1.left
 HAVING COUNT(*) > 1
 SQL;
 
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
         return true;
 	}
 }

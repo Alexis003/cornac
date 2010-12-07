@@ -26,7 +26,7 @@ class Structures_BlockOfCalls extends modules {
 	}
 
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
 // @todo : inclusions to be handler later
 // @todo           LEFT(TC1.code, GREATEST(LOCATE('(', TC1.code), LOCATE(' ', TC1.code))) = LEFT(TC3.code, GREATEST(LOCATE('(', TC3.code), LOCATE(' ', TC3.code)))
@@ -95,7 +95,7 @@ SQL;
             list($id, $code) = each($resultat);
             $code = join("\n", $resultat);
             $query = <<<SQL
-INSERT INTO <rapport> VALUES
+INSERT INTO <report> VALUES
 (NULL, '{$already[$id]}','$code','$id', '{$this->name}', 0 )
 SQL;
 

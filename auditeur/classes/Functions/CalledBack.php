@@ -31,7 +31,7 @@ class Functions_CalledBack extends modules {
 	
 	public function analyse() {
 // @todo spot functions when it is a method call (aka, it is an array instead of a function) 
-        $this->clean_rapport();
+        $this->clean_report();
 
         $functions = array();
         // callback is in second position
@@ -43,7 +43,7 @@ class Functions_CalledBack extends modules {
 
 	    $query = <<<SQL
 SELECT NULL, TR1.file, T2.code, T2.id, '{$this->name}', 0
-FROM <rapport> TR1
+FROM <report> TR1
 JOIN <tokens> T1
 ON T1.file = TR1.file AND
    T1.id = TR1.token_id
@@ -53,7 +53,7 @@ ON T1.file = T2.file AND
 WHERE TR1.module="Functions_Php" AND 
       TR1.element IN ($in)
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 
         // callback is in second position
         $functions[2] = array('usort', 
@@ -69,7 +69,7 @@ SQL;
 
 	    $query = <<<SQL
 SELECT NULL, TR1.file, T2.code, T2.id, '{$this->name}', 0
-FROM <rapport> TR1
+FROM <report> TR1
 JOIN <tokens> T1
 ON T1.file = TR1.file AND
    T1.id = TR1.token_id
@@ -79,7 +79,7 @@ ON T1.file = T2.file AND
 WHERE TR1.module="Functions_Php" AND 
       TR1.element IN ($in)
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 
         // callback is in last position
         $functions[-1] = array('array_diff_uassoc',
@@ -100,7 +100,7 @@ SQL;
 
 	    $query = <<<SQL
 SELECT NULL, TR1.file, T2.code, T2.id, '{$this->name}', 0
-FROM <rapport> TR1
+FROM <report> TR1
 JOIN <tokens> T1
 ON T1.file = TR1.file AND
    T1.id = TR1.token_id
@@ -110,7 +110,7 @@ ON T1.file = T2.file AND
 WHERE TR1.module="Functions_Php" AND 
       TR1.element IN ($functions)
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 
         
         return true;

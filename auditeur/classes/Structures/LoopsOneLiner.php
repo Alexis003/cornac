@@ -30,7 +30,7 @@ class Structures_LoopsOneLiner extends modules {
 	}
 
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
 // @note right - 2 reach the last token of the block. The block is always the last sub-element in the loop
 	    $query = <<<SQL
@@ -44,7 +44,7 @@ JOIN <tokens_cache> TC
 WHERE T1.type IN ('_for','_while','_do','_foreach') AND
       T2.line - T1.line < 3
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 
         return true;
 	}

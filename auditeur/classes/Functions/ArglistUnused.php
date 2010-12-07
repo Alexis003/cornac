@@ -26,7 +26,7 @@ class Functions_ArglistUnused extends modules {
 	}
 	
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
         
         // @todo if block uses func_get_args and co, ignore this
         // @todo display class/method 
@@ -78,7 +78,7 @@ SQL;
               $vars = join(', ', $row);
         
               $query = <<<SQL
-INSERT INTO <rapport> 
+INSERT INTO <report> 
     VALUES ( 0, '$file', '$signature', $id, '{$this->name}', 0 )
 SQL;
               $this->exec_query($query);

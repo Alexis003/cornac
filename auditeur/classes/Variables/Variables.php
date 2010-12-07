@@ -26,7 +26,7 @@ class Variables_Variables extends modules {
     }
 
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
         $query = <<<SQL
 SELECT NULL, T1.file, TC.code AS code, T1.id, '{$this->name}', 0
@@ -37,7 +37,7 @@ WHERE T1.type='variable'      AND
       T1.right - T1.left > 1
 SQL;
 
-        $this->exec_query_insert('rapport',$query);
+        $this->exec_query_insert('report',$query);
 	}
 	
 }

@@ -26,7 +26,7 @@ class Classes_PropertiesUsed extends modules {
 	}
 	
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
         $concat = $this->concat("T2.class","'->'","T3.code");
 // @note this are the properties used within the class : we rely on $this
@@ -43,7 +43,7 @@ JOIN <tokens> T3
     ON T1.file = T3.file AND TT2.token_sub_id = T3.id
 WHERE T1.type='property'
 SQL;
-        $this->exec_query_insert('rapport',$query);
+        $this->exec_query_insert('report',$query);
 
 
 // @note this are the other properties used within the class : we don't know what to do now 
@@ -62,7 +62,7 @@ JOIN <tokens> T3
     ON T1.file = T3.file AND TT2.token_sub_id = T3.id
 WHERE T1.type='property'
 SQL;
-        $this->exec_query_insert('rapport',$query);
+        $this->exec_query_insert('report',$query);
     
     }
 }

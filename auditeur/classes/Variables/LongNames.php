@@ -30,16 +30,16 @@ class Variables_LongNames extends modules {
 	}
 
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
         $query = <<<SQL
 SELECT NULL, TR1.file, CONCAT(TR1.element, ' (', LENGTH(TR1.element),' chars)' ), TR1.id, '{$this->name}', 0
-FROM <rapport> TR1
+FROM <report> TR1
 WHERE TR1.module = 'Variables_Names' AND 
       LENGTH(REPLACE(TR1.element, '$','')) > 19
 GROUP BY BINARY TR1.id;
 SQL;
-        $this->exec_query_insert('rapport',$query);
+        $this->exec_query_insert('report',$query);
 
         return true;
 	}

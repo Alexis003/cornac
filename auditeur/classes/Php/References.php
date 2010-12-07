@@ -31,7 +31,7 @@ class Php_References extends modules {
 	}
 	
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
 	    $query = <<<SQL
 SELECT NULL, T1.file, TC.code, T1.id, '{$this->name}', 0
@@ -43,7 +43,7 @@ JOIN <tokens_cache> TC
     ON TC.id = T2.id
 WHERE T1.type = 'reference' 
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
         
         return true;
 	}

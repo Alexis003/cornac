@@ -26,7 +26,7 @@ class Functions_ArglistDefined extends modules {
 	}
 
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
 // @doc this query search for the minimum argument to send a function/method
         $query = <<<SQL
@@ -47,7 +47,7 @@ JOIN <tokens> T4
 WHERE T1.type = '_function'
 GROUP BY T1.id
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 
 // @doc this query search for variable number of argument
         $query = <<<SQL
@@ -79,7 +79,7 @@ SQL;
             for($i = 0; $i < $row['optional']; $i++) {
                 $nb = $row['compulsory'] + $i + 1;
                 $query = <<<SQL
-INSERT INTO <rapport> 
+INSERT INTO <report> 
 SELECT NULL, '{$row['file']}', CONCAT('{$row['code']}','(', $nb ,' args)'), '{$row['id']}', '{$this->name}', 0
 SQL;
                 $this->exec_query($query);

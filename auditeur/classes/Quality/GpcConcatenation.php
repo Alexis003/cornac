@@ -26,7 +26,7 @@ class Quality_GpcConcatenation extends modules {
 	}
 	
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
         
         $concat = $this->concat('class','"::"','scope');
         $gpc_regexp = '(\\\\'.join('|\\\\',modules::getPHPGPC()).')';
@@ -41,7 +41,7 @@ ON T1.file= T2.file AND
 WHERE T1.type='concatenation'
 
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 
 	    return true;
 	}

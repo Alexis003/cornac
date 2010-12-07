@@ -30,17 +30,17 @@ class Quality_GpcModified extends modules {
 	}
 
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
         $gpc_regexp = '(\\\\'.join('|\\\\',modules::getPHPGPC()).')';
 
         $query = <<<SQL
 SELECT NULL, TR1.file, TR1.element, TR1.id, '{$this->name}', 0
-FROM <rapport> TR1
+FROM <report> TR1
 WHERE TR1.module = 'Structures_AffectationsVariables' AND 
       BINARY TR1.element REGEXP '^$gpc_regexp'
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 
         return true;
 	}

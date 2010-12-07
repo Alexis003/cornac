@@ -30,21 +30,21 @@ class Php_Modules extends modules {
 	}
 	
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
         $this->functions = modules::getPHPFunctions();
 	    
 	    // @section : searching via functions usage
 	    $query = <<<SQL
 SELECT NULL, file, element, token_id, '{$this->name}' , 0
-FROM <rapport> 
+FROM <report> 
 WHERE module = 'Functions_Php'
 SQL;
-	    $res = $this->exec_query_insert('rapport',$query);
+	    $res = $this->exec_query_insert('report',$query);
 
 	    $query = <<<SQL
 SELECT DISTINCT element 
-FROM <rapport> 
+FROM <report> 
 WHERE module = '{$this->name}'
 SQL;
 	    $res = $this->exec_query($query);
@@ -68,7 +68,7 @@ SQL;
             if (count($list) > 0) {
                 $in = join("','", $list);
                 $query = <<<SQL
-UPDATE <rapport> 
+UPDATE <report> 
     SET element = '$ext' 
 WHERE module = '{$this->name}' AND 
       element in ( '$in')
@@ -85,7 +85,7 @@ SQL;
         if (count($list) > 0) {
             $in = join("','", $list);
             $query = <<<SQL
-UPDATE <rapport> 
+UPDATE <report> 
     SET element = 'standard' 
 WHERE module = '{$this->name}' AND 
     element in ( '$in')
@@ -100,16 +100,16 @@ SQL;
 
 	    // @section : searching via classes usage
 	    $query = <<<SQL
-INSERT INTO <rapport>
+INSERT INTO <report>
 SELECT NULL, file, element, token_id, '{$this->name}_tmp', 0
-FROM <rapport> 
+FROM <report> 
 WHERE module = 'Classes_Php'
 SQL;
 	    $res = $this->exec_query($query);
 
 	    $query = <<<SQL
 SELECT DISTINCT element 
-    FROM <rapport> 
+    FROM <report> 
 WHERE module = '{$this->name}_tmp'
 SQL;
 	    $res = $this->exec_query($query);
@@ -136,7 +136,7 @@ SQL;
             if (count($list) > 0) {
                 $in = join("', '", $list);
         	    $query = <<<SQL
-UPDATE <rapport> SET element = '$ext',
+UPDATE <report> SET element = '$ext',
                      module='{$this->name}'
 WHERE module = '{$this->name}_tmp' AND 
       element in ( '$in')
@@ -150,7 +150,7 @@ SQL;
 
         if (count($classes) > 0) {
             $query = <<<SQL
-DELETE FROM <rapport> 
+DELETE FROM <report> 
     WHERE module = '{$this->name}_tmp'
 SQL;
    	        $res = $this->exec_query($query);

@@ -31,7 +31,7 @@ class Structures_ForeachKeyValue extends modules {
 	}
 	
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
 // @doc values
 	    $query = <<<SQL
@@ -46,7 +46,7 @@ JOIN <tokens> T2
        T2.type = 'variable'
 WHERE T1.type='_foreach';
 SQL;
-        $this->exec_query_insert('rapport',$query);
+        $this->exec_query_insert('report',$query);
 
 // @doc values as references
 	    $query = <<<SQL
@@ -64,7 +64,7 @@ JOIN <tokens> T3
        T3.type = 'variable'
 WHERE T1.type='_foreach';
 SQL;
-        $this->exec_query_insert('rapport',$query);
+        $this->exec_query_insert('report',$query);
 
 // @doc keys
 	    $query = <<<SQL
@@ -78,7 +78,7 @@ JOIN <tokens> T2
        TT.token_sub_id = T2.id
 WHERE T1.type='_foreach';
 SQL;
-        $this->exec_query_insert('rapport',$query);
+        $this->exec_query_insert('report',$query);
         
         return true;
 	}

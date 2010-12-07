@@ -26,7 +26,7 @@ class Classes_PropertiesPublic extends modules {
 	}
 	
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
         
         // @doc cas of simple public var
         $query = <<<SQL
@@ -38,7 +38,7 @@ LEFT JOIN <tokens> T2
 WHERE T1.type = '_var' AND
       T2.type = 'variable'
 SQL;
-        $this->exec_query_insert('rapport',$query);
+        $this->exec_query_insert('report',$query);
 
         // @doc cas of simple public var
         $query = <<<SQL
@@ -55,7 +55,7 @@ JOIN <tokens> T3
 WHERE T1.type = '_var' AND
      T2.code = 'public'
 SQL;
-        $this->exec_query_insert('rapport',$query);
+        $this->exec_query_insert('report',$query);
 
         $query = <<<SQL
 SELECT NULL, T1.file, CONCAT(T1.class,'::',T4.code), T1.id,  '{$this->name}', 0
@@ -77,7 +77,7 @@ JOIN <tokens> T4
 WHERE T1.type = '_var' AND
      (T2.code = 'public' OR T3.code='public')
 SQL;
-        $this->exec_query_insert('rapport',$query);
+        $this->exec_query_insert('report',$query);
 
     // @todo support class and methods
     // @todo support also static and var keyword

@@ -26,7 +26,7 @@ class Zf_Action extends modules {
 	}
 	
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
         if (isset($this->ini['classes'])) {
             if (is_array($this->ini['classes']) ) {
@@ -58,7 +58,7 @@ WHERE
     TT.type = 'name' AND
     T3.code IN ( "Application_Zend_Controller","Zend_Controller" $classes)
 SQL;
-        $this->exec_query_insert('rapport',$query);
+        $this->exec_query_insert('report',$query);
         
         return true;
 	}

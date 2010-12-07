@@ -75,7 +75,7 @@ $DATABASE = new database();
 // @todo support this later
 //write_ini_file($INI, INI);
 
-$query = 'SELECT * FROM <rapport_module> WHERE module='.$DATABASE->quote($INI['reader']['module']);
+$query = 'SELECT * FROM <report_module> WHERE module='.$DATABASE->quote($INI['reader']['module']);
 $res = $DATABASE->query($query);
 $row = $res->fetch();
 unset($res);
@@ -85,13 +85,13 @@ if (!$row) {
     die();
 } elseif ($row['format'] == 'html') {
     // @attention : should also support _dot reports
-    $query = 'SELECT * FROM <rapport> WHERE module='.$DATABASE->quote($INI['reader']['module']);
+    $query = 'SELECT * FROM <report> WHERE module='.$DATABASE->quote($INI['reader']['module']);
     if (!empty($INI['reader']['file'])) {
         $query .= ' AND file='.$DATABASE->quote($INI['reader']['file']);
     }
 } elseif ($row['format'] == 'dot') {
     // @attention : should also support _dot reports
-    $query = 'SELECT * FROM <rapport_dot> WHERE module='.$DATABASE->quote($INI['reader']['module']);
+    $query = 'SELECT * FROM <report_dot> WHERE module='.$DATABASE->quote($INI['reader']['module']);
     if (!empty($INI['reader']['file'])) {
         $query .= ' AND file='.$DATABASE->quote($INI['reader']['file']);
     }

@@ -30,7 +30,7 @@ class Zf_Redirect extends modules {
 	}
 
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
 	    $query = <<<SQL
 SELECT NULL, T1.file, T1.code, T1.id, '{$this->name}', 0
@@ -43,7 +43,7 @@ WHERE
     TT.type='function'
 SQL;
 
-    $this->exec_query_insert('rapport', $query);
+    $this->exec_query_insert('report', $query);
 	}
 }
 

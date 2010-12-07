@@ -30,18 +30,18 @@ class Functions_ArglistDiscrepencies extends modules {
 	}
 
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
         $query = <<<SQL
 SELECT NULL, TR1.file, TR1.element AS code, TR1.id, '{$this->name}', 0
-FROM <rapport> TR1
-LEFT JOIN <rapport> TR2
+FROM <report> TR1
+LEFT JOIN <report> TR2
     ON TR2.module='Functions_ArglistDefined' AND
        LEFT(TR1.element, locate('(', TR1.element) - 1) = LEFT(TR2.element, locate('(', TR2.element) -1) AND
        TR1.element = TR2.element
 WHERE TR1.module = 'Functions_ArglistCalled' AND 
       TR2.element IS NULL
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 
         return true;
 	}

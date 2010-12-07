@@ -26,7 +26,7 @@ class Structures_AffectationLiterals extends modules {
 	}
 	
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
 // @note affectations that have no variables on the right side (properties, references, list(), noscream...)
         $query = <<<SQL
@@ -47,7 +47,7 @@ WHERE T1.type = 'affectation'
 GROUP BY T1.id
 HAVING SUM(IF(T3.type = 'variable', 1,0)) = 0
 SQL;
-        $this->exec_query_insert('rapport', $query);    
+        $this->exec_query_insert('report', $query);    
     }
 }
 

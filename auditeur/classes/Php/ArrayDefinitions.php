@@ -31,7 +31,7 @@ class Php_ArrayDefinitions extends modules {
 	}
 	
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
 // @todo of course, update this useless query. :)
 	    $query = <<<SQL
@@ -49,7 +49,7 @@ WHERE T1.code='array' AND
        T2.right - T2.left > 1
 GROUP BY T2.id;
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
         
         return true;
 	}

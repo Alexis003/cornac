@@ -30,7 +30,7 @@ class Structures_LoopsInfinite extends modules {
 	}
 
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
 // @todo there are probably more situations that lead to some infinite loop : we look for the one that are explicit
 // @note we support while with constant condition, for with constant end, for with constant increment
@@ -50,7 +50,7 @@ WHERE T1.type = '_while'
 GROUP BY T1.id
 HAVING COUNT(T3.id) = 0
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
         
 // @note for with no middle code
 	    $query = <<<SQL
@@ -62,7 +62,7 @@ ON TT.token_id = T1.id AND
 WHERE T1.type = '_for' AND
       TT.token_id IS NULL
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 
 	    $query = <<<SQL
 SELECT NULL, T1.file, CONCAT('line ', T1.line), T1.id, '{$this->name}', 0
@@ -81,7 +81,7 @@ WHERE T1.type = '_for'
 GROUP BY T1.id
 HAVING COUNT(*) = 0
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 
 // @note for with no increment code, or non-variable code
 	    $query = <<<SQL
@@ -90,13 +90,13 @@ FROM <tokens> T1
 LEFT JOIN <tokens_tags> TT
 ON TT.token_id = T1.id AND
    TT.type='increment'
-LEFT JOIN <rapport> TR
+LEFT JOIN <report> TR
     ON T1.id = TR.token_id
 WHERE T1.type = '_for' AND
       TT.token_id IS NULL AND
       TR.token_id IS NULL
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 
 	    $query = <<<SQL
 SELECT NULL, T1.file, CONCAT('line ', T1.line), T1.id, '{$this->name}', 0
@@ -115,7 +115,7 @@ WHERE T1.type = '_for'
 GROUP BY T1.id
 HAVING COUNT(*) = 0
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 
         return true;
 	}

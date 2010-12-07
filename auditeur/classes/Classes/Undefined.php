@@ -30,19 +30,19 @@ class Classes_Undefined extends modules {
 	}
 	
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
         $in = "'".join("','", modules::getPHPClasses())."'";
         $query = <<<SQL
 SELECT NULL, TR1.file, TR1.element AS code, TR1.id, '{$this->name}', 0
-    FROM <rapport>  TR1
-    LEFT JOIN <rapport>  TR2 
+    FROM <report>  TR1
+    LEFT JOIN <report>  TR2 
         ON TR1.element = TR2.element AND TR2.module='Classes_Definitions' 
     WHERE TR1.module = 'Classes_News' AND 
           TR2.element IS NULL AND
           TR1.element NOT IN ($in)
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
         return true;
 	}
 }

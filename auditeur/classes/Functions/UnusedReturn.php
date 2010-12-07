@@ -31,7 +31,7 @@ class Functions_UnusedReturn extends modules {
 	}
 
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
 // @todo update list of authorize functions (first IN)
 // @todo check on other application the list of authorized structures (second IN)
@@ -48,7 +48,7 @@ WHERE T1.type = 'functioncall' AND
       T1.code NOT IN ('echo','print','define') AND 
       T2.type NOT IN ('noscream','arginit','_array','comparison','logique','clevaleur','cdtternaire','not','concatenation','method_static','parentheses','method','affectation','arglist')
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 
         return true;
 	}

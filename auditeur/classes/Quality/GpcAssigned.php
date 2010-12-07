@@ -26,7 +26,7 @@ class Quality_GpcAssigned extends modules {
 	}
 	
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
         $gpc_regexp = '(\\\\'.join('|\\\\',modules::getPHPGPC()).')';
 
@@ -70,7 +70,7 @@ WHERE T1.file like "%affectations_gpc%" and T1.type = 'affectation' AND
 (T4.type IS NULL OR T4.type != '_array') AND 
 TC.code REGEXP '^$gpc_regexp';
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
         
         return true;
     }

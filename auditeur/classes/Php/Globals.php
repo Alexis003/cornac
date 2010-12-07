@@ -26,7 +26,7 @@ class Php_Globals extends modules {
     }
     
     public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
         
         // @note variable global thanks to the global reserved word
         $query = <<<SQL
@@ -37,7 +37,7 @@ JOIN <tokens> T2
        T1.file = T2.file
 WHERE T1.type='_global' 
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
         
         // @note variables globales because in $GLOBALS
        $query = <<<SQL
@@ -52,7 +52,7 @@ LEFT JOIN <tokens_cache> T3
 WHERE T1.type = '_array' AND
       T2.code = '\$GLOBALS';
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
         
         return true;
     }    

@@ -26,7 +26,7 @@ class Classes_MethodsSpecial extends modules {
 	}
 	
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
         $concat = $this->concat("T1.class","'->'","T1.scope");
         $query = <<<SQL
@@ -42,7 +42,7 @@ WHERE scope IN ( '__construct','__toString','__destruct',
 GROUP BY file, class, scope;
 
 SQL;
-    $this->exec_query_insert('rapport', $query);
+    $this->exec_query_insert('report', $query);
 
         $query = <<<SQL
 SELECT NULL, T1.file, T1.scope, T1.id, '{$this->name}' , 0
@@ -51,7 +51,7 @@ WHERE scope IN ( '__autoload' ) AND
       T1.type='_function'
 
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 	}
 }
 

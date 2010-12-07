@@ -26,7 +26,7 @@ class Structures_LoopsNested extends modules {
 	}
 	
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
         $concat = $this->concat("T1.type","'->'","T2.type");
         $query = <<<SQL
@@ -39,7 +39,7 @@ WHERE T1.type IN ('_while','_for','_foreach') AND
       T2.type IN ('_while','_for','_foreach')
 GROUP BY T1.file, T1.left, T1.id, T2.type
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
         
         return true;
 	}

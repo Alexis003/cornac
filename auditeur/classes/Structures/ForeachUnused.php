@@ -31,14 +31,14 @@ class Structures_ForeachUnused extends modules {
 	}
 	
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
 // @todo sync search for index and variables
 // @todo do the search for properties, array, and any mix
 
 // @doc spot unused variables in index
 	    $query = <<<SQL
-INSERT INTO <rapport> 
+INSERT INTO <report> 
 SELECT NULL, T1.file, T2.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens_tags> TT
@@ -94,7 +94,7 @@ LEFT JOIN <tokens> T4
 WHERE T1.type='_foreach' AND 
       T4.id IS NULL;
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 
 // @doc spot unused variables in value as reference
 	    $query = <<<SQL
@@ -123,7 +123,7 @@ LEFT JOIN <tokens> T4
 WHERE T1.type='_foreach' AND 
       T4.id IS NULL;
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 
 // @todo spot unused variables in value as reference
 // @todo spot unused properties in value

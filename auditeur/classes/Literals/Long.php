@@ -30,7 +30,7 @@ class Literals_Long extends modules {
 	}
 
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
         $query = <<<SQL
 SELECT NULL, TR1.file, TRIM(code), TR1.id, '{$this->name}', 0
@@ -38,7 +38,7 @@ FROM <tokens> TR1
 WHERE type = 'literals' AND
       LENGTH(code) > 1024
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 
         return true;
 	}

@@ -26,7 +26,7 @@ class Structures_IfWithoutElse extends modules {
 	}
 	
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
         $concat = $this->concat("T2.class","'->'","T2.code");
 	    $query = <<<SQL
@@ -38,7 +38,7 @@ WHERE T1.type = 'ifthen'
 GROUP BY file, `left`
 HAVING elsee = 0
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
         
         return true;
 	}

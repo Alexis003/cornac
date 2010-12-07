@@ -32,7 +32,7 @@ class Render_html {
     }
     
     function render($lines) {
-        $query = "SELECT module FROM <rapport_module> ORDER BY fait DESC ";
+        $query = "SELECT module FROM <report_module> ORDER BY fait DESC ";
         $res = $this->db->query($query);
 
         $html = '';
@@ -56,7 +56,7 @@ class Render_html {
     }
 
     function render_index($analyzer) {
-        $query = "SELECT element, COUNT(*) AS nb FROM <rapport> WHERE module='{$analyzer}' GROUP BY element ORDER BY element";
+        $query = "SELECT element, COUNT(*) AS nb FROM <report> WHERE module='{$analyzer}' GROUP BY element ORDER BY element";
         $res = $this->db->query($query);
         
         $html = '';
@@ -77,7 +77,7 @@ class Render_html {
     }
 
     function render_classe_freq($analyzer) {
-        $query = "SELECT fichier, element, COUNT(*) AS nb FROM <rapport> WHERE module='{$analyzer}' GROUP BY file, element ORDER BY nb DESC";
+        $query = "SELECT fichier, element, COUNT(*) AS nb FROM <report> WHERE module='{$analyzer}' GROUP BY file, element ORDER BY nb DESC";
         $res = $this->db->query($query);
 
         $html = '';
@@ -102,7 +102,7 @@ class Render_html {
     }
 
     function render_fichier_freq($analyzer) {
-        $query = "SELECT file, element, COUNT(*) AS nb FROM <rapport> WHERE module='{$analyzer}' GROUP BY file, element ORDER BY nb DESC";
+        $query = "SELECT file, element, COUNT(*) AS nb FROM <report> WHERE module='{$analyzer}' GROUP BY file, element ORDER BY nb DESC";
         $res = $this->db->query($query);
 
         $html = '';
@@ -127,7 +127,7 @@ class Render_html {
     }
     
     function render_occurrences_freq($analyzer) {
-        $query = "SELECT element, COUNT(*) AS nb FROM <rapport> WHERE module='{$analyzer}' GROUP BY element ORDER BY nb DESC";
+        $query = "SELECT element, COUNT(*) AS nb FROM <report> WHERE module='{$analyzer}' GROUP BY element ORDER BY nb DESC";
         $res = $this->db->query($query);
         
         $html = '';
@@ -146,7 +146,7 @@ class Render_html {
     }
     
     function render_occurrence_fichier($analyzer) {
-        $query = "SELECT element, file FROM <rapport> WHERE module='{$analyzer}' GROUP BY element, file";
+        $query = "SELECT element, file FROM <report> WHERE module='{$analyzer}' GROUP BY element, file";
         $res = $this->db->query($query);
         
         $html = '';
@@ -171,7 +171,7 @@ class Render_html {
     function render_scope_freq($analyzer) {
         $query = "
             SELECT concat(CR.file, ': <br /><b>', class,'->', scope,'</b>') as class, element, COUNT(*) AS nb 
-            FROM <rapport> CR
+            FROM <report> CR
             JOIN <tokens> T1
                 ON CR.token_id = T1.id
                 WHERE module='{$analyzer}' 

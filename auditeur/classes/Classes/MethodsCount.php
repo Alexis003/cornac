@@ -26,7 +26,7 @@ class Classes_MethodsCount extends modules {
 	}
 	
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
         
 	    $query = <<<SQL
 SELECT NULL, T1.file, class AS code, T1.id, '{$this->name}', 0
@@ -35,7 +35,7 @@ WHERE T1.type='_function' AND
       T1.class != ''      AND
       T1.code = T1.scope
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 
 	    return true;
 	}

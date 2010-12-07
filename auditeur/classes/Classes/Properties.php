@@ -26,7 +26,7 @@ class Classes_Properties extends modules {
 	}
 	
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
         $concat = $this->concat("T2.class","'->'","T2.code");
         $query = <<<SQL
@@ -38,7 +38,7 @@ FROM <tokens> T1
   AND T2.type='variable'
 WHERE T1.class != 'global' AND T1.type='_var';
 SQL;
-        $this->exec_query_insert('rapport',$query);
+        $this->exec_query_insert('report',$query);
 
         return true;
     // @todo support methods and classes

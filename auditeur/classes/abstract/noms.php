@@ -28,7 +28,7 @@ class noms extends modules {
 	    $type_tag = $this->noms['type_tags'];
         $this->noms = array();
 
-        $this->clean_rapport();
+        $this->clean_report();
 
         $query = <<<SQL
 SELECT NULL, T1.file, T2.code, T1.id, '{$this->name}', 0
@@ -42,7 +42,7 @@ WHERE T1.type='$type_token'      AND
       TT.type = '$type_tag';
 SQL;
 
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
     }
 }
 

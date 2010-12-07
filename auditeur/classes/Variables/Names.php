@@ -34,7 +34,7 @@ WHERE T1.type = 'variable' AND
       ( T1.class = '' OR T1.scope != 'global') AND
       T1.code != '\$this'
 SQL;
-	$this->exec_query_insert('rapport',$query);
+	$this->exec_query_insert('report',$query);
 	
 	}
 }

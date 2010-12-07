@@ -24,7 +24,7 @@ class Php_RegexStrings extends modules {
 	}
 	
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
         $query = <<<SQL
 SELECT NULL, T1.file, T2.code, T1.id, '{$this->name}', 0
@@ -35,7 +35,7 @@ JOIN <tokens> T2
 WHERE T1.code IN ('preg_match','preg_replace','preg_replace_callback','preg_match_all')  AND
       T1.type = 'token_traite'
 SQL;
-        $this->exec_query_insert('rapport',$query);
+        $this->exec_query_insert('report',$query);
 
         return true;
 	}

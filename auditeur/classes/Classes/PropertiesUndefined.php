@@ -26,7 +26,7 @@ class Classes_PropertiesUndefined extends modules {
     }
 
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
         $query = <<<SQL
 DROP TABLE IF EXISTS Classes_PropertiesUndefined
@@ -62,7 +62,7 @@ WHERE T1.scope!='global'  AND
       T2.type='literals'  AND 
       TMP.code IS NULL
 SQL;
-        $this->exec_query_insert('rapport',$query);
+        $this->exec_query_insert('report',$query);
 
         $query = <<<SQL
 DROP TABLE IF EXISTS Classes_PropertiesUndefined

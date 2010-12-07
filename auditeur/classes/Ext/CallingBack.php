@@ -31,7 +31,7 @@ class Ext_CallingBack extends modules {
 	}
 
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
 // @todo of course, update this useless query. :)
         $functions = array();
@@ -70,11 +70,11 @@ class Ext_CallingBack extends modules {
 
 	    $query = <<<SQL
 SELECT NULL, TR1.file, TR1.element, TR1.token_id, '{$this->name}', 0
-FROM <rapport> TR1
+FROM <report> TR1
 WHERE TR1.module="Functions_Php" AND 
       TR1.element IN ($functions)
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
         return true;
 	}
 }

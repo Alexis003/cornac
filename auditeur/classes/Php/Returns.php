@@ -26,7 +26,7 @@ class Php_Returns extends modules {
 	}
 	
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
         $concat = $this->concat("sum(type='_return')", "' returns'");
         $query = <<<SQL
@@ -36,7 +36,7 @@ WHERE scope NOT IN ( '__construct','__destruct','__set','__get','__call','__clon
  AND scope != class AND (class != 'global' AND scope != 'global')
 GROUP BY file, class, scope 
 SQL;
-        $this->exec_query_insert('rapport',$query);
+        $this->exec_query_insert('report',$query);
 
         return true;
 	}

@@ -31,18 +31,18 @@ class Functions_Undefined extends modules {
 
 	
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
         $query = <<<SQL
 SELECT NULL, TR1.file, TR1.element, TR1.id, '{$this->name}', 0
-FROM <rapport> TR1
-LEFT JOIN <rapport> TR2 
+FROM <report> TR1
+LEFT JOIN <report> TR2 
   ON TR1.element = TR2.element AND 
      TR2.module='Functions_Definitions'
 WHERE TR1.module='Structures_FunctionsCalls' AND
       TR2.element IS NULL
 SQL;
-        $this->exec_query_insert('rapport',$query);
+        $this->exec_query_insert('report',$query);
 
         return true;
 	}

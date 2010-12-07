@@ -30,7 +30,7 @@ class Quality_DangerousCombinaisons extends modules {
 	}
 
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
         
         $combinaisons = parse_ini_file('../dict/combinaisons.ini', true);
 
@@ -48,7 +48,7 @@ WHERE T1.type NOT IN ('functioncall','method')
 GROUP BY file
 HAVING SUM(IF (code IN ($in), 1, 0)) >= $count
 SQL;
-            $this->exec_query_insert('rapport', $query);
+            $this->exec_query_insert('report', $query);
         }
         return true;
 	}

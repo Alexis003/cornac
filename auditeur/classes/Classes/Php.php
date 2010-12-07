@@ -30,7 +30,7 @@ class Classes_Php extends functioncalls {
 	}
 	
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
 	    $in = join("', '", modules::getPHPClasses());
 
@@ -43,7 +43,7 @@ JOIN <tokens> T2
 WHERE T1.type='_new' AND 
       T2.code IN ('$in')
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
         
         return true;
     }

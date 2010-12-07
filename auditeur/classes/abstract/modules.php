@@ -51,13 +51,13 @@ abstract class modules {
         $this->mid = $mid;
         $this->format_export = modules::FORMAT_DEFAULT;
         
-        $this->tables = array('<rapport>' => $prefixe.'_rapport',
-                              '<rapport_scope>' => $prefixe.'_rapport_scope',
+        $this->tables = array('<report>' => $prefixe.'_report',
+                              '<report_scope>' => $prefixe.'_report_scope',
                               '<tokens>' => $prefixe.'',
                               '<tokens_cache>' => $prefixe.'_cache',
                               '<tokens_tags>' => $prefixe.'_tags',
-                              '<rapport_module>' => $prefixe.'_rapport_module',
-                              '<rapport_dot>' => $prefixe.'_rapport_dot',
+                              '<report_module>' => $prefixe.'_report_module',
+                              '<report_dot>' => $prefixe.'_report_dot',
                             );
 
        $this->name = get_class($this);
@@ -129,7 +129,7 @@ abstract class modules {
         }
         
         $now = date('c');
-        $this->exec_query("REPLACE INTO <rapport_module> VALUES ('$this->name', '$now', '{$this->format}', '{$this->web}')");
+        $this->exec_query("REPLACE INTO <report_module> VALUES ('$this->name', '$now', '{$this->format}', '{$this->web}')");
 
     }
 
@@ -164,11 +164,11 @@ abstract class modules {
     }
 
     function exec_query_insert($report, $query) {
-    // @todo support rapport and report_dot
-        if ($report == 'rapport') {
+    // @todo support report and report_dot
+        if ($report == 'report') {
         // @note be aware that tmp_table need id as NULL column, so auto_increment is managed in the report table
         $this->mid->query('
-CREATE TEMPORARY TABLE IF NOT EXISTS tmp_rapport (
+CREATE TEMPORARY TABLE IF NOT EXISTS tmp_report (
   `id` tinyint(10),
   `file` varchar(500) NOT NULL,
   `element` varchar(10000) NOT NULL,
@@ -179,20 +179,20 @@ CREATE TEMPORARY TABLE IF NOT EXISTS tmp_rapport (
   KEY `module` (`module`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1');
 
-// @todo handle nicely when tmp_rapport is already here!
-        } elseif ($report == 'rapport_dot') {
+// @todo handle nicely when tmp_report is already here!
+        } elseif ($report == 'report_dot') {
             
         } else {
-            print "\$report is not (rapport or rapport_dot) : $report\n\n";
+            print "\$report is not (report or report_dot) : $report\n\n";
         } 
 
-        $query = "INSERT INTO tmp_rapport $query";
+        $query = "INSERT INTO tmp_report $query";
         $this->exec_query($query);
         
-        $query = "INSERT INTO <rapport> SELECT * FROM tmp_rapport";
+        $query = "INSERT INTO <report> SELECT * FROM tmp_report";
         $this->exec_query($query);
         
-        $query = "DROP TABLE tmp_rapport";
+        $query = "DROP TABLE tmp_report";
         $this->exec_query($query);
 
         return true;
@@ -203,19 +203,19 @@ CREATE TEMPORARY TABLE IF NOT EXISTS tmp_rapport (
         return array();
     }
     
-    function clean_rapport() {
+    function clean_report() {
         $query = <<<SQL
-DELETE FROM <rapport> WHERE module='{$this->name}'
+DELETE FROM <report> WHERE module='{$this->name}'
 SQL;
         $this->exec_query($query);
 
         $query = <<<SQL
-DELETE FROM <rapport_dot> WHERE module='{$this->name}'
+DELETE FROM <report_dot> WHERE module='{$this->name}'
 SQL;
         $this->exec_query($query);
 
         $query = <<<SQL
-DELETE FROM <rapport_module> WHERE module='{$this->name}'
+DELETE FROM <report_module> WHERE module='{$this->name}'
 SQL;
         $this->exec_query($query);
     }

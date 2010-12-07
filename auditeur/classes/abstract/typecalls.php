@@ -31,7 +31,7 @@ class typecalls extends modules {
     	    $in = '"'.$this->type.'"';
 	    }
 
-        $this->clean_rapport();
+        $this->clean_report();
 
         $query = <<<SQL
     SELECT NULL, T1.file, T1.code AS code, T1.id, '{$this->name}', 0
@@ -43,7 +43,7 @@ SQL;
             $query .= " AND T1.code IN ($in)";
         }
         
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 	}
 }
 

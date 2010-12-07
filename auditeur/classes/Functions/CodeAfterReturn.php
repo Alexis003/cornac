@@ -30,7 +30,7 @@ class Functions_CodeAfterReturn extends modules {
 	}
 	
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
 	    $query = <<<SQL
 SELECT NULL, T1.file, CONCAT(T1.class, "::",T1.scope), T1.id, '{$this->name}', 0
@@ -43,7 +43,7 @@ WHERE T1.type='_return' AND
       T2.right != T1.right + 2 AND 
       T2.level = T1.level - 2
 SQL;
-        $this->exec_query_insert('rapport',$query);
+        $this->exec_query_insert('report',$query);
         
         return true;
 	}

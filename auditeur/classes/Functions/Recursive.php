@@ -30,7 +30,7 @@ class Functions_Recursive extends modules {
 	}
 
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
 	    $query = <<<SQL
 SELECT NULL, T1.file, CONCAT('::',T1.scope), T1.id, '{$this->name}', 0
@@ -44,7 +44,7 @@ WHERE T1.type = 'functioncall' AND
       T1.scope=T1.code  AND
       T2.id IS NULL;
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 
 	    $query = <<<SQL
 SELECT NULL, T1.file, CONCAT(T1.class,'::',T1.scope), T1.id, '{$this->name}', 0
@@ -57,7 +57,7 @@ WHERE T1.type = 'functioncall'
       AND T1.class != ''
       AND T1.scope=T1.code;
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 
         return true;
 	}

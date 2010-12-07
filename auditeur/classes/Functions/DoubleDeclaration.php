@@ -30,17 +30,17 @@ class Functions_DoubleDeclaration extends modules {
 	}
 
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
         $query = <<<SQL
 SELECT NULL, file, TR.element,  TR.token_id, '{$this->name}', 0
-FROM <rapport> TR
+FROM <report> TR
 WHERE module='Functions_Definitions'
 GROUP BY file, element 
 HAVING COUNT(*) > 1
 SQL;
     
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
         return true;
 	}
 }

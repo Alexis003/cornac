@@ -30,7 +30,7 @@ class Php_FunctionsConflict extends modules {
 	}
 	
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
         $functions = modules::getPHPFunctions();
         $in = '"'.join('","', $functions).'"';
@@ -39,11 +39,11 @@ class Php_FunctionsConflict extends modules {
 
 	    $query = <<<SQL
 SELECT NULL, T1.file, T1.element, T1.id, '{$this->name}', 0
-    FROM <rapport> T1
+    FROM <report> T1
     WHERE   T1.module = 'Functions_Definitions' AND
             T1.element IN ($in)
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
         
         return true;
 	}

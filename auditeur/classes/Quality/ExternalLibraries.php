@@ -31,7 +31,7 @@ class Quality_ExternalLibraries extends modules {
 	}
 	
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 // @todo use also constantes
 // @todo use also functions
 // @todo spot versions? 
@@ -54,15 +54,15 @@ JOIN <tokens> T2
        T2.code IN ($in)
 WHERE T1.type='_class'; 
 SQL;
-            $this->exec_query_insert('rapport', $query);
+            $this->exec_query_insert('report', $query);
 
             // @doc search for usage as instanciation
             $query = <<<SQL
 SELECT NULL, TR.file, '$ext', TR.id, '{$this->name}', 0
-FROM <rapport> TR
+FROM <report> TR
 WHERE TR.element IN ($in); 
 SQL;
-            $this->exec_query_insert('rapport', $query);
+            $this->exec_query_insert('report', $query);
         }
 
         

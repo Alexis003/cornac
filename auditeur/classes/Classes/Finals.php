@@ -29,7 +29,7 @@ class Classes_Finals extends modules {
 	}
 
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
 // @note spot final when in first place in a class
 	    $query = <<<SQL
@@ -41,7 +41,7 @@ JOIN <tokens> T2
        T2.code = 'final'
 WHERE T1.type = '_class'
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 
 // @note spot final when in first place in a method
 	    $query = <<<SQL
@@ -53,7 +53,7 @@ JOIN <tokens> T2
        T2.code = 'final'
 WHERE T1.type = '_function'
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 
 // @note spot final when in second place
 	    $query = <<<SQL
@@ -65,7 +65,7 @@ JOIN <tokens> T2
        T2.code = 'final'
 WHERE T1.type = '_function'
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 
 // @note spot final when in third place
 	    $query = <<<SQL
@@ -77,7 +77,7 @@ JOIN <tokens> T2
        T2.code = 'final'
 WHERE T1.type = '_function'
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 
         return true;
 	}

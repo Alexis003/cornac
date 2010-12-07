@@ -30,16 +30,16 @@ class Classes_DoubleDeclaration extends modules {
 	}
 
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
         $query = <<<SQL
 SELECT NULL, file, TR.element,  TR.token_id, '{$this->name}', 0
-FROM <rapport> TR
+FROM <report> TR
 WHERE module='Classes_Definitions'
 GROUP BY file, element 
 HAVING COUNT(*) > 1
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 
         return true;
 	}
@@ -47,9 +47,9 @@ SQL;
 
 /*
 SELECT NULL, file, TR.element,  TR.token_id, '{$this->name}', 0
-    FROM <rapport> TR
+    FROM <report> TR
     WHERE module='Classes_Definitions'                            AND
-         TR.element IN (SELECT element FROM <rapport> TR
+         TR.element IN (SELECT element FROM <report> TR
                             WHERE module='Classes_Definitions'
                             GROUP BY element 
                             HAVING count(*) > 1);

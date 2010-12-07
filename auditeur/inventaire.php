@@ -97,17 +97,17 @@ if (isset($INI['cornac']['prefix'])) {
 }
 
 // @todo internationalize this!
-$headers = array('Variables' => 'SELECT COUNT(DISTINCT element)  FROM <rapport> WHERE module="variables"',
-                 'Files'  => 'SELECT COUNT(DISTINCT file) FROM <rapport>',
-                 'Classes'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <rapport> WHERE module="classes"',
-                 'Constants'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <rapport> WHERE module="defconstantes"',
-                 'Uses Zend Framework'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <rapport> WHERE module="zfClasses"',
-                 'Interfaces'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <rapport> WHERE module="interfaces"',
-                 'Fluid interfaces'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <rapport> WHERE module="fluid_interface"',
-                 'References'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <rapport> WHERE module="references"',
-                 'Variable variables'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <rapport> WHERE module="variablesvariables"',
-                 'Class constants'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <rapport> WHERE module="constantes_classes"',
-                 'Magic methods'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <rapport> WHERE module="special_methods"',
+$headers = array('Variables' => 'SELECT COUNT(DISTINCT element)  FROM <report> WHERE module="variables"',
+                 'Files'  => 'SELECT COUNT(DISTINCT file) FROM <report>',
+                 'Classes'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <report> WHERE module="classes"',
+                 'Constants'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <report> WHERE module="defconstantes"',
+                 'Uses Zend Framework'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <report> WHERE module="zfClasses"',
+                 'Interfaces'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <report> WHERE module="interfaces"',
+                 'Fluid interfaces'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <report> WHERE module="fluid_interface"',
+                 'References'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <report> WHERE module="references"',
+                 'Variable variables'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <report> WHERE module="variablesvariables"',
+                 'Class constants'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <report> WHERE module="constantes_classes"',
+                 'Magic methods'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <report> WHERE module="special_methods"',
                  );
 
 $stats = array();
@@ -126,10 +126,10 @@ foreach($headers as $name => $sql) {
 }
 
 // @attention : should also support _dot reports
-$names = array("PHP extensions" => array('query' => 'SELECT DISTINCT element FROM <rapport> WHERE module="php_modules" ORDER BY element',
+$names = array("PHP extensions" => array('query' => 'SELECT DISTINCT element FROM <report> WHERE module="php_modules" ORDER BY element',
                                   'headers' => array('Extension'),
                                   'columns' => array('element')),
-               "Constants" => array('query' => 'SELECT element, COUNT(*) as NB FROM <rapport> WHERE module="defconstantes" GROUP BY element ORDER BY NB DESC',
+               "Constants" => array('query' => 'SELECT element, COUNT(*) as NB FROM <report> WHERE module="defconstantes" GROUP BY element ORDER BY NB DESC',
                                     'headers' => array('Constant','Number'),
                                     'columns' => array('element','NB')),
                "Classes" => array('query' => 'SELECT T1.class, T1.file AS file, IFNULL(T2.code, "") AS abstract
@@ -144,7 +144,7 @@ WHERE T1.type="_class" AND
 ORDER BY T1.class',
                                   'headers' => array('Classe','abstract','File'),
                                   'columns' => array('class','file','abstract')),
-               "Interfaces" => array('query' => 'SELECT element, COUNT(*) as NB FROM <rapport> WHERE module="interface" GROUP BY element ORDER BY NB DESC',
+               "Interfaces" => array('query' => 'SELECT element, COUNT(*) as NB FROM <report> WHERE module="interface" GROUP BY element ORDER BY NB DESC',
                                     'headers' => array('Interface','Number'),
                                     'columns' => array('element','NB')),
                "Methods" => array('query' => 'SELECT T1.class, T1.scope AS method, T1.file AS file, 
@@ -190,19 +190,19 @@ ORDER BY T1.class
 ',
                                     'headers' => array('Class','Property','private','protected','public','static','File'),
                                     'columns' => array('class','property','private','protected','public','static','file')),
-               "Functions" => array('query' => 'SELECT element, file FROM <rapport> WHERE module="deffunctions" ORDER BY element',
+               "Functions" => array('query' => 'SELECT element, file FROM <report> WHERE module="deffunctions" ORDER BY element',
                                     'headers' => array('Functions','Number'),
                                     'columns' => array('element','file')),
-               "Paramètres" => array('query' => 'SELECT element, COUNT(*) as NB FROM <rapport> WHERE module="gpc_variables" GROUP BY element ORDER BY NB DESC',
+               "Paramètres" => array('query' => 'SELECT element, COUNT(*) as NB FROM <report> WHERE module="gpc_variables" GROUP BY element ORDER BY NB DESC',
                                     'headers' => array('Variable','Number'),
                                     'columns' => array('element','NB')),
-               "Sessions" => array('query' => 'SELECT element, COUNT(*) as NB FROM <rapport> WHERE module="session_variables" GROUP BY element ORDER BY NB DESC',
+               "Sessions" => array('query' => 'SELECT element, COUNT(*) as NB FROM <report> WHERE module="session_variables" GROUP BY element ORDER BY NB DESC',
                                     'headers' => array('Variable','Number'),
                                     'columns' => array('element','NB')),
-               "Variables" => array('query' => 'SELECT element, COUNT(*) as NB FROM <rapport> WHERE module="variables" GROUP BY element ORDER BY NB DESC',
+               "Variables" => array('query' => 'SELECT element, COUNT(*) as NB FROM <report> WHERE module="variables" GROUP BY element ORDER BY NB DESC',
                                     'headers' => array('Variable','Number'),
                                     'columns' => array('element','NB')),
-               "Fichiers" => array('query' => 'SELECT DISTINCT file FROM <rapport> GROUP BY file ORDER BY file DESC',
+               "Fichiers" => array('query' => 'SELECT DISTINCT file FROM <report> GROUP BY file ORDER BY file DESC',
                                     'headers' => array('file'),
                                     'columns' => array('file')),
           );

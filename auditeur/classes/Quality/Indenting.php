@@ -26,7 +26,7 @@ class Quality_Indenting extends modules {
 	}
 
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
 /* @example
 +---------+----------+--------------------------------------------------------------+
@@ -48,7 +48,7 @@ WHERE N.type IN ('ifthen','_class','_function','_while','_dowhile','_foreach','_
       P.type IN ('ifthen','_class','_function','_while','_dowhile','_foreach','_case','_for','_switch')
       GROUP BY N.id
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 
         return true;
 	}

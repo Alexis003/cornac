@@ -26,7 +26,7 @@ class Zf_Elements extends modules {
 	}
 	
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
         
         $classes = array(
 'Zend_Form_Element_Button',
@@ -95,7 +95,7 @@ SQL;
         $row2 = $res2->fetch();
         
 	    $query = <<<SQL
-INSERT INTO <rapport> VALUES 
+INSERT INTO <report> VALUES 
     (0, '{$row2['file']}', '{$row['code']} : {$row2['addValidator']}' , {$row['id']}, '{$this->name}', 0 );
 SQL;
         $this->exec_query($query);

@@ -31,7 +31,7 @@ class Structures_FluentInterface extends modules {
 	
 // @todo put a name in this element
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
 	    $query = <<<SQL
 SELECT T1.id, T1.file, count(*) AS nb
@@ -70,7 +70,7 @@ JOIN <tokens> T4
        T4.left = T3.left + 1
 WHERE T1.id = {$row['id']}
 SQL;
-            $this->exec_query_insert('rapport', $query);
+            $this->exec_query_insert('report', $query);
         }
         
         return true;

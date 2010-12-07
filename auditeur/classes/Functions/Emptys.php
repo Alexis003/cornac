@@ -30,7 +30,7 @@ class Functions_Emptys extends modules {
 	}
 	
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
 	    $query = <<<SQL
 SELECT NULL, T1.file, T4.code, T1.id, '{$this->name}', 0
@@ -45,7 +45,7 @@ JOIN <tokens_tags> T5
 JOIN <tokens> T4
     ON T1.file = T4.file       AND
        T4.id = T5.token_sub_id
-LEFT JOIN <rapport> TR
+LEFT JOIN <report> TR
     ON T1.file = TR.file       AND
        T4.class = TR.element   AND
        TR.module='Classes_Interfaces'
@@ -56,7 +56,7 @@ WHERE
     TR.id IS NULL
 SQL;
 
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 	}
 }
 

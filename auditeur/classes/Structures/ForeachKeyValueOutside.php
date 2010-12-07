@@ -31,13 +31,13 @@ class Structures_ForeachKeyValueOutside extends modules {
 	}
 	
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
 // @rfu SELECT TR1.element, T1.left, T1.right, T2.left, T1.file, T1.line, T2.line
 
 	    $query = <<<SQL
 SELECT NULL, T1.file, T2.code, T2.id, '{$this->name}',0
-FROM <rapport> TR1
+FROM <report> TR1
 JOIN <tokens> T1 
     ON T1.id = TR1.token_id
 JOIN  <tokens> T2
@@ -48,7 +48,7 @@ JOIN  <tokens> T2
        T2.left > T1.right
 WHERE TR1.module='Structures_ForeachKeyValue';
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
         
         return true;
 	}

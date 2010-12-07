@@ -31,7 +31,7 @@ class Quality_Mvc extends modules {
 	}
 	
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
 // @doc inclusions are for controlers
 	    $query = <<<SQL
@@ -39,7 +39,7 @@ SELECT DISTINCT NULL, T1.file, 'controler', 1, '{$this->name}', 0
 FROM <tokens> T1
 WHERE code IN ('include','require','include_once','require_once')
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 
 // @doc echo are for template
 	    $query = <<<SQL
@@ -47,14 +47,14 @@ SELECT DISTINCT NULL, T1.file, 'template', 1, '{$this->name}', 0
 FROM <tokens> T1
 WHERE code IN ('echo','print','phpinfo')
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 
 	    $query = <<<SQL
 SELECT DISTINCT NULL, T1.file, 'template', 1, '{$this->name}', 0
 FROM <tokens> T1
 WHERE type IN ('rawtext')
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 
 // @doc the remaining files are unknown type (no M, V or C) : time to update the analyzer
 	    $query = <<<SQL
@@ -67,12 +67,12 @@ SQL;
 	    $query = <<<SQL
 SELECT NULL, Quality_Mvc.file, 'undecided', 0, '{$this->name}', 0
 FROM Quality_Mvc
-LEFT JOIN <rapport> TR
+LEFT JOIN <report> TR
     ON Quality_Mvc.file = TR.file AND
        module='mvc'  
 WHERE TR.file IS NULL
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 
 	    $query = <<<SQL
 DROP TABLE Quality_Mvc

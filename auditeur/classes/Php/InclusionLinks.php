@@ -28,10 +28,10 @@ class Php_InclusionLinks extends modules {
 	}
 	
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
         
         $query = <<<SQL
-INSERT INTO <rapport_dot> 
+INSERT INTO <report_dot> 
 SELECT distinct T1.file, T3.code,T1.file, '{$this->name}'
 FROM <tokens> T1
 JOIN <tokens> T2
@@ -45,7 +45,7 @@ SQL;
         $res = $this->exec_query($query);
         
        $query = <<<SQL
-INSERT INTO <rapport_dot> 
+INSERT INTO <report_dot> 
 SELECT distinct T1.file, T2.code, T1.file, '{$this->name}'
 FROM <tokens> T1
 JOIN <tokens> T2
@@ -59,7 +59,7 @@ SQL;
         $concat = $this->concat('"inc/"','T4.code',"'/'",'T4.code',"'.inc'");
         
        $query = <<<SQL
-INSERT INTO <rapport_dot> 
+INSERT INTO <report_dot> 
 SELECT T1.file, REPLACE($concat,'"', ''), T1.file, '{$this->name}' 
 FROM <tokens> T1
 JOIN <tokens_tags> TT 
@@ -78,7 +78,7 @@ SQL;
 
        include_once('../libs/path_normaliser.php');
        $query = <<<SQL
-SELECT * FROM <rapport_dot> WHERE module='{$this->name}'
+SELECT * FROM <report_dot> WHERE module='{$this->name}'
 SQL;
         $res = $this->exec_query($query);
 
@@ -100,7 +100,7 @@ SQL;
         $row[1] = addslashes($row[1]);
 
        $query = <<<SQL
-UPDATE <rapport_dot>
+UPDATE <report_dot>
    SET b = '{$row['b']}'
 WHERE module='{$this->name}' AND 
       b = '{$row[1]}' AND

@@ -26,7 +26,7 @@ class Variables_Session extends modules {
 	}
 
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
         $query = <<<SQL
 SELECT NULL, T1.file, T3.code, T1.id, '{$this->name}', 0
@@ -42,7 +42,7 @@ SELECT NULL, T1.file, T3.code, T1.id, '{$this->name}', 0
            T1.file = T3.file
     WHERE T1.type='_array'
 SQL;
-        $res = $this->exec_query_insert('rapport', $query);
+        $res = $this->exec_query_insert('report', $query);
 	}
 }
 

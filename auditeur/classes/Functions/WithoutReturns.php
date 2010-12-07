@@ -26,7 +26,7 @@ class Functions_WithoutReturns extends modules {
 	}
 	
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
 // @note for methods
         $query = <<<SQL
@@ -38,7 +38,7 @@ WHERE T1.class != '' AND
 GROUP BY file, class, scope 
 HAVING SUM(if(type='_return', 1, 0)) = 0
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 
 // @note for functions
         $query = <<<SQL
@@ -49,7 +49,7 @@ WHERE T1.class = '' AND
 GROUP BY file, class, scope 
 HAVING SUM(if(type='_return' OR code IN ('die','exit'), 1, 0)) = 0
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
         
         return true; 
 	}

@@ -26,7 +26,7 @@ class Php_Arobases extends modules {
     }
     
     public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
         $query = <<<SQL
 SELECT NULL, TC.file, TC.code AS code, T1.id, '{$this->name}', 0
@@ -35,7 +35,7 @@ LEFT JOIN <tokens_cache>  TC
     ON T1.id = TC.id 
 WHERE T1.type='noscream' 
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
         
         return true;
     }

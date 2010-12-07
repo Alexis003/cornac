@@ -28,10 +28,10 @@ class Classes_hierarchy extends modules {
 	}
 	
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
         $query = <<<SQL
-INSERT INTO <rapport_dot> 
+INSERT INTO <report_dot> 
     SELECT distinct T2.code, T2.class,'', '{$this->name}'
     FROM <tokens_tags> TT
     JOIN <tokens> T2

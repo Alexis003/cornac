@@ -28,13 +28,13 @@ class Php_GlobalsLinks extends modules {
 	}
 	
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
         
         $query = <<<SQL
-INSERT INTO <rapport_dot>
+INSERT INTO <report_dot>
 SELECT DISTINCT TR1.file, TR2.file, TR1.element, '{$this->name}'
-FROM <rapport> TR1
-JOIN <rapport> TR2
+FROM <report> TR1
+JOIN <report> TR2
     ON TR1.element = TR2.element AND
        TR2.module='globals'
 WHERE TR1.module='globals'

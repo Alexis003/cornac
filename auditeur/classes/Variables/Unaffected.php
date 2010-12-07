@@ -37,7 +37,7 @@ class Variables_Unaffected extends modules {
         $query = <<<SQL
 CREATE TEMPORARY TABLE tmp_variables_unaffected
 SELECT DISTINCT element, file, token_id
-FROM <rapport> TR1
+FROM <report> TR1
 WHERE TR1.module = 'Variables_Names'
 SQL;
     	$this->exec_query($query);
@@ -55,18 +55,18 @@ SQL;
         $query = <<<SQL
 SELECT DISTINCT NULL, TR1.file, TR1.element AS code, TR1.token_id, '{$this->name}', 0
 FROM tmp_variables_unaffected TR1
-LEFT JOIN <rapport> TR2
+LEFT JOIN <report> TR2
     ON TR1.element = TR2.element AND
        TR1.file = TR2.file AND
        TR2.module='Structures_AffectationsVariables' 
 WHERE TR2.element IS NULL
 SQL;
-    	$this->exec_query_insert('rapport',$query);
+    	$this->exec_query_insert('report',$query);
 
         // @note remove PHP variables, that don't need any assignation.
         // @todo make a better list of PHP reserved variables
         $query = <<<SQL
-DELETE FROM <rapport> 
+DELETE FROM <report> 
 WHERE element IN ('\$GLOBALS','\$_SESSION','\$_REQUEST',
                   '\$_GET','\$_POST','\$this','\$_FILES') AND
       module='{$this->name}'
@@ -75,7 +75,7 @@ SQL;
 
         $query = <<<SQL
 DELETE FROM CR1 
-    USING <rapport> CR1, <rapport> CR2
+    USING <report> CR1, <report> CR2
 WHERE CR1.module='{$this->name}' AND
       CR2.module='Structures_ForeachKeyValue' AND
       CR1.element = CR2.element AND

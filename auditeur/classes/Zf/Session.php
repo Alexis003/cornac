@@ -30,15 +30,15 @@ class Zf_Session extends modules {
 	}
 
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
 	    $query = <<<SQL
 SELECT NULL, TR.file, TR.element, TR.id, '{$this->name}', 0
-FROM <rapport> TR
+FROM <report> TR
 WHERE module = 'Classes_News' AND
       element = 'Zend_Session_Namespace' 
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 
         return true;
 	}

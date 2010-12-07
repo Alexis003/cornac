@@ -31,7 +31,7 @@ class Php_Keywords extends modules {
 	}
 
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
         $in = modules::getPHPKeywords();
         $in = '"'.join('", "', $in).'"';
@@ -43,7 +43,7 @@ FROM <tokens> T1
 WHERE T1.code IN ($in) AND
       T1.type = 'literals'
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 
 // @note search in variables/properties
 	    $query = <<<SQL
@@ -52,7 +52,7 @@ FROM <tokens> T1
 WHERE RIGHT(T1.code, LENGTH(T1.code) - 1) IN ($in) AND 
       T1.type = 'variable'
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 
 // @note used as function name
 	    $query = <<<SQL
@@ -63,7 +63,7 @@ JOIN <tokens> T1
 WHERE T1.code IN ($in) AND
       TT.type IN ('name')
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 
         return true;
 

@@ -30,7 +30,7 @@ class Classes_PropertiesChained extends modules {
 	}
 
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
 // @todo of course, update this useless query. :)
 	    $query = <<<SQL
@@ -47,7 +47,7 @@ JOIN <tokens_cache> TC
 ON TC.id = T1.id
 WHERE T1.type = 'property'
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 
         return true;
 	}

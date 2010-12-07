@@ -26,7 +26,7 @@ class Structures_Iffectations extends modules {
 	}
 	
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
 // @note in a if
 	    $query = <<<SQL
@@ -44,7 +44,7 @@ WHERE T1.type='ifthen' AND
       TT.type = 'condition' AND
       T3.type = 'affectation'
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 
 // @note in a while
 	    $query = <<<SQL
@@ -62,7 +62,7 @@ WHERE T1.type='_while' AND
       TT.type = 'condition' AND
       T3.type = 'affectation'
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 
 // @note in a do while
 	    $query = <<<SQL
@@ -80,7 +80,7 @@ WHERE T1.type='_dowhile' AND
       TT.type = 'condition' AND
       T3.type = 'affectation'
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
         
         return true;
 	}

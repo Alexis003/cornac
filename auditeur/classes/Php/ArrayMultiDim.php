@@ -30,7 +30,7 @@ class Php_ArrayMultiDim extends modules {
 	}
 	
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
 // @note the comment /* JOIN */ here is important
 	    $query = <<<SQL
@@ -43,7 +43,7 @@ LEFT JOIN <tokens> TX
     ON TX.type IN ('_array','opappend') AND 
        T1.file = TX.file AND
        T1.left - 1 = TX.left
-LEFT JOIN <rapport> TR
+LEFT JOIN <report> TR
     ON TR.module='{$this->name}' AND
        TR.token_id = T1.id
 WHERE T1.type IN ('_array','opappend') AND
@@ -63,7 +63,7 @@ SQL;
     $query = str_replace('/* JOIN */', $join, $query);
     $query = str_replace('       T'.$h.'.left + 1 = TX.left','       T'.$i.'.left + 1 = TX.left', $query);
 
-    $this->exec_query_insert('rapport', $query);
+    $this->exec_query_insert('report', $query);
 }
 
         // @todo spot array(array());

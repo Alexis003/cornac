@@ -26,7 +26,7 @@ class Structures_AffectationsVariables extends modules {
 	}
 	
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
 // @note simple variables
         $query = <<<SQL
@@ -36,7 +36,7 @@ JOIN <tokens> T2
     ON T1.file = T2.file AND T2.left = T1.left + 1
 WHERE T1.type = 'affectation'  AND T2.type = 'variable'
 SQL;
-        $this->exec_query_insert('rapport', $query);    
+        $this->exec_query_insert('report', $query);    
 
 // @note array
         $query = <<<SQL
@@ -48,7 +48,7 @@ JOIN <tokens> T3
     ON T1.file = T3.file AND T3.left = T1.left + 2
 WHERE T1.type = 'affectation'  AND T2.type = '_array'
 SQL;
-        $this->exec_query_insert('rapport', $query);    
+        $this->exec_query_insert('report', $query);    
 
 // @note property
         $query = <<<SQL
@@ -58,7 +58,7 @@ JOIN <tokens> T2
     ON T1.file = T2.file AND T2.left = T1.left + 1
 WHERE T1.type = 'affectation'  AND T2.type = 'property'
 SQL;
-        $this->exec_query_insert('rapport', $query);    
+        $this->exec_query_insert('report', $query);    
 
 // @note  static property
         $query = <<<SQL
@@ -72,7 +72,7 @@ JOIN <tokens> T3
     ON T1.file = T3.file AND T3.id = TT.token_sub_id
 WHERE T1.type = 'affectation'  AND T2.type = 'property_static'
 SQL;
-        $this->exec_query_insert('rapport', $query);    
+        $this->exec_query_insert('report', $query);    
 
 // @note list() case
         $query = <<<SQL
@@ -86,7 +86,7 @@ JOIN <tokens> T4
     ON T1.file = T4.file AND T4.left BETWEEN T2.left AND T2.right AND T4.type = 'variable'
 WHERE T1.type = 'affectation' 
 SQL;
-        $this->exec_query_insert('rapport', $query);    
+        $this->exec_query_insert('report', $query);    
 
 // @note foreach() case
         $query = <<<SQL
@@ -98,7 +98,7 @@ JOIN <tokens> T2
     ON T1.file = T2.file AND TT1.token_sub_id = T2.id
 WHERE T1.type = '_foreach'
 SQL;
-        $this->exec_query_insert('rapport', $query);    
+        $this->exec_query_insert('report', $query);    
         
         return true;
     }

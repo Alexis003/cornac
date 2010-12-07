@@ -28,13 +28,13 @@ class Structures_FunctionsCallsLink extends modules {
 	}
 	
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
         
         $in = join("', '", modules::getPHPFunctions()); 
         $concat1 = $this->concat("T1.class","'->'","T1.scope");
         $concat2 = $this->concat("T3.code","'->'","T4.code");
         $query = <<<SQL
-INSERT INTO <rapport_dot> 
+INSERT INTO <report_dot> 
 SELECT $concat1, $concat2, T1.file, '{$this->name}'
 FROM <tokens> T1
 JOIN <tokens_cache> T2 
@@ -53,7 +53,7 @@ SQL;
         $concat1 = $this->concat("T1.class","'->'","T1.scope");
         $concat2 = $this->concat("T1.class","'->'","T4.code");
         $query = <<<SQL
-INSERT INTO <rapport_dot> 
+INSERT INTO <report_dot> 
 SELECT $concat1, $concat2, T1.file, '{$this->name}'
 FROM <tokens> T1
 JOIN <tokens_cache> T2 
@@ -90,7 +90,7 @@ SQL;
         while($row = $res->fetch(PDO::FETCH_ASSOC)) {
             $query = <<<SQL
 SELECT T1.element
-FROM <rapport> T1
+FROM <report> T1
 WHERE  T1.module='defmethodes'                   AND 
        T1.element NOT LIKE "{$row["classe"]}->%" AND
        T1.element LIKE "%->{$row["method"]}"

@@ -33,13 +33,13 @@ class Constants_FileLink extends modules {
 	}
 	
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
 	    $query = <<<SQL
-INSERT INTO <rapport_dot>
+INSERT INTO <report_dot>
 SELECT TR1.file, TR2.file, TR1.element, '{$this->name}'
-FROM <rapport>  TR1
-JOIN <rapport> TR2
+FROM <report>  TR1
+JOIN <report> TR2
     ON TR2.module = 'constantes' AND
        TR2.element = TR1.element
 WHERE TR1.module='defconstantes';

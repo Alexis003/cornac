@@ -30,7 +30,7 @@ class Literals_Reused extends modules {
 	}
 
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
 // @note temporary table, so has to avoid concurrency conflict
         $query = <<<SQL
@@ -45,7 +45,7 @@ SQL;
         $this->exec_query($query);
 
         $query = <<<SQL
-INSERT INTO <rapport> 
+INSERT INTO <report> 
 SELECT NULL, TR1.file, TRIM(TR1.code), TR1.id, '{$this->name}', 0
     FROM <tokens> TR1
     JOIN {$this->name}_TMP TMP

@@ -26,7 +26,7 @@ class Classes_News extends modules {
 	}
 	
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
 // @note new with literals 
         $query = <<<SQL
@@ -38,7 +38,7 @@ JOIN <tokens> T2
       T2.type IN ('token_traite','variable')
 WHERE T1.type = '_new'
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 
 // @note new with variables 
         $query = <<<SQL
@@ -51,7 +51,7 @@ JOIN <tokens_cache> TC
    ON TC.id = T2.id
 WHERE T1.type = '_new'
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 
 	}
 }

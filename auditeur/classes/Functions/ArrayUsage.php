@@ -26,7 +26,7 @@ class Functions_ArrayUsage extends modules {
 	}
 	
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
 // @note simple situation : variable -> index
         $query = <<<SQL
@@ -37,7 +37,7 @@ SELECT NULL, T1.file, T2.code AS code, T1.id, '{$this->name}', 0
 WHERE 
  T1.type='_array'
 SQL;
-        $this->exec_query_insert('rapport', $query);
+        $this->exec_query_insert('report', $query);
 
         return true;
 	}

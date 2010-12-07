@@ -31,7 +31,7 @@ class Literals_InArglist extends modules {
 	}
 
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
 	    $query = <<<SQL
 DROP TABLES IF EXISTS Literals_InArglist_calls, Literals_InArglist_definitions

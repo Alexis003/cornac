@@ -26,7 +26,7 @@ class Quality_FilesMultipleDefinition extends modules {
 	}
 	
 	public function analyse() {
-        $this->clean_rapport();
+        $this->clean_report();
 
 	    $query = <<<SQL
 CREATE TEMPORARY TABLE Quality_FilesMultipleDefinition
@@ -37,7 +37,7 @@ SQL;
         $res = $this->exec_query($query);
 
 	    $query = <<<SQL
-INSERT INTO <rapport> 
+INSERT INTO <report> 
     SELECT NULL, T1.file, T1.context, 0, '{$this->name}', 0
     FROM Quality_FilesMultipleDefinition T1
 SQL;

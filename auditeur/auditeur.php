@@ -280,13 +280,13 @@ if (INI) {
 if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
 // @note element column size should match the code column in <tokens>
     if (CLEAN_DATABASE) {
-        $DATABASE->query('DROP TABLE IF EXISTS <rapport>');
-        $DATABASE->query('DROP TABLE IF EXISTS <rapport_dot>');
-        $DATABASE->query('DROP TABLE IF EXISTS <rapport_module>');
+        $DATABASE->query('DROP TABLE IF EXISTS <report>');
+        $DATABASE->query('DROP TABLE IF EXISTS <report_dot>');
+        $DATABASE->query('DROP TABLE IF EXISTS <report_module>');
         print "3 tables cleaned\n";
         die();
     }
-    $DATABASE->query('CREATE TABLE IF NOT EXISTS <rapport> (
+    $DATABASE->query('CREATE TABLE IF NOT EXISTS <report> (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `file` varchar(500) NOT NULL,
   `element` varchar(10000) NOT NULL,
@@ -299,14 +299,14 @@ if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
   KEY `module` (`module`)
 ) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1');
 
-        $DATABASE->query('CREATE TABLE IF NOT EXISTS <rapport_dot> (
+        $DATABASE->query('CREATE TABLE IF NOT EXISTS <report_dot> (
   `a` varchar(255) NOT NULL,
   `b` varchar(255) NOT NULL,
   `cluster` varchar(255) NOT NULL DEFAULT \'\',
   `module` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1');
 
-        $DATABASE->query('CREATE TABLE IF NOT EXISTS <rapport_module> (
+        $DATABASE->query('CREATE TABLE IF NOT EXISTS <report_module> (
   `module` varchar(255) NOT NULL,
   `fait` datetime NOT NULL,
   `format` enum("html","dot","gefx") NOT NULL,
@@ -316,8 +316,8 @@ if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
 
 } elseif (isset($INI['sqlite'])  && $INI['sqlite']['active'] == true) {
 // @todo : support drop of table with option -K
-// @code $database->query('DELETE FROM '.$INI['cornac']['prefix'].'_rapport WHERE file = "'.$file.'"');
-    $DATABASE->query('CREATE TABLE IF NOT EXISTS <rapport>
+// @code $database->query('DELETE FROM '.$INI['cornac']['prefix'].'_report WHERE file = "'.$file.'"');
+    $DATABASE->query('CREATE TABLE IF NOT EXISTS <report>
   (id       INTEGER PRIMARY KEY   AUTOINCREMENT  ,
   `file` varchar(500) NOT NULL,
   `element` varchar(10000) NOT NULL,
@@ -325,15 +325,15 @@ if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
   `module` varchar(50) NOT NULL
 )');
 
-//    $DATABASE->query('DELETE FROM '.$INI['cornac']['prefix'].'_rapport_dot WHERE cluster = "'.$file.'"');
-    $DATABASE->query('CREATE TABLE IF NOT EXISTS <rapport_dot> (
+//    $DATABASE->query('DELETE FROM '.$INI['cornac']['prefix'].'_report_dot WHERE cluster = "'.$file.'"');
+    $DATABASE->query('CREATE TABLE IF NOT EXISTS <report_dot> (
   `a` varchar(255) NOT NULL,
   `b` varchar(255) NOT NULL,
   `cluster` varchar(255) NOT NULL DEFAULT \'\',
   `module` varchar(255) NOT NULL
 )');
 
-    $DATABASE->query('CREATE TABLE IF NOT EXISTS <rapport_module> (
+    $DATABASE->query('CREATE TABLE IF NOT EXISTS <report_module> (
   `module` varchar(255) NOT NULL PRIMARY KEY,
   `fait` datetime NOT NULL,
   `format` varchar(255) NOT NULL,
@@ -424,7 +424,7 @@ function analyse_module($module_name) {
                 if ($INI['dependences']) {
                     analyse_module($m);
                 } else {
-                    $res = $DATABASE->query('SELECT * FROM <rapport_module> WHERE module="'.$m.'"');
+                    $res = $DATABASE->query('SELECT * FROM <report_module> WHERE module="'.$m.'"');
                     $row = $res->fetch();
                     if (isset($row['module'])) {
                         print "$out omitted (already in base) \n";
