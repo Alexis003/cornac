@@ -9,28 +9,28 @@ tests/tokenizeur/scripts/sequence.27.test.php
               variable $s
            "=" 
           right : 
-              comparison 
-              left : 
-                  functioncall intval
-                  function call : intval: 
-                      arglist 
-                      0 : 
-                          functioncall substr
-                          function call : substr: 
-                              arglist 
-                              0 : 
-                                  variable $a
-                              1 : 
-                                  literals 1
-                              2 : 
-                                  literals 2
-              operateur :  "<"
-              right : 
-                  ternaryop ?
-                  literals 12 ? literals c : literals d
+              ternaryop ?
+              comparison functioncall 307 "intval" ( arglist(functioncall 307 "substr" ( arglist(variable $a, literals 1, literals 2) ) ) )   "<" literals 12 ? literals c : literals d
+                  comparison 
+                  left : 
+                      functioncall intval
+                      function call : intval: 
+                          arglist 
+                          0 : 
+                              functioncall substr
+                              function call : substr: 
+                                  arglist 
+                                  0 : 
+                                      variable $a
+                                  1 : 
+                                      literals 1
+                                  2 : 
+                                      literals 2
+                  operateur :  "<"
+                  right : 
                       literals 12
-                      literals c
-                      literals d
+                  literals c
+                  literals d
       1 : 
           _break 
           Number : " "1""
