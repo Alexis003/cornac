@@ -82,7 +82,7 @@ while( 1 ) {
 
     $times = array('debut' => microtime(true));
 
-// @todo attention, big TOCTOU!
+// @warning attention, big TOCTOU!
     $query = 'SELECT * FROM <tasks> WHERE task="tokenize" AND completed = 0 LIMIT 1';
     $res = $DATABASE->query($query);
     $row = $res->fetch(PDO::FETCH_ASSOC);
@@ -118,6 +118,11 @@ while( 1 ) {
         $completed = 100; 
     } else {
         $completed = 2;
+        if (isset($pf->messages['compile'])) {
+            print $pf->messages['compile'];
+        } else {
+            print "Error found\n";
+        }
         // @todo write to a lof file, or wait till the end to produce a long list. 
 //        print "F";
     }
