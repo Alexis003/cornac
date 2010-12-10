@@ -30,7 +30,7 @@ class ternaryop_regex extends analyseur_regex {
         if (!$t->hasPrev()) { return false; }
         if (!$t->hasNext(3)) { return false; }
 
-        if ($t->hasPrev(1) && $t->getPrev(1)->checkCode(array('::','->','@'))) { return false; }
+        if ($t->hasPrev(1) && $t->getPrev(1)->checkCode(array('::','->','@','<'))) { return false; }
 
 // @note case of the ? <something>  :
         if ($t->getPrev()->checkNotClass(array('Token','arglist')) &&
