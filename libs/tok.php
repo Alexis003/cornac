@@ -220,7 +220,9 @@ function liste_directories( $path = '.', $level = 0, $recursive = false ){
                 $r = liste_directories( "$path/$file", ($level+1), $recursive ); 
                 $retour = array_merge($retour, $r);
             } // @emptyelse ignore 
-        } else { 
+        } else {
+            // @note files without extensions are usually not interesting.
+            if (strpos($file,'.') === false) { continue; }
             // @doc remove matching suffixe (aka, extensions)
             if ($regex_suffixe && preg_match($regex_suffixe, $file)) { continue; }
             // @doc remove matching prefixe (., probably)
