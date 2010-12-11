@@ -38,14 +38,14 @@ class use_normal_regex extends analyseur_regex {
             mon_log(get_class($t)." => ".__CLASS__);
             return true; 
         } elseif ($t->getNext()->checkClass('Token')) {
-            if ($t->getNext()->checkOperator(array('('))) { return false; }
+            if ($t->getNext()->checkOperator(array('(','*','+','-','/','^'))) { return false; }
             // @note allow \ to appear after. 
             if ($t->getNext(1)->checkOperator('\\')) { return false; }
             
             $regex = new modele_regex('_nsname',array(0), array());
             Token::applyRegex($t->getNext(), '_nsname', $regex);
 
-            mon_log(get_class($t)." => _nsname");
+            mon_log(get_class($t)." => ".__CLASS__);
 
             return false;
         } // @empty_elseif
