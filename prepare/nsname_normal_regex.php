@@ -29,6 +29,9 @@ class nsname_normal_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasNext()) { return false; }
         if (!$t->hasPrev()) { return false; }
+        
+        // @note check from getTokens are made on code!
+        if ($t->checkNotToken(T_NS_SEPARATOR)) { return false; }
 
 // @note NSname may actually start by \ \htmlentities
         if ($t->getPrev()->checkToken(array(T_STRING))) { 
