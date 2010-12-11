@@ -42,10 +42,11 @@ class sequence_class_regex extends analyseur_regex {
                  $t->getNext(1)->checkNotClass('arglist'))
                ) { 
 
-            if ($t->hasNext(1) && $t->getNext(1)->checkCode(array('=','->',',','('))) { return false; }
-            if ($t->hasPrev() && ($t->getPrev()->checkCode(array(')',':','->','.','?','"','*','/','%','+','-')) ||
+            if ($t->hasNext(1) && $t->getNext(1)->checkOperator(array('=','->',',','('))) { return false; }
+            if ($t->hasPrev() && ($t->getPrev()->checkOperator(array(')',':','->','.','?','"','*','/','%','+','-')) ||
                                   $t->getPrev()->checkClass(array('parentheses','arglist')) ||
                                   $t->getPrev()->checkForAssignation() || 
+                                  $t->getPrev()->checkForLogical() ||
                                   $t->getPrev()->checkToken(array(T_ELSE, T_ABSTRACT))) ) { return false; }
 
             $var = $t->getNext(1); 
