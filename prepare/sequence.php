@@ -44,7 +44,8 @@ class sequence extends instruction {
     function __toString() {
         $return = __CLASS__;
         if (count($this->elements) == 0) {
-            $return .= "Sequence vide\n";
+        // @note this shouldn't happen...
+            $return .= "Empty Sequence\n";
         } else {
             foreach($this->elements as $e) {
                 $return .= $e."\n";
@@ -67,11 +68,6 @@ class sequence extends instruction {
         }
     }
 
-    private function mange($sequence) {
-        $this->elements = array_merge($this->elements, $sequence->getElements());
-        $this->neutralise();
-    }
-    
     public function getRegex() {
         return array(
           'sequence_regex',

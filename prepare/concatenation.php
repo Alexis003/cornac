@@ -56,11 +56,6 @@ class concatenation extends instruction {
         }
     }
 
-    private function mange($concatenation) {
-        $this->list = array_merge($this->list, $concatenation->getList());
-        $this->neutralise();
-    }
-
    function getRegex() {
         return array(
         'concatenation_regex',
