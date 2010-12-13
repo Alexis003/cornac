@@ -1,1 +1,2 @@
-<?php  echo $a?>b<?php  echo $c?>d<?php  echo 'e '?>
+<?php
+ echo $a?>b<?php  echo $c?>d<?php  echo 'e '?>
