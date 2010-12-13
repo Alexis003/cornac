@@ -37,7 +37,12 @@ class constante_normal_regex extends analyseur_regex {
         if ($t->getNext()->checkClass(array('variable','affectation'))) { return false; }
 
         if ($t->getPrev()->checkCode(array('->','\\'))) { return false; }
-        if ($t->getPrev()->checkToken(array(T_CLASS, T_EXTENDS, T_IMPLEMENTS, T_NAMESPACE, T_USE))) { return false; }
+        if ($t->getPrev()->checkToken(array(T_CLASS, 
+                                            T_EXTENDS, 
+                                            T_IMPLEMENTS, 
+                                            T_NAMESPACE, 
+                                            T_USE,
+                                            T_OPEN_TAG))) { return false; }
 
         mon_log(get_class($t)." => ".__CLASS__);
         return true; 
