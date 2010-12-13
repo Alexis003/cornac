@@ -29,28 +29,23 @@ class sequence_empty_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasNext() ) { return false; }
 
-        if ($t->checkClass('sequence') && 
-            $t->getNext()->checkCode(";")) { 
+        if ($t->checkNotClass('sequence')) { return false; }
+        if ($t->getNext()->checkNotOperator(";")) { return false; }
 
-            $var = $t->getNext(1); 
-            $this->args   = array( 0 );
-            $this->remove = array( 1 );
-            
-            $pos = 2;
-            
-            while ($var->checkCode(";") ) {
-                $this->remove[]  = $pos;
-                $pos += 1;
-                $var = $var->getNext();
-            } 
-            
-            mon_log(get_class($t)." supprime ".count($this->args)." point-virgules (".__CLASS__.")");
-            return true; 
+        $var = $t->getNext(1); 
+        $this->args   = array( 0 );
+        $this->remove = array( 1 );
+        
+        $pos = 2;
+        
+        while ($var->checkOperator(";") ) {
+            $this->remove[]  = $pos;
+            $pos += 1;
+            $var = $var->getNext();
         } 
         
-        $this->args = array();
-        $this->remove = array();
-        return false;
+        mon_log(get_class($t)." removes ".count($this->args)." semi-colon (".__CLASS__.")");
+        return true; 
     }
 
 }
