@@ -38,8 +38,7 @@ class use_normal_regex extends analyseur_regex {
             mon_log(get_class($t)." => ".__CLASS__);
             return true; 
         } elseif ($t->getNext()->checkClass('Token')) {
-            print $t->getNext();
-            if ($t->getNext()->checkOperator(array('(','*','+','-','/','^',','))) { return false; }
+            if ($t->getNext()->checkOperator(array('(','*','+','-','/','^',',','=>'))) { return false; }
             // @note allow \ to appear after. 
             if ($t->getNext(1)->checkOperator('\\')) { return false; }
             
