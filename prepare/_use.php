@@ -28,7 +28,7 @@ class _use extends instruction {
     }
 
     function __toString() {
-        return "use ".$this->expression;
+        return "use ".$this->namespace;
     }
 
     function getNamespace() {
