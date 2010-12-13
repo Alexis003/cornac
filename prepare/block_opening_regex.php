@@ -17,6 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
+// @todo move this to codePHP?
 class block_opening_regex extends analyseur_regex {
     function __construct() {
         parent::__construct(array());
@@ -27,6 +28,7 @@ class block_opening_regex extends analyseur_regex {
     }
     
     function check($t) {
+        return false;
         if (!$t->hasNext(2))           { return false; }
         if ($t->getNext()->checkClass('Token') )   { return false; }
         if ($t->getNext(1)->checkNotOperator(';') )   { return false; }
@@ -36,7 +38,7 @@ class block_opening_regex extends analyseur_regex {
         $regex = new modele_regex('block',array(0), array(0, 1));
         Token::applyRegex($t->getNext(), 'block', $regex);
         
-        mon_log(get_class($t)." (".__CLASS__.")  => Block");
+        mon_log(get_class($t)." => Block (".__CLASS__.")");
         return false;
     }
 }

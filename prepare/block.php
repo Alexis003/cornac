@@ -66,7 +66,7 @@ class block extends instruction {
     function getRegex(){
         return array('block_normal_regex',
                      'block_casedefault_regex',
-                     'block_opening_regex',
+                   //  'block_opening_regex',
                     );
     }
 }
