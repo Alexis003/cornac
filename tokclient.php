@@ -117,11 +117,12 @@ while( 1 ) {
         }
         $completed = 100; 
     } else {
-        $completed = 2;
         if (isset($pf->messages['compile'])) {
             print $pf->messages['compile'];
+            $completed = 3;
         } else {
             print "Error found\n";
+            $completed = 2;
         }
         // @todo write to a lof file, or wait till the end to produce a long list. 
 //        print "F";
@@ -252,9 +253,9 @@ class file_processor {
         while (1) {
             $i++;
             $t = $root;
-            mon_log("\nCycle : ".$i."\n");
+            mon_log("\nCycle : ".$i."\n$t\n");
             $nb_tokens_precedent[] = $nb_tokens_courant;
-            if (count($nb_tokens_precedent) > 3) {
+            if (count($nb_tokens_precedent) > 4) {
                 array_shift($nb_tokens_precedent);
             }
             $nb_tokens_courant = 0;
@@ -283,7 +284,8 @@ class file_processor {
     
             if ($nb_tokens_courant == $nb_tokens_precedent[0] &&
                 $nb_tokens_courant == $nb_tokens_precedent[1] &&
-                $nb_tokens_courant == $nb_tokens_precedent[2]
+                $nb_tokens_courant == $nb_tokens_precedent[2] &&
+                $nb_tokens_courant == $nb_tokens_precedent[3]
                 ) {
                 $this->messages['process'] = "No more update at cycle #$i \n";
                 $this->error = true;
