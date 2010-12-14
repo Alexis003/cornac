@@ -30,7 +30,7 @@ class array_curly_regex extends analyseur_regex {
         if (!$t->hasPrev() ) { return false; }
         if (!$t->hasNext() ) { return false; }
 
-        if ($t->checkNotClass(array('variable','property','_array'))) { return false; } 
+        if ($t->checkNotClass(array('variable','property','_array','property_static'))) { return false; } 
         if ($t->getNext()->checkNotOperator('{')) { return false; }
         if ($t->getNext(1)->checkClass('Token')) { return false; }
         if ($t->getNext(2)->checkNotOperator('}')) { return false; }

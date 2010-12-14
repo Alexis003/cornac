@@ -27,7 +27,7 @@ class use_normal_regex extends analyseur_regex {
     }
     
     function check($t) {
-        if (!$t->hasNext()) { return false; }
+        if (!$t->hasNext(1)) { return false; }
 
         if ($t->getNext()->checkNotClass(array('_nsname','Token'))) { return false; }
         
@@ -38,7 +38,8 @@ class use_normal_regex extends analyseur_regex {
             mon_log(get_class($t)." => ".__CLASS__);
             return true; 
         } elseif ($t->getNext()->checkClass('Token')) {
-            if ($t->getNext()->checkOperator(array('(','*','+','-','/','^',',','=>'))) { return false; }
+            if ($t->getNext()->checkOperator(array('(','*','+','-','/','^',',','=>','}',';'))) { return false; }
+//            if ($t->checkIsOperator()) { return false; }
             // @note allow \ to appear after. 
             if ($t->getNext(1)->checkOperator('\\')) { return false; }
             

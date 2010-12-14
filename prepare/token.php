@@ -360,6 +360,11 @@ class Token {
         return !$this->checkCode($code);
     }
 
+    public function checkIsOperator() {
+        if ($this->token != 0) { return false; }
+        return false;
+    }
+
     public function checkOperator($code) {
         if (get_class($this) != 'Token') { return false; }
         
