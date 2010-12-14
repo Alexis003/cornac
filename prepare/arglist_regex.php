@@ -29,6 +29,8 @@ class arglist_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasPrev( )) { return false; }
         if (!$t->hasNext(1)) { return false; }
+        
+        if ($t->checkNotClass('Token')) { return false; }
 
         // @note for it to be a function call, one need all this before
         if ($t->getPrev()->checkNotToken(array(T_STATIC, T_USE)) && // @note crazy case 
