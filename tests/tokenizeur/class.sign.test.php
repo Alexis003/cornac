@@ -19,7 +19,7 @@
 
 class Sign_Test extends Analyseur_Framework_TestCase
 {
-    /* 27 methodes */
+    /* 28 methodes */
     public function testSign1()  { $this->generic_test('sign.1'); }
     public function testSign2()  { $this->generic_test('sign.2'); }
     public function testSign3()  { $this->generic_test('sign.3'); }
@@ -47,6 +47,7 @@ class Sign_Test extends Analyseur_Framework_TestCase
     public function testSign25()  { $this->generic_test('sign.25'); }
     public function testSign26()  { $this->generic_test('sign.26'); }
     public function testSign27()  { $this->generic_test('sign.27'); }
+    public function testSign28()  { $this->generic_test('sign.28'); }
 
 }
 
