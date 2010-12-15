@@ -37,7 +37,7 @@ class _closure extends instruction {
     }
 
     function __toString() {
-        return "function() ".$this->name;
+        return "function() ".$this->block;
     }
 
     function getBlock() {
