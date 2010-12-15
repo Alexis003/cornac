@@ -32,36 +32,35 @@ class global_simple_regex extends analyseur_regex {
         if ($t->getNext()->checkNotClass(array('variable','_array'))) { return false; }
 
         $var = $t->getNext(1);
-
         while($var->checkCode(',')) {
-            if ($var->getNext()->checkClass('variable')) {
-                // @note registering a new global each comma
-                    $args = array(0);
-                    $remove = array(1);
-                    
-                    $repl = $var->getNext();
-                    $var = $var->getNext(1);
-                    
-                    $regex = new modele_regex('_global',$args, $remove);
-                    Token::applyRegex($repl, '_global', $regex);
-                    continue;
-                }
-            // @note if we reach here, then something is wrong
-            return false;
+            if ($var->getNext()->checkNotClass(array('variable','_array'))) { return false; }
+            $var = $var->getNext(1);
         }
         
-        if ( $var->checkOperator(';') || 
-             $var->checkToken(T_CLOSE_TAG) || 
-             $var->checkClass('rawtext')
-             ) {
-            $this->args   = array(1);
-            $this->remove = array(1, 2);
+        if ($var->checkNotOperator(';') &&
+            $var->checkNotToken(T_CLOSE_TAG) &&
+            $var->checkNotClass('rawtext')) {
+            return false;
+        }
 
-            mon_log(get_class($t)." => ".__CLASS__);
-            return true; 
-        } 
+        $var = $t;
 
-        // @note otherwise, fail
+        while($var->checkCode(',') || $var->checkToken(T_GLOBAL)) {
+                // @note registering a new global each comma
+                    $args = array(1);
+                    $remove = array(1);
+
+                    $repl = $var;
+                    $var = $var->getNext(1);
+
+                    $regex = new modele_regex('_global',$args, $remove);
+                    Token::applyRegex($repl, '_global', $regex);
+
+                    mon_log(get_class($var)." => _global  (".__CLASS__.")");
+                    continue;
+                    
+        }
+        
         return false;
     }
 }

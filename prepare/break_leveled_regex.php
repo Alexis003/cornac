@@ -30,7 +30,7 @@ class break_leveled_regex extends analyseur_regex {
         if (!$t->hasNext(1)) { return false; }
 
         if ($t->checkToken(T_BREAK) &&
-            $t->getNext()->checkClass('literals')  &&
+            $t->getNext()->checkClass(array('literals','variable'))  &&
             $t->getNext(1)->checkCode(';')
             ) {
 
