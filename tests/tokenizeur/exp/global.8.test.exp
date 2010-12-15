@@ -31,7 +31,7 @@ tests/tokenizeur/scripts/global.8.test.php
           functioncall x
           function call : x: 
               arglist 
-              Liste d'argument vide
+              Empty arglist
       3 : 
           function literals x ( )
               block 

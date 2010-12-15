@@ -14,7 +14,7 @@ tests/tokenizeur/scripts/method.8.test.php
                       functioncall d
                       function call : d: 
                           arglist 
-                          Liste d'argument vide
+                          Empty arglist
       1 : 
           rawtext 
           Texte : "311 " TR ""

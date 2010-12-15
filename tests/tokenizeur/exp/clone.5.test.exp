@@ -13,4 +13,4 @@ tests/tokenizeur/scripts/clone.5.test.php
                   functioncall w
                   function call : w: 
                       arglist 
-                      Liste d'argument vide
+                      Empty arglist

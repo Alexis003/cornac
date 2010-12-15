@@ -5,4 +5,4 @@ tests/tokenizeur/scripts/functioncall.19.test.php
       functioncall array
       function call : array: 
           arglist 
-          Liste d'argument vide
+          Empty arglist

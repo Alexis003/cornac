@@ -8,4 +8,4 @@ tests/tokenizeur/scripts/throw.6.test.php
               functioncall m
               function call : m: 
                   arglist 
-                  Liste d'argument vide
+                  Empty arglist

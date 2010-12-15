@@ -29,6 +29,6 @@ tests/tokenizeur/scripts/affectation.43.test.php
                           functioncall e
                           function call : e: 
                               arglist 
-                              Liste d'argument vide
+                              Empty arglist
                   2 : 
                       literals f

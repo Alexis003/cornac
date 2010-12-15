@@ -8,4 +8,4 @@ tests/tokenizeur/scripts/noscream.5.test.php
               functioncall t
               function call : t: 
                   arglist 
-                  Liste d'argument vide
+                  Empty arglist

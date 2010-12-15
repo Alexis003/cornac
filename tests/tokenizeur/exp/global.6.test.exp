@@ -17,4 +17,4 @@ tests/tokenizeur/scripts/global.6.test.php
               functioncall e
               function call : e: 
                   arglist 
-                  Liste d'argument vide
+                  Empty arglist

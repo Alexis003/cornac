@@ -12,4 +12,4 @@ tests/tokenizeur/scripts/method_static.3.test.php
               functioncall h
               function call : h: 
                   arglist 
-                  Liste d'argument vide
+                  Empty arglist

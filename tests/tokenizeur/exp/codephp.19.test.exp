@@ -10,4 +10,4 @@ tests/tokenizeur/scripts/codephp.19.test.php
                   functioncall lang
                   function call : lang: 
                       arglist 
-                      Liste d'argument vide
+                      Empty arglist

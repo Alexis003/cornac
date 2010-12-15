@@ -25,4 +25,4 @@ tests/tokenizeur/scripts/ifthen.42.test.php
                   functioncall f
                   function call : f: 
                       arglist 
-                      Liste d'argument vide
+                      Empty arglist

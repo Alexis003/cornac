@@ -8,4 +8,4 @@ tests/tokenizeur/scripts/codephp.18.test.php
               functioncall lang
               function call : lang: 
                   arglist 
-                  Liste d'argument vide
+                  Empty arglist

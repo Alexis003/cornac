@@ -23,5 +23,5 @@ tests/tokenizeur/scripts/keyvalue.7.test.php
                                       functioncall g
                                       function call : g: 
                                           arglist 
-                                          Liste d'argument vide
+                                          Empty arglist
                                   variable $h

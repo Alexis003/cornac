@@ -18,7 +18,7 @@ tests/tokenizeur/scripts/affectation.22.test.php
                       functioncall mt_rand
                       function call : mt_rand: 
                           arglist 
-                          Liste d'argument vide
+                          Empty arglist
                   operateur :  "&"
                   right : 
                       literals 63

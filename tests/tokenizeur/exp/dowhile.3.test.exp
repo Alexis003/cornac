@@ -24,7 +24,7 @@ tests/tokenizeur/scripts/dowhile.3.test.php
                                       functioncall b
                                       function call : b: 
                                           arglist 
-                                          Liste d'argument vide
+                                          Empty arglist
                           parentheses 
                           ( "postplusplus 297 "++"variable $i" )
                else 
@@ -40,4 +40,4 @@ tests/tokenizeur/scripts/dowhile.3.test.php
                               functioncall e
                               function call : e: 
                                   arglist 
-                                  Liste d'argument vide
+                                  Empty arglist

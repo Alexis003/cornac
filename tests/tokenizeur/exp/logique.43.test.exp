@@ -15,7 +15,7 @@ tests/tokenizeur/scripts/logique.43.test.php
                   functioncall method
                   function call : method: 
                       arglist 
-                      Liste d'argument vide
+                      Empty arglist
           operateur : 263 "or"
           right : 
               functioncall functioncall

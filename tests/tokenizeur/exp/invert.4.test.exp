@@ -11,7 +11,7 @@ tests/tokenizeur/scripts/invert.4.test.php
                   functioncall error_reporting
                   function call : error_reporting: 
                       arglist 
-                      Liste d'argument vide
+                      Empty arglist
               operateur :  "&"
               right : 
                   invert ~

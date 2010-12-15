@@ -7,4 +7,4 @@ tests/tokenizeur/scripts/method.14.test.php
           functioncall namespace1:gt
           function call : namespace1:gt: 
               arglist 
-              Liste d'argument vide
+              Empty arglist

@@ -11,6 +11,6 @@ tests/tokenizeur/scripts/inclusion.13.test.php
                       functioncall b
                       function call : b: 
                           arglist 
-                          Liste d'argument vide
+                          Empty arglist
               1 : 
                   literals /c.php

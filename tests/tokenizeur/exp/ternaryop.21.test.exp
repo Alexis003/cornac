@@ -27,9 +27,9 @@ tests/tokenizeur/scripts/ternaryop.21.test.php
                   functioncall flush
                   function call : flush: 
                       arglist 
-                      Liste d'argument vide
+                      Empty arglist
               noscream @
                   functioncall ob_flush
                   function call : ob_flush: 
                       arglist 
-                      Liste d'argument vide
+                      Empty arglist

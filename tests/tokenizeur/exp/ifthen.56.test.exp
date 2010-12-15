@@ -13,7 +13,7 @@ tests/tokenizeur/scripts/ifthen.56.test.php
                   functioncall y
                   function call : y: 
                       arglist 
-                      Liste d'argument vide
+                      Empty arglist
        else 
           block 
           0 : 
@@ -22,4 +22,4 @@ tests/tokenizeur/scripts/ifthen.56.test.php
                   functioncall b
                   function call : b: 
                       arglist 
-                      Liste d'argument vide
+                      Empty arglist

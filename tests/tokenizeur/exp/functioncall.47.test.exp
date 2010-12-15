@@ -17,4 +17,4 @@ tests/tokenizeur/scripts/functioncall.47.test.php
           functioncall func_get_args
           function call : func_get_args: 
               arglist 
-              Liste d'argument vide
+              Empty arglist

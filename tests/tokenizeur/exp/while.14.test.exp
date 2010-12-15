@@ -17,6 +17,6 @@ tests/tokenizeur/scripts/while.14.test.php
                           functioncall microtime
                           function call : microtime: 
                               arglist 
-                              Liste d'argument vide
+                              Empty arglist
           parentheses 
           ( "functioncall 307 "file_exists" ( arglist(concatenation variable $c . variable $d  ) ) " )

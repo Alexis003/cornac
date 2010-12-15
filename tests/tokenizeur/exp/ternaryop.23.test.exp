@@ -1,5 +1,6 @@
 tests/tokenizeur/scripts/ternaryop.23.test.php
-  codephp <?php 
+  codephp <?php
+
   code : 
       sequence 
       0 : 
@@ -38,4 +39,4 @@ tests/tokenizeur/scripts/ternaryop.23.test.php
                       functioncall i
                       function call : i: 
                           arglist 
-                          Liste d'argument vide
+                          Empty arglist

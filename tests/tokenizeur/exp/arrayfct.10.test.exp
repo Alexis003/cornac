@@ -13,7 +13,7 @@ tests/tokenizeur/scripts/arrayfct.10.test.php
                       functioncall a
                       function call : a: 
                           arglist 
-                          Liste d'argument vide
+                          Empty arglist
               operation :  "-"
               right : 
                   operation 

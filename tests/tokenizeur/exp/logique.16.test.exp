@@ -14,7 +14,7 @@ tests/tokenizeur/scripts/logique.16.test.php
                   functioncall a
                   function call : a: 
                       arglist 
-                      Liste d'argument vide
+                      Empty arglist
           operateur : 263 "or"
           right : 
               affectation 
@@ -27,4 +27,4 @@ tests/tokenizeur/scripts/logique.16.test.php
                       functioncall c
                       function call : c: 
                           arglist 
-                          Liste d'argument vide
+                          Empty arglist

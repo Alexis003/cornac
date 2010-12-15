@@ -6,14 +6,14 @@ tests/tokenizeur/scripts/affectation.19.test.php
       function call : z: 
           arglist 
           0 : 
-               argument et initialisation 
+               argument and initialisation 
                   variable $a
                   literals 1
           1 : 
-               argument et initialisation 
+               argument and initialisation 
                   variable $b
                   literals 2
           2 : 
-               argument et initialisation 
+               argument and initialisation 
                   variable $c
                   literals 3

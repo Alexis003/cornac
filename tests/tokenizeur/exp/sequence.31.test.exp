@@ -9,7 +9,7 @@ tests/tokenizeur/scripts/sequence.31.test.php
               functioncall b
               function call : b: 
                   arglist 
-                  Liste d'argument vide
+                  Empty arglist
       1 : 
           functioncall define
           function call : define: 

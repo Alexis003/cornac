@@ -17,4 +17,4 @@ tests/tokenizeur/scripts/cast.14.test.php
                       functioncall $c
                       function call : $c: 
                           arglist 
-                          Liste d'argument vide
+                          Empty arglist

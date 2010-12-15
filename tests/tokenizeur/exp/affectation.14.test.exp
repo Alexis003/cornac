@@ -12,4 +12,4 @@ tests/tokenizeur/scripts/affectation.14.test.php
               functioncall z
               function call : z: 
                   arglist 
-                  Liste d'argument vide
+                  Empty arglist

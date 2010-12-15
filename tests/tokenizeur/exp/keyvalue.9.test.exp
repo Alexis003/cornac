@@ -17,7 +17,7 @@ tests/tokenizeur/scripts/keyvalue.9.test.php
                       functioncall e
                       function call : e: 
                           arglist 
-                          Liste d'argument vide
+                          Empty arglist
           2 : 
               literals f => functioncall 360 "array" ( arglist(keyvalue literals g => method_static 0 "$h"::functioncall 307 "i" ( ( ) ) ) ) 
                   literals f
@@ -32,4 +32,4 @@ tests/tokenizeur/scripts/keyvalue.9.test.php
                                   functioncall i
                                   function call : i: 
                                       arglist 
-                                      Liste d'argument vide
+                                      Empty arglist

@@ -13,4 +13,4 @@ tests/tokenizeur/scripts/reference.7.test.php
                   functioncall method_static
                   function call : method_static: 
                       arglist 
-                      Liste d'argument vide
+                      Empty arglist

@@ -36,7 +36,7 @@ tests/tokenizeur/scripts/sequence.10.test.php
               functioncall fct_tri
               function call : fct_tri: 
                   arglist 
-                  Liste d'argument vide
+                  Empty arglist
       4 : 
           logique 
           left : 
@@ -45,7 +45,7 @@ tests/tokenizeur/scripts/sequence.10.test.php
                   functioncall connect
                   function call : connect: 
                       arglist 
-                      Liste d'argument vide
+                      Empty arglist
           operateur : 263 "or"
           right : 
               functioncall die

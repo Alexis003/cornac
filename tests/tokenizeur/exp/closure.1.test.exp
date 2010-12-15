@@ -9,5 +9,5 @@ tests/tokenizeur/scripts/closure.1.test.php
       right : 
           function() using ( ) block { } 
               arglist 
-              Liste d'argument vide
+              Empty arglist
               block 

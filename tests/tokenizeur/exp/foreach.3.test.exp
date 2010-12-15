@@ -16,7 +16,7 @@ tests/tokenizeur/scripts/foreach.3.test.php
                   functioncall array
                   function call : array: 
                       arglist 
-                      Liste d'argument vide
+                      Empty arglist
        else 
           block 
           0 : 

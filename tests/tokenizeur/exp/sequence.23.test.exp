@@ -15,4 +15,4 @@ tests/tokenizeur/scripts/sequence.23.test.php
               functioncall d
               function call : d: 
                   arglist 
-                  Liste d'argument vide
+                  Empty arglist

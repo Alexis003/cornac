@@ -22,7 +22,7 @@ tests/tokenizeur/scripts/operation.48.test.php
                               functioncall z
                               function call : z: 
                                   arglist 
-                                  Liste d'argument vide
+                                  Empty arglist
                       operation :  "*"
                       right : 
                           literals 3
