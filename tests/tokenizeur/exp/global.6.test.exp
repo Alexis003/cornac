@@ -12,6 +12,9 @@ tests/tokenizeur/scripts/global.6.test.php
           0 : 
               variable $b
       2 : 
+          rawtext 
+          Texte : "311 "c""
+      3 : 
           method variable $d
           method call : functioncall 307 "e" ( ( ) ) : 
               functioncall e
