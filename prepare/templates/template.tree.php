@@ -74,7 +74,7 @@ class template_tree extends template {
     }
     
     function display_arginit($node, $level) {
-        print str_repeat('  ', $level)." argument et initialisation \n";
+        print str_repeat('  ', $level)." argument and initialisation \n";
         $this->display($node->getVariable(), $level + 1);
          $this->display($node->getValue(), $level + 1);
     }
@@ -83,7 +83,7 @@ class template_tree extends template {
         print str_repeat('  ', $level).get_class($node)." \n";
         $elements = $node->getList();
         if (count($elements) == 0) {
-            print str_repeat('  ', $level)."Liste d'argument vide\n";
+            print str_repeat('  ', $level)."Empty arglist\n";
         } else {
             foreach($elements as $id => $e) {
                 print str_repeat('  ', $level)."$id : \n";
