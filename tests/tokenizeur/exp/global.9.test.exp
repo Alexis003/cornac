@@ -1,6 +1,5 @@
 tests/tokenizeur/scripts/global.9.test.php
-Debut
-variable $avariable $bvariable variable $c  codephp <?php
+  codephp <?php
 
   code : 
       sequence 
