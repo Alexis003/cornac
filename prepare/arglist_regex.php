@@ -62,9 +62,11 @@ class arglist_regex extends analyseur_regex {
             
             $pos += 2;
             $var = $var->getNext();
-            if ($var->checkOperator('(')) { return false; }
+            if (is_null($var)) { return false; }
             $var = $var->getNext();
+            if (is_null($var)) { return false; }
             if ($var->checkOperator('(')) { return false; }
+            if (is_null($var->getNext())) { return false; }
         }
 
         if ($var->checkOperator(')')) {

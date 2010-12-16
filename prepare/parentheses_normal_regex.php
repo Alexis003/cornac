@@ -38,6 +38,8 @@ class parentheses_normal_regex extends analyseur_regex {
 
         if ($t->getPrev()->checkFunction() ) { 
             if ($t->getPrev()->checkCode('echo')) {
+                // case of $object->echo(); 
+                if ($t->getPrev(1)->checkOperator('->')) { return false; }
                 // @note this is possible, we shall go on
             } else {
                 return false; 

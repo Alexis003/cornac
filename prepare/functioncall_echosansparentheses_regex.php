@@ -38,8 +38,8 @@ class functioncall_echosansparentheses_regex extends analyseur_regex {
         $pos = 0;
     
         while ($var->checkNotClass('Token') && 
-               $var->checkNotCode(array(';',',')) &&
-               $var->getNext()->checkCode(',')) {
+               $var->checkNotOperator(array(';',',')) &&
+               $var->getNext()->checkOperator(',')) {
 
             $args[]    = $pos;
 

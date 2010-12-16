@@ -30,7 +30,7 @@ class sequence_class_regex extends analyseur_regex {
         if (!$t->hasNext() ) { return false; }
 
         if (!$t->checkForBlock(true) && 
-             $t->checkNotClass(array('codephp'))) { return false; } 
+             $t->checkNotClass(array('codephp','variable'))) { return false; } 
 
         if (!$t->getNext()->checkForBlock(true) && 
             !$t->getNext()->checkForVariable() &&
@@ -56,7 +56,6 @@ class sequence_class_regex extends analyseur_regex {
             mon_log(get_class($t)." identifies a sequence ( ".get_class($t).", ".get_class($t->getNext())." )  (".__CLASS__.")");
             return true; 
         } 
-        
         return false;
     }
 

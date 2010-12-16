@@ -52,7 +52,7 @@ class ifthenelse_simples_regex extends analyseur_regex {
 
             if ($t->getNext(1)->checkForAssignation()) { return false; }
             if ($t->getNext(1)->checkCode(array('.','->','[','::'))) { return false; }
-            if ($t->getNext(1)->checkClass('Token') &&
+            if ($t->getNext(1)->checkClass(array('Token','arglist')) &&
                 $t->getNext(1)->checkNotEndInstruction()) { return false; }
             
             $regex = new modele_regex('block',array(0), array());

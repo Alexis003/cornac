@@ -335,6 +335,17 @@ class template_cache extends template {
         return $this->savenode($node);
     }
 
+    function display__closure($node, $level) {
+        $args = $node->getArgs();
+        $this->display($args, $level + 1);
+        
+        $block = $node->getBlock();
+        $this->display($block, $level + 1);
+
+        $node->cache = 'closure '.$args->cache.' '.$block->cache;
+        return $this->savenode($node);
+    }
+    
     function display_keyvalue($node, $level) {
         $key = $node->getKey();
         $this->display($key, $level + 1);

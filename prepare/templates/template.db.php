@@ -346,6 +346,19 @@ class template_db extends template {
         return $this->savenode($node, $level);
     }
 
+    function display__closure($node, $level) {
+        $node->myId = $this->getNextId();
+        $node->myleft = $this->getIntervalleId();
+
+        $tags = array();
+        $tags['args'][] = $this->display($node->getArgs(), $level + 1);
+        $tags['block'][] = $this->display($node->getBlock(), $level + 1);
+
+        $this->tags = $tags;
+        $node->myright = $this->getIntervalleId();
+        return $this->savenode($node, $level);
+    }
+
     function display_keyvalue($node, $level) {
         $node->myId = $this->getNextId();
         $node->myleft = $this->getIntervalleId();
