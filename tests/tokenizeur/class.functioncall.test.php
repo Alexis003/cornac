@@ -1,25 +1,9 @@
 <?php
-/*
-   +----------------------------------------------------------------------+
-   | Cornac, PHP code inventory                                           |
-   +----------------------------------------------------------------------+
-   | Copyright (c) 2010 Alter Way Solutions (France)                      |
-   +----------------------------------------------------------------------+
-   | This source file is subject to version 3.01 of the PHP license,      |
-   | that is bundled with this package in the file LICENSE, and is        |
-   | available through the world-wide-web at the following url:           |
-   | http://www.php.net/license/3_01.txt                                  |
-   | If you did not receive a copy of the PHP license and are unable to   |
-   | obtain it through the world-wide-web, please send a note to          |
-   | license@php.net so we can mail you a copy immediately.               |
-   +----------------------------------------------------------------------+
-   | Author: Damien Seguy <damien.seguy@gmail.com>                        |
-   +----------------------------------------------------------------------+
- */include_once('Analyseur_Framework_TestCase.php');
+include_once('Analyseur_Framework_TestCase.php');
 
 class Functioncall_Test extends Analyseur_Framework_TestCase
 {
-    /* 55 methodes */
+    /* 57 methodes */
     public function testFunctioncall1()  { $this->generic_test('functioncall.1'); }
     public function testFunctioncall2()  { $this->generic_test('functioncall.2'); }
     public function testFunctioncall3()  { $this->generic_test('functioncall.3'); }
@@ -75,6 +59,8 @@ class Functioncall_Test extends Analyseur_Framework_TestCase
     public function testFunctioncall53()  { $this->generic_test('functioncall.53'); }
     public function testFunctioncall54()  { $this->generic_test('functioncall.54'); }
     public function testFunctioncall55()  { $this->generic_test('functioncall.55'); }
+    public function testFunctioncall56()  { $this->generic_test('functioncall.56'); }
+    public function testFunctioncall57()  { $this->generic_test('functioncall.57'); }
 
 }
 
