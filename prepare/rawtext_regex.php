@@ -40,6 +40,8 @@ class rawtext_regex extends analyseur_regex {
                 }
                 $this->args = array(0);
                 $this->remove = array(-1, 1);
+
+                mon_log(get_class($t)." =>1 ".__CLASS__);
             } elseif ($t->getPrev()->checkClass('codephp') &&
                       $t->getNext()->checkToken(T_OPEN_TAG)) {
                 
@@ -50,19 +52,24 @@ class rawtext_regex extends analyseur_regex {
                 $this->args = array(0);
                 $this->remove = array(1);
 
+                mon_log(get_class($t)." =>2 ".__CLASS__);
             } elseif ($t->getPrev()->checkToken(T_CLOSE_TAG) &&
                       $t->getNext()->checkClass('codephp')) {
                 $this->args = array(0);
                 $this->remove = array(-1);
+
+                mon_log(get_class($t)." =>3 ".__CLASS__);
             } elseif ($t->getPrev()->checkClass('codephp') &&
                       $t->getNext()->checkClass('codephp')) {
                       // @note nothing. We can carry on
+
+                mon_log(get_class($t)." =>4 ".__CLASS__);
             } else {
                 // @empty_else
+                mon_log(get_class($t)." =>5 ".__CLASS__);
             }
         }
 
-        mon_log(get_class($t)." => ".__CLASS__);
         return true;
     }
 }
