@@ -19,24 +19,40 @@
 
 class _use extends instruction {
     protected $namespace = null;
+    protected $alias = null;
     
     function __construct($expression) {
         parent::__construct(array());
         
         $this->namespace = $expression[0];
+        
+        if (isset($expression[1])) {
+            $this->alias = $this->makeToken_traite($expression[1]);
+        }
         // @todo check for too many arguments?
     }
 
     function __toString() {
-        return "use ".$this->namespace;
+        $return = "use ".$this->namespace;
+        if (!is_null($this->alias)) {
+            $return .= " as ".$this->alias;
+        }
+        return $return;
     }
 
     function getNamespace() {
         return $this->namespace;
     }
 
+    function getAlias() {
+        return $this->alias;
+    }
+
     function neutralise() {
         $this->namespace->detach();
+        if (!is_null($this->alias)) {
+            $this->alias->detach();
+        }
     }
 
     function getRegex(){
