@@ -1,0 +1,7 @@
+tests/tokenizeur/scripts/constante_static.6.test.php
+  codephp <?php
+
+  code : 
+      method_static 
+      0 "\"::307 "f": 
+          Token f (default display)
