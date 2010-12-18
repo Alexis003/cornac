@@ -818,8 +818,14 @@ class template_cache extends template {
     function display__use($node, $level) {
         $ns = $node->getNamespace();
         $this->display($ns, $level + 1);
-
         $node->cache = 'use '.$ns->cache;
+
+        $alias = $node->getAlias();
+        if (!is_null($alias)) {
+            $this->display($alias, $level + 1);
+            $node->cache .= ' as '.$alias->cache;
+        }
+
         return $this->savenode($node);
     }
 

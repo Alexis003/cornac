@@ -365,7 +365,7 @@ class template_tree extends template {
     }
     
     function display__nsname($node, $level) {
-        print str_repeat('  ', $level).' NSName '.$node->getNamespace()."\n";
+        print str_repeat('  ', $level).' NSName '.join('\\', $node->getNamespace())."\n";
     }
     
     function display_noscream($node, $level) {
@@ -460,7 +460,14 @@ class template_tree extends template {
     }
 
     function display__use($node, $level) {
-        print str_repeat('  ', $level).'use '.$node->getNamespace()."\n";;
+        $return = str_repeat('  ', $level).'use '.$node->getNamespace();
+        
+        $alias = $node->getAlias();
+        if (!is_null($alias)) {
+            $return .= " as ".$alias;
+        }
+        
+        print $return."\n";
     }
 
     function display__throw($node, $level) {

@@ -941,6 +941,10 @@ class template_db extends template {
 
         $tags = array();
         $tags['name'][] = $this->display($node->getNamespace(), $level + 1);
+        $alias = $node->getAlias();
+        if (!is_null($alias)) {
+            $tags['alias'][] = $this->display($alias, $level + 1);
+        }
         
         $node->myright = $this->getIntervalleId();
         $this->tags = $tags;
