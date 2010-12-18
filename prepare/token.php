@@ -456,7 +456,7 @@ class Token {
         if (in_array(get_class($this), array('rawtext','sequence','ifthen',
                                              'functioncall','affectation',
                                              'parentheses','block','sequence',
-                                             '_global'))) {
+                                             '_global','_use'))) {
             return true;
         }
         return false;
@@ -512,6 +512,7 @@ class Token {
                        'constante_classe',
                        '_while',
                        '_global',
+                       '_use',
                        '_dowhile',
                        'logique',
                        'method',
