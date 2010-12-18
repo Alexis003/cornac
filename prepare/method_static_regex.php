@@ -30,18 +30,15 @@ class method_static_regex extends analyseur_regex {
         if (!$t->hasPrev() ) { return false; }
         if (!$t->hasNext() ) { return false; }
 
-        if (($t->getPrev()->checkToken(array(T_STRING, T_STATIC)) || 
-             $t->getPrev()->checkClass(array('variable','_array'))) &&
-             $t->getNext()->checkClass('functioncall')
-           ) {
+        if ($t->getPrev()->checkNotToken(array(T_STRING, T_STATIC)) && 
+             $t->getPrev()->checkNotClass(array('variable','_array','_nsname'))) { return false; }
+        if ( $t->getNext()->checkNotClass('functioncall')) { return false; }
 
-            $this->args   = array(-1, 1);
-            $this->remove = array(-1, 1);
+       $this->args   = array(-1, 1);
+       $this->remove = array(-1, 1);
 
-            mon_log(get_class($t)." => ".__CLASS__);
-            return true; 
-        } 
-        return false;
+       mon_log(get_class($t)." => ".__CLASS__);
+       return true; 
     }
 }
 ?>
