@@ -47,7 +47,6 @@ class sequence_regex extends analyseur_regex {
         if ( $t->hasPrev()  && $t->getPrev( )->checkClass(array('_array','variable','property')))   { return false; }
         if ( $t->hasPrev(1) && $t->getPrev(1)->checkToken(array(T_FOR,T_WHILE)))                     { return false; }
         if ( $t->checkClass(array('_catch')))                                                        { return false; }
-        
 
         if ($t->checkSubClass('instruction') && 
             $t->checkNotClass('parentheses') && 
@@ -56,8 +55,9 @@ class sequence_regex extends analyseur_regex {
             $var = $t->getNext(1); 
             $this->args   = array( 0 );
             $this->remove = array( 1 );
-            
+
             $pos = 2;
+            
             if (is_null($var)) {
                 mon_log(get_class($t)." => 0null ".__CLASS__);
                 return true; 
@@ -82,7 +82,7 @@ class sequence_regex extends analyseur_regex {
 
                 if ($var->checkCode(';')) {
                     $this->remove[]  = $pos + 1;
-                    
+
                     $pos += 1;
                     $var = $var->getNext();
                     if (is_null($var)) {
