@@ -1,3 +1,7 @@
+rename 'constante' in _constant
+rename mon_log into my_log...
+make a difference between \c and c (initial \ has meaning...)
+
 Add a way to display code within cornac
 Exploiter les analyseurs
 
