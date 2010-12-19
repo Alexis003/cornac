@@ -18,8 +18,8 @@
  */
 
 class Constants_FileLink extends modules {
-	protected	$title = 'Liens entre file par constante';
-	protected	$description = 'files qui utilisent une même constante';
+	protected	$title = 'File relation via constants';
+	protected	$description = 'Files that are using the same constants.';
 
 	function __construct($mid) {
         parent::__construct($mid);

@@ -18,8 +18,8 @@
  */
 
 class Functions_Recursive extends modules {
-	protected	$title = 'Titre pour Functions_Recursive';
-	protected	$description = 'Ceci est l\'analyseur Functions_Recursive par défaut. ';
+	protected	$title = 'Recursive functions';
+	protected	$description = 'List functions that call themselves, or methods.';
 
 	function __construct($mid) {
         parent::__construct($mid);

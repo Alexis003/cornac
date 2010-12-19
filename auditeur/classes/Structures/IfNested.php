@@ -18,8 +18,8 @@
  */
 
 class Structures_IfNested extends modules {
-	protected	$title = 'If imbriqués';
-	protected	$description = 'Liste des if';
+	protected	$title = 'Nested ifs';
+	protected	$description = 'List of nested if';
 
 	function __construct($mid) {
         parent::__construct($mid);

@@ -18,8 +18,8 @@
  */
 
 class Classes_MethodsSpecial extends modules {
-	protected	$title = 'Méthodes spéciales';
-	protected	$description = 'Liste des méthodes spéciales de PHP';
+	protected	$title = 'Special method';
+	protected	$description = 'List of all PHP special methods';
 
 	function __construct($mid) {
         parent::__construct($mid);

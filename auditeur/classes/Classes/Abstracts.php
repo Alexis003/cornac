@@ -18,7 +18,7 @@
  */
 class Classes_Abstracts extends modules {
 	protected	$title = 'abstracts';
-	protected	$description = 'Classe ou méthodes abstraites';
+	protected	$description = 'Abstract classes or methods list';
 
 	function __construct($mid) {
         parent::__construct($mid);
