@@ -40,7 +40,7 @@ class comparison_regex extends analyseur_regex {
         if ($t->checkNotToken(array(T_IS_EQUAL, T_IS_SMALLER_OR_EQUAL, T_IS_NOT_IDENTICAL, T_IS_NOT_EQUAL, T_IS_IDENTICAL, T_IS_GREATER_OR_EQUAL, T_INSTANCEOF)) && 
              $t->checkNotCode(array('>', '<'))) {return false; }
         if ($t->getNext()->checkClass('Token')) { return false; }
-        if ($t->getNext(1)->checkOperator(array('(','[','->','+','-','/','*','%','{','++','--','=')) ||
+        if ($t->getNext(1)->checkOperator(array('(','[','->','::','+','-','/','*','%','{','++','--','=')) ||
             $t->getNext(1)->checkClass(array('parentheses','arglist'))) { return false; }
 
         $this->args   = array(-1, 0, 1);

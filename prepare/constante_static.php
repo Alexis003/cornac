@@ -25,7 +25,11 @@ class constante_static extends token {
         parent::__construct();
         
         if (is_array($expression)) {
-            $this->class = $this->makeToken_traite($expression[0]);
+            if ($expression[0]->checkClass('Token')) {
+                $this->class = $this->makeToken_traite($expression[0]);
+            } else {
+                $this->class = $expression[0];
+            }
             $this->constant = $expression[1];
         } else {
             $this->stopOnError("Wrong number of arguments  : '".count($expression)."' in ".__METHOD__);

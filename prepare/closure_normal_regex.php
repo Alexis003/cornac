@@ -29,12 +29,22 @@ class closure_normal_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasNext(2)) { return false; }
 
-        $this->args = array();
-        $this->remove = array(1,2);
 
-        if ($t->getNext()->checkNotOperator(array('('))) { return false; }
-        if ($t->getNext(1)->checkNotOperator(array(')'))) { return false; }
-        $pos = 2;
+        if ($t->getNext()->checkOperator(array('(')) && 
+            $t->getNext(1)->checkOperator(array(')'))) { 
+            $pos = 2;
+
+            $this->args = array();
+            $this->remove = array(1,2);
+        } elseif ($t->getNext()->checkClass('arglist')) {
+            $pos = 1;
+
+            $this->args = array(1);
+            $this->remove = array(1);
+        } else {
+            return false;
+        }
+
         if ($t->getNext($pos)->checkToken(T_USE) &&
             $t->getNext($pos + 1)->checkClass('arglist')) {
                 

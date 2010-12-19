@@ -28,16 +28,18 @@ class nsname_normal_regex extends analyseur_regex {
     
     function check($t) {
         if (!$t->hasNext()) { return false; }
-        if (!$t->hasPrev()) { return false; }
         
-        // @note check from getTokens are made on code!
+        // @note we need a real token, not just coincidence at code level
         if ($t->checkNotToken(T_NS_SEPARATOR)) { return false; }
 
 // @note NSname may actually start by \ \htmlentities
         if ($t->getPrev()->checkToken(array(T_STRING))) { 
             $this->args = array(-1);
             $this->remove = array(-1);
-        } 
+        } else {
+        // @note we use this to tell _nsname that this is a root call
+            $this->args = array(0);
+        }
 
         if ($t->getNext()->checkNotClass('Token')) { return false; }
         $this->args[] = 1;

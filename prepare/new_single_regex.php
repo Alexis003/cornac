@@ -29,17 +29,13 @@ class new_single_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasNext()) { return false; }
 
-        if ($t->checkToken(T_NEW) &&
-            $t->getNext()->checkClass('constante')
-            ) {
+        if ($t->getNext()->checkNotClass('constante')) { return false; }
 
-            $this->args = array(1);
-            $this->remove = array(1);
+        $this->args = array(1);
+        $this->remove = array(1);
 
-            mon_log(get_class($t)." => ".__CLASS__);
-            return true; 
-        } 
-        return false;
+        mon_log(get_class($t)." => ".__CLASS__);
+        return true; 
     }
 }
 ?>

@@ -35,14 +35,14 @@ class _new extends instruction {
             } else {
                 $this->args = $expression[1];
             }
-        } elseif (get_class($constructeur) == 'constante') {
+        } elseif ($constructeur->checkClass(array('constante'))) {
             $this->classe =  new token_traite($constructeur->getName());
             if (!isset($expression[1])) {
                 $this->args = new arglist();
             } else {
                 $this->args = $expression[1];
             }
-        } elseif ($constructeur->checkClass(array('variable','_array','property','property_static','method_static'))) {
+        } elseif ($constructeur->checkClass(array('variable','_array','property','property_static','method_static','_nsname'))) {
             $this->classe = $constructeur;
 
             if (!isset($expression[1])) {

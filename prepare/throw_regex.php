@@ -29,18 +29,21 @@ class throw_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasNext(1)) { return false; }
 
-        if ($t->checkToken(T_THROW) &&
-            $t->getNext()->checkClass(array('_new','variable','property','method','_array','method_static','functioncall')) &&
-            $t->getNext(1)->checkNotCode(array('->','['))
-            ) {
+        if ($t->getNext()->checkNotClass(array('_new',
+                                               'variable',
+                                               'property',
+                                               'method',
+                                               '_array',
+                                               'constante',
+                                               'method_static',
+                                               'functioncall'))) { return false; }
+        if ($t->getNext(1)->checkCode(array('->','['))) { return false; }
 
-            $this->args = array(1);
-            $this->remove = array( 1);
+        $this->args = array(1);
+        $this->remove = array( 1);
 
-            mon_log(get_class($t)." => ".__CLASS__);
-            return true; 
-        } 
-        return false;
+        mon_log(get_class($t)." => ".__CLASS__);
+        return true; 
     }
 }
 ?>

@@ -29,7 +29,7 @@ class token_traite extends Token {
             $this->code = $t;
             $this->setLine(-2);
         }
-        mon_log('token_traite');
+        mon_log(__CLASS__);
     }
 }
 

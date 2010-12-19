@@ -24,7 +24,11 @@ class _nsname extends instruction {
         parent::__construct(array());
         
         foreach($expression as $e) {
-            if ($e->checkClass('Token')) {
+            if ($e->checkToken(T_NS_SEPARATOR)) {
+                $f = $this->makeToken_traite($e);
+                $this->namespace[] = $f;
+                $f->setCode('\\');
+            } elseif ($e->checkClass('Token')) {
                 $this->namespace[] = $this->makeToken_traite($e);
             } else {
                 $this->namespace[] = $e;

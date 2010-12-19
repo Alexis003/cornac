@@ -34,7 +34,8 @@ class new_variable_regex extends analyseur_regex {
                                                'method',
                                                'property',
                                                'property_static',
-                                               'method_static'))) { return false; }
+                                               'method_static',
+                                               '_nsname'))) { return false; }
 
         if (!$t->getNext(1)->checkEndInstruction() &&
             !$t->getNext(1)->checkForLogical()) { return false; }
