@@ -1,10 +1,11 @@
 tests/tokenizeur/scripts/method_static.8.test.php
-  Token <?php
- (default display)
-  method_static 
-  0 "\"::307 "f": 
-      Token f (default display)
-  parentheses 
-  ( "variable $g" )
-  Token ; (default display)
-  Token ?> (default display)
+  codephp <?php
+
+  code : 
+      method_static 
+      0 "\"::functioncall 307 "f" ( arglist(variable $g) ) : 
+          functioncall f
+          function call : f: 
+              arglist 
+              0 : 
+                  variable $g

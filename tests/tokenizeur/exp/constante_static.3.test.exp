@@ -2,4 +2,4 @@ tests/tokenizeur/scripts/constante_static.3.test.php
   codephp <?php
 
   code : 
-      constante_static (      0 "$ZIPARCHIVE"::constante CREATE )
+      constante_static (      variable $ZIPARCHIVE::constante CREATE )

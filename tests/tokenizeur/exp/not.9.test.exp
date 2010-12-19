@@ -1,0 +1,12 @@
+tests/tokenizeur/scripts/not.9.test.php
+  codephp <?php
+
+  code : 
+      ifthen if
+      Condition 0) 
+          parentheses 
+          ( "not !" )
+          block 
+          0 : 
+              _throw 
+                  constante (                  R )

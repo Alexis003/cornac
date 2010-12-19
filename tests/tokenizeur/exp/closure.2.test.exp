@@ -7,10 +7,11 @@ tests/tokenizeur/scripts/closure.2.test.php
           variable $a
        "=" 
       right : 
-          function() using arglist(variable $b, variable $c) block { } 
+          function() using ( ) arglist(variable $b, variable $c) 
+              arglist 
+              Empty arglist
               arglist 
               0 : 
                   variable $b
               1 : 
                   variable $c
-              block 
