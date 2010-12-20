@@ -26,7 +26,7 @@ class _foreach extends instruction {
     static $incoming_vars = array('variable','_array','property', 'property_static',
                                   'functioncall','method','cast','method_static','_new',
                                   'affectation','ternaryop','parentheses','noscream',
-                                  'inclusion');
+                                  'inclusion','Token');
 
     static $blind_values = array('variable','_array','property','reference','parentheses','property_static');
     static $blind_keys = array('variable','_array','property','reference','parentheses','property_static');
@@ -47,12 +47,20 @@ class _foreach extends instruction {
         }
         
         if (count($expression) == 4) {
-            $this->array = $expression[0];
+            if ($expression[0]->checkClass('Token')) {
+                $this->array = $this->makeToken_traite($expression[0]);
+            } else {
+                $this->array = $expression[0];
+            }
             $this->key = $expression[1];
             $this->value = $expression[2];
             $this->block = $expression[3];
         } else {
-            $this->array = $expression[0];
+            if ($expression[0]->checkClass('Token')) {
+                $this->array = $this->makeToken_traite($expression[0]);
+            } else {
+                $this->array = $expression[0];
+            }
             $this->key =  null;
             $this->value = $expression[1];
             $this->block = $expression[2];
