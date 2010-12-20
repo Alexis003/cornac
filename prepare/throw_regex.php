@@ -35,6 +35,8 @@ class throw_regex extends analyseur_regex {
                                                'method',
                                                '_array',
                                                'constante',
+                                               'parentheses',
+                                               'ternaryop',
                                                'method_static',
                                                'functioncall'))) { return false; }
         if ($t->getNext(1)->checkCode(array('->','['))) { return false; }
