@@ -88,12 +88,12 @@ SQL;
 UPDATE <report> 
     SET element = 'standard' 
 WHERE module = '{$this->name}' AND 
-    element in ( '$in')
+      element in ( '$in')
 SQL;
             $res = $this->exec_query($query);
             $functions = array_diff($functions, $list);
         }
-
+die();
 
 
 

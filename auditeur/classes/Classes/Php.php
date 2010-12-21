@@ -26,7 +26,7 @@ class Classes_Php extends functioncalls {
 	}
 	
 	function dependsOn() {
-	    return array('_new');
+	    return array();
 	}
 	
 	public function analyse() {

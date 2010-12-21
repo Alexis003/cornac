@@ -240,6 +240,9 @@ $modules = array(
 'Ext_CallingBack',
 'Classes_PropertiesChained',
 'Php_Namespace',
+'Sf_Dependencies',
+
+'Inventaire',
 // new analyzers
 );
 
@@ -358,6 +361,7 @@ $sommaire = new sommaire();
 
 // @inclusions abstract classes
 include 'classes/abstract/modules.php';
+include 'classes/abstract/modules_classe_dependances.php';
 include 'classes/abstract/modules_head.php';
 include 'classes/abstract/functioncalls.php';
 include 'classes/abstract/typecalls.php';
@@ -414,11 +418,14 @@ function analyse_module($module_name) {
 
     $module = new $module_name($DATABASE);
     $dependances = $module->dependsOn();
-
+    
     if (count($dependances) > 0) {
-        $res = $DATABASE->query("SELECT target FROM <tasks> WHERE target IN ('".join("','", $dependances)."') AND completed != 100");
-        $manque = $res->fetchAll(PDO::FETCH_ASSOC);
-        $manque = multi2array($manque, 'target');
+        $res = $DATABASE->query("SELECT target FROM <tasks> WHERE completed = 100 AND task='auditeur'");
+        $done = $res->fetchAll(PDO::FETCH_ASSOC);
+        $done = multi2array($done, 'target');
+        
+        $manque = array_diff($dependances, $done);
+        
         if (count($manque) > 0) {
             foreach($manque as $m) {
                 $out = "  +  $m ";

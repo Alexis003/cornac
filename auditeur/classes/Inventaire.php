@@ -16,28 +16,39 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
-class Zf_Dependencies extends modules_classe_dependances {
-	protected	$title = 'ZF : Zend Framework dependance';
-	protected	$description = 'Dependencies toward ZF  : by heritage or composition, those classes from the ZF are needed.';
 
+class Inventaire extends modules {
 	function __construct($mid) {
         parent::__construct($mid);
 	}
+	
+    function dependsOn() {
+        return array(
+"Classes_Constants",
+"Classes_Definitions",
+"Classes_Interfaces",
+"Classes_MethodsDefinition",
+"Classes_MethodsSpecial",
+"Classes_Properties",
+"Constants_Definitions",
+"Functions_Definitions",
+"Php_Globals",
+"Php_References",
+"Php_Modules",
+"Sf_Dependencies",
+"Structures_FluentInterface",
+"Variables_Gpc",
+"Variables_Names",
+"Variables_Session",
+"Variables_Variables",
+"Zf_Dependencies",
+        );
+    }
+    
+    function analyse() {
+        return true;
+    }
 
-// @doc if this analyzer is based on previous result, use this to make sure the results are here
-	function dependsOn() {
-	    return array();
-	}
-
-	public function analyse() {
-        $this->clean_report();
-
-// @note heritage
-        $in = modules::getZendFrameworkClasses();
-        $this->in = join('", "', $in);
-        
-        return parent::analyse();
-	}
 }
 
 ?>

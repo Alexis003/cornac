@@ -18,8 +18,8 @@
  */
 
 class Structures_FluentInterface extends modules {
-	protected	$title = 'Interfaces fluides';
-	protected	$description = 'Ceci est l\'analyseur Structures_FluentInterface par défaut. ';
+	protected	$title = 'Fluent interfaces';
+	protected	$description = 'Search for fluent interfaces. $x->do()->refine()->andMore()';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -29,7 +29,7 @@ class Structures_FluentInterface extends modules {
 	    return array();
 	}
 	
-// @todo put a name in this element
+// @todo refine the first query with level, may be with nb > 2?
 	public function analyse() {
         $this->clean_report();
 
@@ -50,8 +50,7 @@ GROUP BY T1.id
 HAVING nb > 1
 SQL;
         $res = $this->exec_query($query);
-        
-        //
+
         while($row = $res->fetch(PDO::FETCH_ASSOC)) {
     	    $query = <<<SQL
 SELECT NULL, T1.file, CONCAT(T1.code, '->', GROUP_CONCAT(T4.code ORDER BY T4.left  SEPARATOR '->')), T1.id, '{$this->name}', 0
@@ -70,11 +69,13 @@ JOIN <tokens> T4
        T4.left = T3.left + 1
 WHERE T1.id = {$row['id']}
 SQL;
-            $this->exec_query_insert('report', $query);
+            // @todo DONT HAVE THIS IN A WHILE!
+            $this->exec_query_insert_one('report', $query);
         }
-        
+
+        $this->exec_flush('report');
+
         return true;
 	}
 }
-
 ?>
