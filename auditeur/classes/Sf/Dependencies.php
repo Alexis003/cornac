@@ -17,15 +17,14 @@
    +----------------------------------------------------------------------+
  */
 
-class Sf_Dependencies extends modules {
-	protected	$title = 'Title for Sf_Dependencies';
-	protected	$description = 'This is the special analyzer Sf_Dependencies (default doc).';
+class Sf_Dependencies extends modules_classe_dependances {
+	protected	$title = 'Sf : Symfony dependance';
+	protected	$description = 'Dependencies toward Symfony Framework : by heritage or composition, those classes from the Symfony are needed.';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
 
-// @doc if this analyzer is based on previous result, use this to make sure the results are here
 	function dependsOn() {
 	    return array();
 	}
@@ -33,16 +32,11 @@ class Sf_Dependencies extends modules {
 	public function analyse() {
         $this->clean_report();
 
-// @todo of course, update this useless query. :)
-	    $query = <<<SQL
-SELECT NULL, T1.file, T1.code, T1.id, '{$this->name}', 0
-    FROM <tokens> T1
-    WHERE type = 'variable'
-SQL;
-        $this->exec_query_insert('report', $query);
-
-        return true;
+// @note heritage
+        $in = modules::getSymfonyClasses();
+        $this->in = join('", "', $in);
+        
+        return parent::analyse();
 	}
 }
-
 ?>
