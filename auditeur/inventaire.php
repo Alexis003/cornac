@@ -97,17 +97,19 @@ if (isset($INI['cornac']['prefix'])) {
 }
 
 // @todo internationalize this!
-$headers = array('Variables' => 'SELECT COUNT(DISTINCT element)  FROM <report> WHERE module="variables"',
+$headers = array('Variables' => 'SELECT COUNT(DISTINCT element)  FROM <report> WHERE module="Variables_Names"',
                  'Files'  => 'SELECT COUNT(DISTINCT file) FROM <report>',
-                 'Classes'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <report> WHERE module="classes"',
-                 'Constants'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <report> WHERE module="defconstantes"',
-                 'Uses Zend Framework'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <report> WHERE module="zfClasses"',
-                 'Interfaces'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <report> WHERE module="interfaces"',
-                 'Fluid interfaces'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <report> WHERE module="fluid_interface"',
-                 'References'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <report> WHERE module="references"',
-                 'Variable variables'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <report> WHERE module="variablesvariables"',
-                 'Class constants'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <report> WHERE module="constantes_classes"',
-                 'Magic methods'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <report> WHERE module="special_methods"',
+                 'Classes'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <report> WHERE module="Classes_Definitions"',
+                 'Functions'   => 'SELECT COUNT(DISTINCT element)  FROM <report> WHERE module="Functions_Definitions"',
+                 'Constants'   => 'SELECT COUNT(DISTINCT element) FROM <report> WHERE module="Constants_Definitions"',
+                 'Uses Zend Framework'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <report> WHERE module="Zf_Classes"',
+                 'Interfaces'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <report> WHERE module="Classes_Interfaces"',
+                 'Fluid interfaces'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <report> WHERE module="Structures_FluentInterface"',
+                 'References'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <report> WHERE module="Php_References"',
+                 'Variable variables'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <report> WHERE module="Variables_Variables"',
+                 'Class constants'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <report> WHERE module="Classes_Constants"',
+                 'Magic methods'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <report> WHERE module="Classes_MethodsSpecial"',
+                 'Namespaces'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <report> WHERE module="Classes_MethodsSpecial"',
                  );
 
 $stats = array();
