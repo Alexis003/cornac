@@ -57,16 +57,6 @@ define('CLEAN_DATABASE', !empty($INI['clean']));
 
 $modules = array(
 
-
-
-
-
-
-
-
-
-
-
 'Classes',
 'Classes_Abstracts',
 'Classes_Definitions',
@@ -93,13 +83,16 @@ $modules = array(
 'Classes_Unused',
 
 'Constants',
-'Commands_Html',
-'Commands_Sql',
 'Constants_Definitions',
 'Constants_FileLink',
 'Constants_Usage',
 
+'Commands',
+'Commands_Html',
+'Commands_Sql',
+
 'Ext',
+'Ext_CallingBack',
 'Ext_DieExit',
 'Ext_Dir',
 'Ext_Ereg',
@@ -219,6 +212,7 @@ $modules = array(
 'Variables_Session',
 'Variables_Unaffected',
 'Variables_Variables',
+'Variables_Affected',
 
 'Zf',
 'Zf_Action',
@@ -235,14 +229,18 @@ $modules = array(
 'Zf_SQL',
 'Zf_TypeView',
 'Zf_ViewVariables',
-'Variables_Affected',
+
 'Structures_FunctionsCalls',
-'Ext_CallingBack',
 'Classes_PropertiesChained',
 'Php_Namespace',
+
+'Sf',
 'Sf_Dependencies',
 
 'Inventaire',
+
+'Pear',
+'Pear_Dependencies',
 // new analyzers
 );
 
