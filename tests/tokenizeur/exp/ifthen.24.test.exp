@@ -10,7 +10,7 @@ tests/tokenizeur/scripts/ifthen.24.test.php
           0 : 
               _for 
                 Init : affectation variable $i  "=" literals 0;
-                Fin  : comparison variable $i  "<" literals 1;
+                End  : comparison variable $i  "<" literals 1;
                 Incr : postplusplus 297 "++"variable $i;
                   block 
                   0 : 

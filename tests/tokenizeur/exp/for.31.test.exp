@@ -4,6 +4,6 @@ tests/tokenizeur/scripts/for.31.test.php
   code : 
       _for 
         Init : ;
-        Fin  : comparison variable $i  "<" literals 2;
+        End  : comparison variable $i  "<" literals 2;
         Incr : ;
           block 

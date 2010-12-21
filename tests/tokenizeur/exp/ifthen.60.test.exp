@@ -20,7 +20,7 @@ tests/tokenizeur/scripts/ifthen.60.test.php
                   0 : 
                       _for 
                         Init : variable $i;
-                        Fin  : comparison variable $i  "<" literals 1;
+                        End  : comparison variable $i  "<" literals 1;
                         Incr : postplusplus 297 "++"variable $i;
                           block 
                           0 : 

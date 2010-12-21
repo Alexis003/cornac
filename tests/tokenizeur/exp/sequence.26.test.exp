@@ -20,7 +20,7 @@ tests/tokenizeur/scripts/sequence.26.test.php
       2 : 
           _for 
             Init : affectation variable $i  "=" literals 1;
-            Fin  : comparison variable $i  "<" literals 3;
+            End  : comparison variable $i  "<" literals 3;
             Incr : postplusplus 297 "++"variable $i;
               block 
               0 : 

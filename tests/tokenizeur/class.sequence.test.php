@@ -3,7 +3,7 @@ include_once('Analyseur_Framework_TestCase.php');
 
 class Sequence_Test extends Analyseur_Framework_TestCase
 {
-    /* 39 methodes */
+    /* 43 methodes */
     public function testSequence1()  { $this->generic_test('sequence.1'); }
     public function testSequence2()  { $this->generic_test('sequence.2'); }
     public function testSequence3()  { $this->generic_test('sequence.3'); }
@@ -43,6 +43,10 @@ class Sequence_Test extends Analyseur_Framework_TestCase
     public function testSequence37()  { $this->generic_test('sequence.37'); }
     public function testSequence38()  { $this->generic_test('sequence.38'); }
     public function testSequence39()  { $this->generic_test('sequence.39'); }
+    public function testSequence40()  { $this->generic_test('sequence.40'); }
+    public function testSequence41()  { $this->generic_test('sequence.41'); }
+    public function testSequence42()  { $this->generic_test('sequence.42'); }
+    public function testSequence43()  { $this->generic_test('sequence.43'); }
 
 }
 

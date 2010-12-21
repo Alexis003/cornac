@@ -4,6 +4,6 @@ tests/tokenizeur/scripts/for.32.test.php
   code : 
       _for 
         Init : affectation variable $i  "=" literals 0;
-        Fin  : ;
+        End  : ;
         Incr : ;
           block 

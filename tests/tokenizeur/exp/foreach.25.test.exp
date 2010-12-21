@@ -4,7 +4,7 @@ tests/tokenizeur/scripts/foreach.25.test.php
   code : 
       _for 
         Init : literals 1;
-        Fin  : literals 2;
+        End  : literals 2;
         Incr : literals 3;
           block 
           0 : 

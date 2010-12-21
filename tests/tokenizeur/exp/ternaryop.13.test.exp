@@ -4,7 +4,7 @@ tests/tokenizeur/scripts/ternaryop.13.test.php
   code : 
       _for 
         Init : affectation variable $b  "=" literals 0;
-        Fin  : comparison variable $b  "<" literals 1;
+        End  : comparison variable $b  "<" literals 1;
         Incr : postplusplus 297 "++"variable $b;
           block 
           0 : 

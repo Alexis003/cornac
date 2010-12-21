@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/for.17.test.php
       _for 
         Init : block {affectation variable $i  "=" literals 0
 affectation variable $a  "=" literals 1 };
-        Fin  : block {comparison variable $i  "<" literals 0
+        End  : block {comparison variable $i  "<" literals 0
 affectation variable $b  "=" literals 2 };
         Incr : block {postplusplus 297 "++"variable $i
 arginit variable $c = literals 3  };

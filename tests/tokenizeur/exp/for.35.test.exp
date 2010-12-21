@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/for.35.test.php
       _for 
         Init : block {affectation variable $i  "=" literals 1
 affectation variable $nb  "=" _array variable $a[literals b] };
-        Fin  : variable $c;
+        End  : variable $c;
         Incr : preplusplus variable $d296 "--";
           affectation 
           left : 
