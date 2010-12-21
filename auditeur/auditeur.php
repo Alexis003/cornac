@@ -239,6 +239,7 @@ $modules = array(
 'Structures_FunctionsCalls',
 'Ext_CallingBack',
 'Classes_PropertiesChained',
+'Php_Namespace',
 // new analyzers
 );
 
