@@ -44,11 +44,12 @@ class sequence_regex extends analyseur_regex {
                                                               T_INSTANCEOF, T_ELSE, T_ABSTRACT, T_DO, T_CASE, T_CLONE,
                                                               T_NAMESPACE, T_USE
                                                               ))                        )            { return false; }
-        if ( $t->hasPrev()  && $t->getPrev( )->checkClass(array('_array','variable','property')))   { return false; }
+        if ( $t->hasPrev()  && $t->getPrev( )->checkClass(array('_array','variable','property')))    { return false; }
         if ( $t->hasPrev(1) && $t->getPrev(1)->checkToken(array(T_FOR,T_WHILE)))                     { return false; }
         if ( $t->checkClass(array('_catch')))                                                        { return false; }
 
-        if ($t->checkSubClass('instruction') && 
+        if (($t->checkSubClass('instruction') || 
+             $t->checkForVariable('instruction')) && 
             $t->checkNotClass('parentheses') && 
             $t->getNext()->checkCode(';') ) { 
                         
@@ -57,7 +58,7 @@ class sequence_regex extends analyseur_regex {
             $this->remove = array( 1 );
 
             $pos = 2;
-            
+
             if (is_null($var)) {
                 mon_log(get_class($t)." => 0null ".__CLASS__);
                 return true; 
@@ -67,7 +68,7 @@ class sequence_regex extends analyseur_regex {
                 
                 return !$var->checkToken(T_CLOSE_TAG); 
             }
-            
+
             while ($var->checkSubClass('instruction')) {
                 $this->args[]    = $pos ;
                 $this->remove[]  = $pos;
@@ -126,6 +127,8 @@ class sequence_regex extends analyseur_regex {
                 return false;
             }
         }
+
+        return false;
     }
 
 }
