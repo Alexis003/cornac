@@ -19,7 +19,7 @@
 
 class Structures_BlockOfCalls extends modules {
 	protected	$title = 'Call blocks';
-	protected	$description = 'Successive call to the same function';
+	protected	$description = 'Several successive calls to the same function';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -73,7 +73,8 @@ SQL;
 SELECT T2.id, T1.left, T1.type, T2.type, TC2.code AS code, T1.file
 FROM <tokens> T1
 LEFT JOIN <tokens> T2 
-    ON T2.file = '{$row['file']}' AND T2.left = T1.right + 1
+    ON T2.file = '{$row['file']}' AND 
+       T2.left = T1.right + 1
 JOIN <tokens_cache> TC2 
     ON T2.id=  TC2.id
 WHERE T1.id = {$id} AND
