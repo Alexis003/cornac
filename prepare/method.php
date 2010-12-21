@@ -51,7 +51,7 @@ class method extends instruction {
 
     function getRegex(){
         return array('method_regex',
-                     'method_accolade_regex',
+                     'method_curly_regex',
                      );
     }
 

@@ -59,7 +59,7 @@ class property extends token {
 
     function getRegex(){
         return array('property_regex',
-                     'property_accolade_regex',
+                     'property_curly_regex',
                      );
     }
 

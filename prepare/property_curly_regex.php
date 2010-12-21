@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class method_accolade_regex extends analyseur_regex {
+class property_curly_regex extends analyseur_regex {
     function __construct() {
         parent::__construct(array());
     }
@@ -31,31 +31,19 @@ class method_accolade_regex extends analyseur_regex {
         if (!$t->hasPrev() ) { return false; }
         if (!$t->hasNext(3) ) { return false; }
 
-        if ( ($t->checkClass(array('variable','property','_array','method','method_static','functioncall')) ) && 
+        if ( ($t->checkClass(array('variable','property','property_static','_array','method','method_static','functioncall')) ) && 
               $t->getNext()->checkCode('->') &&
               $t->getNext(1)->checkCode('{') &&
               $t->getNext(2)->checkNotClass('Token') &&
-              $t->getNext(3)->checkCode('}')) {
-              
-              if ( $t->getNext(4)->checkCode('(') &&
-                   $t->getNext(5)->checkCode(')')) {
-        
-                   $regex = new modele_regex('functioncall',array(0), array(-1, 1, 2));
-                   Token::applyRegex($t->getNext(2), 'functioncall', $regex);
+              $t->getNext(3)->checkCode('}') && 
+              $t->getNext(4)->checkNotCode('(') 
+            ) {
 
-                    mon_log(get_class($t)." => functioncall (".__CLASS__.")");
-                    return false; 
-              }
+            $this->args   = array(0, 3);
+            $this->remove = array(1, 2, 3, 4);
 
-              if ( $t->getNext(4)->checkClass('arglist')) {
-                   $regex = new modele_regex('functioncall',array(0, 2), array(-1, 1, 2));
-                   Token::applyRegex($t->getNext(2), 'functioncall', $regex);
-
-                    mon_log(get_class($t)." => functioncall (".__CLASS__.")");
-                    return false; 
-              }
-
-              return false;
+            mon_log(get_class($t)." => ".__CLASS__);
+            return true; 
         } 
         return false;
     }
