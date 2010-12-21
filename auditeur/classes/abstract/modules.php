@@ -166,7 +166,39 @@ abstract class modules {
     }
 
     function exec_query_insert($report, $query) {
-    // @todo support report and report_dot
+        $this->exec_init_tmp_table($report);
+        
+        $query = "INSERT INTO tmp_report $query";
+        $this->exec_query($query);
+        
+        $this->exec_flush($report);
+
+        return true;
+    }
+    
+    function exec_query_insert_one($report, $query) {
+        if (!$this->inited) {
+            $this->exec_init_tmp_table($report);
+        }
+
+        $query = "INSERT INTO tmp_report $query";
+        $this->exec_query($query);
+        
+        return true;
+    }
+
+    function exec_flush($report) {
+        $query = "INSERT INTO <report> SELECT * FROM tmp_report";
+        $this->exec_query($query);
+        
+        $query = "DROP TABLE tmp_report";
+        $this->exec_query($query);
+
+        return true;
+    }
+    
+    function exec_init_tmp_table($report) {
+        // @todo support report and report_dot
         if ($report == 'report') {
         // @note be aware that tmp_table need id as NULL column, so auto_increment is managed in the report table
         $this->mid->query('
@@ -183,23 +215,12 @@ CREATE TEMPORARY TABLE IF NOT EXISTS tmp_report (
 
 // @todo handle nicely when tmp_report is already here!
         } elseif ($report == 'report_dot') {
-            
+            // @todo prepare this table! 
         } else {
             print "\$report is not (report or report_dot) : $report\n\n";
+            die();
         } 
-
-        $query = "INSERT INTO tmp_report $query";
-        $this->exec_query($query);
-        
-        $query = "INSERT INTO <report> SELECT * FROM tmp_report";
-        $this->exec_query($query);
-        
-        $query = "DROP TABLE tmp_report";
-        $this->exec_query($query);
-
-        return true;
     }
-    
     
     function dependsOn() {
         return array();
@@ -278,6 +299,11 @@ SQL;
 
     static public function getZendFrameworkClasses() {
         $classes = parse_ini_file('../dict/zfClasses.ini', true);
+        return $classes['classes'];
+    }
+
+    static public function getSymfonyClasses() {
+        $classes = parse_ini_file('../dict/sfClasses.ini', true);
         return $classes['classes'];
     }
 
