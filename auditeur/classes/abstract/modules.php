@@ -141,8 +141,10 @@ abstract class modules {
     function prepare_query($query) {
         $query = str_replace(array_keys($this->tables), array_values($this->tables), $query);
         
-        if (preg_match_all('/<\w+>/', $query, $r)) {
-            print "There are some more tables to process : ".join(', ', $r[0]);
+        // @note removing literals between ''
+        $check = preg_replace("/'[^']+'/is", '', $query);
+        if (preg_match_all('/<\w+>/', $check, $r)) {
+            print "There are some more tables to process : ".join(', ', $r[0])."\n";
         }
         
         return $query;
