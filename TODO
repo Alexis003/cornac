@@ -1,9 +1,10 @@
 rename 'constante' in _constant
 rename mon_log into my_log...
-make a difference between \c and c (initial \ has meaning...)
+Automat Analyzer sorting in auditeur.php
 
-Add a way to display code within cornac
-Exploiter les analyseurs
+Add unit tests for inventaires (through other output format?)
+
+Add a way to display code within cornac (Through PHP COde Browser? Under work with JMF)
 
 [cornac]
 Have a tar.gz packaged automatically (create a phing build)
