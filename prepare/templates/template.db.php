@@ -494,7 +494,7 @@ class template_db extends template {
         if (!is_null($f = $node->getInit())) {
             $tags['init'][] = $this->display($f, $level + 1);
         }
-        if (!is_null($f = $node->getFin())) {
+        if (!is_null($f = $node->getEnd())) {
             $tags['end'][] = $this->display($f, $level + 1);
         }
         if (!is_null($f = $node->getIncrement())) {

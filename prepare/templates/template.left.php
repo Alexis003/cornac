@@ -117,7 +117,7 @@ class template_left extends template {
     function display__for($node, $niveau) {
         
         $this->display($node->getInit(), $niveau + 1);
-        $this->display($node->getFin(), $niveau + 1);
+        $this->display($node->getEnd(), $niveau + 1);
         $this->display($node->getIncrement(), $niveau + 1);
         $this->display($node->getBlock(), $niveau + 1);
     }

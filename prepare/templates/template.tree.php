@@ -251,7 +251,7 @@ class template_tree extends template {
     function display__for($node, $level) {
         print str_repeat('  ', $level).get_class($node)." \n";
         print str_repeat('  ', $level)."  Init : ".$node->getInit().";\n";
-        print str_repeat('  ', $level)."  Fin  : ".$node->getFin().";\n";
+        print str_repeat('  ', $level)."  End  : ".$node->getEnd().";\n";
         print str_repeat('  ', $level)."  Incr : ".$node->getIncrement().";\n";
         $this->display($node->getBlock(), $level + 1);
     }

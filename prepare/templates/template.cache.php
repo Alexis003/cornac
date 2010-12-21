@@ -453,7 +453,7 @@ class template_cache extends template {
             $this->display($f, $level + 1);
             $node->cache .= $f->cache.'; ';
         }
-        if (!is_null($f = $node->getFin())) {
+        if (!is_null($f = $node->getEnd())) {
             $this->display($f, $level + 1);
             $node->cache .= $f->cache.'; ';
         }

@@ -223,9 +223,9 @@ class template_stats extends template {
             $this->display($init, $niveau + 1);
         }
 
-        $fin = $node->getFin();
-        if (!is_null($fin)) {
-            $this->display($fin, $niveau + 1);
+        $end = $node->getEnd();
+        if (!is_null($end)) {
+            $this->display($end, $niveau + 1);
         }
 
         $increment = $node->getIncrement();

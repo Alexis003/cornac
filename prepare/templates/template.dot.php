@@ -372,7 +372,7 @@ die("cas de l'argument null ou inexistant");
 
     function display__for($node, $level) {
         $node->getInit()->dotId    = $this->getNextId();
-        $node->getFin()->dotId = $this->getNextId();
+        $node->getEnd()->dotId = $this->getNextId();
         $node->getIncrement()->dotId    = $this->getNextId();
         $node->getBlock()->dotId    = $this->getNextId();
         
@@ -380,14 +380,14 @@ die("cas de l'argument null ou inexistant");
         $titre = 'for';
 
         $this->dot_link($node->dotId.":f0", $node->getInit()->dotId);
-        $this->dot_link($node->dotId.":f1", $node->getFin()->dotId);
+        $this->dot_link($node->dotId.":f1", $node->getEnd()->dotId);
         $this->dot_link($node->dotId.":f2", $node->getIncrement()->dotId);
         $this->dot_link($node->dotId.":f3", $node->getBlock()->dotId);
 
         $this->dot_struct($node->dotId, $labels, 'for');
 
         $this->display($node->getInit(), $level + 1);
-        $this->display($node->getFin(), $level + 1);
+        $this->display($node->getEnd(), $level + 1);
         $this->display($node->getIncrement(), $level + 1);
         $this->display($node->getBlock(), $level + 1);
 
