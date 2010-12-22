@@ -37,8 +37,8 @@ class constante extends instruction {
     }
 
     function getRegex(){
-        return array('constante_normal_regex',
-                     'constante_magique_regex',
+        return array('constant_normal_regex',
+                     'constant_magical_regex',
                     );
     }
     
