@@ -18,7 +18,7 @@
  */
 
 class Ext_Mysqli extends functioncalls {
-	protected	$title = 'mysqli functions';
+	protected	$title = 'Mysqli functions';
 	protected	$description = 'Usage of mysqli functions';
 
 	function __construct($mid) {

@@ -18,8 +18,8 @@
  */
 
 class Quality_ExternalLibraries extends modules {
-	protected	$title = 'Bibliothèques courantes';
-	protected	$description = 'Identifie les structures de différentes bibliothèques courantes.';
+	protected	$title = 'Common libraries';
+	protected	$description = 'Spot commonly used libraries.';
 
 	function __construct($mid) {
         parent::__construct($mid);

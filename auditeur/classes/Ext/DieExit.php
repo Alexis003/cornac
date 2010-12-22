@@ -18,8 +18,8 @@
  */
 
 class Ext_DieExit extends functioncalls {
-	protected	$title = 'Die et Exit';
-	protected	$description = 'Liste des fins de scripts type die ou exit';
+	protected	$title = 'Die and Exit';
+	protected	$description = 'List of script endings with die and exit';
 
 	function __construct($mid) {
         parent::__construct($mid);

@@ -18,7 +18,7 @@
  */
 
 class Structures_CaseWithoutBreak extends modules {
-	protected	$title = 'case without break';
+	protected	$title = 'Case without break';
 	protected	$description = 'Check that all case structure has a break case. It should be checked then, even if this may be valid.';
 
 	function __construct($mid) {

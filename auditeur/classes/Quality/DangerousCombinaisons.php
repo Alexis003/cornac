@@ -18,8 +18,8 @@
  */
 
 class Quality_DangerousCombinaisons extends modules {
-	protected	$title = 'Combinaisons dangereuses';
-	protected	$description = 'Liste de files ayant des combinaisons dangereuses d\'elements (ex. $_POST et shell_exec).';
+	protected	$title = 'Dangerous matchings';
+	protected	$description = 'List of file that are combining several dangerous values or structures (ex. $_POST and shell_exec). Probably worth checking.';
 
 	function __construct($mid) {
         parent::__construct($mid);

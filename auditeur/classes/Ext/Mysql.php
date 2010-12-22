@@ -18,7 +18,7 @@
  */
 
 class Ext_Mysql extends functioncalls {
-	protected	$title = 'mysql functions';
+	protected	$title = 'Mysql functions';
 	protected	$description = 'Usage of mysql functions';
 
 	function __construct($mid) {

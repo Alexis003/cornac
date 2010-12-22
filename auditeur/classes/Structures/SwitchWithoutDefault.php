@@ -18,7 +18,7 @@
  */
 
 class Structures_SwitchWithoutDefault extends modules {
-	protected	$title = 'switch without default';
+	protected	$title = 'Switch without default';
 	protected	$description = 'Check that all switch structure has a default case. It should be checked then, even if this may be valid.';
 
 	function __construct($mid) {

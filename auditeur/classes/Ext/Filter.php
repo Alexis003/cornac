@@ -18,7 +18,7 @@
  */
 
 class Ext_Filter extends functioncalls {
-	protected	$title = 'filter functions';
+	protected	$title = 'Filter functions';
 	protected	$description = 'List of all ext/filter functions';
 
 	function __construct($mid) {

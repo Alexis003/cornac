@@ -18,7 +18,7 @@
  */
 
 class Ext_Ereg extends functioncalls {
-	protected	$title = 'ereg functions';
+	protected	$title = 'Ereg functions';
 	protected	$description = 'List of ext/ereg functions';
 
 	function __construct($mid) {

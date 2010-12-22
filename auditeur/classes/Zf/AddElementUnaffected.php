@@ -18,14 +18,13 @@
  */
 
 class Zf_AddElementUnaffected extends modules {
-	protected	$title = 'addElement non affectés ';
-	protected	$description = 'Recherche les utilisations de la méthode addElement qui ne sont pas affectés à une variable';
+	protected	$title = 'Unaffected addElement';
+	protected	$description = 'Look for addElement method whose return value are not affected.';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
 
-// @doc if this analyzer is based on previous result, use this to make sure the results are here
 	function dependsOn() {
 	    return array('addElement');
 	}

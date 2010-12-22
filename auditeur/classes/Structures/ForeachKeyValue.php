@@ -18,8 +18,8 @@
  */
 
 class Structures_ForeachKeyValue extends modules {
-	protected	$title = 'Variables de foreach';
-	protected	$description = 'Liste des variables utilisées comme cle ou valeur dans un foreach';
+	protected	$title = 'Foreach variables';
+	protected	$description = 'List of blind variables used in a foreach';
 
 	function __construct($mid) {
         parent::__construct($mid);

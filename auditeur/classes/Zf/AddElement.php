@@ -18,14 +18,13 @@
  */
 
 class Zf_AddElement extends modules {
-	protected	$title = 'addElement utilisés';
-	protected	$description = 'Recherche les utilisations de la méthode Zf_AddElement';
+	protected	$title = 'Used addElement';
+	protected	$description = 'Line of code using the ZF method AddElement';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
 
-// @doc if this analyzer is based on previous result, use this to make sure the results are here
 	function dependsOn() {
 	    return array();
 	}

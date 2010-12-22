@@ -18,8 +18,8 @@
  */
 
 class Ext_Random extends functioncalls {
-	protected	$title = 'random_functions';
-	protected	$description = 'Usage of Ext_Random function in the code';
+	protected	$title = 'Random_functions';
+	protected	$description = 'Usage of random functions in the code';
 
 	function __construct($mid) {
         parent::__construct($mid);

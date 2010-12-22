@@ -18,7 +18,7 @@
  */
 
 class Ext_Xdebug extends functioncalls {
-	protected	$title = 'xdebug functions';
+	protected	$title = 'Xdebug functions';
 	protected	$description = 'Usage of xdebug functions';
 
 	function __construct($mid) {

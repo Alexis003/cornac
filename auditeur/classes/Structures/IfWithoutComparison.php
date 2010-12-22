@@ -18,7 +18,7 @@
  */
 
 class Structures_IfWithoutComparison extends modules {
-	protected	$title = 'if without comparison';
+	protected	$title = 'If without comparison';
 	protected	$description = 'Spot if conditions without explicit comparison, like if ($x) or if (count($t))';
 
 	function __construct($mid) {
