@@ -18,8 +18,8 @@
  */
 
 class Classes_Properties extends modules {
-	protected	$title = 'Propriétés définies';
-	protected	$description = 'Propriétés définies par une classe';
+	protected	$title = 'Properties';
+	protected	$description = 'Defined properties';
 
 	function __construct($mid) {
         parent::__construct($mid);

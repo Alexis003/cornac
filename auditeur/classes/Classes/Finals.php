@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 class Classes_Finals extends modules {
-	protected	$title = 'final';
+	protected	$title = 'final methods';
 	protected	$description = 'List of final keyword usage. ';
 
 	function __construct($mid) {

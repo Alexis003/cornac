@@ -18,8 +18,8 @@
  */
 
 class Classes_PropertiesUndefined extends modules {
-	protected	$title = 'Propriétés non definies';
-	protected	$description = 'Liste des propriétés utilisées mais pas définies';
+	protected	$title = 'Undefined properties';
+	protected	$description = 'List of used but undefined properties';
 
     function __construct($mid) {
         parent::__construct($mid);

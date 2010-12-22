@@ -18,8 +18,8 @@
  */
 
 class Classes_MethodsDefinition extends modules {
-	protected	$title = 'Définitions de méthodes';
-	protected	$description = 'Liste des défintions de methodes';
+	protected	$title = 'Methods definitions';
+	protected	$description = 'List of defined methods';
 
 	function __construct($mid) {
         parent::__construct($mid);

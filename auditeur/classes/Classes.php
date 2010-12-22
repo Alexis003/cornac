@@ -18,8 +18,8 @@
  */
 
 class classes extends modules_head {
-	protected	$title = 'Title for classes';
-	protected	$description = 'This is the special analyzer classes (default doc).';
+	protected	$title = 'Classes';
+	protected	$description = 'This is the summary analyzer for all classes analyzer.';
 
 	function __construct($mid) {
         parent::__construct($mid);

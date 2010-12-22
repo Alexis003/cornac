@@ -18,14 +18,13 @@
  */
 
 class Classes_This extends modules {
-	protected	$title = 'Utilisation indue de $this';
-	protected	$description = 'Recherche les utilisations de $this hors d\'une classe.';
+	protected	$title = 'Wrong usage of $this';
+	protected	$description = 'List usage of $this variable, outside a class scope. Noone should do this.';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
 
-// @doc if this analyzer is based on previous result, use this to make sure the results are here
 	function dependsOn() {
 	    return array();
 	}

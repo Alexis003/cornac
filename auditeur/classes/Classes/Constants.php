@@ -18,8 +18,8 @@
  */
 
 class Classes_Constants extends modules {
-	protected	$title = 'Constantes de classe';
-	protected	$description = 'Liste des constantes de classes définies';
+	protected	$title = 'Class constants';
+	protected	$description = 'List of class constants, defined in the code';
 
     function __construct($mid) {
         parent::__construct($mid);
@@ -28,7 +28,7 @@ class Classes_Constants extends modules {
 	public function analyse() {
         $this->clean_report();
 
-// @note cas simple : variable -> method
+// @note simple case : variable -> method
         $query = <<<SQL
 SELECT NULL, T1.file, TC.code AS code, T1.id, '{$this->name}', 0
 FROM <tokens> T1 

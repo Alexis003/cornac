@@ -18,8 +18,8 @@
  */
 
 class Constants_Usage extends typecalls {
-	protected	$title = 'Constantes (usage)';
-	protected	$description = 'Liste des constantes utilisées';
+	protected	$title = 'Used constants';
+	protected	$description = 'List of used constants';
 
     function __construct($mid) {
         parent::__construct($mid);

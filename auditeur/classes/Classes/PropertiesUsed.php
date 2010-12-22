@@ -18,8 +18,8 @@
  */
 
 class Classes_PropertiesUsed extends modules {
-	protected	$title = 'Propriétés utilisées';
-	protected	$description = 'Propriétés utilisées par une classe';
+	protected	$title = 'Used properties';
+	protected	$description = 'Properties used in a class';
 
 	function __construct($mid) {
         parent::__construct($mid);
