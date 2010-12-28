@@ -1,5 +1,6 @@
 tests/tokenizeur/scripts/throw.10.test.php
-  codephp <?php 
+  codephp <?php
+
   code : 
       ternaryop ?
       _throw variable $e ? variable $e : _new 

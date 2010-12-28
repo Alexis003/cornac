@@ -1,5 +1,6 @@
 tests/tokenizeur/scripts/throw.9.test.php
-  codephp <?php 
+  codephp <?php
+
   code : 
       _throw 
           parentheses 

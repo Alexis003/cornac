@@ -80,6 +80,7 @@ $tests = array(
 'class.namespace.test.php',
 'class.use.test.php',
 'class.closure.test.php',
+'class.goto.test.php',
 // Prochain tests
 );
 
