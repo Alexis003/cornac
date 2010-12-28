@@ -23,8 +23,14 @@ class shell extends instruction {
     function __construct($expression) {
         parent::__construct(array());
         
-        // @todo accept anything?
-        $this->expression = $expression;
+        foreach($expression as $e) {
+            if ($e->checkClass('sequence')) {
+                $this->expression = array_merge($this->expression, $e->getElements());
+            } else {
+                // @todo accept anything?
+                $this->expression[] = $e;
+            }
+        }
     }
 
     function __toString() {
