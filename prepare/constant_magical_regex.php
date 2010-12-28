@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class constante_magique_regex extends analyseur_regex {
+class constant_magical_regex extends analyseur_regex {
     function __construct() {
         parent::__construct(array());
     }
