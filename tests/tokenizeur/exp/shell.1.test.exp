@@ -1,14 +1,10 @@
-tests/tokenizeur/scripts/shell.1.test.php
+tests/tokenizeur/scripts/affectation.21.test.php
   codephp <?php
 
   code : 
       affectation 
       left : 
           variable $x
-       "=" 
+      268 "<<=" 
       right : 
-          shell 
-          0 : 
-              variable $file
-          1 : 
-              literals  sf 
+          variable $b
