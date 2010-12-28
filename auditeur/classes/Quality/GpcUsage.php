@@ -32,7 +32,9 @@ class Quality_GpcUsage extends modules {
         $query = <<<SQL
 SELECT NULL, T1.file, T1.code AS code, T1.id, '{$this->name}', 0
 FROM <tokens> T1 
-LEFT JOIN <tokens> T2 ON T1.left - 1 = T2.left AND T1.file = T2.file
+LEFT JOIN <tokens> T2 
+    ON T1.left - 1 = T2.left AND 
+       T1.file = T2.file
 WHERE T1.type="variable" AND
       T1.code IN ('\$_GET','\$_SERVER','\$GLOBALS','\$_POST','\$_REQUEST','\$_ENV','\$_COOKIE','\$_SESSION') AND 
       T2.type != '_array'

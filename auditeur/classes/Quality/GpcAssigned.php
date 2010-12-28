@@ -34,18 +34,19 @@ class Quality_GpcAssigned extends modules {
         $query = <<<SQL
 SELECT NULL, T1.file, TC.code, T1.id,'{$this->name}', 0
 FROM <tokens> T1  
-    JOIN <tokens_tags> TT
-ON T1.id = TT.token_id AND TT.type='right'
+JOIN <tokens_tags> TT
+    ON T1.id = TT.token_id AND TT.type='right'
 JOIN <tokens> T2
-ON T2.file = T1.file AND TT.token_sub_id = T2.id
+    ON T2.file = T1.file AND TT.token_sub_id = T2.id
 JOIN <tokens> T3
-ON T3.file = T1.file AND 
-T3.type='_array' AND 
-T3.left between T2.left AND T2.right 
+    ON T3.file = T1.file AND 
+       T3.type='_array' AND 
+       T3.left between T2.left AND T2.right 
 JOIN <tokens_cache> TC
   ON TC.id = T3.id
-WHERE T1.file like "%affectations_gpc%" and T1.type = 'affectation' AND
-TC.code REGEXP '^$gpc_regexp';
+WHERE T1.file like "%affectations_gpc%" AND
+      T1.type = 'affectation' AND
+      TC.code REGEXP '^$gpc_regexp'
 SQL;
         $this->exec_query($query);
 
@@ -53,22 +54,25 @@ SQL;
         $query = <<<SQL
 SELECT NULL, T1.file, TC.code, T1.id,'{$this->name}', 0
 FROM <tokens> T1  
-    JOIN <tokens_tags> TT
-ON T1.id = TT.token_id AND TT.type='right'
+JOIN <tokens_tags> TT
+    ON T1.id = TT.token_id AND 
+       TT.type='right'
 JOIN <tokens> T2
-ON T2.file = T1.file AND TT.token_sub_id = T2.id
+    ON T2.file = T1.file AND 
+       TT.token_sub_id = T2.id
 JOIN <tokens> T3
-ON T3.file = T1.file AND 
-T3.type='variable' AND 
-T3.left between T2.left AND T2.right 
+    ON T3.file = T1.file AND 
+       T3.type='variable' AND 
+       T3.left between T2.left AND T2.right 
 LEFT JOIN <tokens> T4
-ON T4.file = T1.file AND 
-T4.left=T3.left -1 
+    ON T4.file = T1.file AND 
+       T4.left=T3.left -1 
 JOIN <tokens_cache> TC
-  ON TC.id = T3.id
-WHERE T1.file like "%affectations_gpc%" and T1.type = 'affectation' AND
-(T4.type IS NULL OR T4.type != '_array') AND 
-TC.code REGEXP '^$gpc_regexp';
+    ON TC.id = T3.id
+WHERE T1.file like "%affectations_gpc%" AND 
+      T1.type = 'affectation' AND
+      (T4.type IS NULL OR T4.type != '_array') AND 
+      TC.code REGEXP '^$gpc_regexp'
 SQL;
         $this->exec_query_insert('report', $query);
         

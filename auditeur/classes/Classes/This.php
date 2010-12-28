@@ -18,31 +18,27 @@
  */
 
 class Classes_This extends modules {
-	protected	$title = 'Wrong usage of $this';
-	protected	$description = 'List usage of $this variable, outside a class scope. Noone should do this.';
+    protected    $title = 'Wrong usage of $this';
+    protected    $description = 'List usage of $this variable, outside a class scope. Noone should do this.';
 
-	function __construct($mid) {
+    function __construct($mid) {
         parent::__construct($mid);
-	}
+    }
 
-	function dependsOn() {
-	    return array();
-	}
-	
-	public function analyse() {
+    public function analyse() {
         $this->clean_report();
 
-	    $query = <<<SQL
+        $query = <<<SQL
 SELECT NULL, T1.file, T1.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
-WHERE code = '\$this' AND 
-      class = ''      AND
+WHERE code = '\$this'  AND 
+      class = ''       AND
       type = 'variable'
 SQL;
         $this->exec_query_insert('report', $query);
-        
+
         return true;
-	}
+    }
 }
 
 ?>

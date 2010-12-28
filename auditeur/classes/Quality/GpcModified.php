@@ -19,7 +19,7 @@
 
 class Quality_GpcModified extends modules {
 	protected	$title = 'GPC assignations';
-	protected	$description = 'GPC variables being assigned during a script';
+	protected	$description = 'GPC variables being reassigned during the execution of a script';
 
 	function __construct($mid) {
         parent::__construct($mid);

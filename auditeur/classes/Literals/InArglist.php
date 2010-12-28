@@ -96,7 +96,7 @@ SQL;
 
 // @todo make TEMPORARY
 	    $query = <<<SQL
-CREATE  TABLE Literals_InArglist_calls
+CREATE TEMPORARY TABLE Literals_InArglist_calls
 SELECT T3.file, 
        T1.code, 
        T2.id, 
@@ -115,8 +115,7 @@ JOIN <tokens> T4
     ON T4.file = T1.file AND
        T4.level = T3.level + 1 AND
        T4.left BETWEEN T3.left AND T3.right
-WHERE T1.code IN ($in);
-
+WHERE T1.code IN ($in)
 SQL;
         $this->exec_query($query);
 
@@ -124,7 +123,6 @@ SQL;
 DROP TABLES Literals_InArglist_calls, Literals_InArglist_definitions
 SQL;
         $this->exec_query($query);
-// @todo activate this
 
         return true;
 	}

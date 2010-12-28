@@ -36,7 +36,7 @@ FROM <tokens> T1
   ON T2.file = T1.file AND 
   T2.left BETWEEN T1.left AND T1.right 
   AND T2.type='variable'
-WHERE T1.class != 'global' AND T1.type='_var';
+WHERE T1.class != 'global' AND T1.type='_var'
 SQL;
         $this->exec_query_insert('report',$query);
 

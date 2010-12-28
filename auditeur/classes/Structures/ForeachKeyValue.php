@@ -25,11 +25,6 @@ class Structures_ForeachKeyValue extends modules {
         parent::__construct($mid);
 	}
 
-// @doc if this analyzer is based on previous result, use this to make sure the results are here
-	function dependsOn() {
-	    return array();
-	}
-	
 	public function analyse() {
         $this->clean_report();
 
@@ -44,7 +39,7 @@ JOIN <tokens> T2
     ON T1.file = T2.file AND
        TT.token_sub_id = T2.id AND
        T2.type = 'variable'
-WHERE T1.type='_foreach';
+WHERE T1.type='_foreach'
 SQL;
         $this->exec_query_insert('report',$query);
 
@@ -62,7 +57,7 @@ JOIN <tokens> T3
     ON T1.file = T3.file   AND
        T2.left + 1 = T3.left AND
        T3.type = 'variable'
-WHERE T1.type='_foreach';
+WHERE T1.type='_foreach'
 SQL;
         $this->exec_query_insert('report',$query);
 
@@ -76,7 +71,7 @@ JOIN <tokens_tags> TT
 JOIN <tokens> T2
     ON T1.file = T2.file AND
        TT.token_sub_id = T2.id
-WHERE T1.type='_foreach';
+WHERE T1.type='_foreach'
 SQL;
         $this->exec_query_insert('report',$query);
         

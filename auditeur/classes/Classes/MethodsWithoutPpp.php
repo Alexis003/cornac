@@ -25,11 +25,6 @@ class Classes_MethodsWithoutPpp extends modules {
         parent::__construct($mid);
 	}
 
-// @doc if this analyzer is based on previous result, use this to make sure the results are here
-	function dependsOn() {
-	    return array();
-	}
-
 	public function analyse() {
         $this->clean_report();
 
@@ -37,7 +32,7 @@ class Classes_MethodsWithoutPpp extends modules {
 SELECT NULL, T1.file, T1.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 LEFT JOIN <tokens> T2
-    ON T2.file = T1.file AND
+    ON T2.file = T1.file        AND
        T2.type = 'token_traite' AND
        (T2.left = T1.left + 1 OR 
         T2.left = T1.left + 3 OR 
@@ -46,7 +41,7 @@ LEFT JOIN <tokens> T2
 WHERE T1.type='_function' AND
       T1.class!= ''
 GROUP BY T1.class, T1.code
-HAVING  SUM(IF(T2.code IN ('protected','private','public'), 1, 0)) = 0
+HAVING SUM(IF(T2.code IN ('protected','private','public'), 1, 0)) = 0
 SQL;
         $this->exec_query_insert('report', $query);
 

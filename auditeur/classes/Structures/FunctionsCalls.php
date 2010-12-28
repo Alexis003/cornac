@@ -25,15 +25,9 @@ class Structures_FunctionsCalls extends modules {
         parent::__construct($mid);
 	}
 
-// @doc if this analyzer is based on previous result, use this to make sure the results are here
-	function dependsOn() {
-	    return array();
-	}
-
 	public function analyse() {
         $this->clean_report();
 
-// @todo of course, update this useless query. :)
 	    $query = <<<SQL
 SELECT DISTINCT NULL, T1.file, T1.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1

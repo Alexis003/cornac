@@ -31,12 +31,12 @@ class Classes_hierarchy extends modules {
         $this->clean_report();
 
         $query = <<<SQL
-INSERT INTO <report_dot> 
-    SELECT distinct T2.code, T2.class,'', '{$this->name}'
-    FROM <tokens_tags> TT
-    JOIN <tokens> T2
-       ON TT.token_sub_id = T2.id
-    WHERE TT.type = 'extends';
+INSERT INTO <report_dot>
+SELECT distinct T2.code, T2.class,'', '{$this->name}'
+FROM <tokens_tags> TT
+JOIN <tokens> T2
+   ON TT.token_sub_id = T2.id
+WHERE TT.type = 'extends'
 SQL;
     
         $this->exec_query($query);

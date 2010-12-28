@@ -31,7 +31,7 @@ class Functions_Inclusions extends modules {
         $query = <<<SQL
 SELECT NULL, T1.file, T1.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
-WHERE T1.type = 'inclusion';
+WHERE T1.type = 'inclusion'
 SQL;
         $this->exec_query_insert('report', $query);
 

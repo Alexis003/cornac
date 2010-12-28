@@ -18,7 +18,7 @@
  */
 
 class Structures_FunctionsCallsLink extends modules {
-	protected	$title = 'Functioncalls through the code';
+	protected	$title = 'Functions related by call';
 	protected	$description = 'List of functioncalls, from within another function';
 
 	function __construct($mid) {

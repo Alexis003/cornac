@@ -26,7 +26,7 @@ class Classes_DoubleDeclaration extends modules {
 	}
 	
 	function dependsOn() {
-        return array('Classes_Definitions');	
+        return array('Classes_Definitions');
 	}
 
 	public function analyse() {
@@ -44,15 +44,5 @@ SQL;
         return true;
 	}
 }
-
-/*
-SELECT NULL, file, TR.element,  TR.token_id, '{$this->name}', 0
-    FROM <report> TR
-    WHERE module='Classes_Definitions'                            AND
-         TR.element IN (SELECT element FROM <report> TR
-                            WHERE module='Classes_Definitions'
-                            GROUP BY element 
-                            HAVING count(*) > 1);
-*/
 
 ?>

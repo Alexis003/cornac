@@ -48,7 +48,7 @@ SQL;
 SELECT TRD.a
 FROM <report>  TR1
 JOIN <report_dot> TRD
-      ON TRD.b = TR1.element
+    ON TRD.b = TR1.element
 WHERE TR1.module = 'Classes_News' AND 
       TRD.module = 'Classes_Hierarchy'
 SQL;

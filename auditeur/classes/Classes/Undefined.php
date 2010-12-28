@@ -18,33 +18,34 @@
  */
 
 class Classes_Undefined extends modules {
-	protected	$title = 'Undefined classes';
-	protected	$description = 'List of classes used, but never defined. PHP classes are omitted.';
+    protected    $title = 'Undefined classes';
+    protected    $description = 'List of classes used, but never defined. PHP classes are omitted.';
 
-	function __construct($mid) {
+    function __construct($mid) {
         parent::__construct($mid);
-	}
+    }
 
-	function dependsOn() {
-	    return array('Classes_Definitions','Classes_News');
-	}
-	
-	public function analyse() {
+    function dependsOn() {
+        return array('Classes_Definitions','Classes_News');
+    }
+    
+    public function analyse() {
         $this->clean_report();
 
         $in = "'".join("','", modules::getPHPClasses())."'";
         $query = <<<SQL
 SELECT NULL, TR1.file, TR1.element AS code, TR1.id, '{$this->name}', 0
-    FROM <report>  TR1
-    LEFT JOIN <report>  TR2 
-        ON TR1.element = TR2.element AND TR2.module='Classes_Definitions' 
-    WHERE TR1.module = 'Classes_News' AND 
-          TR2.element IS NULL AND
-          TR1.element NOT IN ($in)
+FROM <report> TR1
+LEFT JOIN <report>  TR2 
+    ON TR1.element = TR2.element  AND 
+       TR2.module='Classes_Definitions' 
+WHERE TR1.module = 'Classes_News' AND 
+      TR2.element IS NULL         AND
+      TR1.element NOT IN ($in)
 SQL;
         $this->exec_query_insert('report', $query);
         return true;
-	}
+    }
 }
 
 ?>

@@ -18,8 +18,8 @@
  */
 
 class Structures_Parenthesis extends modules {
-    protected    $title = 'Parentheses';
-    protected    $description = 'Utilisation des parenthèses';
+    protected    $title = 'Parenthesis';
+    protected    $description = 'Parenthesis usage';
 
     function __construct($mid) {
         parent::__construct($mid);
@@ -33,7 +33,7 @@ SELECT NULL, T1.file, T2.code,  T1.id, 'parentheses', 0
 FROM <tokens> T1
 JOIN <tokens_cache> T2
     ON T1.id = T2.id
-WHERE T1.type = 'parentheses';
+WHERE T1.type = 'parentheses'
 SQL;
         $this->exec_query_insert('report', $query);
 

@@ -18,7 +18,7 @@
  */
 
 class Classes_MethodsCount extends modules {
-	protected	$title = 'Method count';
+	protected	$title = 'Methods count';
 	protected	$description = 'Method counts by classes';
 
 	function __construct($mid) {

@@ -41,12 +41,12 @@ FROM <report> TR1
 JOIN <tokens> T1 
     ON T1.id = TR1.token_id
 JOIN  <tokens> T2
-    ON T1.file = T2.file AND
-       T1.class = T2.class AND
-       T1.scope = T2.scope AND
+    ON T1.file = T2.file     AND
+       T1.class = T2.class   AND
+       T1.scope = T2.scope   AND
        T2.code = TR1.element AND
        T2.left > T1.right
-WHERE TR1.module='Structures_ForeachKeyValue';
+WHERE TR1.module='Structures_ForeachKeyValue'
 SQL;
         $this->exec_query_insert('report', $query);
         

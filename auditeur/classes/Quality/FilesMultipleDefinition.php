@@ -37,11 +37,10 @@ SQL;
         $res = $this->exec_query($query);
 
 	    $query = <<<SQL
-INSERT INTO <report> 
-    SELECT NULL, T1.file, T1.context, 0, '{$this->name}', 0
-    FROM Quality_FilesMultipleDefinition T1
+SELECT NULL, T1.file, T1.context, 0, '{$this->name}', 0
+FROM Quality_FilesMultipleDefinition T1
 SQL;
-        $res = $this->exec_query($query);
+        $res = $this->exec_query_insert($query);
 
 	    $query = <<<SQL
 DROP TABLE Quality_FilesMultipleDefinition

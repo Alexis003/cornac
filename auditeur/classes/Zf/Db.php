@@ -45,7 +45,7 @@ JOIN <tokens> T2
        T2.code = 'where'
 JOIN <tokens_cache> TC
     ON T1.id = TC.id
-WHERE T1.type = 'method';
+WHERE T1.type = 'method'
 SQL;
         $this->exec_query_insert('report', $query);
 

@@ -18,8 +18,9 @@
  */
 
 class Quality_GpcConcatenation extends modules {
-	protected	$title = 'Concatenation de variables GPC';
-	protected	$description = 'Concatenation utilisant une des variables GPC (sécurité!)';
+	protected	$title = 'Concatenated GPC';
+	protected	$description = 'Concatenations using one of the GPC varaibles : this will probably lead to Security problems';
+	protected   $tags = array('security');
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -34,12 +35,11 @@ class Quality_GpcConcatenation extends modules {
 SELECT NULL, T1.file, T2.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens> T2
-ON T1.file= T2.file AND 
-    T2.type='variable' AND 
-    T2.left BETWEEN T1.left AND T1.right AND
-    T2.code REGEXP '^$gpc_regexp'
+    ON T1.file= T2.file AND 
+       T2.type='variable' AND 
+       T2.left BETWEEN T1.left AND T1.right AND
+       T2.code REGEXP '^$gpc_regexp'
 WHERE T1.type='concatenation'
-
 SQL;
         $this->exec_query_insert('report', $query);
 

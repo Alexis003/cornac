@@ -25,11 +25,6 @@ class Zf_Classes extends modules {
         parent::__construct($mid);
 	}
 
-// @doc if this analyzer is based on previous result, use this to make sure the results are here
-	function dependsOn() {
-	    return array();
-	}
-	
 	public function analyse() {
         $this->clean_report();
 
@@ -47,7 +42,7 @@ JOIN <tokens> T2
     ON TT.token_sub_id = T2.id AND
        T1.file = T2.file AND 
        T2.code IN ($in)
-WHERE T1.type='_class'; 
+WHERE T1.type='_class'
 SQL;
         $this->exec_query_insert('report', $query);
         

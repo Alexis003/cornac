@@ -40,7 +40,6 @@ WHERE scope IN ( '__construct','__toString','__destruct',
                  ) 
        OR scope = class 
 GROUP BY file, class, scope;
-
 SQL;
     $this->exec_query_insert('report', $query);
 
@@ -49,7 +48,6 @@ SELECT NULL, T1.file, T1.scope, T1.id, '{$this->name}' , 0
 FROM <tokens> T1
 WHERE scope IN ( '__autoload' ) AND 
       T1.type='_function'
-
 SQL;
         $this->exec_query_insert('report', $query);
 	}

@@ -18,22 +18,18 @@
  */
 
 class Classes_ToStringNoArg extends modules {
-	protected	$title = 'ToString without arguments';
-	protected	$description = 'Spot __toString methods with arguments (Incompatible change for PHP 5.3)';
-	protected	$tags = array('PHP_5.3');
+    protected    $title = 'ToString without arguments';
+    protected    $description = 'Spot __toString methods with arguments (Incompatible change for PHP 5.3)';
+    protected    $tags = array('PHP_5.3');
 
-	function __construct($mid) {
+    function __construct($mid) {
         parent::__construct($mid);
-	}
+    }
 
-	function dependsOn() {
-	    return array();
-	}
-
-	public function analyse() {
+    public function analyse() {
         $this->clean_report();
 
-	    $query = <<<SQL
+        $query = <<<SQL
 SELECT NULL, T1.file, T1.class, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens> T2
@@ -41,18 +37,18 @@ JOIN <tokens> T2
        T2.left BETWEEN T1.left AND T1.right AND
        T2.type = 'arglist'
 LEFT JOIN <tokens> T3
-    ON T3.file = T1.file AND
+    ON T3.file = T1.file     AND
        T3.left = T2.left + 1 AND
        T3.type = 'token_traite'
-WHERE T1.type = '_function' AND
+WHERE T1.type = '_function'  AND
       T1.code = '__toString' AND
-      T1.class != '' AND
+      T1.class != ''         AND
       T3.id IS NULL 
 SQL;
         $this->exec_query_insert('report', $query);
 
         return true;
-	}
+    }
 }
 
 ?>

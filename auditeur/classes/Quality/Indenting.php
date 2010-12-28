@@ -30,7 +30,7 @@ class Quality_Indenting extends modules {
 
 /* @example
 +---------+----------+--------------------------------------------------------------+
-| id      | COUNT(*) | GROUP_CONCAT(P.type ORDER BY P.left)                       |
+| id      | COUNT(*) | GROUP_CONCAT(P.type ORDER BY P.left)                         |
 +---------+----------+--------------------------------------------------------------+
 | 1754692 |        1 | ifthen                                                       |
 | 1754718 |        1 | ifthen                                                       |
@@ -41,12 +41,13 @@ class Quality_Indenting extends modules {
 */
         $query = <<<SQL
 SELECT NULL, N.file, GROUP_CONCAT(P.type ORDER BY P.left) AS code, N.id, '{$this->name}', 0
-FROM <tokens> N, <tokens> P 
-WHERE N.type IN ('ifthen','_class','_function','_while','_dowhile','_foreach','_case','_for','_switch') AND
-      N.file = P.file AND
-      N.left BETWEEN P.left AND P.right AND
-      P.type IN ('ifthen','_class','_function','_while','_dowhile','_foreach','_case','_for','_switch')
-      GROUP BY N.id
+FROM <tokens> P
+JOIN <tokens> N
+    ON P.type IN ('ifthen','_class','_function','_while','_dowhile','_foreach','_case','_for','_switch') AND 
+       N.left BETWEEN P.left AND P.right AND
+       N.type IN ('ifthen','_class','_function','_while','_dowhile','_foreach','_case','_for','_switch') AND
+       N.file = P.file
+GROUP BY N.id
 SQL;
         $this->exec_query_insert('report', $query);
 

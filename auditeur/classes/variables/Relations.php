@@ -46,7 +46,7 @@ JOIN <tokens> T3
     ON T3.file = T1.file AND T3.id = TT2.token_sub_id
 JOIN <tokens> T4
     ON T4.file = T1.file AND T4.left BETWEEN T3.left AND T3.right AND T4.type='variable'
-WHERE T1.type = 'affectation'; 
+WHERE T1.type = 'affectation'
 SQL;
         $this->exec_query($query);
 

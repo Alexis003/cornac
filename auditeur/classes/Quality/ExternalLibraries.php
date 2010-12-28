@@ -52,7 +52,7 @@ JOIN <tokens> T2
     ON TT.token_sub_id = T2.id AND
        T1.file = T2.file AND 
        T2.code IN ($in)
-WHERE T1.type='_class'; 
+WHERE T1.type='_class'
 SQL;
             $this->exec_query_insert('report', $query);
 
@@ -60,7 +60,7 @@ SQL;
             $query = <<<SQL
 SELECT NULL, TR.file, '$ext', TR.id, '{$this->name}', 0
 FROM <report> TR
-WHERE TR.element IN ($in); 
+WHERE TR.element IN ($in)
 SQL;
             $this->exec_query_insert('report', $query);
         }

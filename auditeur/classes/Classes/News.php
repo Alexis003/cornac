@@ -19,7 +19,7 @@
 
 class Classes_News extends modules {
 	protected	$title = 'New';
-	protected	$description = 'Liste des utilisations de l\'opérateur';
+	protected	$description = 'Use of new opertor in the code. ';
 
 	function __construct($mid) {
         parent::__construct($mid);

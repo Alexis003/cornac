@@ -37,7 +37,7 @@ JOIN <tokens_tags> TT
 JOIN <tokens> T2 
     ON TT.token_sub_id = T2.id
 WHERE T1.type='_function'      AND 
-      TT.type = 'name' AND
+      TT.type = 'name'         AND
       T1.class != ''
 SQL;
 

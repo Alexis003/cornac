@@ -25,15 +25,9 @@ class Php_ArrayDefinitions extends modules {
         parent::__construct($mid);
 	}
 
-// @doc if this analyzer is based on previous result, use this to make sure the results are here
-	function dependsOn() {
-	    return array( );
-	}
-	
 	public function analyse() {
         $this->clean_report();
 
-// @todo of course, update this useless query. :)
 	    $query = <<<SQL
 SELECT NULL, T2.file, CONCAT(SUM(IF(T3.type='token_traite',0,1)), ' elements'), T2.id, '{$this->name}', 0
 FROM <tokens> T1
@@ -47,7 +41,7 @@ JOIN <tokens> T3
 WHERE T1.code='array' AND 
        T2.type='arglist' AND
        T2.right - T2.left > 1
-GROUP BY T2.id;
+GROUP BY T2.id
 SQL;
         $this->exec_query_insert('report', $query);
         
