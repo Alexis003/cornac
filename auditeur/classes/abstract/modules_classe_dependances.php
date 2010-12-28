@@ -25,17 +25,18 @@ class modules_classe_dependances extends modules {
 	public function analyse() {
         $this->clean_report();
 
+// @note heritage 
 	    $query = <<<SQL
 SELECT NULL, T1.file, T2.code AS code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens_tags> TT 
-ON T1.id = TT.token_id AND
-   TT.type='extends'
+    ON T1.id = TT.token_id     AND
+       TT.type='extends'
 JOIN <tokens> T2
-ON T2.id = TT.token_sub_id AND
-   T2.file=T1.file
-WHERE T1.type = '_class' AND
-T2.code IN ("{$this->in}")
+    ON T2.id = TT.token_sub_id AND
+       T2.file=T1.file
+WHERE T1.type = '_class'       AND
+      T2.code IN ("{$this->in}")
 SQL;
         $this->exec_query_insert('report', $query);
 
