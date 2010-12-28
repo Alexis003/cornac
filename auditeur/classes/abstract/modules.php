@@ -166,9 +166,9 @@ abstract class modules {
     }
 
     function exec_query_insert($report, $query) {
-        $this->exec_init_tmp_table($report);
+        $tmp = $this->exec_init_tmp_table($report);
         
-        $query = "INSERT INTO tmp_report $query";
+        $query = "INSERT INTO $tmp $query";
         $this->exec_query($query);
         
         $this->exec_flush($report);
@@ -213,9 +213,20 @@ CREATE TEMPORARY TABLE IF NOT EXISTS tmp_report (
   KEY `module` (`module`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1');
 
+            return 'tmp_report';
 // @todo handle nicely when tmp_report is already here!
         } elseif ($report == 'report_dot') {
-            // @todo prepare this table! 
+        // @note be aware that tmp_table need id as NULL column, so auto_increment is managed in the report table
+        $this->mid->query('
+CREATE TABLE `tmp_report_dot` (
+  `a` varchar(255) NOT NULL,
+  `b` varchar(255) NOT NULL,
+  `cluster` varchar(255) NOT NULL DEFAULT "",
+  `module` varchar(255) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1');
+
+// @todo handle nicely when tmp_report is already here!
+            return 'tmp_report_dot';
         } else {
             print "\$report is not (report or report_dot) : $report\n\n";
             die();
