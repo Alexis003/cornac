@@ -265,6 +265,11 @@ class template_stats extends template {
         }
     }
 
+    function display__goto($node, $niveau) {
+        $this->addStat(__FUNCTION__);
+        $this->display($node->getLabel(), $niveau + 1);
+    }
+
     function display_functioncall($node, $niveau) {
         $this->addStat(__FUNCTION__);
 
@@ -304,6 +309,11 @@ class template_stats extends template {
     function display_invert($node, $niveau) {
         $this->addStat(__FUNCTION__);
         $this->display($node->getExpression(), $niveau + 1);
+    }
+
+    function display_label($node, $niveau) {
+        $this->addStat(__FUNCTION__);
+        $this->display($node->getName(), $niveau + 1);
     }
 
     function display_logique($node, $niveau) {

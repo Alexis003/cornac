@@ -539,6 +539,11 @@ class template_cache extends template {
         return $this->savenode($node);    
     }
 
+    function display__goto($node, $level) {
+        $node->cache = 'GOTO '.$node->getLabel();
+        return $this->savenode($node);
+    }
+
     function display_ifthen($node, $level) {
         $conditions = $node->getCondition();
         $thens = $node->getThen();
@@ -588,6 +593,13 @@ class template_cache extends template {
         $this->display($expression, $level + 1);
 
         $node->cache = ' '.$expression->cache;
+        return $this->savenode($node);        
+    }
+
+    function display_label($node, $level) {
+        $name = $node->getName();
+
+        $node->cache = ' '.$name;
         return $this->savenode($node);        
     }
 

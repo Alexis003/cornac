@@ -584,6 +584,17 @@ class template_db extends template {
         return $this->savenode($node, $level);    
     }
 
+    function display__goto($node, $level) {
+        $node->myId = $this->getNextId();
+        $node->myleft = $this->getIntervalleId();
+        
+        $label = $node->getLabel();
+        $this->display($label, $level + 1);
+
+        $node->myright = $this->getIntervalleId();
+        return $this->savenode($node, $level);    
+    }
+
     function display_ifthen($node, $level) {
         $node->myId = $this->getNextId();
         $node->myleft = $this->getIntervalleId();
@@ -649,6 +660,16 @@ class template_db extends template {
         
         $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);        
+    }
+
+    function display_label($node, $level) {
+        $node->myId = $this->getNextId();
+        $node->myleft = $this->getIntervalleId();
+        
+        $this->display($node->getName(), $level + 1);
+        
+        $node->myright = $this->getIntervalleId();
+        return $this->savenode($node, $level);
     }
 
     function display_literals($node, $level) {

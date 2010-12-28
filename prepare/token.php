@@ -520,6 +520,8 @@ class Token {
                        'literals',
                        'inclusion',
                        '_class',
+                       '_goto',
+                       'label',
                        '_interface',
                        'property',
                        '_static',

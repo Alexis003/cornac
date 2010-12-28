@@ -284,6 +284,10 @@ class template_tree extends template {
         }
     }
 
+    function display__goto($node, $level) {
+        print str_repeat('  ', $level).'GOTO '.$node->getLabel()." \n";
+    }
+
     function display____halt_compiler($node, $level) {
         print str_repeat('  ', $level).get_class($node)." \n";
     }
@@ -322,6 +326,10 @@ class template_tree extends template {
     function display_invert($node, $level) {
         print str_repeat('  ', $level).get_class($node)." ~\n";
         $this->display($node->getExpression(), $level + 1);
+    }
+
+    function display_label($node, $level) {
+        print str_repeat('  ', $level).' '.$node->getName()." : \n";
     }
 
     function display_logique($node, $level) {
