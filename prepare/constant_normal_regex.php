@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class constante_normal_regex extends analyseur_regex {
+class constant_normal_regex extends analyseur_regex {
     function __construct() {
         parent::__construct(array());
     }
@@ -32,7 +32,7 @@ class constante_normal_regex extends analyseur_regex {
         
         if ($t->checkNotClass('Token')) { return false; } 
         if ($t->checkNotToken(array(T_STRING, T_DIR, T_FILE, T_FUNC_C, T_LINE, T_METHOD_C, T_NS_C, T_CLASS_C))) { return false; }
-        if ($t->getNext()->checkCode(array('(','::','{', '\\'))) { return false; }
+        if ($t->getNext()->checkCode(array(':','(','::','{', '\\'))) { return false; }
         if ($t->getNext()->checkToken(array(T_VARIABLE, T_AS))) { return false; }
         if ($t->getNext()->checkClass(array('variable','affectation'))) { return false; }
 
@@ -42,8 +42,11 @@ class constante_normal_regex extends analyseur_regex {
                                             T_IMPLEMENTS, 
                                             T_NAMESPACE, 
                                             T_USE,
-                                            T_OPEN_TAG,
-                                            T_AS))) { return false; }
+                                            T_AS,
+                                            T_GOTO))) { return false; }
+
+        if ($t->getPrev()->checkToken(array(T_OPEN_TAG)) && 
+            $t->getPrev()->checkCode('<?')) { return false; }
 
         mon_log(get_class($t)." => ".__CLASS__);
         return true; 
