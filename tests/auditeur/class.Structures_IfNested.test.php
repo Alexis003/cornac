@@ -1,4 +1,4 @@
-<?php
+<?php 
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -16,21 +16,17 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
+
 include_once('Auditeur_Framework_TestCase.php');
 
-class Constantes_Definitions_Test extends Auditeur_Framework_TestCase
+class Structures_IfNested_Test extends Auditeur_Framework_TestCase
 {
-    public function testVariables()  { 
-        $this->expected = array(
-            'true','FALSE','__METHOD__','__FILE__','CONSTANTE_USER',
-            'CONSTANTE_FONCTION1','CONSTANTE_FONCTION2','CONSTANTE_FONCTION3',
-            'CONSTANTE_ARRAY1','CONSTANTE_ARRAY2','CONSTANTE_ARRAY3',
-            'CONSTANTE_TABLEAU',
-        );
-        $this->unexpected = array('fonction','array');
-        
+    public function testStructures_IfNested()  {
+        $this->expected = array( '');
+        $this->unexpected = array(/*'',*/);
+
         parent::generic_test();
+//        parent::generic_counted_test();
     }
 }
-
 ?>

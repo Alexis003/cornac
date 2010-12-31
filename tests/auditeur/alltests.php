@@ -20,7 +20,6 @@
 require_once 'PHPUnit/Autoload.php'; 
 
 $tests = array( 
-'class.Constantes_Definitions.test.php',
 'class.Quality_Indenting.test.php',
 'class.Classes_Abstracts.test.php',
 'class.Classes_Definitions.test.php',
@@ -141,6 +140,9 @@ $tests = array(
 'class.Literals_Definitions.test.php',
 'class.Classes_PropertiesChained.test.php',
 'class.Php_Namespace.test.php',
+'class.Structures_IfNested.test.php',
+'class.Quality_GpcAssigned.test.php',
+'class.Quality_ClassesNotInSameFile.test.php',
 // new tests
 );
 
