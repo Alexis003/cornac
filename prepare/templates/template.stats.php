@@ -187,7 +187,7 @@ class template_stats extends template {
          $this->display($node->getConstant(), $niveau + 1);
     }
 
-    function display_constante_classe($node, $niveau) {
+    function display_constante_class($node, $niveau) {
         $this->addStat(__FUNCTION__);
          $this->display($node->getName(), $niveau + 1);
          $this->display($node->getConstante(), $niveau + 1);
@@ -340,7 +340,7 @@ class template_stats extends template {
     }
 
     function display__new($node, $niveau) {
-         print str_repeat('  ', $niveau).' new '.$node->getClasse()." ".$node->getArgs()." \n";
+         print str_repeat('  ', $niveau).' new '.$node->getClass()." ".$node->getArgs()." \n";
     }
 
     function display_noscream($node, $niveau) {

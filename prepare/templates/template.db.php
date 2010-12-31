@@ -304,7 +304,7 @@ class template_db extends template {
         $node->myId = $this->getNextId();
         $node->myleft = $this->getIntervalleId();
         $node->setCode('');
-        $classe_precedent = $this->class;
+        $class_precedent = $this->class;
         $this->class = $node->getName()->getCode();
 
         $tags = array();
@@ -332,7 +332,7 @@ class template_db extends template {
         $node->myright = $this->getIntervalleId();
         $this->tags = $tags;
         $res = $this->savenode($node, $level);
-        $this->class = $classe_precedent;
+        $this->class = $class_precedent;
         return $res;
     }
 
@@ -413,8 +413,8 @@ class template_db extends template {
         $node->myId = $this->getNextId();
         $node->myleft = $this->getIntervalleId();
 
-        $classe = $node->getClass();
-        $this->display($classe, $level + 1);
+        $class = $node->getClass();
+        $this->display($class, $level + 1);
         $method = $node->getConstant();
         $this->display($method, $level + 1);
 
@@ -422,12 +422,12 @@ class template_db extends template {
         return $this->savenode($node, $level);
     }
 
-    function display_constante_classe($node, $level) {
+    function display_constante_class($node, $level) {
         $node->myId = $this->getNextId();
         $node->myleft = $this->getIntervalleId();
 
-        $classe = $node->getName();
-        $this->display($classe, $level + 1);
+        $class = $node->getName();
+        $this->display($class, $level + 1);
         $method = $node->getConstante();
         $this->display($method, $level + 1);
 
@@ -635,7 +635,7 @@ class template_db extends template {
     function display__interface($node, $level) {
         $node->myId = $this->getNextId();
         $node->myleft = $this->getIntervalleId();
-        $classe_precedent = $this->class;
+        $class_precedent = $this->class;
         $this->class = $node->getName()->getCode();
 
         $e = $node->getExtends();
@@ -648,7 +648,7 @@ class template_db extends template {
 
         $node->myright = $this->getIntervalleId();
         $res = $this->savenode($node, $level);
-        $this->class = $classe_precedent;
+        $this->class = $class_precedent;
         return $res;
     }
 
@@ -722,7 +722,7 @@ class template_db extends template {
         $node->myleft = $this->getIntervalleId();
 
         $tags = array();
-        $tags['name'][] = $this->display($node->getClasse(), $level + 1);
+        $tags['name'][] = $this->display($node->getClass(), $level + 1);
         $tags['args'][] = $this->display($node->getArgs(), $level + 1);
         
         $node->myright = $this->getIntervalleId();

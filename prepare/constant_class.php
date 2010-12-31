@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class constante_classe extends token {
+class constante_class extends token {
     protected $name = null;
     protected $constante = null;
     
@@ -50,7 +50,7 @@ class constante_classe extends token {
     }
 
     function getRegex(){
-        return array('constante_classe_regex',
+        return array('constante_class_regex',
                      );
     }
 

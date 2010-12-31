@@ -219,7 +219,7 @@ class template_tree extends template {
          print str_repeat('  ', $level)."".$node->getClass()."::".$node->getConstant()." )\n";    
     }
 
-    function display_constante_classe($node, $level) {
+    function display_constante_class($node, $level) {
          print str_repeat('  ', $level).get_class($node)." ";
          print str_repeat('  ', $level)."".$node->getName()." = ".$node->getConstante()." \n";    
     }
@@ -365,7 +365,7 @@ class template_tree extends template {
     }
 
     function display__new($node, $level) {
-         print str_repeat('  ', $level).' new '.$node->getClasse()." ".$node->getArgs()." \n";
+         print str_repeat('  ', $level).' new '.$node->getClass()." ".$node->getArgs()." \n";
     }
 
     function display__namespace($node, $level) {

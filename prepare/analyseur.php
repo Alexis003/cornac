@@ -65,7 +65,7 @@ class analyseur {
                                   'opappend',
                                   'constante',
                                   'constante_static',
-                                  'constante_classe',
+                                  'constante_class',
                                   '_global',
                                   '_return',
                                   'arginit',

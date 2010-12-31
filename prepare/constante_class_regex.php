@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class constante_classe_regex extends analyseur_regex {
+class constante_class_regex extends analyseur_regex {
     function __construct() {
         parent::__construct(array());
     }
@@ -47,8 +47,8 @@ class constante_classe_regex extends analyseur_regex {
                             $repl = $var->getNext();
                             $var = $var->getNext(3);
                             
-                            $regex = new modele_regex('constante_classe',$args, $remove);
-                            Token::applyRegex($repl, 'constante_classe', $regex);
+                            $regex = new modele_regex('constante_class',$args, $remove);
+                            Token::applyRegex($repl, 'constante_class', $regex);
                             continue;
                         }
                     // @note if we reach here, there is a problem

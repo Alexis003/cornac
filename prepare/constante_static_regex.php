@@ -31,8 +31,7 @@ class constante_static_regex extends analyseur_regex {
         if (!$t->hasPrev() ) { return false; }
         if (!$t->hasNext() ) { return false; }
 
-        if ( $t->checkToken(T_DOUBLE_COLON) && 
-            ($t->getPrev()->checkToken(array(T_STRING, T_STATIC)) || 
+        if (($t->getPrev()->checkToken(array(T_STRING, T_STATIC)) || 
              $t->getPrev()->checkClass(array('variable','_array','_nsname'))) &&
              $t->getNext()->checkClass('constante')
             ) {

@@ -189,7 +189,7 @@ class template_left extends template {
     }
 
     function display__new($node, $niveau) {
-         print str_repeat('  ', $niveau).' new '.$node->getClasse()." ".$node->getArgs()." \n";
+         print str_repeat('  ', $niveau).' new '.$node->getClass()." ".$node->getArgs()." \n";
     }
 
     function display_noscream($node, $niveau) {

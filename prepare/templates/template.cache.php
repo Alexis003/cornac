@@ -386,22 +386,22 @@ class template_cache extends template {
     }
 
     function display_constante_static($node, $level) {
-        $classe = $node->getClass();
-        $this->display($classe, $level + 1);
+        $class = $node->getClass();
+        $this->display($class, $level + 1);
         $method = $node->getConstant();
         $this->display($method, $level + 1);
 
-        $node->cache = $classe->cache.'::'.$method->cache;
+        $node->cache = $class->cache.'::'.$method->cache;
         return $this->savenode($node);        
     }
 
-    function display_constante_classe($node, $level) {
-        $classe = $node->getName();
-        $this->display($classe, $level + 1);
+    function display_constante_class($node, $level) {
+        $class = $node->getName();
+        $this->display($class, $level + 1);
         $constante = $node->getConstante();
         $this->display($constante, $level + 1);
 
-        $node->cache = $classe->cache.'::'.$constante->cache;
+        $node->cache = $class->cache.'::'.$constante->cache;
         return $this->savenode($node);        
     }
 
@@ -631,17 +631,17 @@ class template_cache extends template {
     }
 
     function display_method_static($node, $level) {
-        $classe = $node->getClass();
-        $this->display($classe, $level + 1);
+        $class = $node->getClass();
+        $this->display($class, $level + 1);
         $method = $node->getMethod();
         $this->display($method, $level + 1);
 
-        $node->cache = $classe->cache.'::'.$method->cache;
+        $node->cache = $class->cache.'::'.$method->cache;
         return $this->savenode($node);        
     }
 
     function display__new($node, $level) {
-        $name = $node->getClasse();
+        $name = $node->getClass();
         $tags['name'][] = $this->display($name, $level + 1);
         $args = $node->getArgs();
         $tags['args'][] = $this->display($args, $level + 1);
@@ -744,12 +744,12 @@ class template_cache extends template {
     }
 
     function display_property_static($node, $level) {
-        $classe = $node->getClass();
-        $this->display($classe, $level + 1);
+        $class = $node->getClass();
+        $this->display($class, $level + 1);
         $property = $node->getProperty();
         $this->display($property, $level + 1);
         
-        $node->cache = $classe->cache."->".$property->cache;
+        $node->cache = $class->cache."->".$property->cache;
         return $this->savenode($node);
     }
 

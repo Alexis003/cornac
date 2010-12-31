@@ -18,7 +18,7 @@
  */
 
 class _new extends instruction {
-    protected $classe = null;
+    protected $class = null;
     protected $expression = null;
     
     function __construct($expression) {
@@ -26,24 +26,24 @@ class _new extends instruction {
         
         $constructor = $expression[0];
         if (get_class($constructor) == 'functioncall') {
-            $this->classe = $constructor->getFunction();
+            $this->class = $constructor->getFunction();
             $this->args = $constructor->getargs();
         } elseif (get_class($constructor) == 'method') {
-            $this->classe = $constructor;
+            $this->class = $constructor;
             if (!isset($expression[1])) {
                 $this->args = new arglist();
             } else {
                 $this->args = $expression[1];
             }
         } elseif ($constructor->checkClass(array('constante'))) {
-            $this->classe =  new token_traite($constructor->getName());
+            $this->class =  new token_traite($constructor->getName());
             if (!isset($expression[1])) {
                 $this->args = new arglist();
             } else {
                 $this->args = $expression[1];
             }
         } elseif ($constructor->checkClass(array('variable','_array','property','property_static','method_static','_nsname'))) {
-            $this->classe = $constructor;
+            $this->class = $constructor;
 
             if (!isset($expression[1])) {
                 $this->args = new arglist();
@@ -51,7 +51,7 @@ class _new extends instruction {
                 $this->args = $expression[1];
             }
         } elseif ($constructor->checkToken(T_STATIC) ) {
-            $this->classe = $constructor;
+            $this->class = $this->makeToken_traite($constructor);
 
             if (!isset($expression[1])) {
                 $this->args = new arglist();
@@ -67,8 +67,8 @@ class _new extends instruction {
         return __CLASS__." ".$this->expression;
     }
 
-    function getClasse() {
-        return $this->classe;
+    function getClass() {
+        return $this->class;
     }
 
     function getArgs() {
@@ -76,7 +76,7 @@ class _new extends instruction {
     }
 
     function neutralise() {
-        $this->classe->detach();
+        $this->class->detach();
         $this->args->detach();
     }
 

@@ -29,17 +29,15 @@ class inclusion_noparenthesis_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasNext()) { return false; }
 
-        if ($t->checkToken(array(T_REQUIRE, T_INCLUDE, T_INCLUDE_ONCE, T_REQUIRE_ONCE)) &&
-            $t->getNext()->checkNotClass('Token') &&
-            $t->getNext(1)->checkNotCode(array(".",'->','::','['))) {
+        if ($t->getNext()->checkClass('Token')) { return false; }
+        if ($t->getNext(1)->checkCode(array(".",'->','::','['))) { return false; }
+        if ($t->getNext(1)->checkForAssignation()) { return false; }
 
-            $this->args = array(1);
-            $this->remove = array(1);
+        $this->args = array(1);
+        $this->remove = array(1);
 
-            mon_log(get_class($t)." => inclusion (".__CLASS__.")");
-            return true; 
-        } 
-        return false;
+        mon_log(get_class($t)." => inclusion (".__CLASS__.")");
+        return true; 
     }
 }
 ?>

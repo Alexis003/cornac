@@ -517,7 +517,7 @@ die("cas de l'argument null ou inexistant");
     }
 
     function display__new($node, $level) {
-        $this->dot_standard_one($node, $level, 'getClasse');
+        $this->dot_standard_one($node, $level, 'getClass');
         $this->dot_standard_one($node, $level, 'getArgs');
     }
     
