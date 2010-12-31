@@ -34,7 +34,7 @@ class constant_normal_regex extends analyseur_regex {
         if ($t->checkNotToken(array(T_STRING, T_DIR, T_FILE, T_FUNC_C, T_LINE, T_METHOD_C, T_NS_C, T_CLASS_C))) { return false; }
         if ($t->getNext()->checkCode(array('(','::','{', '\\'))) { return false; }
         if ($t->getNext()->checkCode(array(':')) &&
-            $t->getPrev()->checkNotOperator(array('::'))) { return false; }
+            $t->getPrev()->checkNotOperator(array('::','?'))) { return false; }
         if ($t->getNext()->checkToken(array(T_VARIABLE, T_AS))) { return false; }
         if ($t->getNext()->checkClass(array('variable','affectation'))) { return false; }
 
