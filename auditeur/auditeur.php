@@ -404,6 +404,13 @@ function __autoload($classname) {
 function analyse_module($module_name) {
     global  $DATABASE, $sommaire, $INI;
 
+    $res = $DATABASE->query('SELECT * FROM <report_module> WHERE module="'.$m.'"');
+    $row = $res->fetch();
+    if (isset($row['module'])) {
+        print "$out omitted (already in base) \n";
+        return true;
+    }
+
     $res = $DATABASE->query("SELECT completed FROM <tasks> WHERE target='$module_name'");
     $row = $res->fetch(PDO::FETCH_ASSOC);
     if ($row['completed'] == 100) {
@@ -441,7 +448,7 @@ function analyse_module($module_name) {
                 }
             }
         } else {
-            print "Dependancies already processed\n";
+            print "Dependencies already processed\n";
         }
     }
 
@@ -449,6 +456,7 @@ function analyse_module($module_name) {
     if (isset($INI['auditeur.'.$module_name])) {
         $module->init($INI['auditeur.'.$module_name]);
     }
+
     $module->analyse();
     // @todo add an option for this
     $finish_time = microtime(true);
