@@ -70,7 +70,7 @@ PHP;
 
 for($i = 1; $i < $methodes + 1; $i++) {
     $code .= "    public function test{$Classe}$i()  { \$this->generic_test('{$classe}.$i'); }\n";
-    
+
     shell_exec('git add scripts/'.$classe.'.'.$i.'.test.php');
     shell_exec('git add exp/'.$classe.'.'.$i.'.test.exp');
 }

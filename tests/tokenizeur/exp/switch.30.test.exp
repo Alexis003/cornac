@@ -1,0 +1,38 @@
+tests/tokenizeur/scripts/switch.30.test.php
+  codephp <?php
+
+  code : 
+      _switch 
+          parentheses 
+          ( "constante true" )
+          block 
+          0 : 
+              _case 
+                  comparison 
+                  left : 
+                      variable $a
+                  operateur : 288 "instanceof"
+                  right : 
+                      constante (                      b )
+                  block 
+          1 : 
+              _case 
+                  comparison 
+                  left : 
+                      variable $c
+                  operateur : 288 "instanceof"
+                  right : 
+                      constante (                      d )
+                  block 
+          2 : 
+              _case 
+                  comparison 
+                  left : 
+                      variable $e
+                  operateur : 288 "instanceof"
+                  right : 
+                      constante (                      f )
+                  block 
+                  0 : 
+                      variable $g297 "++" 
+                          variable $g
