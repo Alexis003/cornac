@@ -1,0 +1,10 @@
+tests/tokenizeur/scripts/constante_class.2.test.php
+  codephp <?php
+
+  code : 
+       class 307 "MyMin"
+          block 
+          0 : 
+              constante_class               constante a = literals 1 
+          1 : 
+              constante_class               constante b = literals 2 
