@@ -28,7 +28,7 @@ class sequence_class_regex extends analyseur_regex {
 
     function check($t) {
         if (!$t->hasNext() ) { return false; }
-
+        
         if (!$t->checkForBlock(true) && 
              $t->checkNotClass(array('codephp','variable'))) { return false; } 
 
