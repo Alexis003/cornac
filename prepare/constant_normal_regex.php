@@ -33,9 +33,12 @@ class constant_normal_regex extends analyseur_regex {
         if ($t->checkNotClass('Token')) { return false; } 
         if ($t->checkNotToken(array(T_STRING, T_DIR, T_FILE, T_FUNC_C, T_LINE, T_METHOD_C, T_NS_C, T_CLASS_C))) { return false; }
         if ($t->getNext()->checkCode(array('(','::','{', '\\'))) { return false; }
+
         if ($t->getNext()->checkCode(array(':'))) {
-            if ($t->getPrev()->checkNotOperator(array('::','?')) && 
-                $t->getPrev()->checkNotToken(array(T_CASE))) { return false; }
+            if ($t->getPrev()->checkNotOperator(array('->','::','?')) && 
+                $t->getPrev()->checkNotToken(array(T_CASE)) && 
+               !$t->getPrev()->checkForAssignation() &&
+               !$t->getPrev()->checkForComparison() ) { return false; }
         }
         if ($t->getNext()->checkToken(array(T_VARIABLE, T_AS))) { return false; }
         if ($t->getNext()->checkClass(array('variable','affectation'))) { return false; }
