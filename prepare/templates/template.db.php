@@ -304,7 +304,7 @@ class template_db extends template {
         $node->myId = $this->getNextId();
         $node->myleft = $this->getIntervalleId();
         $node->setCode('');
-        $class_precedent = $this->class;
+        $previous_class = $this->class;
         $this->class = $node->getName()->getCode();
 
         $tags = array();
@@ -332,7 +332,7 @@ class template_db extends template {
         $node->myright = $this->getIntervalleId();
         $this->tags = $tags;
         $res = $this->savenode($node, $level);
-        $this->class = $class_precedent;
+        $this->class = $previous_class;
         return $res;
     }
 
@@ -530,7 +530,7 @@ class template_db extends template {
     function display__function($node, $level) {
         $node->myId = $this->getNextId();
         $node->myleft = $this->getIntervalleId();
-        $scope_precedent = $this->scope;
+        $previous_class = $this->scope;
         $this->scope = $node->getName()->getCode();
 
         $tags = array();
@@ -553,7 +553,7 @@ class template_db extends template {
 
         $this->tags = $tags;
         $res = $this->savenode($node, $level);
-        $this->scope = $scope_precedent;
+        $this->scope = $previous_class;
         return $res;
     }
 
@@ -635,7 +635,7 @@ class template_db extends template {
     function display__interface($node, $level) {
         $node->myId = $this->getNextId();
         $node->myleft = $this->getIntervalleId();
-        $class_precedent = $this->class;
+        $previous_class = $this->class;
         $this->class = $node->getName()->getCode();
 
         $e = $node->getExtends();
@@ -648,7 +648,7 @@ class template_db extends template {
 
         $node->myright = $this->getIntervalleId();
         $res = $this->savenode($node, $level);
-        $this->class = $class_precedent;
+        $this->class = $previous_class;
         return $res;
     }
 
@@ -736,6 +736,7 @@ class template_db extends template {
 
         $tags = array();
         $tags['name'][] = $this->display($node->getNamespace(), $level + 1);
+        $node->setCode($node->getNamespace()->getCode());
         
         $node->myright = $this->getIntervalleId();
         $this->tags = $tags;
