@@ -26,7 +26,7 @@ class Zf_AddElementUnaffected extends modules {
 	}
 
 	function dependsOn() {
-	    return array('addElement');
+	    return array('Zf_AddElement');
 	}
 	
 	public function analyse() {
