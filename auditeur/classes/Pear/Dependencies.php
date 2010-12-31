@@ -17,17 +17,12 @@
    +----------------------------------------------------------------------+
  */
 
-class Pear_Dependencies extends modules {
+class Pear_Dependencies extends modules_classe_dependances {
 	protected	$title = 'PEAR : PEAR dependance';
 	protected	$description = 'Dependencies toward PEAR  : by heritage or composition, those classes from the PEAR are needed.';
 
 	function __construct($mid) {
         parent::__construct($mid);
-	}
-
-// @doc if this analyzer is based on previous result, use this to make sure the results are here
-	function dependsOn() {
-	    return array();
 	}
 
 	public function analyse() {
