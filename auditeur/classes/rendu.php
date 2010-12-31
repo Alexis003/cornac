@@ -46,7 +46,6 @@ SQL;
         if (!isset($debut)) {
             print "$left $right, $file\n$query\n";
             return '';
-            die();
         }
 
         $this->traite($debut);
