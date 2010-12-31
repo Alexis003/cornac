@@ -33,6 +33,7 @@ class label_normal_regex extends analyseur_regex {
         if ($t->getNext()->checkNotOperator(':')) { return false; }
         if ($t->getPrev()->checkToken(array(T_CASE))) { return false; }
         if ($t->getPrev()->checkOperator(array('?','->','::'))) { return false; }
+        if ($t->getPrev()->checkForComparison()) { return false; }
 
         $this->args = array(0);
         $this->remove = array(0, 1);
