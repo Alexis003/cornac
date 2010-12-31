@@ -96,7 +96,7 @@ class sequence_regex extends analyseur_regex {
             }
 
             if (!is_null($var) && (
-                $var->checkCode(array(',','->','[','(',',')) ||
+                $var->checkCode(array(',','->','::','[','(',',')) ||
                 $var->checkForLogical() ||
                 $var->checkForAssignation() ||
                 $var->checkClass('arglist'))) {
@@ -105,7 +105,7 @@ class sequence_regex extends analyseur_regex {
                 $this->remove = array();
                 return false;
             } elseif ($var->hasNext() && (
-                $var->getNext()->checkCode(array(',','->','[','(',',')) ||
+                $var->getNext()->checkCode(array(',','->','::','[','(',',')) ||
                 $var->getNext()->checkForAssignation() ||
                 $var->getNext()->checkClass('arglist'))) {
                 // @doc This is not a sequence, as another operator after has priority
