@@ -93,10 +93,6 @@ SQL;
             $res = $this->exec_query($query);
             $functions = array_diff($functions, $list);
         }
-die();
-
-
-
 
 	    // @section : searching via classes usage
 	    $query = <<<SQL
