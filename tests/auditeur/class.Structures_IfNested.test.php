@@ -22,11 +22,10 @@ include_once('Auditeur_Framework_TestCase.php');
 class Structures_IfNested_Test extends Auditeur_Framework_TestCase
 {
     public function testStructures_IfNested()  {
-        $this->expected = array( '');
+        $this->expected = array( 'ifthen->ifthen');
         $this->unexpected = array(/*'',*/);
 
         parent::generic_test();
-//        parent::generic_counted_test();
     }
 }
 ?>
