@@ -35,7 +35,7 @@ class constant_normal_regex extends analyseur_regex {
         if ($t->getNext()->checkCode(array('(','::','{', '\\'))) { return false; }
 
         if ($t->getNext()->checkCode(array(':'))) {
-            if ($t->getPrev()->checkNotOperator(array('->','::','?')) && 
+            if ($t->getPrev()->checkNotOperator(array('->','::','?','.')) && 
                 $t->getPrev()->checkNotToken(array(T_CASE)) && 
                !$t->getPrev()->checkForAssignation() &&
                !$t->getPrev()->checkForComparison() &&

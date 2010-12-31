@@ -42,7 +42,7 @@ class concatenation_regex extends analyseur_regex {
         
         $pos = 0;
         
-        while ($var->checkCode('.') && 
+        while ($var->checkOperator('.') && 
                $var->getNext()->checkNotClass(array('Token','arglist'))) {
 
             $this->args[]    = $pos + 1;
@@ -53,7 +53,7 @@ class concatenation_regex extends analyseur_regex {
             $pos += 2;
             $var = $var->getNext(1);
         }
-        
+
         if ($var->checkEndInstruction()) {
             mon_log(get_class($t)." => ".__CLASS__);
             return true; 

@@ -32,7 +32,7 @@ class label_normal_regex extends analyseur_regex {
         if ($t->checkNotToken(T_STRING)) { return false; }
         if ($t->getNext()->checkNotOperator(':')) { return false; }
         if ($t->getPrev()->checkToken(array(T_CASE, T_INSTANCEOF))) { return false; }
-        if ($t->getPrev()->checkOperator(array('?','->','::'))) { return false; }
+        if ($t->getPrev()->checkOperator(array('?','->','::','.'))) { return false; }
         if ($t->getPrev()->checkForComparison()) { return false; }
         if ($t->getPrev()->checkForLogical()) { return false; }
 
