@@ -35,7 +35,7 @@ class operation_addition_regex extends analyseur_regex {
         if ($t->getNext()->checkClass('Token')) { return false;}
         
         if (
-            $t->getNext(1)->checkNotCode(array('*','/','%','[','->','{','(','++','--')) &&
+            $t->getNext(1)->checkNotCode(array('*','/','%','[','->','::','{','(','++','--')) &&
             !$t->getNext(1)->checkForAssignation() &&
             $t->getPrev(1)->checkBeginInstruction()
             
