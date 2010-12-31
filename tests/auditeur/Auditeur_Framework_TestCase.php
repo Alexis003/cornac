@@ -32,6 +32,9 @@ cd auditeur
 ./auditeur.php -d -p tu -I testsunitaires
 SHELL;
     $return = shell_exec($shell);
+
+    $this->assertContains('Terminating', $return);
+
     $fin = microtime(true);
     print "  Done (".number_format(($fin - $debut), 2)." s)\n";
 }
@@ -43,6 +46,9 @@ cd ../../auditeur
 ./auditeur.php -d -p tu -I testsunitaires
 SHELL;
     $return = shell_exec($shell);
+    
+    $this->assertContains('Terminating', $return);
+    
     $fin = microtime(true);
     print "  Done (".number_format(($fin - $debut), 2)." s)\n";
 }

@@ -22,11 +22,21 @@ include_once('Auditeur_Framework_TestCase.php');
 class Literals_Definitions_Test extends Auditeur_Framework_TestCase
 {
     public function testLiterals_Definitions()  {
-        $this->expected = array( '');
-        $this->unexpected = array(/*'',*/);
+        $this->expected = array( ' e',
+'1',
+'2',
+'3',
+'a',
+'b',
+'c ',
+'g
+',);
+        $this->unexpected = array('$d','$x','$y','$z','$a','$b','a','b','$d');
 
         parent::generic_test();
 //        parent::generic_counted_test();
     }
 }
 ?>
+
+

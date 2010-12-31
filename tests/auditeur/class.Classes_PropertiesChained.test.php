@@ -26,7 +26,10 @@ class Classes_PropertiesChained_Test extends Auditeur_Framework_TestCase
         $this->unexpected = array(/*'',*/);
 
         parent::generic_test();
-//        parent::generic_counted_test();
+    <element>$fluent1-&gt;level_1-&gt;level_2</element>
+    <element>$fluent2-&gt;level_1-&gt;level_2-&gt;level_3</element>
+    <element>$fluent2-&gt;level_1-&gt;level_2</element>
+
     }
 }
 ?>
