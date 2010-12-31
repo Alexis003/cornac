@@ -35,9 +35,16 @@ class comparison_regex extends analyseur_regex {
         if ($t->hasPrev(2) && ($t->getPrev(1)->checkCode(array('->','$','::','++','--','new','-','+','&')) ||
                                $t->getPrev(1)->checkClass(array('variable')) ||
                                $t->getPrev(1)->checkForComparison() )) { return false; }
-                               
+
         if ($t->getPrev()->checkClass(array('Token','arglist'))) { return false; }
-        if ($t->checkNotToken(array(T_IS_EQUAL, T_IS_SMALLER_OR_EQUAL, T_IS_NOT_IDENTICAL, T_IS_NOT_EQUAL, T_IS_IDENTICAL, T_IS_GREATER_OR_EQUAL, T_INSTANCEOF)) && 
+        
+        if ($t->checkNotToken(array(T_IS_EQUAL, 
+                                    T_IS_SMALLER_OR_EQUAL, 
+                                    T_IS_NOT_IDENTICAL, 
+                                    T_IS_NOT_EQUAL,
+                                    T_IS_IDENTICAL, 
+                                    T_IS_GREATER_OR_EQUAL, 
+                                    T_INSTANCEOF)) && 
              $t->checkNotCode(array('>', '<'))) {return false; }
         if ($t->getNext()->checkClass('Token')) { return false; }
         if ($t->getNext(1)->checkOperator(array('(','[','->','::','+','-','/','*','%','{','++','--','=')) ||
