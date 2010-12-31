@@ -69,7 +69,7 @@ $tests = array(
 'class.dowhile.test.php',
 'class.invert.test.php',
 'class.property_static.test.php',
-'class.constante_classe.test.php',
+'class.constante_class.test.php',
 'class.continue.test.php',
 'class.clone.test.php',
 'class.typehint.test.php',
