@@ -135,7 +135,7 @@ abstract class modules {
 
     function print_query($query) {
         print $this->prepare_query($query)."\n";
-        die();
+        die(__METHOD__);
     }
 
     function prepare_query($query) {
@@ -229,7 +229,7 @@ CREATE TABLE `tmp_report_dot` (
             return 'tmp_report_dot';
         } else {
             print "\$report is not (report or report_dot) : $report\n\n";
-            die();
+            die(__METHOD__);
         } 
     }
     
@@ -360,7 +360,7 @@ SQL;
             return "".join("||", $args)."";
         } else {
             print "Concat isn't defined for this database!";
-            die();
+            die(__METHOD__);
         }
     }
 
