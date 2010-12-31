@@ -1,25 +1,9 @@
 <?php
-/*
-   +----------------------------------------------------------------------+
-   | Cornac, PHP code inventory                                           |
-   +----------------------------------------------------------------------+
-   | Copyright (c) 2010 Alter Way Solutions (France)                      |
-   +----------------------------------------------------------------------+
-   | This source file is subject to version 3.01 of the PHP license,      |
-   | that is bundled with this package in the file LICENSE, and is        |
-   | available through the world-wide-web at the following url:           |
-   | http://www.php.net/license/3_01.txt                                  |
-   | If you did not receive a copy of the PHP license and are unable to   |
-   | obtain it through the world-wide-web, please send a note to          |
-   | license@php.net so we can mail you a copy immediately.               |
-   +----------------------------------------------------------------------+
-   | Author: Damien Seguy <damien.seguy@gmail.com>                        |
-   +----------------------------------------------------------------------+
- */include_once('Analyseur_Framework_TestCase.php');
+include_once('Analyseur_Framework_TestCase.php');
 
 class Operation_Test extends Analyseur_Framework_TestCase
 {
-    /* 48 methodes */
+    /* 49 methodes */
     public function testOperation1()  { $this->generic_test('operation.1'); }
     public function testOperation2()  { $this->generic_test('operation.2'); }
     public function testOperation3()  { $this->generic_test('operation.3'); }
@@ -68,6 +52,7 @@ class Operation_Test extends Analyseur_Framework_TestCase
     public function testOperation46()  { $this->generic_test('operation.46'); }
     public function testOperation47()  { $this->generic_test('operation.47'); }
     public function testOperation48()  { $this->generic_test('operation.48'); }
+    public function testOperation49()  { $this->generic_test('operation.49'); }
 
 }
 
