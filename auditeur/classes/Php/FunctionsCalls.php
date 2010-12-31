@@ -19,7 +19,7 @@
 
 class Php_FunctionsCalls extends modules {
     protected $description = "Function calls"; 
-    protected $title = "List all PHP function calls"; 
+    protected $title = "List all PHP function calls (native, user-land)"; 
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -33,16 +33,15 @@ class Php_FunctionsCalls extends modules {
 
         $query = <<<SQL
 SELECT NULL, T1.file, T2.code AS code, T1.id, '{$this->name}', 0
-  FROM <tokens> T1
-  JOIN <tokens> T2
-       ON T1.file = T2.file AND
-          T1.left = T2.left - 1
-  LEFT JOIN <tokens_tags> TT
-       ON T1.id = TT.token_sub_id
-where 
- T1.type='functioncall' AND
-( TT.token_id IS NULL OR TT.type != 'method') AND
-T2.code NOT IN ('$in')
+FROM <tokens> T1
+JOIN <tokens> T2
+     ON T1.file = T2.file AND
+        T1.left = T2.left - 1
+LEFT JOIN <tokens_tags> TT
+     ON T1.id = TT.token_sub_id
+WHERE  T1.type='functioncall' AND
+       (TT.token_id IS NULL OR TT.type != 'method') AND
+       T2.code NOT IN ('$in')
 SQL;
 
         $this->exec_query_insert('report', $query);

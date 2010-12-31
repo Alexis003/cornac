@@ -18,7 +18,7 @@
  */
 
 class Literals_InArglist extends modules {
-	protected	$title = 'Litéraux passés comme arguments';
+	protected	$title = 'Literals used as arguments';
 	protected	$description = 'Literal values passed as argument of function, when the former expect';
 
 	function __construct($mid) {
@@ -104,15 +104,15 @@ SELECT T3.file,
        if (@id = T3.id, @i := @i + 1, LEAST(@id := T3.id , @i := 0 )) AS rank
 FROM <tokens> T1
 JOIN <tokens> T2
-    ON T2.file = T1.file AND
+    ON T2.file = T1.file     AND
        T2.left = T1.left - 1 AND
        T2.type = 'functioncall'
 JOIN <tokens> T3
-    ON T3.file = T1.file AND
+    ON T3.file = T1.file      AND
        T3.left = T1.right + 1 AND
        T3.type = 'arglist'
 JOIN <tokens> T4
-    ON T4.file = T1.file AND
+    ON T4.file = T1.file       AND
        T4.level = T3.level + 1 AND
        T4.left BETWEEN T3.left AND T3.right
 WHERE T1.code IN ($in)
@@ -124,6 +124,7 @@ DROP TABLES Literals_InArglist_calls, Literals_InArglist_definitions
 SQL;
         $this->exec_query($query);
 
+// @todo this is not doing any insertion in table report!
         return true;
 	}
 }

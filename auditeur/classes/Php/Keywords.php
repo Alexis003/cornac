@@ -19,7 +19,7 @@
 
 class Php_Keywords extends modules {
 	protected	$title = 'PHP keyword';
-	protected	$description = 'Usage of PHP keywords in the application. ';
+	protected	$description = 'Usage of PHP keywords in the application\'s literals, or structures\' names, not in the code source, where they belong. This may lead to confusion.';
 
 	function __construct($mid) {
         parent::__construct($mid);

@@ -18,6 +18,8 @@
  */
 
 class Php_RegexStrings extends modules {
+	protected	$title = 'Regex';
+	protected	$description = 'PCRE pattern used';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -32,7 +34,7 @@ FROM <tokens> T1
 JOIN <tokens> T2
     ON T2.file = T1.file AND
        T2.left = T1.left + 3
-WHERE T1.code IN ('preg_match','preg_replace','preg_replace_callback','preg_match_all')  AND
+WHERE T1.code IN ('preg_match','preg_replace','preg_replace_callback','preg_match_all','preg_grep') AND
       T1.type = 'token_traite'
 SQL;
         $this->exec_query_insert('report',$query);

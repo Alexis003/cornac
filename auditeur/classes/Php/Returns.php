@@ -28,13 +28,14 @@ class Php_Returns extends modules {
 	public function analyse() {
         $this->clean_report();
 
-        $concat = $this->concat("sum(type='_return')", "' returns'");
+        $concat = $this->concat("SUM(type='_return')", "' returns'");
         $query = <<<SQL
 SELECT NULL, T1.file, $concat, T1.id, '{$this->name}' , 0
 FROM <tokens> T1
-WHERE scope NOT IN ( '__construct','__destruct','__set','__get','__call','__clone','__toString','__wakeup','__sleep') 
- AND scope != class AND (class != 'global' AND scope != 'global')
-GROUP BY file, class, scope 
+WHERE scope NOT IN ( '__construct','__destruct','__set','__get','__call','__clone','__toString','__wakeup','__sleep') AND 
+      scope != class AND 
+      (class != 'global' AND scope != 'global')
+GROUP BY file, class, scope
 SQL;
         $this->exec_query_insert('report',$query);
 

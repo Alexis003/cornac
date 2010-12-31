@@ -168,7 +168,7 @@ abstract class modules {
     function exec_query_insert($report, $query) {
         $tmp = $this->exec_init_tmp_table($report);
         
-        $query = "INSERT INTO $tmp $query";
+        $query = "INSERT INTO tmp_$report $query";
         $this->exec_query($query);
         
         $this->exec_flush($report);
@@ -181,17 +181,17 @@ abstract class modules {
             $this->exec_init_tmp_table($report);
         }
 
-        $query = "INSERT INTO tmp_report $query";
+        $query = "INSERT INTO tmp_$report $query";
         $this->exec_query($query);
         
         return true;
     }
 
     function exec_flush($report) {
-        $query = "INSERT INTO <report> SELECT * FROM tmp_report";
+        $query = "INSERT INTO <$report> SELECT * FROM tmp_$report";
         $this->exec_query($query);
         
-        $query = "DROP TABLE tmp_report";
+        $query = "DROP TABLE tmp_$report";
         $this->exec_query($query);
 
         return true;

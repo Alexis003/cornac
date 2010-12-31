@@ -18,8 +18,8 @@
  */
 
 class Php_GlobalsLinks extends modules {
-	protected	$title = 'Réseau des globales';
-	protected	$description = 'Liste des dépendances de globales entre les files';
+	protected	$title = 'File network of globals';
+	protected	$description = 'List of file dependencies, based on globals';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -31,7 +31,6 @@ class Php_GlobalsLinks extends modules {
         $this->clean_report();
         
         $query = <<<SQL
-INSERT INTO <report_dot>
 SELECT DISTINCT TR1.file, TR2.file, TR1.element, '{$this->name}'
 FROM <report> TR1
 JOIN <report> TR2
@@ -39,7 +38,7 @@ JOIN <report> TR2
        TR2.module='globals'
 WHERE TR1.module='globals'
 SQL;
-        $res = $this->exec_query($query);
+        $res = $this->exec_query_insert('report_dot', $query);
 	}
 }
 

@@ -19,7 +19,7 @@
 
 class Php_Modules extends modules {
 	protected	$title = 'Needed PHP extension';
-	protected	$description = 'List of needed PHP extensions';
+	protected	$description = 'List of needed PHP extensions. Functions, Constants and classes are checked.';
 
 	function __construct($mid) {
         parent::__construct($mid);

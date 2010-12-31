@@ -35,7 +35,8 @@ class Quality_GpcAssigned extends modules {
 SELECT NULL, T1.file, TC.code, T1.id,'{$this->name}', 0
 FROM <tokens> T1  
 JOIN <tokens_tags> TT
-    ON T1.id = TT.token_id AND TT.type='right'
+    ON T1.id = TT.token_id AND 
+       TT.type='left'
 JOIN <tokens> T2
     ON T2.file = T1.file AND TT.token_sub_id = T2.id
 JOIN <tokens> T3
@@ -44,11 +45,10 @@ JOIN <tokens> T3
        T3.left between T2.left AND T2.right 
 JOIN <tokens_cache> TC
   ON TC.id = T3.id
-WHERE T1.file like "%affectations_gpc%" AND
-      T1.type = 'affectation' AND
+WHERE T1.type = 'affectation' AND
       TC.code REGEXP '^$gpc_regexp'
 SQL;
-        $this->exec_query($query);
+        $this->exec_query_insert('report', $query);
 
 // @doc full arrays,  not just variables
         $query = <<<SQL
@@ -56,7 +56,7 @@ SELECT NULL, T1.file, TC.code, T1.id,'{$this->name}', 0
 FROM <tokens> T1  
 JOIN <tokens_tags> TT
     ON T1.id = TT.token_id AND 
-       TT.type='right'
+       TT.type='left'
 JOIN <tokens> T2
     ON T2.file = T1.file AND 
        TT.token_sub_id = T2.id
@@ -69,8 +69,7 @@ LEFT JOIN <tokens> T4
        T4.left=T3.left -1 
 JOIN <tokens_cache> TC
     ON TC.id = T3.id
-WHERE T1.file like "%affectations_gpc%" AND 
-      T1.type = 'affectation' AND
+WHERE T1.type = 'affectation' AND
       (T4.type IS NULL OR T4.type != '_array') AND 
       TC.code REGEXP '^$gpc_regexp'
 SQL;

@@ -18,8 +18,8 @@
  */
 
 class Php_Throws extends modules {
-	protected	$title = 'Exceptions Php_Throws';
-	protected	$description = 'Liste des emissions d\'exceptions';
+	protected	$title = 'Exceptions thrown by PHP';
+	protected	$description = 'List of Exception being thrown';
 
 	function __construct($mid) {
         parent::__construct($mid);

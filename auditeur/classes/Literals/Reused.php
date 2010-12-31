@@ -45,12 +45,16 @@ SQL;
         $this->exec_query($query);
 
         $query = <<<SQL
-INSERT INTO <report> 
 SELECT NULL, TR1.file, TRIM(TR1.code), TR1.id, '{$this->name}', 0
-    FROM <tokens> TR1
-    JOIN {$this->name}_TMP TMP
-        ON TR1.type = 'literals' AND 
-           TMP.code = TRIM(TR1.code) 
+FROM <tokens> TR1
+JOIN {$this->name}_TMP TMP
+    ON TR1.type = 'literals' AND 
+       TMP.code = TRIM(TR1.code)
+SQL;
+        $this->exec_query_insert('report', $query);
+
+        $query = <<<SQL
+DROP TABLE {$this->name}_TMP
 SQL;
         $this->exec_query($query);
 

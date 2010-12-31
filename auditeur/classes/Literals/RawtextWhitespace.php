@@ -36,7 +36,7 @@ class Literals_RawtextWhitespace extends modules {
 SELECT NULL, T1.file, CONCAT('line ',T1.line), T1.id, '{$this->name}', 0
 FROM <tokens> T1
 WHERE T1.type='rawtext' AND 
-TRIM(code) = ''
+      TRIM(code) = ''
 SQL;
         $this->exec_query_insert('report', $query);
 

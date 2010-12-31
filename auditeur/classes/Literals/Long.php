@@ -18,8 +18,8 @@
  */
 
 class Literals_Long extends modules { 
-	protected	$title = 'Literaux longs';
-	protected	$description = 'Literaux qui sont trop longs (> 1ko)';
+	protected	$title = 'Long literaux';
+	protected	$description = 'Really long literals : over 1ko';
 
 	function __construct($mid) {
         parent::__construct($mid);

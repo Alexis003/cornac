@@ -19,7 +19,7 @@
 
 class Php_Arobases extends modules {
     protected    $description = 'Arobases';
-    protected    $title = 'Utilisateur de l\'opérateur @ dans le code';
+    protected    $title = 'Usage of noscream operator.';
 
     function __construct($mid) {
         parent::__construct($mid);
@@ -33,7 +33,7 @@ SELECT NULL, TC.file, TC.code AS code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 LEFT JOIN <tokens_cache>  TC 
     ON T1.id = TC.id 
-WHERE T1.type='noscream' 
+WHERE T1.type='noscream'
 SQL;
         $this->exec_query_insert('report', $query);
         

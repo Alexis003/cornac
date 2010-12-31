@@ -69,7 +69,6 @@ $modules = array(
 'Classes_MethodsSpecial',
 'Classes_MethodsWithoutPpp',
 'Classes_News',
-'Classes_Pear',
 'Classes_Php',
 'Classes_Properties',
 'Classes_PropertiesPublic',
@@ -241,6 +240,7 @@ $modules = array(
 
 'Pear',
 'Pear_Dependencies',
+'Quality_ClassesNotInSameFile',
 // new analyzers
 );
 

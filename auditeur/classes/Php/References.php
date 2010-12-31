@@ -25,11 +25,6 @@ class Php_References extends modules {
         parent::__construct($mid);
 	}
 
-// @doc if this analyzer is based on previous result, use this to make sure the results are here
-	function dependsOn() {
-	    return array();
-	}
-	
 	public function analyse() {
         $this->clean_report();
 
@@ -37,11 +32,11 @@ class Php_References extends modules {
 SELECT NULL, T1.file, TC.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens> T2
-    ON T1.file = T2.file AND
+    ON T1.file = T2.file     AND
        T1.left + 1 = T2.left
 JOIN <tokens_cache> TC
     ON TC.id = T2.id
-WHERE T1.type = 'reference' 
+WHERE T1.type = 'reference'
 SQL;
         $this->exec_query_insert('report', $query);
         

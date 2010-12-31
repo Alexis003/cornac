@@ -29,22 +29,21 @@ class Functions_FileLinks extends modules {
 
 // @doc if this analyzer is based on previous result, use this to make sure the results are here
 	function dependsOn() {
-	    return array('functionscalls','Functions_Definitions');
+	    return array('Structures_FunctionsCalls','Functions_Definitions');
 	}
 	
 	public function analyse() {
         $this->clean_report();
 
 	    $query = <<<SQL
-INSERT INTO <report_dot>
 SELECT TR1.file, TR2.file, TR1.element, '{$this->name}'
 FROM <report> TR1
 JOIN <report> TR2
-    ON TR2.module = 'functionscalls' AND
+    ON TR2.module = 'Structures_FunctionsCalls' AND
        TR2.element = TR1.element
 WHERE TR1.module='Functions_Definitions'
 SQL;
-        $this->exec_query($query);
+        $this->exec_query_insert('report_dot', $query);
         
         return true;
 	}

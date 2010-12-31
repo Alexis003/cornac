@@ -19,7 +19,7 @@
 
 class Php_Globals extends modules {
     protected    $title = 'Globals';
-    protected    $description = 'Global variables in use';
+    protected    $description = 'Usage of global variables within the application';
 
     function __construct($mid) {
         parent::__construct($mid);

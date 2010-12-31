@@ -1,4 +1,4 @@
-<?php
+<?php 
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -16,35 +16,34 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
-class Php_FunctionsConflict extends modules {
-	protected	$title = 'Potential conflict with PHP functions';
-	protected	$description = 'Spot functions whose name may end up in conflict with PHP\'s own.';
+
+class Quality_ClassesNotInSameFile extends modules {
+	protected	$title = 'Classes not in same name file';
+	protected	$description = 'Spot classes that are not in an eponymous file (aka, class X in file X.php), nor using _ as separator (aka X_Y stored in X/Y.php).';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
 
-// @doc if this analyzer is based on previous result, use this to make sure the results are here
-	function dependsOn() {
-	    return array('Functions_Definitions');
-	}
-	
 	public function analyse() {
         $this->clean_report();
 
-        $functions = modules::getPHPFunctions();
-        $in = '"'.join('","', $functions).'"';
-        // @note removing empty arrays
-        $in = str_replace('"",', '', $in);
-
+// @todo of course, update this useless query. :)
 	    $query = <<<SQL
-SELECT NULL, T1.file, T1.element, T1.id, '{$this->name}', 0
-FROM <report> T1
-WHERE T1.module = 'Functions_Definitions' AND
-      T1.element IN ($in)
+SELECT NULL, T1.file, T2.code, T1.id, '{$this->name}', 0
+FROM <tokens> T1 
+JOIN <tokens_tags> TT     
+    ON TT.token_id = T1.id AND        
+    TT.type = 'name' 
+JOIN <tokens> T2     
+    ON T2.id = TT.token_sub_id AND        
+       T1.file = T2.file 
+WHERE T1.type='_class' AND
+      LOCATE(replace(T2.code,'_','/'), T1.file) = 0 AND
+      LOCATE(T2.code, T1.file) = 0
 SQL;
         $this->exec_query_insert('report', $query);
-        
+
         return true;
 	}
 }
