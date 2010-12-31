@@ -28,7 +28,7 @@ class functioncalls extends modules {
     public function analyse() {
         if (!is_array($this->functions) || empty($this->functions)) {
             print "No function name provided for class ".get_class($this)." Aborting.\n";
-            die();
+            die(__METHOD__);
         }
         $in = join("','", $this->functions);
         $this->functions = array();
