@@ -23,7 +23,8 @@ class logique_regex extends analyseur_regex {
     }
 
     function getTokens() {
-        return array(T_LOGICAL_OR, T_LOGICAL_AND, T_LOGICAL_XOR, T_BOOLEAN_OR, T_BOOLEAN_AND, '&','|','^' );
+        return array(T_LOGICAL_OR, T_LOGICAL_AND, T_LOGICAL_XOR, 
+                     T_BOOLEAN_OR, T_BOOLEAN_AND, '&','|','^' );
     }
     
     function check($t) {
