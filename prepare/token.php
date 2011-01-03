@@ -557,7 +557,15 @@ class Token {
     function checkForLogical() {
         if ($this->checkNotClass('Token')) { return false; }
         $liste = array(T_LOGICAL_OR, T_LOGICAL_AND, T_LOGICAL_XOR, T_BOOLEAN_AND, T_BOOLEAN_OR, T_INSTANCEOF);
-        return $this->checkToken($liste);
+        if ($this->checkToken($liste)) { 
+            return true;
+        }
+        
+        if ($this->checkOperator(array('&','|','^'))) {
+            return true;
+        }
+        
+        return false;
     }
 
     function checkForVariable() {
