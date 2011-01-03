@@ -8,7 +8,7 @@ tests/tokenizeur/scripts/ternaryop.23.test.php
           function call : echo: 
               arglist 
               0 : 
-                  logique 
+                  logical 
                   left : 
                       functioncall isset
                       function call : isset: 

@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/comparison.16.test.php
       ifthen if
       Condition 0) 
           parentheses 
-          ( "comparison logique comparison variable $x 283 "==" literals 2 263 "OR" constante PHPVERSION 282 "!=" literals s" )
+          ( "comparison logical comparison variable $x 283 "==" literals 2 263 "OR" constante PHPVERSION 282 "!=" literals s" )
           block 
           0 : 
               affectation 

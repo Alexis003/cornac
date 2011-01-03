@@ -9,7 +9,7 @@ tests/tokenizeur/scripts/affectation.37.test.php
       right : 
           operation 
           left : 
-              logique 
+              logical 
               left : 
                   literals 1
               operateur :  "^"

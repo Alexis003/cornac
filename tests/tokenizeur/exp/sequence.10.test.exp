@@ -38,7 +38,7 @@ tests/tokenizeur/scripts/sequence.10.test.php
                   arglist 
                   Empty arglist
       4 : 
-          logique 
+          logical 
           left : 
               method _array variable $_SESSION[literals cligraph]
               method call : functioncall 307 "connect" ( ( ) ) : 

@@ -1,0 +1,16 @@
+tests/tokenizeur/scripts/logical.42.test.php
+  codephp <?php
+
+  code : 
+      ifthen if
+      Condition 0) 
+          parentheses 
+          ( "logical logical logical logical logical constante A  "&" variable $b 278 "||" constante C  "&" variable $d 278 "||" constante E  "&" variable $f" )
+          block 
+          0 : 
+              affectation 
+              left : 
+                  variable $g
+               "=" 
+              right : 
+                  literals 1

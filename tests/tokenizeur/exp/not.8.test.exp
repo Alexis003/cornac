@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/not.8.test.php
       ifthen if
       Condition 0) 
           parentheses 
-          ( "logique not ! 278 "||" not !" )
+          ( "logical not ! 278 "||" not !" )
           block 
           0 : 
               affectation 

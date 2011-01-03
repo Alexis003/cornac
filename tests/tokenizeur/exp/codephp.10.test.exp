@@ -4,7 +4,7 @@ tests/tokenizeur/scripts/codephp.10.test.php
   code : 
       sequence 
       0 : 
-          logique 
+          logical 
           left : 
               variable $x
           operateur :  "|"

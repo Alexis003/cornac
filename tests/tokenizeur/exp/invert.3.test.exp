@@ -4,4 +4,4 @@ tests/tokenizeur/scripts/invert.3.test.php
   code : 
       invert ~
           parentheses 
-          ( "logique variable $x  "|" variable $y" )
+          ( "logical variable $x  "|" variable $y" )

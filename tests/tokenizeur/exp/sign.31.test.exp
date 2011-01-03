@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/sign.31.test.php
       ifthen if
       Condition 0) 
           parentheses 
-          ( "logique functioncall 350 "isset" ( arglist(_array variable $a[literals b]) )  265 "and" comparison sign  "+"literals 1 282 "!=" _array variable $b[literals c]" )
+          ( "logical functioncall 350 "isset" ( arglist(_array variable $a[literals b]) )  265 "and" comparison sign  "+"literals 1 282 "!=" _array variable $b[literals c]" )
           block 
           0 : 
               variable $z297 "++" 

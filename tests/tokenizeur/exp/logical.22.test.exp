@@ -1,0 +1,26 @@
+tests/tokenizeur/scripts/logical.22.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      left : 
+          variable $salt
+      273 ".=" 
+      right : 
+          functioncall substr
+          function call : substr: 
+              arglist 
+              0 : 
+                  literals a./
+              1 : 
+                  logical 
+                  left : 
+                      functioncall mt_rand
+                      function call : mt_rand: 
+                          arglist 
+                          Empty arglist
+                  operateur :  "&"
+                  right : 
+                      literals 63
+              2 : 
+                  literals 1

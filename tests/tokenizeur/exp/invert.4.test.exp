@@ -6,7 +6,7 @@ tests/tokenizeur/scripts/invert.4.test.php
       function call : error_reporting: 
           arglist 
           0 : 
-              logique 
+              logical 
               left : 
                   functioncall error_reporting
                   function call : error_reporting: 

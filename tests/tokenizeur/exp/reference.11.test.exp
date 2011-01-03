@@ -8,4 +8,4 @@ tests/tokenizeur/scripts/reference.11.test.php
        "=" 
       right : 
           parentheses 
-          ( "functioncall 307 "chr" ( arglist(bitshift logique literals 0xC0  "|" variable $char  286 ">>"  literals 12 ) ) " )
+          ( "functioncall 307 "chr" ( arglist(bitshift logical literals 0xC0  "|" variable $char  286 ">>"  literals 12 ) ) " )

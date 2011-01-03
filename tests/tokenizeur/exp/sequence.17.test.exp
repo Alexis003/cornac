@@ -9,9 +9,9 @@ tests/tokenizeur/scripts/sequence.17.test.php
               variable $number
            "=" 
           right : 
-              logique 
+              logical 
               left : 
-                  logique 
+                  logical 
                   left : 
                       parentheses 
                       ( "bitshift functioncall 307 "ord" ( arglist(_array variable $data[preplusplus variable $index297 "++"]) )   287 "<<"  literals 16 " )

@@ -10,7 +10,7 @@ tests/tokenizeur/scripts/sequence.32.test.php
               0 : 
                   variable $b
       1 : 
-          logique 
+          logical 
           left : 
               comparison 
               left : 

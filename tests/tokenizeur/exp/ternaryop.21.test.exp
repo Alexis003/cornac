@@ -7,7 +7,7 @@ tests/tokenizeur/scripts/ternaryop.21.test.php
           ifthen if
           Condition 0) 
               parentheses 
-              ( "logique not ! 279 "&&" method variable $b->functioncall 307 "c" ( arglist(constante d) ) " )
+              ( "logical not ! 279 "&&" method variable $b->functioncall 307 "c" ( arglist(constante d) ) " )
               block 
               0 : 
                   ifthen if

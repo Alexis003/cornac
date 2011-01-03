@@ -7,7 +7,7 @@ tests/tokenizeur/scripts/sequence.21.test.php
           variable $h
        "=" 
       right : 
-          logique 
+          logical 
           left : 
               functioncall a
               function call : a: 

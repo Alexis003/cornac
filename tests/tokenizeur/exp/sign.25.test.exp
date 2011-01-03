@@ -9,7 +9,7 @@ tests/tokenizeur/scripts/sign.25.test.php
               variable $a
            "=" 
           right : 
-              logique 
+              logical 
               left : 
                   variable $b
               operateur :  "&"
@@ -22,7 +22,7 @@ tests/tokenizeur/scripts/sign.25.test.php
               variable $c
            "=" 
           right : 
-              logique 
+              logical 
               left : 
                   variable $d
               operateur :  "|"
