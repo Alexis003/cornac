@@ -3,7 +3,7 @@ include_once('Analyseur_Framework_TestCase.php');
 
 class Ternaryop_Test extends Analyseur_Framework_TestCase
 {
-    /* 24 methodes */
+    /* 26 methodes */
     public function testTernaryop1()  { $this->generic_test('ternaryop.1'); }
     public function testTernaryop2()  { $this->generic_test('ternaryop.2'); }
     public function testTernaryop3()  { $this->generic_test('ternaryop.3'); }
@@ -28,6 +28,8 @@ class Ternaryop_Test extends Analyseur_Framework_TestCase
     public function testTernaryop22()  { $this->generic_test('ternaryop.22'); }
     public function testTernaryop23()  { $this->generic_test('ternaryop.23'); }
     public function testTernaryop24()  { $this->generic_test('ternaryop.24'); }
+    public function testTernaryop25()  { $this->generic_test('ternaryop.25'); }
+    public function testTernaryop26()  { $this->generic_test('ternaryop.26'); }
 
 }
 

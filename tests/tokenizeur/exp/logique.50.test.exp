@@ -1,0 +1,23 @@
+tests/tokenizeur/scripts/logique.50.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      left : 
+          variable $x
+       "=" 
+      right : 
+          ternaryop ?
+          functioncall 307 "defined" ( arglist(literals E_DEPRECATED) )  ? logique constante E_ALL  "&" constante E_DEPRECATED : constante E_ALL
+              functioncall defined
+              function call : defined: 
+                  arglist 
+                  0 : 
+                      literals E_DEPRECATED
+              logique 
+              left : 
+                  constante (                  E_ALL )
+              operateur :  "&"
+              right : 
+                  constante (                  E_DEPRECATED )
+              constante (              E_ALL )

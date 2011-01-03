@@ -3,7 +3,7 @@ include_once('Analyseur_Framework_TestCase.php');
 
 class Operation_Test extends Analyseur_Framework_TestCase
 {
-    /* 49 methodes */
+    /* 50 methodes */
     public function testOperation1()  { $this->generic_test('operation.1'); }
     public function testOperation2()  { $this->generic_test('operation.2'); }
     public function testOperation3()  { $this->generic_test('operation.3'); }
@@ -53,6 +53,7 @@ class Operation_Test extends Analyseur_Framework_TestCase
     public function testOperation47()  { $this->generic_test('operation.47'); }
     public function testOperation48()  { $this->generic_test('operation.48'); }
     public function testOperation49()  { $this->generic_test('operation.49'); }
+    public function testOperation50()  { $this->generic_test('operation.50'); }
 
 }
 
