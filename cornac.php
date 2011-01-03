@@ -4,7 +4,7 @@
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
    +----------------------------------------------------------------------+
-   | Copyright (c) 2010 Alter Way Solutions (France)                      |
+   | Copyright (c) 2010 - 2011 Alter Way Solutions (France)               |
    +----------------------------------------------------------------------+
    | This source file is subject to version 3.01 of the PHP license,      |
    | that is bundled with this package in the file LICENSE, and is        |
@@ -17,7 +17,6 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
-
 include('libs/getopts.php');
 include('libs/write_ini_file.php');
 $args = $argv;

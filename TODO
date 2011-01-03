@@ -1,6 +1,13 @@
+make 'inventaire' work on one file only
+make 'inventaire' export to other format (TEXT...)
+Spot redeclared methods in class hierarchy
+Spot type of value returned by method/functions
+
 rename 'constante' in _constant
 rename mon_log into my_log...
 Automat Analyzer sorting in auditeur.php
+
+spot affectations out of place (in if, as argument...)
 
 Add unit tests for inventaires (through other output format?)
 
