@@ -30,7 +30,7 @@ class ifthen_blockelseblock_regex extends analyseur_regex {
         if (!$t->hasNext(3) ) { return false; }
 
         if ($t->checkToken(T_IF) &&
-            $t->getNext()->checkClass('parentheses') &&
+            $t->getNext()->checkClass('parenthesis') &&
             $t->getNext(1)->checkClass(array('block', 'ifthen')) &&
             $t->getNext(2)->checkToken(T_ELSE) &&
             $t->getNext(3)->checkClass(array('block', 'ifthen'))

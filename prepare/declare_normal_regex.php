@@ -30,7 +30,7 @@ class declare_normal_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasNext()) { return false; }
         
-        if ($t->getNext()->checkClass('parentheses') && 
+        if ($t->getNext()->checkClass('parenthesis') && 
             $t->getNext(1)->checkOperator(';')) {
             $this->args = array(1);
             $this->remove = array(1);
@@ -39,7 +39,7 @@ class declare_normal_regex extends analyseur_regex {
             return true; 
         }
 
-        if ($t->getNext()->checkClass('parentheses') && 
+        if ($t->getNext()->checkClass('parenthesis') && 
             $t->getNext(1)->checkClass('block')) {
             $this->args = array(1, 2);
             $this->remove = array(1, 2);

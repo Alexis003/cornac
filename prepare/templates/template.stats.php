@@ -364,7 +364,7 @@ class template_stats extends template {
         $this->display($node->getRight(), $niveau + 1);
     }
 
-    function display_parentheses($node, $niveau) {
+    function display_parenthesis($node, $niveau) {
         $this->addStat(__FUNCTION__);
     }
 

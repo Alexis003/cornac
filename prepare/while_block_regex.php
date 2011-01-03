@@ -33,7 +33,7 @@ class while_block_regex extends analyseur_regex {
              $t->getPrev(1)->checkToken(T_DO) ) ||  
             $t->getPrev()->checkOperator('}')) { return false; }
         
-        if ($t->getNext()->checkClass('parentheses') &&
+        if ($t->getNext()->checkClass('parenthesis') &&
             $t->getNext(1)->checkClass('block')
             ) {
 

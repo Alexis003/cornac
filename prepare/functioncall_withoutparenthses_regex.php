@@ -17,34 +17,26 @@
    +----------------------------------------------------------------------+
  */
 
-class parentheses extends instruction {
-    protected $contenu = null;
-    
-    function __construct($parentheses) {
+class functioncall_withoutparenthesis_regex extends analyseur_regex {
+    function __construct() {
         parent::__construct(array());
+    }
+
+    function getTokens() {
+        return array(T_PRINT,T_EXIT);
+    }
+
+    function check($t) {
+        if (!$t->hasNext(1) ) { return false; }
         
-        $this->contenu = $parentheses[0];
-        $this->setLine($this->contenu->getLine());
-    }
+        if ($t->getNext()->checkClass(array('Token','arglist'))) { return false; }
+        if (!$t->getNext(1)->checkEndInstruction()) { return false; }
 
-    function __toString() {
-        return __CLASS__." (".$this->contenu.")";
-    }
+        $regex = new modele_regex('arglist',array(0), array());
+        Token::applyRegex($t->getNext(), 'arglist', $regex);
 
-    function getContenu() {
-        return $this->contenu;
+        mon_log(get_class($t)." => arglist (".__CLASS__.")");
+        return false; 
     }
-
-    function neutralise() {
-        $this->contenu->detach();
-    }
-
-    function getRegex(){
-        return array('parentheses_normal_regex',
-                     );
-    }
-
-    function getCode() { return '';}
 }
-
 ?>

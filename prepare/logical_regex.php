@@ -40,7 +40,7 @@ class logical_regex extends analyseur_regex {
 
         if (($t->hasPrev(2) && (((!$t->getPrev(1)->checkBeginInstruction()) && 
                                  $t->getPrev(1)->checkNotCode(')') ))) ) {  return false; }
-        if ($t->hasNext(2) && $t->getNext(1)->checkClass(array('parentheses','arglist'))) { return false; }
+        if ($t->hasNext(2) && $t->getNext(1)->checkClass(array('parenthesis','arglist'))) { return false; }
         if ((!$t->hasNext(2) || 
             ( $t->getNext(1)->checkNotOperator(array('[','->','{','(','::')) && 
              !$t->getNext(1)->checkForAssignation()))

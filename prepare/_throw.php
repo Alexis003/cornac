@@ -40,7 +40,7 @@ class _throw extends instruction {
 
     function getRegex(){
         return array('throw_regex',
-                     'throw_parentheses_regex',
+                     'throw_parenthesis_regex',
                     );
     }
 

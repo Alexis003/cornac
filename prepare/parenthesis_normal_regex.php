@@ -17,32 +17,44 @@
    +----------------------------------------------------------------------+
  */
 
-class throw_parentheses_regex extends analyseur_regex {
+class parenthesis_normal_regex extends analyseur_regex {
     function __construct() {
         parent::__construct(array());
     }
 
     function getTokens() {
-        return array(T_THROW );
+        return array('(');
     }
     
     function check($t) {
+        if (!$t->hasPrev() ) { return false; }
         if (!$t->hasNext(1)) { return false; }
+    
+        if ($t->getPrev()->checkClass('variable')) { return false; }
+        if ($t->getPrev()->checkToken(array(T_CONTINUE, T_USE, T_FUNCTION))) { return false; }
+        if ($t->getPrev()->checkCode('}')) { return false; }
+        if ($t->getNext()->checkClass('Token')) { return false; }
+        if ( $t->getNext(1)->checkNotOperator(')')) { return false; }
 
-        if ($t->checkToken(T_THROW) &&
-            $t->getNext()->checkOperator('(') &&
-            $t->getNext(1)->checkClass(array('_new','variable','property','method','_array','method_static','functioncall')) &&
-            $t->getNext(2)->checkOperator(')') &&
-            $t->getNext(3)->checkNotCode(array('->','['))
-            ) {
+        if ($t->getPrev()->checkFunction() ) { 
+            if ($t->getPrev()->checkCode('echo')) {
+                // case of $object->echo(); 
+                if ($t->getPrev(1)->checkOperator('->')) { return false; }
+                // @note this is possible, we shall go on
+            } else {
+                return false; 
+            }
+        } elseif ($t->getPrev()->checkClass(array('property','_array','property_static')) ||
+                  $t->getPrev()->checkOperator(']')) {
+            // @note this may be a $obj->$array[1]() call
+            return false; 
+        } // @empty_elseif
+        
+        $this->args = array(1);
+        $this->remove = array(1, 2);
 
-            $this->args = array(2);
-            $this->remove = array( 1,2,3);
-
-            mon_log(get_class($t)." => ".__CLASS__);
-            return true; 
-        } 
-        return false;
+        mon_log(get_class($t)." => ".__CLASS__);
+        return true; 
     }
 }
 ?>

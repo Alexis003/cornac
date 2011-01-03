@@ -35,7 +35,7 @@ class reference_normal_regex extends analyseur_regex {
 
         if ($t->getPrev()->checkToken(T_AS)) {
             // continue, c'est une exception
-        } elseif ($t->getPrev()->checkClass(array('arglist','functioncall','parentheses'))) {
+        } elseif ($t->getPrev()->checkClass(array('arglist','functioncall','parenthesis'))) {
             return false;
         } elseif (!$t->getPrev()->checkBeginInstruction()) {  
             return false; 

@@ -30,7 +30,7 @@ class ifthenelseif_sequence_regex extends analyseur_regex {
         if (!$t->hasNext(2) ) { return false; }
 
         if ($t->checkToken(array(T_ELSEIF, T_IF)) &&
-            $t->getNext()->checkClass('parentheses') &&
+            $t->getNext()->checkClass('parenthesis') &&
             $t->getNext(1)->checkClass('sequence')
             ) {
 

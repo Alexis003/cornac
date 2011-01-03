@@ -30,7 +30,7 @@ class switch_simple_regex extends analyseur_regex {
         if (!$t->hasNext(1)) { return false; }
 
         if ($t->checkToken(T_SWITCH) &&
-            $t->getNext()->checkClass('parentheses') &&
+            $t->getNext()->checkClass('parenthesis') &&
             $t->getNext(1)->checkClass('block')
             ) {
 

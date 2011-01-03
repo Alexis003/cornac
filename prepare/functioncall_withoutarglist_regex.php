@@ -17,29 +17,29 @@
    +----------------------------------------------------------------------+
  */
 
-class codephp_unfinishedavecpointvirgule_regex extends analyseur_regex {
+class functioncall_withoutarglist_regex extends analyseur_regex {
     function __construct() {
         parent::__construct(array());
     }
 
     function getTokens() {
-        return array(T_OPEN_TAG);
+        return array(T_EXIT);
     }
-    
-    function check($t) {
-        if (!$t->hasNext(1)) { return false; }
 
-        if ($t->getNext()->checkNotClass('Token') && 
-            $t->getNext(1)->checkCode(';') && 
-            is_null($t->getNext(2))) {
-            $this->args = array(1);
-            $this->remove = array(1,2);
-            
-            mon_log(get_class($t)." => codePHP (".__CLASS__.")");
-            return true;
-        } 
+    function check($t) {
+        if (!$t->hasNext() ) { return false; }
+        
+        if ($t->checkToken(array(T_EXIT)) &&
+            $t->getNext()->checkOperator(array(';',':'))
+            ) {
+                $this->args = array(0 );
+                $this->remove = array();
+
+                mon_log(get_class($t)." => ".__CLASS__);
+                return true; 
+            }
+        
         return false;
     }
 }
-
 ?>

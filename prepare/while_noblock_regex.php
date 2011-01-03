@@ -29,7 +29,7 @@ class while_noblock_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasNext(1)) { return false; }
 
-        if ($t->getNext()->checkNotClass('parentheses')) { return false; }
+        if ($t->getNext()->checkNotClass('parenthesis')) { return false; }
 
         if ( $t->getNext(1)->checkOperator(';')) {
             

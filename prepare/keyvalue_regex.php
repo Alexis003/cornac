@@ -38,7 +38,7 @@ class keyvalue_regex extends analyseur_regex {
 
         if ($t->getNext(1)->checkCode(array('[','->','++','--','=','.=','*=','+=','-=','/=','%=',
                                                  '>>=','&=','^=','>>>=', '|=','<<=','>>=','?','(','{'))) { return false; }
-        if ($t->getNext(1)->checkClass(array('arglist','parentheses'))) { return false; }
+        if ($t->getNext(1)->checkClass(array('arglist','parenthesis'))) { return false; }
 
         $this->args = array(-1, 1);
         $this->remove = array(-1, 1);

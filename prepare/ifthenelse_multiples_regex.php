@@ -31,11 +31,11 @@ class ifthenelse_multiples_regex extends analyseur_regex {
 
         
         if ($t->checkNotToken(T_IF)) { return false;}
-        if ($t->getNext()->checkNotClass('parentheses')) { return false;} 
+        if ($t->getNext()->checkNotClass('parenthesis')) { return false;} 
 
         if ($t->getNext(1)->checkClass('block') &&
             $t->getNext(2)->checkToken(T_ELSEIF) &&
-            $t->getNext(3)->checkClass('parentheses') &&
+            $t->getNext(3)->checkClass('parenthesis') &&
             $t->getNext(4)->checkClass('block')
             ) {
 
@@ -49,7 +49,7 @@ class ifthenelse_multiples_regex extends analyseur_regex {
             }
             $pos = 5;
             while($var->checkToken(T_ELSEIF) &&
-                  $var->getNext()->checkClass('parentheses') &&
+                  $var->getNext()->checkClass('parenthesis') &&
                   $var->getNext(1)->checkClass('block')) {
                   
                   $this->args[] = $pos + 2;

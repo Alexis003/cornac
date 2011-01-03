@@ -17,29 +17,38 @@
    +----------------------------------------------------------------------+
  */
 
-class functioncall_sansarglist_regex extends analyseur_regex {
+class codephp_withsemicolon_regex extends analyseur_regex {
     function __construct() {
         parent::__construct(array());
     }
 
     function getTokens() {
-        return array(T_EXIT);
+        return array(T_OPEN_TAG);
     }
 
     function check($t) {
-        if (!$t->hasNext() ) { return false; }
+        if (!$t->hasNext(2)) { return false; }
         
-        if ($t->checkToken(array(T_EXIT)) &&
-            $t->getNext()->checkOperator(array(';',':'))
-            ) {
-                $this->args = array(0 );
-                $this->remove = array();
+        if ($t->getNext()->checkClass('Token')) { return false; }
+        if ($t->getNext(1)->checkNotCode(';')) { return false; }
+        if ($t->getNext(2)->checkNotToken(T_CLOSE_TAG)) { return false; }
 
-                mon_log(get_class($t)." => ".__CLASS__);
-                return true; 
-            }
+        if ($t->hasNext(3) && $t->getNext(3)->checkToken(T_OPEN_TAG)) {
+            // @note empty raw text
+            return false;
+        }
+
+        if ($t->hasNext(4) && $t->getNext(4)->checkToken(T_OPEN_TAG)) {
+            // @note non empty raw text
+            return false;
+        }
         
-        return false;
+        $this->args = array(1);
+        $this->remove = array(1,2,3);
+        
+        mon_log(get_class($t)." => codePHP (".__CLASS__.")");
+        return true;
     }
 }
+
 ?>

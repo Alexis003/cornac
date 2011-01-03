@@ -17,41 +17,26 @@
    +----------------------------------------------------------------------+
  */
 
-class parentheses_normal_regex extends analyseur_regex {
+class clone_parenthesis_regex extends analyseur_regex {
     function __construct() {
         parent::__construct(array());
     }
 
     function getTokens() {
-        return array('(');
+        return array(T_CLONE);
     }
     
     function check($t) {
-        if (!$t->hasPrev() ) { return false; }
-        if (!$t->hasNext(1)) { return false; }
-    
-        if ($t->getPrev()->checkClass('variable')) { return false; }
-        if ($t->getPrev()->checkToken(array(T_CONTINUE, T_USE, T_FUNCTION))) { return false; }
-        if ($t->getPrev()->checkCode('}')) { return false; }
-        if ($t->getNext()->checkClass('Token')) { return false; }
-        if ( $t->getNext(1)->checkNotOperator(')')) { return false; }
+        if (!$t->hasNext()) { return false; }
+        if ($t->getNext()->checkNotCode('(')) { return false; }
+        if ($t->getNext(1)->checkNotClass(array('variable','_array',
+                                                'property','property_static',
+                                                'method','method_static',
+                                               'functioncall'))) { return false; }
+        if ($t->getNext(2)->checkNotCode(array(')'))) { return false; }
 
-        if ($t->getPrev()->checkFunction() ) { 
-            if ($t->getPrev()->checkCode('echo')) {
-                // case of $object->echo(); 
-                if ($t->getPrev(1)->checkOperator('->')) { return false; }
-                // @note this is possible, we shall go on
-            } else {
-                return false; 
-            }
-        } elseif ($t->getPrev()->checkClass(array('property','_array','property_static')) ||
-                  $t->getPrev()->checkOperator(']')) {
-            // @note this may be a $obj->$array[1]() call
-            return false; 
-        } // @empty_elseif
-        
-        $this->args = array(1);
-        $this->remove = array(1, 2);
+        $this->args = array(2);
+        $this->remove = array(1,2,3);
 
         mon_log(get_class($t)." => ".__CLASS__);
         return true; 

@@ -793,7 +793,7 @@ class template_db extends template {
         return $this->savenode($node, $level);        
     }
 
-    function display_parentheses($node, $level) {
+    function display_parenthesis($node, $level) {
         $node->myId = $this->getNextId();
         $node->myleft = $this->getIntervalleId();
         

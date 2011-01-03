@@ -48,7 +48,7 @@ class comparison_regex extends analyseur_regex {
              $t->checkNotCode(array('>', '<'))) {return false; }
         if ($t->getNext()->checkClass('Token')) { return false; }
         if ($t->getNext(1)->checkOperator(array('(','[','->','::','+','-','/','*','%','{','++','--','=')) ||
-            $t->getNext(1)->checkClass(array('parentheses','arglist'))) { return false; }
+            $t->getNext(1)->checkClass(array('parenthesis','arglist'))) { return false; }
 
         $this->args   = array(-1, 0, 1);
         $this->remove = array(-1, 1);

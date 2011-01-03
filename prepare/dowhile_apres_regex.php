@@ -31,7 +31,7 @@ class dowhile_apres_regex extends analyseur_regex {
         if (!$t->hasNext(2)) { return false; }
         if (!$t->hasPrev()) { return false; }
 
-        if ($t->getNext()->checkClass('parentheses') &&
+        if ($t->getNext()->checkClass('parenthesis') &&
             $t->getNext(1)->checkCode(';') &&
             $t->getPrev()->checkClass('block')
             ) {

@@ -29,7 +29,7 @@ class switch_alternative_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasNext(2)) { return false; }
 
-        if ($t->getNext()->checkNotClass('parentheses')) { return false; }
+        if ($t->getNext()->checkNotClass('parenthesis')) { return false; }
         if ($t->getNext(1)->checkNotOperator(':')) { return false; }
 
         $pos = 0;

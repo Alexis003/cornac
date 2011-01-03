@@ -705,7 +705,7 @@ class template_cache extends template {
         return $this->savenode($node);
     }
 
-    function display_parentheses($node, $level) {
+    function display_parenthesis($node, $level) {
         $contenu = $node->getContenu();
         $this->display($contenu, $level + 1);
         

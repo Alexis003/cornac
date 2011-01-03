@@ -17,38 +17,34 @@
    +----------------------------------------------------------------------+
  */
 
-class codephp_avecpointvirgule_regex extends analyseur_regex {
-    function __construct() {
+class parenthesis extends instruction {
+    protected $contenu = null;
+    
+    function __construct($parenthesis) {
         parent::__construct(array());
+        
+        $this->contenu = $parenthesis[0];
+        $this->setLine($this->contenu->getLine());
     }
 
-    function getTokens() {
-        return array(T_OPEN_TAG);
+    function __toString() {
+        return __CLASS__." (".$this->contenu.")";
     }
 
-    function check($t) {
-        if (!$t->hasNext(2)) { return false; }
-        
-        if ($t->getNext()->checkClass('Token')) { return false; }
-        if ($t->getNext(1)->checkNotCode(';')) { return false; }
-        if ($t->getNext(2)->checkNotToken(T_CLOSE_TAG)) { return false; }
-
-        if ($t->hasNext(3) && $t->getNext(3)->checkToken(T_OPEN_TAG)) {
-            // @note empty raw text
-            return false;
-        }
-
-        if ($t->hasNext(4) && $t->getNext(4)->checkToken(T_OPEN_TAG)) {
-            // @note non empty raw text
-            return false;
-        }
-        
-        $this->args = array(1);
-        $this->remove = array(1,2,3);
-        
-        mon_log(get_class($t)." => codePHP (".__CLASS__.")");
-        return true;
+    function getContenu() {
+        return $this->contenu;
     }
+
+    function neutralise() {
+        $this->contenu->detach();
+    }
+
+    function getRegex(){
+        return array('parenthesis_normal_regex',
+                     );
+    }
+
+    function getCode() { return '';}
 }
 
 ?>

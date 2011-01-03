@@ -17,29 +17,32 @@
    +----------------------------------------------------------------------+
  */
 
-class clone_parentheses_regex extends analyseur_regex {
+class throw_parenthesis_regex extends analyseur_regex {
     function __construct() {
         parent::__construct(array());
     }
 
     function getTokens() {
-        return array(T_CLONE);
+        return array(T_THROW );
     }
     
     function check($t) {
-        if (!$t->hasNext()) { return false; }
-        if ($t->getNext()->checkNotCode('(')) { return false; }
-        if ($t->getNext(1)->checkNotClass(array('variable','_array',
-                                                'property','property_static',
-                                                'method','method_static',
-                                               'functioncall'))) { return false; }
-        if ($t->getNext(2)->checkNotCode(array(')'))) { return false; }
+        if (!$t->hasNext(1)) { return false; }
 
-        $this->args = array(2);
-        $this->remove = array(1,2,3);
+        if ($t->checkToken(T_THROW) &&
+            $t->getNext()->checkOperator('(') &&
+            $t->getNext(1)->checkClass(array('_new','variable','property','method','_array','method_static','functioncall')) &&
+            $t->getNext(2)->checkOperator(')') &&
+            $t->getNext(3)->checkNotCode(array('->','['))
+            ) {
 
-        mon_log(get_class($t)." => ".__CLASS__);
-        return true; 
+            $this->args = array(2);
+            $this->remove = array( 1,2,3);
+
+            mon_log(get_class($t)." => ".__CLASS__);
+            return true; 
+        } 
+        return false;
     }
 }
 ?>

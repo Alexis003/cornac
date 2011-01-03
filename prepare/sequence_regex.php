@@ -30,7 +30,7 @@ class sequence_regex extends analyseur_regex {
         if (!$t->hasNext() ) { return false; }
         
         if ( $t->hasPrev() && $t->getPrev()->checkForAssignation())     { return false; }
-        if ( $t->hasPrev() && $t->getPrev()->checkClass('parentheses')) { return false; }
+        if ( $t->hasPrev() && $t->getPrev()->checkClass('parenthesis')) { return false; }
         if ( $t->checkClass('_case','_default'))                        { return false; }
         if ( $t->hasPrev() && $t->getPrev()->checkCode(array('=',')','->','(',',','.','new','!==','::',':',
                 '?','or','and','xor','var','$','/','+','-','*','%','@','&','|','^','"',
@@ -50,7 +50,7 @@ class sequence_regex extends analyseur_regex {
 
         if (($t->checkSubClass('instruction') || 
              $t->checkForVariable('instruction')) && 
-            $t->checkNotClass('parentheses') && 
+            $t->checkNotClass('parenthesis') && 
             $t->getNext()->checkCode(';') ) { 
                         
             $var = $t->getNext(1); 

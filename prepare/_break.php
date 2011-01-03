@@ -25,7 +25,7 @@ class _break extends instruction {
         
         if (!isset($expression[1])) {
             $this->levels = new token_traite(1);
-        } elseif ($expression[1]->checkClass('parentheses')) {
+        } elseif ($expression[1]->checkClass('parenthesis')) {
             $this->levels =  new token_traite($expression[1]->getContenu()->getCode());
         } else {
             $this->levels =  new token_traite($expression[1]->getCode());

@@ -42,7 +42,7 @@ class break_leveled_regex extends analyseur_regex {
         } 
 
         if ($t->checkToken(T_BREAK) &&
-            $t->getNext()->checkClass('parentheses')  &&
+            $t->getNext()->checkClass('parenthesis')  &&
             $t->getNext(1)->checkCode(';')
             ) {
 

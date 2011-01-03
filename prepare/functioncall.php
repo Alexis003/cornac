@@ -64,9 +64,9 @@ class functioncall extends instruction {
    function getRegex() {
         return array(
     'functioncall_simple_regex',
-    'functioncall_sansparentheses_regex',
-    'functioncall_echosansparentheses_regex',
-    'functioncall_sansarglist_regex',
+    'functioncall_withoutparenthesis_regex',
+    'functioncall_echowithoutparenthesis_regex',
+    'functioncall_withoutarglist_regex',
     'functioncall_variable_regex',
     'functioncall_variableempty_regex',
     'functioncall_list_regex',

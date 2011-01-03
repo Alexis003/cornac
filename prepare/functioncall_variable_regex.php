@@ -30,7 +30,7 @@ class functioncall_variable_regex extends analyseur_regex {
         if (!$t->hasNext() ) { return false; }
 
         if ($t->checkClass(array('variable','_array')) &&
-            $t->getNext()->checkClass(array('parentheses','arglist'))
+            $t->getNext()->checkClass(array('parenthesis','arglist'))
             ) {
                 $this->args = array(0 , 1);
                 $this->remove[] = 1;

@@ -395,7 +395,7 @@ class template_tree extends template {
          $this->display($node->getRight(), $level + 1);
     }
 
-    function display_parentheses($node, $level) {
+    function display_parenthesis($node, $level) {
          print str_repeat('  ', $level).get_class($node)." \n";
          print str_repeat('  ', $level)."( \"".$node->getContenu()."\" )\n";    
     }

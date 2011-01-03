@@ -30,7 +30,7 @@ class ifthenelseif_alternative_regex extends analyseur_regex {
         if (!$t->hasNext(2) ) { return false; }
 
         if (!$t->checkToken(array(T_IF,T_ELSEIF))) { return false;} 
-        if ($t->getNext()->checkNotClass('parentheses')) { return false; }
+        if ($t->getNext()->checkNotClass('parenthesis')) { return false; }
         if ($t->getNext(1)->checkNotCode(':')) { return false; } 
 
         $args = array();

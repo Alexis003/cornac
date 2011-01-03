@@ -28,7 +28,7 @@ class analyseur {
                                   'variable', 
                                   '_array', 
                                   'rawtext', 
-                                  'parentheses', 
+                                  'parenthesis', 
                                   'affectation', 
                                   '_for',
                                   'sequence', 

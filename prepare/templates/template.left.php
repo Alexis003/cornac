@@ -208,7 +208,7 @@ class template_left extends template {
         $this->display($node->getRight(), $niveau + 1);
     }
 
-    function display_parentheses($node, $niveau) {
+    function display_parenthesis($node, $niveau) {
         
     }
 

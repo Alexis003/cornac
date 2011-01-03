@@ -40,7 +40,7 @@ class _clone extends instruction {
 
     function getRegex(){
         return array('clone_normal_regex',
-                     'clone_parentheses_regex',
+                     'clone_parenthesis_regex',
                     );
     }
 

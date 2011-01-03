@@ -30,7 +30,7 @@ class ifthenelse_vides_regex extends analyseur_regex {
         if (!$t->hasNext(1) ) { return false; }
 
         if ($t->checkToken(array(T_ELSEIF, T_IF)) &&
-            $t->getNext()->checkClass('parentheses') &&
+            $t->getNext()->checkClass('parenthesis') &&
             $t->getNext(1)->checkCode(';') 
             ) {
             $regex = new modele_regex('block',array(), array());

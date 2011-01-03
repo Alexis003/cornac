@@ -17,26 +17,29 @@
    +----------------------------------------------------------------------+
  */
 
-class functioncall_sansparentheses_regex extends analyseur_regex {
+class codephp_unfinishedwithsemicolon_regex extends analyseur_regex {
     function __construct() {
         parent::__construct(array());
     }
 
     function getTokens() {
-        return array(T_PRINT,T_EXIT);
+        return array(T_OPEN_TAG);
     }
-
+    
     function check($t) {
-        if (!$t->hasNext(1) ) { return false; }
-        
-        if ($t->getNext()->checkClass(array('Token','arglist'))) { return false; }
-        if (!$t->getNext(1)->checkEndInstruction()) { return false; }
+        if (!$t->hasNext(1)) { return false; }
 
-        $regex = new modele_regex('arglist',array(0), array());
-        Token::applyRegex($t->getNext(), 'arglist', $regex);
-
-        mon_log(get_class($t)." => arglist (".__CLASS__.")");
-        return false; 
+        if ($t->getNext()->checkNotClass('Token') && 
+            $t->getNext(1)->checkCode(';') && 
+            is_null($t->getNext(2))) {
+            $this->args = array(1);
+            $this->remove = array(1,2);
+            
+            mon_log(get_class($t)." => codePHP (".__CLASS__.")");
+            return true;
+        } 
+        return false;
     }
 }
+
 ?>

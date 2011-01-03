@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class functioncall_echosansparentheses_regex extends analyseur_regex {
+class functioncall_echowithoutparenthesis_regex extends analyseur_regex {
     function __construct() {
         parent::__construct(array());
     }
@@ -54,7 +54,7 @@ class functioncall_echosansparentheses_regex extends analyseur_regex {
         
         if ($var->checkNotClass(array('Token','arglist')) && 
             $var->getNext()->checkEndInstruction() &&
-            $var->getNext()->checkNotClass('parentheses')
+            $var->getNext()->checkNotClass('parenthesis')
             ) {
             
             if ($var->getNext()->checkOperator(array('?'))) { return false; }

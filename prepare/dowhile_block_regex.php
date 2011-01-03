@@ -32,7 +32,7 @@ class dowhile_block_regex extends analyseur_regex {
         if ( $t->checkToken(T_DO) &&
              $t->getNext()->checkClass('block') && 
              $t->getNext(1)->checkToken(T_WHILE) &&
-             $t->getNext(2)->checkClass('parentheses')
+             $t->getNext(2)->checkClass('parenthesis')
            ) {
 
             $this->args = array(1, 3 );

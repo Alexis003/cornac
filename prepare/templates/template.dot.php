@@ -546,7 +546,7 @@ die("cas de l'argument null ou inexistant");
         $this->dot_standard_one($node, $level, 'getRight');
     }
 
-    function display_parentheses($node, $level) {
+    function display_parenthesis($node, $level) {
         $node->getContenu()->dotId = $this->getNextId();
         
         $this->dot_label($node->dotId, get_class($node) );

@@ -29,7 +29,7 @@ class ifthen_block_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasNext(1) ) { return false; }
 
-        if ($t->getNext()->checkNotClass('parentheses')) { return false; }
+        if ($t->getNext()->checkNotClass('parenthesis')) { return false; }
         if ($t->getNext(1)->checkNotClass('block')) { return false; } 
         
         if ($t->hasNext(2) && $t->getNext(2)->checkToken(array(T_ELSE, T_ELSEIF))) { return false; }

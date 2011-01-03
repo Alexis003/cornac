@@ -28,7 +28,7 @@ class ifthenelseif_simples_regex extends analyseur_regex {
     
     function check($t) {
         if (!$t->hasNext(1) ) { return false; }
-        if ($t->getNext()->checkNotClass('parentheses')) { return false; }
+        if ($t->getNext()->checkNotClass('parenthesis')) { return false; }
 
         if ($t->getNext(1)->checkForBlock(true)) {
             if ($t->hasNext(2) && $t->getNext(2)->checkForAssignation()) {

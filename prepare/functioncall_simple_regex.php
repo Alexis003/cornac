@@ -43,7 +43,7 @@ class functioncall_simple_regex extends analyseur_regex {
               $t->getNext()->checkClass('arglist')) {
 
             if ($t->getNext(1)->checkOperator(array('{','(')) ||
-                $t->getNext(1)->checkClass('parentheses')) { return false; }
+                $t->getNext(1)->checkClass('parenthesis')) { return false; }
 
             $this->args = array(0 , 1);
             $this->remove[] = 1;

@@ -31,7 +31,7 @@ class _declare extends instruction {
             // @empty_else
         }
         
-        if ($expression[0]->checkClass('parentheses')) {
+        if ($expression[0]->checkClass('parenthesis')) {
             // @doc we expect no initialisation 
             if (!$this->set(strtolower($expression[0]->getContenu()->getVariable()->getCode()), 
                             $expression[0]->getContenu()->getValue())) {

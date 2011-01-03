@@ -54,7 +54,7 @@ class new_variable_regex extends analyseur_regex {
             $this->remove[] = 3;
        } 
 
-        if ( $t->getNext(1)->checkClass('parentheses')) {
+        if ( $t->getNext(1)->checkClass('parenthesis')) {
             $this->args[]   = 2;
             $this->remove[] = 2;
         } 

@@ -105,7 +105,7 @@ class template_hierarchic extends template {
         $this->display($node->getRight(), $niveau + 1);
     }
 
-    function display_parentheses($node, $niveau) {
+    function display_parenthesis($node, $niveau) {
         print str_repeat('  ', $niveau).get_class($node)." \n";
     }
 

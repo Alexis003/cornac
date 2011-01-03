@@ -30,7 +30,7 @@ class ifthenelse_alternativeblock_regex extends analyseur_regex {
         if (!$t->hasNext(1) ) { return false; }
 
         if (!$t->checkToken(array(T_IF))) { return false;} 
-        if ($t->getNext()->checkNotClass('parentheses')) { return false; }
+        if ($t->getNext()->checkNotClass('parenthesis')) { return false; }
         if ($t->getNext(1)->checkNotCode(':')) { return false; } 
         if ($t->getNext(2)->checkNotClass('block')) { return false; } 
         
@@ -40,7 +40,7 @@ class ifthenelse_alternativeblock_regex extends analyseur_regex {
         $pos = 4;
 
         while ($var->checkToken(T_ELSEIF) &&
-               $var->getNext()->checkClass('parentheses') &&
+               $var->getNext()->checkClass('parenthesis') &&
                $var->getNext(1)->checkCode(':') &&
                $var->getNext(2)->checkClass('block')
                ) {

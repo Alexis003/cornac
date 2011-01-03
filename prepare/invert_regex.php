@@ -32,7 +32,7 @@ class invert_regex extends analyseur_regex {
         if ($t->checkNotClass('Token')) { return false; }
         if ($t->getNext()->checkClass(array('functioncall','variable','_array',
                                             'method','property','_new','comparison',
-                                            'parentheses','constante','literals',
+                                            'parenthesis','constante','literals',
                                             'constante_static','property_static','method_static',
                                             'cast','invert','noscream','sign')) &&
             $t->getNext(1)->checkNotCode(array('->','[','{','::'))
