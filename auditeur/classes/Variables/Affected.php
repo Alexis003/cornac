@@ -28,10 +28,44 @@ class Variables_Affected extends modules {
 	public function analyse() {
         $this->clean_report();
 
-	    $query = <<<SQL
-SELECT NULL, T1.file, T1.code, T1.id, '{$this->name}', 0
-FROM <tokens> T1
-WHERE type = 'variable'
+        $query = <<<SQL
+SELECT NULL, T1.file, TC.code, T1.id,'{$this->name}', 0
+FROM <tokens> T1  
+JOIN <tokens_tags> TT
+    ON T1.id = TT.token_id AND 
+       TT.type='left'
+JOIN <tokens> T2
+    ON T2.file = T1.file AND TT.token_sub_id = T2.id
+JOIN <tokens> T3
+    ON T3.file = T1.file AND 
+       T3.type='_array' AND 
+       T3.left between T2.left AND T2.right 
+JOIN <tokens_cache> TC
+  ON TC.id = T3.id
+WHERE T1.type = 'affectation'
+SQL;
+        $this->exec_query_insert('report', $query);
+
+        $query = <<<SQL
+SELECT NULL, T1.file, TC.code, T1.id,'{$this->name}', 0
+FROM <tokens> T1  
+JOIN <tokens_tags> TT
+    ON T1.id = TT.token_id AND 
+       TT.type='left'
+JOIN <tokens> T2
+    ON T2.file = T1.file AND 
+       TT.token_sub_id = T2.id
+JOIN <tokens> T3
+    ON T3.file = T1.file AND 
+       T3.type='variable' AND 
+       T3.left between T2.left AND T2.right 
+LEFT JOIN <tokens> T4
+    ON T4.file = T1.file AND 
+       T4.left=T3.left -1 
+JOIN <tokens_cache> TC
+    ON TC.id = T3.id
+WHERE T1.type = 'affectation' AND
+      (T4.type IS NULL OR T4.type != '_array')
 SQL;
         $this->exec_query_insert('report', $query);
 
