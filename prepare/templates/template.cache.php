@@ -608,7 +608,7 @@ class template_cache extends template {
         return $this->savenode($node);
     }
 
-    function display_logique($node, $level) {
+    function display_logical($node, $level) {
         $left = $node->getLeft();
         $this->display($left, $level + 1);
         $operator = $node->getOperator();

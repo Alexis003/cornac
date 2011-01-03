@@ -43,8 +43,8 @@ class analyseur {
                                   'block',
                                   'not',
                                   'invert',
-                                  '_function', // @attention : function must be before logique
-                                  'logique',
+                                  '_function', // @attention : function must be before logical
+                                  'logical',
                                   'preplusplus',
                                   'postplusplus',
                                   'property',

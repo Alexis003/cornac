@@ -514,7 +514,7 @@ class Token {
                        '_global',
                        '_use',
                        '_dowhile',
-                       'logique',
+                       'logical',
                        'method',
                        'method_static',
                        'literals',

@@ -316,7 +316,7 @@ class template_stats extends template {
         $this->display($node->getName(), $niveau + 1);
     }
 
-    function display_logique($node, $niveau) {
+    function display_logical($node, $niveau) {
         $this->addStat(__FUNCTION__);
         $this->display($node->getLeft(), $niveau + 1);
         $this->display($node->getOperator(), $niveau + 1);

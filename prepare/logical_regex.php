@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class logique_regex extends analyseur_regex {
+class logical_regex extends analyseur_regex {
     function __construct() {
         parent::__construct(array());
     }

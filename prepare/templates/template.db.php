@@ -679,7 +679,7 @@ class template_db extends template {
         return $this->savenode($node, $level);        
     }
 
-    function display_logique($node, $level) {
+    function display_logical($node, $level) {
         $node->myId = $this->getNextId();
         $node->myleft = $this->getIntervalleId();
 

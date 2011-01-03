@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class logique extends instruction {
+class logical extends instruction {
     protected $left = null;
     protected $operator = null;
     protected $right = null;
@@ -57,7 +57,7 @@ class logique extends instruction {
     }
 
     static function getRegex() {
-        return array('logique_regex');
+        return array('logical_regex');
     }
 }
 

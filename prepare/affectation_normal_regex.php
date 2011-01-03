@@ -42,7 +42,7 @@ class affectation_normal_regex extends analyseur_regex {
              $t->getPrev()->checkSubclass('variable')) &&
             ($t->getNext()->checkClass(array('literals', 'variable','_array','sign','noscream',
                                              'property', 'method'  ,'ternaryop',
-                                             'functioncall','operation','logique',
+                                             'functioncall','operation','logical',
                                              'method_static','operation','ternaryop',
                                              'constante_static','property_static','_clone',
                                              'parentheses','_new','cast','constante','invert',

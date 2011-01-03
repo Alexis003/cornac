@@ -488,7 +488,7 @@ die("cas de l'argument null ou inexistant");
         $this->dot_label($node->dotId, $node->getCode() );
     }
 
-    function display_logique($node, $level) {
+    function display_logical($node, $level) {
         $node->getLeft()->dotId    = $this->getNextId();
         $node->getOperator()->dotId = $this->getNextId();
         $node->getRight()->dotId    = $this->getNextId();

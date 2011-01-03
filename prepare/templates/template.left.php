@@ -171,7 +171,7 @@ class template_left extends template {
         $this->display($inclusion, $niveau + 1);
     }
 
-    function display_logique($node, $niveau) {
+    function display_logical($node, $niveau) {
         
         $this->display($node->getLeft(), $niveau + 1);
         $this->display($node->getOperator(), $niveau + 1);

@@ -332,7 +332,7 @@ class template_tree extends template {
         print str_repeat('  ', $level).' '.$node->getName()." : \n";
     }
 
-    function display_logique($node, $level) {
+    function display_logical($node, $level) {
          print str_repeat('  ', $level).get_class($node)." \n";
          print str_repeat('  ', $level)."left : \n";
          $this->display($node->getLeft(), $level + 1);
