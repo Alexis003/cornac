@@ -143,6 +143,7 @@ $tests = array(
 'class.Structures_IfNested.test.php',
 'class.Quality_GpcAssigned.test.php',
 'class.Quality_ClassesNotInSameFile.test.php',
+'class.Variables_Affected.test.php',
 // new tests
 );
 

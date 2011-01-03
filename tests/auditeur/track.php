@@ -55,6 +55,7 @@ foreach($analyzers_level1 as $id => $analyzer) {
     $analyzers[] = $analyzer;
 }
 
+/*
 $analyzers_level0 = glob('../../auditeur/classes/*.php');
 
 foreach($analyzers_level0 as $id => $analyzer) {
@@ -66,6 +67,7 @@ foreach($analyzers_level0 as $id => $analyzer) {
         $analyzers[] = $analyzer;
     }
 }
+*/
 
 $diff = array_diff($analyzers, $tests);
 if(count($diff) != 0) {

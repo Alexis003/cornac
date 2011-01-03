@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
@@ -17,20 +17,10 @@
    +----------------------------------------------------------------------+
  */
 
-include_once('Auditeur_Framework_TestCase.php');
+$a = $b + $c;
+$d[1] = $e[3];
+$f->g = $h;
 
-class Classes_PropertiesChained_Test extends Auditeur_Framework_TestCase
-{
-    public function testClasses_PropertiesChained()  {
-        $this->expected = array( 
-'$fluent1->level_1->level_2',
-'$fluent2->level_1->level_2->level_3',
-'$fluent2->level_1->level_2',
-);
-        $this->unexpected = array(/*'',*/);
 
-        parent::generic_test();
 
-    }
-}
 ?>
