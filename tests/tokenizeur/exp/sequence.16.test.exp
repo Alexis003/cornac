@@ -6,7 +6,7 @@ tests/tokenizeur/scripts/sequence.16.test.php
       0 : 
           ifthen if
           Condition 0) 
-              parentheses 
+              parenthesis 
               ( "literals 1" )
               block 
               0 : 

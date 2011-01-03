@@ -4,7 +4,7 @@ tests/tokenizeur/scripts/rawtext.3.test.php
   code : 
       ifthen if
       Condition 0) 
-          parentheses 
+          parenthesis 
           ( "constante true" )
           block 
           0 : 

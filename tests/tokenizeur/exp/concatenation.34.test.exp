@@ -6,7 +6,7 @@ tests/tokenizeur/scripts/concatenation.34.test.php
       0 : 
           ifthen if
           Condition 0) 
-              parentheses 
+              parenthesis 
               ( "variable $x" )
               block 
               0 : 

@@ -20,7 +20,7 @@ tests/tokenizeur/scripts/sequence.25.test.php
       2 : 
           ifthen if
           Condition 0) 
-              parentheses 
+              parenthesis 
               ( "comparison variable $d 288 "instanceof" constante e" )
               block 
               0 : 

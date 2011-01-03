@@ -13,11 +13,11 @@ tests/tokenizeur/scripts/sequence.17.test.php
               left : 
                   logical 
                   left : 
-                      parentheses 
+                      parenthesis 
                       ( "bitshift functioncall 307 "ord" ( arglist(_array variable $data[preplusplus variable $index297 "++"]) )   287 "<<"  literals 16 " )
                   operateur :  "|"
                   right : 
-                      parentheses 
+                      parenthesis 
                       ( "bitshift functioncall 307 "ord" ( arglist(_array variable $data[preplusplus variable $index297 "++"]) )   287 "<<"  literals 8 " )
               operateur :  "|"
               right : 

@@ -13,7 +13,7 @@ tests/tokenizeur/scripts/dowhile.2.test.php
                    "=" 
                   right : 
                       literals 1
-              parentheses 
+              parenthesis 
               ( "comparison property variable $this->literals _code  "<" literals 200" )
       1 : 
           affectation 

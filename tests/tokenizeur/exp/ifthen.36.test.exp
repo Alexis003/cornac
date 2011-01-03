@@ -6,7 +6,7 @@ tests/tokenizeur/scripts/ifthen.36.test.php
       0 : 
           ifthen if
           Condition 0) 
-              parentheses 
+              parenthesis 
               ( "literals 1" )
               block 
               0 : 
@@ -24,7 +24,7 @@ tests/tokenizeur/scripts/ifthen.36.test.php
                       0 : 
                           ifthen if
                           Condition 0) 
-                              parentheses 
+                              parenthesis 
                               ( "comparison variable $d 281 "===" constante null" )
                               block 
                               0 : 

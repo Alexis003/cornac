@@ -4,7 +4,7 @@ tests/tokenizeur/scripts/ifthen.50.test.php
   code : 
       ifthen if
       Condition 0) 
-          parentheses 
+          parenthesis 
           ( "comparison variable $commentheader 283 "==" literals no" )
           block 
           0 : 
@@ -14,7 +14,7 @@ tests/tokenizeur/scripts/ifthen.50.test.php
                   0 : 
                       literals <br>
       Condition 1) 
-          parentheses 
+          parenthesis 
           ( "comparison variable $commentheader 283 "==" literals 1" )
           block 
           0 : 
@@ -24,7 +24,7 @@ tests/tokenizeur/scripts/ifthen.50.test.php
                   0 : 
                       literals <br>
       Condition 2) 
-          parentheses 
+          parenthesis 
           ( "comparison variable $commentheader 283 "==" literals 2" )
           block 
           0 : 
@@ -34,7 +34,7 @@ tests/tokenizeur/scripts/ifthen.50.test.php
                   0 : 
                       literals <br>
       Condition 3) 
-          parentheses 
+          parenthesis 
           ( "comparison variable $commentheader 283 "==" literals 3" )
           block 
           0 : 
@@ -44,7 +44,7 @@ tests/tokenizeur/scripts/ifthen.50.test.php
                   0 : 
                       literals <br>
       Condition 4) 
-          parentheses 
+          parenthesis 
           ( "comparison variable $commentheader 283 "==" literals 4" )
           block 
           0 : 

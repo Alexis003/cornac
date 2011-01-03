@@ -7,7 +7,7 @@ tests/tokenizeur/scripts/functioncall.56.test.php
           arglist 
           0 : 
           1 : 
-              parentheses 
+              parenthesis 
               ( "not !" )
           2 : 
           3 : 

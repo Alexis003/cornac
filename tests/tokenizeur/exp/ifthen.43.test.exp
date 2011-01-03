@@ -6,7 +6,7 @@ tests/tokenizeur/scripts/ifthen.43.test.php
       0 : 
           ifthen if
           Condition 0) 
-              parentheses 
+              parenthesis 
               ( "variable $a" )
               block 
               0 : 
@@ -23,7 +23,7 @@ tests/tokenizeur/scripts/ifthen.43.test.php
       1 : 
           ifthen if
           Condition 0) 
-              parentheses 
+              parenthesis 
               ( "variable $a" )
               block 
               0 : 

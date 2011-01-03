@@ -8,8 +8,8 @@ tests/tokenizeur/scripts/ternaryop.2.test.php
        "=" 
       right : 
           ternaryop ?
-          parentheses (comparison variable $categorie_id 282 "!=" literals ) ? concatenation variable $categorie_id . literals  -  . variable $categorie_nom   : literals 
-              parentheses 
+          parenthesis (comparison variable $categorie_id 282 "!=" literals ) ? concatenation variable $categorie_id . literals  -  . variable $categorie_nom   : literals 
+              parenthesis 
               ( "comparison variable $categorie_id 282 "!=" literals " )
               concatenation 
               0 : 

@@ -7,5 +7,5 @@ tests/tokenizeur/scripts/logical.39.test.php
           variable $x
        "=" 
       right : 
-          parentheses 
-          ( "comparison parentheses (logical method variable $b->functioncall 307 "c" ( arglist(variable $d) )   "^" property variable $e->literals f) 280 "!==" literals 5" )
+          parenthesis 
+          ( "comparison parenthesis (logical method variable $b->functioncall 307 "c" ( arglist(variable $d) )   "^" property variable $e->literals f) 280 "!==" literals 5" )

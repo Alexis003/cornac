@@ -4,7 +4,7 @@ tests/tokenizeur/scripts/constante_static.2.test.php
   code : 
       ifthen if
       Condition 0) 
-          parentheses 
+          parenthesis 
           ( "comparison functioncall 307 "fopen" ( arglist(variable $nom, constante_static 307 "CLASSE"::constante CREATE) )  280 "!==" constante TRUE" )
           block 
           0 : 

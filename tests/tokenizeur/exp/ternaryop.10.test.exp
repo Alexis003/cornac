@@ -9,7 +9,7 @@ tests/tokenizeur/scripts/ternaryop.10.test.php
       right : 
           concatenation 
           0 : 
-              parentheses 
+              parenthesis 
               ( "ternaryop ?" )
           1 : 
               literals  <code>[-&gt;

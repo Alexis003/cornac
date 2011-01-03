@@ -4,7 +4,7 @@ tests/tokenizeur/scripts/block.11.test.php
   code : 
       ifthen if
       Condition 0) 
-          parentheses 
+          parenthesis 
           ( "literals 1" )
           block 
           0 : 

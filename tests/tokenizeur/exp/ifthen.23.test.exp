@@ -4,13 +4,13 @@ tests/tokenizeur/scripts/ifthen.23.test.php
   code : 
       ifthen if
       Condition 0) 
-          parentheses 
+          parenthesis 
           ( "comparison variable $x 283 "==" literals 6" )
           block 
           0 : 
               ifthen if
               Condition 0) 
-                  parentheses 
+                  parenthesis 
                   ( "comparison variable $y 283 "==" literals 1" )
                   block 
                   0 : 

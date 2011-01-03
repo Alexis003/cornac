@@ -4,7 +4,7 @@ tests/tokenizeur/scripts/operation.22.test.php
   code : 
       operation 
       left : 
-          parentheses 
+          parenthesis 
           ( "ternaryop ?" )
       operation :  "*"
       right : 

@@ -4,7 +4,7 @@ tests/tokenizeur/scripts/break.3.test.php
   code : 
       ifthen if
       Condition 0) 
-          parentheses 
+          parenthesis 
           ( "not !" )
           block 
           0 : 

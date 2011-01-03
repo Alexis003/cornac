@@ -4,31 +4,31 @@ tests/tokenizeur/scripts/ifthen.14.test.php
   code : 
       ifthen if
       Condition 0) 
-          parentheses 
+          parenthesis 
           ( "variable $condition1" )
           block 
           0 : 
               literals then1
       Condition 1) 
-          parentheses 
+          parenthesis 
           ( "variable $condition2" )
           block 
           0 : 
               literals then2
       Condition 2) 
-          parentheses 
+          parenthesis 
           ( "variable $condition3" )
           block 
           0 : 
               literals then3
       Condition 3) 
-          parentheses 
+          parenthesis 
           ( "variable $condition4" )
           block 
           0 : 
               literals then4
       Condition 4) 
-          parentheses 
+          parenthesis 
           ( "variable $condition5" )
           block 
           0 : 

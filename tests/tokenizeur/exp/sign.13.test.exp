@@ -7,6 +7,6 @@ tests/tokenizeur/scripts/sign.13.test.php
           variable $x
        "=" 
       right : 
-          sign  "-"parentheses (operation literals 1  "+" literals 2)
-              parentheses 
+          sign  "-"parenthesis (operation literals 1  "+" literals 2)
+              parenthesis 
               ( "operation literals 1  "+" literals 2" )

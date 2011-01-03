@@ -9,7 +9,7 @@ tests/tokenizeur/scripts/sequence.19.test.php
               variable $sort
            "=" 
           right : 
-              parentheses 
+              parenthesis 
               ( "ternaryop ?" )
       1 : 
           rawtext 
@@ -17,7 +17,7 @@ tests/tokenizeur/scripts/sequence.19.test.php
       2 : 
           ifthen if
           Condition 0) 
-              parentheses 
+              parenthesis 
               ( "not !" )
               block 
               0 : 

@@ -18,5 +18,5 @@ tests/tokenizeur/scripts/while.14.test.php
                           function call : microtime: 
                               arglist 
                               Empty arglist
-          parentheses 
+          parenthesis 
           ( "functioncall 307 "file_exists" ( arglist(concatenation variable $c . variable $d  ) ) " )

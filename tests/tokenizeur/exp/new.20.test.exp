@@ -18,4 +18,4 @@ tests/tokenizeur/scripts/new.20.test.php
                               variable $g
                            "=" 
                           right : 
-                               new 347 "static" parentheses (_array variable $e[literals f]) 
+                               new 347 "static" parenthesis (_array variable $e[literals f]) 

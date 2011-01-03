@@ -4,7 +4,7 @@ tests/tokenizeur/scripts/foreach.3.test.php
   code : 
       ifthen if
       Condition 0) 
-          parentheses 
+          parenthesis 
           ( "comparison property _array variable $_SESSION[literals cligraph]->literals nbtuples 283 "==" literals 0" )
           block 
           0 : 

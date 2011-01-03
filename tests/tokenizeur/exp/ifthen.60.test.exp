@@ -3,13 +3,13 @@ tests/tokenizeur/scripts/ifthen.60.test.php
 
   code : 
       _while 
-          parentheses 
+          parenthesis 
           ( "variable $x" )
           block 
           0 : 
               ifthen if
               Condition 0) 
-                  parentheses 
+                  parenthesis 
                   ( "variable $x" )
                   block 
                   0 : 

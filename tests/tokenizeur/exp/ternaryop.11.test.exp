@@ -7,8 +7,8 @@ tests/tokenizeur/scripts/ternaryop.11.test.php
           _array
               variable $a
               ternaryop ?
-              parentheses (variable $b) ? functioncall 307 "strtoupper" ( arglist(property variable $e->literals f) )  : property variable $e->literals f
-                  parentheses 
+              parenthesis (variable $b) ? functioncall 307 "strtoupper" ( arglist(property variable $e->literals f) )  : property variable $e->literals f
+                  parenthesis 
                   ( "variable $b" )
                   functioncall strtoupper
                   function call : strtoupper: 

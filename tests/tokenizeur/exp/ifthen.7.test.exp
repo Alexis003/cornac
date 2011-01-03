@@ -4,7 +4,7 @@ tests/tokenizeur/scripts/ifthen.7.test.php
   code : 
       ifthen if
       Condition 0) 
-          parentheses 
+          parenthesis 
           ( "variable $condition" )
           block 
           0 : 

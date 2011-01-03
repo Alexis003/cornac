@@ -10,7 +10,7 @@ tests/tokenizeur/scripts/sign.10.test.php
               0 : 
                   literals a
               1 : 
-                  parentheses 
-                  ( "operation operation parentheses (operation parentheses (operation variable $b  "-" variable $c)  "*" literals 2)  "+" parentheses (operation literals 3  "-" variable $d)  "+" variable $e" )
+                  parenthesis 
+                  ( "operation operation parenthesis (operation parenthesis (operation variable $b  "-" variable $c)  "*" literals 2)  "+" parenthesis (operation literals 3  "-" variable $d)  "+" variable $e" )
               2 : 
                   literals f

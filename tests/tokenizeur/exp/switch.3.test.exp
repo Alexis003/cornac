@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/switch.3.test.php
 
   code : 
       _switch 
-          parentheses 
+          parenthesis 
           ( "literals 1" )
           block 
           0 : 

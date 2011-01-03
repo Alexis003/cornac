@@ -7,7 +7,7 @@ tests/tokenizeur/scripts/rawtext.8.test.php
           0 : 
               ifthen if
               Condition 0) 
-                  parentheses 
+                  parenthesis 
                   ( "constante VIEW_OFF" )
                   block 
                   0 : 

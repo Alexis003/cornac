@@ -6,7 +6,7 @@ tests/tokenizeur/scripts/comparison.10.test.php
       0 : 
           ifthen if
           Condition 0) 
-              parentheses 
+              parenthesis 
               ( "comparison functioncall variable $strlen ( arglist(variable $text) )   ">" variable $length" )
               block 
               0 : 
@@ -19,8 +19,8 @@ tests/tokenizeur/scripts/comparison.10.test.php
       1 : 
           ifthen if
           Condition 0) 
-              parentheses 
-              ( "comparison parentheses (variable $text)  ">" variable $length" )
+              parenthesis 
+              ( "comparison parenthesis (variable $text)  ">" variable $length" )
               block 
               0 : 
                   affectation 

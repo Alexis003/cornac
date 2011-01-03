@@ -11,7 +11,7 @@ tests/tokenizeur/scripts/concatenation.21.test.php
           0 : 
               literals a
           1 : 
-              parentheses 
+              parenthesis 
               ( "operation literals 1  "+" literals 1" )
           2 : 
               literals  b

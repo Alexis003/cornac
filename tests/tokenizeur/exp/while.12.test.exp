@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/while.12.test.php
 
   code : 
       _while 
-          parentheses 
+          parenthesis 
           ( "variable $action" )
           block 
           0 : 

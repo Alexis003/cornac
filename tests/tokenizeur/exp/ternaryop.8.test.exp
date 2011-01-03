@@ -2,5 +2,5 @@ tests/tokenizeur/scripts/ternaryop.8.test.php
   codephp <?php
 
   code : 
-      parentheses 
+      parenthesis 
       ( "comparison literals deflate 281 "===" ternaryop ?" )

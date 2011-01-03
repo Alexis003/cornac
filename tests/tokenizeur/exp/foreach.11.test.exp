@@ -16,7 +16,7 @@ tests/tokenizeur/scripts/foreach.11.test.php
                           variable $key
                       operation :  "-"
                       right : 
-                          parentheses 
+                          parenthesis 
                           ( "operation operation variable $keypos  "*" literals 2  "+" literals 1" )
                   2 : 
                       literals 2

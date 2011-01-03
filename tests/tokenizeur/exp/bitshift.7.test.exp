@@ -7,5 +7,5 @@ tests/tokenizeur/scripts/bitshift.7.test.php
           variable $x
        "=" 
       right : 
-          parentheses 
+          parenthesis 
           ( "bitshift _array variable $y[literals z]  286 ">>"  literals 1 " )

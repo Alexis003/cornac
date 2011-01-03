@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/switch.27.test.php
 
   code : 
       _switch 
-          parentheses 
+          parenthesis 
           ( "variable $a" )
           block 
           0 : 

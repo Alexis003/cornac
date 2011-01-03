@@ -4,8 +4,8 @@ tests/tokenizeur/scripts/reference.12.test.php
   code : 
       ifthen if
       Condition 0) 
-          parentheses 
-          ( "comparison parentheses (logical functioncall 307 "x" ( ( ) )   "&" method variable $y->functioncall 307 "z" ( ( ) ) ) 281 "===" constante FALSE" )
+          parenthesis 
+          ( "comparison parenthesis (logical functioncall 307 "x" ( ( ) )   "&" method variable $y->functioncall 307 "z" ( ( ) ) ) 281 "===" constante FALSE" )
           block 
           0 : 
               variable $a297 "++" 

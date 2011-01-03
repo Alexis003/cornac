@@ -4,7 +4,7 @@ tests/tokenizeur/scripts/ifthen.30.test.php
   code : 
       ifthen if
       Condition 0) 
-          parentheses 
+          parenthesis 
           ( "literals 1" )
           block 
           0 : 
@@ -13,7 +13,7 @@ tests/tokenizeur/scripts/ifthen.30.test.php
           1 : 
               ifthen if
               Condition 0) 
-                  parentheses 
+                  parenthesis 
                   ( "literals 2" )
                   block 
                   0 : 

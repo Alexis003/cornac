@@ -6,11 +6,11 @@ tests/tokenizeur/scripts/functioncall.48.test.php
       function call : a: 
           arglist 
           0 : 
-              parentheses 
+              parenthesis 
               ( "operation literals 1  "+" literals 1" )
           1 : 
-              parentheses 
+              parenthesis 
               ( "operation literals 1  "+" literals 1" )
           2 : 
-              parentheses 
+              parenthesis 
               ( "operation literals 1  "+" literals 1" )

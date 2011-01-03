@@ -4,7 +4,7 @@ tests/tokenizeur/scripts/logical.6.test.php
   code : 
       ifthen if
       Condition 0) 
-          parentheses 
+          parenthesis 
           ( "logical functioncall 350 "isset" ( arglist(_array variable $_REQUEST[literals opt]) )  279 "&&" comparison _array variable $_REQUEST[literals opt] 283 "==" literals 1" )
           block 
           0 : 

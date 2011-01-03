@@ -3,4 +3,4 @@ tests/tokenizeur/scripts/return.4.test.php
 
   code : 
       _return 
-      return : "parentheses (literals 1)"
+      return : "parenthesis (literals 1)"

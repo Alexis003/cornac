@@ -6,8 +6,8 @@ tests/tokenizeur/scripts/block.5.test.php
       0 : 
           ifthen if
           Condition 0) 
-              parentheses 
-              ( "logical comparison variable $a 283 "==" _array variable $b[literals c] 278 "||" parentheses (comparison variable $d 283 "==" literals )" )
+              parenthesis 
+              ( "logical comparison variable $a 283 "==" _array variable $b[literals c] 278 "||" parenthesis (comparison variable $d 283 "==" literals )" )
               block 
               0 : 
                   functioncall echo

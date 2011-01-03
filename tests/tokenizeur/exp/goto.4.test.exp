@@ -9,7 +9,7 @@ tests/tokenizeur/scripts/goto.4.test.php
            307 "cleanupCookie" : 
       2 : 
           _switch 
-              parentheses 
+              parenthesis 
               ( "variable $x" )
               block 
               0 : 

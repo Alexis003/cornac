@@ -4,7 +4,7 @@ tests/tokenizeur/scripts/comparison.6.test.php
   code : 
       ifthen if
       Condition 0) 
-          parentheses 
+          parenthesis 
           ( "comparison variable $x 288 "instanceof" constante Exception" )
           block 
           0 : 

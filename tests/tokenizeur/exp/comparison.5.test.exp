@@ -4,7 +4,7 @@ tests/tokenizeur/scripts/comparison.5.test.php
   code : 
       ifthen if
       Condition 0) 
-          parentheses 
+          parenthesis 
           ( "comparison method variable $this->functioncall 307 "methode" ( ( ) )  283 "==" constante false" )
           block 
           0 : 

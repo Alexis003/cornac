@@ -20,7 +20,7 @@ tests/tokenizeur/scripts/concatenation.29.test.php
       2 : 
           ifthen if
           Condition 0) 
-              parentheses 
+              parenthesis 
               ( "functioncall 307 "defined" ( arglist(literals c) ) " )
               block 
               0 : 

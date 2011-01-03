@@ -6,7 +6,7 @@ tests/tokenizeur/scripts/ifthen.37.test.php
       0 : 
           ifthen if
           Condition 0) 
-              parentheses 
+              parenthesis 
               ( "functioncall 307 "rand" ( ( ) ) " )
               block 
               0 : 
@@ -19,7 +19,7 @@ tests/tokenizeur/scripts/ifthen.37.test.php
       1 : 
           ifthen if
           Condition 0) 
-              parentheses 
+              parenthesis 
               ( "functioncall 307 "rand" ( ( ) ) " )
               block 
               0 : 

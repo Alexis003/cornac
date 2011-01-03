@@ -21,5 +21,5 @@ tests/tokenizeur/scripts/operation.46.test.php
                   variable $b
                "=" 
               right : 
-                  parentheses 
+                  parenthesis 
                   ( "operation variable $c  "/" literals 2" )

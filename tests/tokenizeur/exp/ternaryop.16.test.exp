@@ -6,7 +6,7 @@ tests/tokenizeur/scripts/ternaryop.16.test.php
       0 : 
           ifthen if
           Condition 0) 
-              parentheses 
+              parenthesis 
               ( "variable $x" )
               block 
               0 : 
@@ -18,8 +18,8 @@ tests/tokenizeur/scripts/ternaryop.16.test.php
                       literals 1
       1 : 
           ternaryop ?
-          parentheses (functioncall 307 "function_exists" ( arglist(literals a) ) ) ? functioncall 307 "a" ( arglist(literals b) )  : literals 
-              parentheses 
+          parenthesis (functioncall 307 "function_exists" ( arglist(literals a) ) ) ? functioncall 307 "a" ( arglist(literals b) )  : literals 
+              parenthesis 
               ( "functioncall 307 "function_exists" ( arglist(literals a) ) " )
               functioncall a
               function call : a: 

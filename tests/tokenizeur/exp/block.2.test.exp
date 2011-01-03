@@ -4,7 +4,7 @@ tests/tokenizeur/scripts/block.2.test.php
   code : 
       ifthen if
       Condition 0) 
-          parentheses 
+          parenthesis 
           ( "functioncall 351 "empty" ( arglist(variable $r) ) " )
           block 
           0 : 

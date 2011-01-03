@@ -11,7 +11,7 @@ tests/tokenizeur/scripts/operation.47.test.php
           left : 
               operation 
               left : 
-                  parentheses 
+                  parenthesis 
                   ( "operation property variable $c->literals y  "-" property property variable $a->literals b->literals c" )
               operation :  "*"
               right : 
@@ -28,5 +28,5 @@ tests/tokenizeur/scripts/operation.47.test.php
                   property variable $iliterals j->
               operation :  "*"
               right : 
-                  parentheses 
+                  parenthesis 
                   ( "operation literals 1  "-" variable $k" )

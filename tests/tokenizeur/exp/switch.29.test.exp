@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/switch.29.test.php
 
   code : 
       _switch 
-          parentheses 
+          parenthesis 
           ( "constante true" )
           block 
           0 : 

@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/logical.9.test.php
 
   code : 
       _switch 
-          parentheses 
+          parenthesis 
           ( "constante TYPE_DOC" )
           block 
           0 : 

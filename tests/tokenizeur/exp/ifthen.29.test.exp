@@ -4,7 +4,7 @@ tests/tokenizeur/scripts/ifthen.29.test.php
   code : 
       ifthen if
       Condition 0) 
-          parentheses 
+          parenthesis 
           ( "literals 1" )
           block 
           0 : 
@@ -19,7 +19,7 @@ tests/tokenizeur/scripts/ifthen.29.test.php
               Texte : "311 "texte brut1
 ""
       Condition 1) 
-          parentheses 
+          parenthesis 
           ( "literals 1" )
           block 
           0 : 
@@ -35,7 +35,7 @@ tests/tokenizeur/scripts/ifthen.29.test.php
 
 ""
       Condition 2) 
-          parentheses 
+          parenthesis 
           ( "literals 3" )
           block 
           0 : 

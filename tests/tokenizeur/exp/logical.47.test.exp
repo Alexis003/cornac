@@ -4,7 +4,7 @@ tests/tokenizeur/scripts/logical.47.test.php
   code : 
       ifthen if
       Condition 0) 
-          parentheses 
+          parenthesis 
           ( "comparison _new  288 "instanceof" constante x" )
           block 
           0 : 

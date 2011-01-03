@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/while.5.test.php
 
   code : 
       _while 
-          parentheses 
+          parenthesis 
           ( "affectation functioncall 359 "list" ( arglist(variable $key, variable $value) )   "=" functioncall 307 "each" ( arglist(variable $array) ) " )
           block 
           0 : 

@@ -7,7 +7,7 @@ tests/tokenizeur/scripts/return.7.test.php
           0 : 
               ifthen if
               Condition 0) 
-                  parentheses 
+                  parenthesis 
                   ( "comparison _array variable $a[literals fichier] 283 "==" _array variable $b[literals fichier]" )
                   block 
                   0 : 

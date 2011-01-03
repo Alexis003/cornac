@@ -4,7 +4,7 @@ tests/tokenizeur/scripts/operation.48.test.php
   code : 
       ifthen if
       Condition 0) 
-          parentheses 
+          parenthesis 
           ( "functioncall 350 "isset" ( arglist(_array variable $x[method variable $y->functioncall 307 "z" ( ( ) ) ]) ) " )
           block 
           0 : 
@@ -30,7 +30,7 @@ tests/tokenizeur/scripts/operation.48.test.php
               rawtext 
               Texte : "311 """
       Condition 1) 
-          parentheses 
+          parenthesis 
           ( "constante true" )
           block 
           0 : 

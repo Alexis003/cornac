@@ -4,7 +4,7 @@ tests/tokenizeur/scripts/comparison.7.test.php
   code : 
       ifthen if
       Condition 0) 
-          parentheses 
+          parenthesis 
           ( "comparison property_static 307 "self"::_array variable $a[literals b]  ">" literals 0" )
           block 
           0 : 

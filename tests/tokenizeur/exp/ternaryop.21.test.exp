@@ -6,13 +6,13 @@ tests/tokenizeur/scripts/ternaryop.21.test.php
       0 : 
           ifthen if
           Condition 0) 
-              parentheses 
+              parenthesis 
               ( "logical not ! 279 "&&" method variable $b->functioncall 307 "c" ( arglist(constante d) ) " )
               block 
               0 : 
                   ifthen if
                   Condition 0) 
-                      parentheses 
+                      parenthesis 
                       ( "method variable $e->functioncall 307 "f" ( arglist(constante g) ) " )
                       block 
                       0 : 
@@ -20,8 +20,8 @@ tests/tokenizeur/scripts/ternaryop.21.test.php
                           return : "literals 1"
       1 : 
           ternaryop ?
-          parentheses (functioncall 351 "empty" ( arglist(_array variable $x[literals t]) ) ) ? noscream @ : noscream @
-              parentheses 
+          parenthesis (functioncall 351 "empty" ( arglist(_array variable $x[literals t]) ) ) ? noscream @ : noscream @
+              parenthesis 
               ( "functioncall 351 "empty" ( arglist(_array variable $x[literals t]) ) " )
               noscream @
                   functioncall flush

@@ -4,9 +4,9 @@ tests/tokenizeur/scripts/operation.11.test.php
   code : 
       operation 
       left : 
-          parentheses 
+          parenthesis 
           ( "operation literals 1  "+" literals 2" )
       operation :  "-"
       right : 
-          parentheses 
-          ( "operation literals 3  "*" operation parentheses (operation literals 4  "/" literals 5)  "%" literals 7" )
+          parenthesis 
+          ( "operation literals 3  "*" operation parenthesis (operation literals 4  "/" literals 5)  "%" literals 7" )

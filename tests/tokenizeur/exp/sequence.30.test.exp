@@ -10,11 +10,11 @@ tests/tokenizeur/scripts/sequence.30.test.php
            "=" 
           right : 
               ternaryop ?
-              parentheses (comparison variable $b 283 "==" literals 1) ? variable $d : variable $e
-                  parentheses 
+              parenthesis (comparison variable $b 283 "==" literals 1) ? variable $d : variable $e
+                  parenthesis 
                   ( "comparison variable $b 283 "==" literals 1" )
                   variable $d
                   variable $e
       1 : 
-          parentheses 
+          parenthesis 
           ( "ternaryop ?" )

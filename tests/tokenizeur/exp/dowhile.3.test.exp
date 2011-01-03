@@ -7,7 +7,7 @@ tests/tokenizeur/scripts/dowhile.3.test.php
           0 : 
               ifthen if
               Condition 0) 
-                  parentheses 
+                  parenthesis 
                   ( "comparison constante false 281 "===" method_static 307 "f"::functioncall 307 "g" ( ( ) ) " )
                   block 
                   0 : 
@@ -25,7 +25,7 @@ tests/tokenizeur/scripts/dowhile.3.test.php
                                       function call : b: 
                                           arglist 
                                           Empty arglist
-                          parentheses 
+                          parenthesis 
                           ( "postplusplus 297 "++"variable $i" )
                else 
                   block 

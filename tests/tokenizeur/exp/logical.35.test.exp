@@ -8,9 +8,9 @@ tests/tokenizeur/scripts/logical.35.test.php
           0 : 
               logical 
               left : 
-                  parentheses 
+                  parenthesis 
                   ( "literals 1" )
               operateur :  "|"
               right : 
-                  parentheses 
+                  parenthesis 
                   ( "comparison _array variable $a[literals b] 283 "==" literals " )
