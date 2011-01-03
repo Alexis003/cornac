@@ -36,7 +36,7 @@ $tests = array(
 'class.noscream.test.php',
 'class.ifthen.test.php',
 'class.property.test.php',
-'class.logique.test.php',
+'class.logical.test.php',
 'class.not.test.php',
 'class.array.test.php',
 'class.method.test.php',
