@@ -2,7 +2,7 @@ tests/tokenizeur/scripts/function.4.test.php
   codephp <?php
 
   code : 
-      function literals a arglist(variable $b, arginit variable $c = literals 3 , arginit variable $d = literals 4 )
+      function literals a arglist(variable $b, affectation variable $c  "=" literals 3, affectation variable $d  "=" literals 4)
           block 
           0 : 
               _return 

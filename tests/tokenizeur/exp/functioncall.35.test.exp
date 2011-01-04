@@ -13,7 +13,7 @@ tests/tokenizeur/scripts/functioncall.35.test.php
           right : 
               literals phpinfo
       1 : 
-          functioncall $x
-          function call : $x: 
+          functioncall _array variable $x[literals 1]
+          function call : _array variable $x[literals 1]: 
               arglist 
               Empty arglist

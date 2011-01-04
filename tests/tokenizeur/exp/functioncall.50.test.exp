@@ -4,8 +4,8 @@ tests/tokenizeur/scripts/functioncall.50.test.php
   code : 
       method _array variable $object[literals 0]
       method call : functioncall _array variable $object[literals 1] ( arglist(variable $arg) ) : 
-          functioncall $object
-          function call : $object: 
+          functioncall _array variable $object[literals 1]
+          function call : _array variable $object[literals 1]: 
               arglist 
               0 : 
                   variable $arg

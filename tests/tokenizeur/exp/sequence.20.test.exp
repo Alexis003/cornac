@@ -11,7 +11,7 @@ tests/tokenizeur/scripts/sequence.20.test.php
               342 "public"function literals c ( )
                   block 
           2 : 
-              342 "public"function literals d arglist(arginit variable $x = literals 2 )
+              342 "public"function literals d arglist(affectation variable $x  "=" literals 2)
                   block 
           3 : 
               342 "public"function literals e ( )
