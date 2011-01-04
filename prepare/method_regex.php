@@ -23,26 +23,27 @@ class method_regex extends analyseur_regex {
     }
 
     function getTokens() {
-        return array(Token::ANY_TOKEN);
+        return array('->');
     }
     
     function check($t) {
         if (!$t->hasNext() ) { return false; }
+        if (!$t->hasPrev() ) { return false; }
 
-        if ($t->hasPrev() && $t->getPrev()->checkCode('->')) { return false; }
+        if ($t->hasPrev(1) && $t->getPrev(1)->checkOperator(array('->','::'))) { return false; }
 
-        if ($t->checkNotClass(array('variable',
-                                    'property',
-                                    '_array',
-                                    'method',
-                                    'functioncall',
-                                    'property_static',
-                                    'method_static'))) { return false;}
-        if ($t->getNext()->checkNotOperator('->')) { return false; }
-        if ($t->getNext(1)->checkNotClass('functioncall')) { return false; }
+        if ($t->getPrev()->checkNotClass(array('variable',
+                                               'property',
+                                               '_array',
+                                               'method',
+                                               'functioncall',
+                                               'property_static',
+                                               'method_static'))) { return false;}
+        if ($t->checkNotOperator('->')) { return false; }
+        if ($t->getNext()->checkNotClass('functioncall')) { return false; }
 
-        $this->args   = array(0, 2);
-        $this->remove = array(1, 2);
+        $this->args   = array(-1, 1);
+        $this->remove = array(-1, 0, 1);
 
         mon_log(get_class($t)." => ".__CLASS__);
         return true; 
