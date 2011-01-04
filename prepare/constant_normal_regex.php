@@ -51,6 +51,7 @@ class constant_normal_regex extends analyseur_regex {
         if ($t->getNext()->checkToken(array(T_VARIABLE, T_AS))) { return false; }
         if ($t->getNext()->checkClass(array('variable','affectation'))) { return false; }
 
+// @note ,'::' no use here
         if ($t->getPrev()->checkCode(array('->','\\'))) { return false; }
         if ($t->getPrev()->checkToken(array(T_CLASS, 
                                             T_EXTENDS, 
