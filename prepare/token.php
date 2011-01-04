@@ -366,8 +366,29 @@ class Token {
     }
 
     public function checkOperator($code) {
-        if (get_class($this) != 'Token') { return false; }
-        
+        if (!$this->checkClass('Token')) { return false; }
+        if (!in_array($this->getToken(), array(0, 
+                                               T_OBJECT_OPERATOR, 
+                                               T_CONCAT_EQUAL,
+                                               T_SL_EQUAL,
+                                               T_SR_EQUAL,
+                                               T_SL,
+                                               T_SR,
+                                               T_OR_EQUAL, 
+                                               T_AND_EQUAL, 
+                                               T_XOR_EQUAL, 
+                                               T_PLUS_EQUAL, 
+                                               T_MINUS_EQUAL, 
+                                               T_MOD_EQUAL, 
+                                               T_MUL_EQUAL, 
+                                               T_DIV_EQUAL, 
+                                               T_CURLY_OPEN,
+                                               T_DEC,
+                                               T_INC,
+                                               T_DOUBLE_COLON,
+                                               T_NS_SEPARATOR,
+                                               ))) { return false; }
+
         if (!is_array($code)) {
             $code = array($code);
         }
