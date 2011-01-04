@@ -17,6 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
+// @note this is a skeleton for patterns. 
 class modele_regex extends analyseur_regex {
 
     function __construct($class, $args, $remove) {
