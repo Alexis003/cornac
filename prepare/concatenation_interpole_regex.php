@@ -43,7 +43,7 @@ class concatenation_interpole_regex extends analyseur_regex {
         if ($t->checkNotOperator('"')  && 
             $t->checkNotToken(T_START_HEREDOC)) { return false; } 
         if ($t->checkClass('concatenation') ) { return false; } 
-        
+
         if ($t->checkOperator('"') ) {
             $token_fin = '"';
         } elseif ($t->checkToken(T_START_HEREDOC) ) {
@@ -95,13 +95,13 @@ class concatenation_interpole_regex extends analyseur_regex {
 
             if ($var->checkNotClass($this->sequence_classes) &&
                 $var->checkNotClass(array('sign','block'))) { return false; }
-        
+
             $this->args[]    = $pos;
             $this->remove[]  = $pos;
 
             $pos += 1;
             $var = $var->getNext();
-            
+
             if (is_null($var)) { return false; }
         }
 
