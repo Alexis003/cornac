@@ -23,25 +23,23 @@ class array_regex extends analyseur_regex {
     }
 
     function getTokens() {
-        return array(Token::ANY_TOKEN);
+        return array('[');
     }
     
     function check($t) {
-        if (!$t->hasNext(3) ) { return false; }
+        if (!$t->hasPrev(1) ) { return false; }
+        if (!$t->hasNext(1) ) { return false; }
 
-        if ($t->checkClass(array('variable','_array','property','opappend')) &&
-            $t->getNext()->checkCode('[') &&
-            $t->getNext(1)->checkNotClass('Token') &&
-            $t->getNext(2)->checkCode(']')
-            ) {
+        if ($t->getPrev()->checkNotClass(array('variable','_array','property','opappend'))) { return false; }
 
-            $this->args   = array(0, 2);
-            $this->remove = array(1,2,3);
+        if ($t->getNext()->checkClass('Token')) { return false; }
+        if ($t->getNext(1)->checkNotCode(']'))  { return false; }
 
-            mon_log(get_class($t)." => ".__CLASS__);
-            return true; 
-        } 
-        return false;
+        $this->args   = array(-1, 1);
+        $this->remove = array(-1,0,1,2);
+
+        mon_log(get_class($t)." => ".__CLASS__);
+        return true; 
     }
 }
 ?>
