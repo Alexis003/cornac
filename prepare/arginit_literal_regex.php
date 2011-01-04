@@ -23,24 +23,24 @@ class arginit_literal_regex extends analyseur_regex {
     }
 
     function getTokens() {
-        return array(Token::ANY_TOKEN);
+        return array('=');
     }
 
     function check($t) {
-        if (!$t->hasNext(3) ) { return false; }
-        if (!$t->hasPrev() ) { return false; }
-        
-        if ($t->getPrev()->checkNotCode(array('(',',')) &&
-            $t->getPrev()->checkNotToken(array(T_VAR, T_PROTECTED, T_PRIVATE, T_PUBLIC))) { return false; }
-        
-        if ($t->checkNotClass(array('variable','constante','reference'))) { return false; }
-        if ($t->getNext()->checkNotCode('=')) { return false; }
-        if ($t->getNext(1)->checkNotClass(array('constante','literals','sign'))) { return false; }
-        if ($t->getPrev(1)->checkToken(array(T_FOR,T_IF, T_ELSEIF))) { return false; }
-        if ($t->getNext(2)->checkNotCode(array(',',')')))  { return false;}
+        if (!$t->hasNext(2) ) { return false; }
+        if (!$t->hasPrev(1) ) { return false; }
 
-        $this->args = array(0, 2);
-        $this->remove = array(1, 2);
+        if ($t->getPrev(1)->checkNotCode(array('(',',')) &&
+            $t->getPrev(1)->checkNotToken(array(T_VAR, T_PROTECTED, T_PRIVATE, T_PUBLIC))) { return false; }
+
+        if ($t->getPrev()->checkNotClass(array('variable','constante','reference'))) { return false; }
+
+        if ($t->getNext()->checkNotClass(array('constante','literals','sign'))) { return false; }
+        if ($t->getPrev()->checkToken(array(T_FOR, T_IF, T_ELSEIF))) { return false; }
+        if ($t->getNext(1)->checkNotCode(array(',',')')))  { return false;}
+
+        $this->args = array(-1, 1);
+        $this->remove = array(-1, 1);
         
         mon_log(get_class($t)." => ".__CLASS__);
         return true; 
