@@ -40,8 +40,6 @@ class functioncall extends instruction {
             $this->args = new arglist(array( null ));
             $this->args->setLine($expression[0]->getLine());
         }
-        
-        $this->setCode($this->function);
     }
 
     function __toString() {
@@ -59,6 +57,8 @@ class functioncall extends instruction {
     function neutralise() {
         $this->function->detach();
         $this->args->detach();
+
+        $this->setCode($this->function->getCode());
     }
     
    function getRegex() {
