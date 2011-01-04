@@ -29,18 +29,17 @@ class preplusplus_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasNext()) { return false; }
 
-        if ($t->checkToken(array(T_DEC,T_INC)) &&
-            $t->getNext()->checkClass(array('variable','_array','property','property_static')) && 
-            $t->getNext(1)->checkNotCode(array('[','->'))
-            ) {
+        if ($t->getNext()->checkNotClass(array('variable',
+                                               '_array',
+                                               'property',
+                                               'property_static'))) { return false; }
+        if ($t->getNext(1)->checkOperator(array('[','->')))      { return false; }
 
-            $this->args = array(0, 1);
-            $this->remove = array(1);
+        $this->args = array(0, 1);
+        $this->remove = array(1);
 
-            mon_log(get_class($t)." => ".__CLASS__);
-            return true; 
-        } 
-        return false;
+        mon_log(get_class($t)." => ".__CLASS__);
+        return true; 
     }
 }
 ?>
