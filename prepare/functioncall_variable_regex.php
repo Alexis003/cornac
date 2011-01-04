@@ -29,17 +29,14 @@ class functioncall_variable_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasNext() ) { return false; }
 
-        if ($t->checkClass(array('variable','_array')) &&
-            $t->getNext()->checkClass(array('parenthesis','arglist'))
-            ) {
-                $this->args = array(0 , 1);
-                $this->remove[] = 1;
+        if ($t->checkNotClass(array('variable','_array'))) { return false; }
+        if ($t->getNext()->checkNotClass(array('parenthesis','arglist'))) { return false; }
 
-                mon_log(get_class($t)." => ".__CLASS__);
-                return true; 
-            }
-        
-        return false;
+        $this->args   = array(0 , 1);
+        $this->remove = array( 1);
+
+        mon_log(get_class($t)." => ".__CLASS__);
+        return true; 
     }
 }
 ?>
