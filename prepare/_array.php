@@ -21,12 +21,13 @@ class _array extends variable {
     protected $variable = null;
     protected $index = null;
 
-    function __construct($variable) {
+    function __construct($expression) {
         parent::__construct();
         
-        if (is_array($variable)) {
-            $this->variable = $variable[0];
-            $this->index = $variable[1];
+        if (is_array($expression) &&
+            count($expression) == 2) {
+            $this->variable = $expression[0];
+            $this->index = $expression[1];
         } else {
             $this->stopOnError('No way we end up here : '.__METHOD__);
         }
@@ -35,6 +36,8 @@ class _array extends variable {
     function neutralise() {
         $this->variable->detach();
         $this->index->detach();
+
+        $this->setCode($this->__toString());
     }
 
     function __toString() {
