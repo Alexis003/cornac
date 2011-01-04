@@ -95,7 +95,7 @@ class affectation extends instruction {
 
     function getRegex(){
         return array('affectation_normal_regex', 
-                     'affectation_avecpointvirgule_regex', 
+                     'affectation_withsemicolon_regex', 
                      'affectation_list_regex',
                     );
     }
