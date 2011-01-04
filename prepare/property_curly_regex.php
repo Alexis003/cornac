@@ -23,29 +23,34 @@ class property_curly_regex extends analyseur_regex {
     }
 
     function getTokens() {
-        return array(Token::ANY_TOKEN);
+        return array('{');
     }
     
     function check($t) {
-    
-        if (!$t->hasPrev() ) { return false; }
-        if (!$t->hasNext(3) ) { return false; }
+        if (!$t->hasPrev(1) ) { return false; }
+        if (!$t->hasNext(1) ) { return false; }
 
-        if ( ($t->checkClass(array('variable','property','property_static','_array','method','method_static','functioncall')) ) && 
-              $t->getNext()->checkCode('->') &&
-              $t->getNext(1)->checkCode('{') &&
-              $t->getNext(2)->checkNotClass('Token') &&
-              $t->getNext(3)->checkCode('}') && 
-              $t->getNext(4)->checkNotCode('(') 
-            ) {
+        if ( $t->hasPrev(2) &&
+             $t->getPrev(1)->checkNotClass(array('variable',
+                                                 'property',
+                                                 'property_static',
+                                                 '_array',
+                                                 'method',
+                                                 'method_static',
+                                                 'functioncall')))
+                                                   { return false; }
+        if ($t->getPrev()->checkNotOperator('->')) { return false; }
 
-            $this->args   = array(0, 3);
-            $this->remove = array(1, 2, 3, 4);
+        if ($t->getNext()->checkClass('Token'))    { return false; }
+        if ($t->getNext(1)->checkNotOperator('}')) { return false; }
+        if ($t->getNext(2)->checkOperator('('))    { return false; }
+        if ($t->getNext(2)->checkClass('arglist'))    { return false; }
 
-            mon_log(get_class($t)." => ".__CLASS__);
-            return true; 
-        } 
-        return false;
+       $this->args   = array(-2, 1);
+       $this->remove = array(-2, -1, 0, 1, 2);
+
+       mon_log(get_class($t)." => ".__CLASS__);
+       return true; 
     }
 }
 ?>
