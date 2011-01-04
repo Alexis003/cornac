@@ -38,7 +38,7 @@ class namespace_normal_regex extends analyseur_regex {
             mon_log(get_class($t)." => ".__CLASS__);
             return true; 
         } elseif ($t->getNext()->checkClass('Token')) {
-            if ($t->getNext()->checkOperator(array(',','=>',';',')'))) { return false; }
+            if ($t->getNext()->checkCode(array(',','=>',';',')'))) { return false; }
             if ($t->getNext()->checkToken(array(T_CLOSE_TAG))) { return false; }
             // @note allow \ to appear after. 
             if ($t->hasNext(2) && $t->getNext(1)->checkOperator('\\')) { return false; }
