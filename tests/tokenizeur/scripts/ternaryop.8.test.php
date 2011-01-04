@@ -16,7 +16,5 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
-('deflate' === self::$_options['encodeMethod']
-                    ? '.zd'
-                    : '.zg');
+('a' === self::$b['c'] ? '.d' : '.e');
 ?>

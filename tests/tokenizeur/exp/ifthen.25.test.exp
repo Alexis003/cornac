@@ -10,7 +10,7 @@ tests/tokenizeur/scripts/ifthen.25.test.php
           0 : 
               _while 
                   parenthesis 
-                  ( "arginit variable $x = literals 4 " )
+                  ( "affectation variable $x  "=" literals 4" )
                   block 
                   0 : 
                       variable $x296 "--" 

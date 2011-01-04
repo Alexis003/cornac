@@ -6,10 +6,10 @@ tests/tokenizeur/scripts/for.21.test.php
         Init : affectation variable $a  "=" literals 0;
         End  : comparison variable $i  "<" literals 5;
         Incr : block {postplusplus 297 "++"variable $i
-arginit variable $b = literals 1 
-arginit variable $c = functioncall 360 "array" ( arglist(literals 1, literals 2, literals 3, literals 4, literals 5) )  
-arginit variable $d = constante false 
-arginit variable $e = literals   };
+affectation variable $b  "=" literals 1
+affectation variable $c  "=" functioncall 360 "array" ( arglist(literals 1, literals 2, literals 3, literals 4, literals 5) ) 
+affectation variable $d  "=" constante false
+affectation variable $e  "=" literals  };
           block 
           0 : 
               affectation 

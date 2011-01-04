@@ -18,4 +18,4 @@ tests/tokenizeur/scripts/ifthen.61.test.php
           block 
           0 : 
               parenthesis 
-              ( "arginit variable $c = literals 2 " )
+              ( "affectation variable $c  "=" literals 2" )

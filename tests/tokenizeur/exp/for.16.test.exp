@@ -7,7 +7,7 @@ tests/tokenizeur/scripts/for.16.test.php
 affectation variable $a  "=" literals 1 };
         End  : comparison variable $i  "<" literals 0;
         Incr : block {postplusplus 297 "++"variable $i
-arginit variable $c = literals 3  };
+affectation variable $c  "=" literals 3 };
           block 
           0 : 
               affectation 

@@ -8,7 +8,7 @@ affectation variable $a  "=" literals 1 };
         End  : block {comparison variable $i  "<" literals 0
 affectation variable $b  "=" literals 2 };
         Incr : block {postplusplus 297 "++"variable $i
-arginit variable $c = literals 3  };
+affectation variable $c  "=" literals 3 };
           block 
           0 : 
               affectation 
