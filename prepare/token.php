@@ -490,7 +490,7 @@ class Token {
     }
 
     function checkForBlock($and_block = false) {
-        $liste = array('sequence',
+        $list  = array('sequence',
                        'operation',
                        'rawtext',
                        'affectation',
@@ -531,16 +531,16 @@ class Token {
 // @dont Don't put variable in this list    'variable',
                                        );
         if ($and_block) {
-            $liste[] = 'block';
+            $list[] = 'block';
         }
         
-        if ($this->checkNotClass($liste)) {
+        if ($this->checkNotClass($list)) {
             return false;
         }
         
         if (!$this->hasNext()) { return true; }
         
-        return $this->getNext()->checkNotCode(array('->','[','(','::'));
+        return $this->getNext()->checkNotOperator(array('->','[','(','::'));
     }
 
     function checkForComparison() {
