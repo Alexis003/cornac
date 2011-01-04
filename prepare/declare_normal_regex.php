@@ -49,9 +49,9 @@ class declare_normal_regex extends analyseur_regex {
         }
         
         if ($t->getNext()->checkOperator('(') && 
-            $t->getNext(1)->checkClass('arginit') &&
+            $t->getNext(1)->checkClass('affectation') &&
             $t->getNext(2)->checkCode(',') &&
-            $t->getNext(3)->checkClass('arginit') &&
+            $t->getNext(3)->checkClass('affectation') &&
             $t->getNext(4)->checkOperator(')') &&
             $t->getNext(5)->checkNotOperator(':')
             ) {

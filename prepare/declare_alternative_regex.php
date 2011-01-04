@@ -43,9 +43,9 @@ class declare_alternative_regex extends analyseur_regex {
             $pos = 0;
 
         } elseif ($t->getNext()->checkOperator('(') && 
-            $t->getNext(1)->checkClass('arginit') &&
+            $t->getNext(1)->checkClass('affectation') &&
             $t->getNext(2)->checkOperator(',') &&
-            $t->getNext(3)->checkClass('arginit') &&
+            $t->getNext(3)->checkClass('affectation') &&
             $t->getNext(4)->checkOperator(')') && 
             $t->getNext(5)->checkOperator(':') 
             ) {            

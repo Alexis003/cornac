@@ -68,7 +68,7 @@ class analyseur {
                                   'constante_class',
                                   '_global',
                                   '_return',
-                                  'arginit',
+//                                  'arginit',
                                   'typehint',
                                   '_class',
                                   '_interface',

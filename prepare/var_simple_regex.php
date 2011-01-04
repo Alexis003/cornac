@@ -29,7 +29,7 @@ class var_simple_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasNext(1)) { return false; }
 
-        if ($t->getNext()->checkNotClass(array('variable','affectation','arginit'))) { return false; }
+        if ($t->getNext()->checkNotClass(array('variable','affectation'))) { return false; }
 
         $this->args = array(0, 1);
         $this->remove = array(1);
@@ -75,7 +75,7 @@ class var_simple_regex extends analyseur_regex {
                     return false;
             }
 
-            if ($var->getNext()->checkClass(array('variable','affectation','arginit')) &&
+            if ($var->getNext()->checkClass(array('variable','affectation')) &&
                 $var->getNext(1)->checkNotCode('=')) {
                     $i += 2;
                 

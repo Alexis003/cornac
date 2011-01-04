@@ -30,22 +30,22 @@ class _declare extends instruction {
         } else {
             // @empty_else
         }
-        
+
         if ($expression[0]->checkClass('parenthesis')) {
             // @doc we expect no initialisation 
-            if (!$this->set(strtolower($expression[0]->getContenu()->getVariable()->getCode()), 
-                            $expression[0]->getContenu()->getValue())) {
-                $this->stopOnError($expression[0]->getContenu()->getVariable()." is unknown in ".__METHOD__."\n");
+            if (!$this->set(strtolower($expression[0]->getContenu()->getLeft()->getCode()), 
+                            $expression[0]->getContenu()->getRight())) {
+                $this->stopOnError($expression[0]->getContenu()->getLeft()." is unknown in ".__METHOD__."\n");
             }
-        } elseif ($expression[0]->checkClass('arginit')) {
+        } elseif ($expression[0]->checkClass('affectation')) {
             // @doc we expect an initialisation 
-            if (!$this->set(strtolower($expression[0]->getVariable()->getCode()), 
-                            $expression[0]->getValue())) {
-                $this->stopOnError($expression[0]->getVariable()." is unknown in ".__METHOD__."\n");
+            if (!$this->set(strtolower($expression[0]->getLeft()->getCode()), 
+                            $expression[0]->getRight())) {
+                $this->stopOnError($expression[0]->getLeft()." is unknown in ".__METHOD__."\n");
             }
-            if (!$this->set(strtolower($expression[1]->getVariable()->getCode()), 
-                            $expression[1]->getValue())) {
-                stopOnError($expression[1]->getVariable()." is unknown in ".__METHOD__."\n");
+            if (!$this->set(strtolower($expression[1]->getLeft()->getCode()), 
+                            $expression[1]->getRight())) {
+                stopOnError($expression[1]->getLeft()." is unknown in ".__METHOD__."\n");
             }
         } else {
             $this->stopOnError("Entree is of unexpected class ".get_class($expression[0])." in ".__METHOD__."\n");
