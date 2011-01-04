@@ -29,7 +29,6 @@ class variable_curly_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasNext(1) ) { return false; }
 
-        if ($t->checkNotCode('${')) { return false;}
         if ($t->getNext()->checkClass(array('Token'))) { return false;}
         if ($t->getNext(1)->checkNotCode('}')) { return false;}
         
