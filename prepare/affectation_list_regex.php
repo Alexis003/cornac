@@ -23,7 +23,7 @@ class affectation_list_regex extends analyseur_regex {
     }
     
     function getTokens() {
-        return array(Token::ANY_TOKEN);
+        return array('=','.=','*=','+=','-=','/=','%=','>>=','&=','^=', '|=','<<=');
     }
     
     function check($t) {
