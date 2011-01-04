@@ -24,10 +24,10 @@ class literals_regex extends analyseur_regex {
 
     function getTokens() {
         return array(T_LNUMBER, 
-                                 T_CONSTANT_ENCAPSED_STRING, 
-                                 T_ENCAPSED_AND_WHITESPACE, 
-                                 T_NUM_STRING,
-                                 T_DNUMBER);
+                     T_CONSTANT_ENCAPSED_STRING, 
+                     T_ENCAPSED_AND_WHITESPACE, 
+                     T_NUM_STRING,
+                     T_DNUMBER);
     }
     
     function check($t) {
