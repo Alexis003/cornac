@@ -40,7 +40,7 @@ class sequence_suite_regex extends analyseur_regex {
             $pos = 2;
             
             if (is_null($var)) {
-                mon_log(get_class($t)." fusionne ".count($this->args)." sequences (avant, 1,  ".__CLASS__.")");
+                mon_log(get_class($t)." merge ".count($this->args)." sequences (before, 1,  ".__CLASS__.")");
                 return true; 
             }
             
@@ -51,7 +51,7 @@ class sequence_suite_regex extends analyseur_regex {
                 $pos += 1;
                 $var = $var->getNext();
                 if (is_null($var)) {
-                    mon_log(get_class($t)." fusionne ".count($this->args)." sequences (avant, 2, ".__CLASS__.")");
+                    mon_log(get_class($t)." merge ".count($this->args)." sequences (before, 2, ".__CLASS__.")");
                     return true; 
                 }
             } 
@@ -63,7 +63,7 @@ class sequence_suite_regex extends analyseur_regex {
                 return false;
             }
             
-            mon_log(get_class($t)." fusionne ".count($this->args)." sequences (avant, 3, ".__CLASS__.")");
+            mon_log(get_class($t)." merge ".count($this->args)." sequences (before, 3, ".__CLASS__.")");
             return true; 
         } 
         
