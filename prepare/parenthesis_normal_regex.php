@@ -29,12 +29,13 @@ class parenthesis_normal_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasPrev() ) { return false; }
         if (!$t->hasNext(1)) { return false; }
-    
+
+        if ($t->checkNotClass('Token')) { return false; }
         if ($t->getPrev()->checkClass('variable')) { return false; }
         if ($t->getPrev()->checkToken(array(T_CONTINUE, T_USE, T_FUNCTION))) { return false; }
-        if ($t->getPrev()->checkCode('}')) { return false; }
+        if ($t->getPrev()->checkOperator('}')) { return false; }
         if ($t->getNext()->checkClass('Token')) { return false; }
-        if ( $t->getNext(1)->checkNotOperator(')')) { return false; }
+        if ( $t->getNext(1)->checkNotCode(')')) { return false; }
 
         if ($t->getPrev()->checkFunction() ) { 
             if ($t->getPrev()->checkCode('echo')) {
