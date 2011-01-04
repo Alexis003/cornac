@@ -60,10 +60,6 @@ class operation extends instruction {
         return array('operation_multiplication_regex',
                      'operation_addition_regex');
     }
-    
-    function getToken() { 
-        return Token::ANY_TOKEN; 
-    }
 }
 
 ?>
