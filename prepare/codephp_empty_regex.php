@@ -29,19 +29,28 @@ class codephp_empty_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasNext()) { return false; }
 
-        if ($t->getNext()->checkNotToken(T_CLOSE_TAG)) { return false; }
-        
-       if ($t->hasNext(1) && 
-           $t->getNext(1)->checkToken(T_INLINE_HTML)) {
-               // @note avoid polluting rawtext_regex 
-           return false;
-       }
-       $this->args = array();
-       $this->remove = array(1);
-       
-       mon_log(get_class($t)." => ".__CLASS__);
-       return true;
-    }
+        $this->args = array();
+        $this->remove = array(1);
+
+        if ($t->hasNext(1) &&
+            $t->getNext()->checkCode('php') && 
+            $t->getNext(1)->checkToken(T_CLOSE_TAG)) {
+            // @note also remove php string
+            $this->remove[] = 2;
+            // @note we go one. This is the <?php// case, which is wrongly parsed
+        } elseif ($t->getNext()->checkNotToken(T_CLOSE_TAG)) { 
+            return false; 
+        }
+
+        if ($t->hasNext(1) && 
+            $t->getNext(1)->checkToken(T_INLINE_HTML)) {
+                // @note avoid polluting rawtext_regex 
+            return false;
+        }
+
+        mon_log(get_class($t)." => ".__CLASS__);
+        return true;
+     }
 }
 
 ?>
