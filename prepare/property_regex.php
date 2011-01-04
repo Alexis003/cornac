@@ -27,21 +27,24 @@ class property_regex extends analyseur_regex {
     }
     
     function check($t) {
-    
-        if (!$t->hasPrev() ) { return false; }
+        if (!$t->hasPrev( ) ) { return false; }
         if (!$t->hasNext(2) ) { return false; }
 
         if ($t->getPrev()->checkCode('->') ) { return false; }
 
-        if ( ($t->checkToken(T_VARIABLE) || 
-              $t->checkClass(array('variable','property','_array','method_static','method','functioncall','property_static','opappend')) ) && 
-              $t->getNext()->checkCode('->') &&
+        if (  $t->checkNotClass(array('variable',
+                                      'property',
+                                      '_array',
+                                      'method_static',
+                                      'method',
+                                      'functioncall',
+                                      'property_static',
+                                      'opappend')) ) { return false; }
+        if (  ($t->getNext()->checkCode('->') &&
               ($t->getNext(1)->checkToken(T_STRING) ||
                $t->getNext(1)->checkClass(array('variable','_array'))) && 
               ($t->getNext(2)->checkNotCode(array('(')) ||
-               $t->getNext(2)->checkClass(array('literals')))
-              
-            ) {
+               $t->getNext(2)->checkClass(array('literals'))))) {
 
             if ($t->getNext(1)->checkClass("Token")) {
                 $regex = new modele_regex('literals',array(0), array());
