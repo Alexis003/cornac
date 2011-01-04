@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class affectation_avecpointvirgule_regex extends analyseur_regex {
+class affectation_withsemicolon_regex extends analyseur_regex {
     function __construct() {
         parent::__construct(array());
     }
