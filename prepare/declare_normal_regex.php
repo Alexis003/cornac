@@ -47,6 +47,7 @@ class declare_normal_regex extends analyseur_regex {
             mon_log(get_class($t)." => ".__CLASS__);
             return true; 
         }
+        
         if ($t->getNext()->checkOperator('(') && 
             $t->getNext(1)->checkClass('arginit') &&
             $t->getNext(2)->checkCode(',') &&
