@@ -116,15 +116,33 @@ class analyseur {
                 $this->tokens[$r] = $structure;
             }
         }
+        /*
+        foreach($this->regex as $key => $value) {
+            print $key."\n";
+            print "  ".join("\n  ", array_keys($value))."\n";
+        }
+        die();*/
+    }
+    
+    private function analog($mess) {
+//        return false;
+        if (!isset($this->fp)) {
+            $this->fp = fopen("/tmp/analyseur.log","a");
+        }
+        fwrite($this->fp, "$mess\t".getmypid()."\t\n");
     }
 
     public function upgrade(Token $t) {
         $token = $t->getToken();
         
+        // @note we won't process those one. Just skip it. 
+        if ($t->checkOperator(array(']','}',')',':',';',','))) { return $t; }
+
         if ($token > 0 && isset($this->regex[$token])) {
             foreach($this->regex[$token] as $name => $regex) {
                 $this->verifs++;
                 
+                $this->analog($name);
                 if (!$regex->check($t)) {
                     $this->rates[] = $name;
                     unset($regex);
@@ -135,6 +153,7 @@ class analyseur {
                 mon_log(get_class($t)." => ".get_class($return));
                 return $return; 
             }
+//            return $t;
         } // @empty_else
         
         $code = $t->getCode();
@@ -142,6 +161,7 @@ class analyseur {
             foreach($this->regex[$code] as $name => $regex) {
                 $this->verifs++;
                 
+                $this->analog($name);
                 if (!$regex->check($t)) {
                     $this->rates[] = $name;
                     unset($regex);
@@ -157,9 +177,11 @@ class analyseur {
                 mon_log(get_class($t)." => ".get_class($return));
                 return $return; 
             }
+//            return $t;
         }   // @empty_else
         
         foreach($this->regex[0] as $name => $regex) {
+            $this->analog($name);
             if (!$regex->check($t)) {
                 unset($regex);
                 continue;
