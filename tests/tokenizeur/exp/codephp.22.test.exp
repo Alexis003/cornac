@@ -1,0 +1,12 @@
+tests/tokenizeur/scripts/codephp.22.test.php
+  codephp <?
+  code : 
+      sequence 
+      0 : 
+          constante (          php )
+      1 : 
+          functioncall echo
+          function call : echo: 
+              arglist 
+              0 : 
+                  literals 2
