@@ -25,7 +25,7 @@ class comparison_regex extends analyseur_regex {
     function getTokens() {
         return array(T_IS_EQUAL, T_IS_SMALLER_OR_EQUAL, T_IS_NOT_IDENTICAL, 
                      T_IS_NOT_EQUAL, T_IS_IDENTICAL, T_IS_GREATER_OR_EQUAL, 
-                     T_INSTANCEOF, 0);
+                     T_INSTANCEOF, '>', '<');
     }
     
     function check($t) {
@@ -38,14 +38,6 @@ class comparison_regex extends analyseur_regex {
 
         if ($t->getPrev()->checkClass(array('Token','arglist'))) { return false; }
         
-        if ($t->checkNotToken(array(T_IS_EQUAL, 
-                                    T_IS_SMALLER_OR_EQUAL, 
-                                    T_IS_NOT_IDENTICAL, 
-                                    T_IS_NOT_EQUAL,
-                                    T_IS_IDENTICAL, 
-                                    T_IS_GREATER_OR_EQUAL, 
-                                    T_INSTANCEOF)) && 
-             $t->checkNotCode(array('>', '<'))) {return false; }
         if ($t->getNext()->checkClass('Token')) { return false; }
         if ($t->getNext(1)->checkOperator(array('(','[','->','::','+','-','/','*','%','{','++','--','=')) ||
             $t->getNext(1)->checkClass(array('parenthesis','arglist'))) { return false; }
