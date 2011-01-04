@@ -23,20 +23,20 @@ class array_curly_regex extends analyseur_regex {
     }
 
     function getTokens() {
-        return array(Token::ANY_TOKEN);
+        return array('{');
     }
     
     function check($t) {
-        if (!$t->hasPrev() ) { return false; }
-        if (!$t->hasNext() ) { return false; }
+        if (!$t->hasPrev(1) ) { return false; }
+        if (!$t->hasNext(1) ) { return false; }
 
-        if ($t->checkNotClass(array('variable','property','_array','property_static'))) { return false; } 
-        if ($t->getNext()->checkNotOperator('{')) { return false; }
-        if ($t->getNext(1)->checkClass('Token')) { return false; }
-        if ($t->getNext(2)->checkNotOperator('}')) { return false; }
+        if ($t->getPrev()->checkNotClass(array('variable','property','_array','property_static'))) { return false; } 
 
-        $this->args   = array(0, 2);
-        $this->remove = array(1,2,3);
+        if ($t->getNext()->checkClass('Token')) { return false; }
+        if ($t->getNext(1)->checkNotOperator('}')) { return false; }
+
+        $this->args   = array(-1, 1);
+        $this->remove = array(-1,1,2);
 
         mon_log(get_class($t)." => ".__CLASS__);
         return true; 
