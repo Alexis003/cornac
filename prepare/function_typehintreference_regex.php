@@ -88,7 +88,7 @@ class function_typehintreference_regex extends analyseur_regex {
                     continue; 
                 } 
             }
-            // cas des typehint avec initialisation
+            // @note case of typehint with initialisation
             
             if ($var->checkOperator('(')) {
                 // @note typehing can't be followed by an opening bracket
