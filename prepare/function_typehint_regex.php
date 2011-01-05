@@ -41,29 +41,29 @@ class function_typehint_regex extends analyseur_regex {
                     $var->getNext(2)->checkNotClass('Token')) {
                         $regex = new modele_regex('affectation',array(0, 1, 2), array(1, 2));
                         Token::applyRegex($var->getNext(), 'affectation', $regex);
-    
+
                         mon_log(get_class($t)." => affectation (".__CLASS__.")");
 
                         $regex = new modele_regex('typehint',array(0, 1), array(1));
                         Token::applyRegex($var, 'typehint', $regex);
-    
+
                         mon_log(get_class($t)." => typehint (".__CLASS__.")");
 
                         $var = $var->getNext();
                         continue; 
-                } elseif ($var->getNext(1)->checkCode('=')) {
+                } elseif ($var->getNext(1)->checkOperator('=')) {
                     if ($var->getNext(2)->checkClass('Token')) { return false; }
                     if ($var->getNext(3)->checkClass('arglist')) {
                         $regex = new modele_regex('functioncall',array(0, 1), array(1));
                         Token::applyRegex($var->getNext(2), 'functioncall', $regex);
-    
+
                         mon_log(get_class($t)." => affectation (".__CLASS__.")");
                         // @note return? 
                     }
                     
                     $regex = new modele_regex('affectation',array(0, 1, 2), array(1, 2));
                     Token::applyRegex($var->getNext(), 'affectation', $regex);
-    
+
                     mon_log(get_class($t)." => affectation (".__CLASS__.")");
 
                     $regex = new modele_regex('typehint',array(0, 1), array(1));
@@ -73,7 +73,7 @@ class function_typehint_regex extends analyseur_regex {
                     
                     $var = $var->getNext();
                     continue; 
-                } elseif ($var->getNext(1)->checkCode(array(',',')'))) {
+                } elseif ($var->getNext(1)->checkOperator(array(',',')'))) {
                     $regex = new modele_regex('typehint',array(0, 1), array(1));
                     Token::applyRegex($var, 'typehint', $regex);
     
