@@ -36,7 +36,7 @@ class sequence_regex extends analyseur_regex {
                 '?','or','and','xor','var','$','/','+','-','*','%','@','&','|','^','"',
                 '<','>','+','\\')))                                          { return false; }
 
-        if ( $t->hasPrev() && $t->getPrev()->checkToken(array(T_PRIVATE, T_PUBLIC, T_PROTECTED, T_STATIC, T_THROW, 
+        if ( $t->hasPrev() && $t->getPrev()->checkToken(array(T_PRIVATE, T_PUBLIC, T_PROTECTED, T_STATIC, T_VAR, T_THROW, 
                                                               T_LOGICAL_OR, T_LOGICAL_AND, T_LOGICAL_XOR, 
                                                               T_BOOLEAN_OR, T_BOOLEAN_AND, 
                                                               T_IS_EQUAL, T_IS_SMALLER_OR_EQUAL, T_IS_NOT_IDENTICAL,
