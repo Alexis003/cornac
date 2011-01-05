@@ -5,4 +5,4 @@ tests/tokenizeur/scripts/functioncall.34.test.php
       functioncall $x
       function call : $x: 
           arglist 
-          Empty arglist
+          0 : 

@@ -16,4 +16,4 @@ tests/tokenizeur/scripts/functioncall.35.test.php
           functioncall _array variable $x[literals 1]
           function call : _array variable $x[literals 1]: 
               arglist 
-              Empty arglist
+              0 : 
