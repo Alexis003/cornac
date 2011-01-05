@@ -68,7 +68,6 @@ class analyseur {
                                   'constante_class',
                                   '_global',
                                   '_return',
-//                                  'arginit',
                                   'typehint',
                                   '_class',
                                   '_interface',
@@ -136,7 +135,7 @@ class analyseur {
         $token = $t->getToken();
         
         // @note we won't process those one. Just skip it. 
-        if ($t->checkOperator(array(']','}',')',':',';',','))) { return $t; }
+        if ($t->checkOperator(array(']','}',')',':',';'))) { return $t; }
 
         if ($token > 0 && isset($this->regex[$token])) {
             foreach($this->regex[$token] as $name => $regex) {
