@@ -28,11 +28,11 @@ class sequence_regex extends analyseur_regex {
  
     function check($t) {
         if (!$t->hasNext() ) { return false; }
-        
+
         if ( $t->hasPrev() && $t->getPrev()->checkForAssignation())     { return false; }
         if ( $t->hasPrev() && $t->getPrev()->checkClass('parenthesis')) { return false; }
         if ( $t->checkClass('_case','_default'))                        { return false; }
-        if ( $t->hasPrev() && $t->getPrev()->checkCode(array('=',')','->','(',',','.','new','!==','::',':',
+        if ( $t->hasPrev() && $t->getPrev()->checkOperator(array('=',')','->','(',',','.','new','!==','::',':',
                 '?','or','and','xor','var','$','/','+','-','*','%','@','&','|','^','"',
                 '<','>','+','\\')))                                          { return false; }
 
@@ -51,7 +51,7 @@ class sequence_regex extends analyseur_regex {
         if (($t->checkSubClass('instruction') || 
              $t->checkForVariable('instruction')) && 
             $t->checkNotClass('parenthesis') && 
-            $t->getNext()->checkCode(';') ) { 
+            $t->getNext()->checkOperator(';') ) { 
                         
             $var = $t->getNext(1); 
             $this->args   = array( 0 );
@@ -81,7 +81,7 @@ class sequence_regex extends analyseur_regex {
                     return true; 
                 }
 
-                if ($var->checkCode(';')) {
+                if ($var->checkOperator(';')) {
                     $this->remove[]  = $pos + 1;
 
                     $pos += 1;
@@ -95,17 +95,16 @@ class sequence_regex extends analyseur_regex {
                 }
             }
 
-            if (!is_null($var) && (
-                $var->checkCode(array(',','->','::','[','(',',')) ||
+            if ($var->checkOperator(array(',','->','::','[','(',',')) ||
                 $var->checkForLogical() ||
                 $var->checkForAssignation() ||
-                $var->checkClass('arglist'))) {
+                $var->checkClass('arglist')) {
                 // @doc This is not a sequence, as this operator finally has priority
                 $this->args = array();
                 $this->remove = array();
                 return false;
             } elseif ($var->hasNext() && (
-                $var->getNext()->checkCode(array(',','->','::','[','(',',')) ||
+                $var->getNext()->checkOperator(array(',','->','::','[','(',',')) ||
                 $var->getNext()->checkForAssignation() ||
                 $var->getNext()->checkClass('arglist'))) {
                 // @doc This is not a sequence, as another operator after has priority
@@ -113,7 +112,7 @@ class sequence_regex extends analyseur_regex {
                 $this->args = array();
                 $this->remove = array();
                 return false;
-            } elseif ($var->checkCode(')')) {
+            } elseif ($var->checkOperator(')')) {
                 // @doc This looks like a for loop! 
                 return false;
             } elseif (count($this->args) > 0) {

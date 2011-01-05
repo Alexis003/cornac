@@ -23,41 +23,38 @@ class property_regex extends analyseur_regex {
     }
 
     function getTokens() {
-        return array(T_VARIABLE,Token::ANY_TOKEN);
+        return array('->');
     }
     
     function check($t) {
         if (!$t->hasPrev( ) ) { return false; }
-        if (!$t->hasNext(2) ) { return false; }
+        if (!$t->hasNext(1) ) { return false; }
 
-        if ($t->getPrev()->checkCode('->') ) { return false; }
+        if (  $t->getPrev()->checkNotClass(array('variable',
+                                                 'property',
+                                                 '_array',
+                                                 'method_static',
+                                                 'method',
+                                                 'functioncall',
+                                                 'property_static',
+                                                 'opappend')) ) { return false; }
 
-        if (  $t->checkNotClass(array('variable',
-                                      'property',
-                                      '_array',
-                                      'method_static',
-                                      'method',
-                                      'functioncall',
-                                      'property_static',
-                                      'opappend')) ) { return false; }
-        if (  ($t->getNext()->checkCode('->') &&
-              ($t->getNext(1)->checkToken(T_STRING) ||
-               $t->getNext(1)->checkClass(array('variable','_array'))) && 
-              ($t->getNext(2)->checkNotCode(array('(')) ||
-               $t->getNext(2)->checkClass(array('literals'))))) {
+// @note this avoid interfering with functioncall by detecting ( early enough not to make a literals
+        if ( $t->getNext(1)->checkOperator(array('('))) { return false; }
+        if ( $t->getNext(1)->checkClass(array('arglist'))) { return false; }
+        if ($t->getNext()->checkToken(T_STRING)) {
+            $regex = new modele_regex('literals',array(0), array());
+            Token::applyRegex($t->getNext(), 'literals', $regex);
+            return false;
+        } elseif ( $t->getNext()->checkNotClass(array('variable','_array','literals'))) { 
+            return false; 
+        }
 
-            if ($t->getNext(1)->checkClass("Token")) {
-                $regex = new modele_regex('literals',array(0), array());
-                Token::applyRegex($t->getNext(1), 'literals', $regex);
-            }
-            
-            $this->args   = array(0, 2);
-            $this->remove = array(1,2);
+        $this->args   = array(-1, 1);
+        $this->remove = array(-1,0, 1);
 
-            mon_log(get_class($t)." => ".__CLASS__);
-            return true; 
-        } 
-        return false;
+        mon_log(get_class($t)." => ".__CLASS__);
+        return true; 
     }
 }
 ?>

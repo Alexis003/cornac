@@ -23,7 +23,7 @@ class constant_normal_regex extends analyseur_regex {
     }
 
     function getTokens() {
-        return array(T_STRING, Token::ANY_TOKEN);
+        return array(T_STRING );
     }
     
     function check($t) {

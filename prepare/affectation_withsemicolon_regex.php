@@ -23,27 +23,23 @@ class affectation_withsemicolon_regex extends analyseur_regex {
     }
 
     function getTokens() {
-        return array(Token::ANY_TOKEN);
+        return array('=','.=','*=','+=','-=','/=','%=','>>=','&=','^=', '|=','<<=');
     }
     
     function check($t) {
         if (!$t->hasPrev()) { return false; }
         if (!$t->hasNext(1)) { return false; }
 
-        if ( !$t->checkForAssignation()) { return false; }
+        if (($t->hasPrev(1) && $t->getPrev(1)->checkCode(array('->','$','::','@')) ))  { return false; }
+        if ($t->getPrev()->checkNotClass('variable') || $t->getPrev()->checkNotSubclass('variable') ) { return false; }
+        if ($t->getNext()->checkNotClass(array('variable','literals','property','property_static'))) { return false; }
+        if ($t->getNext(1)->checkNotOperator(';')) { return false; }
+        
+        $this->args = array(-1, 0, 1);
+        $this->remove = array( -1, 1);
 
-        if ((!$t->hasPrev(1) || $t->getPrev(1)->checkNotCode(array('->','$','::','@')) ) &&
-            ($t->getPrev()->checkClass('variable') || $t->getPrev()->checkSubclass('variable') ) &&
-            $t->getNext()->checkClass(array('variable','literals','property','property_static')) &&
-            $t->getNext(1)->checkCode(';')) {
-                $this->args = array(-1, 0, 1);
-                $this->remove = array( -1, 1);
-    
-                mon_log(get_class($t)." => ".__CLASS__);
-                return true;
-            } else {
-                return false;
-            }
+        mon_log(get_class($t)." => ".__CLASS__);
+        return true;
     }
 }
 

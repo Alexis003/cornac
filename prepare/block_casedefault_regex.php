@@ -23,12 +23,10 @@ class block_casedefault_regex extends analyseur_regex {
     }
 
     function getTokens() {
-        return array(Token::ANY_TOKEN);
+        return array('{');
     }
     
     function check($t) {
-        if ($t->checkNotOperator('{') )   { return false; }
-        if ($t->checkClass('block') ) { return false; }
         if (!$t->hasNext())           { return false; }
 
         $this->remove[] = 0;

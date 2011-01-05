@@ -23,41 +23,38 @@ class method_curly_regex extends analyseur_regex {
     }
 
     function getTokens() {
-        return array(Token::ANY_TOKEN);
+        return array('{');
     }
     
     function check($t) {
-    
-        if (!$t->hasPrev() ) { return false; }
-        if (!$t->hasNext(3) ) { return false; }
+        if (!$t->hasPrev(2) ) { return false; }
+        if (!$t->hasNext(2) ) { return false; }
 
-        if ( ($t->checkClass(array('variable','property','_array','method','method_static','functioncall')) ) && 
-              $t->getNext()->checkCode('->') &&
-              $t->getNext(1)->checkCode('{') &&
-              $t->getNext(2)->checkNotClass('Token') &&
-              $t->getNext(3)->checkCode('}')) {
-              
-              if ( $t->getNext(4)->checkCode('(') &&
-                   $t->getNext(5)->checkCode(')')) {
-        
-                   $regex = new modele_regex('functioncall',array(0), array(-1, 1, 2));
-                   Token::applyRegex($t->getNext(2), 'functioncall', $regex);
+        if ( $t->getPrev(1)->checkNotClass(array('variable','property','_array','method','method_static','functioncall')) ) { return false; }
+        if ( $t->getPrev()->checkNotCode('->')) { return false; }
 
-                    mon_log(get_class($t)." => functioncall (".__CLASS__.")");
-                    return false; 
-              }
+        if ( $t->getNext()->checkClass('Token')) { return false; }
+        if ( $t->getNext(1)->checkNotOperator('}')) { return false; }
 
-              if ( $t->getNext(4)->checkClass('arglist')) {
-                   $regex = new modele_regex('functioncall',array(0, 2), array(-1, 1, 2));
-                   Token::applyRegex($t->getNext(2), 'functioncall', $regex);
+        if ( $t->getNext(2)->checkOperator('(') &&
+             $t->getNext(3)->checkOperator(')')) {
+             
+            $regex = new modele_regex('functioncall',array(0), array(-1, 0, 1));
+            Token::applyRegex($t->getNext(), 'functioncall', $regex);
 
-                    mon_log(get_class($t)." => functioncall (".__CLASS__.")");
-                    return false; 
-              }
+            mon_log(get_class($t)." => functioncall + '()' (".__CLASS__.")");
+            return false; 
+      }
 
-              return false;
-        } 
-        return false;
+      if ( $t->getNext(2)->checkClass('arglist')) {
+           $regex = new modele_regex('functioncall',array(0, 2), array(-1, 1, 2));
+           Token::applyRegex($t->getNext(), 'functioncall', $regex);
+
+            mon_log(get_class($t)." => functioncall + arglist (".__CLASS__.")");
+            return false; 
+      }
+
+      return false;
     }
 }
 ?>

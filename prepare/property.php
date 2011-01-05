@@ -63,6 +63,10 @@ class property extends token {
                      );
     }
 
+    function getCode(){
+        return '';
+    }
+
 }
 
 ?>
