@@ -593,6 +593,17 @@ class Token {
         $liste = array('variable','_array','property');
         return $this->checkClass($liste);
     }
+
+    function checkForCast() {
+        $liste = array(T_INT_CAST, 
+                       T_DOUBLE_CAST, 
+                       T_STRING_CAST,
+                       T_ARRAY_CAST,
+                       T_BOOL_CAST,
+                       T_OBJECT_CAST,
+                       T_UNSET_CAST);
+        return $this->checkToken($liste);
+    }
     
     function toToken_traite($token) {
         if ($token->checkClass('Token')) {

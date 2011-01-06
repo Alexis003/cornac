@@ -30,13 +30,15 @@ class affectation_normal_regex extends analyseur_regex {
         if (!$t->hasPrev()) { return false; }
         if (!$t->hasNext(1)) { return false; }
 
+        if ( $t->checkNotClass('Token')) { return false; }
         if ( $t->getNext(1)->checkNotCode(array(';','}',')',',',':',']')) &&
              $t->getNext(1)->checkNotClass(array('sequence','block','_foreach','_for','rawtext')) &&
              $t->getNext(1)->checkNotToken(array(T_AS,T_CLOSE_TAG))
                 ) { return false;}
-                
+
                 //'(',',',
-        if ($t->hasPrev(1) && $t->getPrev(1)->checkCode(array('&','$','::','@','->','var','public','private','protected'))) { return false;}
+                //,'var','public','private','protected'
+        if ($t->hasPrev(1) && $t->getPrev(1)->checkCode(array('&','$','::','@','->'))) { return false;}
         if (($t->getPrev()->checkClass(array('variable',
                                              'property',
                                              'opappend',

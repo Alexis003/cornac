@@ -46,7 +46,8 @@ class constant_normal_regex extends analyseur_regex {
                 $t->getPrev()->checkNotToken(array(T_CASE)) && 
                !$t->getPrev()->checkForAssignation() &&
                !$t->getPrev()->checkForComparison() &&
-               !$t->getPrev()->checkForLogical() ) { return false; }
+               !$t->getPrev()->checkForLogical() && 
+               !$t->getPrev()->checkForCast() ) { return false; }
         }
         if ($t->getNext()->checkToken(array(T_VARIABLE, T_AS))) { return false; }
         if ($t->getNext()->checkClass(array('variable','affectation'))) { return false; }
