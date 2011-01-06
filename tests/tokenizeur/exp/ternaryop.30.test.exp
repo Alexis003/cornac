@@ -1,0 +1,185 @@
+tests/tokenizeur/scripts/ternaryop.30.test.php
+  codephp <?php
+
+  code : 
+      sequence 
+      0 : 
+          affectation 
+          left : 
+              property variable $aliterals b->
+           "=" 
+          right : 
+              ternaryop ?
+              comparison constante c  ">" literals 0 ? cast (int) : cast (array)
+                  comparison 
+                  left : 
+                      constante (                      c )
+                  operateur :  ">"
+                  right : 
+                      literals 0
+                  cast (295 "(int)")constante D
+                      constante (                      D )
+                  cast (292 "(array)")constante E
+                      constante (                      E )
+      1 : 
+          affectation 
+          left : 
+              property variable $aliterals b->
+           "=" 
+          right : 
+              ternaryop ?
+              comparison constante c  ">" literals 0 ? cast (integer) : cast (array)
+                  comparison 
+                  left : 
+                      constante (                      c )
+                  operateur :  ">"
+                  right : 
+                      literals 0
+                  cast (295 "(integer)")constante D
+                      constante (                      D )
+                  cast (292 "(array)")constante E
+                      constante (                      E )
+      2 : 
+          affectation 
+          left : 
+              property variable $aliterals b->
+           "=" 
+          right : 
+              ternaryop ?
+              comparison constante c  ">" literals 0 ? cast (bool) : cast (array)
+                  comparison 
+                  left : 
+                      constante (                      c )
+                  operateur :  ">"
+                  right : 
+                      literals 0
+                  cast (290 "(bool)")constante D
+                      constante (                      D )
+                  cast (292 "(array)")constante E
+                      constante (                      E )
+      3 : 
+          affectation 
+          left : 
+              property variable $aliterals b->
+           "=" 
+          right : 
+              ternaryop ?
+              comparison constante c  ">" literals 0 ? cast (boolean) : cast (array)
+                  comparison 
+                  left : 
+                      constante (                      c )
+                  operateur :  ">"
+                  right : 
+                      literals 0
+                  cast (290 "(boolean)")constante D
+                      constante (                      D )
+                  cast (292 "(array)")constante E
+                      constante (                      E )
+      4 : 
+          affectation 
+          left : 
+              property variable $aliterals b->
+           "=" 
+          right : 
+              ternaryop ?
+              comparison constante c  ">" literals 0 ? cast (string) : cast (array)
+                  comparison 
+                  left : 
+                      constante (                      c )
+                  operateur :  ">"
+                  right : 
+                      literals 0
+                  cast (293 "(string)")constante D
+                      constante (                      D )
+                  cast (292 "(array)")constante E
+                      constante (                      E )
+      5 : 
+          affectation 
+          left : 
+              property variable $aliterals b->
+           "=" 
+          right : 
+              ternaryop ?
+              comparison constante c  ">" literals 0 ? cast (array) : cast (array)
+                  comparison 
+                  left : 
+                      constante (                      c )
+                  operateur :  ">"
+                  right : 
+                      literals 0
+                  cast (292 "(array)")constante D
+                      constante (                      D )
+                  cast (292 "(array)")constante E
+                      constante (                      E )
+      6 : 
+          affectation 
+          left : 
+              property variable $aliterals b->
+           "=" 
+          right : 
+              ternaryop ?
+              comparison constante c  ">" literals 0 ? cast (object) : cast (array)
+                  comparison 
+                  left : 
+                      constante (                      c )
+                  operateur :  ">"
+                  right : 
+                      literals 0
+                  cast (291 "(object)")constante D
+                      constante (                      D )
+                  cast (292 "(array)")constante E
+                      constante (                      E )
+      7 : 
+          affectation 
+          left : 
+              property variable $aliterals b->
+           "=" 
+          right : 
+              ternaryop ?
+              comparison constante c  ">" literals 0 ? cast (double) : cast (array)
+                  comparison 
+                  left : 
+                      constante (                      c )
+                  operateur :  ">"
+                  right : 
+                      literals 0
+                  cast (294 "(double)")constante D
+                      constante (                      D )
+                  cast (292 "(array)")constante E
+                      constante (                      E )
+      8 : 
+          affectation 
+          left : 
+              property variable $aliterals b->
+           "=" 
+          right : 
+              ternaryop ?
+              comparison constante c  ">" literals 0 ? cast (float) : cast (array)
+                  comparison 
+                  left : 
+                      constante (                      c )
+                  operateur :  ">"
+                  right : 
+                      literals 0
+                  cast (294 "(float)")constante D
+                      constante (                      D )
+                  cast (292 "(array)")constante E
+                      constante (                      E )
+      9 : 
+          affectation 
+          left : 
+              property variable $aliterals b->
+           "=" 
+          right : 
+              ternaryop ?
+              comparison constante c  ">" literals 0 ? cast (real) : cast (array)
+                  comparison 
+                  left : 
+                      constante (                      c )
+                  operateur :  ">"
+                  right : 
+                      literals 0
+                  cast (294 "(real)")constante D
+                      constante (                      D )
+                  cast (292 "(array)")constante E
+                      constante (                      E )
