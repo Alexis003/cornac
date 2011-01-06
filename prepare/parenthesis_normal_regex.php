@@ -32,7 +32,7 @@ class parenthesis_normal_regex extends analyseur_regex {
 
         if ($t->checkNotClass('Token')) { return false; }
         if ($t->getPrev()->checkClass('variable')) { return false; }
-        if ($t->getPrev()->checkToken(array(T_CONTINUE, T_USE, T_FUNCTION))) { return false; }
+        if ($t->getPrev()->checkToken(array(T_CONTINUE, T_USE, T_FUNCTION, T_CATCH))) { return false; }
         if ($t->getPrev()->checkOperator('}')) { return false; }
         if ($t->getNext()->checkClass('Token')) { return false; }
         if ( $t->getNext(1)->checkNotCode(')')) { return false; }

@@ -23,48 +23,44 @@ class typehint_regex extends analyseur_regex {
     }
 
     function getTokens() {
-        return array(T_ARRAY, T_STRING, Token::ANY_TOKEN);
+        return array('(',',');
     }
 
     function check($t) {
-        if (!$t->hasNext(1) ) { return false; }
-        if (!$t->hasPrev() ) { return false; }
-
-        if ($t->getPrev()->checkNotOperator(array('(',','))) { return false; }
-        if ($t->getPrev()->checkClass(array('arglist'))) { return false; }
-        if ($t->getPrev(1)->checkToken(array(T_CATCH))) { return false; }
-        if ($t->checkNotClass('Token')  &&  $t->checkToken(T_ARRAY)) { return false; }
-        if ($t->checkToken(T_AS)) { return false; }
-        // @note this is an interpolation ,with " : this won't be the only one.
-        if ($t->checkOperator(array('"'))) { return false; } 
-
-        if ($t->checkClass(array('variable'))) { return false; } 
-
-        if ($t->getNext()->checkOperator(array('&')) &&
-            $t->getNext(1)->checkClass('variable')) {
-
-            if ( $t->getNext(2)->checkOperator(array('->','[','(','::'))) { return false; }
-            
-            if ($t->checkClass(array('constante','functioncall'))) {
-                return false;
-            }
-            
-            $regex = new modele_regex('reference',array(1), array(1));
-            Token::applyRegex($t->getNext(), 'reference', $regex);
-
-            mon_log(get_class($t->getNext())." => reference (".__CLASS__.")");
+    // @note Actually, we don't rely on ( or , but on the next token. 
+        if (!$t->hasPrev(1)) {
+        // @note too early, can't be a typehint
+            return false; 
+        } elseif ($t->getPrev()->checkToken(T_CATCH)) {
             return false;
+            // @note this is a function
+        } elseif ($t->getPrev(1)->checkToken(T_FUNCTION)) {
+            // @note this is a function
+        } elseif ($t->getPrev(1)->checkOperator('&') && 
+                  $t->getPrev(2)->checkToken(T_FUNCTION)) {
+            // @note this is a function
+        } elseif ($t->getNext( )->checkClass('Token') && 
+                  $t->getNext(1)->checkClass(array('variable','affectation'))) {
+            // @note this is a function
+        } else { 
+            return false; 
         }
-        
+
+        $t = $t->getNext();
+        if ($t->checkNotToken(array(T_STRING, T_ARRAY)) &&
+            $t->checkNotClass(array('_nsname'))) { return false; }
+
+        if (!$t->hasNext() ) { return false; }
+
         if ($t->getNext()->checkNotClass(array('variable','affectation','reference'))) { return false; }
         if ($t->getNext(1)->checkCode(array('='))) { return false; }
         if ($t->getNext(1)->checkNotOperator(array(',',')'))) { return false; }
-        
-        $this->args = array(0,1);
-        $this->remove = array(1);
-        mon_log(get_class($t)." => ".__CLASS__."");
-        
-        return true;
+
+        $regex = new modele_regex('typehint',array(0, 1), array(1));
+        Token::applyRegex($t, 'typehint', $regex);
+
+        mon_log(get_class($t->getNext())." => typehint (".__CLASS__.")");
+        return false;
     }
 }
 ?>
