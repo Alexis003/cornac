@@ -43,7 +43,7 @@ class constant_normal_regex extends analyseur_regex {
 
         if ($t->getNext()->checkCode(array(':'))) {
             if ($t->getPrev()->checkNotOperator(array('->','::','?','.', '+','-','*','/','%',':','!')) && 
-                $t->getPrev()->checkNotToken(array(T_CASE)) && 
+                $t->getPrev()->checkNotToken(array(T_CASE, T_NEW)) && 
                !$t->getPrev()->checkForAssignation() &&
                !$t->getPrev()->checkForComparison() &&
                !$t->getPrev()->checkForLogical() && 

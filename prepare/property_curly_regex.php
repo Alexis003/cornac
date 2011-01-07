@@ -30,8 +30,7 @@ class property_curly_regex extends analyseur_regex {
         if (!$t->hasPrev(1) ) { return false; }
         if (!$t->hasNext(1) ) { return false; }
 
-        if ( $t->hasPrev(2) &&
-             $t->getPrev(1)->checkNotClass(array('variable',
+        if ( $t->getPrev(1)->checkNotClass(array('variable',
                                                  'property',
                                                  'property_static',
                                                  '_array',
@@ -39,6 +38,10 @@ class property_curly_regex extends analyseur_regex {
                                                  'method_static',
                                                  'functioncall')))
                                                    { return false; }
+        if ($t->getPrev(1)->checkClass('functioncall') && 
+            $t->getPrev(2)->checkOperator('->')) {
+            return false; 
+        }
         if ($t->getPrev()->checkNotOperator('->')) { return false; }
 
         if ($t->getNext()->checkClass('Token'))    { return false; }

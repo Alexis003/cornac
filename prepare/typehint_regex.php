@@ -42,6 +42,9 @@ class typehint_regex extends analyseur_regex {
         } elseif ($t->getNext( )->checkClass('Token') && 
                   $t->getNext(1)->checkClass(array('variable','affectation'))) {
             // @note this is a function
+        } elseif ($t->getNext( )->checkClass('_nsname') && 
+                  $t->getNext(1)->checkClass(array('variable','affectation'))) {
+            // @note this is a function
         } else { 
             return false; 
         }

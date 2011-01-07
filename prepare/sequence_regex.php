@@ -29,10 +29,12 @@ class sequence_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasNext() ) { return false; }
 
-        if ( $t->hasPrev() && $t->getPrev()->checkForAssignation())     { return false; }
-        if ( $t->hasPrev() && $t->getPrev()->checkClass('parenthesis')) { return false; }
         if ( $t->checkClass('_case','_default'))                        { return false; }
-        if ( $t->hasPrev() && $t->getPrev()->checkOperator(array('=',')','->','(',',','.','new','!==','::',':',
+
+        if ( $t->hasPrev() && $t->getPrev()->checkForAssignation())     { return false; }
+        if ( $t->hasPrev() && $t->getPrev()->checkClass(array('parenthesis',
+                                                        'arglist')))    { return false; }
+        if ( $t->hasPrev() && $t->getPrev()->checkOperator(array('=',')','->','(',')',',','.','new','!==','::',':',
                 '?','or','and','xor','var','$','/','+','-','*','%','@','&','|','^','"',
                 '<','>','+','\\')))                                          { return false; }
 

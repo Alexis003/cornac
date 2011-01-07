@@ -23,12 +23,12 @@ class constant_magical_regex extends analyseur_regex {
     }
 
     function getTokens() {
-        return array(T_FILE, T_DIR, T_CLASS_C, T_LINE, T_METHOD_C, T_FUNC_C);
+        return array(T_FILE, T_DIR, T_CLASS_C, T_LINE, T_METHOD_C, T_FUNC_C, T_NS_C);
     }
     
     function check($t) {
     // @note getTokens also checks for code value, not only token. 
-        if ($t->checkNotToken(array(T_FILE, T_DIR, T_CLASS_C, T_LINE, T_METHOD_C, T_FUNC_C))) { return false; }
+        if ($t->checkNotToken(array(T_FILE, T_DIR, T_CLASS_C, T_LINE, T_METHOD_C, T_FUNC_C, T_NS_C))) { return false; }
         
         mon_log(get_class($t)." => ".__CLASS__);
         return true; 
