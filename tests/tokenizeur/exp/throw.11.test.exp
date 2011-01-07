@@ -1,0 +1,11 @@
+tests/tokenizeur/scripts/throw.11.test.php
+  codephp <?php
+
+  code : 
+      _throw 
+          method_static 
+          307 "a"::functioncall 307 "a" ( ( ) ) : 
+              functioncall a
+              function call : a: 
+                  arglist 
+                  Empty arglist

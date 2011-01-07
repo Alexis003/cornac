@@ -1,0 +1,9 @@
+tests/tokenizeur/scripts/constante.10.test.php
+  codephp <?php
+
+  code : 
+      functioncall echo
+      function call : echo: 
+          arglist 
+          0 : 
+              constante (              __NAMESPACE__ )

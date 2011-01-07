@@ -1,0 +1,6 @@
+tests/tokenizeur/scripts/typehint.12.test.php
+  codephp <?php
+
+  code : 
+      function literals a arglist(typehint 0 "\" affectation variable $b  "=" constante null)
+          block 

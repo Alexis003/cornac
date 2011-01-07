@@ -1,0 +1,31 @@
+tests/tokenizeur/scripts/constante.11.test.php
+  codephp <?php
+
+  code : 
+      affectation 
+      left : 
+          variable $a
+       "=" 
+      right : 
+          method variable $this
+          method call : functioncall 307 "b" ( arglist(concatenation constante __NAMESPACE__ . literals \C  , functioncall 360 "array" ( ( ) ) , literals , constante false, constante false) ) : 
+              functioncall b
+              function call : b: 
+                  arglist 
+                  0 : 
+                      concatenation 
+                      0 : 
+                          constante (                          __NAMESPACE__ )
+                      1 : 
+                          literals \C
+                  1 : 
+                      functioncall array
+                      function call : array: 
+                          arglist 
+                          Empty arglist
+                  2 : 
+                      literals 
+                  3 : 
+                      constante (                      false )
+                  4 : 
+                      constante (                      false )
