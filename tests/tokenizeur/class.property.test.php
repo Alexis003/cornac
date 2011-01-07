@@ -3,7 +3,7 @@ include_once('Analyseur_Framework_TestCase.php');
 
 class Property_Test extends Analyseur_Framework_TestCase
 {
-    /* 18 methodes */
+    /* 19 methodes */
     public function testProperty1()  { $this->generic_test('property.1'); }
     public function testProperty2()  { $this->generic_test('property.2'); }
     public function testProperty3()  { $this->generic_test('property.3'); }
@@ -22,6 +22,7 @@ class Property_Test extends Analyseur_Framework_TestCase
     public function testProperty16()  { $this->generic_test('property.16'); }
     public function testProperty17()  { $this->generic_test('property.17'); }
     public function testProperty18()  { $this->generic_test('property.18'); }
+    public function testProperty19()  { $this->generic_test('property.19'); }
 
 }
 
