@@ -39,7 +39,7 @@ class property_curly_regex extends analyseur_regex {
                                                  'functioncall')))
                                                    { return false; }
         if ($t->getPrev(1)->checkClass('functioncall') && 
-            $t->getPrev(2)->checkOperator('->')) {
+            $t->getPrev(2)->checkOperator(array('->','::'))) {
             return false; 
         }
         if ($t->getPrev()->checkNotOperator('->')) { return false; }
