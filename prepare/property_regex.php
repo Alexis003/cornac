@@ -38,8 +38,7 @@ class property_regex extends analyseur_regex {
                                                  'functioncall',
                                                  'property_static',
                                                  'opappend')) ) { return false; }
-        if ($t->getPrev()->checkClass('functioncall') && 
-            $t->getPrev(1)->checkOperator('->')) {
+        if (   $t->getPrev(1)->checkOperator('->')) {
             return false; 
         }
 // @note this avoid interfering with functioncall by detecting ( early enough not to make a literals
