@@ -100,7 +100,8 @@ class sequence_regex extends analyseur_regex {
             if ($var->checkOperator(array(',','->','::','[','(',',')) ||
                 $var->checkForLogical() ||
                 $var->checkForAssignation() ||
-                $var->checkClass('arglist')) {
+                $var->checkClass('arglist') ||
+                $var->checkToken(T_ELSE)) {
                 // @doc This is not a sequence, as this operator finally has priority
                 $this->args = array();
                 $this->remove = array();
