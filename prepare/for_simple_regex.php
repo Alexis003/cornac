@@ -29,7 +29,6 @@ class for_simple_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasNext(4)) { return false; }
 
-        if ($t->checkNotToken(array(T_FOR))) { return false; } 
         if ($t->getNext()->checkNotOperator(array('('))) { return false; } 
 
         $args = array();
@@ -126,10 +125,10 @@ class for_simple_regex extends analyseur_regex {
             mon_log(get_class($t)." => block (position $pos) (from ; ) (".__CLASS__.")");            
             // @note no return, we carry on
         }
-        
+
         if ($t->getNext($pos)->checkForBlock(true) && 
             (is_null($t->getNext($pos + 1)) ||
-             $t->getNext($pos + 1)->checkNotCode(array('(','->','::','=','[')))) {
+             $t->getNext($pos + 1)->checkNotOperator(array('(','->','::','=','[')))) {
               $args[] = $pos + 1;
               $remove[] = $pos + 1;
 
