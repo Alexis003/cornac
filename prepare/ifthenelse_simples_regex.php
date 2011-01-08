@@ -17,6 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
+// @todo rename to simple no S
 class ifthenelse_simples_regex extends analyseur_regex {
     function __construct() {
         parent::__construct(array());
@@ -30,6 +31,7 @@ class ifthenelse_simples_regex extends analyseur_regex {
         if (!$t->hasNext() ) { return false; }
 
         if ($t->checkNotToken(T_ELSE)) { return false;}
+        if ($t->getNext()->checkClass('block')) { return false;}
 
         if ($t->getNext()->checkForBlock(true) && 
             (!$t->hasNext(1) || 

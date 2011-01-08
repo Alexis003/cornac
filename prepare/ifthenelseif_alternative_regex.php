@@ -31,22 +31,22 @@ class ifthenelseif_alternative_regex extends analyseur_regex {
 
         if (!$t->checkToken(array(T_IF,T_ELSEIF))) { return false;} 
         if ($t->getNext()->checkNotClass('parenthesis')) { return false; }
-        if ($t->getNext(1)->checkNotCode(':')) { return false; } 
+        if ($t->getNext(1)->checkNotOperator(':')) { return false; } 
 
         $args = array();
-        $remove = array(-1);
+        $remove = array(0);
         $var = $t->getNext(2);            
         $pos = 0;
 
         while($var->checkNotToken(array(T_ENDIF,T_ELSEIF, T_ELSE))) {
             if ($var->checkToken(T_IF) ) {
-                // Un autre if qui démarre? On aime pas les imbrications
+                // @note another if starting? We don't handle nested here. aborting.
                 return false;
             }
 
             if ($var->checkForBlock()) {
-                $args[] = $pos;
-                $remove[] = $pos;
+                $args[] = $pos + 1;
+                $remove[] = $pos + 1;
                 if (!$var->hasNext()) { return false; }
                 $var = $var->getNext();
                 $pos++;
@@ -66,23 +66,29 @@ class ifthenelseif_alternative_regex extends analyseur_regex {
             }
 
             if ($var->checkCode(';') ) {
-                // un point-virgule qui traine. Bah....
-                $remove[] = $pos;
+                // @note trailing semi-colon. Bah...
+                $remove[] = $pos + 1;
                 $pos++;
                 $var = $var->getNext();
                 continue;
             }
             
-            // pas traitable ? On annule tout.
+            // @note none of the above? Forget it. 
             return false;
         }
         
-        if ($var->checkToken(T_ENDIF)) {
-            $remove[] = $pos;
+        if ($var->checkToken(array( T_ELSE, T_ELSEIF))) { 
+            // @note OK, we carry one. No need to remove anything
+        } elseif ($var->checkToken(array( T_ENDIF))) {
+            // @note must remove endif
+            $remove[] = $pos + 1;
+        } else {
+            // @note just go away
+            return false;  
         }
-        
+
         $regex = new modele_regex('block',$args, $remove);
-        Token::applyRegex($t->getNext(2), 'block', $regex);
+        Token::applyRegex($t->getNext(1), 'block', $regex);
 
         mon_log(get_class($t)." => block (".__CLASS__.")");
         return false; 

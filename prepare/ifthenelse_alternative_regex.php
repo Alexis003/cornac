@@ -30,7 +30,7 @@ class ifthenelse_alternative_regex extends analyseur_regex {
         if (!$t->hasNext(2) ) { return false; }
 
         if ($t->checkNotToken(array(T_ELSE))) { return false;} 
-        if ($t->getNext()->checkNotCode(':')) { return false; } 
+        if ($t->getNext()->checkNotOperator(':')) { return false; } 
         
         $args = array();
         $remove = array(-1 );
@@ -39,7 +39,7 @@ class ifthenelse_alternative_regex extends analyseur_regex {
 
         while($var->checkNotToken(array(T_ENDIF))) {
            if ($var->checkToken(T_IF) ) {
-              // Un autre if qui démarre? On aime pas les imbrications
+              // @note antoher if starting? We don't handle nesting here.
               return false;
            }
 
@@ -76,10 +76,9 @@ class ifthenelse_alternative_regex extends analyseur_regex {
             return false;
         }
 
-        if ($var->checkToken(T_ENDIF)) {
-            $remove[] = $pos;
-        }
-        
+        if ($var->checkNotToken(T_ENDIF)) { return false; }
+        $remove[] = $pos;
+
         $regex = new modele_regex('block',$args, $remove);
         Token::applyRegex($t->getNext(1), 'block', $regex);
 

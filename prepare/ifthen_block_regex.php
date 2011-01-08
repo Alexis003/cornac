@@ -33,6 +33,7 @@ class ifthen_block_regex extends analyseur_regex {
         if ($t->getNext(1)->checkNotClass('block')) { return false; } 
         
         if ($t->hasNext(2) && $t->getNext(2)->checkToken(array(T_ELSE, T_ELSEIF))) { return false; }
+        if ($t->hasNext(2) && $t->getNext(2)->checkOperator(array(':'))) { return false; }
 
         $this->args   = array(1, 2);
         $this->remove = array(1, 2);
