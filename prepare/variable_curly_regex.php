@@ -23,14 +23,14 @@ class variable_curly_regex extends analyseur_regex {
     }
 
     function getTokens() {
-        return array('${');
+        return array(T_DOLLAR_OPEN_CURLY_BRACES);
     }
     
     function check($t) {
         if (!$t->hasNext(1) ) { return false; }
 
-        if ($t->getNext()->checkClass(array('Token'))) { return false;}
-        if ($t->getNext(1)->checkNotCode('}')) { return false;}
+        if ($t->getNext()->checkClass('Token')) { return false;}
+        if ($t->getNext(1)->checkNotOperator('}')) { return false;}
         
         $this->args   = array(0, 1);
         $this->remove = array(1,2);
