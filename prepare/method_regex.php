@@ -23,7 +23,7 @@ class method_regex extends analyseur_regex {
     }
 
     function getTokens() {
-        return array('->');
+        return array(T_OBJECT_OPERATOR);
     }
     
     function check($t) {
