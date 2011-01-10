@@ -449,7 +449,8 @@ class Token {
                                                T_EMPTY, 
                                                T_LIST, 
                                                T_UNSET,
-                                               T_EVAL));
+                                               T_EVAL,
+                                               T_STATIC));
         }
     }
 
