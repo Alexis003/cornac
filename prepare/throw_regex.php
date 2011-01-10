@@ -39,7 +39,7 @@ class throw_regex extends analyseur_regex {
                                                'ternaryop',
                                                'method_static',
                                                'functioncall'))) { return false; }
-        if ($t->getNext(1)->checkCode(array('->','['))) { return false; }
+        if ($t->getNext(1)->checkOperator(array('->','['))) { return false; }
 
         $this->args = array(1);
         $this->remove = array( 1);
