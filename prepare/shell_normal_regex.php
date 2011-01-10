@@ -53,10 +53,10 @@ class shell_normal_regex extends analyseur_regex {
         $this->remove = array(  );
         $pos = 1;
         
-        while ($var->checkNotCode($token_fin)) {
-            if ($var->checkCode('{') && 
+        while ($var->checkNotOperator($token_fin)) {
+            if ($var->checkOperator('{') && 
                 $var->getNext()->checkClass($this->sequence_classes) && 
-                  $var->getNext(1)->checkCode('}')) {
+                  $var->getNext(1)->checkOperator('}')) {
 
                 $regex = new modele_regex('variable',array(0), array(-1, 1));
                 Token::applyRegex($var->getNext(), 'variable', $regex);
