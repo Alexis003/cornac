@@ -30,10 +30,10 @@ class sign_suite_regex extends analyseur_regex {
         if (!$t->hasPrev()) { return false; }
         if (!$t->hasNext()) { return false; }
 
-        if ( $t->getPrev()->checkNotCode(array('+','-'))) { return false; }
+        if ( $t->getPrev()->checkNotOperator(array('+','-'))) { return false; }
         if ( $t->getPrev()->checkClass(array('operation'))) { return false; }
         if ( $t->getNext()->checkNotClass(array('sign','variable','property','property_static','method','method_static','functioncall','constante','literal')) ) { return false ;}
-        if ( $t->getNext(1)->checkCode(array('->','[','{','::','++','--'))) { return false; }
+        if ( $t->getNext(1)->checkOperator(array('->','[','{','::','++','--'))) { return false; }
         
         $this->args = array(0, 1 );
         $this->remove = array(1);
