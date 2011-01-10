@@ -47,7 +47,7 @@ class sequence_class_regex extends analyseur_regex {
                                   $t->getPrev()->checkClass(array('parenthesis','arglist')) ||
                                   $t->getPrev()->checkForAssignation() || 
                                   $t->getPrev()->checkForLogical() ||
-                                  $t->getPrev()->checkToken(array(T_ELSE, T_ABSTRACT))) ) { return false; }
+                                  $t->getPrev()->checkToken(array(T_ELSE, T_ABSTRACT, T_DO))) ) { return false; }
 
             $var = $t->getNext(1); 
             $this->args   = array( 0, 1 );
