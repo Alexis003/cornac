@@ -35,6 +35,8 @@ class while_noblock_regex extends analyseur_regex {
             
             // @note we wait for the block to be processed
             if ($t->getPrev()->checkOperator('}')) { return false; }
+            if ($t->getPrev()->checkClass('Token') &&
+                $t->getPrev()->checkNotToken(T_OPEN_TAG)) { return false; }
             // @note this is definitely not a while block
             if ($t->getPrev()->checkClass('block') &&              
                 $t->getPrev(1)->checkToken(T_DO))  { return false; }
@@ -46,8 +48,9 @@ class while_noblock_regex extends analyseur_regex {
         }
 
         if ($t->getNext(1)->checkClass(array('Token','block'))) { return false;}
-        if ($t->getNext(2)->checkCode(array('->','::','[','('))) { return false; }
+        if ($t->getNext(2)->checkOperator(array('->','::','[','('))) { return false; }
         if ($t->getNext(2)->checkForAssignation()) { return false; }
+        if ($t->getNext(2)->checkClass('arglist')) { return false; }
 
         $regex = new modele_regex('block',array(0), array());
         Token::applyRegex($t->getNext(1), 'block', $regex);
