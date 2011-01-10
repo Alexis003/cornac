@@ -38,22 +38,20 @@ class functioncall_simple_regex extends analyseur_regex {
             $t->getPrev()->checkOperator('&') &&
             $t->getPrev(1)->checkToken(T_FUNCTION)) { return false; }
 
-        if ((!$t->hasPrev() || 
-              $t->getPrev()->checkNotToken(T_FUNCTION)) &&
-              ($t->checkFunction() || $t->checkToken(array(T_STATIC)) || $t->checkClass(array('_nsname'))) &&
-              $t->getNext()->checkClass('arglist')) {
+        if ($t->hasPrev() && 
+            $t->getPrev()->checkToken(T_FUNCTION)) { return false; }
 
-            if ($t->getNext(1)->checkOperator(array('{','(')) ||
-                $t->getNext(1)->checkClass('parenthesis')) { return false; }
+        if ( $t->checkNotFunction()) { return false; }
+        if ( $t->getNext()->checkNotClass('arglist')) { return false; }
 
-            $this->args = array(0 , 1);
-            $this->remove[] = 1;
+        if ($t->getNext(1)->checkOperator(array('{','(')) ||
+            $t->getNext(1)->checkClass('parenthesis')) { return false; }
 
-            mon_log(get_class($t)." => ".__CLASS__);
-            return true; 
-        }
-        
-        return false;
+        $this->args = array(0 , 1);
+        $this->remove[] = 1;
+
+        mon_log(get_class($t)." => ".__CLASS__);
+        return true; 
     }
 }
 ?>
