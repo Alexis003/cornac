@@ -50,7 +50,7 @@ class while_alternative_regex extends analyseur_regex {
             }
 
             if ($var->checkNotClass(array('block','Token')) && 
-                $var->getNext()->checkCode(';')) {
+                $var->getNext()->checkOperator(';')) {
                 $args[] = $pos;
 
                 $remove[] = $pos;
