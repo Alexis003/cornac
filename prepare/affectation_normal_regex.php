@@ -23,7 +23,7 @@ class affectation_normal_regex extends analyseur_regex {
     }
 
     function getTokens() {
-        return array('=','.=','*=','+=','-=','/=','%=','>>=','&=','^=', '|=','<<=');
+        return array('=',T_CONCAT_EQUAL,T_MUL_EQUAL,T_PLUS_EQUAL,T_MINUS_EQUAL,T_DIV_EQUAL,T_MOD_EQUAL,T_SR_EQUAL,T_AND_EQUAL,T_XOR_EQUAL, T_OR_EQUAL,T_SL_EQUAL);
     }
     
     function check($t) {
