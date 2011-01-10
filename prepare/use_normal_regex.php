@@ -29,30 +29,22 @@ class use_normal_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasNext(1)) { return false; }
 
-//        if ($t->getNext()->checkNotClass(array('_nsname','Token'))) { return false; }
-
         $var = $t;
-        while($var->checkCode(',') || $var->checkToken(T_USE)) {
+        while($var->checkOperator(',') || $var->checkToken(T_USE)) {
             if ($var->getNext()->checkClass(array('Token')) &&
                 $var->getNext(1)->checkToken(T_AS) &&
                 $var->getNext(2)->checkClass('Token') &&
                 $var->getNext(3)->checkOperator(array(',',';'))) { 
 
-//                if ($var->getNext()->checkOperator(array('(','*','+','-','/','^',',','=>','}',';',')'))) { return false; }
-                // @note allow \ to appear after. 
-//                if ($var->getNext(1)->checkOperator('\\')) { return false; }
-            
                 $regex = new modele_regex('_nsname',array(0), array());
                 Token::applyRegex($var->getNext(), '_nsname', $regex);
     
                 mon_log(get_class($t)." =>2 ".__CLASS__);
                 
-//                die(__METHOD__."2 ");
-                
                 $var = $var->getNext(1);
                 continue;
             }
-            if ($var->getNext()->checkClass(array('Token')) &&
+            if ($var->getNext()->checkClass('Token') &&
                 $var->getNext(1)->checkOperator(array(',',';'))) { 
 
                 if ($var->getNext()->checkOperator(array('(','*','+','-','/','^',',','=>','}',';',')'))) { return false; }
@@ -71,7 +63,7 @@ class use_normal_regex extends analyseur_regex {
             // @note case of the as. Skip 2
             if ($var->getNext(1)->checkToken(T_AS)) { 
                 $var = $var->getNext(3);
-            } elseif ($var->getNext()->checkClass(array('Token'))) { 
+            } elseif ($var->getNext()->checkClass('Token')) { 
                 return false; 
             } else {
                 $var = $var->getNext(1);
@@ -83,7 +75,7 @@ class use_normal_regex extends analyseur_regex {
         }
         
         $var = $t;
-        while($var->checkCode(',') || $var->checkToken(T_USE)) {
+        while($var->checkOperator(',') || $var->checkToken(T_USE)) {
                 // @note registering a new global each comma
                     $args = array(1);
                     $remove = array(1);
@@ -104,38 +96,9 @@ class use_normal_regex extends analyseur_regex {
 
                     mon_log(get_class($var)." => _use  (".__CLASS__.")");
                     continue;
-                    
         }
-        
+
         return false;
-        
-        if ($t->getNext()->checkNotClass(array('_nsname','Token'))) { return false; }
-        
-        if ($t->getNext()->checkClass('_nsname')) {
-            $this->args[] = 1;
-            $this->remove[] = 1;
-            
-            // @note use ns as alias
-            if ($t->getNext(1)->checkToken(T_AS)) {
-                $this->args[] = 3;
-                $this->remove[] = 2;
-                $this->remove[] = 3;
-            }
-
-            mon_log(get_class($t)." => ".__CLASS__);
-            return true; 
-        } elseif ($t->getNext()->checkClass('Token')) {
-            if ($t->getNext()->checkOperator(array('(','*','+','-','/','^',',','=>','}',';',')'))) { return false; }
-            // @note allow \ to appear after. 
-            if ($t->getNext(1)->checkOperator('\\')) { return false; }
-            
-            $regex = new modele_regex('_nsname',array(0), array());
-            Token::applyRegex($t->getNext(), '_nsname', $regex);
-
-            mon_log(get_class($t)." => ".__CLASS__);
-
-            return false;
-        } // @empty_elseif
     }
 }
 ?>
