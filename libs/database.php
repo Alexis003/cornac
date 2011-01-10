@@ -55,8 +55,10 @@ class database  {
     }
     
     function setup_query($query) {
-        $query = str_replace(array_keys($this->tables), array_values($this->tables), $query);
-        
+        $query = str_replace(array_keys($this->tables), 
+                             array_values($this->tables), 
+                             $query);
+
         return $query;
     }
     
