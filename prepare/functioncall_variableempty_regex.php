@@ -30,6 +30,7 @@ class functioncall_variableempty_regex extends analyseur_regex {
         if (!$t->hasPrev() ) { return false; }
         if (!$t->hasNext() ) { return false; }
 
+        if ($t->checkNotOperator('(')) { return false; }
         if ($t->getPrev()->checkNotClass(array('variable','_array'))) { return false; }
         if ($t->getNext()->checkNotOperator(')')) { return false; }
 
