@@ -25,7 +25,7 @@ class Analyseur_Framework_TestCase  extends PHPUnit_Framework_TestCase {
             $this->assertEquals(true, false);
         }
         $retour = shell_exec('cd ../../; ./tokenizeur.php -f tests/tokenizeur/scripts/'.$test.'.test.php -I testsunitaires -g tree');
-        
+
         if (!file_exists('exp/'.$test.'.test.exp')) {
             print "\nLe fichier d'attendu 'exp/$test.test.exp' est manquant\n";
             $this->assertEquals(true, false);
