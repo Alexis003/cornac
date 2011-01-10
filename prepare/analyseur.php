@@ -20,8 +20,10 @@
 class analyseur {
     public $verifs = 0;
     public $rates = array();
+    private $structures = array();
+    private $any_token = false; 
 
-    function __construct() {
+    function __construct($restrict = array()) {
         $this->structures = array(
                                   'ifthen',
                                   'literals', 
@@ -97,7 +99,6 @@ class analyseur {
             $regex = $structure::getRegex(); 
             
             foreach($regex as $r) {
-                $object = new $r;
                 $tokens = $object->getTokens();
                 
                 if ($tokens === false) { 
@@ -105,7 +106,12 @@ class analyseur {
                     print "$r doesn\'t have getToken()\n"; 
                 } elseif (count($tokens) > 0) {
                     foreach($tokens as $token) {
-                        $this->regex[$token][$r] = $object;
+                        if (in_array($token, $restrict) || $token === 0) {
+                            if (!isset($object)) { 
+                                $object = new $r; 
+                            }
+                            $this->regex[$token][$r] = $object;
+                        }
                     }
                 } else {
                     $this->regex[0][$r] = $object;
@@ -113,22 +119,21 @@ class analyseur {
                 
                 
                 $this->tokens[$r] = $structure;
+                unset($r);
             }
         }
-        /*
-        foreach($this->regex as $key => $value) {
-            print $key."\n";
-            print "  ".join("\n  ", array_keys($value))."\n";
-        }
-        die();*/
     }
     
-    private function analog($mess) {
-//        return false;
+    private function analog($message, $duration) {
+        return false;
         if (!isset($this->fp)) {
             $this->fp = fopen("/tmp/analyseur.log","a");
         }
-        fwrite($this->fp, "$mess\t".getmypid()."\t\n");
+        fwrite($this->fp, "$message\t$duration\t".getmypid()."\t\n");
+    }
+
+    public function setAny_Token($flag) {
+        $this->any_token = true;
     }
 
     public function upgrade(Token $t) {
@@ -136,15 +141,25 @@ class analyseur {
         
         // @note we won't process those one. Just skip it. 
         if ($t->checkOperator(array(']','}',')',':',';'))) { return $t; }
+        if ($t->checkToken(array(T_ENDDECLARE, 
+                                 T_ENDFOR,
+                                 T_ENDFOREACH, 
+                                 T_ENDIF, 
+                                 T_ENDSWITCH, 
+                                 T_ENDWHILE, 
+                                 T_END_HEREDOC,
+                                 T_CLOSE_TAG))) { return $t; }
 
         if ($token > 0 && isset($this->regex[$token])) {
             foreach($this->regex[$token] as $name => $regex) {
                 $this->verifs++;
                 
-                $this->analog($name);
+                $debut = microtime(true);
                 if (!$regex->check($t)) {
-                    $this->rates[] = $name;
+                    $fin = microtime(true);
                     unset($regex);
+                    $this->analog($name, $fin - $debut);
+                    $this->rates[] = $name;
                     continue;
                 }
     
@@ -152,18 +167,19 @@ class analyseur {
                 mon_log(get_class($t)." => ".get_class($return));
                 return $return; 
             }
-//            return $t;
         } // @empty_else
         
         $code = $t->getCode();
         if (isset($this->regex[$code])) {
             foreach($this->regex[$code] as $name => $regex) {
                 $this->verifs++;
-                
-                $this->analog($name);
+
+                $debut = microtime(true);
                 if (!$regex->check($t)) {
-                    $this->rates[] = $name;
+                    $fin = microtime(true);
                     unset($regex);
+                    $this->analog($name, $fin - $debut);
+                    $this->rates[] = $name;
                     continue;
                 }
     
@@ -176,13 +192,16 @@ class analyseur {
                 mon_log(get_class($t)." => ".get_class($return));
                 return $return; 
             }
-//            return $t;
         }   // @empty_else
         
+        if (!$this->any_token) { return $t; }
+        
         foreach($this->regex[0] as $name => $regex) {
-            $this->analog($name);
+            $debut = microtime(true);
             if (!$regex->check($t)) {
+                $fin = microtime(true);
                 unset($regex);
+                $this->analog($name, $fin - $debut);
                 continue;
             }
 
