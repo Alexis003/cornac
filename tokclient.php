@@ -182,15 +182,21 @@ class file_processor {
             $this->error = true;
             continue;
         }
-    
-    // @doc 4177 is error_reporting for  E_COMPILE_ERROR|E_RECOVERABLE_ERROR|E_ERROR|E_CORE_ERROR (compilations error only)
+
+
+        // @doc 4177 is error_reporting for  E_COMPILE_ERROR|E_RECOVERABLE_ERROR|E_ERROR|E_CORE_ERROR (compilations error only)
+        /*
+@todo make this optional, for speed purpose. Checking syntax is useless for unit test, but is important for discovery
         $exec = shell_exec('php -d short_open_tag=1 -d error_reporting=4177  -l '.escapeshellarg($file).' ');
         if (trim($exec) != 'No syntax errors detected in '.$file) {
             $this->messages['compile'] = "Script \"$file\" can't be compiled by PHP\n$exec\n";
             $this->error = true;
             return false;
         }
-    
+*/
+// @doc extra test : sometimes, PHP parse correctly files, but encoding is wrong, and lead to fatal error
+// @doc then, we strip WS and comment, and then check syntax. If encoding is wrong, the second check will fail. 
+
         $code = file_get_contents($file);
     
         // @doc one must leave <?php and <?xml untouched
@@ -233,6 +239,7 @@ class file_processor {
         $suite = null;
         $ligne = 0;
     
+        $distinct_tokens = array();
         foreach($raw as $id => $b) {
             // @note actually removing all coments and whitespace even before turning them into token
             if (is_array($b) && in_array($b[0], array(T_COMMENT, T_DOC_COMMENT, T_WHITESPACE))) { continue; }
@@ -241,10 +248,12 @@ class file_processor {
             $t->setId($id);
             if (is_array($b)) {
                 $t->setToken($b[0]);
+                @$distinct_tokens[$b[0]] ++;
                 $t->setCode($b[1]);
                 $t->setLine($b[2]);
                 $ligne = $b[2];
             } else {
+                @$distinct_tokens[$b] ++;
                 $t->setCode($b);
                 $t->setLine($ligne);
             }
@@ -257,10 +266,11 @@ class file_processor {
                 $suite = $suite->getNext();
             }
         }
+
         // @note this is less costly in terms of garbage collecting
         unset($raw);
     
-        $analyseur = new analyseur();
+        $analyseur = new analyseur(array_keys($distinct_tokens));
     
         $nb_tokens_courant = -1;
         $nb_tokens_precedent = array(-1);
@@ -269,6 +279,9 @@ class file_processor {
         $i = 0;
         while (1) {
             $i++;
+            
+            if ($i == 4) { $analyseur->setAny_token(true); }
+            
             $t = $root;
             mon_log("\nCycle : ".$i."\n$t\n");
             $nb_tokens_precedent[] = $nb_tokens_courant;
@@ -323,15 +336,7 @@ class file_processor {
                 return false;
             }
         }
-/*
-        if (VERBOSE) {
-            if ($nb_tokens_courant == 0) {
-                print "Some tokens were not processed\n";
-            } else {
-                print "$nb_tokens_courant remain to be processed\n";
-            }
-        }
-*/
+
         $token = 0;
         $loop = $root;
         $id = 0;
@@ -342,7 +347,7 @@ class file_processor {
             $loop = $loop->getNext();
             $id++;
         }
-    
+
         $templates = getTemplate($root, $file, $config['template']);
         $this->messages['templates'] = true;
         foreach($templates as $name => $template) {
