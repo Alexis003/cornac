@@ -55,10 +55,10 @@ class ifthenelseif_alternative_regex extends analyseur_regex {
 
             if ($var->checkNotClass(array('block','Token')) && 
                 $var->getNext()->checkCode(';')) {
-                $args[] = $pos;
+                $args[] = $pos + 1;
 
-                $remove[] = $pos;
                 $remove[] = $pos + 1;
+                $remove[] = $pos + 2;
                 if (!$var->hasNext(1)) { return false; }
                 $var = $var->getNext(1);
                 $pos += 2;
