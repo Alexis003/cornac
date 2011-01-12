@@ -34,7 +34,7 @@ class rawtext_regex extends analyseur_regex {
             if ($t->getPrev()->checkToken(T_CLOSE_TAG) &&
                 $t->getNext()->checkToken(T_OPEN_TAG)) {
                 
-                if ($t->getNext(1)->checkCode('=')) {
+                if ($t->hasNext(1) && $t->getNext(1)->checkCode('=')) {
                     // @note case of a short tag
                     return false;
                 }
