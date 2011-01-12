@@ -18,14 +18,14 @@
  */
 
 class literals extends token {
-    private $value = null;     // value of the literal
-    private $delimiter = null; // delimter used. Used for string literals
+    private $value = null;     // @note value of the literal
+    private $delimiter = null; // @note delimter used. Used for string literals
     
     function __construct($expression = null) {
         parent::__construct(array());
         
         $this->value = $expression[0]->getCode();
-        if ($this->value[0] == '"' || $this->value[0] == "'") {
+        if (strlen($this->value) > 0 && ($this->value[0] == '"' || $this->value[0] == "'")) {
             $this->delimiter = $this->value[0];
             $this->value = trim($this->value, "'\"");
         }
