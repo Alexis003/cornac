@@ -99,6 +99,7 @@ class analyseur {
             $regex = $structure::getRegex(); 
             
             foreach($regex as $r) {
+                $object = new $r; 
                 $tokens = $object->getTokens();
                 
                 if ($tokens === false) { 
@@ -106,10 +107,7 @@ class analyseur {
                     print "$r doesn\'t have getToken()\n"; 
                 } elseif (count($tokens) > 0) {
                     foreach($tokens as $token) {
-                        if (in_array($token, $restrict) || $token === 0) {
-                            if (!isset($object)) { 
-                                $object = new $r; 
-                            }
+                        if (in_array($token, $restrict) || $token === 0 || $token > 450) {
                             $this->regex[$token][$r] = $object;
                         }
                     }
@@ -117,9 +115,7 @@ class analyseur {
                     $this->regex[0][$r] = $object;
                 }
                 
-                
                 $this->tokens[$r] = $structure;
-                unset($r);
             }
         }
     }
@@ -138,6 +134,7 @@ class analyseur {
 
     public function upgrade(Token $t) {
         $token = $t->getToken();
+//        if ($token == T_NAMESPACED_NAME) { print $this->regex[$token]; die(); }
         
         // @note we won't process those one. Just skip it. 
         if ($t->checkOperator(array(']','}',')',':',';'))) { return $t; }
@@ -147,8 +144,7 @@ class analyseur {
                                  T_ENDIF, 
                                  T_ENDSWITCH, 
                                  T_ENDWHILE, 
-                                 T_END_HEREDOC,
-                                 T_CLOSE_TAG))) { return $t; }
+                                 T_END_HEREDOC))) { return $t; }
 
         if ($token > 0 && isset($this->regex[$token])) {
             foreach($this->regex[$token] as $name => $regex) {

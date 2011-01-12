@@ -31,7 +31,7 @@ class literals_heredoc_regex extends analyseur_regex {
         if ($t->getNext()->checkNotToken(T_ENCAPSED_AND_WHITESPACE)) { return false; }
         if ($t->getNext(1)->checkNotToken(T_END_HEREDOC)) { return false; }
 
-        $this->args = array(1);
+        $this->args = array(0, 1);
         $this->remove = array(1,2);
 
         mon_log(get_class($t)." => ".__CLASS__);

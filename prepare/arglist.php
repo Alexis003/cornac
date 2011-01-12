@@ -70,6 +70,7 @@ class arglist extends token {
                      'arglist_regex',
                     );
     }
+    
 }
 
 ?>

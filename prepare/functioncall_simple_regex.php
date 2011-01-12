@@ -24,7 +24,19 @@ class functioncall_simple_regex extends analyseur_regex {
 
     function getTokens() {
 // @todo il faut un 307 ou un _nsname!
-        return array(Token::ANY_TOKEN);
+//        return array(Token::ANY_TOKEN);
+        return array(T_STRING, 
+                     T_ARRAY, 
+                     T_ISSET, 
+                     T_PRINT, 
+                     T_ECHO, 
+                     T_EXIT, 
+                     T_EMPTY, 
+                     T_LIST, 
+                     T_UNSET,
+                     T_EVAL,
+                     T_STATIC,
+                     T_NAMESPACED_NAME);
     }
 
     function check($t) {

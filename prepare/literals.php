@@ -24,15 +24,14 @@ class literals extends token {
     function __construct($expression = null) {
         parent::__construct(array());
         
-        $this->value = $expression[0]->getCode();
-        if (strlen($this->value) > 0 && ($this->value[0] == '"' || $this->value[0] == "'")) {
-            $this->delimiter = $this->value[0];
-            $this->value = trim($this->value, "'\"");
-        }
-
-        if (isset($sign[1])) {
-            if ($sign[1]->checkCode("-")){
-                $this->value = -1 * $this->value;
+        if (count($expression) == 2) {
+            $this->delimiter = trim(substr($expression[0]->getCode(), 3));
+            $this->value = $expression[1]->getCode();
+        } else {
+            $this->value = $expression[0]->getCode();
+            if (strlen($this->value) > 0 && ($this->value[0] == '"' || $this->value[0] == "'")) {
+                $this->delimiter = $this->value[0];
+                $this->value = trim($this->value, "'\"");
             }
         }
     }

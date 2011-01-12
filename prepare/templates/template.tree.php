@@ -347,6 +347,7 @@ class template_tree extends template {
     }
 
     function display_literals($node, $level) {
+// @todo add delimiter in the display
         print str_repeat('  ', $level).get_class($node)." ".$node->getLiteral()."\n";
     }
 

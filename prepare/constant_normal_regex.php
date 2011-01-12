@@ -39,7 +39,7 @@ class constant_normal_regex extends analyseur_regex {
                                     T_METHOD_C, 
                                     T_NS_C, 
                                     T_CLASS_C))) { return false; }
-        if ($t->getNext()->checkCode(array('(','::','{', '\\'))) { return false; }
+        if ($t->getNext()->checkOperator(array('(','::','{', '\\'))) { return false; }
 
         if ($t->getNext()->checkCode(array(':'))) {
             if ($t->getPrev()->checkNotOperator(array('->','::','?','.', '+','-','*','/','%',':','!')) && 
@@ -50,7 +50,7 @@ class constant_normal_regex extends analyseur_regex {
                !$t->getPrev()->checkForCast() ) { return false; }
         }
         if ($t->getNext()->checkToken(array(T_VARIABLE, T_AS))) { return false; }
-        if ($t->getNext()->checkClass(array('variable','affectation'))) { return false; }
+        if ($t->getNext()->checkClass(array('variable','affectation','arglist'))) { return false; }
 
 // @note ,'::' no use here
         if ($t->getPrev()->checkCode(array('->','\\'))) { return false; }
@@ -61,10 +61,7 @@ class constant_normal_regex extends analyseur_regex {
                                             T_USE,
                                             T_AS,
                                             T_GOTO))) { return false; }
-/*
-        if ($t->getPrev()->checkToken(array(T_OPEN_TAG)) && 
-            $t->getPrev()->checkCode('<?')) { return false; }
-*/
+
         mon_log(get_class($t)." => ".__CLASS__);
         return true; 
     }
