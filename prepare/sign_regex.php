@@ -45,7 +45,8 @@ class sign_regex extends analyseur_regex {
              
         if ( $t->getPrev()->checkClass(array('variable','operation','property','property_static'))) { return false; }
         
-        if ( $t->getNext(1)->checkCode(array('->','[','*','/','%','++','--')) ) { return false; }
+        if ( $t->getNext(1)->checkOperator(array('->','[','*','/','%','++','--')) ) { return false; }
+        if ( $t->getNext(1)->checkClass(array('arglist')) ) { return false; }
         
         $this->args = array(0, 1 );
         $this->remove = array(1);
