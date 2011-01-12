@@ -36,6 +36,7 @@ class while_noblock_regex extends analyseur_regex {
             // @note we wait for the block to be processed
             if ($t->getPrev()->checkOperator('}')) { return false; }
             if ($t->getPrev()->checkClass('Token') &&
+                $t->getPrev()->checkNotCode('{') && 
                 $t->getPrev()->checkNotToken(T_OPEN_TAG)) { return false; }
             // @note this is definitely not a while block
             if ($t->getPrev()->checkClass('block') &&              
