@@ -55,6 +55,7 @@ class ternaryop_regex extends analyseur_regex {
             $t->getNext()->checkOperator(':') &&
             $t->getNext(1)->checkNotClass('Token') &&
             $t->getNext(2)->checkNotOperator(array('->','[','(','::')) &&
+            $t->getNext(2)->checkNotClass(array('arglist')) &&
            !$t->getNext(2)->checkForAssignation()
             ) {
                 $regex = new modele_regex('block',array(), array());
