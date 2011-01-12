@@ -48,6 +48,7 @@ class affectation_normal_regex extends analyseur_regex {
                                              'property_static',
                                              'reference',
                                              'cast',
+                                             'sign',
                                              'constante',)) || 
              $t->getPrev()->checkSubclass('variable')) &&
             ($t->getNext()->checkClass(array('literals', 'variable','_array','sign','noscream',
