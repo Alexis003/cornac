@@ -3,7 +3,7 @@ include_once('Analyseur_Framework_TestCase.php');
 
 class Ifthen_Test extends Analyseur_Framework_TestCase
 {
-    /* 65 methodes */
+    /* 66 methodes */
     public function testIfthen1()  { $this->generic_test('ifthen.1'); }
     public function testIfthen2()  { $this->generic_test('ifthen.2'); }
     public function testIfthen3()  { $this->generic_test('ifthen.3'); }
@@ -69,6 +69,7 @@ class Ifthen_Test extends Analyseur_Framework_TestCase
     public function testIfthen63()  { $this->generic_test('ifthen.63'); }
     public function testIfthen64()  { $this->generic_test('ifthen.64'); }
     public function testIfthen65()  { $this->generic_test('ifthen.65'); }
+    public function testIfthen66()  { $this->generic_test('ifthen.66'); }
 
 }
 
