@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/method_static.8.test.php
 
   code : 
       method_static 
-      0 "\"::functioncall 307 "f" ( arglist(variable $g) ) : 
+      500 "\"::functioncall 307 "f" ( arglist(variable $g) ) : 
           functioncall f
           function call : f: 
               arglist 

@@ -12,7 +12,7 @@ tests/tokenizeur/scripts/sequence.44.test.php
                   Empty arglist
       1 : 
           method_static 
-          0 "\"::functioncall 307 "d" ( arglist(literals e, constante f) ) : 
+          500 "\"::functioncall 307 "d" ( arglist(literals e, constante f) ) : 
               functioncall d
               function call : d: 
                   arglist 
