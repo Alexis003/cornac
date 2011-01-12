@@ -28,16 +28,14 @@ class literals_heredoc_regex extends analyseur_regex {
     
     function check($t) {
             
-        if ($t->getNext()->checkToken(T_ENCAPSED_AND_WHITESPACE) &&
-            $t->getNext(1)->checkToken(T_END_HEREDOC)) {
-              $this->args = array(1);
-              $this->remove = array(1,2);
+        if ($t->getNext()->checkNotToken(T_ENCAPSED_AND_WHITESPACE)) { return false; }
+        if ($t->getNext(1)->checkNotToken(T_END_HEREDOC)) { return false; }
 
-              mon_log(get_class($t)." => ".__CLASS__);
-              return true;
-        } else {
-            return false;
-        }
+        $this->args = array(1);
+        $this->remove = array(1,2);
+
+        mon_log(get_class($t)." => ".__CLASS__);
+        return true;
     }
 }
 
