@@ -11,7 +11,7 @@ tests/tokenizeur/scripts/ifthen.56.test.php
               method_static 
               307 "z"::functioncall 307 "y" ( ( ) ) : 
                   functioncall y
-                  function call : y: 
+                  function call : 307 "y": 
                       arglist 
                       Empty arglist
        else 
@@ -20,6 +20,6 @@ tests/tokenizeur/scripts/ifthen.56.test.php
               method_static 
               307 "a"::functioncall 307 "b" ( ( ) ) : 
                   functioncall b
-                  function call : b: 
+                  function call : 307 "b": 
                       arglist 
                       Empty arglist

@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/affectation.31.test.php
       affectation 
       left : 
           functioncall list
-          function call : list: 
+          function call : 359 "list": 
               arglist 
               0 : 
               1 : 
@@ -13,7 +13,7 @@ tests/tokenizeur/scripts/affectation.31.test.php
        "=" 
       right : 
           functioncall explode
-          function call : explode: 
+          function call : 307 "explode": 
               arglist 
               0 : 
                   literals a

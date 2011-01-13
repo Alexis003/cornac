@@ -12,7 +12,7 @@ tests/tokenizeur/scripts/logical.8.test.php
               method _array variable $b[literals c]
               method call : functioncall 307 "d" ( arglist(_array variable $e[literals 0]) ) : 
                   functioncall d
-                  function call : d: 
+                  function call : 307 "d": 
                       arglist 
                       0 : 
                           _array
@@ -23,6 +23,6 @@ tests/tokenizeur/scripts/logical.8.test.php
               method _array variable $f[literals g]
               method call : functioncall 307 "h" ( ( ) ) : 
                   functioncall h
-                  function call : h: 
+                  function call : 307 "h": 
                       arglist 
                       Empty arglist

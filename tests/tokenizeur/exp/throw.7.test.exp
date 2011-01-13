@@ -4,7 +4,7 @@ tests/tokenizeur/scripts/throw.7.test.php
   code : 
       _throw 
           functioncall f
-          function call : f: 
+          function call : 307 "f": 
               arglist 
               0 : 
                   literals s

@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/constante.6.test.php
 
   code : 
       functioncall chdir
-      function call : chdir: 
+      function call : 307 "chdir": 
           arglist 
           0 : 
               constante (              __DIR__ )

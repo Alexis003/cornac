@@ -6,7 +6,7 @@ tests/tokenizeur/scripts/sequence.18.test.php
       0 : 
           noscream @
               functioncall fwrite
-              function call : fwrite: 
+              function call : 307 "fwrite": 
                   arglist 
                   0 : 
                       variable $fp
@@ -15,7 +15,7 @@ tests/tokenizeur/scripts/sequence.18.test.php
       1 : 
           noscream @
               functioncall fwrite
-              function call : fwrite: 
+              function call : 307 "fwrite": 
                   arglist 
                   0 : 
                       variable $fp
@@ -24,7 +24,7 @@ tests/tokenizeur/scripts/sequence.18.test.php
       2 : 
           noscream @
               functioncall fwrite
-              function call : fwrite: 
+              function call : 307 "fwrite": 
                   arglist 
                   0 : 
                       variable $fp
@@ -33,7 +33,7 @@ tests/tokenizeur/scripts/sequence.18.test.php
       3 : 
           noscream @
               functioncall fclose
-              function call : fclose: 
+              function call : 307 "fclose": 
                   arglist 
                   0 : 
                       variable $fp

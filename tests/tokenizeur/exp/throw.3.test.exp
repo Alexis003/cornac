@@ -6,6 +6,6 @@ tests/tokenizeur/scripts/throw.3.test.php
           method variable $x
           method call : functioncall 307 "method" ( ( ) ) : 
               functioncall method
-              function call : method: 
+              function call : 307 "method": 
                   arglist 
                   Empty arglist

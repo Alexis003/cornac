@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/functioncall.31.test.php
 
   code : 
       functioncall define
-      function call : define: 
+      function call : 307 "define": 
           arglist 
           0 : 
               literals TYPE_DOC

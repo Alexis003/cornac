@@ -11,7 +11,7 @@ tests/tokenizeur/scripts/rawtext.9.test.php
               Texte : "311 "<p style="border:1px solid black;padding:10px;">Tag créé (<a href="""
           1 : 
               functioncall echo
-              function call : echo: 
+              function call : 316 "echo": 
                   arglist 
                   0 : 
                       variable $tag
@@ -21,7 +21,7 @@ tests/tokenizeur/scripts/rawtext.9.test.php
 ""
           3 : 
               functioncall echo
-              function call : echo: 
+              function call : 316 "echo": 
                   arglist 
                   0 : 
                       variable $tag

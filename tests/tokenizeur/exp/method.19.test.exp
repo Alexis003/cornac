@@ -5,13 +5,13 @@ tests/tokenizeur/scripts/method.19.test.php
       method variable $a
       method call : functioncall 307 "b" ( arglist(method variable $c->functioncall 307 "d" ( ( ) ) , literals 340) ) : 
           functioncall b
-          function call : b: 
+          function call : 307 "b": 
               arglist 
               0 : 
                   method variable $c
                   method call : functioncall 307 "d" ( ( ) ) : 
                       functioncall d
-                      function call : d: 
+                      function call : 307 "d": 
                           arglist 
                           Empty arglist
               1 : 

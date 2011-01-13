@@ -10,7 +10,7 @@ tests/tokenizeur/scripts/sequence.39.test.php
           Texte : "311 "b""
       2 : 
           functioncall d
-          function call : d: 
+          function call : 307 "d": 
               arglist 
               0 : 
                   literals c

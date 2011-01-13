@@ -6,6 +6,6 @@ tests/tokenizeur/scripts/noscream.5.test.php
           method variable $x
           method call : functioncall 307 "t" ( ( ) ) : 
               functioncall t
-              function call : t: 
+              function call : 307 "t": 
                   arglist 
                   Empty arglist

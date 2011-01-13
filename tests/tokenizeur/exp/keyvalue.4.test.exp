@@ -8,7 +8,7 @@ tests/tokenizeur/scripts/keyvalue.4.test.php
        "=" 
       right : 
           functioncall array
-          function call : array: 
+          function call : 360 "array": 
               arglist 
               0 : 
                   literals bouton0 => postplusplus 296 "--"variable $nbtab

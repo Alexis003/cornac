@@ -8,13 +8,13 @@ tests/tokenizeur/scripts/cast.14.test.php
        "=" 
       right : 
           functioncall array_merge
-          function call : array_merge: 
+          function call : 307 "array_merge": 
               arglist 
               0 : 
                   variable $b
               1 : 
                   cast (292 "(array)")functioncall 0 "$c" ( arglist() ) 
                       functioncall $c
-                      function call : $c: 
+                      function call : 0 "$c": 
                           arglist 
                           0 : 

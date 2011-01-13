@@ -11,6 +11,6 @@ tests/tokenizeur/scripts/reference.7.test.php
               method_static 
               307 "classe"::functioncall 307 "method_static" ( ( ) ) : 
                   functioncall method_static
-                  function call : method_static: 
+                  function call : 307 "method_static": 
                       arglist 
                       Empty arglist

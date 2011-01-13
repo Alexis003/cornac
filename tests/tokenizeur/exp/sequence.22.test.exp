@@ -12,7 +12,7 @@ tests/tokenizeur/scripts/sequence.22.test.php
               literals 1
       1 : 
           functioncall $errorfn
-          function call : $errorfn: 
+          function call : 0 "$errorfn": 
               arglist 
               0 : 
                   literals a

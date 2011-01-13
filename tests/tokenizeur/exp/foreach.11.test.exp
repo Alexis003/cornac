@@ -6,7 +6,7 @@ tests/tokenizeur/scripts/foreach.11.test.php
           block 
           0 : 
               functioncall array_splice
-              function call : array_splice: 
+              function call : 307 "array_splice": 
                   arglist 
                   0 : 
                       variable $address

@@ -25,11 +25,11 @@ tests/tokenizeur/scripts/ternaryop.21.test.php
               ( "functioncall 351 "empty" ( arglist(_array variable $x[literals t]) ) " )
               noscream @
                   functioncall flush
-                  function call : flush: 
+                  function call : 307 "flush": 
                       arglist 
                       Empty arglist
               noscream @
                   functioncall ob_flush
-                  function call : ob_flush: 
+                  function call : 307 "ob_flush": 
                       arglist 
                       Empty arglist

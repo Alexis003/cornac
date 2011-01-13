@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/constante.1.test.php
       sequence 
       0 : 
           functioncall define
-          function call : define: 
+          function call : 307 "define": 
               arglist 
               0 : 
                   literals x

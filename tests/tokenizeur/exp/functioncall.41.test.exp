@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/functioncall.41.test.php
       affectation 
       left : 
           functioncall list
-          function call : list: 
+          function call : 359 "list": 
               arglist 
               0 : 
                   property_static 307 "a"::_array variable $b[literals c]->
@@ -16,6 +16,6 @@ tests/tokenizeur/scripts/functioncall.41.test.php
           method_static 
           307 "e"::functioncall 307 "f" ( ( ) ) : 
               functioncall f
-              function call : f: 
+              function call : 307 "f": 
                   arglist 
                   Empty arglist

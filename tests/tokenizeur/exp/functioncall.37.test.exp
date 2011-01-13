@@ -14,7 +14,7 @@ tests/tokenizeur/scripts/functioncall.37.test.php
           affectation 
           left : 
               functioncall list
-              function call : list: 
+              function call : 359 "list": 
                   arglist 
                   0 : 
                       variable $x
@@ -25,7 +25,7 @@ tests/tokenizeur/scripts/functioncall.37.test.php
            "=" 
           right : 
               functioncall range
-              function call : range: 
+              function call : 307 "range": 
                   arglist 
                   0 : 
                       literals 1

@@ -14,13 +14,13 @@ tests/tokenizeur/scripts/ternaryop.20.test.php
                   method variable $x
                   method call : functioncall 307 "y" ( ( ) ) : 
                       functioncall y
-                      function call : y: 
+                      function call : 307 "y": 
                           arglist 
                           Empty arglist
                   method variable $x
                   method call : functioncall 307 "z" ( ( ) ) : 
                       functioncall z
-                      function call : z: 
+                      function call : 307 "z": 
                           arglist 
                           Empty arglist
                   literals literal
@@ -29,7 +29,7 @@ tests/tokenizeur/scripts/ternaryop.20.test.php
           Texte : "311 "<""
       2 : 
           functioncall echo
-          function call : echo: 
+          function call : 316 "echo": 
               arglist 
               0 : 
                   variable $x
@@ -38,13 +38,13 @@ tests/tokenizeur/scripts/ternaryop.20.test.php
           Texte : "311 " id="""
       4 : 
           functioncall echo
-          function call : echo: 
+          function call : 316 "echo": 
               arglist 
               0 : 
                   method variable $x
                   method call : functioncall 307 "w" ( ( ) ) : 
                       functioncall w
-                      function call : w: 
+                      function call : 307 "w": 
                           arglist 
                           Empty arglist
       5 : 
@@ -52,13 +52,13 @@ tests/tokenizeur/scripts/ternaryop.20.test.php
           Texte : "311 "" ""
       6 : 
           functioncall echo
-          function call : echo: 
+          function call : 316 "echo": 
               arglist 
               0 : 
                   method variable $z
                   method call : functioncall 307 "d" ( ( ) ) : 
                       functioncall d
-                      function call : d: 
+                      function call : 307 "d": 
                           arglist 
                           Empty arglist
       7 : 
@@ -67,13 +67,13 @@ tests/tokenizeur/scripts/ternaryop.20.test.php
 ""
       8 : 
           functioncall echo
-          function call : echo: 
+          function call : 316 "echo": 
               arglist 
               0 : 
                   method variable $x
                   method call : functioncall 307 "x" ( ( ) ) : 
                       functioncall x
-                      function call : x: 
+                      function call : 307 "x": 
                           arglist 
                           Empty arglist
       9 : 
@@ -81,7 +81,7 @@ tests/tokenizeur/scripts/ternaryop.20.test.php
           Texte : "311 "</""
       10 : 
           functioncall echo
-          function call : echo: 
+          function call : 316 "echo": 
               arglist 
               0 : 
                   variable $x

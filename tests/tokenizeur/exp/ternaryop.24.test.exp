@@ -11,7 +11,7 @@ tests/tokenizeur/scripts/ternaryop.24.test.php
               ternaryop ?
               functioncall 351 "empty" ( arglist(property variable $b->literals c) )  ? property variable $d->literals e : concatenation literals . . property variable $f->literals g  
                   functioncall empty
-                  function call : empty: 
+                  function call : 351 "empty": 
                       arglist 
                       0 : 
                           property variable $bliterals c->

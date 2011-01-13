@@ -34,7 +34,7 @@ tests/tokenizeur/scripts/sequence.10.test.php
           method variable $pagination
           method call : functioncall 307 "fct_tri" ( ( ) ) : 
               functioncall fct_tri
-              function call : fct_tri: 
+              function call : 307 "fct_tri": 
                   arglist 
                   Empty arglist
       4 : 
@@ -43,13 +43,13 @@ tests/tokenizeur/scripts/sequence.10.test.php
               method _array variable $_SESSION[literals cligraph]
               method call : functioncall 307 "connect" ( ( ) ) : 
                   functioncall connect
-                  function call : connect: 
+                  function call : 307 "connect": 
                       arglist 
                       Empty arglist
           operateur : 263 "or"
           right : 
               functioncall die
-              function call : die: 
+              function call : 300 "die": 
                   arglist 
                   0 : 
                       property _array variable $_SESSION[literals cligraph]literals errormsg->

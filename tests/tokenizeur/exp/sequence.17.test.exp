@@ -22,7 +22,7 @@ tests/tokenizeur/scripts/sequence.17.test.php
               operateur :  "|"
               right : 
                   functioncall ord
-                  function call : ord: 
+                  function call : 307 "ord": 
                       arglist 
                       0 : 
                           _array

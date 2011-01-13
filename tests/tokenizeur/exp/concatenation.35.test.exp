@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/concatenation.35.test.php
       method variable $a
       method call : functioncall 307 "b" ( arglist(concatenation variable $c . literals . . variable $d . literals  =  . variable $e  ) ) : 
           functioncall b
-          function call : b: 
+          function call : 307 "b": 
               arglist 
               0 : 
                   concatenation 

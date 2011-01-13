@@ -15,6 +15,6 @@ tests/tokenizeur/scripts/logical.15.test.php
               method variable $this
               method call : functioncall 307 "c" ( ( ) ) : 
                   functioncall c
-                  function call : c: 
+                  function call : 307 "c": 
                       arglist 
                       Empty arglist

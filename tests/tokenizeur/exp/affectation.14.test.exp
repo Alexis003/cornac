@@ -10,6 +10,6 @@ tests/tokenizeur/scripts/affectation.14.test.php
           method variable $y
           method call : functioncall 307 "z" ( ( ) ) : 
               functioncall z
-              function call : z: 
+              function call : 307 "z": 
                   arglist 
                   Empty arglist

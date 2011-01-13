@@ -11,7 +11,7 @@ tests/tokenizeur/scripts/block.7.test.php
               block 
               0 : 
                   functioncall c
-                  function call : c: 
+                  function call : 307 "c": 
                       arglist 
                       0 : 
                           literals d.php
@@ -20,7 +20,7 @@ tests/tokenizeur/scripts/block.7.test.php
           Texte : "311 """
       2 : 
           functioncall a
-          function call : a: 
+          function call : 307 "a": 
               arglist 
               0 : 
                   literals 1

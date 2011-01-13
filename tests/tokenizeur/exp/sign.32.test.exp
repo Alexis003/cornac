@@ -5,14 +5,14 @@ tests/tokenizeur/scripts/sign.32.test.php
       comparison 
       left : 
           functioncall _array variable $a[literals b]
-          function call : _array variable $a[literals b]: 
+          function call : 0 "_array variable $a[literals b]": 
               arglist 
               0 : 
                   variable $c
               1 : 
                   sign  "-"functioncall 0 "_array variable $d[literals e]" ( arglist(variable $f) ) 
                       functioncall _array variable $d[literals e]
-                      function call : _array variable $d[literals e]: 
+                      function call : 0 "_array variable $d[literals e]": 
                           arglist 
                           0 : 
                               variable $f

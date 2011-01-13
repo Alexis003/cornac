@@ -16,7 +16,7 @@ tests/tokenizeur/scripts/block.3.test.php
                "=" 
               right : 
                   functioncall date
-                  function call : date: 
+                  function call : 307 "date": 
                       arglist 
                       0 : 
                           literals Y

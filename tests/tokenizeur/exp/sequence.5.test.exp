@@ -5,25 +5,25 @@ tests/tokenizeur/scripts/sequence.5.test.php
       sequence 
       0 : 
           functioncall print
-          function call : print: 
+          function call : 266 "print": 
               arglist 
               0 : 
                   literals 1
       1 : 
           functioncall print
-          function call : print: 
+          function call : 266 "print": 
               arglist 
               0 : 
                   literals 2
       2 : 
           functioncall print
-          function call : print: 
+          function call : 266 "print": 
               arglist 
               0 : 
                   literals 3
       3 : 
           functioncall print
-          function call : print: 
+          function call : 266 "print": 
               arglist 
               0 : 
                   concatenation 

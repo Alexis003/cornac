@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/property.9.test.php
       method_static 
       307 "Minify_Source"::functioncall 307 "haveNoMinifyPrefs" ( arglist(property property_static 307 "self"::variable $_controller->literals sources) ) : 
           functioncall haveNoMinifyPrefs
-          function call : haveNoMinifyPrefs: 
+          function call : 307 "haveNoMinifyPrefs": 
               arglist 
               0 : 
                   property property_static 307 "self"::variable $_controllerliterals sources->

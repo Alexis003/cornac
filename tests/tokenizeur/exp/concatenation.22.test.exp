@@ -11,7 +11,7 @@ tests/tokenizeur/scripts/concatenation.22.test.php
           not ! ? concatenation literals f . functioncall 0 "$g" ( arglist(literals h) )  . literals i   : literals j
               not !
                   functioncall empty
-                  function call : empty: 
+                  function call : 351 "empty": 
                       arglist 
                       0 : 
                           _array
@@ -22,7 +22,7 @@ tests/tokenizeur/scripts/concatenation.22.test.php
                   literals f
               1 : 
                   functioncall $g
-                  function call : $g: 
+                  function call : 0 "$g": 
                       arglist 
                       0 : 
                           literals h

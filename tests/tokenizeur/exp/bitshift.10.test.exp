@@ -12,7 +12,7 @@ tests/tokenizeur/scripts/bitshift.10.test.php
               method_static 
               307 "self"::functioncall 307 "a" ( arglist(variable $i, literals 8) ) : 
                   functioncall a
-                  function call : a: 
+                  function call : 307 "a": 
                       arglist 
                       0 : 
                           variable $i

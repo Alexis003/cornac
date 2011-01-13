@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/functioncall.43.test.php
 
   code : 
       functioncall PRINT
-      function call : PRINT: 
+      function call : 266 "PRINT": 
           arglist 
           0 : 
               concatenation 

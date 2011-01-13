@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/concatenation.27.test.php
 
   code : 
       functioncall echo
-      function call : echo: 
+      function call : 316 "echo": 
           arglist 
           0 : 
               concatenation 

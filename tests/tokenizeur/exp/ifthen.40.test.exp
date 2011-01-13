@@ -16,6 +16,6 @@ tests/tokenizeur/scripts/ifthen.40.test.php
                   method variable $e
                   method call : functioncall 307 "f" ( ( ) ) : 
                       functioncall f
-                      function call : f: 
+                      function call : 307 "f": 
                           arglist 
                           Empty arglist

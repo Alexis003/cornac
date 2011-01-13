@@ -11,7 +11,7 @@ tests/tokenizeur/scripts/inclusion.15.test.php
               method variable $b
               method call : functioncall 307 "c" ( arglist(variable $d) ) : 
                   functioncall c
-                  function call : c: 
+                  function call : 307 "c": 
                       arglist 
                       0 : 
                           variable $d

@@ -13,7 +13,7 @@ tests/tokenizeur/scripts/foreach.12.test.php
                    "=" 
                   right : 
                       functioncall str_replace
-                      function call : str_replace: 
+                      function call : 307 "str_replace": 
                           arglist 
                           0 : 
                               variable $probe
@@ -32,7 +32,7 @@ tests/tokenizeur/scripts/foreach.12.test.php
            "=" 
           right : 
               functioncall str_replace
-              function call : str_replace: 
+              function call : 307 "str_replace": 
                   arglist 
                   0 : 
                       literals ?*

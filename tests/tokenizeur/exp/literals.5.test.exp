@@ -21,7 +21,7 @@ tests/tokenizeur/scripts/literals.5.test.php
                   literals 10
       2 : 
           functioncall echo
-          function call : echo: 
+          function call : 316 "echo": 
               arglist 
               0 : 
                   variable $x

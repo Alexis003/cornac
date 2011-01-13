@@ -20,7 +20,7 @@ tests/tokenizeur/scripts/sign.26.test.php
           right : 
               sign  "-"functioncall 307 "strtolower" ( arglist(variable $a) ) 
                   functioncall strtolower
-                  function call : strtolower: 
+                  function call : 307 "strtolower": 
                       arglist 
                       0 : 
                           variable $a

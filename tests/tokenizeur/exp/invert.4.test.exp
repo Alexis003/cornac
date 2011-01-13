@@ -3,13 +3,13 @@ tests/tokenizeur/scripts/invert.4.test.php
 
   code : 
       functioncall error_reporting
-      function call : error_reporting: 
+      function call : 307 "error_reporting": 
           arglist 
           0 : 
               logical 
               left : 
                   functioncall error_reporting
-                  function call : error_reporting: 
+                  function call : 307 "error_reporting": 
                       arglist 
                       Empty arglist
               operateur :  "&"

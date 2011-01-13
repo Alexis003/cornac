@@ -3,12 +3,12 @@ tests/tokenizeur/scripts/method.17.test.php
 
   code : 
       functioncall echo
-      function call : echo: 
+      function call : 316 "echo": 
           arglist 
           0 : 
               method variable $a
               method call : functioncall 307 "b" ( ( ) ) : 
                   functioncall b
-                  function call : b: 
+                  function call : 307 "b": 
                       arglist 
                       Empty arglist

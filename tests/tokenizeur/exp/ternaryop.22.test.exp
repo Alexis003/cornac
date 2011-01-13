@@ -15,7 +15,7 @@ tests/tokenizeur/scripts/ternaryop.22.test.php
               operateur :  "<"
               right : 
                   functioncall $c
-                  function call : $c: 
+                  function call : 0 "$c": 
                       arglist 
                       0 : 
                           variable $d

@@ -9,7 +9,7 @@ tests/tokenizeur/scripts/reference.9.test.php
       right : 
           reference &
               functioncall $b
-              function call : $b: 
+              function call : 0 "$b": 
                   arglist 
                   0 : 
                       variable $c

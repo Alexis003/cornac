@@ -23,6 +23,6 @@ tests/tokenizeur/scripts/ifthen.42.test.php
                "=" 
               right : 
                   functioncall f
-                  function call : f: 
+                  function call : 307 "f": 
                       arglist 
                       Empty arglist

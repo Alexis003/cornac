@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/concatenation.13.test.php
 
   code : 
       functioncall echo
-      function call : echo: 
+      function call : 316 "echo": 
           arglist 
           0 : 
               concatenation 
@@ -11,7 +11,7 @@ tests/tokenizeur/scripts/concatenation.13.test.php
                   method variable $a
                   method call : functioncall 307 "b" ( arglist(_array variable $c[constante d]) ) : 
                       functioncall b
-                      function call : b: 
+                      function call : 307 "b": 
                           arglist 
                           0 : 
                               _array

@@ -9,6 +9,6 @@ tests/tokenizeur/scripts/reference.5.test.php
       right : 
           reference &
               functioncall y
-              function call : y: 
+              function call : 307 "y": 
                   arglist 
                   Empty arglist

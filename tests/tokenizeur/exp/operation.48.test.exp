@@ -12,7 +12,7 @@ tests/tokenizeur/scripts/operation.48.test.php
               Texte : "311 "    ""
           1 : 
               functioncall echo
-              function call : echo: 
+              function call : 316 "echo": 
                   arglist 
                   0 : 
                       operation 
@@ -20,7 +20,7 @@ tests/tokenizeur/scripts/operation.48.test.php
                           method _array variable $x[method variable $y->functioncall 307 "z" ( ( ) ) ]
                           method call : functioncall 307 "z" ( ( ) ) : 
                               functioncall z
-                              function call : z: 
+                              function call : 307 "z": 
                                   arglist 
                                   Empty arglist
                       operation :  "*"

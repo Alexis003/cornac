@@ -6,7 +6,7 @@ tests/tokenizeur/scripts/codephp.24.test.php
           constante (          php )
       1 : 
           functioncall echo
-          function call : echo: 
+          function call : 316 "echo": 
               arglist 
               0 : 
                   literals 2

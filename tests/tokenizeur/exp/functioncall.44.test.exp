@@ -16,11 +16,11 @@ tests/tokenizeur/scripts/functioncall.44.test.php
                   variable $c
       1 : 
           functioncall echo
-          function call : echo: 
+          function call : 316 "echo": 
               arglist 
               0 : 
                   functioncall $d
-                  function call : $d: 
+                  function call : 0 "$d": 
                       arglist 
                       0 : 
                           _array

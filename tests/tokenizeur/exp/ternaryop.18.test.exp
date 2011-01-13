@@ -10,7 +10,7 @@ tests/tokenizeur/scripts/ternaryop.18.test.php
           ternaryop ?
           functioncall 351 "empty" ( arglist(variable $b) )  ? variable $d : affectation variable $d 273 ".=" concatenation literals   . variable $e  
               functioncall empty
-              function call : empty: 
+              function call : 351 "empty": 
                   arglist 
                   0 : 
                       variable $b

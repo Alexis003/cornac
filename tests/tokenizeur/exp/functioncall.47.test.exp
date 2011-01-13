@@ -6,7 +6,7 @@ tests/tokenizeur/scripts/functioncall.47.test.php
       left : 
           noscream @
               functioncall list
-              function call : list: 
+              function call : 359 "list": 
                   arglist 
                   0 : 
                       variable $a
@@ -15,6 +15,6 @@ tests/tokenizeur/scripts/functioncall.47.test.php
        "=" 
       right : 
           functioncall func_get_args
-          function call : func_get_args: 
+          function call : 307 "func_get_args": 
               arglist 
               Empty arglist

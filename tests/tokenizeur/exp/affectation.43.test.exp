@@ -27,7 +27,7 @@ tests/tokenizeur/scripts/affectation.43.test.php
                       method variable $d
                       method call : functioncall 307 "e" ( ( ) ) : 
                           functioncall e
-                          function call : e: 
+                          function call : 307 "e": 
                               arglist 
                               Empty arglist
                   2 : 

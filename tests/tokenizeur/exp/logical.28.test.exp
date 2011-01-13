@@ -4,7 +4,7 @@ tests/tokenizeur/scripts/logical.28.test.php
   code : 
       noscream @
           functioncall chmod
-          function call : chmod: 
+          function call : 307 "chmod": 
               arglist 
               0 : 
                   variable $fichier

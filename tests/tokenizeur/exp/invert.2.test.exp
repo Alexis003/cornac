@@ -4,7 +4,7 @@ tests/tokenizeur/scripts/invert.2.test.php
   code : 
       invert ~
           functioncall f
-          function call : f: 
+          function call : 307 "f": 
               arglist 
               0 : 
                   literals 0

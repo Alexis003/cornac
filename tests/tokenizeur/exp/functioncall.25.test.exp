@@ -3,15 +3,15 @@ tests/tokenizeur/scripts/functioncall.25.test.php
 
   code : 
       functioncall a
-      function call : a: 
+      function call : 307 "a": 
           arglist 
           0 : 
               functioncall b
-              function call : b: 
+              function call : 307 "b": 
                   arglist 
                   0 : 
                       functioncall c
-                      function call : c: 
+                      function call : 307 "c": 
                           arglist 
                           0 : 
                               literals 1

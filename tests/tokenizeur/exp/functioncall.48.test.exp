@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/functioncall.48.test.php
 
   code : 
       functioncall a
-      function call : a: 
+      function call : 307 "a": 
           arglist 
           0 : 
               parenthesis 

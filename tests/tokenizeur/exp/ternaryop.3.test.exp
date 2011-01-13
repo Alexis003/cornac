@@ -10,7 +10,7 @@ tests/tokenizeur/scripts/ternaryop.3.test.php
           ternaryop ?
           functioncall 350 "isset" ( arglist(_array variable $_REQUEST[literals rech_ven]) )  ? _array variable $_REQUEST[literals rech_ven] : literals 
               functioncall isset
-              function call : isset: 
+              function call : 350 "isset": 
                   arglist 
                   0 : 
                       _array

@@ -22,7 +22,7 @@ tests/tokenizeur/scripts/dowhile.3.test.php
                                   method_static 
                                   307 "a"::functioncall 307 "b" ( ( ) ) : 
                                       functioncall b
-                                      function call : b: 
+                                      function call : 307 "b": 
                                           arglist 
                                           Empty arglist
                           parenthesis 
@@ -38,6 +38,6 @@ tests/tokenizeur/scripts/dowhile.3.test.php
                           method variable $d
                           method call : functioncall 307 "e" ( ( ) ) : 
                               functioncall e
-                              function call : e: 
+                              function call : 307 "e": 
                                   arglist 
                                   Empty arglist

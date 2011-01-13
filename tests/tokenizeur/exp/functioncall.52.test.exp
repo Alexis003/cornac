@@ -5,17 +5,17 @@ tests/tokenizeur/scripts/functioncall.52.test.php
       sequence 
       0 : 
           functioncall \
-          function call : \: 
+          function call : 500 "\": 
               arglist 
               0 : 
                   literals a
       1 : 
           functioncall print
-          function call : print: 
+          function call : 266 "print": 
               arglist 
               0 : 
                   functioncall \
-                  function call : \: 
+                  function call : 500 "\": 
                       arglist 
                       0 : 
                           literals a

@@ -9,6 +9,6 @@ tests/tokenizeur/scripts/clone.6.test.php
       right : 
           _clone 
               functioncall y
-              function call : y: 
+              function call : 307 "y": 
                   arglist 
                   Empty arglist

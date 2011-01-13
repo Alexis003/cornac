@@ -15,11 +15,11 @@ tests/tokenizeur/scripts/sequence.29.test.php
                       comparison 
                       left : 
                           functioncall intval
-                          function call : intval: 
+                          function call : 307 "intval": 
                               arglist 
                               0 : 
                                   functioncall substr
-                                  function call : substr: 
+                                  function call : 307 "substr": 
                                       arglist 
                                       0 : 
                                           variable $a

@@ -5,13 +5,13 @@ tests/tokenizeur/scripts/functioncall.18.test.php
       sequence 
       0 : 
           functioncall echo
-          function call : echo: 
+          function call : 316 "echo": 
               arglist 
               0 : 
                   literals 1
       1 : 
           functioncall echo
-          function call : echo: 
+          function call : 316 "echo": 
               arglist 
               0 : 
                   literals 2
@@ -19,7 +19,7 @@ tests/tokenizeur/scripts/functioncall.18.test.php
                   literals 3
       2 : 
           functioncall echo
-          function call : echo: 
+          function call : 316 "echo": 
               arglist 
               0 : 
                   literals 4

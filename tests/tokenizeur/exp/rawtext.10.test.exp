@@ -12,11 +12,11 @@ tests/tokenizeur/scripts/rawtext.10.test.php
               Texte : "311 "B""
           1 : 
               functioncall echo
-              function call : echo: 
+              function call : 316 "echo": 
                   arglist 
                   0 : 
                       functioncall lang
-                      function call : lang: 
+                      function call : 307 "lang": 
                           arglist 
                           0 : 
                               literals forums_edit_perm_formula_or
@@ -25,7 +25,7 @@ tests/tokenizeur/scripts/rawtext.10.test.php
               Texte : "311 "C""
           3 : 
               functioncall echo
-              function call : echo: 
+              function call : 316 "echo": 
                   arglist 
                   0 : 
                       variable $formulapermexp
@@ -35,11 +35,11 @@ tests/tokenizeur/scripts/rawtext.10.test.php
 ""
           5 : 
               functioncall echo
-              function call : echo: 
+              function call : 316 "echo": 
                   arglist 
                   0 : 
                       functioncall dhtmlspecialchars
-                      function call : dhtmlspecialchars: 
+                      function call : 307 "dhtmlspecialchars": 
                           arglist 
                           0 : 
                               _array
@@ -50,7 +50,7 @@ tests/tokenizeur/scripts/rawtext.10.test.php
               Texte : "311 "F""
           7 : 
               functioncall echo
-              function call : echo: 
+              function call : 316 "echo": 
                   arglist 
                   0 : 
                       _array

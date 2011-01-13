@@ -11,7 +11,7 @@ tests/tokenizeur/scripts/functioncall.51.test.php
           right : 
               constante (              C )
           functioncall exit
-          function call : exit: 
+          function call : 300 "exit": 
               arglist 
               0 : 
           constante (          null )

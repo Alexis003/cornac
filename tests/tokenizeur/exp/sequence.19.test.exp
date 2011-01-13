@@ -27,7 +27,7 @@ tests/tokenizeur/scripts/sequence.19.test.php
                    "=" 
                   right : 
                       functioncall array
-                      function call : array: 
+                      function call : 360 "array": 
                           arglist 
                           0 : 
                               variable $sort
@@ -38,7 +38,7 @@ tests/tokenizeur/scripts/sequence.19.test.php
           Texte : "311 "    return array('""
       4 : 
           functioncall echo
-          function call : echo: 
+          function call : 316 "echo": 
               arglist 
               0 : 
                   _array
@@ -49,13 +49,13 @@ tests/tokenizeur/scripts/sequence.19.test.php
           Texte : "311 "', '""
       6 : 
           functioncall echo
-          function call : echo: 
+          function call : 316 "echo": 
               arglist 
               0 : 
                   ternaryop ?
                   functioncall 350 "isset" ( arglist(_array variable $sort[literals 1]) )  ? _array variable $sort[literals 1] : literals asc
                       functioncall isset
-                      function call : isset: 
+                      function call : 350 "isset": 
                           arglist 
                           0 : 
                               _array

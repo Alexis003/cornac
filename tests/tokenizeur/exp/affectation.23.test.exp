@@ -10,6 +10,6 @@ tests/tokenizeur/scripts/affectation.23.test.php
           method_static 
           307 "Net_Ping"::functioncall 307 "factory" ( ( ) ) : 
               functioncall factory
-              function call : factory: 
+              function call : 307 "factory": 
                   arglist 
                   Empty arglist

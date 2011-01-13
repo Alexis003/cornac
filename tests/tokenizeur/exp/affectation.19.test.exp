@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/affectation.19.test.php
 
   code : 
       functioncall z
-      function call : z: 
+      function call : 307 "z": 
           arglist 
           0 : 
               affectation 

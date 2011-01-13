@@ -12,7 +12,7 @@ tests/tokenizeur/scripts/logical.9.test.php
                   block 
                   0 : 
                       functioncall echo
-                      function call : echo: 
+                      function call : 316 "echo": 
                           arglist 
                           0 : 
                               _array
@@ -37,7 +37,7 @@ tests/tokenizeur/scripts/logical.9.test.php
                   block 
                   0 : 
                       functioncall echo
-                      function call : echo: 
+                      function call : 316 "echo": 
                           arglist 
                           0 : 
                               _array

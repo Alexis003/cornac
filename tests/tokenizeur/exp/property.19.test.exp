@@ -8,7 +8,7 @@ tests/tokenizeur/scripts/property.19.test.php
        "=" 
       right : 
           functioncall isset
-          function call : isset: 
+          function call : 350 "isset": 
               arglist 
               0 : 
                   property method_static 307 "self"::functioncall 307 "a" ( ( ) ) variable $b->

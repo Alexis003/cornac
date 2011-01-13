@@ -3,13 +3,13 @@ tests/tokenizeur/scripts/functioncall.57.test.php
 
   code : 
       functioncall var_dump
-      function call : var_dump: 
+      function call : 307 "var_dump": 
           arglist 
           0 : 
               method variable $client
               method call : functioncall 307 "echo" ( arglist(literals World) ) : 
                   functioncall echo
-                  function call : echo: 
+                  function call : 307 "echo": 
                       arglist 
                       0 : 
                           literals World

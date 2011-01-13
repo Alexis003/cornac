@@ -11,7 +11,7 @@ tests/tokenizeur/scripts/noscream.8.test.php
           noscream @ ? literals  : literals bzopen
               noscream @
                   functioncall function_exists
-                  function call : function_exists: 
+                  function call : 307 "function_exists": 
                       arglist 
                       0 : 
                           literals bzopen

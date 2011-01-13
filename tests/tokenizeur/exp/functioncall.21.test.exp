@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/functioncall.21.test.php
 
   code : 
       functioncall die
-      function call : die: 
+      function call : 300 "die": 
           arglist 
           0 : 
               literals 1

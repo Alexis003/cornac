@@ -5,6 +5,6 @@ tests/tokenizeur/scripts/method.4.test.php
       method method functioncall 307 "x" ( ( ) ) ->functioncall 307 "y" ( ( ) ) 
       method call : functioncall 307 "z" ( ( ) ) : 
           functioncall z
-          function call : z: 
+          function call : 307 "z": 
               arglist 
               Empty arglist

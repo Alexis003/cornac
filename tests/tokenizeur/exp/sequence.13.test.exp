@@ -9,7 +9,7 @@ tests/tokenizeur/scripts/sequence.13.test.php
       operation :  "/"
       right : 
           functioncall count
-          function call : count: 
+          function call : 307 "count": 
               arglist 
               0 : 
                   property variable $thisliterals m_timeStamps->

@@ -11,7 +11,7 @@ tests/tokenizeur/scripts/ternaryop.11.test.php
                   parenthesis 
                   ( "variable $b" )
                   functioncall strtoupper
-                  function call : strtoupper: 
+                  function call : 307 "strtoupper": 
                       arglist 
                       0 : 
                           property variable $eliterals f->

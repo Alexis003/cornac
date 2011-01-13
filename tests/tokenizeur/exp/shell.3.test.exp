@@ -8,7 +8,7 @@ tests/tokenizeur/scripts/shell.3.test.php
        "=" 
       right : 
           functioncall strtolower
-          function call : strtolower: 
+          function call : 307 "strtolower": 
               arglist 
               0 : 
                   shell 

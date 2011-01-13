@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/functioncall.12.test.php
 
   code : 
       functioncall print
-      function call : print: 
+      function call : 266 "print": 
           arglist 
           0 : 
               literals oui

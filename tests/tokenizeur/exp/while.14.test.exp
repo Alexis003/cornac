@@ -11,11 +11,11 @@ tests/tokenizeur/scripts/while.14.test.php
                "=" 
               right : 
                   functioncall sha1
-                  function call : sha1: 
+                  function call : 307 "sha1": 
                       arglist 
                       0 : 
                           functioncall microtime
-                          function call : microtime: 
+                          function call : 307 "microtime": 
                               arglist 
                               Empty arglist
           parenthesis 

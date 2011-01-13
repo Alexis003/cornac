@@ -3,12 +3,12 @@ tests/tokenizeur/scripts/method.15.test.php
 
   code : 
       functioncall strlen
-      function call : strlen: 
+      function call : 307 "strlen": 
           arglist 
           0 : 
               method variable $e
               method call : functioncall 0 "namespace1:gt" ( ( ) ) : 
                   functioncall namespace1:gt
-                  function call : namespace1:gt: 
+                  function call : 0 "namespace1:gt": 
                       arglist 
                       Empty arglist

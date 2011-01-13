@@ -9,7 +9,7 @@ tests/tokenizeur/scripts/noscream.9.test.php
       right : 
           noscream @
               functioncall $b
-              function call : $b: 
+              function call : 0 "$b": 
                   arglist 
                   0 : 
                       concatenation 

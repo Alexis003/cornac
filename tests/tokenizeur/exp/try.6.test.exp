@@ -10,7 +10,7 @@ tests/tokenizeur/scripts/try.6.test.php
                   method variable $x
                   method call : functioncall 307 "y" ( arglist(literals 3, literals 4) ) : 
                       functioncall y
-                      function call : y: 
+                      function call : 307 "y": 
                           arglist 
                           0 : 
                               literals 3

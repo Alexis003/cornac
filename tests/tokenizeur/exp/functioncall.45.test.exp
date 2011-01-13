@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/functioncall.45.test.php
 
   code : 
       functioncall exit
-      function call : exit: 
+      function call : 300 "exit": 
           arglist 
           0 : 
               sign  "-"literals 1

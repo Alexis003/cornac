@@ -6,7 +6,7 @@ tests/tokenizeur/scripts/function.6.test.php
           block 
           0 : 
               functioncall print_r
-              function call : print_r: 
+              function call : 307 "print_r": 
                   arglist 
                   0 : 
                       variable $b

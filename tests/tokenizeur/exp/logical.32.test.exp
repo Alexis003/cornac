@@ -10,7 +10,7 @@ tests/tokenizeur/scripts/logical.32.test.php
           logical 
           left : 
               functioncall b
-              function call : b: 
+              function call : 307 "b": 
                   arglist 
                   0 : 
                       variable $q

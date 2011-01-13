@@ -8,7 +8,7 @@ tests/tokenizeur/scripts/logical.22.test.php
       273 ".=" 
       right : 
           functioncall substr
-          function call : substr: 
+          function call : 307 "substr": 
               arglist 
               0 : 
                   literals a./
@@ -16,7 +16,7 @@ tests/tokenizeur/scripts/logical.22.test.php
                   logical 
                   left : 
                       functioncall mt_rand
-                      function call : mt_rand: 
+                      function call : 307 "mt_rand": 
                           arglist 
                           Empty arglist
                   operateur :  "&"

@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/functioncall.22.test.php
 
   code : 
       functioncall empty
-      function call : empty: 
+      function call : 351 "empty": 
           arglist 
           0 : 
               variable $x

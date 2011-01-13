@@ -15,6 +15,6 @@ tests/tokenizeur/scripts/ifthen.64.test.php
               method property variable $x->literals y
               method call : functioncall 307 "f" ( ( ) ) : 
                   functioncall f
-                  function call : f: 
+                  function call : 307 "f": 
                       arglist 
                       Empty arglist

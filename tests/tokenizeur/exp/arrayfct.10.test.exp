@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/arrayfct.10.test.php
 
   code : 
       functioncall array
-      function call : array: 
+      function call : 360 "array": 
           arglist 
           0 : 
               operation 
@@ -11,7 +11,7 @@ tests/tokenizeur/scripts/arrayfct.10.test.php
                   literals x => functioncall 307 "a" ( ( ) ) 
                       literals x
                       functioncall a
-                      function call : a: 
+                      function call : 307 "a": 
                           arglist 
                           Empty arglist
               operation :  "-"
@@ -22,7 +22,7 @@ tests/tokenizeur/scripts/arrayfct.10.test.php
                   operation :  "*"
                   right : 
                       functioncall b
-                      function call : b: 
+                      function call : 307 "b": 
                           arglist 
                           0 : 
                               variable $x

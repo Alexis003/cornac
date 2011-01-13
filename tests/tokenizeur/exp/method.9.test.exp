@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/method.9.test.php
       method variable $e
       method call : functioncall 0 "." ( arglist(literals 1, literals 2) ) : 
           functioncall .
-          function call : .: 
+          function call : 0 ".": 
               arglist 
               0 : 
                   literals 1

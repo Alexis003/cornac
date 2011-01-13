@@ -22,7 +22,7 @@ tests/tokenizeur/scripts/ternaryop.16.test.php
               parenthesis 
               ( "functioncall 307 "function_exists" ( arglist(literals a) ) " )
               functioncall a
-              function call : a: 
+              function call : 307 "a": 
                   arglist 
                   0 : 
                       literals b
