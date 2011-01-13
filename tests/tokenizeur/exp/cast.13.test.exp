@@ -7,5 +7,5 @@ tests/tokenizeur/scripts/cast.13.test.php
           variable $x
        "=" 
       right : 
-          cast (293 "(string)")property_static 0 "$a"::variable $b
-              property_static 0 "$a"::variable $b->
+          cast (293 "(string)")property_static variable $a::variable $b
+              property_static variable $a::variable $b->

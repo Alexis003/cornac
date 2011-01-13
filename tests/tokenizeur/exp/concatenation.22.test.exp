@@ -8,7 +8,7 @@ tests/tokenizeur/scripts/concatenation.22.test.php
        "=" 
       right : 
           ternaryop ?
-          not ! ? concatenation literals f . functioncall variable $g ( arglist(literals h) )  . literals i   : literals j
+          not ! ? concatenation literals f . functioncall 0 "$g" ( arglist(literals h) )  . literals i   : literals j
               not !
                   functioncall empty
                   function call : empty: 

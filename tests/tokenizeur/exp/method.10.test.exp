@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/method.10.test.php
 
   code : 
       method variable $e
-      method call : functioncall concatenation literals namespace1:gt . literals 3 . literals 4   ( arglist(literals 1) ) : 
+      method call : functioncall 0 "." ( arglist(literals 1) ) : 
           functioncall .
           function call : .: 
               arglist 

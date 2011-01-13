@@ -4,6 +4,6 @@ tests/tokenizeur/scripts/new.19.test.php
   code : 
       sequence 
       0 : 
-           new 380 "\"\307 "x" ( ) 
+           new 500 "\" ( ) 
       1 : 
            new 307 "y" ( ) 

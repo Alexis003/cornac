@@ -4,14 +4,14 @@ tests/tokenizeur/scripts/namespace.4.test.php
   code : 
       sequence 
       0 : 
-          function literals a arglist(typehint 500 "\" affectation variable $c  "=" constante null)
+          function literals a arglist(typehint 380 "\"\307 "b" affectation variable $c  "=" constante null)
               block 
       1 : 
-          function literals d arglist(typehint 500 "\" variable $f)
+          function literals d arglist(typehint 380 "\"\307 "e" variable $f)
               block 
       2 : 
-          function literals g arglist(typehint 500 "\" variable $j)
+          function literals g arglist(typehint 307 "h"\307 "i" variable $j)
               block 
       3 : 
-          function literals k arglist(typehint 500 "\" affectation variable $n  "=" constante null)
+          function literals k arglist(typehint 307 "l"\307 "m" affectation variable $n  "=" constante null)
               block 

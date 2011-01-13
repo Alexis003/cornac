@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/method.13.test.php
 
   code : 
       method variable $e
-      method call : functioncall literals namespace1:gt ( arglist(literals 1, literals 2) ) : 
+      method call : functioncall 0 "namespace1:gt" ( arglist(literals 1, literals 2) ) : 
           functioncall namespace1:gt
           function call : namespace1:gt: 
               arglist 

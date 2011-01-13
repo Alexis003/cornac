@@ -8,7 +8,7 @@ tests/tokenizeur/scripts/keyvalue.7.test.php
        "=" 
       right : 
           method method_static 307 "b"::functioncall 307 "c" ( arglist(literals d) ) 
-          method call : functioncall 307 "e" ( arglist(functioncall 360 "array" ( arglist(keyvalue method_static 0 "$f"::functioncall 307 "g" ( ( ) )  => variable $h) ) ) ) : 
+          method call : functioncall 307 "e" ( arglist(functioncall 360 "array" ( arglist(keyvalue method_static variable $f::functioncall 307 "g" ( ( ) )  => variable $h) ) ) ) : 
               functioncall e
               function call : e: 
                   arglist 
@@ -17,9 +17,9 @@ tests/tokenizeur/scripts/keyvalue.7.test.php
                       function call : array: 
                           arglist 
                           0 : 
-                              method_static 0 "$f"::functioncall 307 "g" ( ( ) )  => variable $h
+                              method_static variable $f::functioncall 307 "g" ( ( ) )  => variable $h
                                   method_static 
-                                  0 "$f"::functioncall 307 "g" ( ( ) ) : 
+                                  variable $f::functioncall 307 "g" ( ( ) ) : 
                                       functioncall g
                                       function call : g: 
                                           arglist 

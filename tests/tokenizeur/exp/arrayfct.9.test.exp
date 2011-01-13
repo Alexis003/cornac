@@ -11,7 +11,7 @@ tests/tokenizeur/scripts/arrayfct.9.test.php
           function call : array: 
               arglist 
               0 : 
-                  literals a => functioncall variable $c ( arglist(literals b) ) 
+                  literals a => functioncall 0 "$c" ( arglist(literals b) ) 
                       literals a
                       functioncall $c
                       function call : $c: 
