@@ -31,7 +31,8 @@ class functioncall extends instruction {
         if ($expression[0]->checkClass('Token')) {
             $this->function = $this->makeToken_traite($expression[0]);
         } else {
-            $this->function = $expression[0];
+            $this->function = $this->makeToken_traite($expression[0]);
+//            $this->function = $expression[0];
         }
 
         if (isset($expression[1])) {

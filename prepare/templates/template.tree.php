@@ -268,7 +268,7 @@ class template_tree extends template {
 
     function display_functioncall($node, $level) {
         print str_repeat('  ', $level).get_class($node)." ".$node->getCode()."\n";
-// @todo        print str_repeat('  ', $level)."function call : ".$node->getFunction()->getCode().": \n";
+//        print str_repeat('  ', $level)."function call : ".$node->getFunction().": \n";
         print str_repeat('  ', $level)."function call : ".$node->getFunction()->getCode().": \n";
 
         $args = $node->getArgs();

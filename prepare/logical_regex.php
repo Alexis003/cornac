@@ -31,8 +31,8 @@ class logical_regex extends analyseur_regex {
         if (!$t->hasPrev() ) { return false; }
         if (!$t->hasNext() ) { return false; }
 
-        if ($t->checkClass(array('literals','rawtext'))) { return false; }
-        if ($t->getPrev()->checkClass(array( 'arglist','sequence','block'))) { return false;}
+        if ($t->checkNotClass('Token')) { return false; }
+        if ($t->getPrev()->checkClass(array( 'Token', 'arglist','sequence','block'))) { return false;}
         if ($t->getPrev()->checkOperator(array( ')',',',']','}','"'))) { return false;}
         if ($t->getPrev()->checkForAssignation()) { return false;}
 

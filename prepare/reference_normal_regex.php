@@ -34,9 +34,11 @@ class reference_normal_regex extends analyseur_regex {
         if ( $t->getNext(1)->checkClass(array('arglist'))) { return false; }
 
         if ($t->getPrev()->checkToken(T_AS)) {
-            // continue, c'est une exception
+            // @note this ok, this is an exception
         } elseif ($t->getPrev()->checkClass(array('arglist','functioncall','parenthesis'))) {
             return false;
+        } elseif ($t->getPrev()->checkToken(array(T_STRING, T_ARRAY))) {  
+            // @note ok, this is probably a typehint
         } elseif (!$t->getPrev()->checkBeginInstruction()) {  
             return false; 
         }

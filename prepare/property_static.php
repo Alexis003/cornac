@@ -24,12 +24,12 @@ class property_static extends token {
     function __construct($expression) {
         parent::__construct();
         
-        if (is_array($expression)) {
+        if ($expression[0]->checkClass('Token')) {
             $this->class = $this->makeToken_traite($expression[0]);
-            $this->property = $expression[1];
         } else {
-            $this->stopOnError("Wrong number of arguments  : '".count($expression)."' in ".__METHOD__);
+            $this->class = $expression[0];
         }
+        $this->property = $expression[1];
     }
 
     function getClass() {  

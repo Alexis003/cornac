@@ -24,11 +24,11 @@ class typehint extends token {
     function __construct($expression = null) {
         parent::__construct(array());
         
-        if (count($expression) != 2) { 
-            $this->stopOnError("Number of argument is wrong");
+        if ($expression[0]->checkClass('Token')) {
+            $this->type = $this->makeToken_traite($expression[0]);
+        } else {
+            $this->type = $expression[0];
         }
-        
-        $this->type = $this->makeToken_traite($expression[0]);
         $this->name = $expression[1];
     }
 
