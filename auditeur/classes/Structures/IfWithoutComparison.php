@@ -34,19 +34,22 @@ class Structures_IfWithoutComparison extends modules {
 	public function analyse() {
         $this->clean_report();
 
-// @doc check for everything except logique and (not or noscream)
+// @doc check for everything except logical and (not or noscream)
 	    $query = <<<SQL
-SELECT NULL, T1.file, T2.code, T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, TC.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1 
 JOIN <tokens> T2 
 ON T2.file = T1.file AND
    T2.left = T1.left + 2 AND
-   T2.type NOT IN ('logique','not','noscream')
-WHERE T1.type IN ('ifthen', '_while')
+   T2.type NOT IN ('logical','not','noscream')
+JOIN <tokens_cache> TC
+    ON TC.id = T2.id
+WHERE T1.type IN ('ifthen', '_while');
+
 SQL;
         $this->exec_query_insert('report', $query);
 
-// @doc check for everything in a not or noscream except logique
+// @doc check for everything in a not or noscream except logical
 // @not one can mix not and noscream.... 
 	    $query = <<<SQL
 SELECT NULL, T1.file, T3.code, T1.id, '{$this->name}', 0
@@ -58,7 +61,7 @@ ON T2.file = T1.file AND
 JOIN <tokens> T3
 ON T3.file = T1.file AND
    T3.left = T1.left + 3 AND
-   T3.type NOT IN ('logique')
+   T3.type NOT IN ('logical')
 WHERE T1.type IN ('ifthen', '_while')
 SQL;
         $this->exec_query_insert('report', $query);
