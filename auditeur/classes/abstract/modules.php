@@ -298,6 +298,21 @@ SQL;
         return $exts;
     }
 
+    static public function getDrupal5Hooks() {
+        $hook = parse_ini_file('../dict/drupal5_hook.ini', false);
+        return $hook['hook'];
+    }
+
+    static public function getDrupal6Hooks() {
+        $hook = parse_ini_file('../dict/drupal6_hook.ini', false);
+        return $hook['hook'];
+    }
+
+    static public function getDrupal7Hooks() {
+        $hook = parse_ini_file('../dict/drupal7_hook.ini', false);
+        return $hook['hook'];
+    }
+
     static public function getPHPClasses() {
         $classes = parse_ini_file('../dict/class2ext.ini', false);
         return $classes['classes'];
