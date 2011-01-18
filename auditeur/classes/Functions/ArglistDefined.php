@@ -19,7 +19,7 @@
 
 class Functions_ArglistDefined extends modules {
 	protected	$title = 'Defined arguments';
-	protected	$description = 'Argument list used in function definitions.';
+	protected	$description = 'Argument list used in function definitions. For example : function f($x, &$y, $t=1) => f (3 args)';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -33,27 +33,33 @@ class Functions_ArglistDefined extends modules {
 SELECT NULL, T1.file, CONCAT(T2.code,'(', count(*),' args)') AS code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens_tags> TT1
-    ON T1.id = TT1.token_id AND TT1.type = 'name'
+    ON T1.id = TT1.token_id AND 
+       TT1.type = 'name'
 JOIN <tokens> T2
-    ON T2.file = T1.file AND TT1.token_sub_id = T2.id
+    ON T2.file = T1.file AND 
+       TT1.token_sub_id = T2.id
 JOIN <tokens_tags> TT2
-    ON T1.id = TT2.token_id AND TT2.type='args'
+    ON T1.id = TT2.token_id AND 
+       TT2.type='args'
 JOIN <tokens> T3
-    ON T3.file = T1.file AND TT2.token_sub_id = T3.id
+    ON T3.file = T1.file AND 
+       TT2.token_sub_id = T3.id
 JOIN <tokens> T4
-    ON T4.file = T1.file AND T4.left BETWEEN T3.left AND T3.right
-    AND T4.type = 'variable'
-    AND T4.level = T3.level + 1
+    ON T4.file = T1.file AND 
+       T4.left BETWEEN T3.left AND T3.right AND 
+       T4.type = 'variable' AND 
+       T4.level = T3.level + 1
 WHERE T1.type = '_function'
 GROUP BY T1.id
 SQL;
         $this->exec_query_insert('report', $query);
 
 // @doc this query search for variable number of argument
+// @warning : affectation is not as easy as old arginit...
         $query = <<<SQL
 SELECT NULL, T1.file, 
        SUM(IF(T4.type='variable',1,0)) AS compulsory, 
-       SUM(IF(T4.type='arginit',1,0)) AS optional, 
+       SUM(IF(T4.type='affectation',1,0)) AS optional, 
        T2.code AS code,
        T1.id
 FROM <tokens> T1
@@ -71,7 +77,6 @@ JOIN <tokens> T4
 WHERE T1.type = '_function'
 GROUP BY T1.id
 HAVING optional > 0
-;
 SQL;
         $res = $this->exec_query($query);
         
