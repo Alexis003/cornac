@@ -18,24 +18,24 @@
  */
 
 class Constants_FileLink extends modules {
-	protected	$title = 'File relation via constants';
-	protected	$description = 'Files that are using the same constants. They are now linked together';
+    protected    $title = 'File relations via constants';
+    protected    $description = 'Files that are using the same constants. They are now linked together';
 
-	function __construct($mid) {
+    function __construct($mid) {
         parent::__construct($mid);
         
         $this->format = modules::FORMAT_DOT;
-	}
+    }
 
 // @doc if this analyzer is based on previous result, use this to make sure the results are here
-	function dependsOn() {
-	    return array('Constants_Definitions','Constants_Usage');
-	}
-	
-	public function analyse() {
+    function dependsOn() {
+        return array('Constants_Definitions','Constants_Usage');
+    }
+    
+    public function analyse() {
         $this->clean_report();
 
-	    $query = <<<SQL
+        $query = <<<SQL
 INSERT INTO <report_dot>
 SELECT TR1.file, TR2.file, TR1.element, '{$this->name}'
 FROM <report>  TR1
@@ -47,7 +47,7 @@ SQL;
         $this->exec_query($query);
         
         return true;
-	}
+    }
 }
 
 ?>
