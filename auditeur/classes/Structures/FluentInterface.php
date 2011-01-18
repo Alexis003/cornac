@@ -25,55 +25,40 @@ class Structures_FluentInterface extends modules {
         parent::__construct($mid);
 	}
 
-	function dependsOn() {
-	    return array();
-	}
-	
 // @todo refine the first query with level, may be with nb > 2?
 	public function analyse() {
         $this->clean_report();
 
 	    $query = <<<SQL
-SELECT T1.id, T1.file, count(*) AS nb
+SELECT NULL, T1.file, CONCAT(beginning.code, '->', GROUP_CONCAT(T3.code ORDER BY T3.left  SEPARATOR '->')) , T1.id, '{$this->name}',0
 FROM <tokens> T1
-JOIN <tokens> T2
-ON T1.file = T2.file AND
-   T2.type = 'method' AND
-   T2.left BETWEEN T1.left AND T1.right
-LEFT JOIN <tokens> T3
-ON T1.file = T3.file AND
-   T3.type = 'method' AND
-   T3.left = T1.left - 1
-WHERE T1.type = 'method' AND
-      T3.type IS NULL 
-GROUP BY T1.id
-HAVING nb > 1
-SQL;
-        $res = $this->exec_query($query);
-
-        while($row = $res->fetch(PDO::FETCH_ASSOC)) {
-    	    $query = <<<SQL
-SELECT NULL, T1.file, CONCAT(T1.code, '->', GROUP_CONCAT(T4.code ORDER BY T4.left  SEPARATOR '->')), T1.id, '{$this->name}', 0
-FROM <tokens> T1
-JOIN <tokens> T2 
-    ON T2.file = T1.file AND
-       T2.left BETWEEN T1.left + 1 AND T1.left + {$row['nb']}
+INNER JOIN (
+    SELECT T3.id, T1.file, T3.left, T3.right, T3.code
+    FROM <tokens> T1
+    JOIN <tokens> T2
+    ON T1.file = T2.file AND
+       T2.type = 'method' AND
+       T2.left = T1.left - 1
+    JOIN <tokens> T3
+    ON T1.file = T3.file AND
+       T3.type = 'variable' AND
+       T3.left = T1.left + 1
+    WHERE T1.type = 'method'
+) beginning
+ON T1.file = beginning.file AND
+   type='method' AND 
+   T1.left < beginning.left AND 
+   T1.right > beginning.right
 JOIN <tokens_tags> TT
-    ON TT.token_id = T2.id AND
+    ON TT.token_id = T1.id AND
        TT.type='method'
 JOIN <tokens> T3
-    ON T3.file = T2.file AND
+    ON T3.file = beginning.file AND
        T3.id = TT.token_sub_id
-JOIN <tokens> T4
-    ON T4.file = T1.file AND
-       T4.left = T3.left + 1
-WHERE T1.id = {$row['id']}
+GROUP BY beginning.id
+HAVING COUNT(*) > 1
 SQL;
-            // @todo DONT HAVE THIS IN A WHILE!
-            $this->exec_query_insert_one('report', $query);
-        }
-
-        $this->exec_flush('report');
+        $res = $this->exec_query_insert('report',$query);
 
         return true;
 	}
