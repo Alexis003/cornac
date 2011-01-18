@@ -683,9 +683,11 @@ class template_db extends template {
         $node->myId = $this->getNextId();
         $node->myleft = $this->getIntervalleId();
 
-        $this->display($node->getLeft(), $level + 1);
-        $this->display($node->getOperator(), $level + 1);
-        $this->display($node->getRight(), $level + 1);
+        $tags = array();
+        $tags['right'][] = $this->display($node->getLeft(), $level + 1);
+        $tags['operator'][] = $this->display($node->getOperator(), $level + 1);
+        $tags['left'][] = $this->display($node->getRight(), $level + 1);
+        $this->tags = $tags;
         
         $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);        
