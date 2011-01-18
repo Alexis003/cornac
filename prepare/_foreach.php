@@ -26,7 +26,7 @@ class _foreach extends instruction {
     static $incoming_vars = array('variable','_array','property', 'property_static',
                                   'functioncall','method','cast','method_static','_new',
                                   'affectation','ternaryop','parenthesis','noscream',
-                                  'inclusion','Token');
+                                  'inclusion','Token','operation');
 
     static $blind_values = array('variable','_array','property','reference','parenthesis','property_static');
     static $blind_keys = array('variable','_array','property','reference','parenthesis','property_static');
