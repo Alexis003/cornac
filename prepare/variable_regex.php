@@ -27,20 +27,13 @@ class variable_regex extends analyseur_regex {
     }
     
     function check($t) {
-    
-        if (!$t->hasPrev() ) { return false; }
-        if (!$t->hasNext() ) { return false; }
+        if ($t->checkNotToken(array(T_VARIABLE,T_STRING_VARNAME))) { return false; }
 
-        if ($t->checkToken(array(T_VARIABLE,T_STRING_VARNAME))
-            ) {
+        $this->args   = array(0);
+        $this->remove = array();
 
-            $this->args   = array(0);
-            $this->remove = array();
-
-            mon_log(get_class($t)." => ".__CLASS__);
-            return true; 
-        } 
-        return false;
+        mon_log(get_class($t)." => ".__CLASS__);
+        return true; 
     }
 }
 ?>
