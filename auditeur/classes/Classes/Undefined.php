@@ -43,6 +43,7 @@ WHERE TR1.module = 'Classes_News' AND
       TR2.element IS NULL         AND
       TR1.element NOT IN ($in)
 SQL;
+
         $this->exec_query_insert('report', $query);
         return true;
     }
