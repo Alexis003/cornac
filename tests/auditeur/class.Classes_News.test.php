@@ -24,7 +24,7 @@ class Classes_News_Test extends Auditeur_Framework_TestCase
         $this->expected = array('$a','$asp','StdClass', 'classe_sans_parenthese','z');
         $this->unexpected = array('$x','$z');
         
-        parent::generic_test();
+        parent::generic_counted_test();
     }
 }
 

@@ -21,8 +21,12 @@ include_once('Auditeur_Framework_TestCase.php');
 class Structures_FluentInterface_Test extends Auditeur_Framework_TestCase
 {
     public function testfluid_interface()  { 
-        $this->expected = array( '$that->is->a->fluid');
-        $this->unexpected = array(/*'',*/);
+        $this->expected = array( '$this->is->yet->again->another->fluent->interface',
+                                 '$this->is->a->another->fluent->interface',
+                                 '$that->is->a->fluent->interface',
+                                 '$that->is->fluentinterface',
+                               );
+        $this->unexpected = array('$that->is_not_fluentinterface',);
         
         parent::generic_test();
     }

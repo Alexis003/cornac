@@ -144,6 +144,12 @@ $tests = array(
 'class.Quality_GpcAssigned.test.php',
 'class.Quality_ClassesNotInSameFile.test.php',
 'class.Variables_Affected.test.php',
+'class.Quality_StrposEquals.test.php',
+'class.Quality_ConstructNameOfClass.test.php',
+'class.Drupal_Hook7.test.php',
+'class.Drupal_Hook6.test.php',
+'class.Drupal_Hook5.test.php',
+'class.Structures_FluentProperties.test.php',
 // new tests
 );
 

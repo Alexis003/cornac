@@ -23,7 +23,7 @@ include_once('Auditeur_Framework_TestCase.php');
 class Structures_IfWithoutComparison_Test extends Auditeur_Framework_TestCase
 {
     public function testif_no_comparison()  {
-        $this->expected = array( '$x','$t','count','ACONSTANT');
+        $this->expected = array( '$x','$t->property','count','ACONSTANT');
         $this->unexpected = array(/*'',*/);
 
         parent::generic_test();

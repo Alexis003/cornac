@@ -21,10 +21,10 @@ include_once('Auditeur_Framework_TestCase.php');
 class Classes_Undefined_Test extends Auditeur_Framework_TestCase
 {
     public function testVariables()  { 
-        $this->expected = array('z','$w','$request[3]');
+        $this->expected = array('z','$w','_array variable $request[literals 3]');
         $this->unexpected = array('a','$x','$y','$z','$v','StdClass',);
         
-        parent::generic_test();
+        parent::generic_counted_test();
     }
 }
 

@@ -23,7 +23,7 @@ include_once('Auditeur_Framework_TestCase.php');
 class Structures_ComparisonConstants_Test extends Auditeur_Framework_TestCase
 {
     public function testcomparison_constant()  {
-        $this->expected = array( 'line 20 : ==','line 21 : &&');
+        $this->expected = array( 'true && false','1 == 1');
         $this->unexpected = array(/*'',*/);
 
         parent::generic_test();

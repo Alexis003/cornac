@@ -17,14 +17,12 @@
    +----------------------------------------------------------------------+
  */
 
-$that->is()->fluentinterface();
+$that->is->a->fluent->property;
 
-$that->is()->a()->fluent()->interface();
+$this->is->a->another->fluent->property;
 
-$this->is()->a()->another()->fluent()->interface();
+$this->is->yet->again->another->fluent->property;
 
-$this->is()->yet()->again()->another()->fluent()->interface();
-
-$that->is_not_fluentinterface();
+$this->is_nothing_special;
 
 ?>
