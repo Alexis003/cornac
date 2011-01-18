@@ -29,11 +29,11 @@ class Structures_Parenthesis extends modules {
         $this->clean_report();
 
         $query = <<<SQL
-SELECT NULL, T1.file, T2.code,  T1.id, 'parentheses', 0
+SELECT NULL, T1.file, T2.code,  T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens_cache> T2
     ON T1.id = T2.id
-WHERE T1.type = 'parentheses'
+WHERE T1.type = 'parenthesis'
 SQL;
         $this->exec_query_insert('report', $query);
 
