@@ -34,7 +34,7 @@ class Functions_CalledBack extends modules {
         $this->clean_report();
 
         $functions = array();
-        // callback is in second position
+        // @note callback is in second position
         $functions[1] = array('array_map',
                               'call_user_func',
                               'call_user_func_array');
