@@ -20,7 +20,7 @@
 
 class Functions_UnusedReturn extends modules {
 	protected	$title = 'Unused return values';
-	protected	$description = 'Spot function whose return values are not used. Function is called, but result is just ignored.';
+	protected	$description = 'Spot function whose return values are not used. Function is called, but result is just ignored. Currently works on PHP functions. ';
 	protected   $tags = array('quality');
 
 	function __construct($mid) {
@@ -34,7 +34,7 @@ class Functions_UnusedReturn extends modules {
 	public function analyse() {
         $this->clean_report();
 
-// @todo update list of authorize functions (first IN)
+// @todo update list of authorizes functions (they're in the first IN)
 // @todo check on other application the list of authorized structures (second IN)
 // @todo make another level for noscream, arobases, etc. : or find a way to ignore them
 // @todo check immediatly if return value is used in a foreach 
@@ -47,7 +47,7 @@ JOIN <tokens> T2
        T2.level = T1.level - 1
 WHERE T1.type = 'functioncall' AND
       T1.code NOT IN ('echo','print','define') AND 
-      T2.type NOT IN ('noscream','arginit','_array','comparison','logique','clevaleur','cdtternaire','not','concatenation','method_static','parentheses','method','affectation','arglist')
+      T2.type NOT IN ('noscream','_array','comparison','logical','clevaleur','ternaryop','not','concatenation','method_static','parenthesis','method','affectation','arglist')
 SQL;
         $this->exec_query_insert('report', $query);
 
