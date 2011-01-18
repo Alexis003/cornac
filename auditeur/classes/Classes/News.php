@@ -46,7 +46,8 @@ SELECT NULL, T1.file, TC.code, T1.id, '{$this->name}', 0
 FROM <tokens>  T1
 JOIN <tokens> T2
    ON T1.left + 1 = T2.left AND 
-      T1.file = T2.file
+      T1.file = T2.file AND
+      T2.type NOT IN ('token_traite','variable')
 JOIN <tokens_cache> TC
    ON TC.id = T2.id
 WHERE T1.type = '_new'
