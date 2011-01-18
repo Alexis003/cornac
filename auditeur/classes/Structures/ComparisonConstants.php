@@ -26,24 +26,24 @@ class Structures_ComparisonConstants extends modules {
         parent::__construct($mid);
 	}
 
-	function dependsOn() {
-	    return array();
-	}
-
 	public function analyse() {
         $this->clean_report();
 
 	    $query = <<<SQL
-SELECT NULL, T1.file, CONCAT('line ', T1.line, ' : ', T1.code), T1.id, '{$this->name}', 0
+SELECT NULL, T1.file, TC.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
-LEFT JOIN <tokens> T2
-    ON T2.file = T1.file AND
-       T2.left BETWEEN T1.left AND T1.right AND
-       ( T2.type = 'variable' OR
-         T2.code = 'function_exists')
-WHERE T1.type IN ( 'logique','comparison')
+JOIN <tokens_tags> TT
+    ON TT.token_id = T1.id AND
+       TT.type IN ('right','left')
+JOIN <tokens> T2
+    ON T1.file = T2.file AND
+       T2.id = TT.token_sub_id
+JOIN <tokens_cache> TC
+    ON T1.id = TC.id
+WHERE T1.type IN ( 'logical','comparison') AND
+      T2.type IN ('constante','literals')
 GROUP BY T1.id
-HAVING COUNT(T2.id) = 0
+HAVING COUNT(*) = 2
 SQL;
         $this->exec_query_insert('report', $query);
 
