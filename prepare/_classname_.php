@@ -17,33 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class label_normal_regex extends analyseur_regex {
-    function __construct() {
-        parent::__construct(array());
-    }
-
-    function getTokens() {
-        return array(T_STRING);
-    }
-    
-    function check($t) {
-        if (!$t->hasNext(1)) { return false; }
-
-// @todo move this to :
-        if ($t->checkNotToken(T_STRING)) { return false; }
-        if ($t->getNext()->checkNotOperator(':')) { return false; }
-        if ($t->getPrev()->checkToken(array(T_CASE, T_INSTANCEOF, T_NEW))) { return false; }
-        if ($t->getPrev()->checkForCast()) { return false; }
-        if ($t->getPrev()->checkOperator(array('?','->','::','.',':','!'))) { return false; }
-        if ($t->getPrev()->checkForComparison()) { return false; }
-        if ($t->getPrev()->checkForLogical()) { return false; }
-        if ($t->getPrev()->checkOperator(array('^','|','&&', '+','-','*','/','%'))) { return false; }
-
-        $this->args = array(0);
-        $this->remove = array(0, 1);
-
-        mon_log(get_class($t)." => label  (".__CLASS__.")");
-        return true;
-    }
+class _classname_ extends token_traite {
 }
+
 ?>

@@ -276,18 +276,34 @@ class Token {
         }
         return $t;
     }
-    
-    function makeToken_traite($entree) {
-        $clone = clone $entree;
-                
-        $return = new token_traite($clone);
+
+    function makeProcessedToken($class, $token) {
+        $clone = clone $token;
+        
+        if (!in_array($class, array('_extends_',
+                                    '_implements_',
+                                    'token_traite',
+                                    '_classname_',
+                                    '_interfacename_',
+                                    '_abstract_',
+                                    '_final_',
+                                    ))) { 
+            print "Attempt to process a token to an unknown class : $class!\n";
+            die(__METHOD__);
+        }
+
+        $return = new $class($clone);
         $return->replace($clone);
-        $return->setToken($entree->getToken());
-        $return->setLine($entree->getLine());
+        $return->setToken($token->getToken());
+        $return->setLine($token->getLine());
         
         return $return;
-    }
+    }    
     
+    function makeToken_traite($token) {
+        return $this->makeProcessedToken('token_traite', $token);
+    }
+
 
     static function applyRegex($t, $class, $r) { 
         $args = $r->getArgs();
@@ -566,7 +582,7 @@ class Token {
     }
 
     function checkForComparison() {
-        $liste = array('==','>','<','<=','>=','===','!==','<=>');
+        $liste = array('==','>','<','<=','>=','===','!==','<=>','!=');
         return $this->checkCode($liste);
     }
 
@@ -605,10 +621,10 @@ class Token {
                        T_UNSET_CAST);
         return $this->checkToken($liste);
     }
-    
-    function toToken_traite($token) {
+/*
+    function toProcessedToken($class, $token) {
         if ($token->checkClass('Token')) {
-            $return = new token_traite($token);
+            $return = new $class($token);
             $return->replace($token);
         } else {
             $return = $token;
@@ -617,6 +633,10 @@ class Token {
         return $return;
     }
     
+    function toToken_traite($token) {
+        return $this->toProcessedToken('token_traite', $token);
+    }
+    */
     function stopOnError($message) {
         $bt = debug_backtrace();
         print "Message : $message\n";

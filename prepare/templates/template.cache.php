@@ -98,7 +98,11 @@ class template_cache extends template {
             die(__METHOD__);
         }
         $class = get_class($node);
-        $method = "display_$class";
+        if (substr($class, -1) == '_') {
+            $method = "display_token_traite";
+        } else {
+            $method = "display_$class";
+        }
         
         if (method_exists($this, $method)) {
             $return = $this->$method($node, $level + 1);

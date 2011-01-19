@@ -25,7 +25,7 @@ class _interface extends instruction {
     function __construct($expression = null) {
         parent::__construct(array());
         
-        $this->name = $this->toToken_traite($expression[0]);
+        $this->name = $this->makeProcessedToken('_interfacename_',$expression[0]);
         unset($expression[0]);
         $this->block = array_pop($expression);
         
