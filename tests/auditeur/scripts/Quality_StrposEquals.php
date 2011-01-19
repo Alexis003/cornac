@@ -2,6 +2,7 @@
 
 // should be spotted
 if (strpos($a, $b)) { }
+while (strpos($aw, $bw)) { }
 
 // should be spotted
 if (strpos($c, $d) == 0) { }

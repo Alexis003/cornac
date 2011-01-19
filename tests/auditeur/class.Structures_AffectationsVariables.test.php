@@ -24,7 +24,7 @@ class Structures_AffectationsVariables_Test extends Auditeur_Framework_TestCase
         $this->expected = array('$a','$b',
                                 '$c','$d',
                                 '$e','$g',
-                                '$j','$objet',
+                                '$j','$objet->propriete',
                                 '$statique','$k',
                                 '$l','$m',
                                 '$fe_key',
