@@ -30,7 +30,7 @@ class _interface extends instruction {
         $this->block = array_pop($expression);
         
         foreach($expression as $e) {
-            $this->extends[] = $this->makeToken_traite($e);
+            $this->extends[] = $this->makeProcessedToken('_extends_', $e);
         }
     }
 
