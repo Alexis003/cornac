@@ -35,7 +35,7 @@ JOIN <tokens> T2
     ON T2.file = T1.file AND
        T2.left = T1.left + 3
 WHERE T1.code IN ('preg_match','preg_replace','preg_replace_callback','preg_match_all','preg_grep') AND
-      T1.type = 'token_traite'
+      T1.type = '_functionname_'
 SQL;
         $this->exec_query_insert('report',$query);
 
