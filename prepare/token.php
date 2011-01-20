@@ -282,7 +282,6 @@ class Token {
         
         if (!in_array($class, array('_extends_',
                                     '_implements_',
-                                    'token_traite',
                                     '_classname_',
                                     '_interfacename_',
                                     '_abstract_',
@@ -322,12 +321,7 @@ class Token {
         $return->setLine($token->getLine());
         
         return $return;
-    }    
-    
-    function makeToken_traite($token) {
-        return $this->makeProcessedToken('token_traite', $token);
     }
-
 
     static function applyRegex($t, $class, $r) { 
         $args = $r->getArgs();
