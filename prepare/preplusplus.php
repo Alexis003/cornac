@@ -24,7 +24,7 @@ class preplusplus extends instruction {
     function __construct($expression) {
         parent::__construct(array());
         
-        $this->operator = $this->makeToken_traite($expression[0]);
+        $this->operator = $this->makeProcessedToken('_preplusplus_', $expression[0]);
         $this->variable  = $expression[1];
     }
 

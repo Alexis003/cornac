@@ -25,7 +25,7 @@ class typehint extends token {
         parent::__construct(array());
         
         if ($expression[0]->checkClass('Token')) {
-            $this->type = $this->makeToken_traite($expression[0]);
+            $this->type = $this->makeProcessedToken('_typehint_',$expression[0]);
         } else {
             $this->type = $expression[0];
         }

@@ -23,7 +23,7 @@ class _goto extends instruction {
     function __construct($expression) {
         parent::__construct(array());
         
-        $this->label = $this->makeToken_traite($expression[0]);
+        $this->label = $this->makeProcessedToken('_goto_', $expression[0]);
     }
 
     function __toString() {

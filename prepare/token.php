@@ -287,6 +287,30 @@ class Token {
                                     '_interfacename_',
                                     '_abstract_',
                                     '_final_',
+                                    '_static_',
+                                    '_continue_',
+                                    '_break_',
+                                    '_catch_',
+                                    '_ppp_',
+                                    '_nsseparator_',
+                                    '_typehint_',
+                                    '_sign_',
+                                    '_postplusplus_',
+                                    '_preplusplus_',
+                                    '_operation_',
+                                    '_label_',
+                                    '_comparison_',
+                                    '_cast_',
+                                    '_logical_',
+                                    '_goto',
+                                    '_nsname_',
+                                    '_usednsname_',
+                                    '_reference_',
+                                    '_bitshift_',
+                                    '_affectation_',
+                                    '_functionname_',
+                                    '_foreacharray_',
+                                    '_goto_',
                                     ))) { 
             print "Attempt to process a token to an unknown class : $class!\n";
             die(__METHOD__);
@@ -621,22 +645,7 @@ class Token {
                        T_UNSET_CAST);
         return $this->checkToken($liste);
     }
-/*
-    function toProcessedToken($class, $token) {
-        if ($token->checkClass('Token')) {
-            $return = new $class($token);
-            $return->replace($token);
-        } else {
-            $return = $token;
-        }
-        
-        return $return;
-    }
-    
-    function toToken_traite($token) {
-        return $this->toProcessedToken('token_traite', $token);
-    }
-    */
+
     function stopOnError($message) {
         $bt = debug_backtrace();
         print "Message : $message\n";

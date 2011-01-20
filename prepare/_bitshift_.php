@@ -17,48 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class comparison extends instruction {
-    protected $left = null;
-    protected $operator = null;
-    protected $right = null;
-    
-    function __construct($expression) {
-        parent::__construct(array());
-        
-        if (is_array($expression) && count($expression) == 3) {
-            $this->left = $expression[0];
-            $this->operator = $this->makeProcessedToken('_comparison_', $expression[1]);
-            $this->right = $expression[2];
-        } else {
-            $this->stopOnError("Wrong number of arguments  : '".count($expression)."' in ".__METHOD__);
-        }
-    }
-
-    function __toString() {
-        return __CLASS__." ".$this->left." ".$this->operator." ".$this->right;
-    }
-
-    function getRight() {
-        return $this->right;
-    }
-
-    function getOperator() {
-        return $this->operator;
-    }
-
-    function getLeft() {
-        return $this->left;
-    }
-
-    function neutralise() {
-       $this->left->detach();
-       $this->operator->detach();
-       $this->right->detach();
-    }
-
-    static function getRegex() {
-        return array('comparison_regex');
-    }
+class _bitshift_ extends token_traite {
 }
 
 ?>

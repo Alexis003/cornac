@@ -27,7 +27,7 @@ class _use extends instruction {
         $this->namespace = $expression[0];
         
         if (isset($expression[1])) {
-            $this->alias = $this->makeToken_traite($expression[1]);
+            $this->alias = $this->makeProcessedToken('_usednsname_', $expression[1]);
         }
         // @todo check for too many arguments?
     }

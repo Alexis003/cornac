@@ -36,7 +36,7 @@ class _new extends instruction {
                 $this->args = $expression[1];
             }
         } elseif ($constructor->checkClass(array('constante'))) {
-            $this->class =  new token_traite($constructor->getName());
+            $this->class =  new _classname_($constructor->getName());
             if (!isset($expression[1])) {
                 $this->args = new arglist();
             } else {
@@ -51,7 +51,7 @@ class _new extends instruction {
                 $this->args = $expression[1];
             }
         } elseif ($constructor->checkToken(T_STATIC) ) {
-            $this->class = $this->makeToken_traite($constructor);
+            $this->class = $this->makeProcessedToken('_static_', $constructor);
 
             if (!isset($expression[1])) {
                 $this->args = new arglist();

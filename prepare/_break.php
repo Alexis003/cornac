@@ -24,11 +24,11 @@ class _break extends instruction {
         parent::__construct(array());
         
         if (!isset($expression[1])) {
-            $this->levels = new token_traite(1);
+            $this->levels = new _break_(1);
         } elseif ($expression[1]->checkClass('parenthesis')) {
-            $this->levels =  new token_traite($expression[1]->getContenu()->getCode());
+            $this->levels =  new _break_($expression[1]->getContenu()->getCode());
         } else {
-            $this->levels =  new token_traite($expression[1]->getCode());
+            $this->levels =  new _break_($expression[1]->getCode());
         }
     }
 

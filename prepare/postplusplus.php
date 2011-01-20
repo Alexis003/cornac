@@ -25,7 +25,7 @@ class postplusplus extends instruction {
         parent::__construct(array());
             
         $this->variable  = $expression[0];
-        $this->operator = $this->makeToken_traite($expression[1]);
+        $this->operator = $this->makeProcessedToken('_postplusplus_', $expression[1]);
     }
 
     function __toString() {

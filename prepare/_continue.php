@@ -26,7 +26,7 @@ class _continue extends instruction {
         if (!isset($expression[1])) {
             $this->levels = new token_traite(1);
         } else {
-            $this->levels = new token_traite($expression[1]->getCode());
+            $this->levels = new _continue_($expression[1]->getCode());
         }
     }
 

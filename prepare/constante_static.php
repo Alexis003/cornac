@@ -26,7 +26,7 @@ class constante_static extends token {
         
         if (is_array($expression)) {
             if ($expression[0]->checkClass('Token')) {
-                $this->class = $this->makeToken_traite($expression[0]);
+                $this->class = $this->makeProcessedToken('_classname_', $expression[0]);
             } else {
                 $this->class = $expression[0];
             }

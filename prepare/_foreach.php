@@ -48,7 +48,7 @@ class _foreach extends instruction {
         
         if (count($expression) == 4) {
             if ($expression[0]->checkClass('Token')) {
-                $this->array = $this->makeToken_traite($expression[0]);
+                $this->array = $this->makeProcessedToken('_foreacharray_', $expression[0]);
             } else {
                 $this->array = $expression[0];
             }
@@ -57,7 +57,7 @@ class _foreach extends instruction {
             $this->block = $expression[3];
         } else {
             if ($expression[0]->checkClass('Token')) {
-                $this->array = $this->makeToken_traite($expression[0]);
+                $this->array = $this->makeProcessedToken('_foreacharray_', $expression[0]);
             } else {
                 $this->array = $expression[0];
             }

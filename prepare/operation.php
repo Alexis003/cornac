@@ -27,7 +27,7 @@ class operation extends instruction {
         
         if (count($expression) == 3) {
             $this->left = $expression[0];
-            $this->operation = $this->makeToken_traite($expression[1]);
+            $this->operation = $this->makeProcessedToken('_operation_', $expression[1]);
             $this->right = $expression[2];
         } else {
             $this->stopOnError("We shouldn't reach here");
