@@ -27,55 +27,44 @@ class Classes_PropertiesPublic extends modules {
 	
 	public function analyse() {
         $this->clean_report();
-        
-        // @doc cas of simple public var
-        $query = <<<SQL
-SELECT NULL, T1.file, CONCAT(T1.class,'::',T2.code), T1.id,  '{$this->name}', 0
-FROM <tokens> T1 
-LEFT JOIN <tokens> T2
-    ON T1.left + 1 = T2.left AND
-       T1.file = T2.file 
-WHERE T1.type = '_var' AND
-      T2.type = 'variable'
-SQL;
-        $this->exec_query_insert('report',$query);
 
-        // @doc cas of simple public var
+        // @doc case of simple public var and ppp : public $x
         $query = <<<SQL
 SELECT NULL, T1.file, CONCAT(T1.class,'::',T3.code), T1.id,  '{$this->name}', 0
 FROM <tokens> T1 
 LEFT JOIN <tokens> T2
     ON T1.left + 1 = T2.left AND
-       T1.file = T2.file 
+       T1.file = T2.file     AND
+       T2.code = 'public'    AND
+       T2.type = '_ppp_'
 JOIN <tokens> T3
-    ON T1.file = T2.file AND 
+    ON T1.file = T2.file     AND 
        T3.left = T1.left + 3 AND
-       T1.file = T3.file AND
-       T3.type != 'token_traite'
-WHERE T1.type = '_var' AND
-     T2.code = 'public'
+       T1.file = T3.file     AND
+       T3.type != '_static_'
+WHERE T1.type = '_var'
 SQL;
         $this->exec_query_insert('report',$query);
 
+// @doc case of static public $x
+// @doc case of public static $x
         $query = <<<SQL
 SELECT NULL, T1.file, CONCAT(T1.class,'::',T4.code), T1.id,  '{$this->name}', 0
 FROM <tokens> T1 
 JOIN <tokens> T2
     ON T1.left + 1 = T2.left AND
-       T1.file = T2.file AND 
-       T2.type = 'token_traite'
+       T1.file = T2.file     AND 
+       T2.type = '_ppp_'     AND
+       T2.code = 'public'
 JOIN <tokens> T3
-    ON T1.file = T2.file AND 
-       T3.left = T1.left + 3 AND
-       T1.file = T3.file AND
-       T3.type = 'token_traite'
+    ON T3.left = T1.left + 3 AND
+       T1.file = T3.file     AND
+       T3.type = '_static_' 
 JOIN <tokens> T4
     ON T1.file = T4.file AND 
        T4.left = T1.left + 5 AND
-       T1.file = T4.file AND
-       T4.type != 'token_traite'
-WHERE T1.type = '_var' AND
-     (T2.code = 'public' OR T3.code='public')
+       T1.file = T4.file
+WHERE T1.type = '_var'
 SQL;
         $this->exec_query_insert('report',$query);
 
