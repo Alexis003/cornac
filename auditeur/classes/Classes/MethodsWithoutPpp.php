@@ -34,7 +34,7 @@ SELECT NULL, T1.file, T1.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 LEFT JOIN <tokens> T2
     ON T2.file = T1.file        AND
-       T2.type = 'token_traite' AND
+       T2.type = '_ppp_' AND
        (T2.left = T1.left + 1 OR 
         T2.left = T1.left + 3 OR 
         T2.left = T1.left + 5
