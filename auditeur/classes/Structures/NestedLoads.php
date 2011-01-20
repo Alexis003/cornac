@@ -25,6 +25,7 @@ class Structures_NestedLoads extends modules {
         parent::__construct($mid);
 	}
 	
+	// @todo check this. One need the list of heavy functions...!
 	public function analyse() {
         $this->clean_report();
 
@@ -35,7 +36,7 @@ JOIN <tokens> T2
     ON T1.file = T2.file AND 
        T2.left BETWEEN T1.left AND T1.right
 WHERE T1.type in ('_while','_for','_foreach') AND 
-      T2.type IN  ('token_traite')
+      T2.type IN  ('_functionname_')
 GROUP BY T1.file, T1.left, T2.type
 HAVING COUNT(*) > 1
 SQL;
