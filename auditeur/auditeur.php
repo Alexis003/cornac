@@ -241,6 +241,14 @@ $modules = array(
 'Pear',
 'Pear_Dependencies',
 'Quality_ClassesNotInSameFile',
+'Quality_StrposEquals',
+'Quality_ConstructNameOfClass',
+
+'Drupal_Hook7',
+'Drupal_Hook6',
+'Drupal_Hook5',
+'Structures_FluentProperties',
+'Classes_Exceptions',
 // new analyzers
 );
 
@@ -352,11 +360,6 @@ if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
 
 // validation done
 
-
-// rendu (templates) @_
-include 'classes/sommaire.php';
-$sommaire = new sommaire();
-
 // @inclusions abstract classes
 include 'classes/abstract/modules.php';
 include 'classes/abstract/modules_classe_dependances.php';
@@ -417,7 +420,7 @@ function analyse_module($module_name) {
         return ;
     }
 
-    $res = $DATABASE->query("SELECT AVG(completed) / 100 AS completed FROM <tasks> WHERE task='tokenize'");
+    $res = $DATABASE->query("SELECT AVG(completed) AS completed FROM <tasks> WHERE task='tokenize' AND completed != 3");
     $row = $res->fetch(PDO::FETCH_ASSOC);
     $completed = $row['completed'];
 
@@ -429,10 +432,10 @@ function analyse_module($module_name) {
         $done = $res->fetchAll(PDO::FETCH_ASSOC);
         $done = multi2array($done, 'target');
         
-        $manque = array_diff($dependances, $done);
+        $missing = array_diff($dependances, $done);
         
-        if (count($manque) > 0) {
-            foreach($manque as $m) {
+        if (count($missing) > 0) {
+            foreach($missing as $m) {
                 $out = "  +  $m ";
                 if ($INI['dependences']) {
                     analyse_module($m);
@@ -442,6 +445,7 @@ function analyse_module($module_name) {
                     if (isset($row['module'])) {
                         print "$out omitted (already in base) \n";
                     } else {
+                        $DATABASE->query('INSERT INTO <tasks> VALUES (0, "auditeur", "'.$m.'", "", now(), 0)');
                         analyse_module($m);
                         print "$out done \n";
                     }
@@ -466,7 +470,7 @@ function analyse_module($module_name) {
 
     $module->sauve();
 
-    $sommaire->add($module);
+//    $sommaire->add($module);
     $res = $DATABASE->query("UPDATE <tasks> SET completed = $completed WHERE target = '$module_name'");
 }
 
