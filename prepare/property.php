@@ -25,15 +25,7 @@ class property extends token {
         parent::__construct();
         
         if (is_array($expression) && count($expression) == 2) {
-            // @todo How is this possible ? 
-            if ($expression[0]->checkClass('Token')) {
-                $object = new token_traite($expression[0]);
-                $object->replace($expression[0]);
-            } else {
-                $object = $expression[0];
-            }
-
-            $this->object = $object;
+            $this->object = $expression[0];
             
             $this->property = $expression[1];
         } else {
