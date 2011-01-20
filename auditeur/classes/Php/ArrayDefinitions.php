@@ -29,18 +29,18 @@ class Php_ArrayDefinitions extends modules {
         $this->clean_report();
 
 	    $query = <<<SQL
-SELECT NULL, T2.file, CONCAT(SUM(IF(T3.type='token_traite',0,1)), ' elements'), T2.id, '{$this->name}', 0
+SELECT NULL, T2.file, CONCAT(SUM(IF(T3.type='_empty_',0,1)), ' elements'), T2.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens> T2
-    ON T2.file = T1.file AND
-       T2.left = T1.right + 1
+    ON T2.file = T1.file      AND
+       T2.left = T1.right + 1 AND
+       T2.type='arglist'
 JOIN <tokens> T3
     ON T3.file = T1.file AND
        T3.left BETWEEN T2.left AND T2.right AND
        T3.level = T2.level + 1 
 WHERE T1.code='array' AND 
-       T2.type='arglist' AND
-       T2.right - T2.left > 1
+      T2.right - T2.left > 1
 GROUP BY T2.id
 SQL;
         $this->exec_query_insert('report', $query);
