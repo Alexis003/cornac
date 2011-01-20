@@ -1,5 +1,6 @@
 tests/tokenizeur/scripts/codephp.25.test.php
-  codephp <?php 
+  codephp <?php
+
   code : 
       ifthen if
       Condition 0) 
@@ -16,5 +17,4 @@ tests/tokenizeur/scripts/codephp.25.test.php
               rawtext 
               Texte : "311 """
   rawtext 
-  Texte : "311 "C
-""
+  Texte : "311 "C""
