@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _functionname_ extends token_traite {
+class _functionname_ extends processedToken {
 }
 
 ?>

@@ -26,8 +26,8 @@ class arglist extends token {
         foreach($list as $l) {  
             if (is_null($l)) {
                 $this->list[] = $l;
-            } elseif ($l->checkCode(',')) {
-                $this->list[] = null;
+            } elseif ($l->checkOperator(',')) {
+                $this->list[] = new _empty_(array());
             } else {
                 $this->list[] = $l;
             }

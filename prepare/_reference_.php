@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _reference_ extends token_traite {
+class _reference_ extends processedToken {
 }
 
 ?>

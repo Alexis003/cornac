@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _typehint_ extends token_traite {
+class _typehint_ extends processedToken {
 }
 
 ?>

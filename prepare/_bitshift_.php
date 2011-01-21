@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _bitshift_ extends token_traite {
+class _bitshift_ extends processedToken {
 }
 
 ?>

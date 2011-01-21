@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _foreacharray_ extends token_traite {
+class _foreacharray_ extends processedToken {
 }
 
 ?>

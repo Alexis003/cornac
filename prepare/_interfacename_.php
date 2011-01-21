@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _interfacename_ extends token_traite {
+class _interfacename_ extends processedToken {
 }
 
 ?>

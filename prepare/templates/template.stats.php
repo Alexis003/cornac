@@ -435,7 +435,7 @@ class template_stats extends template {
         $this->display($node->getIndex(), $niveau + 1);
     }
 
-    function display_token_traite($node, $niveau) {
+    function display_processedToken($node, $niveau) {
         $this->addStat(__FUNCTION__);
     }
 

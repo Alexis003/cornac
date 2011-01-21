@@ -248,6 +248,10 @@ class template_tree extends template {
         $this->display($node->getBlock(), $level + 1);
     }
 
+    function display__empty_($node, $level) {
+        print str_repeat('  ', $level)."[empty]\n";
+    }
+
     function display__for($node, $level) {
         print str_repeat('  ', $level).get_class($node)." \n";
         print str_repeat('  ', $level)."  Init : ".$node->getInit().";\n";
@@ -484,7 +488,7 @@ class template_tree extends template {
         $this->display($node->getException(), $level + 1);
     }
 
-    function display_token_traite($node, $level) {
+    function display_processedToken($node, $level) {
         print get_class($node);
     
         print str_repeat('  ', $level).$node->getCode()." \n";

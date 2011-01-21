@@ -99,7 +99,7 @@ class template_cache extends template {
         }
         $class = get_class($node);
         if (substr($class, -1) == '_') {
-            $method = "display_token_traite";
+            $method = "display_processedToken";
         } else {
             $method = "display_$class";
         }
@@ -127,6 +127,7 @@ class template_cache extends template {
             print get_class($node)."\n";
             print_r(xdebug_get_function_stack());
             print_r($node);
+            print "No database id to use for $node\n";
             die();
         }
         
@@ -150,7 +151,7 @@ class template_cache extends template {
 ////////////////////////////////////////////////////////////////////////
 // database functions
 ////////////////////////////////////////////////////////////////////////
-    function display_token_traite($node, $level) {
+    function display_processedToken($node, $level) {
         $node->cache = $node->getCode();
         return $this->savenode($node);
     }
@@ -448,6 +449,11 @@ class template_cache extends template {
     function display__default($node, $level) {
         $this->display($node->getBlock(), $level + 1);
         $node->cache = 'default'; 
+        return $this->savenode($node);
+    }
+
+    function display__empty_($node, $level) {
+        $node->cache = '[empty]'; 
         return $this->savenode($node);
     }
 

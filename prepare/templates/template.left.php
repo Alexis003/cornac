@@ -250,7 +250,7 @@ class template_left extends template {
         
     }
 
-    function display_token_traite($node, $niveau) {
+    function display_processedToken($node, $niveau) {
         
     }
 

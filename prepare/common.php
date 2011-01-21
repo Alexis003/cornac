@@ -23,7 +23,7 @@ unset($includes['prepare/common.php']);
 unset($includes['prepare/analyseur.php']);
 
 $firsts = array('prepare/token.php',
-                'prepare/token_traite.php',
+                'prepare/processedToken.php',
                 'prepare/instruction.php',
                 'prepare/analyseur_regex.php',
                 'prepare/variable.php',

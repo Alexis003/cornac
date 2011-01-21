@@ -134,7 +134,7 @@ class template_dot extends template {
 ////////////////////////////////////////////////////////////////////////
 // @section dot function 
 ////////////////////////////////////////////////////////////////////////
-    function display_token_traite($node, $level) {
+    function display_processedToken($node, $level) {
         $this->dot_label($node->dotId, $node->getCode() );
     }
 

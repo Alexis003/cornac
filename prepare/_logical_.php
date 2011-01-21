@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _logical_ extends token_traite {
+class _logical_ extends processedToken {
 }
 
 ?>

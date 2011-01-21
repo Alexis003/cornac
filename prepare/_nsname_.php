@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _nsname_ extends token_traite {
+class _nsname_ extends processedToken {
 }
 
 ?>

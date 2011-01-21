@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class token_traite extends Token {
+class processedToken extends Token {
     
     function __construct($t) {
         parent::__construct();

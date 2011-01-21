@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _postplusplus_ extends token_traite {
+class _postplusplus_ extends processedToken {
 }
 
 ?>

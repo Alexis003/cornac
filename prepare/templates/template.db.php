@@ -57,7 +57,7 @@ class template_db extends template {
         }
         $class = get_class($node);
         if (substr($class, -1) == '_') {
-            $method = "display_token_traite";
+            $method = "display_processedToken";
         } else {
             $method = "display_$class";
         }
@@ -65,7 +65,7 @@ class template_db extends template {
         if (method_exists($this, $method)) {
             $return = $this->$method($node, $level);
         } else {
-            print "Displaying ".__CLASS__." for '".$method."'. Aborting\n";
+            print "Displaying ".__CLASS__." for missing method '".$method."'. Aborting\n";
             die(__METHOD__."\n");
         }
         if (!is_null($node->getNext())){
@@ -147,11 +147,11 @@ class template_db extends template {
 ////////////////////////////////////////////////////////////////////////
 // @section database functions
 ////////////////////////////////////////////////////////////////////////
-    function display_token_traite($node, $level) {
+    function display_processedToken($node, $level) {
         $node->myId = $this->getNextId();
         $node->myleft = $this->getIntervalleId();
         $node->myright = $this->getIntervalleId();
-        return $this->savenode($node, $level);        
+        return $this->savenode($node, $level);
     }
 
     function display_affectation($node, $level) {
@@ -188,8 +188,8 @@ class template_db extends template {
 
         $elements = $node->getList();
         if (count($elements) == 0) {
-            $token_traite = new token_traite(new Token());
-            $this->display($token_traite, $level + 1);
+            $processedToken = new _empty_(new Token());
+            $this->display($processedToken, $level + 1);
             // @note create an empty token, to materialize the empty list
         } else {
             $labels = array();
@@ -483,6 +483,15 @@ class template_db extends template {
         $node->setCode('');
 
         $this->display($node->getBlock(), $level + 1);
+
+        $node->myright = $this->getIntervalleId();
+        return $this->savenode($node, $level);
+    }
+
+    function display__empty_($node, $level) {
+        $node->myId = $this->getNextId();
+        $node->myleft = $this->getIntervalleId();
+        $node->setCode('[empty]');
 
         $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);

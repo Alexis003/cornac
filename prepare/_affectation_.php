@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _affectation_ extends token_traite {
+class _affectation_ extends processedToken {
 }
 
 ?>

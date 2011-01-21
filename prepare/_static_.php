@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _static_ extends token_traite {
+class _static_ extends processedToken {
 }
 
 ?>

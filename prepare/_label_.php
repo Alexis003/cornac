@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _label_ extends token_traite {
+class _label_ extends processedToken {
 }
 
 ?>

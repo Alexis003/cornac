@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _comparison_ extends token_traite {
+class _comparison_ extends processedToken {
 }
 
 ?>

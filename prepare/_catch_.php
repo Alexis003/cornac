@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _catch_ extends token_traite {
+class _catch_ extends processedToken {
 }
 
 ?>

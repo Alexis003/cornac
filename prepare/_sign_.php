@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _sign_ extends token_traite {
+class _sign_ extends processedToken {
 }
 
 ?>

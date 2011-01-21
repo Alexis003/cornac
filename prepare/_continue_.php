@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _continue_ extends token_traite {
+class _continue_ extends processedToken {
 }
 
 ?>

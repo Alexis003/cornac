@@ -24,7 +24,7 @@ class _continue extends instruction {
         parent::__construct(array());
         
         if (!isset($expression[1])) {
-            $this->levels = new token_traite(1);
+            $this->levels = new _continue_(1);
         } else {
             $this->levels = new _continue_($expression[1]->getCode());
         }

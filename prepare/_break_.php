@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _break_ extends token_traite {
+class _break_ extends processedToken {
 }
 
 ?>

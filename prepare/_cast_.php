@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _cast_ extends token_traite {
+class _cast_ extends processedToken {
 }
 
 ?>

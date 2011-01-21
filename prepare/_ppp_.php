@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _ppp_ extends token_traite {
+class _ppp_ extends processedToken {
 }
 
 ?>

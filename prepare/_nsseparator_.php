@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _nsseparator_ extends token_traite {
+class _nsseparator_ extends processedToken {
 }
 
 ?>
