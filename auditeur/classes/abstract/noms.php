@@ -36,12 +36,11 @@ FROM <tokens> T1
 JOIN <tokens_tags> TT
     ON T1.id = TT.token_id  
 JOIN <tokens> T2 
-    ON TT.token_sub_id = T2.id AND
+    ON TT.token_sub_id = T2.id   AND
        T1.file = T2.file
-WHERE T1.type='$type_token'      AND 
-      TT.type = '$type_tag';
+WHERE T1.type ='$type_token'     AND 
+      TT.type = '$type_tag'
 SQL;
-
         $this->exec_query_insert('report', $query);
     }
 }
