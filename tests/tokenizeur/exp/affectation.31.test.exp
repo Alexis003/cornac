@@ -8,8 +8,11 @@ tests/tokenizeur/scripts/affectation.31.test.php
           function call : 359 "list": 
               arglist 
               0 : 
+                  [empty]
               1 : 
+                  [empty]
               2 : 
+                  [empty]
        "=" 
       right : 
           functioncall explode

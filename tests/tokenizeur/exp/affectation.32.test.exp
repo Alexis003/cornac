@@ -8,9 +8,11 @@ tests/tokenizeur/scripts/affectation.32.test.php
           function call : 359 "list": 
               arglist 
               0 : 
+                  [empty]
               1 : 
                   variable $x
               2 : 
+                  [empty]
               3 : 
                   variable $y
        "=" 
