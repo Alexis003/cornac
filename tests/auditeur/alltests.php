@@ -150,6 +150,10 @@ $tests = array(
 'class.Drupal_Hook6.test.php',
 'class.Drupal_Hook5.test.php',
 'class.Structures_FluentProperties.test.php',
+'class.Classes_InterfacesUnused.test.php',
+'class.Classes_InterfacesUsed.test.php',
+'class.Variables_AllCaps.test.php',
+'class.Variables_StrangeChars.test.php',
 // new tests
 );
 
