@@ -112,14 +112,14 @@ $headers = array('Variables' => 'SELECT COUNT(DISTINCT element)  FROM <report> W
                  'Class Constants'   => 'SELECT COUNT(DISTINCT element) FROM <report> WHERE module="Classes_Constants"',
                  'Magic methods'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <report> WHERE module="Classes_MethodsSpecial"',
                  'Interfaces'   => 'SELECT COUNT(DISTINCT element)  FROM <report> WHERE module="Classes_Interfaces"',
-                 'Namespaces'   => 'SELECT COUNT(DISTINCT element)  FROM <report> WHERE module="Classes_MethodsSpecial"',
+                 'Namespaces'   => 'SELECT COUNT(DISTINCT element)  FROM <report> WHERE module="Php_Namespace"',
                  'Functions'   => 'SELECT COUNT(DISTINCT element)  FROM <report> WHERE module="Functions_Definitions"',
                  'Constants'   => 'SELECT COUNT(DISTINCT element) FROM <report> WHERE module="Constants_Definitions"',
                  'Fluent interfaces'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <report> WHERE module="Structures_FluentInterface"',
                  'References'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <report> WHERE module="Php_References"',
                  'Variable variables'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <report> WHERE module="Variables_Variables"',
                  'Ticks'   => 'SELECT IF(COUNT(*) > 0, "Yes","No")  FROM <tokens> WHERE type="_declare"',
-                 'Uses Zend Framework'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <report> WHERE module="Zf_Classes"',
+                 'Uses Zend Framework'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <report> WHERE module="Zf_Dependencies"',
                  'Uses Symfony'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <report> WHERE module="Sf_Dependencies"',
                  );
 
