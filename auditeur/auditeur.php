@@ -50,6 +50,9 @@ $options = array('help' => array('help' => 'display this help',
                                       'get_arg_value' => null,
                                       'option' => 'd',
                                       'compulsory' => false),
+                 'force'     => array('help' => 'force update of the analysers',
+                                      'option' => 'f',
+                                      'compulsory' => false),
                  );
 include('../libs/getopts.php');
 
@@ -136,7 +139,6 @@ $modules = array(
 'Functions_Undefined',
 'Functions_Unused',
 'Functions_UnusedReturn',
-//'functions_with_callback',
 'Functions_WithoutReturns',
 
 'Literals', 
@@ -249,15 +251,21 @@ $modules = array(
 'Drupal_Hook5',
 'Structures_FluentProperties',
 'Classes_Exceptions',
+'Classes_InterfacesUsed',
+'Classes_InterfacesUnused',
+'Variables_AllCaps',
+'Variables_StrangeChars',
 // new analyzers
 );
 
 include('../libs/database.php');
 $DATABASE = new database();
 
+define('FORCE', $INI['force']);
+
 if ($INI['init']) {
     if ($INI['analyzers'] == 'all' ) {
-     // default : all modules
+     // @doc default : all modules
     } else {
         $m = explode(',', $INI['analyzers']);
 
@@ -275,11 +283,13 @@ if ($INI['init']) {
         }
     }
     
-    $query = "DELETE FROM <tasks> WHERE task='auditeur' AND target IN ('".join("', '", $modules)."')";
-    $DATABASE->query($query);
+    if (FORCE) {
+        $query = "DELETE FROM <tasks> WHERE task='auditeur' AND target IN ('".join("', '", $modules)."')";
+        $DATABASE->query($query);
     
-    $query = "INSERT INTO <tasks> (task, target, date_update, completed) VALUES ( 'auditeur', '".join("',NOW(), 0) ,('auditeur', '", $modules)."', NOW(), 0)";
-    $DATABASE->query($query);
+        $query = "INSERT INTO <tasks> (task, target, date_update, completed) VALUES ( 'auditeur', '".join("',NOW(), 0) ,('auditeur', '", $modules)."', NOW(), 0)";
+        $DATABASE->query($query);
+    }
     
 // @todo fix the problem with the path
 /*
@@ -335,7 +345,6 @@ if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
   `module` varchar(50) NOT NULL
 )');
 
-//    $DATABASE->query('DELETE FROM '.$INI['cornac']['prefix'].'_report_dot WHERE cluster = "'.$file.'"');
     $DATABASE->query('CREATE TABLE IF NOT EXISTS <report_dot> (
   `a` varchar(255) NOT NULL,
   `b` varchar(255) NOT NULL,
@@ -358,7 +367,7 @@ if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
 
     print count($modules)." modules will be treated : ".join(', ', $modules)."\n";
 
-// validation done
+// @synopsis validation done
 
 // @inclusions abstract classes
 include 'classes/abstract/modules.php';
@@ -367,8 +376,6 @@ include 'classes/abstract/modules_head.php';
 include 'classes/abstract/functioncalls.php';
 include 'classes/abstract/typecalls.php';
 include 'classes/abstract/noms.php';
-
-//$modules_faits = array();
 
 // @todo the init could take into account the current content of the database, avoiding reprocess
 
@@ -407,13 +414,20 @@ function __autoload($classname) {
 function analyse_module($module_name) {
     global  $DATABASE, $sommaire, $INI;
 
-    $res = $DATABASE->query('SELECT * FROM <report_module> WHERE module="'.$m.'"');
-    $row = $res->fetch();
-    if (isset($row['module'])) {
-        print "$out omitted (already in base) \n";
-        return true;
+    if (!FORCE) {
+        $res = $DATABASE->query('SELECT * FROM <report_module> WHERE module = "'.$module_name.'"');
+        $row = $res->fetch();
+        
+        if (isset($row['module'])) {
+            $res = $DATABASE->query('SELECT * FROM <tasks> WHERE target = "'.$module_name.'"');
+            $row = $res->fetch();
+            if ($row['completed'] == 100) {
+                print "$module_name omitted (already in base) \n";
+                return true;
+            } 
+        }
     }
-
+    
     $res = $DATABASE->query("SELECT completed FROM <tasks> WHERE target='$module_name'");
     $row = $res->fetch(PDO::FETCH_ASSOC);
     if ($row['completed'] == 100) {
@@ -428,11 +442,15 @@ function analyse_module($module_name) {
     $dependances = $module->dependsOn();
     
     if (count($dependances) > 0) {
-        $res = $DATABASE->query("SELECT target FROM <tasks> WHERE completed = 100 AND task='auditeur'");
-        $done = $res->fetchAll(PDO::FETCH_ASSOC);
-        $done = multi2array($done, 'target');
+        if (!FORCE) {
+            $res = $DATABASE->query("SELECT target FROM <tasks> WHERE completed = 100 AND task='auditeur'");
+            $done = $res->fetchAll(PDO::FETCH_ASSOC);
+            $done = multi2array($done, 'target');
         
-        $missing = array_diff($dependances, $done);
+            $missing = array_diff($dependances, $done);
+        } else {
+            $missing = $dependances;
+        }
         
         if (count($missing) > 0) {
             foreach($missing as $m) {
@@ -442,10 +460,10 @@ function analyse_module($module_name) {
                 } else {
                     $res = $DATABASE->query('SELECT * FROM <report_module> WHERE module="'.$m.'"');
                     $row = $res->fetch();
-                    if (isset($row['module'])) {
+                    if (!FOREC && isset($row['module'])) {
                         print "$out omitted (already in base) \n";
                     } else {
-                        $DATABASE->query('INSERT INTO <tasks> VALUES (0, "auditeur", "'.$m.'", "", now(), 0)');
+                        $DATABASE->query('REPLACE INTO <tasks> VALUES (0, "auditeur", "'.$m.'", "", now(), 0)');
                         analyse_module($m);
                         print "$out done \n";
                     }
@@ -470,7 +488,6 @@ function analyse_module($module_name) {
 
     $module->sauve();
 
-//    $sommaire->add($module);
     $res = $DATABASE->query("UPDATE <tasks> SET completed = $completed WHERE target = '$module_name'");
 }
 
