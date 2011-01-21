@@ -30,7 +30,7 @@ class Render_xml {
         foreach($lines as $id => $line) {
             $return .= "  <row id=\"$id\">\n";
             foreach($line as $col => $value) {
-                $return .= "    <$col>".htmlentities($value)."</$col>\n";
+                $return .= "    <$col>".htmlspecialchars($value)."</$col>\n";
             }
             $return .= "  </row>\n";
         }
