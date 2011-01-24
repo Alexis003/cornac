@@ -40,7 +40,7 @@ $options = array('help' => array('help' => 'display this help',
                                  'option' => 's',
                                  'compulsory' => false),
                  'analyzers' => array('help' => 'analyzers applied (default = all)',
-                                      'get_arg_value' => 'all',
+                                      'get_arg_value' => 'AuditeurDefault',
                                       'option' => 'a',
                                       'compulsory' => false),
                  'dependences' => array('help' => 'force update dependences',
@@ -83,6 +83,11 @@ $modules = array(
 'Classes_ToStringNoArg', 
 'Classes_Undefined',
 'Classes_Unused',
+'Classes_Exceptions',
+'Classes_InterfacesUsed',
+'Classes_InterfacesUnused',
+'Classes_Accessors',
+'Classes_PropertiesChained',
 
 'Constants',
 'Constants_Definitions',
@@ -92,6 +97,12 @@ $modules = array(
 'Commands',
 'Commands_Html',
 'Commands_Sql',
+
+'Drupal',
+'Drupal_Hook7',
+'Drupal_Hook6',
+'Drupal_Hook5',
+
 
 'Ext',
 'Ext_CallingBack',
@@ -177,6 +188,9 @@ $modules = array(
 'Quality_GpcUsage',
 'Quality_Indenting',
 'Quality_Mvc',
+'Quality_ClassesNotInSameFile',
+'Quality_StrposEquals',
+'Quality_ConstructNameOfClass',
 
 'Structures',
 'Structures_AffectationLiterals',
@@ -201,6 +215,8 @@ $modules = array(
 'Structures_MethodsCalls',
 'Structures_Parenthesis',
 'Structures_SwitchWithoutDefault',
+'Structures_FunctionsCalls',
+'Structures_FluentProperties',
 
 'Test',
 
@@ -214,6 +230,8 @@ $modules = array(
 'Variables_Unaffected',
 'Variables_Variables',
 'Variables_Affected',
+'Variables_AllCaps',
+'Variables_StrangeChars',
 
 'Zf',
 'Zf_Action',
@@ -231,8 +249,6 @@ $modules = array(
 'Zf_TypeView',
 'Zf_ViewVariables',
 
-'Structures_FunctionsCalls',
-'Classes_PropertiesChained',
 'Php_Namespace',
 
 'Sf',
@@ -242,20 +258,11 @@ $modules = array(
 
 'Pear',
 'Pear_Dependencies',
-'Quality_ClassesNotInSameFile',
-'Quality_StrposEquals',
-'Quality_ConstructNameOfClass',
 
-'Drupal_Hook7',
-'Drupal_Hook6',
-'Drupal_Hook5',
-'Structures_FluentProperties',
-'Classes_Exceptions',
-'Classes_InterfacesUsed',
-'Classes_InterfacesUnused',
-'Variables_AllCaps',
-'Variables_StrangeChars',
-'Classes_Accessors',
+'Inventaire',
+
+'AuditeurDefault',
+
 // new analyzers
 );
 
@@ -266,7 +273,7 @@ define('FORCE', $INI['force']);
 
 if ($INI['init']) {
     if ($INI['analyzers'] == 'all' ) {
-     // @doc default : all modules
+     // @doc every single modules
     } else {
         $m = explode(',', $INI['analyzers']);
 
