@@ -192,11 +192,8 @@ class template_db extends template {
             $this->display($processedToken, $level + 1);
             // @note create an empty token, to materialize the empty list
         } else {
-            $labels = array();
             foreach($elements as $id => &$e) {
-                if (is_null($e)) {
-                    // @empty_else
-                } else {
+                if (!is_null($e)) {
                     $this->display($e, $level + 1);
                 }
             }
@@ -911,11 +908,7 @@ class template_db extends template {
             $labels = array();
             $id = 0;
             foreach($elements as $id => &$e) {
-                if (is_null($e)) {
-                    continue; // @note just ignore this. Never encountered when we used a die
-                } else {
-                    $this->display($e, $level + 1);
-                }
+               $this->display($e, $level + 1);
             }
         }
 

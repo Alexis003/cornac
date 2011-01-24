@@ -20,19 +20,19 @@
 class arglist extends token {
     protected $list = array();
     
-    function __construct($list = array()) {
+    function __construct($expression = array()) {
         parent::__construct(array());
         
-        foreach($list as $l) {  
+        foreach($expression as $l) {  
             if (is_null($l)) {
                 $this->list[] = $l;
             } elseif ($l->checkOperator(',')) {
-                $this->list[] = new _empty_(array());
+                $this->list[] = new _empty_('[empty]');
             } else {
                 $this->list[] = $l;
             }
         }
-        if (isset($this->list[0])) {
+        if (isset($this->expression[0])) {
             $this->setLine($this->list[0]->getLine());
         }
     }
