@@ -21,7 +21,7 @@ $ini = array('mysql' => array('active' => 1,
                               'dsn' => 'mysql:dbname=analyseur;host=127.0.0.1',
                               'username' => 'root',
                               'password' => ''),
-             'cornac' => array('prefix' => 'jaguar' ) );
+             'cornac' => array('prefix' => 'webaixia' ) );
 $DATABASE = new database($ini);
 
 $res = $DATABASE->query('SHOW TABLES LIKE "'.$ini['cornac']['prefix'].'%"');

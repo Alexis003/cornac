@@ -18,8 +18,8 @@
  */    $query = "SELECT ML.module AS element, 
                      COUNT(RL.id) AS nb, 
                      COUNT(RL.id) - SUM(checked) AS todo 
-                 FROM <rapport_module> ML
-                 LEFT JOIN <rapport> RL
+                 FROM <report_module> ML
+                 LEFT JOIN <report> RL
                     ON ML.module = RL.module
                  GROUP BY ML.module";
     $res = $DATABASE->query($query);

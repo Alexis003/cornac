@@ -18,7 +18,7 @@
  */
  $query = "SELECT id, element, COUNT(*) AS nb,
                        COUNT(*) = SUM(checked) AS checked
-    FROM <rapport> TR
+    FROM <report> TR
     WHERE module='{$_CLEAN['module']}' 
         GROUP BY element 
         ORDER BY nb DESC";

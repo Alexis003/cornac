@@ -23,7 +23,7 @@ SELECT element AS element,
        COUNT(*) AS nb,
        id,
        COUNT(*) = SUM(checked) AS checked
-FROM <rapport> TR 
+FROM <report> TR 
 WHERE TR.module='{$_CLEAN['module']}'
 GROUP BY TR.file, TR.element
 SQL;

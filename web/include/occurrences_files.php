@@ -23,7 +23,7 @@
                        COUNT(*) AS nb,
                        id,
                        COUNT(*) = SUM(checked) AS checked
-                   FROM <rapport> 
+                   FROM <report> 
                    WHERE module='{$_CLEAN['module']}'
                    GROUP BY element, file
 SQL;

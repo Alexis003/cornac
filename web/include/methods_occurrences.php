@@ -22,7 +22,7 @@
                     COUNT(*) AS nb,
                     COUNT(*) = SUM(checked) AS checked,
                     CR.id
-            FROM <rapport> CR
+            FROM <report> CR
             JOIN <tokens> T1
                 ON CR.token_id = T1.id
                 WHERE module='{$_CLEAN['module']}' 

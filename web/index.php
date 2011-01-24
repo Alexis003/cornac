@@ -73,7 +73,7 @@ if (isset($translations[$_CLEAN['module']]['title'])) {
 $query_module = $DATABASE->quote($_CLEAN['module']);
 $query = <<<SQL
 SELECT * 
-    FROM <rapport_module> 
+    FROM <report_module> 
     WHERE module=$query_module AND 
           web = 'yes'
 SQL;
@@ -125,7 +125,7 @@ $entete .= "<td><strong>{$title}</strong><br />{$description}</td></tr></table>\
 if ($format == 'dot') {
     switch(@$_GET['type']) {
         case 'dot' : 
-            $query = "SELECT a, b, cluster FROM <rapport_dot> WHERE module='{$_CLEAN['module']}'";
+            $query = "SELECT a, b, cluster FROM <report_dot> WHERE module='{$_CLEAN['module']}'";
             $res = $DATABASE->query($query);
             $lignes = $res->fetchAll();
             include('format/dot.php');
@@ -136,7 +136,7 @@ if ($format == 'dot') {
             break;
 
         case 'gexf' : 
-            $query = "SELECT a, b, cluster FROM <rapport_dot> WHERE module='{$_CLEAN['module']}'";
+            $query = "SELECT a, b, cluster FROM <report_dot> WHERE module='{$_CLEAN['module']}'";
             $res = $DATABASE->query($query);
             $lignes = $res->fetchAll();
             include('format/gexf.php');
@@ -147,7 +147,7 @@ if ($format == 'dot') {
             break;
 
         case 'json' : 
-            $query = "SELECT a, b, cluster FROM <rapport_dot> WHERE module='{$_CLEAN['module']}'";
+            $query = "SELECT a, b, cluster FROM <report_dot> WHERE module='{$_CLEAN['module']}'";
             $res = $DATABASE->query($query);
             $lignes = $res->fetchAll();
             
@@ -157,7 +157,7 @@ if ($format == 'dot') {
             break;
 
         case 'text' : 
-            $query = "SELECT a, b, cluster FROM <rapport_dot> WHERE module='{$_CLEAN['module']}'";
+            $query = "SELECT a, b, cluster FROM <report_dot> WHERE module='{$_CLEAN['module']}'";
             $res = $DATABASE->query($query);
             $lignes = $res->fetchAll();
             
