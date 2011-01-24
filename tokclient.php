@@ -17,7 +17,7 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
-ini_set('memory_limit',1024*1024*1024);
+ini_set('memory_limit',620*1024*1024);
 error_reporting(E_ALL);
 ini_set('display_errors', 'on');
 
@@ -75,6 +75,7 @@ define('STATS',$INI['stats']);
 define('VERBOSE',$INI['verbose']);
 
 define('LOG',$INI['log']);
+mon_log("Inclusions\n");
 $limit = 0 + $INI['limit'];
 if ($limit) {
     print "Cycles = $limit\n";
@@ -169,6 +170,7 @@ class file_processor {
     
     function process_file($scriptsPHP, $limit) {
         global $file, $files_processed, $INI;
+        mon_log("Init processing\n");
         $result = array();
     
         $FIN['fait'] = 0;
@@ -185,15 +187,13 @@ class file_processor {
 
 
         // @doc 4177 is error_reporting for  E_COMPILE_ERROR|E_RECOVERABLE_ERROR|E_ERROR|E_CORE_ERROR (compilations error only)
-        /*
-@todo make this optional, for speed purpose. Checking syntax is useless for unit test, but is important for discovery
+//@todo make this optional, for speed purpose. Checking syntax is useless for unit test, but is important for discovery
         $exec = shell_exec('php -d short_open_tag=1 -d error_reporting=4177  -l '.escapeshellarg($file).' ');
         if (trim($exec) != 'No syntax errors detected in '.$file) {
             $this->messages['compile'] = "Script \"$file\" can't be compiled by PHP\n$exec\n";
             $this->error = true;
             return false;
         }
-*/
 // @doc extra test : sometimes, PHP parse correctly files, but encoding is wrong, and lead to fatal error
 // @doc then, we strip WS and comment, and then check syntax. If encoding is wrong, the second check will fail. 
 
@@ -214,7 +214,8 @@ class file_processor {
     
         // @todo abstract this function, so one can choose the PHP version for tokenization
         $raw = @token_get_all($code);
-  
+        mon_log("Tokenized\n");
+
         if (count($raw) == 0) {
             $this->messages['compile'] = "No token found. Aborting\n";
             $this->error = true;
@@ -238,7 +239,8 @@ class file_processor {
         $root = new Token();
         $suite = null;
         $ligne = 0;
-    
+
+        mon_log("Cleaning WS and Comments\n");
         $distinct_tokens = array();
         foreach($raw as $id => $b) {
             // @note actually removing all coments and whitespace even before turning them into token
@@ -270,6 +272,7 @@ class file_processor {
         // @note this is less costly in terms of garbage collecting
         unset($raw);
     
+        mon_log("New analyseur\n");
         $analyseur = new analyseur(array_keys($distinct_tokens));
     
         $nb_tokens_courant = -1;
