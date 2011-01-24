@@ -50,7 +50,11 @@ class x {
     function __construct($arg) {
         $local = 1;
     }
+}
 
+class y extends x {
+    var $ya;
+    public $ye;
 }
 
 ?>

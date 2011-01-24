@@ -154,6 +154,7 @@ $tests = array(
 'class.Classes_InterfacesUsed.test.php',
 'class.Variables_AllCaps.test.php',
 'class.Variables_StrangeChars.test.php',
+'class.Classes_Accessors.test.php',
 // new tests
 );
 
