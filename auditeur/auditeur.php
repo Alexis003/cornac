@@ -255,6 +255,7 @@ $modules = array(
 'Classes_InterfacesUnused',
 'Variables_AllCaps',
 'Variables_StrangeChars',
+'Classes_Accessors',
 // new analyzers
 );
 

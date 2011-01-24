@@ -41,7 +41,7 @@ JOIN <tokens_cache> TC
 ON TC.id = T1.id
 JOIN <tokens_tags> TT
 ON TT.token_sub_id = T1.id
-JOIN jaguar_tags TT2
+JOIN <tokens_tags> TT2
 ON TT2.token_id = TT.token_id AND
    TT2.type = 'property'
 JOIN <tokens> T2
