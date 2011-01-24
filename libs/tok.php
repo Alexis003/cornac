@@ -154,7 +154,7 @@ function mon_log($message) {
         die("Log file is not accessible for writing!\n");
     }
     
-    fwrite($LOG, date('r')."\t$message\r");
+    fwrite($LOG, date('r')."\t".memory_get_usage()."\t$message\r");
 }
 
 function getTemplate($racine, $file, $gabarit = null) {
@@ -164,16 +164,17 @@ function getTemplate($racine, $file, $gabarit = null) {
     }
     $templates = explode(',' , $gabarit);
     
-    $retour = array();
+    $return = array();
     foreach($templates as $template) {
         $class = "template_".$template;
         if (!class_exists($class)) {
             include('prepare/templates/template.'.$template.'.php');
         }
-        $retour[$template] = new $class($racine, $file);
+        $return[$template] = new $class($racine, $file);
     }
-    return $retour;
+    return $return;
 }
+
 function liste_directories_recursive( $path = '.', $level = 0 ){ 
     return liste_directory($path, $level, true);
 }
@@ -191,50 +192,49 @@ function liste_directories( $path = '.', $level = 0, $recursive = false ){
     }
 
     if (isset($INI['tokenizeur']['ignore_suffixe']) && !empty($INI['tokenizeur']['ignore_suffixe'])) {
-        $regex_suffixe = str_replace(',','|',  preg_quote($INI['tokenizeur']['ignore_suffixe']));
-        $regex_suffixe = '/('.$regex_suffixe.')$/';
+        $regex_suffix = str_replace(',','|',  preg_quote($INI['tokenizeur']['ignore_suffixe']));
+        $regex_suffix = '/('.$regex_suffix.')$/i';
     } else {
-        $regex_suffixe = array('.gif','.jpg','.jpeg','.xsl','.css','.js','.png');
-        $regex_suffixe = '/('.join('|', $regex_suffixe).')$/';
+        $regex_suffix = array('.gif','.jpg','.jpeg','.xsl','.css','.js','.png');
+        $regex_suffix = '/('.join('|', $regex_suffix).')$/i';
     }
 
     if (isset($INI['tokenizeur']['ignore_prefixe']) && !empty($INI['tokenizeur']['ignore_prefixe'])) {
-        $regex_prefixe = str_replace(',','|',  preg_quote($INI['tokenizeur']['ignore_prefixe']));
-        $regex_prefixe = '/('.$regex_prefixe.')$/';
+        $regex_prefix = str_replace(',','|',  preg_quote($INI['tokenizeur']['ignore_prefixe']));
+        $regex_prefix = '/('.$regex_prefix.')$/';
     } else {
-        $regex_prefixe = array('\\.');
-        $regex_prefixe = '/^('.join('|', $regex_prefixe).')/';
+        $regex_prefix = array('\\.');
+        $regex_prefix = '/^('.join('|', $regex_prefix).')/';
     }
 
-    $retour = array();
+    $return = array();
 
     $dh = opendir( $path ); 
     if (!$dh) {  
         print "Couldn't open $path.\n"; 
-        return $retour; 
+        return $return; 
     }
     while( false !== ( $file = readdir( $dh ) ) ){ 
         if( in_array( $file, $ignore_dirs ) ){ continue; }
         if( is_dir( "$path/$file" ) ){ 
             if ($recursive) {
                 $r = liste_directories( "$path/$file", ($level+1), $recursive ); 
-                $retour = array_merge($retour, $r);
+                $return = array_merge($return, $r);
             } // @emptyelse ignore 
         } else {
             // @note files without extensions are usually not interesting.
             if (strpos($file,'.') === false) { continue; }
-            // @doc remove matching suffixe (aka, extensions)
-            if ($regex_suffixe && preg_match($regex_suffixe, $file)) { continue; }
-            // @doc remove matching prefixe (., probably)
-            if ($regex_prefixe && preg_match($regex_prefixe, $file)) { continue; }
-            
+            // @doc remove matching suffix (aka, extensions)
+            if ($regex_suffix && preg_match($regex_suffix, $file)) { continue; }
+            // @doc remove matching prefix (., probably)
+            if ($regex_prefix && preg_match($regex_prefix, $file)) { continue; }
             // @doc The rest is accepted, until we find a PHP tag in it (see later)
-            $retour[] = "$path/$file";
+            $return[] = "$path/$file";
         } 
     } 
      
     closedir( $dh ); 
-    return $retour;
+    return $return;
 } 
 
 ?>
