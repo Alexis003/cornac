@@ -264,7 +264,7 @@ $modules = array\(
 'Zf_TypeView',
 'Zf_ViewVariables',
 // new analyzers
-\);
+);
 
 include('../libs/database.php');
 $DATABASE = new database();
