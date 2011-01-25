@@ -119,6 +119,8 @@ $headers = array('Variables' => 'SELECT COUNT(DISTINCT element)  FROM <report> W
                  'References'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <report> WHERE module="Php_References"',
                  'Variable variables'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <report> WHERE module="Variables_Variables"',
                  'Ticks'   => 'SELECT IF(COUNT(*) > 0, "Yes","No")  FROM <tokens> WHERE type="_declare"',
+                 'Uncompilable files'   => 'SELECT IF(COUNT(target) > 0, "Yes","No")  FROM <tasks> WHERE completed=3',
+//                 'External libraries'   => 'SELECT IF(COUNT(target) > 0, "Yes","No")  FROM <tasks> WHERE completed=3',
                  'Uses Zend Framework'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <report> WHERE module="Zf_Dependencies"',
                  'Uses Symfony'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <report> WHERE module="Sf_Dependencies"',
                  );
@@ -215,12 +217,20 @@ ORDER BY T1.class
                "Variables" => array('query' => 'SELECT element, COUNT(*) as NB FROM <report> WHERE module="Variables_Names" GROUP BY element ORDER BY NB DESC',
                                     'headers' => array('Variable','Number'),
                                     'columns' => array('element','NB')),
-               "Files   " => array('query' => 'SELECT DISTINCT file FROM <report> GROUP BY file ORDER BY file DESC',
-                                    'headers' => array('file'),
-                                    'columns' => array('file')),
                "Globals"  => array(  'query' => 'SELECT element, COUNT(*) as NB FROM <report> WHERE module="Php_Globals" GROUP BY element ORDER BY NB DESC',
                                     'headers' => array('Variable','Number'),
                                     'columns' => array('element','NB')),
+               "Files   " => array('query' => 'SELECT DISTINCT file FROM <report> GROUP BY file ORDER BY file DESC',
+                                    'headers' => array('file'),
+                                    'columns' => array('file')),
+               "Can't compile" => array('query' => 'SELECT target FROM <tasks> WHERE completed = 3',
+                                    'headers' => array('file'),
+                                    'columns' => array('file')),
+               "Extensions " => array('query' => 'SELECT RIGHT(file, LOCATE(".", REVERSE(file)) - 1) AS ext, COUNT(*) AS number
+                                                    FROM (SELECT DISTINCT file FROM <tokens>)
+                                                  files GROUP BY ext ORDER BY COUNT(*)',
+                                    'headers' => array('ext','number'),
+                                    'columns' => array('ext', 'number')),
 );
 
 foreach($names as $name => $conf) {
