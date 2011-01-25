@@ -58,15 +58,20 @@ include('../libs/getopts.php');
 
 define('CLEAN_DATABASE', !empty($INI['clean']));
 
-$modules = array(
+$modules = array\(
+'AuditeurDefault',
 
 'Classes',
 'Classes_Abstracts',
+'Classes_Accessors',
 'Classes_Definitions',
 'Classes_DoubleDeclaration',
+'Classes_Exceptions',
 'Classes_Finals',
 'Classes_Hierarchy',
 'Classes_Interfaces',
+'Classes_InterfacesUnused',
+'Classes_InterfacesUsed',
 'Classes_MethodsCount',
 'Classes_MethodsDefinition',
 'Classes_MethodsSpecial',
@@ -74,35 +79,32 @@ $modules = array(
 'Classes_News',
 'Classes_Php',
 'Classes_Properties',
+'Classes_PropertiesChained',
 'Classes_PropertiesPublic',
 'Classes_PropertiesUndefined',
 'Classes_PropertiesUnused',
 'Classes_PropertiesUsed',
 'Classes_Statics',
 'Classes_This',
-'Classes_ToStringNoArg', 
+'Classes_ToStringNoArg',
 'Classes_Undefined',
 'Classes_Unused',
-'Classes_Exceptions',
-'Classes_InterfacesUsed',
-'Classes_InterfacesUnused',
-'Classes_Accessors',
-'Classes_PropertiesChained',
-
-'Constants',
-'Constants_Definitions',
-'Constants_FileLink',
-'Constants_Usage',
 
 'Commands',
 'Commands_Html',
 'Commands_Sql',
+'Commands_SqlConcatenation',
+
+'Constants',
+'Constants_Definitions',
+'Constants_FileLink',
+'Constants_HasLowerCase',
+'Constants_Usage',
 
 'Drupal',
-'Drupal_Hook7',
-'Drupal_Hook6',
 'Drupal_Hook5',
-
+'Drupal_Hook6',
+'Drupal_Hook7',
 
 'Ext',
 'Ext_CallingBack',
@@ -127,7 +129,7 @@ $modules = array(
 'Ext_Xdebug',
 'Ext_Xml',
 
-'Functions', 
+'Functions',
 'Functions_ArglistCalled',
 'Functions_ArglistDefined',
 'Functions_ArglistDiscrepencies',
@@ -152,12 +154,17 @@ $modules = array(
 'Functions_UnusedReturn',
 'Functions_WithoutReturns',
 
-'Literals', 
+'Inventaire',
+
+'Literals',
 'Literals_Definitions',
-'Literals_InArglist', 
+'Literals_InArglist',
 'Literals_Long',
 'Literals_RawtextWhitespace',
 'Literals_Reused',
+
+'Pear',
+'Pear_Dependencies',
 
 'Php',
 'Php_Arobases',
@@ -173,40 +180,50 @@ $modules = array(
 'Php_InclusionPath',
 'Php_Keywords',
 'Php_Modules',
+'Php_Namespace',
+'Php_NewByReference',
+'Php_ObsoleteFunctionsIn53',
 'Php_References',
 'Php_RegexStrings',
 'Php_Returns',
+'Php_SpecialHandlers',
 'Php_Throws',
 
 'Quality',
+'Quality_ClassesNotInSameFile',
+'Quality_ConstructNameOfClass',
 'Quality_DangerousCombinaisons',
 'Quality_ExternalLibraries',
 'Quality_FilesMultipleDefinition',
-'Quality_GpcAssigned', 
+'Quality_GpcAssigned',
 'Quality_GpcConcatenation',
 'Quality_GpcModified',
 'Quality_GpcUsage',
 'Quality_Indenting',
 'Quality_Mvc',
-'Quality_ClassesNotInSameFile',
 'Quality_StrposEquals',
-'Quality_ConstructNameOfClass',
+
+'Sf',
+'Sf_Dependencies',
 
 'Structures',
 'Structures_AffectationLiterals',
 'Structures_AffectationsVariables',
 'Structures_BlockOfCalls',
+'Structures_CallTimePassByReference',
 'Structures_CaseWithoutBreak',
 'Structures_ComparisonConstants',
 'Structures_FluentInterface',
+'Structures_FluentProperties',
 'Structures_ForeachKeyValue',
 'Structures_ForeachKeyValueOutside',
 'Structures_ForeachUnused',
+'Structures_FunctionsCalls',
 'Structures_FunctionsCallsLink',
-'Structures_Iffectations',
 'Structures_IfNested',
 'Structures_IfWithoutComparison',
 'Structures_IfWithoutElse',
+'Structures_Iffectations',
 'Structures_LinesLoaded',
 'Structures_LoopsInfinite',
 'Structures_LoopsLong',
@@ -215,23 +232,21 @@ $modules = array(
 'Structures_MethodsCalls',
 'Structures_Parenthesis',
 'Structures_SwitchWithoutDefault',
-'Structures_FunctionsCalls',
-'Structures_FluentProperties',
 
 'Test',
 
 'Variables',
+'Variables_Affected',
+'Variables_AllCaps',
 'Variables_Gpc',
 'Variables_LongNames',
 'Variables_Names',
 'Variables_OneLetter',
-'variables_Relations',
 'Variables_Session',
-'Variables_Unaffected',
-'Variables_Variables',
-'Variables_Affected',
-'Variables_AllCaps',
 'Variables_StrangeChars',
+'Variables_Unaffected',
+'Variables_Relations',
+'Variables_Variables',
 
 'Zf',
 'Zf_Action',
@@ -244,27 +259,12 @@ $modules = array(
 'Zf_Elements',
 'Zf_GetGPC',
 'Zf_Redirect',
-'Zf_Session',
 'Zf_SQL',
+'Zf_Session',
 'Zf_TypeView',
 'Zf_ViewVariables',
-
-'Php_Namespace',
-
-'Sf',
-'Sf_Dependencies',
-
-'Inventaire',
-
-'Pear',
-'Pear_Dependencies',
-
-'Inventaire',
-
-'AuditeurDefault',
-
 // new analyzers
-);
+\);
 
 include('../libs/database.php');
 $DATABASE = new database();
