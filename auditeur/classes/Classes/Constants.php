@@ -28,13 +28,12 @@ class Classes_Constants extends modules {
 	public function analyse() {
         $this->clean_report();
 
-// @note simple case : variable -> method
         $query = <<<SQL
 SELECT NULL, T1.file, TC.code AS code, T1.id, '{$this->name}', 0
 FROM <tokens> T1 
 JOIN <tokens_cache> TC 
     ON T1.id = TC.id
-WHERE T1.type = "constante_static"
+WHERE T1.type = "constant_class"
 SQL;
         $this->exec_query_insert('report', $query);
 	    return true;
