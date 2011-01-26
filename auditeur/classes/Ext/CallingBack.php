@@ -26,7 +26,6 @@ class Ext_CallingBack extends modules {
         parent::__construct($mid);
 	}
 
-// @doc if this analyzer is based on previous result, use this to make sure the results are here
 	function dependsOn() {
 	    return array('Functions_Php');
 	}
@@ -34,7 +33,6 @@ class Ext_CallingBack extends modules {
 	public function analyse() {
         $this->clean_report();
 
-// @todo of course, update this useless query. :)
         $functions = array();
         // callback is in second position
         $functions[1] = array('array_map',
