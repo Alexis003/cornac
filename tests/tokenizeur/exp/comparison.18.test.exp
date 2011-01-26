@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/comparison.18.test.php
       ifthen if
       Condition 0) 
           parenthesis 
-          ( "comparison variable $a 283 "==" constante_static 380 "\"\307 "b"::constante c" )
+          ( "comparison variable $a 283 "==" constant_static 380 "\"\307 "b"::_constant c" )
           block 
           0 : 
               _return 

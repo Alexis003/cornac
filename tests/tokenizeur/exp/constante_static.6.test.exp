@@ -1,5 +1,0 @@
-tests/tokenizeur/scripts/constante_static.6.test.php
-  codephp <?php
-
-  code : 
-      constante_static (      380 "\"\307 "a"\307 "b"\307 "c"\307 "d"\307 "e"::constante f )

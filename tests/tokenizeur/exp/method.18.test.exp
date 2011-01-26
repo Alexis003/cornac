@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/method.18.test.php
 
   code : 
       method method variable $a->functioncall 307 "b" ( arglist(_new ) ) 
-      method call : functioncall 307 "e" ( arglist(literals 4, literals 5, literals 6, literals 7, sign  "-"operation constante M_PI  "/" literals 8, operation constante M_PI  "/" literals 9) ) : 
+      method call : functioncall 307 "e" ( arglist(literals 4, literals 5, literals 6, literals 7, sign  "-"operation _constant M_PI  "/" literals 8, operation _constant M_PI  "/" literals 9) ) : 
           functioncall e
           function call : 307 "e": 
               arglist 
@@ -16,17 +16,17 @@ tests/tokenizeur/scripts/method.18.test.php
               3 : 
                   literals 7
               4 : 
-                  sign  "-"operation constante M_PI  "/" literals 8
+                  sign  "-"operation _constant M_PI  "/" literals 8
                       operation 
                       left : 
-                          constante (                          M_PI )
+                          _constant (                          M_PI )
                       operation :  "/"
                       right : 
                           literals 8
               5 : 
                   operation 
                   left : 
-                      constante (                      M_PI )
+                      _constant (                      M_PI )
                   operation :  "/"
                   right : 
                       literals 9

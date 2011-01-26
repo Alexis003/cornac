@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/codephp.24.test.php
   code : 
       sequence 
       0 : 
-          constante (          php )
+          _constant (          php )
       1 : 
           functioncall echo
           function call : 316 "echo": 

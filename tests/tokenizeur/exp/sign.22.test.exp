@@ -8,4 +8,4 @@ tests/tokenizeur/scripts/sign.22.test.php
        "=" 
       right : 
           parenthesis 
-          ( "operation functioncall 307 "intval" ( arglist(constante y) )   "+" sign  "-"literals 1" )
+          ( "operation functioncall 307 "intval" ( arglist(_constant y) )   "+" sign  "-"literals 1" )

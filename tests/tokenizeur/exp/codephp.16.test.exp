@@ -5,4 +5,4 @@ tests/tokenizeur/scripts/codephp.16.test.php
       function call : 316 "echo": 
           arglist 
           0 : 
-              constante_static (              variable $lang::constante forum )
+              constant_static (              variable $lang::_constant forum )

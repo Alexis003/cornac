@@ -10,7 +10,7 @@ tests/tokenizeur/scripts/functioncall.30.test.php
               0 : 
                   literals TYPE_DOC
               1 : 
-                  constante (                  true )
+                  _constant (                  true )
       1 : 
           inclusion require
               functioncall fct_lien_page_custom
@@ -21,7 +21,7 @@ tests/tokenizeur/scripts/functioncall.30.test.php
                       0 : 
                           literals tabindex/
                       1 : 
-                          constante (                          TYPE_DOC )
+                          _constant (                          TYPE_DOC )
                       2 : 
                           literals .php
                   1 : 

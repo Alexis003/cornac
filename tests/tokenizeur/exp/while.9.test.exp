@@ -7,4 +7,4 @@ tests/tokenizeur/scripts/while.9.test.php
           ( "comparison preplusplus variable $a296 "--" 284 ">=" literals 0" )
           block 
           0 : 
-              constante_static (              307 "THIS"::constante C )
+              constant_static (              307 "THIS"::_constant C )

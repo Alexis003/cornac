@@ -21,4 +21,4 @@ tests/tokenizeur/scripts/dowhile.2.test.php
               property variable $thisliterals _ready->
            "=" 
           right : 
-              constante (              true )
+              _constant (              true )

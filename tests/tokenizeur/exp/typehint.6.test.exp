@@ -31,6 +31,6 @@ tests/tokenizeur/scripts/typehint.6.test.php
                       6 : 
                           _array
                               variable $r
-                              constante (                              g )
+                              _constant (                              g )
           2 : 
               literals \n

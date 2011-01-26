@@ -5,4 +5,4 @@ tests/tokenizeur/scripts/class.22.test.php
        class 307 "x"
           block 
           0 : 
-               343 "protected"variable $y = constante true
+               343 "protected"variable $y = _constant true

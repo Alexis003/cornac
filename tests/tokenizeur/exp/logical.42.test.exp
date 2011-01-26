@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/logical.42.test.php
       ifthen if
       Condition 0) 
           parenthesis 
-          ( "logical logical logical logical logical constante A  "&" variable $b 278 "||" constante C  "&" variable $d 278 "||" constante E  "&" variable $f" )
+          ( "logical logical logical logical logical _constant A  "&" variable $b 278 "||" _constant C  "&" variable $d 278 "||" _constant E  "&" variable $f" )
           block 
           0 : 
               affectation 

@@ -20,12 +20,12 @@ tests/tokenizeur/scripts/ternaryop.23.test.php
                   operateur : 279 "&&"
                   right : 
                       ternaryop ?
-                      _array property variable $c->literals d[literals e] ? literals f : constante g
+                      _array property variable $c->literals d[literals e] ? literals f : _constant g
                           _array
                               property variable $cliterals d->
                               literals e
                           literals f
-                          constante (                          g )
+                          _constant (                          g )
       1 : 
           rawtext 
           Texte : "311 "?""

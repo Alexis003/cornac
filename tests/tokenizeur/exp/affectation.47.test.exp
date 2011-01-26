@@ -7,4 +7,4 @@ tests/tokenizeur/scripts/affectation.47.test.php
           variable $x
        "=" 
       right : 
-          constante (          false )
+          _constant (          false )

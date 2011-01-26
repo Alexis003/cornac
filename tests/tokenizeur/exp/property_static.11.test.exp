@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/property_static.11.test.php
       ifthen if
       Condition 0) 
           parenthesis 
-          ( "comparison constante null 283 "==" affectation variable $a  "=" noscream @" )
+          ( "comparison _constant null 283 "==" affectation variable $a  "=" noscream @" )
           block 
           0 : 
               affectation 

@@ -8,7 +8,7 @@ tests/tokenizeur/scripts/switch.28.test.php
           block 
           0 : 
               _case 
-                  constante (                  B )
+                  _constant (                  B )
                   block 
                   0 : 
                       variable $c297 "++" 

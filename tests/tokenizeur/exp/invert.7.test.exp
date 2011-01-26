@@ -8,4 +8,4 @@ tests/tokenizeur/scripts/invert.7.test.php
       271 "&=" 
       right : 
           invert ~
-              constante_static (              variable $y::constante x )
+              constant_static (              variable $y::_constant x )

@@ -5,10 +5,10 @@ tests/tokenizeur/scripts/class.32.test.php
        class 307 "b"
           block 
           0 : 
-               348 "var"variable $v1 = constante null, variable $v2 = constante null
+               348 "var"variable $v1 = _constant null, variable $v2 = _constant null
           1 : 
-               344 "private"variable $r1 = constante null, variable $r2 = constante null
+               344 "private"variable $r1 = _constant null, variable $r2 = _constant null
           2 : 
-               343 "protected"variable $o1 = constante null, variable $o2 = constante null
+               343 "protected"variable $o1 = _constant null, variable $o2 = _constant null
           3 : 
-               342 "public"variable $u1 = constante null, variable $u2 = constante null
+               342 "public"variable $u1 = _constant null, variable $u2 = _constant null

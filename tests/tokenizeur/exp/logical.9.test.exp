@@ -4,7 +4,7 @@ tests/tokenizeur/scripts/logical.9.test.php
   code : 
       _switch 
           parenthesis 
-          ( "constante TYPE_DOC" )
+          ( "_constant TYPE_DOC" )
           block 
           0 : 
               _case 

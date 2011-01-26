@@ -11,7 +11,7 @@ tests/tokenizeur/scripts/logical.25.test.php
               1 : 
                   logical 
                   left : 
-                      constante (                      _SPIP_CHMOD )
+                      _constant (                      _SPIP_CHMOD )
                   operateur :  "&"
                   right : 
                       literals 0666

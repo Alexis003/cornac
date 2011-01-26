@@ -22,8 +22,8 @@ tests/tokenizeur/scripts/property_static.6.test.php
       2 : 
           affectation 
           left : 
-              property_static 307 "self"::_array _array _array variable $a[variable $b][literals 1][constante true][]
-                  property_static 307 "self"::_array _array _array variable $a[variable $b][literals 1][constante true]->
+              property_static 307 "self"::_array _array _array variable $a[variable $b][literals 1][_constant true][]
+                  property_static 307 "self"::_array _array _array variable $a[variable $b][literals 1][_constant true]->
            "=" 
           right : 
               variable $d

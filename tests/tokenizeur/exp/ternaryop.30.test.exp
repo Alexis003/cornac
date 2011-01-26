@@ -10,17 +10,17 @@ tests/tokenizeur/scripts/ternaryop.30.test.php
            "=" 
           right : 
               ternaryop ?
-              comparison constante c  ">" literals 0 ? cast (int) : cast (array)
+              comparison _constant c  ">" literals 0 ? cast (int) : cast (array)
                   comparison 
                   left : 
-                      constante (                      c )
+                      _constant (                      c )
                   operateur :  ">"
                   right : 
                       literals 0
-                  cast (295 "(int)")constante D
-                      constante (                      D )
-                  cast (292 "(array)")constante E
-                      constante (                      E )
+                  cast (295 "(int)")_constant D
+                      _constant (                      D )
+                  cast (292 "(array)")_constant E
+                      _constant (                      E )
       1 : 
           affectation 
           left : 
@@ -28,17 +28,17 @@ tests/tokenizeur/scripts/ternaryop.30.test.php
            "=" 
           right : 
               ternaryop ?
-              comparison constante c  ">" literals 0 ? cast (integer) : cast (array)
+              comparison _constant c  ">" literals 0 ? cast (integer) : cast (array)
                   comparison 
                   left : 
-                      constante (                      c )
+                      _constant (                      c )
                   operateur :  ">"
                   right : 
                       literals 0
-                  cast (295 "(integer)")constante D
-                      constante (                      D )
-                  cast (292 "(array)")constante E
-                      constante (                      E )
+                  cast (295 "(integer)")_constant D
+                      _constant (                      D )
+                  cast (292 "(array)")_constant E
+                      _constant (                      E )
       2 : 
           affectation 
           left : 
@@ -46,17 +46,17 @@ tests/tokenizeur/scripts/ternaryop.30.test.php
            "=" 
           right : 
               ternaryop ?
-              comparison constante c  ">" literals 0 ? cast (bool) : cast (array)
+              comparison _constant c  ">" literals 0 ? cast (bool) : cast (array)
                   comparison 
                   left : 
-                      constante (                      c )
+                      _constant (                      c )
                   operateur :  ">"
                   right : 
                       literals 0
-                  cast (290 "(bool)")constante D
-                      constante (                      D )
-                  cast (292 "(array)")constante E
-                      constante (                      E )
+                  cast (290 "(bool)")_constant D
+                      _constant (                      D )
+                  cast (292 "(array)")_constant E
+                      _constant (                      E )
       3 : 
           affectation 
           left : 
@@ -64,17 +64,17 @@ tests/tokenizeur/scripts/ternaryop.30.test.php
            "=" 
           right : 
               ternaryop ?
-              comparison constante c  ">" literals 0 ? cast (boolean) : cast (array)
+              comparison _constant c  ">" literals 0 ? cast (boolean) : cast (array)
                   comparison 
                   left : 
-                      constante (                      c )
+                      _constant (                      c )
                   operateur :  ">"
                   right : 
                       literals 0
-                  cast (290 "(boolean)")constante D
-                      constante (                      D )
-                  cast (292 "(array)")constante E
-                      constante (                      E )
+                  cast (290 "(boolean)")_constant D
+                      _constant (                      D )
+                  cast (292 "(array)")_constant E
+                      _constant (                      E )
       4 : 
           affectation 
           left : 
@@ -82,17 +82,17 @@ tests/tokenizeur/scripts/ternaryop.30.test.php
            "=" 
           right : 
               ternaryop ?
-              comparison constante c  ">" literals 0 ? cast (string) : cast (array)
+              comparison _constant c  ">" literals 0 ? cast (string) : cast (array)
                   comparison 
                   left : 
-                      constante (                      c )
+                      _constant (                      c )
                   operateur :  ">"
                   right : 
                       literals 0
-                  cast (293 "(string)")constante D
-                      constante (                      D )
-                  cast (292 "(array)")constante E
-                      constante (                      E )
+                  cast (293 "(string)")_constant D
+                      _constant (                      D )
+                  cast (292 "(array)")_constant E
+                      _constant (                      E )
       5 : 
           affectation 
           left : 
@@ -100,17 +100,17 @@ tests/tokenizeur/scripts/ternaryop.30.test.php
            "=" 
           right : 
               ternaryop ?
-              comparison constante c  ">" literals 0 ? cast (array) : cast (array)
+              comparison _constant c  ">" literals 0 ? cast (array) : cast (array)
                   comparison 
                   left : 
-                      constante (                      c )
+                      _constant (                      c )
                   operateur :  ">"
                   right : 
                       literals 0
-                  cast (292 "(array)")constante D
-                      constante (                      D )
-                  cast (292 "(array)")constante E
-                      constante (                      E )
+                  cast (292 "(array)")_constant D
+                      _constant (                      D )
+                  cast (292 "(array)")_constant E
+                      _constant (                      E )
       6 : 
           affectation 
           left : 
@@ -118,17 +118,17 @@ tests/tokenizeur/scripts/ternaryop.30.test.php
            "=" 
           right : 
               ternaryop ?
-              comparison constante c  ">" literals 0 ? cast (object) : cast (array)
+              comparison _constant c  ">" literals 0 ? cast (object) : cast (array)
                   comparison 
                   left : 
-                      constante (                      c )
+                      _constant (                      c )
                   operateur :  ">"
                   right : 
                       literals 0
-                  cast (291 "(object)")constante D
-                      constante (                      D )
-                  cast (292 "(array)")constante E
-                      constante (                      E )
+                  cast (291 "(object)")_constant D
+                      _constant (                      D )
+                  cast (292 "(array)")_constant E
+                      _constant (                      E )
       7 : 
           affectation 
           left : 
@@ -136,17 +136,17 @@ tests/tokenizeur/scripts/ternaryop.30.test.php
            "=" 
           right : 
               ternaryop ?
-              comparison constante c  ">" literals 0 ? cast (double) : cast (array)
+              comparison _constant c  ">" literals 0 ? cast (double) : cast (array)
                   comparison 
                   left : 
-                      constante (                      c )
+                      _constant (                      c )
                   operateur :  ">"
                   right : 
                       literals 0
-                  cast (294 "(double)")constante D
-                      constante (                      D )
-                  cast (292 "(array)")constante E
-                      constante (                      E )
+                  cast (294 "(double)")_constant D
+                      _constant (                      D )
+                  cast (292 "(array)")_constant E
+                      _constant (                      E )
       8 : 
           affectation 
           left : 
@@ -154,17 +154,17 @@ tests/tokenizeur/scripts/ternaryop.30.test.php
            "=" 
           right : 
               ternaryop ?
-              comparison constante c  ">" literals 0 ? cast (float) : cast (array)
+              comparison _constant c  ">" literals 0 ? cast (float) : cast (array)
                   comparison 
                   left : 
-                      constante (                      c )
+                      _constant (                      c )
                   operateur :  ">"
                   right : 
                       literals 0
-                  cast (294 "(float)")constante D
-                      constante (                      D )
-                  cast (292 "(array)")constante E
-                      constante (                      E )
+                  cast (294 "(float)")_constant D
+                      _constant (                      D )
+                  cast (292 "(array)")_constant E
+                      _constant (                      E )
       9 : 
           affectation 
           left : 
@@ -172,14 +172,14 @@ tests/tokenizeur/scripts/ternaryop.30.test.php
            "=" 
           right : 
               ternaryop ?
-              comparison constante c  ">" literals 0 ? cast (real) : cast (array)
+              comparison _constant c  ">" literals 0 ? cast (real) : cast (array)
                   comparison 
                   left : 
-                      constante (                      c )
+                      _constant (                      c )
                   operateur :  ">"
                   right : 
                       literals 0
-                  cast (294 "(real)")constante D
-                      constante (                      D )
-                  cast (292 "(array)")constante E
-                      constante (                      E )
+                  cast (294 "(real)")_constant D
+                      _constant (                      D )
+                  cast (292 "(array)")_constant E
+                      _constant (                      E )

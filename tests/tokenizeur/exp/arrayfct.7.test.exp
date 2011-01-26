@@ -11,11 +11,11 @@ tests/tokenizeur/scripts/arrayfct.7.test.php
           function call : 360 "array": 
               arglist 
               0 : 
-                  literals b => affectation variable $a 273 ".=" constante true
+                  literals b => affectation variable $a 273 ".=" _constant true
                       literals b
                       affectation 
                       left : 
                           variable $a
                       273 ".=" 
                       right : 
-                          constante (                          true )
+                          _constant (                          true )

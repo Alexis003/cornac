@@ -13,4 +13,4 @@ tests/tokenizeur/scripts/not.8.test.php
                   variable $b
                "=" 
               right : 
-                  constante (                  false )
+                  _constant (                  false )

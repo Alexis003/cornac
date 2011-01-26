@@ -1,5 +1,0 @@
-tests/tokenizeur/scripts/constante_static.3.test.php
-  codephp <?php
-
-  code : 
-      constante_static (      variable $ZIPARCHIVE::constante CREATE )

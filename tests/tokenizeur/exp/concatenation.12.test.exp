@@ -9,14 +9,14 @@ tests/tokenizeur/scripts/concatenation.12.test.php
               concatenation 
               0 : 
                   method_static 
-                  307 "a"::functioncall 307 "b" ( arglist(_array variable $c[constante d]) ) : 
+                  307 "a"::functioncall 307 "b" ( arglist(_array variable $c[_constant d]) ) : 
                       functioncall b
                       function call : 307 "b": 
                           arglist 
                           0 : 
                               _array
                                   variable $c
-                                  constante (                                  d )
+                                  _constant (                                  d )
               1 : 
                   literals e
               2 : 

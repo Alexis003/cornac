@@ -15,4 +15,4 @@ tests/tokenizeur/scripts/invert.4.test.php
               operateur :  "&"
               right : 
                   invert ~
-                      constante (                      E_STRICT )
+                      _constant (                      E_STRICT )

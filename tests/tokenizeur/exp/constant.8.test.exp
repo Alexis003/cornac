@@ -1,4 +1,4 @@
-tests/tokenizeur/scripts/constante.8.test.php
+tests/tokenizeur/scripts/constant.8.test.php
   codephp <?php
 
   code : 
@@ -11,7 +11,7 @@ tests/tokenizeur/scripts/constante.8.test.php
                   variable $x
               1 : 
                   ternaryop ?
-                  variable $b ? constante null : variable $c
+                  variable $b ? _constant null : variable $c
                       variable $b
-                      constante (                      null )
+                      _constant (                      null )
                       variable $c

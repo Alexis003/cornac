@@ -7,4 +7,4 @@ tests/tokenizeur/scripts/affectation.48.test.php
           variable $x
        "=" 
       right : 
-          constante (          __LINE__ )
+          _constant (          __LINE__ )

@@ -23,7 +23,7 @@ tests/tokenizeur/scripts/switch.17.test.php
                           property variable $cliterals d->
                        "=" 
                       right : 
-                          constante (                          true )
+                          _constant (                          true )
                   2 : 
                       _break 
                       Number : " "1""

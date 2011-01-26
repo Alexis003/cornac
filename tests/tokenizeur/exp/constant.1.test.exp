@@ -1,4 +1,4 @@
-tests/tokenizeur/scripts/constante.1.test.php
+tests/tokenizeur/scripts/constant.1.test.php
   codephp <?php
 
   code : 
@@ -12,4 +12,4 @@ tests/tokenizeur/scripts/constante.1.test.php
               1 : 
                   literals 1
       1 : 
-          constante (          x )
+          _constant (          x )

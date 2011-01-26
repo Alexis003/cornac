@@ -4,7 +4,7 @@ tests/tokenizeur/scripts/switch.30.test.php
   code : 
       _switch 
           parenthesis 
-          ( "constante true" )
+          ( "_constant true" )
           block 
           0 : 
               _case 
@@ -13,7 +13,7 @@ tests/tokenizeur/scripts/switch.30.test.php
                       variable $a
                   operateur : 288 "instanceof"
                   right : 
-                      constante (                      b )
+                      _constant (                      b )
                   block 
           1 : 
               _case 
@@ -22,7 +22,7 @@ tests/tokenizeur/scripts/switch.30.test.php
                       variable $c
                   operateur : 288 "instanceof"
                   right : 
-                      constante (                      d )
+                      _constant (                      d )
                   block 
           2 : 
               _case 
@@ -31,7 +31,7 @@ tests/tokenizeur/scripts/switch.30.test.php
                       variable $e
                   operateur : 288 "instanceof"
                   right : 
-                      constante (                      f )
+                      _constant (                      f )
                   block 
                   0 : 
                       variable $g297 "++" 

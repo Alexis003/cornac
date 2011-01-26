@@ -6,4 +6,4 @@ tests/tokenizeur/scripts/sign.27.test.php
           block 
           0 : 
               _return 
-              return : "sign  "-"constante_static 307 "self"::constante CLOSEST_ZERO_32"
+              return : "sign  "-"constant_static 307 "self"::_constant CLOSEST_ZERO_32"

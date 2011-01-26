@@ -3,7 +3,7 @@ tests/tokenizeur/scripts/ternaryop.32.test.php
 
   code : 
       ternaryop ?
-      functioncall 350 "isset" ( arglist(_array variable $a[literals b]) )  ? cast (bool) : constante false
+      functioncall 350 "isset" ( arglist(_array variable $a[literals b]) )  ? cast (bool) : _constant false
           functioncall isset
           function call : 350 "isset": 
               arglist 
@@ -11,7 +11,7 @@ tests/tokenizeur/scripts/ternaryop.32.test.php
                   _array
                       variable $a
                       literals b
-          cast (290 "(bool)")comparison _array variable $c[literals d] 282 "!=" constante true
+          cast (290 "(bool)")comparison _array variable $c[literals d] 282 "!=" _constant true
               comparison 
               left : 
                   _array
@@ -19,5 +19,5 @@ tests/tokenizeur/scripts/ternaryop.32.test.php
                       literals d
               operateur : 282 "!="
               right : 
-                  constante (                  true )
-          constante (          false )
+                  _constant (                  true )
+          _constant (          false )

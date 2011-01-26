@@ -3,4 +3,4 @@ tests/tokenizeur/scripts/return.5.test.php
 
   code : 
       _return 
-      return : "constante null"
+      return : "_constant null"

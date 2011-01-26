@@ -12,4 +12,4 @@ tests/tokenizeur/scripts/comparison.15.test.php
                new 307 "a" arglist(variable $b) 
           operateur : 288 "instanceof"
           right : 
-              constante (              d )
+              _constant (              d )

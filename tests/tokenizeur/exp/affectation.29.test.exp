@@ -7,4 +7,4 @@ tests/tokenizeur/scripts/affectation.29.test.php
           variable $x
        "=" 
       right : 
-          constante_static (          307 "Y"::constante C )
+          constant_static (          307 "Y"::_constant C )

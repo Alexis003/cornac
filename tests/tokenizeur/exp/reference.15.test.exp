@@ -2,5 +2,5 @@ tests/tokenizeur/scripts/reference.15.test.php
   codephp <?php
 
   code : 
-      function literals a arglist(typehint 307 "b" variable $c, logical constante C  "&" variable $d)
+      function literals a arglist(typehint 307 "b" variable $c, logical _constant C  "&" variable $d)
           block 

@@ -3,15 +3,15 @@ tests/tokenizeur/scripts/functioncall.51.test.php
 
   code : 
       ternaryop ?
-      logical property variable $a->literals b  "&" constante C ? functioncall 300 "exit" ( arglist() )  : constante null
+      logical property variable $a->literals b  "&" _constant C ? functioncall 300 "exit" ( arglist() )  : _constant null
           logical 
           left : 
               property variable $aliterals b->
           operateur :  "&"
           right : 
-              constante (              C )
+              _constant (              C )
           functioncall exit
           function call : 300 "exit": 
               arglist 
               0 : 
-          constante (          null )
+          _constant (          null )

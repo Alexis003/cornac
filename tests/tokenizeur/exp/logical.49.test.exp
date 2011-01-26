@@ -8,7 +8,7 @@ tests/tokenizeur/scripts/logical.49.test.php
        "=" 
       right : 
           ternaryop ?
-          functioncall 307 "defined" ( arglist(literals E_DEPRECATED) )  ? logical constante E_ALL  "|" constante E_DEPRECATED : constante E_ALL
+          functioncall 307 "defined" ( arglist(literals E_DEPRECATED) )  ? logical _constant E_ALL  "|" _constant E_DEPRECATED : _constant E_ALL
               functioncall defined
               function call : 307 "defined": 
                   arglist 
@@ -16,8 +16,8 @@ tests/tokenizeur/scripts/logical.49.test.php
                       literals E_DEPRECATED
               logical 
               left : 
-                  constante (                  E_ALL )
+                  _constant (                  E_ALL )
               operateur :  "|"
               right : 
-                  constante (                  E_DEPRECATED )
-              constante (              E_ALL )
+                  _constant (                  E_DEPRECATED )
+              _constant (              E_ALL )

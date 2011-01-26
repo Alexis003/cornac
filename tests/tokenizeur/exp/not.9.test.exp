@@ -9,4 +9,4 @@ tests/tokenizeur/scripts/not.9.test.php
           block 
           0 : 
               _throw 
-                  constante (                  R )
+                  _constant (                  R )

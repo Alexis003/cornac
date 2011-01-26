@@ -1,4 +1,4 @@
-tests/tokenizeur/scripts/constante.10.test.php
+tests/tokenizeur/scripts/constant.10.test.php
   codephp <?php
 
   code : 
@@ -6,4 +6,4 @@ tests/tokenizeur/scripts/constante.10.test.php
       function call : 316 "echo": 
           arglist 
           0 : 
-              constante (              __NAMESPACE__ )
+              _constant (              __NAMESPACE__ )

@@ -10,7 +10,7 @@ tests/tokenizeur/scripts/functioncall.16.test.php
           1 : 
               operation 
               left : 
-                  constante (                  x )
+                  _constant (                  x )
               operation :  "+"
               right : 
                   literals 1

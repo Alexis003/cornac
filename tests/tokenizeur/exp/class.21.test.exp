@@ -11,4 +11,4 @@ tests/tokenizeur/scripts/class.21.test.php
                   block 
                   0 : 
                       _return 
-                      return : "constante true"
+                      return : "_constant true"

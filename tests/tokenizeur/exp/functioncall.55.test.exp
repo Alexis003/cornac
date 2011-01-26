@@ -9,4 +9,4 @@ tests/tokenizeur/scripts/functioncall.55.test.php
           block 
           0 : 
               _return 
-              return : "constante false"
+              return : "_constant false"

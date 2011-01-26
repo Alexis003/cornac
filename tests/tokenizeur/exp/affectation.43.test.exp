@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/affectation.43.test.php
       ifthen if
       Condition 0) 
           parenthesis 
-          ( "comparison variable $cause 280 "!==" constante null" )
+          ( "comparison variable $cause 280 "!==" _constant null" )
           block 
           0 : 
               affectation 

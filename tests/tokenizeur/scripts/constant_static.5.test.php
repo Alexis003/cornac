@@ -16,17 +16,5 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
-include_once('Analyseur_Framework_TestCase.php');
-
-class Constante_class_Test extends Analyseur_Framework_TestCase
-{
-    /* 5 methodes */
-    public function testConstante_class1()  { $this->generic_test('constante_class.1'); }
-    public function testConstante_class2()  { $this->generic_test('constante_class.2'); }
-    public function testConstante_class3()  { $this->generic_test('constante_class.3'); }
-    public function testConstante_class4()  { $this->generic_test('constante_class.4'); }
-    public function testConstante_class5()  { $this->generic_test('constante_class.5'); }
-
-}
-
+parent::_constant;
 ?>

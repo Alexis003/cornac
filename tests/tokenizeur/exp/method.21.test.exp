@@ -4,7 +4,7 @@ tests/tokenizeur/scripts/method.21.test.php
   code : 
       comparison 
       left : 
-          property property method method variable $a->functioncall 307 "b" ( arglist(constante_static 307 "c"::constante d, literals e) ) ->functioncall 307 "f" ( arglist(literals 0) ) ->literals gliterals h->
+          property property method method variable $a->functioncall 307 "b" ( arglist(constant_static 307 "c"::_constant d, literals e) ) ->functioncall 307 "f" ( arglist(literals 0) ) ->literals gliterals h->
       operateur : 281 "==="
       right : 
           literals i

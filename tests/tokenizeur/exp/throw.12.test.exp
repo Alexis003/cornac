@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/throw.12.test.php
       ifthen if
       Condition 0) 
           parenthesis 
-          ( "comparison variable $x 283 "==" constante null" )
+          ( "comparison variable $x 283 "==" _constant null" )
           block 
           0 : 
               _throw 

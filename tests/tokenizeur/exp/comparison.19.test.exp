@@ -23,4 +23,4 @@ tests/tokenizeur/scripts/comparison.19.test.php
           function call : 316 "echo": 
               arglist 
               0 : 
-                  constante (                  CONSTANT )
+                  _constant (                  CONSTANT )

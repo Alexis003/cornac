@@ -3,4 +3,4 @@ tests/tokenizeur/scripts/inclusion.11.test.php
 
   code : 
       inclusion include
-          constante_static (          307 "a"::constante b )
+          constant_static (          307 "a"::_constant b )

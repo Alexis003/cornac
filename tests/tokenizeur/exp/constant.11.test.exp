@@ -1,4 +1,4 @@
-tests/tokenizeur/scripts/constante.11.test.php
+tests/tokenizeur/scripts/constant.11.test.php
   codephp <?php
 
   code : 
@@ -8,14 +8,14 @@ tests/tokenizeur/scripts/constante.11.test.php
        "=" 
       right : 
           method variable $this
-          method call : functioncall 307 "b" ( arglist(concatenation constante __NAMESPACE__ . literals \C  , functioncall 360 "array" ( ( ) ) , literals , constante false, constante false) ) : 
+          method call : functioncall 307 "b" ( arglist(concatenation _constant __NAMESPACE__ . literals \C  , functioncall 360 "array" ( ( ) ) , literals , _constant false, _constant false) ) : 
               functioncall b
               function call : 307 "b": 
                   arglist 
                   0 : 
                       concatenation 
                       0 : 
-                          constante (                          __NAMESPACE__ )
+                          _constant (                          __NAMESPACE__ )
                       1 : 
                           literals \C
                   1 : 
@@ -26,6 +26,6 @@ tests/tokenizeur/scripts/constante.11.test.php
                   2 : 
                       literals 
                   3 : 
-                      constante (                      false )
+                      _constant (                      false )
                   4 : 
-                      constante (                      false )
+                      _constant (                      false )

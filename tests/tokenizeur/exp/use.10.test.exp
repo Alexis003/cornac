@@ -8,8 +8,8 @@ tests/tokenizeur/scripts/use.10.test.php
       1 : 
           use 307 "M" as 307 "N"
       2 : 
-          use constante O
+          use _constant O
       3 : 
           use 307 "P" as 307 "Q"
       4 : 
-          use constante R
+          use _constant R

@@ -8,7 +8,7 @@ tests/tokenizeur/scripts/operation.50.test.php
        "=" 
       right : 
           ternaryop ?
-          comparison variable $b 283 "==" literals 1 ? operation literals 2  "*" constante M_PI : variable $d
+          comparison variable $b 283 "==" literals 1 ? operation literals 2  "*" _constant M_PI : variable $d
               comparison 
               left : 
                   variable $b
@@ -20,5 +20,5 @@ tests/tokenizeur/scripts/operation.50.test.php
                   literals 2
               operation :  "*"
               right : 
-                  constante (                  M_PI )
+                  _constant (                  M_PI )
               variable $d

@@ -8,4 +8,4 @@ tests/tokenizeur/scripts/functioncall.31.test.php
           0 : 
               literals TYPE_DOC
           1 : 
-              constante (              true )
+              _constant (              true )

@@ -9,9 +9,9 @@ tests/tokenizeur/scripts/reference.13.test.php
           block 
           0 : 
               _return 
-              return : "constante true"
+              return : "_constant true"
        else 
           block 
           0 : 
               _return 
-              return : "constante false"
+              return : "_constant false"

@@ -3,4 +3,4 @@ tests/tokenizeur/scripts/noscream.16.test.php
 
   code : 
       noscream @
-          constante (          CONSTANTE )
+          _constant (          CONSTANTE )

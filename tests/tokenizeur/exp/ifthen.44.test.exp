@@ -13,4 +13,4 @@ tests/tokenizeur/scripts/ifthen.44.test.php
        else 
           block 
           0 : 
-              constante (              false )
+              _constant (              false )
