@@ -58,7 +58,7 @@ include('../libs/getopts.php');
 
 define('CLEAN_DATABASE', !empty($INI['clean']));
 
-$modules = array\(
+$modules = array(
 'AuditeurDefault',
 
 'Classes',
@@ -66,6 +66,7 @@ $modules = array\(
 'Classes_Accessors',
 'Classes_Definitions',
 'Classes_DoubleDeclaration',
+'Classes_Constants',
 'Classes_Exceptions',
 'Classes_Finals',
 'Classes_Hierarchy',
@@ -147,6 +148,7 @@ $modules = array\(
 'Functions_LinesCount',
 'Functions_Occurrences',
 'Functions_Php',
+'Functions_NonPhp',
 'Functions_Recursive',
 'Functions_Security',
 'Functions_Undefined',
@@ -263,6 +265,7 @@ $modules = array\(
 'Zf_Session',
 'Zf_TypeView',
 'Zf_ViewVariables',
+'Php_SetlocaleWithString',
 // new analyzers
 );
 
@@ -444,7 +447,8 @@ function analyse_module($module_name) {
 
     $res = $DATABASE->query("SELECT AVG(completed) AS completed FROM <tasks> WHERE task='tokenize' AND completed != 3");
     $row = $res->fetch(PDO::FETCH_ASSOC);
-    $completed = $row['completed'];
+    // @note make sure we have an integer. 0 is OK.
+    $completed = intval($row['completed']);
 
     $module = new $module_name($DATABASE);
     $dependances = $module->dependsOn();
