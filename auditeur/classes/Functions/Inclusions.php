@@ -19,7 +19,7 @@
 
 class Functions_Inclusions extends modules {
 	protected	$title = 'Inclusions';
-	protected	$description = 'Inclusion list (function being used for such)';
+	protected	$description = 'Inclusion list (function being used for inclusions)';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -32,19 +32,6 @@ class Functions_Inclusions extends modules {
 SELECT NULL, T1.file, T1.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 WHERE T1.type = 'inclusion'
-SQL;
-        $this->exec_query_insert('report', $query);
-
-        $query = <<<SQL
-SELECT NULL, T1.file, T2.code, T1.id, '{$this->name}', 0
-FROM <tokens> T1
-JOIN <tokens_tags> TT 
-    ON TT.token_id = T1.id
-JOIN <tokens> T2
-    ON TT.token_sub_id = T2.id AND
-       T1.file = T2.file AND
-       TT.type='function'      AND 
-       T2.code='loadLibrary'
 SQL;
         $this->exec_query_insert('report', $query);
 
