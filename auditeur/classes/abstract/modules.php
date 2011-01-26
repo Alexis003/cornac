@@ -161,7 +161,7 @@ abstract class modules {
             print $query;
             return false;
         }
-
+        
         return $res;
     }
 
@@ -341,6 +341,11 @@ SQL;
     static public function getPHPKeywords() {
         $keywords = parse_ini_file('../dict/keywords.ini', true);
         return $keywords['keyword'];
+    }
+
+    static public function getPHPHandlers() {
+        $functions = parse_ini_file('../dict/phphandlers.ini', true);
+        return $functions['function'];
     }
     
     static public function getPHPGPC() {
