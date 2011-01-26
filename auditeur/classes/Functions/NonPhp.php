@@ -19,7 +19,7 @@
 
 class Functions_NonPhp extends functioncalls {
 	protected	$title = 'Userland functions';
-	protected	$description = 'Usage of user-land functions';
+	protected	$description = 'Usage of user-defined functions';
 
 	function __construct($mid) {
         parent::__construct($mid);
