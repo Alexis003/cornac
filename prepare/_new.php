@@ -35,7 +35,7 @@ class _new extends instruction {
             } else {
                 $this->args = $expression[1];
             }
-        } elseif ($constructor->checkClass(array('constante'))) {
+        } elseif ($constructor->checkClass(array('_constant'))) {
             $this->class =  new _classname_($constructor->getName());
             if (!isset($expression[1])) {
                 $this->args = new arglist();

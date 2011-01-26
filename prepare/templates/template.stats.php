@@ -177,20 +177,20 @@ class template_stats extends template {
         $this->addStat(__FUNCTION__);
     }
 
-    function display_constante($node, $niveau) {
+    function display__constant($node, $niveau) {
         $this->addStat(__FUNCTION__);
     }
 
-    function display_constante_static($node, $niveau) {
+    function display_constant_static($node, $niveau) {
         $this->addStat(__FUNCTION__);
          $this->display($node->getClass(), $niveau + 1);
          $this->display($node->getConstant(), $niveau + 1);
     }
 
-    function display_constante_class($node, $niveau) {
+    function display_constant_class($node, $niveau) {
         $this->addStat(__FUNCTION__);
          $this->display($node->getName(), $niveau + 1);
-         $this->display($node->getConstante(), $niveau + 1);
+         $this->display($node->getConstant(), $niveau + 1);
     }
 
     function display_bitshift($node, $niveau) {

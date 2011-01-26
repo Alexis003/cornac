@@ -402,7 +402,7 @@ class template_db extends template {
         return $this->savenode($node, $level);
     }
 
-    function display_constante($node, $level) {
+    function display__constant($node, $level) {
         $node->myId = $this->getNextId();
         $node->myleft = $this->getIntervalleId();
         
@@ -410,7 +410,7 @@ class template_db extends template {
         return $this->savenode($node, $level);
     }
 
-    function display_constante_static($node, $level) {
+    function display_constant_static($node, $level) {
         $node->myId = $this->getNextId();
         $node->myleft = $this->getIntervalleId();
 
@@ -423,14 +423,14 @@ class template_db extends template {
         return $this->savenode($node, $level);
     }
 
-    function display_constante_class($node, $level) {
+    function display_constant_class($node, $level) {
         $node->myId = $this->getNextId();
         $node->myleft = $this->getIntervalleId();
 
         $class = $node->getName();
         $this->display($class, $level + 1);
-        $method = $node->getConstante();
-        $this->display($method, $level + 1);
+        $constant = $node->getConstant();
+        $this->display($constant, $level + 1);
 
         $node->myright = $this->getIntervalleId();
         return $this->savenode($node, $level);

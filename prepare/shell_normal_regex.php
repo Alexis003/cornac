@@ -28,7 +28,7 @@ class shell_normal_regex extends analyseur_regex {
                                         'property_static',
                                         'method',
                                         'method_static',
-                                        'constante_static',
+                                        'constant_static',
                                         'sequence',
                                         );
     }

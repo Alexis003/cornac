@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class constante_static_regex extends analyseur_regex {
+class constant_static_regex extends analyseur_regex {
     function __construct() {
         parent::__construct(array());
     }
@@ -27,22 +27,18 @@ class constante_static_regex extends analyseur_regex {
     }
     
     function check($t) {
-    
         if (!$t->hasPrev() ) { return false; }
         if (!$t->hasNext() ) { return false; }
 
-        if (($t->getPrev()->checkToken(array(T_STRING, T_STATIC)) || 
-             $t->getPrev()->checkClass(array('variable','_array','_nsname'))) &&
-             $t->getNext()->checkClass('constante')
-            ) {
+        if ($t->getPrev()->checkNotToken(array(T_STRING, T_STATIC)) &&
+            $t->getPrev()->checkNotClass(array('variable','_array','_nsname'))) { return false; }
+        if ($t->getNext()->checkNotClass('_constant')) { return false; }
 
-            $this->args   = array(-1, 1);
-            $this->remove = array(-1, 1);
+        $this->args   = array(-1, 1);
+        $this->remove = array(-1, 1);
 
-            mon_log(get_class($t)." => ".__CLASS__);
-            return true; 
-        } 
-        return false;
+        mon_log(get_class($t)." => ".__CLASS__);
+        return true; 
     }
 }
 ?>

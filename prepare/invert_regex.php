@@ -30,21 +30,18 @@ class invert_regex extends analyseur_regex {
         if (!$t->hasNext()) { return false; }
 
         if ($t->checkNotClass('Token')) { return false; }
-        if ($t->getNext()->checkClass(array('functioncall','variable','_array',
+        if ($t->getNext()->checkNotClass(array('functioncall','variable','_array',
                                             'method','property','_new','comparison',
-                                            'parenthesis','constante','literals',
-                                            'constante_static','property_static','method_static',
-                                            'cast','invert','noscream','sign')) &&
-            $t->getNext(1)->checkNotCode(array('->','[','{','::'))
-            ) {
+                                            'parenthesis','_constant','literals',
+                                            'constant_static','property_static','method_static',
+                                            'cast','invert','noscream','sign'))) { return false;} 
+        if ($t->getNext(1)->checkOperator(array('->','[','{','::'))) { return false; }
 
-            $this->args = array(1);
-            $this->remove = array(1);
+        $this->args = array(1);
+        $this->remove = array(1);
 
-            mon_log(get_class($t)." => ".__CLASS__);
-            return true; 
-        } 
-        return false;
+        mon_log(get_class($t)." => ".__CLASS__);
+        return true; 
     }
 }
 ?>

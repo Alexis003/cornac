@@ -17,47 +17,31 @@
    +----------------------------------------------------------------------+
  */
 
-class constante_static extends token {
-    protected $class = null;
-    protected $constant = null;
+class _constant extends instruction {
     
-    function __construct($expression) {
-        parent::__construct();
+    function __construct() {
+        parent::__construct(array());
         
-        if (is_array($expression)) {
-            if ($expression[0]->checkClass('Token')) {
-                $this->class = $this->makeProcessedToken('_classname_', $expression[0]);
-            } else {
-                $this->class = $expression[0];
-            }
-            $this->constant = $expression[1];
-        } else {
-            $this->stopOnError("Wrong number of arguments  : '".count($expression)."' in ".__METHOD__);
-        }
-    }
-
-    function getClass() {  
-        return $this->class;
-    }
-
-    function getConstant() {
-        return $this->constant;
-    }
-
-    function neutralise() {
-        $this->class->detach();
-        $this->constant->detach();
     }
 
     function __toString() {
-        return __CLASS__." ".$this->class."::".$this->constant;
+        return __CLASS__." ".$this->code;
+    }
+
+    function getName() {
+        return $this->code;
+    }
+
+    function neutralise() {
+    // @doc nothing to neutralize
     }
 
     function getRegex(){
-        return array('constante_static_regex',
-                     );
+        return array('constant_normal_regex',
+                     'constant_magical_regex',
+                    );
     }
-
+    
 }
 
 ?>

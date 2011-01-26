@@ -209,19 +209,19 @@ class template_tree extends template {
         }
     }
 
-    function display_constante($node, $level) {
+    function display__constant($node, $level) {
          print str_repeat('  ', $level).get_class($node)." (";
          print str_repeat('  ', $level)."".$node->getName()." )\n";    
     }
 
-    function display_constante_static($node, $level) {
+    function display_constant_static($node, $level) {
          print str_repeat('  ', $level).get_class($node)." (";
          print str_repeat('  ', $level)."".$node->getClass()."::".$node->getConstant()." )\n";    
     }
 
-    function display_constante_class($node, $level) {
+    function display_constant_class($node, $level) {
          print str_repeat('  ', $level).get_class($node)." ";
-         print str_repeat('  ', $level)."".$node->getName()." = ".$node->getConstante()." \n";    
+         print str_repeat('  ', $level)."".$node->getName()." = ".$node->getConstant()." \n";    
     }
 
     function display_bitshift($node, $level) {

@@ -32,7 +32,7 @@ class sign_regex extends analyseur_regex {
 
         if ( $t->getNext()->checkNotClass(array('variable','property','_array', 'property_static',
                                                 'method','method_static','functioncall',
-                                                'constante','constante_static','literals',
+                                                '_constant','constant_static','literals',
                                                 'parenthesis', 'operation', 'cast','not'))) { return false; }
         if ( $t->getPrev()->checkClass(array('literals','variable','_array',
                                              'property','operation','sign',

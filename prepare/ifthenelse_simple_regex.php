@@ -46,7 +46,7 @@ class ifthenelse_simple_regex extends analyseur_regex {
         } 
 
         if ( ($t->getNext()->checkForBlock(true) ||
-              $t->getNext()->checkClass(array('concatenation','constante','sign','not','noscream','invert','parenthesis')) ||
+              $t->getNext()->checkClass(array('concatenation','_constant','sign','not','noscream','invert','parenthesis')) ||
               $t->getNext()->checkForVariable()
               )
             ) {

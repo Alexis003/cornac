@@ -31,12 +31,12 @@ class affectation_normal_regex extends analyseur_regex {
         if (!$t->hasNext(1)) { return false; }
 
         if ( $t->checkNotClass('Token')) { return false; }
-        if ( $t->getNext(1)->checkNotCode(array(';','}',')',',',':',']')) &&
+        if ( $t->getNext(1)->checkNotOperator(array(';','}',')',',',':',']')) &&
              $t->getNext(1)->checkNotClass(array('sequence','block','_foreach','_for','rawtext')) &&
              $t->getNext(1)->checkNotToken(array(T_AS,T_CLOSE_TAG))
                 ) { return false;}
 
-        if ($t->hasPrev(1) && $t->getPrev(1)->checkCode(array('&','$','::','@','->'))) { return false;}
+        if ($t->hasPrev(1) && $t->getPrev(1)->checkOperator(array('&','$','::','@','->'))) { return false;}
         if (($t->getPrev()->checkClass(array('variable',
                                              'property',
                                              'opappend',
@@ -47,14 +47,14 @@ class affectation_normal_regex extends analyseur_regex {
                                              'reference',
                                              'cast',
                                              'sign',
-                                             'constante',)) || 
+                                             '_constant',)) || 
              $t->getPrev()->checkSubclass('variable')) &&
             ($t->getNext()->checkClass(array('literals', 'variable','_array','sign','noscream',
                                              'property', 'method'  ,'ternaryop',
                                              'functioncall','operation','logical',
                                              'method_static','operation','ternaryop',
-                                             'constante_static','property_static','_clone',
-                                             'parenthesis','_new','cast','constante','invert',
+                                             'constant_static','property_static','_clone',
+                                             'parenthesis','_new','cast','_constant','invert',
                                              'not','affectation','shell','bitshift','comparison',
                                              'reference','concatenation','variable',
                                              'property_static','postplusplus','preplusplus','inclusion',

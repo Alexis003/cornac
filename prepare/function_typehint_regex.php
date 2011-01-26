@@ -33,7 +33,7 @@ class function_typehint_regex extends analyseur_regex {
         
         while ($var->checkNotOperator(')')) {
             if (!$var->hasNext()) { return false; }
-            if (($var->checkClass('constante') ||
+            if (($var->checkClass('_constant') ||
                  $var->checkToken(array(T_ARRAY,T_STRING))) &&
                  $var->getNext()->checkClass('variable')) {
                 

@@ -32,7 +32,7 @@ class sign_suite_regex extends analyseur_regex {
 
         if ( $t->getPrev()->checkNotOperator(array('+','-'))) { return false; }
         if ( $t->getPrev()->checkClass(array('operation'))) { return false; }
-        if ( $t->getNext()->checkNotClass(array('sign','variable','property','property_static','method','method_static','functioncall','constante','literal')) ) { return false ;}
+        if ( $t->getNext()->checkNotClass(array('sign','variable','property','property_static','method','method_static','functioncall','_constant','literals')) ) { return false ;}
         if ( $t->getNext(1)->checkOperator(array('->','[','{','::','++','--'))) { return false; }
         
         $this->args = array(0, 1 );

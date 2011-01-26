@@ -385,12 +385,12 @@ class template_cache extends template {
         return $this->savenode($node);
     }
 
-    function display_constante($node, $level) {
+    function display__constant($node, $level) {
         $node->cache = $node->getCode();
         return $this->savenode($node);
     }
 
-    function display_constante_static($node, $level) {
+    function display_constant_static($node, $level) {
         $class = $node->getClass();
         $this->display($class, $level + 1);
         $method = $node->getConstant();
@@ -400,11 +400,11 @@ class template_cache extends template {
         return $this->savenode($node);        
     }
 
-    function display_constante_class($node, $level) {
+    function display_constant_class($node, $level) {
         $class = $node->getName();
         $this->display($class, $level + 1);
-        $constante = $node->getConstante();
-        $this->display($constante, $level + 1);
+        $constant = $node->getConstant();
+        $this->display($constant, $level + 1);
 
         $node->cache = $class->cache;
         return $this->savenode($node);        

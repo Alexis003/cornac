@@ -29,7 +29,7 @@ class new_single_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasNext()) { return false; }
 
-        if ($t->getNext()->checkNotClass('constante')) { return false; }
+        if ($t->getNext()->checkNotClass('_constant')) { return false; }
 
         $this->args = array(1);
         $this->remove = array(1);

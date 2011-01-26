@@ -17,36 +17,36 @@
    +----------------------------------------------------------------------+
  */
 
-class constante_class extends token {
+class constant_class extends token {
     protected $name = null;
-    protected $constante = null;
+    protected $constant = null;
     
     function __construct($expression) {
         parent::__construct();
         
         $this->name = $expression[0];
-        $this->constante = $expression[1];
+        $this->constant = $expression[1];
     }
 
     function getName() {  
         return $this->name;
     }
 
-    function getConstante() {
-        return $this->constante;
+    function getConstant() {
+        return $this->constant;
     }
 
     function neutralise() {
         $this->name->detach();
-        $this->constante->detach();
+        $this->constant->detach();
     }
 
     function __toString() {
-        return __CLASS__." ".$this->name."::".$this->constante;
+        return __CLASS__." ".$this->name."::".$this->constant;
     }
 
     function getRegex(){
-        return array('constante_class_regex',
+        return array('constant_class_regex',
                      );
     }
 

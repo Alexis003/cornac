@@ -25,30 +25,27 @@ class noscream_normal_regex extends analyseur_regex {
     function getTokens() {
         return array('@');
     }
- 
-    
+
     function check($t) {
         if (!$t->hasNext()) { return false; }
 
-        if ($t->checkClass('literals')) { return false; }
-        if ($t->getNext()->checkClass(array('functioncall','variable','_array','method',
-                                            'property','_new','comparison',
+        if ($t->checkNotOperator('@')) { return false; }
+        if ($t->getNext()->checkNotClass(array('functioncall','variable','_array',
+                                               'method','property','_new','comparison',
                                             'parenthesis','inclusion','not', 'shell',
                                             'method_static','property_static','postplusplus',
                                             'preplusplus','literals','sign','cast',
-                                            'invert','_clone','constante','opappend',
+                                            'invert','_clone','_constant','opappend',
                                             'concatenation',
-                                            )) &&
-            $t->getNext(1)->checkNotCode(array('->','[','(','{'))
-            ) {
+                                            ))) { return false ;}
+        if ($t->getNext(1)->checkOperator(array('->','[','(','{'))) { return false; }
+        if ($t->getNext(1)->checkClass('arglist')) { return false; }
 
-            $this->args = array(1);
-            $this->remove = array(1);
+        $this->args = array(1);
+        $this->remove = array(1);
 
-            mon_log(get_class($t)." => ".__CLASS__);
-            return true; 
-        } 
-        return false;
+        mon_log(get_class($t)." => ".__CLASS__);
+        return true; 
     }
 }
 ?>

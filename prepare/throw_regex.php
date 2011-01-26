@@ -34,7 +34,7 @@ class throw_regex extends analyseur_regex {
                                                'property',
                                                'method',
                                                '_array',
-                                               'constante',
+                                               '_constant',
                                                'parenthesis',
                                                'ternaryop',
                                                'method_static',
