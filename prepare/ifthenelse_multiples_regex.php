@@ -30,71 +30,66 @@ class ifthenelse_multiples_regex extends analyseur_regex {
         if (!$t->hasNext(4) ) { return false; }
 
         
-        if ($t->checkNotToken(T_IF)) { return false;}
         if ($t->getNext()->checkNotClass('parenthesis')) { return false;} 
+        if ($t->getNext(1)->checkNotClass('block')) { return false;} 
+        if ($t->getNext(2)->checkNotToken(T_ELSEIF)) { return false;} 
+        if ($t->getNext(3)->checkNotClass('parenthesis')) { return false; }
+        if ($t->getNext(4)->checkNotClass('block')) { return false; }
 
-        if ($t->getNext(1)->checkClass('block') &&
-            $t->getNext(2)->checkToken(T_ELSEIF) &&
-            $t->getNext(3)->checkClass('parenthesis') &&
-            $t->getNext(4)->checkClass('block')
-            ) {
+        $this->args   = array(1, 2, 4, 5);
+        $this->remove = array(1, 2, 3, 4, 5);
 
-            $this->args   = array(1, 2, 4, 5);
-            $this->remove = array(1, 2, 3, 4, 5);
+        $var = $t->getNext(5);
+        if (is_null($var)) {
+           mon_log(get_class($t)." => ".__CLASS__." ".count($this->args).": NULL :");
+           return true; 
+        }
+        $pos = 5;
+        while($var->checkToken(T_ELSEIF) &&
+              $var->getNext()->checkClass('parenthesis') &&
+              $var->getNext(1)->checkClass('block')) {
+              
+              $this->args[] = $pos + 2;
+              $this->args[] = $pos + 3;
 
-            $var = $t->getNext(5);
-            if (is_null($var)) {
-               mon_log(get_class($t)." => ".__CLASS__." ".count($this->args).": NULL :");
-               return true; 
-            }
-            $pos = 5;
-            while($var->checkToken(T_ELSEIF) &&
-                  $var->getNext()->checkClass('parenthesis') &&
-                  $var->getNext(1)->checkClass('block')) {
-                  
-                  $this->args[] = $pos + 2;
-                  $this->args[] = $pos + 3;
+              $this->remove[] = $pos ;
+              $this->remove[] = $pos + 1;
+              $this->remove[] = $pos + 2;
+              
+              $pos += 3;
+              $var = $var->getNext(2);
+  
+              // @note null? This script is ending, so is the ifthen
+              if (is_null($var)) {
+                  mon_log(get_class($t)." => ".__CLASS__." ".count($this->args).": $var :");
+                  return true; 
+             }
+        }
 
-                  $this->remove[] = $pos ;
-                  $this->remove[] = $pos + 1;
-                  $this->remove[] = $pos + 2;
-                  
-                  $pos += 3;
-                  $var = $var->getNext(2);
-      
-                  // on trouve plus rien : le elsif est terminé, comme le script. 
-                  if (is_null($var)) {
-                      mon_log(get_class($t)." => ".__CLASS__." ".count($this->args).": $var :");
-                      return true; 
-                 }
-            }
+        if   ($var->checkToken(T_ELSEIF)) {
+            $this->args = array();
+            $this->remove = array();
+            
+            return false;
+        }
+        
+        if   ($var->checkToken(T_ELSE)) {
+            if ($var->getNext()->checkClass('block')) {
 
-            if   ($var->checkToken(T_ELSEIF)) {
+              $this->args[] = $pos + 2;
+
+              $this->remove[] = $pos ;
+              $this->remove[] = $pos + 1;              
+            } else {
                 $this->args = array();
                 $this->remove = array();
                 
                 return false;
             }
-            
-            if   ($var->checkToken(T_ELSE)) {
-                if ($var->getNext()->checkClass('block')) {
-
-                  $this->args[] = $pos + 2;
-
-                  $this->remove[] = $pos ;
-                  $this->remove[] = $pos + 1;              
-                } else {
-                    $this->args = array();
-                    $this->remove = array();
+        }
                     
-                    return false;
-                }
-            }
-                        
-            mon_log(get_class($t)." => ".__CLASS__." ".count($this->args).": $var :");
-            return true; 
-        } 
-        return false;
+        mon_log(get_class($t)." => ".__CLASS__." ".count($this->args).": $var :");
+        return true; 
     }
 }
 ?>

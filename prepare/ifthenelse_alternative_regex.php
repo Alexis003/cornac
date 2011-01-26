@@ -65,14 +65,14 @@ class ifthenelse_alternative_regex extends analyseur_regex {
             }
 
             if ($var->checkCode(';') ) {
-                // un point-virgule qui traine. Bah....
+                // @note trailing semi-colon? just ignore this
                 $remove[] = $pos;
                 $pos++;
                 $var = $var->getNext();
                 continue;
             }
 
-            // pas traitable ? On annule tout.
+            // @note cannot process this? Abort. 
             return false;
         }
 

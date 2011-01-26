@@ -33,7 +33,6 @@ class _closure extends instruction {
         }
 
         $this->block = $expression[0];
-        // @todo check for too many arguments?
     }
 
     function __toString() {

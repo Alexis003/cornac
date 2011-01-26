@@ -20,10 +20,10 @@
 class sequence extends instruction {
     protected $elements = array();
     
-    function __construct($elements) {
+    function __construct($expression = array()) {
         parent::__construct(array());
         
-        foreach($elements as $l) {
+        foreach($expression as $l) {
             if (get_class($l) == 'sequence') {
                 $this->elements = array_merge($this->elements, $l->getElements());
             } elseif (get_class($l) == 'block') {

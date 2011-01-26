@@ -134,7 +134,6 @@ class analyseur {
 
     public function upgrade(Token $t) {
         $token = $t->getToken();
-//        if ($token == T_NAMESPACED_NAME) { print $this->regex[$token]; die(); }
         
         // @note we won't process those one. Just skip it. 
         if ($t->checkOperator(array(']','}',')',':',';'))) { return $t; }

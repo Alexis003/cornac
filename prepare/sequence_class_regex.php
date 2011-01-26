@@ -34,7 +34,8 @@ class sequence_class_regex extends analyseur_regex {
 
         if (!$t->getNext()->checkForBlock(true) && 
             !$t->getNext()->checkForVariable() &&
-             $t->getNext()->checkNotClass(array(/*'parenthesis',*/'_new','concatenation')) ) { return false; } 
+             $t->getNext()->checkNotClass(array('_new',
+                                                'concatenation')) ) { return false; } 
 
         if ( (!$t->hasNext(1) || 
                ( $t->getNext(1)->checkNotCode(array('or','and','xor','->','[','::',')','.','^','&','|','||','&&','++','--','+','-','/','*','%')) &&

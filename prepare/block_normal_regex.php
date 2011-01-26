@@ -27,8 +27,7 @@ class block_normal_regex extends analyseur_regex {
     }
     
     function check($t) {
-        if ($t->checkNotCode('{') )   { return false; }
-        if ($t->hasPrev() && $t->getPrev()->checkCode(array('->',']')))   { return false; }
+        if ($t->hasPrev() && $t->getPrev()->checkOperator(array('->',']','}')))   { return false; }
         if ($t->hasPrev() && $t->getPrev()->checkClass(array('property','variable','property_static','_array')))  { return false; }
         if ($t->checkClass('block') ) { return false; }
         if (!$t->hasNext())           { return false; }
@@ -38,7 +37,7 @@ class block_normal_regex extends analyseur_regex {
         $var = $t->getNext();            
         $i = 1;
 
-        while($var->checkNotCode('}')) {
+        while($var->checkNotOperator('}')) {
             if ($var->checkForBlock(true)) {
                 $this->args[] = $i;
                 $this->remove[] = $i;
@@ -49,7 +48,7 @@ class block_normal_regex extends analyseur_regex {
             }
 
             if ($var->checkNotClass(array('block','Token')) && 
-                $var->getNext()->checkCode(';')) {
+                $var->getNext()->checkOperator(';')) {
                 $this->args[] = $i;
 
                 $this->remove[] = $i;
@@ -60,14 +59,14 @@ class block_normal_regex extends analyseur_regex {
                 continue;
             }
 
-            if ($var->checkCode('{') ) {
+            if ($var->checkOperator('{') ) {
                 // @doc nested blocks? aborting
                 $this->args = array();
                 $this->remove = array();
                 return false;
             }
 
-            if ($var->checkCode(';') ) {
+            if ($var->checkOperator(';') ) {
                 // @doc one forgotten semi-colon? ignore it.
                 $this->remove[] = $i;
                 $i++;

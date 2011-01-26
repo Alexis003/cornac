@@ -24,12 +24,8 @@ class constante_class extends token {
     function __construct($expression) {
         parent::__construct();
         
-        if (is_array($expression) && count($expression) == 2) {
-            $this->name = $expression[0];
-            $this->constante = $expression[1];
-        } else {
-            $this->stopOnError("Wrong number of arguments  : '".count($expression)."' in ".__METHOD__);
-        }
+        $this->name = $expression[0];
+        $this->constante = $expression[1];
     }
 
     function getName() {  

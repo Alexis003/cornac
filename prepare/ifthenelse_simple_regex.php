@@ -17,8 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-// @todo rename to simple no S
-class ifthenelse_simples_regex extends analyseur_regex {
+class ifthenelse_simple_regex extends analyseur_regex {
     function __construct() {
         parent::__construct(array());
     }

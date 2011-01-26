@@ -24,7 +24,6 @@ class _namespace extends instruction {
         parent::__construct(array());
         
         $this->namespace = $expression[0];
-        // @todo check for too many arguments?
     }
 
     function __toString() {

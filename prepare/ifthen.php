@@ -77,8 +77,8 @@ class ifthen extends instruction {
     'ifthen_block_regex',
     'ifthen_blockelseblock_regex',
     'ifthenelse_multiples_regex',
-    'ifthenelse_simples_regex',
-    'ifthenelseif_simples_regex',
+    'ifthenelse_simple_regex',
+    'ifthenelseif_simple_regex',
     'ifthenelseif_sequence_regex',
     'ifthenelse_sequence_regex',
 

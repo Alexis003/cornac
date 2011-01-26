@@ -24,7 +24,6 @@ class _while extends instruction {
     function __construct($expression = null) {
         parent::__construct(array());
         
-        // @todo check count of expression
         $this->condition = $expression[0];
         $this->block = $expression[1];
     }
@@ -50,7 +49,7 @@ class _while extends instruction {
         return array('while_block_regex',
                      'while_noblock_regex',
                      'while_alternative_regex',
-                     'dowhile_simples_regex',
+                     'dowhile_simple_regex',
                     );
     }
 

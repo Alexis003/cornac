@@ -24,7 +24,6 @@ class _dowhile extends instruction {
     function __construct($expression = null) {
         parent::__construct(array());
         
-        // @todo check count(expression) ? 
         $this->block = $expression[0];
         $this->condition = $expression[1];
     }

@@ -48,6 +48,7 @@ class codephp extends instruction {
                      'codephp_normal_regex',
                      'codephp_withsemicolon_regex',
                      'codephp_unfinishedwithsemicolon_regex',
+                     'codephp_emptysequence_regex',
                     );
     }
 }

@@ -406,7 +406,7 @@ class template_cache extends template {
         $constante = $node->getConstante();
         $this->display($constante, $level + 1);
 
-        $node->cache = $class->cache.'::'.$constante->cache;
+        $node->cache = $class->cache;
         return $this->savenode($node);        
     }
 

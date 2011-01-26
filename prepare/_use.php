@@ -29,7 +29,6 @@ class _use extends instruction {
         if (isset($expression[1])) {
             $this->alias = $this->makeProcessedToken('_usednsname_', $expression[1]);
         }
-        // @todo check for too many arguments?
     }
 
     function __toString() {

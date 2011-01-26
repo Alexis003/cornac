@@ -42,8 +42,7 @@ class arglist_regex extends analyseur_regex {
         if ($t->getPrev(1)->checkOperator('\\')) { return false; }
 
         if ($t->getPrev()->checkOperator('}') && 
-        // @todo add limitations on getPrev(1) values? 
-           $t->getPrev(2)->checkNotCode('{')) {
+           $t->getPrev(2)->checkNotOperator('{')) {
                 return false;
         }
 
@@ -91,7 +90,7 @@ class arglist_regex extends analyseur_regex {
             }
             
             if ($t->getPrev()->checkCode('echo') && 
-                $var->getNext(1)->checkCode(array('|','&','^'))) { return false; }
+                $var->getNext(1)->checkOperator(array('|','&','^'))) { return false; }
             
             $this->args[]    = $pos ;
 
