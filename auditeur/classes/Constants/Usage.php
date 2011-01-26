@@ -26,7 +26,7 @@ class Constants_Usage extends typecalls {
     }
 
 	public function analyse() {
-	    $this->type = array('constante', 'constante_magique');
+	    $this->type = array('_constant');
 	    parent::analyse();
 	    return true;
 	}
