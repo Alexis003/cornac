@@ -35,7 +35,7 @@ FROM <tokens>  T1
 JOIN <tokens> T2
    ON T1.left + 1 = T2.left AND 
       T1.file = T2.file AND
-      T2.type IN ('token_traite','variable')
+      T2.type IN ('_classname_','variable')
 WHERE T1.type = '_new'
 SQL;
         $this->exec_query_insert('report', $query);
@@ -47,7 +47,7 @@ FROM <tokens>  T1
 JOIN <tokens> T2
    ON T1.left + 1 = T2.left AND 
       T1.file = T2.file AND
-      T2.type NOT IN ('token_traite','variable')
+      T2.type NOT IN ('_classname_','variable')
 JOIN <tokens_cache> TC
    ON TC.id = T2.id
 WHERE T1.type = '_new'
