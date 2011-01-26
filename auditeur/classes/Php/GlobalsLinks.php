@@ -26,7 +26,11 @@ class Php_GlobalsLinks extends modules {
         
         $this->format = modules::FORMAT_DOT;
 	}
-	
+
+	function dependsOn() {
+	    return array('Php_Globals');
+	}
+
 	public function analyse() {
         $this->clean_report();
         
