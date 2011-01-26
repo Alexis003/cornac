@@ -159,6 +159,12 @@ $tests = array(
 'class.Constants_HasLowerCase.test.php',
 'class.Php_NewByReference.test.php',
 'class.Php_SetlocaleWithString.test.php',
+'class.Php_ObsoleteFunctionsIn53.test.php',
+'class.Commands_Sql.test.php',
+'class.Commands_SqlConcatenation.test.php',
+'class.Functions_NonPhp.test.php',
+'class.Php_FunctionsCalls.test.php',
+'class.Classes_Constants.test.php',
 // new tests
 );
 
