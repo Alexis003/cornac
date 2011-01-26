@@ -1,19 +1,7 @@
-make 'inventaire' work on one file only
-make 'inventaire' export to other format (TEXT...)
-Spot redeclared methods in class hierarchy
-Spot type of value returned by method/functions
-
-rename 'constante' in _constant
-rename mon_log into my_log...
-Automat Analyzer sorting in auditeur.php
-
-spot affectations out of place (in if, as argument...)
-
-Add unit tests for inventaires (through other output format?)
+[cornac]
+add remove table option for cornac / auditeur
 
 Add a way to display code within cornac (Through PHP COde Browser? Under work with JMF)
-
-[cornac]
 Have a tar.gz packaged automatically (create a phing build)
 Set up a version system, so that it is easier to know which version is being used (upon a phing publication? ) 
 process extension as case unsensitive. 
@@ -68,6 +56,8 @@ Add a file lister, that will also display ignored files from tokenizeur (export 
 Check for table structure before using 
 check tokclient, to make sure he keeps going on when a script can't be processed. 
 
+Compile some more PHP version to use for outsourcing token_get_all() function
+
 Run tokenizeur regularly on Open source project : make a script for automation, and extract some stats on how much was tested, compare applications (function used, extension used, pattern spotted, number of files...)
 check that tokenizeur works on one file only, without database
 
@@ -91,7 +81,27 @@ see how tokclient may not stop stupidly, and keep going when there are still som
 
 Add information code when tokclient fail at parsing a file. (php not compile, etc.)
 
+check that "$r[g]" doesn't interpolate an array in the string (contrary to "{$r[g]}").
+rename 'constante' in _constant
+rename mon_log into my_log...
+
+use select in tokclient to // processing
+
 [auditeur]
+Log time of analyseur's process
+
+Detect tables available for MCD, and stop if this is not compatible
+
+Automat Analyzer sorting in auditeur.php
+
+Have a report_characteristics table (that will hold reports at the token level)
+make a web interface to update analyseurs
+
+Automatically spot authorized values in SQL queries (<report>, between '');
+
+Add suggestion when -a is provided to auditeur
+Add listing of all analyzers with -l
+
 Check for table structure before using. 
 Move auditeur to English as reference translations of analyzers's title and description
 Add 'tags' propertie to every analyzers to help sort out the analyzers
@@ -134,9 +144,23 @@ GPC used in functions...
 
 Structure (Function, method, class) must use, have return, call such method, etc... 
 
-check tokens? and version. 
+check tokens? and version for PHP. This must be done in tokenizer. 
+
+Prepare auditeur for wordpress, joomla, drupal, sf, zf, ci. 
 
 [analysers ideas]
+Make a tree with exceptions throws (List des émetteur d'exception, et de leur catch)
+
+Spot problems of PHP 5.3 migration
+
+Classes relations based on class constant.
+
+return out of functions scope
+Spot redeclared methods in class hierarchy
+Spot type of value returned by method/functions
+(then start identifying types of variables/properties, including the mixed one). 
+
+spot affectations out of place (in if, as argument...)
 
 identify 'tainted' values (either from GPC, or from arguments)
 identify returned values (used in return)
@@ -165,7 +189,6 @@ useless lines (like 1; array(); etc.)
 Identify variables that where not initialized (less args, less foreach)
 
 Long functions (number of tokens, number of lines...), 
-literals used as parameter in function call
 Compromised variables (the one affected with values from GPC)
 
 Gather files including something else than class, function or global.... 
@@ -200,6 +223,8 @@ SQL queries lists
 SQL queries protections
 Upper case variables
 URL manipulations
+
+A constant structure : a PHP structure that is only made of constant/literals constant. Possibly a bunch of constants, combined.
 
 Spot PHP code in comments
 
@@ -257,6 +282,12 @@ display special analyse separatly from normal tagging
 Make better display 
 
 [inventaire]
+Add unit tests for inventaires (through other output format?)
+make 'inventaire' work on one file only
+make 'inventaire' export to other format (TEXT...)
+
+add information on inventaire.ods about processing of application.
+
 add output file in .ini
 internationalize
 centralize connexion to the database
