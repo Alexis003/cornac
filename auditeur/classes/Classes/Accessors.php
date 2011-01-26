@@ -2,8 +2,8 @@
 
 
 class Classes_Accessors extends modules {
-	protected	$title = 'Title for Classes_Accessors';
-	protected	$description = 'This is the special analyzer Classes_Accessors (default doc).';
+	protected	$title = 'Accessors';
+	protected	$description = 'List of class accessors : must be using prefix get or set, followed by the name of a declared property (case insensitive, works on hierarchy, up to two levels)';
 
 	function __construct($mid) {
         parent::__construct($mid);
