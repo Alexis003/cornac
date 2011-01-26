@@ -33,7 +33,7 @@ SELECT NULL, T1.file, TC.code,  T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens_cache> TC
     ON TC.id = T1.id 
-WHERE type IN ('method_static','property_static','constante_static')
+WHERE type IN ('method_static','property_static','constant_static')
 SQL;
         $this->exec_query_insert('report', $query);
         
