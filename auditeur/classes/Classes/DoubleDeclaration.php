@@ -36,7 +36,7 @@ class Classes_DoubleDeclaration extends modules {
 SELECT NULL, file, TR.element,  TR.token_id, '{$this->name}', 0
 FROM <report> TR
 WHERE module='Classes_Definitions'
-GROUP BY file, element 
+GROUP BY element 
 HAVING COUNT(*) > 1
 SQL;
         $this->exec_query_insert('report', $query);
