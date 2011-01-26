@@ -26,10 +26,6 @@ class Literals_RawtextWhitespace extends modules {
         parent::__construct($mid);
 	}
 
-	function dependsOn() {
-	    return array();
-	}
-
 	public function analyse() {
         $this->clean_report();
 
