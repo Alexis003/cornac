@@ -47,8 +47,7 @@ JOIN <tokens> T2
     ON T1.left + 1 = T2.left AND
        T1.file = T2.file
 LEFT JOIN <tokens_cache> T3
-    ON T1.id = T3.id AND
-       T1.file = T3.file
+    ON T1.id = T3.id
 WHERE T1.type = '_array' AND
       T2.code = '\$GLOBALS';
 SQL;
