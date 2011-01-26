@@ -25,11 +25,6 @@ class Quality_ExternalLibraries extends modules {
         parent::__construct($mid);
 	}
 
-// @doc if this analyzer is based on previous result, use this to make sure the results are here
-	function dependsOn() {
-	    return array('classes');
-	}
-	
 	public function analyse() {
         $this->clean_report();
 // @todo use also constantes
