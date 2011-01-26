@@ -41,7 +41,7 @@ JOIN <tokens> T2
 JOIN <tokens_cache> TC
     ON T1.id = TC.id
 WHERE T1.type IN ( 'logical','comparison') AND
-      T2.type IN ('constante','literals')
+      T2.type IN ('_constant','literals')
 GROUP BY T1.id
 HAVING COUNT(*) = 2
 SQL;
