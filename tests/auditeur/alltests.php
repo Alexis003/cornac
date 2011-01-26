@@ -157,6 +157,8 @@ $tests = array(
 'class.Classes_Accessors.test.php',
 'class.Constants_Usage.test.php',
 'class.Constants_HasLowerCase.test.php',
+'class.Php_NewByReference.test.php',
+'class.Php_SetlocaleWithString.test.php',
 // new tests
 );
 
