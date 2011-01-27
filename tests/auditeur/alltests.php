@@ -165,6 +165,7 @@ $tests = array(
 'class.Functions_NonPhp.test.php',
 'class.Php_FunctionsCalls.test.php',
 'class.Classes_Constants.test.php',
+'class.Quality_GpcAsArgument.test.php',
 // new tests
 );
 
