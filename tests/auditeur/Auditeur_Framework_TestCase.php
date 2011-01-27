@@ -66,7 +66,7 @@ php -l ./scripts/{$this->prefix}.php
 SHELL;
 
         $return = shell_exec($shell);
-        if ($return != "No syntax errors detected in ./scripts/".$this->prefix.".php"."\n") {
+        if (strpos($return, "No syntax errors detected in ./scripts/".$this->prefix.".php") === false) {
             $this->assertFalse(true, "Script scripts/".$this->prefix.".php doesn't compile\n");
         }
 
@@ -99,10 +99,9 @@ php -l ./scripts/{$this->prefix}.php
 SHELL;
 
         $return = shell_exec($shell);
-        if ($return != "No syntax errors detected in ./scripts/".$this->prefix.".php\n") {
-            print $return; 
+        if (strpos($return, "No syntax errors detected in ./scripts/".$this->prefix.".php") === false) {
             $this->assertFalse(true, "Script scripts/".$this->prefix.".php doesn't compile\n");
-}
+        }
 
         $sx = $this->read_log();
 

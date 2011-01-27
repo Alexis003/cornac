@@ -166,6 +166,10 @@ $tests = array(
 'class.Php_FunctionsCalls.test.php',
 'class.Classes_Constants.test.php',
 'class.Quality_GpcAsArgument.test.php',
+'class.Quality_MktimeIsdst.test.php',
+'class.Functions_CallByReference.test.php',
+'class.Classes_MagicMethodWrongVisibility.test.php',
+'class.Php_FuncGetArgOutOfFunctionScope.test.php',
 // new tests
 );
 
