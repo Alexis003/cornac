@@ -35,7 +35,7 @@ class for_simple_regex extends analyseur_regex {
         $remove = array(1);
         $pos = 1;
 
-        if ($t->getNext($pos)->checkCode(';')) {
+        if ($t->getNext($pos)->checkOperator(';')) {
             $args[] = $pos + 1;
 
             $remove[] = $pos + 1;
@@ -43,7 +43,7 @@ class for_simple_regex extends analyseur_regex {
             $pos += 1;
         } elseif ($t->getNext($pos)->checkClass(array('Token','sequence')) ) {
             return false; 
-        } elseif ($t->getNext($pos)->checkClass(array('block')) ) {
+        } elseif ($t->getNext($pos)->checkClass('block') ) {
             $args[] = $pos + 1  ;
 
             $remove[] = $pos  + 1;

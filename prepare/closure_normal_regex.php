@@ -29,7 +29,6 @@ class closure_normal_regex extends analyseur_regex {
     function check($t) {
         if (!$t->hasNext(2)) { return false; }
 
-
         if ($t->getNext()->checkOperator(array('(')) && 
             $t->getNext(1)->checkOperator(array(')'))) { 
             $pos = 2;
