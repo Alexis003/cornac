@@ -1,3 +1,6 @@
+Warning : trailing " are removed from strings...
+tokenizeur : store literal type (string, bool, int, real...)
+
 [cornac]
 add remove table option for cornac / auditeur
 
@@ -238,6 +241,10 @@ functions (and files) that emit error (join, mysql_connect, ) : they should be c
 methods/files/classes that misses some (provided) code.
 
 Spot library dependencies, like, phpmailer, tinyMCE, html purifier, domit, geshi, 
+cakelos-1.0.1/akelos-1.0.1/vendor:
+Excel			TextParsers		domit			incutio			phpmemcached		simpletest		spyc
+PHPCodeAnalyzer		adodb			fpdf			pear			phputf8			simpletest-tools	xslt-php4-php5
+phoogle	swift   lime    swiftmailer Markdown.php
 
 Qualify scripts/contextes/folders as being controler (aka _GET, include), model (database) ou template (html, pdf, echo...).
 Check that above characteristics are at the right place (by folder, by framework...)
@@ -287,6 +294,8 @@ make 'inventaire' work on one file only
 make 'inventaire' export to other format (TEXT...)
 
 add information on inventaire.ods about processing of application.
+
+mention presence of phpinfo
 
 add output file in .ini
 internationalize
