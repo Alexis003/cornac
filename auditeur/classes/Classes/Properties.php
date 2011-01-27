@@ -32,16 +32,43 @@ class Classes_Properties extends modules {
         $query = <<<SQL
 SELECT NULL, T1.file, $concat as code, T2.id, '{$this->name}' , 0
 FROM <tokens> T1
-  JOIN <tokens> T2 
+JOIN <tokens> T2 
   ON T2.file = T1.file AND 
-  T2.left BETWEEN T1.left AND T1.right 
-  AND T2.type='variable'
-WHERE T1.class != 'global' AND T1.type='_var'
+     T2.left = T1.left + 3 AND
+     T2.right < T1.right AND
+     T2.type='variable'
+WHERE T1.class != 'global' AND 
+      T1.type='_var'
+SQL;
+        $this->exec_query_insert('report',$query);
+
+        $query = <<<SQL
+SELECT NULL, T1.file, $concat as code, T2.id, '{$this->name}' , 0
+FROM <tokens> T1
+JOIN <tokens> T2 
+  ON T2.file = T1.file AND 
+     T2.left = T1.left + 5 AND
+     T2.right < T1.right AND
+     T2.type='variable'
+WHERE T1.class != 'global' AND 
+      T1.type='_var'
+SQL;
+        $this->exec_query_insert('report',$query);
+
+        $query = <<<SQL
+SELECT NULL, T1.file, $concat as code, T2.id, '{$this->name}' , 0
+FROM <tokens> T1
+JOIN <tokens> T2 
+  ON T2.file = T1.file AND 
+     T2.left = T1.left + 7 AND
+     T2.right < T1.right AND
+     T2.type='variable'
+WHERE T1.class != 'global' AND 
+      T1.type='_var'
 SQL;
         $this->exec_query_insert('report',$query);
 
         return true;
-    // @todo support methods and classes
     }
 }
 

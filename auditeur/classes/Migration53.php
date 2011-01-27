@@ -27,6 +27,10 @@ class Migration53 extends modules {
 "Php_ObsoleteFunctionsIn53",
 "Php_NewByReference",
 "Php_SetLocaleWithString",
+"Quality_MktimeIsdst",
+"Functions_CallByReference",
+"Classes_ToStringNoArg",
+"Classes_MagicMethodWrongVisibility",
 // @todo cover all mention on http://php.net/manual/fr/migration53.php
         );
     }

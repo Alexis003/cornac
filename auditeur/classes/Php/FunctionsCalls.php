@@ -40,9 +40,11 @@ JOIN <tokens> T2
 LEFT JOIN <tokens_tags> TT
      ON T1.id = TT.token_sub_id
 WHERE  T1.type='functioncall' AND
-       (TT.token_id IS NULL OR TT.type != 'method') AND
-       T2.code NOT IN ('$in')
+       (TT.token_id IS NULL OR TT.type != 'method')
 SQL;
+
+// AND
+//       T2.code NOT IN ('$in')
 
         $this->exec_query_insert('report', $query);
         return true;

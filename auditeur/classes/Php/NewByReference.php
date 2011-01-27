@@ -18,9 +18,15 @@ class Php_NewByReference extends modules {
         $this->clean_report();
 
 	    $query = <<<SQL
-SELECT NULL, T1.file, T1.code, T1.id, '{$this->name}', 0
-    FROM <tokens> T1
-    WHERE type = 'variable'
+SELECT NULL, T1.file, TC.code, T1.id, '{$this->name}', 0
+FROM <tokens> T1
+JOIN <tokens> T2
+    ON T2.file = T1.file AND
+       T2.type = '_new' AND
+       T2.left = T1.left + 1
+JOIN <tokens_cache> TC
+    ON T2.id = TC.id
+WHERE T1.type = 'reference'
 SQL;
         $this->exec_query_insert('report', $query);
 

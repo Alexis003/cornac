@@ -19,7 +19,7 @@
 
 
 class Classes_ToStringNoArg extends modules {
-    protected    $title = 'ToString without arguments';
+    protected    $title = 'ToString with arguments';
     protected    $description = 'Spot __toString methods with arguments (Incompatible change for PHP 5.3)';
     protected    $tags = array('PHP_5.3');
 

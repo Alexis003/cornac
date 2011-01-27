@@ -35,6 +35,9 @@ $options = array('help' => array('help' => 'display this help',
                                  'get_arg_value' => 1,
                                  'option' => 'i',
                                  'compulsory' => false),
+                 'list' => array('help' => 'list auditeur available analyzers',
+                                 'option' => 'l',
+                                 'compulsory' => false),
                  'slave' => array('help' => 'slave mode. -1, infinite; 0, all task available; n : number of tasks',
                                  'get_arg_value' => 0,
                                  'option' => 's',
@@ -269,6 +272,10 @@ $modules = array(
 'Quality_GpcAsArgument',
 'Ext_Phpinfo',
 'Commands_HtmlConcatenation',
+'Quality_MktimeIsdst',
+'Functions_CallByReference',
+'Classes_MagicMethodWrongVisibility',
+'Php_FuncGetArgOutOfFunctionScope',
 // new analyzers
 );
 
@@ -276,6 +283,13 @@ include('../libs/database.php');
 $DATABASE = new database();
 
 define('FORCE', $INI['force']);
+
+if ($INI['list']) {
+    foreach($modules as $module) {
+        print "$module\n";
+    }
+    die();
+}
 
 if ($INI['init']) {
     if ($INI['analyzers'] == 'all' ) {
@@ -330,6 +344,7 @@ if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
   PRIMARY KEY (`id`),
   KEY `element` (`element`),
   KEY `file` (`file`),
+  KEY `token_id` (`token_id`),
   KEY `module` (`module`)
 ) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1');
 
