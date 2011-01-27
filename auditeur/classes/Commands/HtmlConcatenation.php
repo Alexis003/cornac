@@ -1,19 +1,17 @@
 <?php 
 
 
-class Commands_SqlConcatenation extends modules {
-	protected	$title = 'SQL concatenations';
-	protected	$description = 'Spot concatenations that are building SQL queries.';
+class Commands_HtmlConcatenation extends modules {
+	protected	$title = 'Html concatenation';
+	protected	$description = 'Spot concatenations that are building HTML files.';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
 
-// @doc if this analyzer is based on previous result, use this to make sure the results are here
 	function dependsOn() {
-	    return array('Commands_Sql');
+	    return array('Commands_Html');
 	}
-
 
 	public function analyse() {
         $this->clean_report();
@@ -27,12 +25,11 @@ JOIN <tokens> T2
        T2.type = 'literals'
 JOIN <report> TR
     ON T2.id = TR.token_id AND
-       TR.module = 'Commands_Sql'
+       TR.module = 'Commands_Html'
 JOIN <tokens_cache> TC
     ON T1.id = TC.id
 WHERE T1.type = 'concatenation'
 SQL;
-
         $this->exec_query_insert('report', $query);
 
         return true;

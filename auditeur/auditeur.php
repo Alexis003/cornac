@@ -266,6 +266,9 @@ $modules = array(
 'Zf_TypeView',
 'Zf_ViewVariables',
 'Php_SetlocaleWithString',
+'Quality_GpcAsArgument',
+'Ext_Phpinfo',
+'Commands_HtmlConcatenation',
 // new analyzers
 );
 

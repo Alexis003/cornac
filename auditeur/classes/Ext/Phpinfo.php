@@ -17,36 +17,18 @@
    +----------------------------------------------------------------------+
  */
 
-
-class Zf_Sql extends modules {
-	protected	$title = 'ZF : SQL query execution';
-	protected	$description = 'Spot SQL query execution in Zend Framework Zend_DB style.';
+class Ext_Phpinfo extends functioncalls {
+	protected	$title = 'phpinfo';
+	protected	$description = 'Spot phpinfo in the PHP code.';
 
 	function __construct($mid) {
         parent::__construct($mid);
 	}
-
+	
 	public function analyse() {
-        $this->clean_report();
-
-	    $query = <<<SQL
-SELECT NULL, T1.file, T1.code, T1.id, '{$this->name}', 0
-FROM <tokens> T1
-JOIN <tokens_tags> TT
-    ON TT.token_sub_id = T1.id
-WHERE
-    T1.code in ('query',
-                'execute',
-                'fetchAll',
-                'fetchRow',
-                'fetch',
-                'delete',
-                'update',
-                'insert') AND 
-    TT.type='function'
-SQL;
-        $this->exec_query_insert('report', $query);
-
+        $this->functions = array('phpinfo');
+        parent::analyse();
+        
         return true;
 	}
 }
