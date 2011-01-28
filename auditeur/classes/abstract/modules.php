@@ -347,7 +347,12 @@ SQL;
         $functions = parse_ini_file('../dict/phphandlers.ini', true);
         return $functions['function'];
     }
-    
+
+    static public function getPopLib() {
+        $list = parse_ini_file('../dict/poplib.ini', true);
+        return $list;
+    }
+
     static public function getPHPGPC() {
         return array('$_GET','$_POST','$_COOKIE','$_REQUEST','$_FILES','$_SESSION',
                      '$HTTP_GET_VARS','$HTTP_POST_VARS','$HTTP_COOKIE_VARS','$HTTP_FILES_VARS', '$HTTP_SESSION_VARS',

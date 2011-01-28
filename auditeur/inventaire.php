@@ -104,6 +104,7 @@ if (isset($INI['cornac']['prefix'])) {
 unset($ini);
 
 // @todo internationalize this!
+// @todo make this configurable from the local web
 $headers = array('Variables' => 'SELECT COUNT(DISTINCT element)  FROM <report> WHERE module="Variables_Names"',
                  'Files'  => 'SELECT COUNT(DISTINCT file) FROM <report>',
                  'Classes'   => 'SELECT COUNT(DISTINCT element)  FROM <report> WHERE module="Classes_Definitions"',
@@ -120,9 +121,11 @@ $headers = array('Variables' => 'SELECT COUNT(DISTINCT element)  FROM <report> W
                  'Variable variables'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <report> WHERE module="Variables_Variables"',
                  'Ticks'   => 'SELECT IF(COUNT(*) > 0, "Yes","No")  FROM <tokens> WHERE type="_declare"',
                  'Uncompilable files'   => 'SELECT IF(COUNT(target) > 0, "Yes","No")  FROM <tasks> WHERE completed=3',
-//                 'External libraries'   => 'SELECT IF(COUNT(target) > 0, "Yes","No")  FROM <tasks> WHERE completed=3',
+                 'External libraries'   => 'SELECT IF(COUNT(target) > 0, "Yes","No")  FROM <tasks> WHERE completed=3',
                  'Uses Zend Framework'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <report> WHERE module="Zf_Dependencies"',
                  'Uses Symfony'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <report> WHERE module="Sf_Dependencies"',
+                 'Have phpinfo'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <report> WHERE module="Php_Phpinfo"',
+                 'Have debug'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <report> WHERE module="Ext_VarDump"',
                  );
 
 $stats = array();

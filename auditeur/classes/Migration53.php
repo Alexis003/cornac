@@ -31,6 +31,8 @@ class Migration53 extends modules {
 "Functions_CallByReference",
 "Classes_ToStringNoArg",
 "Classes_MagicMethodWrongVisibility",
+"Quality_IniSetObsolet53",
+"Php_ObsoleteModulesIn53",
 // @todo cover all mention on http://php.net/manual/fr/migration53.php
         );
     }

@@ -42,6 +42,7 @@ class Inventaire extends modules {
 "Variables_Session",
 "Variables_Variables",
 "Zf_Dependencies",
+"Php_Phpinfo",
         );
     }
     

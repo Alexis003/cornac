@@ -28,6 +28,8 @@ class Inventaire extends modules {
 "Commands_SqlConcatenation",
 "Commands_HtmlConcatenation",
 "Ext_VarDump",
+"Php_Phpinfo",
+
 
         );
     }
