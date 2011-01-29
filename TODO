@@ -1,3 +1,5 @@
+sort functions : spot object type first
+new classes/constant/functions : beware of conflict
 Warning : trailing " are removed from strings...
 tokenizeur : store literal type (string, bool, int, real...)
 
