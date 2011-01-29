@@ -33,6 +33,8 @@ class Migration53 extends modules {
 "Classes_MagicMethodWrongVisibility",
 "Quality_IniSetObsolet53",
 "Php_ObsoleteModulesIn53",
+"Php_ReservedWords53",
+"Php_Clearcachestat",
 // @todo cover all mention on http://php.net/manual/fr/migration53.php
         );
     }

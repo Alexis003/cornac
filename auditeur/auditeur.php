@@ -279,6 +279,8 @@ $modules = array(
 'Zf_Session',
 'Zf_TypeView',
 'Zf_ViewVariables',
+'Php_Clearstatcache',
+'Php_ReservedWords53',
 // new analyzers
 );
 
