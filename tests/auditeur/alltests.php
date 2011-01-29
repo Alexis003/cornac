@@ -170,6 +170,9 @@ $tests = array(
 'class.Functions_CallByReference.test.php',
 'class.Classes_MagicMethodWrongVisibility.test.php',
 'class.Php_FuncGetArgOutOfFunctionScope.test.php',
+'class.Quality_IniSetObsolet53.test.php',
+'class.Php_ObsoleteModulesIn53.test.php',
+'class.Php_Clearstatcache.test.php',
 // new tests
 );
 
