@@ -189,7 +189,8 @@ class file_processor {
         // @doc 4177 is error_reporting for  E_COMPILE_ERROR|E_RECOVERABLE_ERROR|E_ERROR|E_CORE_ERROR (compilations error only)
 //@todo make this optional, for speed purpose. Checking syntax is useless for unit test, but is important for discovery
         $exec = shell_exec('php -d short_open_tag=1 -d error_reporting=4177  -l '.escapeshellarg($file).' ');
-        if (trim($exec) != 'No syntax errors detected in '.$file) {
+//        if (trim($exec) != 'No syntax errors detected in '.$file) {
+        if (strpos($exec, 'No syntax errors detected in '.$file) === false) {
             $this->messages['compile'] = "Script \"$file\" can't be compiled by PHP\n$exec\n";
             $this->error = true;
             return false;
