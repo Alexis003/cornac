@@ -41,8 +41,8 @@ if (count(explode('_', $analyzer)) != 2) {
 
 $analyzer_path = str_replace('_', '/', $analyzer);
 
-if (file_exists('classes/'.basename($analyzer_path))) {
-    print "'$analyzer' : folder non-existant. \n";
+if (!file_exists('classes/'.dirname($analyzer_path))) {
+    print "'".'classes/'.basename($analyzer_path)."' : folder non-existent. \n";
     die();
 }
 
