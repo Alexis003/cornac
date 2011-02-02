@@ -173,6 +173,7 @@ $tests = array(
 'class.Quality_IniSetObsolet53.test.php',
 'class.Php_ObsoleteModulesIn53.test.php',
 'class.Php_Clearstatcache.test.php',
+'class.Structures_Constants.test.php',
 // new tests
 );
 
