@@ -31,7 +31,6 @@ class Php_InclusionLinks extends modules {
         $this->clean_report();
         
         $query = <<<SQL
-INSERT INTO <report_dot> 
 SELECT distinct T1.file, T3.code,T1.file, '{$this->name}'
 FROM <tokens> T1
 JOIN <tokens> T2
@@ -42,10 +41,9 @@ JOIN <tokens_cache> T3
       AND T3.file = T2.file
 WHERE T1.type='inclusion'
 SQL;
-        $res = $this->exec_query($query);
+        $res = $this->exec_query_insert('report_dot', $query);
         
        $query = <<<SQL
-INSERT INTO <report_dot> 
 SELECT distinct T1.file, T2.code, T1.file, '{$this->name}'
 FROM <tokens> T1
 JOIN <tokens> T2
@@ -54,12 +52,11 @@ JOIN <tokens> T2
 WHERE T1.type='inclusion' AND
       T2.type in ('literals','variable')
 SQL;
-        $res = $this->exec_query($query);
+        $res = $this->exec_query_insert('report_dot', $query);
 
         $concat = $this->concat('"inc/"','T4.code',"'/'",'T4.code',"'.inc'");
         
        $query = <<<SQL
-INSERT INTO <report_dot> 
 SELECT T1.file, REPLACE($concat,'"', ''), T1.file, '{$this->name}' 
 FROM <tokens> T1
 JOIN <tokens_tags> TT 
@@ -74,6 +71,7 @@ JOIN <tokens> T4
     ON T1.file = T4.file and T4.type='literals' AND T4.left between T3.left and T3.right
 WHERE T1.type='functioncall'
 SQL;
+        $res = $this->exec_query_insert('report_dot', $query);
         $res = $this->exec_query($query);
 
        include_once('../libs/path_normaliser.php');
