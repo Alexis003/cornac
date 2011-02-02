@@ -36,7 +36,6 @@ class Constants_FileLink extends modules {
         $this->clean_report();
 
         $query = <<<SQL
-INSERT INTO <report_dot>
 SELECT TR1.file, TR2.file, TR1.element, '{$this->name}'
 FROM <report>  TR1
 JOIN <report> TR2
@@ -44,7 +43,7 @@ JOIN <report> TR2
        TR2.element = TR1.element
 WHERE TR1.module='Constants_Definitions'
 SQL;
-        $this->exec_query($query);
+        $this->exec_query_insert('report_dot', $query);
         
         return true;
     }
