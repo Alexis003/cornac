@@ -34,7 +34,10 @@ class Migration53 extends modules {
 "Quality_IniSetObsolet53",
 "Php_ObsoleteModulesIn53",
 "Php_ReservedWords53",
-"Php_Clearcachestat",
+"Php_Clearstatcache",
+"Php_Php53NewFunctions",
+"Php_Php53NewClasses",
+"Php_Php53NewConstants",
 // @todo cover all mention on http://php.net/manual/fr/migration53.php
         );
     }

@@ -30,6 +30,7 @@ class Quality_StrposEquals extends modules {
 	public function analyse() {
         $this->clean_report();
 
+        $in = "'strpos', 'stripos','strrpos','strtok',";
 // @note strpos == 0 or 0 == strpos
 	    $query = <<<SQL
 SELECT NULL, T1.file, TC.code, T1.id,'{$this->name}', 0
@@ -41,7 +42,8 @@ JOIN <tokens> T2
     ON T1.file = T2.file AND
        T2.id = TT.token_sub_id AND
        ((T2.type = 'literals' AND T2.code = 0) OR
-        (T2.type = 'functioncall'))
+        (T2.type = 'functioncall') AND
+         T2.code IN ($in))
 JOIN <tokens_cache> TC
     ON T1.id = TC.id
 WHERE T1.type = 'comparison' AND
@@ -59,7 +61,7 @@ JOIN <tokens> T2
     ON T2.file = T1.file AND
        T2.left = T1.left + 1 AND
        T2.type = 'functioncall' AND
-       T2.code = 'strpos'
+       T2.code IN ($in)
 JOIN <tokens_cache> TC
     ON T2.id = TC.id
 WHERE T1.type='parenthesis'
