@@ -174,6 +174,8 @@ $tests = array(
 'class.Php_ObsoleteModulesIn53.test.php',
 'class.Php_Clearstatcache.test.php',
 'class.Structures_Constants.test.php',
+'class.Php_ReservedWords53.test.php',
+'class.Php_Phpinfo.test.php',
 // new tests
 );
 
