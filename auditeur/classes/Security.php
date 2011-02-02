@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class Inventaire extends modules {
+class Security extends modules {
 	function __construct($mid) {
         parent::__construct($mid);
 	}
@@ -29,8 +29,6 @@ class Inventaire extends modules {
 "Commands_HtmlConcatenation",
 "Ext_VarDump",
 "Php_Phpinfo",
-
-
         );
     }
     
