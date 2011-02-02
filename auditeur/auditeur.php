@@ -82,6 +82,7 @@ $modules = array(
 'Classes_MethodsSpecial',
 'Classes_MethodsWithoutPpp',
 'Classes_News',
+'Classes_NsToPath',
 'Classes_Php',
 'Classes_Properties',
 'Classes_PropertiesChained',
@@ -98,6 +99,7 @@ $modules = array(
 'Commands',
 'Commands_Html',
 'Commands_HtmlConcatenation',
+'Commands_Path',
 'Commands_Sql',
 'Commands_SqlConcatenation',
 
@@ -137,11 +139,13 @@ $modules = array(
 'Ext_Xml',
 
 'Functions',
+'Functions_Arginit',
 'Functions_ArglistCalled',
 'Functions_ArglistDefined',
 'Functions_ArglistDiscrepencies',
 'Functions_ArglistReferences',
 'Functions_ArglistUnused',
+'Functions_Arguments',
 'Functions_ArrayUsage',
 'Functions_CallByReference',
 'Functions_CalledBack',
@@ -157,6 +161,7 @@ $modules = array(
 'Functions_Occurrences',
 'Functions_Php',
 'Functions_Recursive',
+'Functions_ReturnVariable',
 'Functions_Security',
 'Functions_Undefined',
 'Functions_Unused',
@@ -213,6 +218,7 @@ $modules = array(
 'Quality_ConstructNameOfClass',
 'Quality_DangerousCombinaisons',
 'Quality_ExternalLibraries',
+'Quality_ExternalStructures',
 'Quality_FilesMultipleDefinition',
 'Quality_GpcAsArgument',
 'Quality_GpcAssigned',
@@ -235,6 +241,7 @@ $modules = array(
 'Structures_CallTimePassByReference',
 'Structures_CaseWithoutBreak',
 'Structures_ComparisonConstants',
+'Structures_Constants',
 'Structures_FluentInterface',
 'Structures_FluentProperties',
 'Structures_ForeachKeyValue',
@@ -256,6 +263,7 @@ $modules = array(
 'Structures_SwitchWithoutDefault',
 
 'Test',
+'Variable_TypeInteger',
 
 'Variables',
 'Variables_Affected',
@@ -267,6 +275,7 @@ $modules = array(
 'Variables_Relations',
 'Variables_Session',
 'Variables_StrangeChars',
+'Variables_TypeInteger',
 'Variables_Unaffected',
 'Variables_Variables',
 
@@ -285,13 +294,6 @@ $modules = array(
 'Zf_Session',
 'Zf_TypeView',
 'Zf_ViewVariables',
-'Variable_TypeInteger',
-'Variables_TypeInteger',
-'Functions_Arguments',
-'Functions_Arginit',
-'Structures_Constants',
-'Functions_ReturnVariable',
-'Commands_Path',
 // new analyzers
 );
 
@@ -341,6 +343,7 @@ if (INI) {
     write_ini_file($INI, INI);
 */
 
+// @todo move this to abstract/module, so that initialisation will be next to the right checks. 
 if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
 // @note element column size should match the code column in <tokens>
     if (CLEAN_DATABASE) {
