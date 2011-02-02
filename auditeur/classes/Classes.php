@@ -18,7 +18,7 @@
  */
 
 
-class classes extends modules_head {
+class Classes extends modules_head {
 	protected	$title = 'Classes';
 	protected	$description = 'This is the summary analyzer for all classes analyzer.';
 
