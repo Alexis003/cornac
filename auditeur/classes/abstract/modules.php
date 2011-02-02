@@ -31,6 +31,7 @@ abstract class modules {
     const FORMAT_HTMLLIST = 1;
     const FORMAT_DOT = 2;
     const FORMAT_SCOPE = 3;
+    const FORMAT_ATTRIBUTE = 4;
     
     const WEB_DISPLAY = 'yes';
     const WEB_NOT_DISPLAY = 'no';
@@ -62,6 +63,7 @@ abstract class modules {
                             );
 
        $this->name = get_class($this);
+       $this->format = modules::FORMAT_DEFAULT;
     }
     
     abstract function analyse();
@@ -219,8 +221,9 @@ SELECT id, 'Yes' FROM $tmp TMP";
     function exec_query_insert($report, $query) {
         $tmp = $this->exec_init_tmp_table($report);
         
+        $query = "INSERT INTO tmp_$report $query";
         $this->exec_query($query);
-        
+
         $this->exec_flush($report);
 
         return true;
@@ -240,7 +243,7 @@ SELECT id, 'Yes' FROM $tmp TMP";
     function exec_flush($report) {
         $query = "INSERT INTO <$report> SELECT * FROM tmp_$report";
         $this->exec_query($query);
-        
+
         $query = "DROP TABLE tmp_$report";
         $this->exec_query($query);
 
@@ -297,24 +300,26 @@ CREATE TEMPORARY TABLE `tmp_report_attributes` (
     
     function clean_report() {
         $query = <<<SQL
-DELETE FROM <report> WHERE module='{$this->name}'
-SQL;
-        $this->exec_query($query);
-
-        $query = <<<SQL
-DELETE FROM <report_dot> WHERE module='{$this->name}'
-SQL;
-        $this->exec_query($query);
-
-        $query = <<<SQL
 DELETE FROM <report_module> WHERE module='{$this->name}'
 SQL;
         $this->exec_query($query);
 
-        $query = <<<SQL
+        if ($this->format == modules::FORMAT_DEFAULT) {
+            $query = <<<SQL
+DELETE FROM <report> WHERE module='{$this->name}'
+SQL;
+            $this->exec_query($query);
+        } elseif ($this->format == modules::FORMAT_DOT) {
+            $query = <<<SQL
+DELETE FROM <report_dot> WHERE module='{$this->name}'
+SQL;
+            $this->exec_query($query);
+        } elseif ($this->format == modules::FORMAT_ATTRIBUTE) {
+            $query = <<<SQL
 UPDATE <report_attributes> SET {$this->name} = 'No'
 SQL;
-        $this->exec_query($query);
+            $this->exec_query($query);
+        }
     }
 
     static public function getPHPConstants($ext = null) {
