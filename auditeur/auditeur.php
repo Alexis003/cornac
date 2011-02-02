@@ -171,6 +171,7 @@ $modules = array(
 'Literals_Long',
 'Literals_RawtextWhitespace',
 'Literals_Reused',
+'Migration53',
 
 'Pear',
 'Pear_Dependencies',
@@ -180,6 +181,7 @@ $modules = array(
 'Php_ArrayDefinitions',
 'Php_ArrayMultiDim',
 'Php_ClassesConflict',
+'Php_Clearstatcache',
 'Php_ConstantConflict',
 'Php_FuncGetArgOutOfFunctionScope',
 'Php_FunctionsCalls',
@@ -194,9 +196,13 @@ $modules = array(
 'Php_NewByReference',
 'Php_ObsoleteFunctionsIn53',
 'Php_ObsoleteModulesIn53',
+'Php_Php53NewClasses',
+'Php_Php53NewConstants',
+'Php_Php53NewFunctions',
 'Php_Phpinfo',
 'Php_References',
 'Php_RegexStrings',
+'Php_ReservedWords53',
 'Php_Returns',
 'Php_SetlocaleWithString',
 'Php_SpecialHandlers',
@@ -279,8 +285,13 @@ $modules = array(
 'Zf_Session',
 'Zf_TypeView',
 'Zf_ViewVariables',
-'Php_Clearstatcache',
-'Php_ReservedWords53',
+'Variable_TypeInteger',
+'Variables_TypeInteger',
+'Functions_Arguments',
+'Functions_Arginit',
+'Structures_Constants',
+'Functions_ReturnVariable',
+'Commands_Path',
 // new analyzers
 );
 
@@ -336,7 +347,8 @@ if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
         $DATABASE->query('DROP TABLE IF EXISTS <report>');
         $DATABASE->query('DROP TABLE IF EXISTS <report_dot>');
         $DATABASE->query('DROP TABLE IF EXISTS <report_module>');
-        print "3 tables cleaned\n";
+        $DATABASE->query('DROP TABLE IF EXISTS <report_attributes>');
+        print "4 tables cleaned\n";
         die();
     }
     $DATABASE->query('CREATE TABLE IF NOT EXISTS <report> (
@@ -352,6 +364,14 @@ if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
   KEY `token_id` (`token_id`),
   KEY `module` (`module`)
 ) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1');
+
+    $DATABASE->query("CREATE TABLE IF NOT EXISTS `<report_attributes>` (
+  `id` int(10) unsigned NOT NULL,
+  `Functions_Arginit` enum('Yes','No') NOT NULL DEFAULT 'No',
+  `Functions_Arguments` enum('Yes','No') NOT NULL DEFAULT 'No',
+  `Structures_Constants` enum('Yes','No') NOT NULL DEFAULT 'No',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1");
 
         $DATABASE->query('CREATE TABLE IF NOT EXISTS <report_dot> (
   `a` varchar(255) NOT NULL,
@@ -385,6 +405,15 @@ if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
   `cluster` varchar(255) NOT NULL DEFAULT \'\',
   `module` varchar(255) NOT NULL
 )');
+
+// @todo this sql won't work. Fix it!
+    $DATABASE->query("CREATE TABLE IF NOT EXISTS `<report_attributes>` (
+  `id` int(10) unsigned NOT NULL,
+  `Functions_Arginit` enum('Yes','No') NOT NULL DEFAULT 'No',
+  `Functions_Arguments` enum('Yes','No') NOT NULL DEFAULT 'No',
+  `Structures_Constants` enum('Yes','No') NOT NULL DEFAULT 'No',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1");
 
     $DATABASE->query('CREATE TABLE IF NOT EXISTS <report_module> (
   `module` varchar(255) NOT NULL PRIMARY KEY,
