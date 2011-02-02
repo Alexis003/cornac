@@ -1,0 +1,63 @@
+<?php
+/*
+   +----------------------------------------------------------------------+
+   | Cornac, PHP code inventory                                           |
+   +----------------------------------------------------------------------+
+   | Copyright (c) 2010 - 2011 Alter Way Solutions (France)               |
+   +----------------------------------------------------------------------+
+   | This source file is subject to version 3.01 of the PHP license,      |
+   | that is bundled with this package in the file LICENSE, and is        |
+   | available through the world-wide-web at the following url:           |
+   | http://www.php.net/license/3_01.txt                                  |
+   | If you did not receive a copy of the PHP license and are unable to   |
+   | obtain it through the world-wide-web, please send a note to          |
+   | license@php.net so we can mail you a copy immediately.               |
+   +----------------------------------------------------------------------+
+   | Author: Damien Seguy <damien.seguy@gmail.com>                        |
+   +----------------------------------------------------------------------+
+ */
+
+class Quality_ExternalStructures extends modules {
+	protected	$title = 'Common libraries\'s structures';
+	protected	$description = 'Spot commonly used classes, constants, functions from libraries.';
+
+	function __construct($mid) {
+        parent::__construct($mid);
+	}
+
+	public function analyse() {
+        $this->clean_report();
+// @todo use also constantes
+// @todo use also functions
+// @todo spot versions also ? 
+// @todo only spot library name
+
+        $list = modules::getPopLib();
+        
+        foreach($list as $ext => $characteristics) {
+            $in = "'".join("', '", $characteristics['classes'])."'";
+
+            // @doc search for usage as class extensions
+            $query = <<<SQL
+SELECT NULL, T1.file, T1.code, T1.id, '{$this->name}', 0
+FROM <tokens> T1
+WHERE T1.type='_classname_' AND
+      T1.code IN ($in)
+SQL;
+            $this->exec_query_insert('report', $query);
+
+            // @doc search for usage as instanciation
+            $query = <<<SQL
+SELECT NULL, TR.file, TR.element, TR.id, '{$this->name}', 0
+FROM <report> TR
+WHERE TR.module = 'Classes_News' AND 
+      TR.element IN ($in)
+SQL;
+            $this->exec_query_insert('report', $query);
+        }
+
+        return true;
+	}
+}
+
+?>
