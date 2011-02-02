@@ -83,25 +83,26 @@ SQL;
         $phpfunctions = modules::getPHPStandardFunctions();
         $list = array_intersect($phpfunctions, $functions);
         if (count($list) > 0) {
-            $in = join("','", $list);
+            $in = "'".join("','", $list)."'";
             $query = <<<SQL
 UPDATE <report> 
     SET element = 'standard' 
 WHERE module = '{$this->name}' AND 
-      element in ( '$in')
+      element in ( $in)
 SQL;
             $res = $this->exec_query($query);
             $functions = array_diff($functions, $list);
         }
 
+// @todo move this to a temporary table 
+
 	    // @section : searching via classes usage
 	    $query = <<<SQL
-INSERT INTO <report>
 SELECT NULL, file, element, token_id, '{$this->name}_tmp', 0
 FROM <report> 
 WHERE module = 'Classes_Php'
 SQL;
-	    $res = $this->exec_query($query);
+	    $res = $this->exec_query_insert('report', $query);
 
 	    $query = <<<SQL
 SELECT DISTINCT element 
@@ -130,12 +131,12 @@ SQL;
             }
             $list = array_intersect($classes, $ext_classes['classes']);
             if (count($list) > 0) {
-                $in = join("', '", $list);
+                $in = "'".join("', '", $list)."'";
         	    $query = <<<SQL
 UPDATE <report> SET element = '$ext',
-                     module='{$this->name}'
+                    module='{$this->name}'
 WHERE module = '{$this->name}_tmp' AND 
-      element in ( '$in')
+      element IN ( $in )
 SQL;
         	    $res = $this->exec_query($query);
             }
