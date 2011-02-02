@@ -57,6 +57,7 @@ abstract class modules {
                               '<tokens_cache>' => $prefixe.'_cache',
                               '<tokens_tags>' => $prefixe.'_tags',
                               '<report_module>' => $prefixe.'_report_module',
+                              '<report_attributes>' => $prefixe.'_report_attributes',
                               '<report_dot>' => $prefixe.'_report_dot',
                             );
 
@@ -165,10 +166,59 @@ abstract class modules {
         return $res;
     }
 
+    function exec_init_attributes_column($attribute) {
+        $query = "DESC <report_attributes>";
+        $res = $this->exec_query($query);
+        
+        $columns = $res->fetchAll();
+        
+        foreach($columns as $column) {
+            if ($column['Field'] == $attribute) {
+            // @doc found! just go
+                return true;
+            }
+        }
+        // @doc not found : we need to add this
+        $query = "ALTER TABLE <report_attributes> ADD COLUMN $attribute ENUM ('Yes','No') DEFAULT 'No' NOT NULL";
+        $this->exec_query($query);
+        
+        return true;
+    }
+
+    function exec_query_attributes($attribute, $query) {
+        $query = $this->prepare_query($query);
+        
+        $tmp = $this->exec_init_tmp_table('report_attributes');
+
+        $this->exec_init_attributes_column($attribute);
+
+        $query = "INSERT INTO $tmp $query";
+        $this->exec_query($query);
+
+        $query = "UPDATE <report_attributes> TA, $tmp TMP 
+SET TA.$attribute = 'Yes' 
+WHERE TA.id = TMP.id";
+        $this->exec_query($query);
+
+        $query = "DELETE FROM TMP
+USING <report_attributes> TA, $tmp TMP
+WHERE TA.id = TMP.id
+";
+        $this->exec_query($query);
+
+        $query = "INSERT INTO <report_attributes> (id, $attribute)
+SELECT id, 'Yes' FROM $tmp TMP";
+        $this->exec_query($query);
+
+        $query = "DROP TABLE tmp_report_attributes";
+        $this->exec_query($query);
+
+        return true;
+    }
+
     function exec_query_insert($report, $query) {
         $tmp = $this->exec_init_tmp_table($report);
         
-        $query = "INSERT INTO tmp_$report $query";
         $this->exec_query($query);
         
         $this->exec_flush($report);
@@ -218,7 +268,7 @@ CREATE TEMPORARY TABLE IF NOT EXISTS tmp_report (
         } elseif ($report == 'report_dot') {
         // @note be aware that tmp_table need id as NULL column, so auto_increment is managed in the report table
         $this->mid->query('
-CREATE TABLE `tmp_report_dot` (
+CREATE TEMPORARY TABLE `tmp_report_dot` (
   `a` varchar(255) NOT NULL,
   `b` varchar(255) NOT NULL,
   `cluster` varchar(255) NOT NULL DEFAULT "",
@@ -227,6 +277,14 @@ CREATE TABLE `tmp_report_dot` (
 
 // @todo handle nicely when tmp_report is already here!
             return 'tmp_report_dot';
+        } elseif ($report = 'report_attributes') {
+            $this->mid->query('
+CREATE TEMPORARY TABLE `tmp_report_attributes` (
+  `id` integer(12) NOT NULL PRIMARY KEY
+) ENGINE=MyISAM DEFAULT CHARSET=latin1');
+
+            // @todo no check on correct execution? 
+            return 'tmp_report_attributes';
         } else {
             print "\$report is not (report or report_dot) : $report\n\n";
             die(__METHOD__);
@@ -250,6 +308,11 @@ SQL;
 
         $query = <<<SQL
 DELETE FROM <report_module> WHERE module='{$this->name}'
+SQL;
+        $this->exec_query($query);
+
+        $query = <<<SQL
+UPDATE <report_attributes> SET {$this->name} = 'No'
 SQL;
         $this->exec_query($query);
     }
