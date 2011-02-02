@@ -50,6 +50,7 @@ class database  {
                               '<tokens_tags>' => $this->prefix.'_tags',
                               '<report_module>' => $this->prefix.'_report_module',
                               '<report_dot>' => $this->prefix.'_report_dot',
+                              '<report_attributes>' => $this->prefix.'_report_attributes',
                               '<tasks>' => $this->prefix.'_tasks',
                             );
     }
@@ -67,6 +68,7 @@ class database  {
         
         $res = $this->pdo->query($this->last_query);
         
+        // @todo make this a configuration (at least)
         $this->errorInfo(true);
         return $res;
     }
