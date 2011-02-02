@@ -63,7 +63,6 @@ abstract class modules {
                             );
 
        $this->name = get_class($this);
-       $this->format = modules::FORMAT_DEFAULT;
     }
     
     abstract function analyse();
