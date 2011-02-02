@@ -34,7 +34,6 @@ class Structures_FunctionsCallsLink extends modules {
         $concat1 = $this->concat("T1.class","'->'","T1.scope");
         $concat2 = $this->concat("T3.code","'->'","T4.code");
         $query = <<<SQL
-INSERT INTO <report_dot> 
 SELECT $concat1, $concat2, T1.file, '{$this->name}'
 FROM <tokens> T1
 JOIN <tokens_cache> T2 
@@ -48,12 +47,11 @@ JOIN <tokens> T4
        T4.left = T1.left + 4
 WHERE  T1.type='method_static'
 SQL;
-        $res = $this->exec_query($query);
+        $res = $this->exec_query_insert('report_dot', $query);
 
         $concat1 = $this->concat("T1.class","'->'","T1.scope");
         $concat2 = $this->concat("T1.class","'->'","T4.code");
         $query = <<<SQL
-INSERT INTO <report_dot> 
 SELECT $concat1, $concat2, T1.file, '{$this->name}'
 FROM <tokens> T1
 JOIN <tokens_cache> T2 
@@ -67,7 +65,7 @@ JOIN <tokens> T4
        T4.left = T1.left + 4
 WHERE T1.type='method' 
 SQL;
-        $res = $this->exec_query($query);
+        $res = $this->exec_query_insert('report_dot', $query);
 
         $query = <<<SQL
 SELECT T4.code AS method, T1.class AS classe
