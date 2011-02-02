@@ -33,7 +33,6 @@ class variables_Relations extends modules {
 // @todo : this should be done context by context. How can I do that? 
 // @note I need another table for this        
         $query = <<<SQL
-INSERT INTO <report_dot>
 SELECT  T4.code, T2.code, CONCAT(T1.class,'::',T1.scope), '{$this->name}' 
 FROM <tokens> T1
 JOIN <tokens_tags> TT1
@@ -55,7 +54,7 @@ JOIN <tokens> T4
        T4.type='variable'
 WHERE T1.type = 'affectation'
 SQL;
-        $this->exec_query($query);
+        $this->exec_query_insert('report_dot', $query);
 
         return true;
 	}
