@@ -31,18 +31,25 @@ class static_normal_regex extends analyseur_regex {
 
         if ($t->hasPrev() && $t->getPrev()->checkToken(array(T_PROTECTED, T_PUBLIC, T_PRIVATE))) { return false; }
         
-        if ($t->checkToken(T_STATIC) &&
-            $t->getNext()->checkClass('variable') &&
-            $t->getNext(1)->checkCode(';')
-            ) {
+        if ($t->getNext()->checkNotClass(array('variable','affectation'))) { return false; }
+        if ($t->getNext(1)->checkOperator('=')) { return false; }
 
-            $this->args = array(1);
-            $this->remove = array(1,2);
+        $this->args = array(1);
+        $this->remove = array(1);
+        
+        if ($t->getNext(1)->checkCode(';')) {
+            $this->remove[] = 2;
+        } elseif ($t->getNext(1)->checkBeginInstruction()) {
+        // @note may be a new instruction (even a sequence)
+            // @note OK, but do nothing
+        } elseif ($t->getNext(1)->checkToken(T_CLOSE_TAG)) {
+            // @note OK, but do nothing
+        } else {
+            return false;
+        }
 
-            mon_log(get_class($t)." => ".__CLASS__);
-            return true; 
-        } 
-        return false;
+        mon_log(get_class($t)." => ".__CLASS__);
+        return true; 
     }
 }
 ?>
