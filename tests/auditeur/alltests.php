@@ -176,6 +176,7 @@ $tests = array(
 'class.Structures_Constants.test.php',
 'class.Php_ReservedWords53.test.php',
 'class.Php_Phpinfo.test.php',
+'class.Php_Php53NewClasses.test.php',
 // new tests
 );
 
