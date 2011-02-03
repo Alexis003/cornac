@@ -565,6 +565,7 @@ class Token {
                        '_throw',
                        '_var',
                        'noscream',
+                       '_constant',
                        'constant_class',
                        '_while',
                        '_global',
