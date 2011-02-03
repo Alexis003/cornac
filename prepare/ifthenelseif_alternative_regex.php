@@ -54,7 +54,7 @@ class ifthenelseif_alternative_regex extends analyseur_regex {
             }
 
             if ($var->checkNotClass(array('block','Token')) && 
-                $var->getNext()->checkCode(';')) {
+                $var->getNext()->checkOperator(';')) {
                 $args[] = $pos + 1;
 
                 $remove[] = $pos + 1;
@@ -65,7 +65,7 @@ class ifthenelseif_alternative_regex extends analyseur_regex {
                 continue;
             }
 
-            if ($var->checkCode(';') ) {
+            if ($var->checkOperator(';') ) {
                 // @note trailing semi-colon. Bah...
                 $remove[] = $pos + 1;
                 $pos++;
