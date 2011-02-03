@@ -24,36 +24,65 @@ class Quality_ExternalStructures extends modules {
 	function __construct($mid) {
         parent::__construct($mid);
 	}
+	
+	function dependsOn() {
+	    return array('Constants_Usage', 'Classes_News');
+	}
 
 	public function analyse() {
         $this->clean_report();
-// @todo use also constantes
-// @todo use also functions
 // @todo spot versions also ? 
-// @todo only spot library name
 
         $list = modules::getPopLib();
         
         foreach($list as $ext => $characteristics) {
-            $in = "'".join("', '", $characteristics['classes'])."'";
 
-            // @doc search for usage as class extensions
-            $query = <<<SQL
+            if (isset($characteristics['classes'])) {
+                $in = "'".join("', '", $characteristics['classes'])."'";
+
+            // @doc search for usage by class extensions
+                $query = <<<SQL
 SELECT NULL, T1.file, T1.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 WHERE T1.type='_classname_' AND
       T1.code IN ($in)
 SQL;
-            $this->exec_query_insert('report', $query);
+                $this->exec_query_insert('report', $query);
 
-            // @doc search for usage as instanciation
-            $query = <<<SQL
+            // @doc search for usage by instanciation
+                $query = <<<SQL
 SELECT NULL, TR.file, TR.element, TR.id, '{$this->name}', 0
 FROM <report> TR
 WHERE TR.module = 'Classes_News' AND 
       TR.element IN ($in)
 SQL;
-            $this->exec_query_insert('report', $query);
+                $this->exec_query_insert('report', $query);
+            }
+
+            // @doc search for usage by functioncall
+            if (isset($characteristics['functions'])) {
+                $in = "'".join("', '", $characteristics['functions'])."'";
+                $query = <<<SQL
+SELECT NULL, T1.file, T1.code, T1.id, '{$this->name}', 0
+FROM <tokens> T1
+WHERE T1.type = 'functioncall' AND 
+      T1.code IN ($in)
+SQL;
+                $this->exec_query_insert('report', $query);
+            }
+
+            // @doc search for usage by constants usage
+            if (isset($characteristics['constants'])) {
+                $in = "'".join("', '", $characteristics['constants'])."'";
+                $query = <<<SQL
+SELECT NULL, TR.file, TR.element, TR.id, '{$this->name}', 0
+FROM <report> TR
+WHERE TR.module = 'Constants_Usage' AND 
+      TR.element IN ($in)
+SQL;
+                $this->exec_query_insert('report', $query);
+            }
+
         }
 
         return true;
