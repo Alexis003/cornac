@@ -26,7 +26,7 @@ class Ext_Execs extends functioncalls {
 	}
 	
 	public function analyse() {
-	    $this->functions = array('exec','shell_exec','system','passthru');
+	    $this->functions = array('exec','shell_exec','system','passthru','popen','pclose');
 	    
 	    parent::analyse();
 	    
