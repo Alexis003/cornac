@@ -15,7 +15,6 @@
    +----------------------------------------------------------------------+
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
- */static $x;
-static $mimetypes = array(
-	"323" => "text/h323",
-);
+ */
+static $x;
+static $mimetypes = array("323" => "text/h323",);

@@ -51,7 +51,7 @@ tests/tokenizeur/scripts/foreach.3.test.php
                               1 : 
                                   variable $i
                               2 : 
-                                  literals ]=\
+                                  literals ]=\"
                               3 : 
                                   _array
                                       variable $date_mess_stock

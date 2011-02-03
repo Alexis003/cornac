@@ -15,13 +15,13 @@ tests/tokenizeur/scripts/ifthen.16.test.php
               right : 
                   concatenation 
                   0 : 
-                      literals  AND acces_ip=\
+                      literals  AND acces_ip=\"
                   1 : 
                       _array
                           variable $_SERVER
                           literals REMOTE_ADDR
                   2 : 
-                      literals \
+                      literals \"
        else 
           block 
           0 : 
