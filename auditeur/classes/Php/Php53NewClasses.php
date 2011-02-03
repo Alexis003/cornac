@@ -11,13 +11,13 @@ class Php_Php53NewClasses extends modules {
 
 // @doc if this analyzer is based on previous result, use this to make sure the results are here
 	function dependsOn() {
-	    return array("Classes_Definitions");
+	    return array("Classes_News");
 	}
 
 	public function analyse() {
         $this->clean_report();
 
-        $in = '"'.join("','", array('DateInterval',
+        $in = "'".join("','", array('DateInterval',
 'DatePeriod',
 'Phar',
 'PharData',
@@ -34,12 +34,12 @@ class Php_Php53NewClasses extends modules {
 'SplMinHeap',
 'SplPriorityQueue',
 'SplQueue',
-'SplStack',)).'"';
+'SplStack',))."'";
 
 	    $query = <<<SQL
 SELECT NULL, T1.file, T1.element, T1.id, '{$this->name}', 0
 FROM <report> T1
-WHERE T1.module = 'Classes_Definitions' AND
+WHERE T1.module = 'Classes_News' AND
       T1.element IN ($in)
 SQL;
         $this->exec_query_insert('report', $query);
