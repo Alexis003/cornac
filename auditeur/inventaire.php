@@ -122,6 +122,7 @@ $headers = array('Variables' => 'SELECT COUNT(DISTINCT element)  FROM <report> W
                  'Ticks'   => 'SELECT IF(COUNT(*) > 0, "Yes","No")  FROM <tokens> WHERE type="_declare"',
                  'Uncompilable files'   => 'SELECT IF(COUNT(target) > 0, "Yes","No")  FROM <tasks> WHERE completed=3',
                  'External libraries'   => 'SELECT IF(COUNT(target) > 0, "Yes","No")  FROM <tasks> WHERE completed=3',
+                 'Closures'   => 'SELECT IF(COUNT(file) > 0, "Yes","No")  FROM <tokens> WHERE type="_closure"',
                  'Uses Zend Framework'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <report> WHERE module="Zf_Dependencies"',
                  'Uses Symfony'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <report> WHERE module="Sf_Dependencies"',
                  'Have phpinfo'   => 'SELECT IF(COUNT(DISTINCT element) > 0, "Yes","No")  FROM <report> WHERE module="Php_Phpinfo"',
