@@ -94,7 +94,7 @@ if (!$row) {
     // @attention : should also support _dot reports
     $query = 'SELECT * FROM <report_dot> WHERE module='.$DATABASE->quote($INI['reader']['module']);
     // @todo file option is ignored here. This is normal. 
-} elseif ($row['format'] == 'attributes') {
+} elseif ($row['format'] == 'attribute') {
     $query = 'SELECT T1.file, TC.code AS element, T1.id FROM <report_attributes> TA
     JOIN <tokens> T1
         ON TA.id = T1.id

@@ -390,7 +390,7 @@ if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
         $DATABASE->query('CREATE TABLE IF NOT EXISTS <report_module> (
   `module` varchar(255) NOT NULL,
   `fait` datetime NOT NULL,
-  `format` enum("html","dot","gefx") NOT NULL,
+  `format` enum("html","dot","gefx","attribute") NOT NULL,
   `web` ENUM("yes","no") DEFAULT "yes",
   PRIMARY KEY (`module`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1');
