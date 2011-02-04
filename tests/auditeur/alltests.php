@@ -177,6 +177,7 @@ $tests = array(
 'class.Php_ReservedWords53.test.php',
 'class.Php_Phpinfo.test.php',
 'class.Php_Php53NewClasses.test.php',
+'class.Functions_Relay.test.php',
 // new tests
 );
 
