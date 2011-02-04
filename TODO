@@ -1,10 +1,9 @@
-sort functions : spot object type first
-new classes/constant/functions : beware of conflict
-Warning : trailing " are removed from strings...
-tokenizeur : store literal type (string, bool, int, real...)
-
 [cornac]
 add remove table option for cornac / auditeur
+
+merge the 2 database classes into one
+
+Check cornac on SQLITE.
 
 Add a way to display code within cornac (Through PHP COde Browser? Under work with JMF)
 Have a tar.gz packaged automatically (create a phing build)
@@ -58,6 +57,8 @@ Display dots when processing analyzers (auditeur)
 Add a file lister, that will also display ignored files from tokenizeur (export current function to external scripts/)
 
 [tokenizeur]
+tokenizeur : store literal type (string, bool, int, real...)
+
 Check for table structure before using 
 check tokclient, to make sure he keeps going on when a script can't be processed. 
 
@@ -112,10 +113,6 @@ Move auditeur to English as reference translations of analyzers's title and desc
 Add 'tags' propertie to every analyzers to help sort out the analyzers
 Support tags in web format : on the index page, display a list of them, for filtering. 
 
-secu and secu_functions are double
-execs and exec_functions
-zfClasses and zfDependencies are double 
-
 Spot php error during execution, report it by auditeur
 Add a log-time option to auditeur, to fill the auditeur.log
 Make auditeur i18n easily (export in external file, auto-adding new titles)
@@ -147,6 +144,9 @@ Organize tests hierarchically (Common/Zend/Sf) and allow some arbitrary gatherin
 List of undefined/unused interfaces
 GPC used in functions... 
 
+sort functions (PHP 5.3 migration) : spot object type first
+PHP 5.3 SPL classes : Warning : trailing " are removed from strings...
+
 Structure (Function, method, class) must use, have return, call such method, etc... 
 
 check tokens? and version for PHP. This must be done in tokenizer. 
@@ -156,7 +156,13 @@ Prepare auditeur for wordpress, joomla, drupal, sf, zf, ci.
 [analysers ideas]
 Make a tree with exceptions throws (List des émetteur d'exception, et de leur catch)
 
-Spot problems of PHP 5.3 migration
+check that variables are constante (only received a constant value).
+
+Spot special advice in the PHP doc (like warning in the strpos doc) and make an analyzer for them
+   http://php.net/manual/en/domdocument.load.php 
+Spot integer not in decimal format
+Spot invalid integer in different format (octal, hexa...)
+Spot typecasting of integer in operations.
 
 Classes relations based on class constant.
 
@@ -171,7 +177,6 @@ identify 'tainted' values (either from GPC, or from arguments)
 identify returned values (used in return)
 identify tainted function (one that return transformed incoming values)
 identify variable class by method/property/constant usage. 
-
 
 Make a function call tree (which function calls which)
 
@@ -264,8 +269,11 @@ List variables used in a view (ZF)
 List des variables dans les vues
 différences entre les variables de vue et de controleur
 
-conflit de noms pour les variables PHP réservé
-
+check for proxy classes : X methods call their parent methods
+Relay functions : call another method with the same args
+Methods that call their parent:: or self::
+Classes that overload parent methods
+Classes that uses parent properties
 
 [web]
 use .ini for the web folder too
