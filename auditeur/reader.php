@@ -80,6 +80,7 @@ $res = $DATABASE->query($query);
 $row = $res->fetch();
 unset($res);
 
+// @todo check that all those columns are needed. 
 if (!$row) {
     print "No module with name '{$INI['reader']['module']}'. Aborting\n";
     die();
@@ -92,8 +93,16 @@ if (!$row) {
 } elseif ($row['format'] == 'dot') {
     // @attention : should also support _dot reports
     $query = 'SELECT * FROM <report_dot> WHERE module='.$DATABASE->quote($INI['reader']['module']);
+    // @todo file option is ignored here. This is normal. 
+} elseif ($row['format'] == 'attributes') {
+    $query = 'SELECT T1.file, TC.code AS element, T1.id FROM <report_attributes> TA
+    JOIN <tokens> T1
+        ON TA.id = T1.id
+    JOIN <tokens_cache> TC
+        ON TC.id = T1.id
+    WHERE `'.$INI['reader']['module'].'` = "Yes"';
     if (!empty($INI['reader']['file'])) {
-        $query .= ' AND file='.$DATABASE->quote($INI['reader']['file']);
+        $query .= ' AND T1.file='.$DATABASE->quote($INI['reader']['file']);
     }
 } else {
     print "Format '{$row['format']}' is not understood. Aborting\n";
