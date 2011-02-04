@@ -19,7 +19,7 @@
 
 class Classes_News extends modules {
 	protected	$title = 'New';
-	protected	$description = 'Use of new opertor in the code. ';
+	protected	$description = 'Use of new operator in the code. List of classes names being instantiated.';
 
 	function __construct($mid) {
         parent::__construct($mid);

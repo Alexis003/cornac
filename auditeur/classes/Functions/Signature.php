@@ -1,9 +1,9 @@
 <?php 
 
 
-class Functions_Arguments extends modules {
-	protected	$title = 'Spot Function arguments in definitions';
-	protected	$description = 'Spot Function arguments in defintitions.';
+class Functions_Signature extends modules {
+	protected	$title = 'Function signatures';
+	protected	$description = 'Sport argument list that are actually part of the function definition, not a list of arguments called.';
 
 	function __construct($mid) {
         parent::__construct($mid);
@@ -13,15 +13,11 @@ class Functions_Arguments extends modules {
         $this->clean_report();
 
 	    $query = <<<SQL
-SELECT T3.id
+SELECT T2.id 
 FROM <tokens> T1
 JOIN <tokens> T2
     ON T2.file = T1.file AND
        T2.left = T1.left + 5
-JOIN <tokens> T3
-    ON T3.file = T1.file AND
-       T3.left BETWEEN T2.left AND T2.right AND
-       T3.type = 'variable'
 WHERE T2.type = 'arglist' AND
       T1.type = '_function'
 SQL;

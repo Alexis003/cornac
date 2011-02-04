@@ -29,6 +29,7 @@ class Structures_FunctionsCalls extends modules {
 	public function analyse() {
         $this->clean_report();
 
+// @todo actually, remove methods call.
 	    $query = <<<SQL
 SELECT DISTINCT NULL, T1.file, T1.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1

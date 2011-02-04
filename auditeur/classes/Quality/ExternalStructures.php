@@ -26,7 +26,7 @@ class Quality_ExternalStructures extends modules {
 	}
 	
 	function dependsOn() {
-	    return array('Constants_Usage', 'Classes_News');
+	    return array('Constants_Usage', 'Classes_News','Structures_FunctionsCalls');
 	}
 
 	public function analyse() {
@@ -63,10 +63,10 @@ SQL;
             if (isset($characteristics['functions'])) {
                 $in = "'".join("', '", $characteristics['functions'])."'";
                 $query = <<<SQL
-SELECT NULL, T1.file, T1.code, T1.id, '{$this->name}', 0
-FROM <tokens> T1
-WHERE T1.type = 'functioncall' AND 
-      T1.code IN ($in)
+SELECT NULL, TR.file, TR.element, TR.id, '{$this->name}', 0
+FROM <report> TR
+WHERE TR.module = 'Structures_FunctionsCalls' AND 
+      TR.element IN ($in)
 SQL;
                 $this->exec_query_insert('report', $query);
             }
