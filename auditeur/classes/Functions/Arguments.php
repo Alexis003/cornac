@@ -14,8 +14,8 @@ class Functions_Arguments extends modules {
 
 	    $query = <<<SQL
 SELECT T2.id 
-FROM webaixia T1
-JOIN webaixia T2
+FROM <tokens> T1
+JOIN <tokens> T2
     ON T2.file = T1.file AND
        T2.left = T1.left + 5
 WHERE T2.type = 'arglist' AND
