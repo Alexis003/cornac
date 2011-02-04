@@ -302,8 +302,8 @@ CREATE TEMPORARY TABLE `tmp_report_attributes` (
 DELETE FROM <report_module> WHERE module='{$this->name}'
 SQL;
         $this->exec_query($query);
-
-        if ($this->format == modules::FORMAT_DEFAULT) {
+        
+        if ($this->format == modules::FORMAT_HTMLLIST) {
             $query = <<<SQL
 DELETE FROM <report> WHERE module='{$this->name}'
 SQL;
