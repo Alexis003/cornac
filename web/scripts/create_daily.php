@@ -20,7 +20,37 @@
 include('include/config.php');
 include('format/html.php');
 
+print_r($_POST);
+
 print print_entete();
+
+// @todo LIMIT must be in config
+if (isset($_GET['update'])) {
+    $res = $DATABASE->query("SELECT count(*) FROM cnc_daily 
+    WHERE date_report = CURDATE()");
+    $row = $res->fetch();
+    
+    
+    if ($row[0] == 0) {
+        print "<p>MIse à jour</p>";
+        $DATABASE->query("
+CREATE TEMPORARY TABLE tmp_daily
+SELECT TR.id, TR.module
+FROM cnc_rapport TR
+WHERE TR.module IN ('variables_one_letter','dieexit','unused_args') AND
+checked = 0
+ORDER BY RAND()
+LIMIT 12
+");
+
+        $DATABASE->query("
+INSERT INTO cnc_daily
+SELECT NULL, 1, id,  module, NULL, NOW(), NOW(), NULL, NULL
+FROM tmp_daily");
+    } else {
+        print "<p>Deja fait</p>";
+    }
+}
 
 $report_date = date('Y-m-d');
 $res = $DATABASE->query( "SELECT * FROM cnc_daily_report WHERE daily_date = '$report_date'");
