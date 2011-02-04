@@ -28,7 +28,11 @@ class functioncall extends instruction {
             $expression[0]->code = 'echo';
         }
         
-        $this->function = $this->makeProcessedToken('_functionname_', $expression[0]);
+        if ($expression[0]->checkClass('Token')) {
+            $this->function = $this->makeProcessedToken('_functionname_', $expression[0]);
+        } else {
+            $this->function = $expression[0];
+        }
 
         if (isset($expression[1])) {
             $this->args = $expression[1];
