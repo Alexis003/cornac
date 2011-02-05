@@ -46,7 +46,13 @@ class Structures_Constants_Test extends Auditeur_Framework_TestCase
  'b',
  '__FILE__',
  'a',
- 'm::n', 'array', 'g', 'strtolower', '==', '&&', '+'
+ 'm::n', 
+ 'array', 
+ 'g', 
+ 'strtolower',
+ '==', 
+ '&&', 
+ '+'
 );
         $this->unexpected = array(    '$e(false)',);
 
