@@ -7,4 +7,4 @@ tests/tokenizeur/scripts/new.18.test.php
           variable $a
        "=" 
       right : 
-           new 500 "\" arglist(literals f) 
+           new 380 "\"\307 "b"\307 "c"\307 "d"\307 "e" arglist(literals f) 

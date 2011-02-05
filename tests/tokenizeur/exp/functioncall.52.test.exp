@@ -5,7 +5,7 @@ tests/tokenizeur/scripts/functioncall.52.test.php
       sequence 
       0 : 
           functioncall \
-          function call : 500 "\": 
+          function call : 307 "a"\307 "b"\307 "c"\307 "strtolower": 
               arglist 
               0 : 
                   literals a
@@ -15,7 +15,7 @@ tests/tokenizeur/scripts/functioncall.52.test.php
               arglist 
               0 : 
                   functioncall \
-                  function call : 500 "\": 
+                  function call : 380 "\"\307 "strtolower": 
                       arglist 
                       0 : 
                           literals a

@@ -8,11 +8,11 @@ tests/tokenizeur/scripts/ternaryop.31.test.php
        "=" 
       right : 
           ternaryop ?
-          variable $b ? block { } : functioncall 0 "$c" ( arglist(literals D) ) 
+          variable $b ? block { } : functioncall variable $c ( arglist(literals D) ) 
               variable $b
               block 
               functioncall $c
-              function call : 0 "$c": 
+              function call : variable $c: 
                   arglist 
                   0 : 
                       literals D

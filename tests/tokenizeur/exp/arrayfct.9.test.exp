@@ -11,10 +11,10 @@ tests/tokenizeur/scripts/arrayfct.9.test.php
           function call : 360 "array": 
               arglist 
               0 : 
-                  literals a => functioncall 0 "$c" ( arglist(literals b) ) 
+                  literals a => functioncall variable $c ( arglist(literals b) ) 
                       literals a
                       functioncall $c
-                      function call : 0 "$c": 
+                      function call : variable $c: 
                           arglist 
                           0 : 
                               literals b

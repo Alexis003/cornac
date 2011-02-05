@@ -8,9 +8,9 @@ tests/tokenizeur/scripts/method_static.5.test.php
        "=" 
       right : 
           method_static 
-          307 "Classe"::functioncall 0 "$a" ( arglist(variable $b, variable $c, variable $d) ) : 
+          307 "Classe"::functioncall variable $a ( arglist(variable $b, variable $c, variable $d) ) : 
               functioncall $a
-              function call : 0 "$a": 
+              function call : variable $a: 
                   arglist 
                   0 : 
                       variable $b

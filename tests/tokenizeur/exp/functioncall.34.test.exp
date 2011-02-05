@@ -3,6 +3,6 @@ tests/tokenizeur/scripts/functioncall.34.test.php
 
   code : 
       functioncall $x
-      function call : 0 "$x": 
+      function call : variable $x: 
           arglist 
           0 : 

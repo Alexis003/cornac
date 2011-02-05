@@ -9,7 +9,7 @@ tests/tokenizeur/scripts/ifthen.63.test.php
           block 
           0 : 
               functioncall $c
-              function call : 0 "$c": 
+              function call : variable $c: 
                   arglist 
                   0 : 
                       property variable $dliterals e->
@@ -21,7 +21,7 @@ tests/tokenizeur/scripts/ifthen.63.test.php
           block 
           0 : 
               functioncall $h
-              function call : 0 "$h": 
+              function call : variable $h: 
                   arglist 
                   0 : 
                       property variable $iliterals j->

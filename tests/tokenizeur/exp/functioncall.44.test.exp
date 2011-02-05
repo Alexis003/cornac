@@ -20,7 +20,7 @@ tests/tokenizeur/scripts/functioncall.44.test.php
               arglist 
               0 : 
                   functioncall $d
-                  function call : 0 "$d": 
+                  function call : variable $d: 
                       arglist 
                       0 : 
                           _array

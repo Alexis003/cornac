@@ -8,14 +8,14 @@ tests/tokenizeur/scripts/ternaryop.22.test.php
        "=" 
       right : 
           ternaryop ?
-          comparison variable $b  "<" functioncall 0 "$c" ( arglist(variable $d) )  ? variable $e : literals f
+          comparison variable $b  "<" functioncall variable $c ( arglist(variable $d) )  ? variable $e : literals f
               comparison 
               left : 
                   variable $b
               operateur :  "<"
               right : 
                   functioncall $c
-                  function call : 0 "$c": 
+                  function call : variable $c: 
                       arglist 
                       0 : 
                           variable $d

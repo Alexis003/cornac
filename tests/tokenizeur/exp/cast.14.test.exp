@@ -13,8 +13,8 @@ tests/tokenizeur/scripts/cast.14.test.php
               0 : 
                   variable $b
               1 : 
-                  cast (292 "(array)")functioncall 0 "$c" ( arglist() ) 
+                  cast (292 "(array)")functioncall variable $c ( arglist() ) 
                       functioncall $c
-                      function call : 0 "$c": 
+                      function call : variable $c: 
                           arglist 
                           0 : 
