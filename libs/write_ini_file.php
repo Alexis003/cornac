@@ -162,25 +162,5 @@ function rglob($path) {
     
     return $files2;
 }
-/*
-function liste_directories_recursive( $path = '.', $level = 0 ){ 
-    $ignore = array( 'cgi-bin', '.', '..' ); 
 
-    $dh = opendir( $path ); 
-    if (!is_resource($dh)) { return array(); }
-    $retour = array();
-    while( false !== ( $file = readdir( $dh ) ) ){ 
-        if( !in_array( $file, $ignore ) ){ 
-            if( is_dir( "$path/$file" ) ){ 
-                $r = Liste_directories_recursive( "$path/$file", ($level+1) ); 
-                $retour = array_merge($retour, $r);
-            } else { 
-                $retour[] = "$path/$file";
-            } 
-        } 
-    } 
-     
-    closedir( $dh ); 
-    return $retour;
-}*/ 
 ?>
