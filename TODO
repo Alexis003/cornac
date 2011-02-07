@@ -225,16 +225,10 @@ Make a map of a function : in, out, dependances
 + local (variables)
 + dependances (constants, functions, classes...)
 
-Check for unused regex (from tokenizeur)
-
-Regex usage (pcre, ereg)
 Script mail usage
-SQL queries lists
 SQL queries protections
 Upper case variables
 URL manipulations
-
-A constant structure : a PHP structure that is only made of constant/literals constant. Possibly a bunch of constants, combined.
 
 Spot PHP code in comments
 
@@ -246,12 +240,6 @@ functions (and files) that emit text (print, var_dump, raw text...)
 functions (and files) that emit error (join, mysql_connect, ) : they should be checked...
 
 methods/files/classes that misses some (provided) code.
-
-Spot library dependencies, like, phpmailer, tinyMCE, html purifier, domit, geshi, 
-cakelos-1.0.1/akelos-1.0.1/vendor:
-Excel			TextParsers		domit			incutio			phpmemcached		simpletest		spyc
-PHPCodeAnalyzer		adodb			fpdf			pear			phputf8			simpletest-tools	xslt-php4-php5
-phoogle	swift   lime    swiftmailer Markdown.php
 
 Qualify scripts/contextes/folders as being controler (aka _GET, include), model (database) ou template (html, pdf, echo...).
 Check that above characteristics are at the right place (by folder, by framework...)
