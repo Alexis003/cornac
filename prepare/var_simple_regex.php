@@ -55,7 +55,7 @@ class var_simple_regex extends analyseur_regex {
                 $regex = new modele_regex('affectation',$args, $remove);
                 Token::applyRegex($t->getNext(), 'affectation', $regex);
                     
-                mon_log(get_class($t)." (".__CLASS__.")0  => Affectation");
+                Cornac_Log::getInstance('tokenizer')->log(get_class($t)." (".__CLASS__.")0  => Affectation");
                 return false;
         }
 
@@ -71,7 +71,7 @@ class var_simple_regex extends analyseur_regex {
                     $regex = new modele_regex('affectation',$args, $remove);
                     Token::applyRegex($var->getNext(), 'affectation', $regex);
                     
-                    mon_log(get_class($t)." (".__CLASS__.")1  => Affectation");
+                    Cornac_Log::getInstance('tokenizer')->log(get_class($t)." (".__CLASS__.")1  => Affectation");
                     return false;
             }
 
@@ -92,7 +92,7 @@ class var_simple_regex extends analyseur_regex {
         }
         
         if ( $var->checkCode(';')) {
-            mon_log(get_class($t)." => ".__CLASS__);
+            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".__CLASS__);
             return true; 
         } elseif ($var->checkCode('=')) {
             if ($var->getNext()->checkClass(array('literals','functioncall','_constant','constant_static')) &&
@@ -104,7 +104,7 @@ class var_simple_regex extends analyseur_regex {
                 $regex = new modele_regex('affectation',$args, $remove);
                 Token::applyRegex($t->getNext(), 'affectation', $regex);
                     
-                mon_log(get_class($t)." (".__CLASS__.")2  => Affectation");
+                Cornac_Log::getInstance('tokenizer')->log(get_class($t)." (".__CLASS__.")2  => Affectation");
                 return false;
             }
         } else {

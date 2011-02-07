@@ -39,7 +39,7 @@ class use_normal_regex extends analyseur_regex {
                 $regex = new modele_regex('_nsname',array(0), array());
                 Token::applyRegex($var->getNext(), '_nsname', $regex);
     
-                mon_log(get_class($t)." =>2 ".__CLASS__);
+                Cornac_Log::getInstance('tokenizer')->log(get_class($t)." =>2 ".__CLASS__);
                 
                 $var = $var->getNext(1);
                 continue;
@@ -54,7 +54,7 @@ class use_normal_regex extends analyseur_regex {
                 $regex = new modele_regex('_nsname',array(0), array());
                 Token::applyRegex($var->getNext(), '_nsname', $regex);
     
-                mon_log(get_class($t)." =>1 ".__CLASS__);
+                Cornac_Log::getInstance('tokenizer')->log(get_class($t)." =>1 ".__CLASS__);
                 
                 $var = $var->getNext(1);
                 continue;
@@ -94,7 +94,7 @@ class use_normal_regex extends analyseur_regex {
                     $regex = new modele_regex('_use',$args, $remove);
                     Token::applyRegex($repl, '_use', $regex);
 
-                    mon_log(get_class($var)." => _use  (".__CLASS__.")");
+                    Cornac_Log::getInstance('tokenizer')->log(get_class($var)." => _use  (".__CLASS__.")");
                     continue;
         }
 

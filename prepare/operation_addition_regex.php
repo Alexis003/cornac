@@ -44,7 +44,7 @@ class operation_addition_regex extends analyseur_regex {
             $this->args = array(-1, 0, 1);
             $this->remove = array(-1, 1);
 
-            mon_log(get_class($t)." => operation addition  (".__CLASS__.")");
+            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => operation addition  (".__CLASS__.")");
             return true; 
         } 
         return false;

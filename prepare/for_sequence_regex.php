@@ -43,7 +43,7 @@ class for_sequence_regex extends analyseur_regex {
               $this->args = array(2, 4, 6);
               $this->remove = array(1,2,3,4,5,6);
   
-              mon_log(get_class($t)." => (Token; sequence) ".__CLASS__);
+              Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => (Token; sequence) ".__CLASS__);
               return true;
         } elseif ($t->getNext(1)->checkNotClass('Token')  &&
                   $t->getNext(2)->checkCode(";")          &&
@@ -58,7 +58,7 @@ class for_sequence_regex extends analyseur_regex {
               $this->args = array(2, 4, 5, 7);
               $this->remove = array(1,2,3,4,5,6,7);
   
-              mon_log(get_class($t)." => (Token; sequence Token) ".__CLASS__);
+              Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => (Token; sequence Token) ".__CLASS__);
               return true;
         } elseif ($t->getNext(1)->checkCode(";")          &&
                   $t->getNext(2)->checkClass('sequence')  &&
@@ -71,7 +71,7 @@ class for_sequence_regex extends analyseur_regex {
               $this->args = array(2, 3, 4, 6);
               $this->remove = array(1,2,3,4,5,6,7);
   
-              mon_log(get_class($t)." => (;sequence Token) ".__CLASS__);
+              Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => (;sequence Token) ".__CLASS__);
               return true;
         } else {
             return false;

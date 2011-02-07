@@ -64,7 +64,7 @@ class functioncall_echowithoutparenthesis_regex extends analyseur_regex {
             $regex = new modele_regex('arglist',$args, $remove);
             Token::applyRegex($t->getNext(), 'arglist', $regex);
 
-            mon_log(get_class($t)." => arglist (".__CLASS__.")");
+            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => arglist (".__CLASS__.")");
             return false; 
         } else {
             return false;

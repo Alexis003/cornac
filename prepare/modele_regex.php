@@ -33,7 +33,7 @@ class modele_regex extends analyseur_regex {
     }
     
     function check($t) {
-        mon_log(get_class($t)." => Modele ({$this->class}) ");
+        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => Modele ({$this->class}) ");
         return true;
     }
 }

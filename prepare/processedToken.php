@@ -29,7 +29,7 @@ class processedToken extends Token {
             $this->code = $t;
             $this->setLine(-2);
         }
-        mon_log(__CLASS__);
+        Cornac_Log::getInstance('tokenizer')->log(__CLASS__);
     }
 }
 

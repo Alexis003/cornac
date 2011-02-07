@@ -271,7 +271,7 @@ class Token {
             }
         
             $return = Token::applyRegex($t, $class, $r);
-            mon_log(get_class($t)." => ".get_class($return));
+            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".get_class($return));
             return $return; 
         }
         return $t;

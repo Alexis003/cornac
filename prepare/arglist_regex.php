@@ -77,7 +77,7 @@ class arglist_regex extends analyseur_regex {
                 return false;
             }
             
-            mon_log(get_class($t)." =>1 ".__CLASS__);
+            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." =>1 ".__CLASS__);
             return true; 
         } elseif ($var->getNext()->checkOperator(')')) {
             if ($var->checkClass('Token') &&
@@ -97,7 +97,7 @@ class arglist_regex extends analyseur_regex {
             $this->remove[]  = $pos ;
             $this->remove[]  = $pos + 1;
 
-            mon_log(get_class($t)." =>2 ".__CLASS__);
+            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." =>2 ".__CLASS__);
             return true; 
         } else {
             $this->args = array();

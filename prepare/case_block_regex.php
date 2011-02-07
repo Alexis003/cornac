@@ -43,7 +43,7 @@ class case_block_regex extends analyseur_regex {
         $this->args[] = 3;
         $this->remove[] = 3;
 
-        mon_log(get_class($t)." => ".__CLASS__);
+        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".__CLASS__);
         return true; 
     }
 }

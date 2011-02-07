@@ -104,7 +104,7 @@ class declare_alternative_regex extends analyseur_regex {
         
         $this->args[] = 
 
-        mon_log(get_class($t)." => block (".__CLASS__.")");
+        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => block (".__CLASS__.")");
         return true;
     }
 }

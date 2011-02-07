@@ -62,11 +62,11 @@ class sequence_regex extends analyseur_regex {
             $pos = 2;
 
             if (is_null($var)) {
-                mon_log(get_class($t)." => 0null ".__CLASS__);
+                Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => 0null ".__CLASS__);
                 return true; 
             }
             if (!$var->hasNext()) {
-                mon_log(get_class($t)." => 1null ".__CLASS__);
+                Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => 1null ".__CLASS__);
                 
                 return !$var->checkToken(T_CLOSE_TAG); 
             }
@@ -79,7 +79,7 @@ class sequence_regex extends analyseur_regex {
                 $var = $var->getNext();
 
                 if (is_null($var)) {
-                    mon_log(get_class($t)." => nnull ".__CLASS__);
+                    Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => nnull ".__CLASS__);
                     return true; 
                 }
 
@@ -89,7 +89,7 @@ class sequence_regex extends analyseur_regex {
                     $pos += 1;
                     $var = $var->getNext();
                     if (is_null($var)) {
-                        mon_log(get_class($t)." => nnull2 ".__CLASS__);
+                        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => nnull2 ".__CLASS__);
                         return true; 
                     }
                 } elseif ($var->checkToken(T_LOGICAL_OR, T_LOGICAL_AND, T_LOGICAL_XOR)) {
@@ -120,7 +120,7 @@ class sequence_regex extends analyseur_regex {
                 return false;
             } elseif (count($this->args) > 0) {
                 // @doc OK we are good now
-                mon_log(get_class($t)." => ".__CLASS__);
+                Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".__CLASS__);
                 return true; 
             } else {
                 // @doc Not processed? aborting. 

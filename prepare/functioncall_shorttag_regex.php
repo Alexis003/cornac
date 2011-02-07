@@ -45,7 +45,7 @@ class functioncall_shorttag_regex extends analyseur_regex {
         $regex = new modele_regex('functioncall',$args,$delete);
         Token::applyRegex($t->getNext(), 'functioncall', $regex);
 
-        mon_log(get_class($t)." => echo block (from <?= ) (".__CLASS__.")");
+        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => echo block (from <?= ) (".__CLASS__.")");
         return true;
     }
 }

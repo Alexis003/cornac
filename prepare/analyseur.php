@@ -159,7 +159,7 @@ class analyseur {
                 }
     
                 $return = analyseur::applyRegex($t, $this->tokens[$name], $regex);
-                mon_log(get_class($t)." => ".get_class($return));
+                Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".get_class($return));
                 return $return; 
             }
         } // @empty_else
@@ -184,7 +184,7 @@ class analyseur {
                     print $return."\n"; 
                     die(__METHOD__."\n"); 
                 }
-                mon_log(get_class($t)." => ".get_class($return));
+                Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".get_class($return));
                 return $return; 
             }
         }   // @empty_else
@@ -201,7 +201,7 @@ class analyseur {
             }
 
             $return = analyseur::applyRegex($t, $this->tokens[$name], $regex);
-            mon_log(get_class($t)." => ".get_class($return));
+            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".get_class($return));
             return $return; 
         }
         return $t;

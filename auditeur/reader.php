@@ -18,6 +18,9 @@
    +----------------------------------------------------------------------+
  */
 
+include('../library/Cornac/Autoload.php');
+spl_autoload_register('Cornac_Autoload::autoload');
+
 include('../libs/write_ini_file.php');
 
 // @synopsis : read options
@@ -69,8 +72,7 @@ if (empty($INI['reader']['format']) || !in_array($INI['reader']['format'],array(
 // @todo : support later
 //$summary = getOption($args, '-s', OPT_NO_VALUE, null);
 
-include('../libs/database.php');
-$DATABASE = new database();
+$DATABASE = new Cornac_Database();
 
 // @todo support this later
 //write_ini_file($INI, INI);

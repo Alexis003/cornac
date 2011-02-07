@@ -80,7 +80,7 @@ class for_comma3_regex extends analyseur_regex {
             $regex = new modele_regex('block',$args, $remove);
             Token::applyRegex($t->getNext($pos_init ), 'block', $regex);
 
-            mon_log(get_class($t)." => block (position 3) (from ".get_class($t->getNext(3)).") (".__CLASS__.")");
+            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => block (position 3) (from ".get_class($t->getNext(3)).") (".__CLASS__.")");
             return false; 
         } 
 

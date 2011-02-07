@@ -62,7 +62,7 @@ class typehint_regex extends analyseur_regex {
         $regex = new modele_regex('typehint',array(0, 1), array(1));
         Token::applyRegex($t, 'typehint', $regex);
 
-        mon_log(get_class($t->getNext())." => typehint (".__CLASS__.")");
+        Cornac_Log::getInstance('tokenizer')->log(get_class($t->getNext())." => typehint (".__CLASS__.")");
         return false;
     }
 }

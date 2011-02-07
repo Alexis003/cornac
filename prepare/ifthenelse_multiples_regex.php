@@ -41,7 +41,7 @@ class ifthenelse_multiples_regex extends analyseur_regex {
 
         $var = $t->getNext(5);
         if (is_null($var)) {
-           mon_log(get_class($t)." => ".__CLASS__." ".count($this->args).": NULL :");
+           Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".__CLASS__." ".count($this->args).": NULL :");
            return true; 
         }
         $pos = 5;
@@ -61,7 +61,7 @@ class ifthenelse_multiples_regex extends analyseur_regex {
   
               // @note null? This script is ending, so is the ifthen
               if (is_null($var)) {
-                  mon_log(get_class($t)." => ".__CLASS__." ".count($this->args).": $var :");
+                  Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".__CLASS__." ".count($this->args).": $var :");
                   return true; 
              }
         }
@@ -88,7 +88,7 @@ class ifthenelse_multiples_regex extends analyseur_regex {
             }
         }
                     
-        mon_log(get_class($t)." => ".__CLASS__." ".count($this->args).": $var :");
+        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".__CLASS__." ".count($this->args).": $var :");
         return true; 
     }
 }

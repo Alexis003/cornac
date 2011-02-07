@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class database {
+class Cornac_Database  {
     // @todo : must expose more functions
 
     private $pdo = null;

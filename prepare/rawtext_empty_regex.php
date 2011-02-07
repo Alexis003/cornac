@@ -37,7 +37,7 @@ class rawtext_empty_regex extends analyseur_regex {
 
       $this->args = array(0);
       $this->remove = array( 1);
-      mon_log(get_class($t)." => ".__CLASS__);
+      Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".__CLASS__);
       return true;
     }
 }

@@ -48,7 +48,7 @@ class static_normal_regex extends analyseur_regex {
             return false;
         }
 
-        mon_log(get_class($t)." => ".__CLASS__);
+        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".__CLASS__);
         return true; 
     }
 }

@@ -18,6 +18,11 @@
    +----------------------------------------------------------------------+
  */
 
+spl_autoload_register('auditeur_autoload');
+include('../library/Cornac/Autoload.php');
+spl_autoload_register('Cornac_Autoload::autoload');
+
+
 include('../libs/write_ini_file.php');
 
 // @synopsis : read options
@@ -301,8 +306,7 @@ $modules = array(
 // new analyzers
 );
 
-include('../libs/database.php');
-$DATABASE = new database();
+$DATABASE = new Cornac_Database();
 
 define('FORCE', $INI['force']);
 
@@ -471,7 +475,7 @@ while (1) {
     print "Processed $counter tasks. Waiting for 5s\n";
 }
 
-function __autoload($classname) {
+function auditeur_autoload($classname) {
     $path = str_replace('_','/', $classname);
 
     if (file_exists('classes/'.$path.'.php')) {
@@ -553,9 +557,9 @@ function analyse_module($module_name) {
     $module->analyse();
     // @todo add an option for this
     $finish_time = microtime(true);
-    $fp = fopen('auditeur.log','a');
-    fwrite($fp, date('r')."\t$module_name\t{$INI['ini']}\t".number_format(($finish_time - $init_time) * 1000, 2,',','')."\r");
-    fclose($fp);
+
+    $log = new Cornac_Log('auditeur',Cornac_Log::ADD);
+    $log->log("\t$module_name\t{$INI['ini']}\t".number_format(($finish_time - $init_time) * 1000, 2,',',''));
 
     $module->sauve();
 

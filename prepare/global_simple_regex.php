@@ -56,7 +56,7 @@ class global_simple_regex extends analyseur_regex {
                     $regex = new modele_regex('_global',$args, $remove);
                     Token::applyRegex($repl, '_global', $regex);
 
-                    mon_log(get_class($var)." => _global  (".__CLASS__.")");
+                    Cornac_Log::getInstance('tokenizer')->log(get_class($var)." => _global  (".__CLASS__.")");
                     continue;
                     
         }

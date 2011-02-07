@@ -36,7 +36,7 @@ class ifthenelse_vides_regex extends analyseur_regex {
             $regex = new modele_regex('block',array(), array());
             Token::applyRegex($t->getNext(1), 'block', $regex);
 
-            mon_log(get_class($t)." => block 1 (".__CLASS__.")");
+            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => block 1 (".__CLASS__.")");
             return false; 
         } 
 
@@ -47,7 +47,7 @@ class ifthenelse_vides_regex extends analyseur_regex {
             $regex = new modele_regex('block',array(), array());
             Token::applyRegex($t->getNext(), 'block', $regex);
 
-            mon_log(get_class($t)." => block 2 (".__CLASS__.")");
+            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => block 2 (".__CLASS__.")");
             return false; 
         } 
         return false;

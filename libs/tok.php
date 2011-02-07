@@ -141,22 +141,6 @@ class PHPFilter extends FilterIterator
     }
 }
 
-function mon_log($message) {
-    global $LOG;
-    
-    if (!LOG) { return true; }
-    
-    if (!isset($LOG)) {
-        $LOG =  fopen('tokenizer.log','w+');
-    }
-    
-    if (!is_resource($LOG)) {
-        die("Log file is not accessible for writing!\n");
-    }
-    
-    fwrite($LOG, date('r')."\t".memory_get_usage()."\t$message\r");
-}
-
 function getTemplate($racine, $file, $gabarit = null) {
     if (is_null($gabarit)) {
         global $INI;
@@ -167,7 +151,7 @@ function getTemplate($racine, $file, $gabarit = null) {
     $return = array();
     foreach($templates as $template) {
         $class = "template_".$template;
-        if (!class_exists($class)) {
+        if (!class_exists($class, false)) {
             include('prepare/templates/template.'.$template.'.php');
         }
         $return[$template] = new $class($racine, $file);

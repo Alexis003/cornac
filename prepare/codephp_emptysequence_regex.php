@@ -42,7 +42,7 @@ class codephp_emptysequence_regex extends analyseur_regex {
         Token::applyRegex($t->getNext(), 'sequence', $regex);
 
         
-        mon_log(get_class($t)." => codePHP (".__CLASS__.")");
+        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => codePHP (".__CLASS__.")");
         return false;
     }
 }

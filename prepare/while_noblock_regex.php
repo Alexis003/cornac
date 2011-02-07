@@ -44,7 +44,7 @@ class while_noblock_regex extends analyseur_regex {
             $regex = new modele_regex('block',array(), array());
             Token::applyRegex($t->getNext(1), 'block', $regex);
 
-            mon_log(get_class($t)." => block semi-colon (from ".get_class($t->getNext(1)).") (".__CLASS__.")");
+            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => block semi-colon (from ".get_class($t->getNext(1)).") (".__CLASS__.")");
             return false; 
         }
 
@@ -56,7 +56,7 @@ class while_noblock_regex extends analyseur_regex {
         $regex = new modele_regex('block',array(0), array());
         Token::applyRegex($t->getNext(1), 'block', $regex);
 
-        mon_log(get_class($t)." => block (from ".get_class($t->getNext(1)).") (".__CLASS__.")");
+        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => block (from ".get_class($t->getNext(1)).") (".__CLASS__.")");
         return false; 
     }
 }

@@ -18,7 +18,11 @@
    +----------------------------------------------------------------------+
  */
 // @synopsis : inclusions
-//include('prepare/commun.php');
+include('library/Cornac/Autoload.php');
+spl_autoload_register('Cornac_Autoload::autoload');
+
+
+
 include('libs/tok.php');
 include("prepare/analyseur.php");
 
@@ -54,6 +58,9 @@ $options = array('help' => array('help' => 'display this help',
                  );
 include('libs/getopts.php');
 
+// @todo make the autoload
+$log = new Cornac_Log('tokinit');
+Cornac_Log::getInstance('tokinit')->log("Token Init");
 
 // @synopsis : next
 global $FIN;
@@ -80,8 +87,7 @@ if (count($templates) == 0) {
 }
 define('GABARIT',join(',',$templates));
 
-include('./libs/database.php');
-$DATABASE = new database();
+$DATABASE = new Cornac_Database();
 
 $query = <<<SQL
 CREATE TABLE IF NOT EXISTS `<tasks>` (

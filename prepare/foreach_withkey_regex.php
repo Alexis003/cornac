@@ -41,7 +41,7 @@ class foreach_withkey_regex extends analyseur_regex {
           $this->args = array(2, 4, 6, 8);
           $this->remove = array(1,2,3,4,5,6,7,8);
 
-          mon_log(get_class($t)." => ".__CLASS__);
+          Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".__CLASS__);
           return true;
         } elseif ($t->getNext(7)->checkForBlock()) {
             if ($t->getNext(8)->checkForAssignation()) {return false; }
@@ -49,13 +49,13 @@ class foreach_withkey_regex extends analyseur_regex {
             $regex = new modele_regex('block',array(0), array());
             Token::applyRegex($t->getNext(7), 'block', $regex);
 
-            mon_log(get_class($t)." => block (".__CLASS__.")");
+            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => block (".__CLASS__.")");
             return false; 
         } elseif ($t->getNext(7)->checkCode(';')) {
           $this->args = array(2, 4, 6, 8);
           $this->remove = array(1,2,3,4,5,6,7,8);
             
-            mon_log(get_class($t)." => no block ".__CLASS__);
+            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => no block ".__CLASS__);
             return true;
         } else {
             return false;

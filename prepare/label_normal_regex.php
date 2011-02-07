@@ -42,7 +42,7 @@ class label_normal_regex extends analyseur_regex {
         $this->args = array(0);
         $this->remove = array(0, 1);
 
-        mon_log(get_class($t)." => label  (".__CLASS__.")");
+        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => label  (".__CLASS__.")");
         return true;
     }
 }

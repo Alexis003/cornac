@@ -39,7 +39,7 @@ class dowhile_simple_regex extends analyseur_regex {
         $regex = new modele_regex('block',$args, $remove);
         Token::applyRegex($t->getNext(), 'block', $regex);
 
-        mon_log(get_class($t)." => block (".__CLASS__.")");
+        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => block (".__CLASS__.")");
         return false; 
     }
 }

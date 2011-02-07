@@ -18,6 +18,9 @@
    +----------------------------------------------------------------------+
  */
 
+include('../library/Cornac/Autoload.php');
+spl_autoload_register('Cornac_Autoload::autoload');
+
 include('../libs/getopts.php');
 include('../libs/write_ini_file.php');
 include('../libs/ods/ooo_ods.php');
@@ -86,8 +89,7 @@ if (empty($INI['reader']['format'])) {
 }
 
 // @todo put this into a central library
-include('../libs/database.php');
-$DATABASE = new database();
+$DATABASE = new Cornac_Database();
 
 $res = $DATABASE->query("SHOW TABLES LIKE '<report>'");
 $row = $res->fetch();

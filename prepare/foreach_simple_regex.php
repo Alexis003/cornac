@@ -38,27 +38,27 @@ class foreach_simple_regex extends analyseur_regex {
         if ($t->getNext(5)->checkClass('block')) {
             $this->args = array(2, 4, 6);
             $this->remove = array(1,2,3,4,5,6);
-            mon_log(get_class($t)." => ".__CLASS__);
+            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".__CLASS__);
             return true;
         } elseif ($t->getNext(5)->checkForBlock()) {
             if ($t->getNext(6)->checkForAssignation()) { return false; }
             $regex = new modele_regex('block',array(0), array());
             Token::applyRegex($t->getNext(5), 'block', $regex);
 
-            mon_log(get_class($t)." => block (".__CLASS__.")");
+            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => block (".__CLASS__.")");
             return false; 
         } elseif ($t->getNext(5)->checkClass(array('variable','_array','property','property_static'))) {
             if ($t->getNext(6)->checkNotCode(';')) { return false; }
             $regex = new modele_regex('block',array(0), array());
             Token::applyRegex($t->getNext(5), 'block', $regex);
 
-            mon_log(get_class($t)." => block (".__CLASS__.")");
+            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => block (".__CLASS__.")");
             return false; 
         } elseif ($t->getNext(5)->checkCode(';')) {
             $this->args = array(2, 4, 6);
             $this->remove = array(1,2,3,4,5,6);
             
-            mon_log(get_class($t)." => no block ".__CLASS__);
+            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => no block ".__CLASS__);
             return true;
         } else {
             return false;

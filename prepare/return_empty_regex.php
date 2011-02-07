@@ -35,7 +35,7 @@ class return_empty_regex extends analyseur_regex {
               $this->args = array();
               $this->remove = array();
   
-              mon_log(get_class($t)." => ".__CLASS__);
+              Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".__CLASS__);
               return true;
         } else {
             return false;

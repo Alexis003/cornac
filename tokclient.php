@@ -17,9 +17,16 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
+
+
 ini_set('memory_limit',620*1024*1024);
 error_reporting(E_ALL);
 ini_set('display_errors', 'on');
+
+include('library/Cornac/Autoload.php');
+spl_autoload_register('Cornac_Autoload::autoload');
+
+new Cornac_Log('tokenizer');
 
 include('prepare/common.php');
 include("prepare/analyseur.php");
@@ -75,7 +82,8 @@ define('STATS',$INI['stats']);
 define('VERBOSE',$INI['verbose']);
 
 define('LOG',$INI['log']);
-mon_log("Inclusions\n");
+Cornac_Log::getInstance('tokenizer')->log("Inclusions");
+
 $limit = 0 + $INI['limit'];
 if ($limit) {
     print "Cycles = $limit\n";
@@ -83,8 +91,7 @@ if ($limit) {
     $limit = -1;
 }
 
-include('libs/database.php');
-$DATABASE = new database();
+$DATABASE = new Cornac_Database();
 // @section end of options
 
 // @todo : make a sleeping client here, that waits, not die.
@@ -170,7 +177,7 @@ class file_processor {
     
     function process_file($scriptsPHP, $limit) {
         global $file, $files_processed, $INI;
-        mon_log("Init processing\n");
+        Cornac_Log::getInstance('tokenizer')->log("Init processing");
         $result = array();
     
         $FIN['fait'] = 0;
@@ -215,7 +222,7 @@ class file_processor {
     
         // @todo abstract this function, so one can choose the PHP version for tokenization
         $raw = @token_get_all($code);
-        mon_log("Tokenized\n");
+        Cornac_Log::getInstance('tokenizer')->log("Tokenized");
 
         if (count($raw) == 0) {
             $this->messages['compile'] = "No token found. Aborting\n";
@@ -241,7 +248,7 @@ class file_processor {
         $suite = null;
         $ligne = 0;
 
-        mon_log("Cleaning WS and Comments\n");
+        Cornac_Log::getInstance('tokenizer')->log("Cleaning WS and Comments");
         $distinct_tokens = array();
         foreach($raw as $id => $b) {
             // @note actually removing all coments and whitespace even before turning them into token
@@ -273,13 +280,13 @@ class file_processor {
         // @note this is less costly in terms of garbage collecting
         unset($raw);
     
-        mon_log("New analyseur\n");
+        Cornac_Log::getInstance('tokenizer')->log("New analyseur");
         $analyseur = new analyseur(array_keys($distinct_tokens));
     
         $nb_tokens_courant = -1;
         $nb_tokens_precedent = array(-1);
     
-        mon_log("Init cycles\n");
+        Cornac_Log::getInstance('tokenizer')->log("Init cycles\r");
         $i = 0;
         while (1) {
             $i++;
@@ -287,7 +294,7 @@ class file_processor {
             if ($i == 4) { $analyseur->setAny_token(true); }
             
             $t = $root;
-            mon_log("\nCycle : ".$i."\n$t\n");
+            Cornac_Log::getInstance('tokenizer')->log("\rCycle : ".$i."\r$t");
             $nb_tokens_precedent[] = $nb_tokens_courant;
             if (count($nb_tokens_precedent) > 4) {
                 array_shift($nb_tokens_precedent);
@@ -297,7 +304,7 @@ class file_processor {
                 $t = $analyseur->upgrade($t);
                 if (get_class($t) == 'Token') { $nb_tokens_courant++; }
                 if ($t->getId() == 0 && $t != $root) {
-                    mon_log("New root : ".$t."");
+                    Cornac_Log::getInstance('tokenizer')->log("New root : ".$t."");
                     $root = $t;
                 }
     
@@ -310,7 +317,7 @@ class file_processor {
                }
             } while ($t = $t->getNext());
     
-            mon_log("Remaining tokens : ".$nb_tokens_courant."");
+            Cornac_Log::getInstance('tokenizer')->log("Remaining tokens : ".$nb_tokens_courant."");
     
             if ($nb_tokens_courant == 0) {
                 break 1;

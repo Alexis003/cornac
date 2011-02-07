@@ -72,7 +72,7 @@ class ifthenelse_alternativeblock_regex extends analyseur_regex {
 
         if ($var->checkToken(T_ENDIF)) {
             $this->remove[] = $pos;
-            mon_log(get_class($t)." => ".__CLASS__);
+            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".__CLASS__);
             return true; 
         }
         
