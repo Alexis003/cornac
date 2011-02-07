@@ -275,6 +275,13 @@ Methods that call their parent:: or self::
 Classes that overload parent methods
 Classes that uses parent properties
 
+Check Symfony naming convention
+move References folder and associated script out of cornac
+spot similar folders (containing about the same files)
+spot similar classe (containing similar properties/methods)
+sf migration (http://www.symfony-project.org/tutorial/1_4/en/deprecated)
+
+
 [web]
 use .ini for the web folder too
 export to html : should match the interactive web version
