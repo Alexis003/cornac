@@ -166,7 +166,6 @@ while( 1 ) {
         $times[$key] = floor(($valeur - $debut) * 1000);
     }
 }
-mon_die();
 
 class file_processor {
 

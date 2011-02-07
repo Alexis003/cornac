@@ -17,41 +17,6 @@
    +----------------------------------------------------------------------+
  */
 
-function mon_die() {
-    global $nb_tokens_courant, $nb_tokens_initial, $file, $times, $nb_cycles_final, $limite ;
-    
-    $message = array();
-    $message['date'] = date('r');
-    $message['file'] = $file;
-    $message['tokens'] = $nb_tokens_initial;
-    $message['reste'] = $nb_tokens_courant;
-    $message['nb_cycles'] = $nb_cycles_final;
-    $message['nb_cycles_autorise'] = $limite;
-    $message['fin'] = $times['fin'];
-    $message['memoire_max'] = memory_get_peak_usage();
-    $message['memoire_finale'] = memory_get_usage();
-    
-    $message = join("\t", $message)."\n";
-    
-    $fp = fopen('analyseur.log','a');
-    fwrite($fp, $message);
-    fclose($fp);
-    
-    die();
-}
-
-function termine() {
-    global $FIN;
-    
-    $fin = microtime(true);
-    
-    print "================================================\n";
-    print "Duration : ".number_format(($fin - $FIN['debut']), 2)." s\n";
-    print "Processed files : ".$FIN['fait']." \n";
-    print "Found files : ".$FIN['trouves']." \n";
-    die();
-}
-
 class PHPFilter extends FilterIterator 
 {
     private $userFilter;
