@@ -7,7 +7,6 @@
 <?php
 
 include('include/config.php');
-include('../libs/write_ini_file.php');
 
 $stats = array();
 
@@ -53,12 +52,10 @@ $html .= "</table>\n<hr />\n";
 $html = "";
 
 //$res = $DATABASE->query('SELECT CONCAT(module," (", COUNT(*),")") AS module FROM <report> GROUP BY MODULE');
-$res = $DATABASE->query('SELECT module AS module FROM <report> GROUP BY module');
-$modules = multi2array($res->fetchAll(PDO::FETCH_ASSOC));
+$modules = $DATABASE->query_one_array('SELECT module AS module FROM <report> GROUP BY module');
 array_unshift($modules, 'any');
 
-$res = $DATABASE->query('SELECT DISTINCT file FROM <report>');
-$files = multi2array($res->fetchAll(PDO::FETCH_ASSOC));
+$files = $DATABASE->query_one_array('SELECT DISTINCT file FROM <report>');
 array_unshift($files, 'any');
 
 $where = array();

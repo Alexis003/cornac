@@ -23,11 +23,8 @@ function get_html_check($lines) {
 function get_html_level2($lines) {
     global $DATABASE;
     
-    include('../libs/write_ini_file.php');
-
     $query = "SELECT DISTINCT concat(file,';','white') AS all_files FROM <tokens> ";
-    $res = $DATABASE->query($query);
-    $rows = pdo_fetch_one_col($res);
+    $rows = $DATABASE->query_one_array($query);
     
     include('../libs/file2png.php');
     

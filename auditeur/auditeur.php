@@ -22,9 +22,6 @@ spl_autoload_register('auditeur_autoload');
 include('../library/Cornac/Autoload.php');
 spl_autoload_register('Cornac_Autoload::autoload');
 
-
-include('../libs/write_ini_file.php');
-
 // @synopsis : read options
 $options = array('help' => array('help' => 'display this help',
                                  'option' => '?',
@@ -344,12 +341,6 @@ if ($INI['init']) {
         $query = "INSERT INTO <tasks> (task, target, date_update, completed) VALUES ( 'auditeur', '".join("',NOW(), 0) ,('auditeur', '", $modules)."', NOW(), 0)";
         $DATABASE->query($query);
     }
-    
-// @todo fix the problem with the path
-/*
-if (INI) {
-    write_ini_file($INI, INI);
-*/
 
 // @todo move this to abstract/module, so that initialisation will be next to the right checks. 
 if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {

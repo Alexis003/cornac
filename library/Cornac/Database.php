@@ -95,6 +95,31 @@ class Cornac_Database  {
     function insert_id() {
         return $this->pdo->lastInsertId();
     }
+
+    function query_one_array($query) {
+        $res = $this->query($query);
+        if (!res) { return false; }
+        
+        $array = $res->fetchAll(PDO::FETCH_ASSOC);
+        $r = array();
+        
+        if (is_null($index)) {
+            list($k, $v) = each($array);
+            
+            if (!is_array($v)) { var_dump($v); die; }
+            list($index, $V) = each($v);
+            
+            $r[$k] = $V;
+        }
+        
+        foreach($array as $k => $v) {
+            if (isset($v[$index])) {
+                $r[$k] = $v[$index];
+            }
+        }
+    
+        return $r;
+    }
 }
 
 ?>

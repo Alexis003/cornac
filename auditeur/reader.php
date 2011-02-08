@@ -21,8 +21,6 @@
 include('../library/Cornac/Autoload.php');
 spl_autoload_register('Cornac_Autoload::autoload');
 
-include('../libs/write_ini_file.php');
-
 // @synopsis : read options
 $options = array('help' => array('help' => 'display this help',
                                  'option' => '?',
@@ -73,9 +71,6 @@ if (empty($INI['reader']['format']) || !in_array($INI['reader']['format'],array(
 //$summary = getOption($args, '-s', OPT_NO_VALUE, null);
 
 $DATABASE = new Cornac_Database();
-
-// @todo support this later
-//write_ini_file($INI, INI);
 
 $query = 'SELECT * FROM <report_module> WHERE module='.$DATABASE->quote($INI['reader']['module']);
 $res = $DATABASE->query($query);

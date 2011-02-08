@@ -120,11 +120,23 @@ class file2png {
 
         foreach($this->array as $path) {
             $dirs = explode('/', $path);
-            $retour = array_merge_recursive($retour, array2multi($dirs));
+            $retour = array_merge_recursive($retour, $this->array2multi($dirs));
         }
 
         $this->array = $retour;
     }
+    
+    function array2multi($array) {
+        $f = array_shift($array);
+        if (count($array) > 0) {
+            $retour[$f] = $this->array2multi($array);
+        } else {
+            $retour = array($f => $f);
+        }
+        
+        return $retour;
+    }
+
 
     function getcolor($color) {
         if (isset($this->colors[$color])) {

@@ -22,7 +22,6 @@ include('../library/Cornac/Autoload.php');
 spl_autoload_register('Cornac_Autoload::autoload');
 
 include('../libs/getopts.php');
-include('../libs/write_ini_file.php');
 include('../libs/ods/ooo_ods.php');
 
 // @todo use options from getopts library
