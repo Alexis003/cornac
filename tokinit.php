@@ -120,8 +120,8 @@ if (isset($INI['directory'])) {
 
     print "Preparing work on directory '{$directory}'\n";
 
-    $spl = new Cornac_Dir_RecursiveDirectoryIterator($directory);
-    $files = $spl->list_files();
+    $spl = new Cornac_Dir_RecursiveDirectoryIterator();
+    $files = $spl->list_files($directory);
 
     foreach($files as $file) {
         $code = file_get_contents($file);
