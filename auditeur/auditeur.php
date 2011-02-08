@@ -509,9 +509,7 @@ function analyse_module($module_name) {
     
     if (count($dependances) > 0) {
         if (!FORCE) {
-            $res = $DATABASE->query("SELECT target FROM <tasks> WHERE completed = 100 AND task='auditeur'");
-            $done = $res->fetchAll(PDO::FETCH_ASSOC);
-            $done = multi2array($done, 'target');
+            $done = $DATABASE->query_one_array("SELECT target FROM <tasks> WHERE completed = 100 AND task='auditeur'", 'target');
         
             $missing = array_diff($dependances, $done);
         } else {

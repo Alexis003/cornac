@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class ooo_ods_style {
+class Cornac_Format_Ods_Style {
     private $name = '';
     private $family = 'table-cell';
     private $parent_style = '';

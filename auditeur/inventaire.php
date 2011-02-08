@@ -22,7 +22,6 @@ include('../library/Cornac/Autoload.php');
 spl_autoload_register('Cornac_Autoload::autoload');
 
 include('../libs/getopts.php');
-include('../libs/ods/ooo_ods.php');
 
 // @todo use options from getopts library
 $args = $argv;
@@ -132,7 +131,7 @@ $headers = array('Variables' => 'SELECT COUNT(DISTINCT element)  FROM <report> W
 
 $stats = array();
 
-$ods = new ooo_ods();
+$ods = new Cornac_Format_Ods();
 
 $ods->setRow('Sommaire',1, array(1 => 'Module','Nombre'));
 $ods->setRowCellsStyle('Sommaire', 1, "ce1");
@@ -249,8 +248,6 @@ foreach($names as $name => $conf) {
         }
     }
 
-    $res = $DATABASE->query($query);
-    $rows = $res->fetchAll(PDO::FETCH_ASSOC);
 
     foreach($headers as $id => $header) {
         $ods->setCell($name, 1, $id + 1, $header);
@@ -258,7 +255,7 @@ foreach($names as $name => $conf) {
     }
 
     foreach($columns as $id => $col) {
-       $r = multi2array($rows, $col);
+       $r = $DATABASE->query_one_array($query, $col);
        $r[] = $r[0];
        unset($r[0]);
        $r[] = $r[1];

@@ -17,10 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-include(dirname(__FILE__).'/ooo_ods_meta.php');
-include(dirname(__FILE__).'/ooo_ods_style.php');
-
-class ooo_ods {
+class Cornac_Format_Ods {
     // @todo move this to private! 
     private $cells = array();
     private $styles = array();
@@ -29,37 +26,37 @@ class ooo_ods {
     private $meta = null;
     
     function __construct() {
-        $this->meta = new ooo_ods_meta();
+        $this->meta = new Cornac_Format_Ods_Meta();
         
-        $style = new ooo_ods_style('co1', 'table-column');
+        $style = new Cornac_Format_Ods_Style('co1', 'table-column');
         $style->setProperties(array( 'fo:break-before'=> "auto",
                                      'style:column-width' => "2.267cm"));
         $this->ods_styles[] = $style;
 
-        $style = new ooo_ods_style('ro1', 'table-row');
+        $style = new Cornac_Format_Ods_Style('ro1', 'table-row');
         $style->setProperties(array( 'style:row-height' => "0.45cm",
                                      'fo:break-before' => "auto",
                                      'style:use-optimal-row-height' => "true"));
         $this->ods_styles[] = $style;
 
-        $style = new ooo_ods_style('ro2', 'table-row');
+        $style = new Cornac_Format_Ods_Style('ro2', 'table-row');
         $style->setProperties(array('style:row-height' => "0.427cm",
                                     'fo:break-before' => "auto",
                                     'style:use-optimal-row-height' => "true"));
         $this->ods_styles[] = $style;
 
-        $style = new ooo_ods_style('ta1', 'table', "Default");
+        $style = new Cornac_Format_Ods_Style('ta1', 'table', "Default");
         $style->setProperties(array( "table:display" => "true",
                                      "style:writing-mode" => "lr-tb"));
         $this->ods_styles[] = $style;
 
-        $style = new ooo_ods_style('ce1', 'table-cell', "Default");
+        $style = new Cornac_Format_Ods_Style('ce1', 'table-cell', "Default");
         $style->setProperties(array( 'fo:font-weight' => "bold",
                                      'style:font-weight-asian' => "bold",
                                      'style:font-weight-complex' => "bold"));
         $this->ods_styles[] = $style;
 
-        $style = new ooo_ods_style('ta_extref', 'table', null);
+        $style = new Cornac_Format_Ods_Style('ta_extref', 'table', null);
         $style->setProperties(array( 'table:display' => "false"));
         $this->ods_styles[] = $style;
  }

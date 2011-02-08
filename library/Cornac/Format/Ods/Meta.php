@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class ooo_ods_meta {
+class Cornac_Format_Ods_Meta {
     private $meta;
     
     function __construct() {
