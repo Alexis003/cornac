@@ -21,9 +21,6 @@
 include('library/Cornac/Autoload.php');
 spl_autoload_register('Cornac_Autoload::autoload');
 
-
-
-include('libs/tok.php');
 include("prepare/analyseur.php");
 
 // @synopsis : configuration
@@ -123,7 +120,8 @@ if (isset($INI['directory'])) {
 
     print "Preparing work on directory '{$directory}'\n";
 
-    $files = liste_directories($directory, 0, (boolean) $INI['recursive']);
+    $spl = new Cornac_Dir_RecursiveDirectoryIterator($directory);
+    $files = $spl->list_files();
 
     foreach($files as $file) {
         $code = file_get_contents($file);

@@ -74,7 +74,6 @@ SQL;
         $res = $this->exec_query_insert('report_dot', $query);
         $res = $this->exec_query($query);
 
-       include_once('../libs/path_normaliser.php');
        $query = <<<SQL
 SELECT * FROM <report_dot> WHERE module='{$this->name}'
 SQL;
@@ -93,7 +92,7 @@ SQL;
         );
         
         $row['b'] = str_replace(array_keys($variables), array_values($variables), $row['b']);
-        $row['b'] = path_normaliser(dirname($row['a']).'/', $row['b']);
+        $row['b'] = $this->path_normaliser(dirname($row['a']).'/', $row['b']);
         $row['b'] = addslashes($row['b']);
         $row[1] = addslashes($row[1]);
 
@@ -107,6 +106,35 @@ SQL;
         $this->exec_query($query);
         }
 	}
+	
+	private function path_normaliser($root, $path) {
+    if ($root == '') { return $path; }
+    
+    if (substr($root, 0, 5) == substr($path, 0, 5)) {
+        return $path;
+    }
+    
+    if (substr($root, -1) == '/') {
+        $path = $root.$path;
+    } else {
+        $path = $root.'/'.$path;
+    }
+    
+    $n = 0;
+    while(strpos($path, '..') !== false) {
+        $path = preg_replace('#/[^\/]+/../#','/',$path);
+        $path = preg_replace('#[^\/]+/../#','',$path);
+        $n++;
+        if ($n == 100) { return $path." (aborting : 100 reached) "; }
+    }
+    
+    while(strpos($path, '/./') !== false) {
+        $path = preg_replace('$/./$','/',$path);
+    }
+    
+    return $path;
+}
+
 }
 
 ?>

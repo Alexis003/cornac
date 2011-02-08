@@ -30,7 +30,6 @@ new Cornac_Log('tokenizer');
 
 include('prepare/common.php');
 include("prepare/analyseur.php");
-include('libs/tok.php');
 include('prepare/templates/template.php');
 
 $options = array('help' => array('help' => 'display this help',
@@ -309,7 +308,7 @@ class file_processor {
     
                 if (VERBOSE) {
                     print "$i) ".$t->getCode()."---- \n";
-                    $template = getTemplate($root, $file, 'tree');
+                    $template = $this->getTemplate($root, $file, 'tree');
                     $template['tree']->display();
                     unset($template);
                     print "$i) ".$t->getCode()."---- \n";
@@ -358,7 +357,7 @@ class file_processor {
             $id++;
         }
 
-        $templates = getTemplate($root, $file, $config['template']);
+        $templates = $this->getTemplate($root, $file, $config['template']);
         $this->messages['templates'] = true;
         foreach($templates as $name => $template) {
             $template->display();
@@ -386,5 +385,22 @@ class file_processor {
         return true;
     }
 
+    private function getTemplate($racine, $file, $gabarit = null) {
+        if (is_null($gabarit)) {
+            global $INI;
+            $gabarit = $INI['templates'];
+        }
+        $templates = explode(',' , $gabarit);
+        
+        $return = array();
+        foreach($templates as $template) {
+            $class = "template_".$template;
+            if (!class_exists($class, false)) {
+                include('prepare/templates/template.'.$template.'.php');
+            }
+            $return[$template] = new $class($racine, $file);
+        }
+        return $return;
+    }
 }
 ?>
