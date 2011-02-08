@@ -26,9 +26,7 @@ function get_html_level2($lines) {
     $query = "SELECT DISTINCT concat(file,';','white') AS all_files FROM <tokens> ";
     $rows = $DATABASE->query_one_array($query);
     
-    include('../libs/file2png.php');
-    
-    $image = new file2png();
+    $image = new Cornac_Format_File2png();
     $image->setArray($rows);
     $image->process();
     $image->save();

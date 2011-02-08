@@ -18,7 +18,6 @@
    +----------------------------------------------------------------------+
  */
 include('libs/getopts.php');
-include('libs/write_ini_file.php');
 $args = $argv;
 
 if (get_arg($args, '-?')) { help(); }
@@ -35,7 +34,6 @@ if (!is_null($ini)) {
         define('INI',$ini);
     } else {
         $INI = parse_ini_file('ini/'.'cornac.ini', true);
-        write_ini_file($INI,'ini/'.$ini.'.ini');
         define('INI','ini/'.$ini.'.ini');
     }
     $INI = parse_ini_file(INI, true);
@@ -114,7 +112,6 @@ if ($INI['cornac']['storage'] == 'mysql') {
     die();
 }
 
-write_ini_file($INI, INI);
 // execution
 print "
 Folder : {$INI['cornac']['origin']}

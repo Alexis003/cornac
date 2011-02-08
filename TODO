@@ -3,6 +3,8 @@ add remove table option for cornac / auditeur
 
 merge the 2 database classes into one
 
+Add an Export class, to handle export to a configurable folder.
+
 Check cornac on SQLITE.
 
 Add a way to display code within cornac (Through PHP COde Browser? Under work with JMF)
@@ -154,6 +156,9 @@ check tokens? and version for PHP. This must be done in tokenizer.
 Prepare auditeur for wordpress, joomla, drupal, sf, zf, ci. 
 
 [analysers ideas]
+Make a tree with view calling each other (that coud word on controllers too, and models). 
+CHeck for calls between controlers/models/view!  (This shouldn't happen...)
+
 Make a tree with exceptions throws (List des émetteur d'exception, et de leur catch)
 
 check that variables are constante (only received a constant value).

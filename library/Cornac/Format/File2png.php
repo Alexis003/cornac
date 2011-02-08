@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class file2png {
+class Cornac_Format_File2png {
     private $scale=10;
     private $array = array();
     private $img = null;

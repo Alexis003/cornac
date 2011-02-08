@@ -17,19 +17,18 @@
    +----------------------------------------------------------------------+
  */
 
+include('../library/Cornac/Autoload.php');
+spl_autoload_register('Cornac_Autoload::autoload');
+
 $OPTIONS = array('ignore_ext' => array(), 'limit' => 0, 'ignore_dirs' => array(), );
 
-include('../libs/file2png.php');
-include('../libs/write_ini_file.php');
-
-$base = new pdo('mysql:dbname=analyseur;host=127.0.0.1','root','');
-$res = $base->query("SELECT concat(fichier,';',if (sum(if (module='dieexit', 1,0)) > 0,'black','white')) AS file,
+$DATABASE = new Cornac_Database();
+$a = $DATABASE->query_one_array("SELECT concat(fichier,';',if (sum(if (module='dieexit', 1,0)) > 0,'black','white')) AS file,
 if (sum(if (module='dieexit', 1,0)) > 0,'black','white') as OK,
 sum(if (module='dieexit', 1,0)) as module
-    FROM dotclear_rapport GROUP BY fichier ORDER BY module");
-$a = pdo_fetch_one_col($res);
+    FROM <report> GROUP BY fichier ORDER BY module");
 
-$image = new file2png();
+$image = new Cornac_Format_File2png();
 $image->setArray($a);
 $image->process();
 $image->save('./file2png.png');
