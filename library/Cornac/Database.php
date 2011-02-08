@@ -96,7 +96,7 @@ class Cornac_Database  {
         return $this->pdo->lastInsertId();
     }
 
-    function query_one_array($query) {
+    function query_one_array($query, $index = null) {
         $res = $this->query($query);
         if (!res) { return false; }
         
@@ -106,7 +106,7 @@ class Cornac_Database  {
         if (is_null($index)) {
             list($k, $v) = each($array);
             
-            if (!is_array($v)) { var_dump($v); die; }
+            if (!is_array($v)) { var_dump($array); die; }
             list($index, $V) = each($v);
             
             $r[$k] = $V;
