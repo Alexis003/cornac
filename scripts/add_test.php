@@ -23,7 +23,7 @@ if (empty($name)) {
     die();
 }
 
-$files = glob('./References/'.$name.'*');
+$files = glob('../References/'.$name.'*');
 if (count($files) == 0) {
     print "Can't find $name project in reference. Aborting\n\n";
     die();
@@ -45,7 +45,7 @@ file_put_contents('ini/'.$name.'.ini', $code);
 print "ini/$name created\n";
 
 // tokenizeur.sh
-$code = file_get_contents('tokenizeur.sh');
+$code = file_get_contents('../References/tokenizeur.sh');
 $code = str_replace("# next test\n","echo \"$name\\n\";
 ./tokenizeur.php -r -I $name -g mysql,cache -d {$files[0]}/
 # next test\n", $code);

@@ -16,7 +16,11 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
-$list = ".gif,.jpg,.bak,.psd,.png,.htm,.xml,.js,.txt,.old,.gz,.db,.jpeg,.html,.swf,.scc,.rar,.zip,.ico,.sh,.patch,.sql,.dll,.ai,.afm,.jar,.docx,.dat,.mp3,.ttf,.table,.pdf,.z,.fla,.bmp,.cgi,.csv,.xsl,.svg,.doc,.docx,.odt,.odp,.wsdl,.xsd,.dist,.markdown,.awk,.war,.md,.ott,.odg,.ts,.xmi,.dba,.ezt,.o,.cpp,.java,.manifest,.rng,.md5,.jsb,.in,.dia,.ctp,.sgml,.sample,.mxml,.dtd,.lin,.fre,.JPG,.tar,.xslt,.flv,.resx,.mpg,.info,.tiff,.exe,.rdf,.rss,.yml,.bat,.py,.pl,.c,.h,.pfb,.xap,.xul,.css,.config,.darwin,.default,.hlp,.pas,.bdsproj,.bdsgroup,.bpr,.DLL,.src,.CAB,.xcf,.woff,.eot,.icc,.xad,.xls,.doc,.ppt,.so,.sxw,.sit,.sitx,.desc,.tex,.linux,.mo,.po,.tif,.tga,.pcx,.lss,.bpk,.sxd,.bin,.as3proj,.selenium,.mwb,.vsd,.conf,.mso,.gem,.swz,.csproj,.launch,.mno";
+ 
+include('../library/Cornac/Autoload.php');
+spl_autoload_register('Cornac_Autoload::autoload');
+
+$list = ".gif,.jpg,.bak,.psd,.png,.htm,.xml,.js,.txt,.old,.gz,.db,.jpeg,.html,.swf,.scc,.rar,.zip,.ico,.sh,.patch,.sql,.dll,.ai,.afm,.jar,.docx,.dat,.mp3,.ttf,.table,.pdf,.z,.fla,.bmp,.cgi,.csv,.xsl,.svg,.doc,.docx,.odt,.odp,.wsdl,.xsd,.dist,.markdown,.awk,.war,.md,.ott,.odg,.ts,.xmi,.dba,.ezt,.o,.cpp,.java,.manifest,.rng,.md5,.jsb,.in,.dia,.ctp,.sgml,.sample,.mxml,.dtd,.lin,.fre,.JPG,.tar,.xslt,.flv,.resx,.mpg,.info,.tiff,.exe,.rdf,.rss,.yml,.bat,.py,.pl,.c,.h,.pfb,.xap,.xul,.css,.config,.darwin,.default,.hlp,.pas,.bdsproj,.bdsgroup,.bpr,.DLL,.src,.CAB,.xcf,.woff,.eot,.icc,.xad,.xls,.doc,.ppt,.so,.sxw,.sit,.sitx,.desc,.tex,.linux,.mo,.po,.tif,.tga,.pcx,.lss,.bpk,.sxd,.bin,.as3proj,.selenium,.mwb,.vsd,.conf,.mso,.gem,.swz,.csproj,.launch,.mno,.architect";
 $list = explode(',', $list);
 $list2 = array_unique($list);
 
@@ -25,11 +29,7 @@ asort($list2);
 
 $list = join(',', $list2);
 
-include('../libs/write_ini_file.php');
-
-$files = glob('./*.ini');
-
-include('../libs/database.php');
+$files = glob('../ini/*.ini');
 
 foreach($files as $file) {
     $ini = parse_ini_file($file, true);
@@ -44,7 +44,7 @@ foreach($files as $file) {
     }
     $INI = $ini;
     
-    $DATABASE = new database();
+    $DATABASE = new Cornac_Database();
     $query = "SHOW TABLES LIKE \"<tasks>\"";
     $res = $DATABASE->query($query);
     

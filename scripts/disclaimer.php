@@ -1,5 +1,8 @@
 <?php
 
+include('../library/Cornac/Autoload.php');
+spl_autoload_register('Cornac_Autoload::autoload');
+
 print "\n";
 if (in_array('-W', $argv)) {
     print "Updating disclaimer\n\n";
@@ -58,17 +61,17 @@ $olds['7/9/2010b'] = <<<TEXT
 
 TEXT;
 */
-include('../libs/write_ini_file.php');
 
-global $OPTIONS;
-$OPTIONS = array('ignore_dirs' => array('References',),
-                 'ignore_ext' => array('js','html','log','txt','exp','ini','css','architect'),
+global $INI;
+$INI = array('tokenizeur' => 
+           array('ignore_dirs' => 'References',
+                 'ignore_ext' => explode(',', ".ini,.exp,.log,.architect,.CAB,.DLL,.JPG,.afm,.ai,.as3proj,.awk,.bak,.bat,.bdsgroup,.bdsproj,.bin,.bmp,.bpk,.bpr,.c,.cgi,.conf,.config,.cpp,.csproj,.css,.csv,.ctp,.darwin,.dat,.db,.dba,.default,.desc,.dia,.dist,.dll,.doc,.docx,.dtd,.eot,.exe,.ezt,.fla,.flv,.fre,.gem,.gif,.gz,.h,.hlp,.htm,.html,.icc,.ico,.in,.info,.jar,.java,.jpeg,.jpg,.js,.jsb,.launch,.lin,.linux,.lss,.manifest,.markdown,.md,.md5,.mno,.mo,.mp3,.mpg,.mso,.mwb,.mxml,.o,.odg,.odp,.odt,.old,.ott,.pas,.patch,.pcx,.pdf,.pfb,.pl,.png,.po,.ppt,.psd,.py,.rar,.rdf,.resx,.rng,.rss,.sample,.scc,.selenium,.sgml,.sh,.sit,.sitx,.so,.sql,.src,.svg,.swf,.swz,.sxd,.sxw,.table,.tar,.tex,.tga,.tif,.tiff,.ts,.ttf,.txt,.vsd,.war,.woff,.wsdl,.xad,.xap,.xcf,.xls,.xmi,.xml,.xsd,.xsl,.xslt,.xul,.yml,.z,.zip"),
                  'limit' => 0,
-                 
+           )
         );
-$fichiers = liste_directories_recursive('..');
 
-//$fichiers = array('../cornac.php', 'disclaimer.php');
+$spl = new Cornac_Dir_RecursiveDirectoryIterator();
+$fichiers = $spl->list_files('../');
 
 $stats = array('old' => 0,'ready' => 0,'already' => 0,'wrong' => 0);
 
