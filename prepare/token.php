@@ -512,7 +512,7 @@ class Token {
         if (in_array(get_class($this), array('rawtext','sequence','ifthen',
                                              'functioncall','affectation',
                                              'parenthesis','block','sequence',
-                                             '_global','_use'))) {
+                                             '_global','_use','_static'))) {
             return true;
         }
         return false;
