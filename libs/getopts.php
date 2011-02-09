@@ -112,19 +112,6 @@ if (isset($options)) {
         $ini = array();
     }
 
-/*    
-    // @doc commandline option replace INI values
-    foreach($ini as $section => $inis) {
-        foreach($inis as $name => $value) {
-            if (array_key_exists($name, $INI)) {
-                $ini[$section][$name] = $INI[$name];
-                unset($INI[$name]);
-            }
-        }
-    }
-    
-    print_r($INI);die();
-        */
     $INI = array_merge($INI, $ini);
     unset($ini);
 }
