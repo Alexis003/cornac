@@ -6,6 +6,8 @@ class Cornac_Autoload {
         // @todo path may have to be configurable
         if (basename($_SERVER['PWD']) == 'auditeur'){
             $path = '../library';
+        } elseif (basename($_SERVER['PWD']) == 'scripts') {
+            $path = '../library';
         } elseif (isset($_SERVER['HTTP_HOST'])) {
             $path = '../library';
         } else {

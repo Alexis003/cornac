@@ -27,19 +27,38 @@ class Cornac_Database  {
             global $INI;
         } 
         
-        if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
-            $this->pdo = new pdo($INI['mysql']['dsn'],$INI['mysql']['username'], $INI['mysql']['password']);
-        } elseif (isset($INI['sqlite'])  && $INI['sqlite']['active'] == true) {
-            $this->pdo = new pdo($INI['sqlite']['dsn']);
+        if (is_array($INI)) {
+            if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
+                $this->pdo = new pdo($INI['mysql']['dsn'],$INI['mysql']['username'], $INI['mysql']['password']);
+            } elseif (isset($INI['sqlite'])  && $INI['sqlite']['active'] == true) {
+                $this->pdo = new pdo($INI['sqlite']['dsn']);
+            } else {
+                print "No database configuration provided (no mysql, no sqlite)\n";
+                die();
+            }
+
+            if (empty($INI['cornac']['prefix'])) {
+                $this->prefix = 'tokens';
+            } else {
+                $this->prefix = $INI['cornac']['prefix'];
+            }
         } else {
-            print "No database configuration provided (no mysql, no sqlite)\n";
-            die();
-        }
-        
-        if (empty($INI['cornac']['prefix'])) {
-            $this->prefix = 'tokens';
-        } else {
-            $this->prefix = $INI['cornac']['prefix'];
+            global $OPTIONS;
+            
+            if ($OPTIONS->mysql['active'] == true) {
+                $this->pdo = new pdo($OPTIONS->mysql['dsn'],$OPTIONS->mysql['username'], $OPTIONS->mysql['password']);
+            } elseif ($OPTIONS->sqlite['active'] == true) {
+                $this->pdo = new pdo($OPTIONS->sqlite['dsn']);
+            } else {
+                print "No database configuration provided (no mysql, no sqlite) (object)\n";
+                die();
+            }
+
+            if (empty($OPTIONS->cornac['prefix'])) {
+                $this->prefix = 'tokens';
+            } else {
+                $this->prefix = $OPTIONS->cornac['prefix'];
+            }
         }
         
         $this->tables = array('<report>' => $this->prefix.'_report',

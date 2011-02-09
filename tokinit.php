@@ -53,7 +53,9 @@ $options = array('help' => array('help' => 'display this help',
                                       'option' => 'd',
                                       'compulsory' => false),
                  );
-include('libs/getopts.php');
+$OPTIONS = new Cornac_Options();
+$OPTIONS->setConfig($options);
+$OPTIONS->init();
 
 // @todo make the autoload
 $log = new Cornac_Log('tokinit');
@@ -68,11 +70,11 @@ $FIN['debut'] = microtime(true);
 
 // @doc default values, stored in a INI file
 
-$templates = explode(',', $INI['templates']);
+$templates = explode(',', $OPTIONS->templates);
 $templates = array_unique($templates);
 foreach ($templates as $i => $template) {
     if (!file_exists('prepare/templates/template.'.$template.'.php')) {
-        print "$id) '$template' doesn't exist. Ignoring\n";
+        print "$i) '$template' doesn't exist. Ignoring\n";
         unset($templates[$i]);
     } else {
         print "Using template ".$template."\n";
@@ -100,17 +102,17 @@ CREATE TABLE IF NOT EXISTS `<tasks>` (
 SQL;
 $DATABASE->query($query);
 
-if (isset($INI['clean'])) {
+if (!empty($OPTIONS->clean)) {
     $query = "DELETE FROM <tasks>";
     $DATABASE->query($query);
 }
 
 // @synopsis core of the code
-if (isset($INI['directory'])) {
-    if (substr($INI['directory'], -1) == '/') {
-        $directory = substr($INI['directory'], 0, -1);
+if ($OPTIONS->directory != "") {
+    if (substr($OPTIONS->directory, -1) == '/') {
+        $directory = substr($OPTIONS->directory, 0, -1);
     } else {
-        $directory = $INI['directory'];
+        $directory = $OPTIONS->directory;
     }
 
     if (!file_exists($directory)) {
@@ -130,19 +132,20 @@ if (isset($INI['directory'])) {
         $query = "INSERT IGNORE INTO <tasks> VALUES (NULL, 'tokenize', ".$DATABASE->quote($file).", ".$DATABASE->quote(GABARIT).",NOW(), 0)";
         $DATABASE->query($query);
     }
-} elseif (isset($INI['file'])) {
-    $file = $INI['file'];
+} elseif ($OPTIONS->file != "") {
+    $file = $OPTIONS->file;
     if (!is_file($file)) {
         print "'$file' is a directory. Use -d option. Aborting\n";
         die();
     }
     print "Working on file '{$file}'\n";
 
-    $query = "INSERT IGNORE INTO <tasks> VALUES (NULL, 'tokenize', ".$DATABASE->quote($file).", ".$DATABASE->quote(GABARIT).", NOW(), 0)";
+    $query = "INSERT INTO <tasks> VALUES (NULL, 'tokenize', ".$DATABASE->quote($file).", ".$DATABASE->quote(GABARIT).", NOW(), 0) 
+                ON DUPLICATE KEY UPDATE date_update=NOW(), completed=0";
     $DATABASE->query($query);
 } else {
     print "No files to work on\n";
-    help();
+    print $OPTIONS->help();
     die();
 }
 
