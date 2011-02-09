@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 
 
 include_once('Auditeur_Framework_TestCase.php');
