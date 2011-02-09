@@ -39,7 +39,7 @@ class logical_regex extends analyseur_regex {
         if ($t->getNext()->checkClass(array('Token', 'arglist','sequence','block'))) { return false;}
 
         if (($t->hasPrev(2) && (((!$t->getPrev(1)->checkBeginInstruction()) && 
-                                 $t->getPrev(1)->checkNotCode(')') ))) ) {  return false; }
+                                 $t->getPrev(1)->checkNotOperator(')') ))) ) {  return false; }
         if ($t->hasNext(2) && $t->getNext(1)->checkClass(array('parenthesis','arglist'))) { return false; }
         if ((!$t->hasNext(2) || 
             ( $t->getNext(1)->checkNotOperator(array('[','->','{','(','::')) && 
