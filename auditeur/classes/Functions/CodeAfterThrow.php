@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 
 
 class Functions_CodeAfterThrow extends modules {

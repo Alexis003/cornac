@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 
 
 class Commands_SqlConcatenation extends modules {

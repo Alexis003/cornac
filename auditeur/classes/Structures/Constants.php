@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 
 
 class Structures_Constants extends modules {

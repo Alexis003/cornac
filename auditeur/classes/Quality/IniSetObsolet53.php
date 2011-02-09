@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 
 
 class Quality_IniSetObsolet53 extends modules {

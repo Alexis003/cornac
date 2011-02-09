@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 
 
 class Quality_GpcAsArgument extends modules {

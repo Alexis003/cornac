@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 
 
 class Ext_HttpBrowse extends functioncalls {

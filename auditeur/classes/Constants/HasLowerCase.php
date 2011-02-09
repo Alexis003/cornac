@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 
 
 class Constants_HasLowerCase extends modules {

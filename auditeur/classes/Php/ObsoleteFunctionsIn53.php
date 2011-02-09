@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 
 
 class Php_ObsoleteFunctionsIn53 extends functioncalls {

@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 
 
 class Quality_ExternalLibraries extends modules {

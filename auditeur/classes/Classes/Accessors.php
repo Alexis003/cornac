@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 
 
 class Classes_Accessors extends modules {

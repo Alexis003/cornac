@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 
 
 class Php_Php53NewFunctions extends functioncalls {

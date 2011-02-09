@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 
 
 class Variables_TypeInteger extends modules {

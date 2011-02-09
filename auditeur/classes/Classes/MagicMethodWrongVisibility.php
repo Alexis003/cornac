@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 
 
 class Classes_MagicMethodWrongVisibility extends modules {
