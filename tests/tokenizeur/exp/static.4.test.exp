@@ -1,5 +1,6 @@
 tests/tokenizeur/scripts/static.4.test.php
-  codephp <?php 
+  codephp <?php
+
   code : 
       _static 
           affectation 

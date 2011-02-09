@@ -1,1 +1,3 @@
-<?php static $a = 0 ?>
+<?php 
+static $a = 0 
+?>
