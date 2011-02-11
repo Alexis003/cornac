@@ -2,4 +2,5 @@ tests/tokenizeur/scripts/static.1.test.php
   codephp <?php
 
   code : 
-       347 "static"variable $browser
+      _static 
+          variable $browser

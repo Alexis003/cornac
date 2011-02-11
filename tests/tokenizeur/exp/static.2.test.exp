@@ -4,7 +4,8 @@ tests/tokenizeur/scripts/static.2.test.php
   code : 
       sequence 
       0 : 
-           347 "static"variable $x
+          _static 
+              variable $x
       1 : 
           _static 
               affectation 

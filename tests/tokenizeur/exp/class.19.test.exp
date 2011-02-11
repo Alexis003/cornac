@@ -13,4 +13,11 @@ tests/tokenizeur/scripts/class.19.test.php
           3 : 
                348 "var"variable $g, variable $h, variable $i
           4 : 
-               347 "static"variable $k, variable $l, variable $m
+              _static 
+                  variable $k
+          5 : 
+              _static 
+                  variable $l
+          6 : 
+              _static 
+                  variable $m
