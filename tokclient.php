@@ -187,9 +187,8 @@ class file_processor {
         if (!file_exists($file)) {
             $this->messages['compile'] = "'$file' doesn't exist. Aborting\n";
             $this->error = true;
-            continue;
+            return false;
         }
-
 
         // @doc 4177 is error_reporting for  E_COMPILE_ERROR|E_RECOVERABLE_ERROR|E_ERROR|E_CORE_ERROR (compilations error only)
 //@todo make this optional, for speed purpose. Checking syntax is useless for unit test, but is important for discovery
