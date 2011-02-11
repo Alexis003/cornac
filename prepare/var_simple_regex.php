@@ -23,19 +23,17 @@ class var_simple_regex extends analyseur_regex {
     }
 
     function getTokens() {
-        return array(T_VAR, T_PRIVATE, T_PROTECTED, T_PUBLIC, T_STATIC);
+        return array(T_VAR, T_PRIVATE, T_PROTECTED, T_PUBLIC);
     }
     
     function check($t) {
         if (!$t->hasNext(1)) { return false; }
 
-        if ($t->getNext()->checkNotClass(array('variable','affectation'))) { return false; }
-
         $this->args = array(0, 1);
         $this->remove = array(1);
 
         if ($t->hasPrev() &&
-            $t->getPrev()->checkToken(array(T_VAR, T_PRIVATE, T_PROTECTED, T_PUBLIC, T_STATIC))) {
+            $t->getPrev()->checkToken(array( T_STATIC))) { 
 
             $this->args[] = -1;
             $this->remove[] = -1;
@@ -43,24 +41,39 @@ class var_simple_regex extends analyseur_regex {
             sort($this->args);
             sort($this->remove);
         }
-        
-        $var = $t->getNext(1);
-        
-        if ($var->checkCode('=') &&
+
+        if ($t->getNext()->checkToken(array( T_STATIC))) { 
+            $this->args[] = 2;
+            $this->remove[] = 2;
+
+            sort($this->args);
+            sort($this->remove);
+
+            if ($t->getNext(1)->checkNotClass(array('variable','affectation'))) { return false; }
+
+            $var = $t->getNext(2);
+            $i = 1;
+        } else {
+            $var = $t->getNext(1);
+            $i = 0;
+
+            if ($t->getNext()->checkNotClass(array('variable','affectation'))) { return false; }
+        }
+
+        if ($var->checkOperator('=') &&
             $var->getNext()->checkClass(array('functioncall','literals','sign'))) {
 
-                $args = array(0,1, 2);
-                $remove = array(0,1, 2);
-                    
+                $args =   array(-1, 0, 1);
+                $remove = array(-1, 0, 1);
+
                 $regex = new modele_regex('affectation',$args, $remove);
-                Token::applyRegex($t->getNext(), 'affectation', $regex);
+                Token::applyRegex($var, 'affectation', $regex);
                     
                 Cornac_Log::getInstance('tokenizer')->log(get_class($t)." (".__CLASS__.")0  => Affectation");
                 return false;
         }
 
-        $i = 0;
-        while($var->checkCode(',')) {
+        while($var->checkOperator(',')) {
             if ($var->getNext()->checkClass('variable') && 
                 $var->getNext(1)->checkCode('=') && 
                 $var->getNext(2)->checkClass(array('literals','functioncall','_constant','sign'))) {
@@ -90,11 +103,12 @@ class var_simple_regex extends analyseur_regex {
                 }
                 return false;
         }
-        
-        if ( $var->checkCode(';')) {
+
+        if ( $var->checkOperator(';')) {
+            
             Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".__CLASS__);
             return true; 
-        } elseif ($var->checkCode('=')) {
+        } elseif ($var->checkOperator('=')) {
             if ($var->getNext()->checkClass(array('literals','functioncall','_constant','constant_static')) &&
                 $var->getNext(1)->checkCode(';')) {
 
