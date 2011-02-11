@@ -1,9 +1,13 @@
 [cornac]
 add remove table option for cornac / auditeur
 
+database : some query (like for cache) may end up breaking the maximum sql query size. This should be checked.
+
 merge the 2 database classes into one
 
 Add an Export class, to handle export to a configurable folder.
+
+Add an option to remvoe prefix on file names during tokenization. 
 
 Check cornac on SQLITE.
 
@@ -274,6 +278,7 @@ spot similar folders (containing about the same files)
 spot similar classe (containing similar properties/methods)
 sf migration (http://www.symfony-project.org/tutorial/1_4/en/deprecated)
 
+spot continue that are not in a loop (this is a fatal error in php 5).
 
 [web]
 use .ini for the web folder too
