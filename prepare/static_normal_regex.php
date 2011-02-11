@@ -30,16 +30,50 @@ class static_normal_regex extends analyseur_regex {
         if (!$t->hasNext(1)) { return false; }
 
         if ($t->hasPrev() && $t->getPrev()->checkToken(array(T_PROTECTED, T_PUBLIC, T_PRIVATE))) { return false; }
+
+        if (!$t->hasNext(1)) { return false; }
+
+        if ($t->getNext()->checkNotClass(array('variable','affectation'))) { return false; }
+
+        $var = $t->getNext(1);
+        while($var->checkOperator(',')) {
+            if ($var->getNext()->checkNotClass(array('variable','affectation'))) { return false; }
+            $var = $var->getNext(1);
+        }
         
+        if ($var->checkNotOperator(';') &&
+            $var->checkNotToken(T_CLOSE_TAG) &&
+            $var->checkNotClass('rawtext')) {
+            return false;
+        }
+
+        $var = $t;
+
+        while($var->checkOperator(',') || $var->checkToken(T_STATIC)) {
+        // @note registering a new static each comma
+            $args = array(1);
+            $remove = array(1);
+
+            $repl = $var;
+            $var = $var->getNext(1);
+
+            $regex = new modele_regex('_static',$args, $remove);
+            Token::applyRegex($repl, '_static', $regex);
+
+            Cornac_Log::getInstance('tokenizer')->log(get_class($var)." => _static  (".__CLASS__.")");
+            continue;
+        }
+        
+        return false;
+/*        
         if ($t->getNext()->checkNotClass(array('variable','affectation'))) { return false; }
         if ($t->getNext(1)->checkOperator('=')) { return false; }
 
         $this->args = array(1);
         $this->remove = array(1);
         
-        if ($t->getNext(1)->checkCode(';')) {
-            $this->remove[] = 2;
-        } elseif ($t->getNext(1)->checkBeginInstruction()) {
+        // @todo static should work as global (with a while)
+        if ($t->getNext(1)->checkBeginInstruction()) {
         // @note may be a new instruction (even a sequence)
             // @note OK, but do nothing
         } elseif ($t->getNext(1)->checkToken(T_CLOSE_TAG)) {
@@ -50,6 +84,6 @@ class static_normal_regex extends analyseur_regex {
 
         Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".__CLASS__);
         return true; 
-    }
+*/    }
 }
 ?>
