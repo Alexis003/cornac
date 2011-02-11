@@ -32,7 +32,7 @@ class global_simple_regex extends analyseur_regex {
         if ($t->getNext()->checkNotClass(array('variable','_array'))) { return false; }
 
         $var = $t->getNext(1);
-        while($var->checkCode(',')) {
+        while($var->checkOperator(',')) {
             if ($var->getNext()->checkNotClass(array('variable','_array'))) { return false; }
             $var = $var->getNext(1);
         }
@@ -45,7 +45,7 @@ class global_simple_regex extends analyseur_regex {
 
         $var = $t;
 
-        while($var->checkCode(',') || $var->checkToken(T_GLOBAL)) {
+        while($var->checkOperator(',') || $var->checkToken(T_GLOBAL)) {
                 // @note registering a new global each comma
                     $args = array(1);
                     $remove = array(1);
