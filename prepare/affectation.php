@@ -57,12 +57,6 @@ class affectation extends instruction {
     }
 
     function neutralise() {
-        if (!is_null($this->_visibility)) {
-            $this->_visibility->detach();
-        }
-        if (!is_null($this->_static)) {
-            $this->_static->detach();
-        }
         $this->left->detach();
         $this->operator->detach();
         $this->right->detach();
