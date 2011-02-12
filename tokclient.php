@@ -67,7 +67,9 @@ $options = array('help' => array('help' => 'display this help',
                                   'option' => 'i',
                                   'compulsory' => false),
                  );
-include('libs/getopts.php');
+$OPTIONS = new Cornac_Options();
+$OPTIONS->setConfig($options);
+$OPTIONS->init();
 
 global $FIN;
 // Collecting tokens
@@ -76,14 +78,14 @@ $FIN['debut'] = microtime(true);
 // @todo make this work on tasks or individually
 
 // @doc Reading constantes that are in the .INI
-define('TEST',$INI['test']);
-define('STATS',$INI['stats']);
-define('VERBOSE',$INI['verbose']);
+define('TEST',$OPTIONS->test);
+define('STATS',$OPTIONS->stats);
+define('VERBOSE',$OPTIONS->verbose);
 
-define('LOG',$INI['log']);
+define('LOG',$OPTIONS->log);
 Cornac_Log::getInstance('tokenizer')->log("Inclusions");
 
-$limit = 0 + $INI['limit'];
+$limit = 0 + $OPTIONS->limit;
 if ($limit) {
     print "Cycles = $limit\n";
 } else {
@@ -98,7 +100,7 @@ $files_processed = 0;
 $total = 0;
 while( 1 ) {
     $total++;
-    if ($INI['slave'] > 0 && ($files_processed >= intval($INI['slave']))) {
+    if ($OPTIONS->slave > 0 && ($files_processed >= intval($OPTIONS->slave))) {
         print "Processed all $files_processed files. Finishing.\n";
         die();
     }
@@ -111,15 +113,15 @@ while( 1 ) {
     $row = $res->fetch(PDO::FETCH_ASSOC);
 
     if (!$row) {
-        if ($INI['slave'] == 0) {
+        if ($OPTIONS->slave == 0) {
             print "No more tasks to work on. Finishing.\n";
             die();
-        } elseif ($INI['slave'] == -1) { // @note infinite loop
+        } elseif ($OPTIONS->slave == -1) { // @note infinite loop
             print "Sleeping for 30 secondes\n";
             sleep(30);
             continue;
         } else {
-            print "Sleeping for 30 secondes ( ".($INI['slave'] - $files_processed)." more to process)\n";
+            print "Sleeping for 30 secondes ( ".($OPTIONS->slave - $files_processed)." more to process)\n";
             sleep(30);
             continue;
         }
@@ -174,7 +176,7 @@ class file_processor {
     }
     
     function process_file($scriptsPHP, $limit) {
-        global $file, $files_processed, $INI;
+        global $file, $files_processed, $OPTIONS;
         Cornac_Log::getInstance('tokenizer')->log("Init processing");
         $result = array();
     
@@ -226,7 +228,7 @@ class file_processor {
             $this->error = true;
             return false;
         }
-        if ($INI['tokens']) {
+        if ($OPTIONS->tokens) {
             print "Displaying tokens\n";
             print_r($raw);
             die();
@@ -387,7 +389,7 @@ class file_processor {
     private function getTemplate($racine, $file, $gabarit = null) {
         if (is_null($gabarit)) {
             global $INI;
-            $gabarit = $INI['templates'];
+            $gabarit = $OPTIONS->templates;
         }
         $templates = explode(',' , $gabarit);
         

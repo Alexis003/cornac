@@ -117,7 +117,7 @@ class Cornac_Database  {
 
     function query_one_array($query, $index = null) {
         $res = $this->query($query);
-        if (!res) { return false; }
+        if (!$res) { return false; }
         
         $array = $res->fetchAll(PDO::FETCH_ASSOC);
         $r = array();

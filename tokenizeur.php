@@ -17,6 +17,10 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
+ 
+include('library/Cornac/Autoload.php');
+spl_autoload_register('Cornac_Autoload::autoload');
+
 // @synopsis : read options
 $options = array('help' => array('help' => 'display this help',
                                  'option' => '?',
@@ -51,27 +55,30 @@ $options = array('help' => array('help' => 'display this help',
                                   'option' => 'i',
                                   'compulsory' => false),
                  );
-include('libs/getopts.php');
 
-$shell = './tokinit.php -I '.$INI['ini'].' -g '.$INI['templates'].' -K -r -d '.$INI['directory'];
-if (isset($INI['directory'])) {
-    shell_exec($shell.' -d '.$INI['directory']);
-} elseif (isset($INI['file'])) {
-    shell_exec($shell.' -f '.$INI['file']);
+$OPTIONS = new Cornac_Options();
+$OPTIONS->setConfig($options);
+$OPTIONS->init();
+
+$shell = './tokinit.php -I '.$OPTIONS->ini.' -g '.$OPTIONS->templates.' -K -f '.$OPTIONS->file;
+if (!empty($OPTIONS->directory)) {
+    shell_exec($shell.' -r -d '.$OPTIONS->directory);
+} elseif (!empty($OPTIONS->file)) {
+    shell_exec($shell.' -f '.$OPTIONS->file);
 }
 
 $ini = ' ';
-if ($INI['log']) {
+if ($OPTIONS->log) {
     $ini .= " -l ";
 }
 
-if ($INI['tokens']) {
+if ($OPTIONS->tokens) {
     $ini .= " -t ";
 }
 
-$ini .= " -i ".$INI['limit'];
+$ini .= " -i ".$OPTIONS->limit;
 // @todo must remove the dependency to the database : this is silly
-$ini .= ' -I '.($INI['ini'] ?: 'cornac');
+$ini .= ' -I '.($OPTIONS->ini ?: 'cornac');
 
 print shell_exec('./tokclient.php '.$ini);
 

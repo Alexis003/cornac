@@ -19,9 +19,26 @@
  */
 
 class Cornac_Options {
+    private $INI = array();
+    private $options = array();
 
     function __get($name) {
         return $this->INI[$name];
+    }
+
+    function __set($name, $value) {
+        if (in_array($name, array('options'))) {
+            $this->$name = $value; 
+        } elseif (is_array($value)) {
+        // @note last array overwrite previous values
+            $this->INI[$name] = array_merge($this->INI[$name], $value);
+        } else {
+            $this->INI[$name] = $value;
+        }
+    }
+
+    function __isset($name) {
+        return isset($this->INI[$name]);
     }
 
     function setConfig($options) {
@@ -57,8 +74,8 @@ class Cornac_Options {
     }
     
     function help() {
-        global $INI;
-        $options = $INI['help_options'];
+    // @todo add default values in help display
+        $options = $this->INI['help_options'];
         
         $r = 'Usage : '.$_SERVER['SCRIPT_NAME'];
         
@@ -76,7 +93,7 @@ class Cornac_Options {
     
     function init() {
     //    if (empty($this->$options)) { return false; }
-        $this->INI = array('help_options' => $options);
+        $this->INI = array('help_options' => $this->options);
     
         global $argv;
         $args = $argv;    
@@ -107,14 +124,15 @@ class Cornac_Options {
         }
         
         if (!empty($this->INI['ini'])) {
-            if (file_exists('ini/'.$this->INI['ini'])) {
-                $ini = parse_ini_file('ini/'.$this->INI['ini'], true);
+            $path = dirname(dirname(dirname(__FILE__))).'/ini/';
+            if (file_exists($path.$this->INI['ini'])) {
+                $ini = parse_ini_file($path.$this->INI['ini'], true);
                 $ini['cornac']['ini'] = substr($this->INI['ini'], 0, -4); // @note minus .ini
-            } elseif (file_exists('ini/'.$this->INI['ini'].".ini")) {
-                $ini = parse_ini_file('ini/'.$this->INI['ini'].".ini", true);
+            } elseif (file_exists($path.$this->INI['ini'].".ini")) {
+                $ini = parse_ini_file($path.$this->INI['ini'].".ini", true);
                 $ini['cornac']['ini'] = $this->INI['ini']; // @note good name
             } else {
-                $ini = parse_ini_file('ini/cornac.ini', true);
+                $ini = parse_ini_file($path.'cornac.ini', true);
                 $ini['cornac']['ini'] = 'cornac'; // @note default value. Probably wrong.
             }
         } else {

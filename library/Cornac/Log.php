@@ -44,7 +44,7 @@ class Cornac_Log {
 
     function log($message) {
         // @todo either object exists, either this doesn't. 
-        if (!LOG) { return true; }
+        if (!defined('LOG') || !LOG) { return true; }
         
         // @todo this is too harsh : may be display a warning
         // @todo make this configurable some way
