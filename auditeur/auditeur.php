@@ -59,10 +59,13 @@ $options = array('help' => array('help' => 'display this help',
                                       'option' => 'f',
                                       'compulsory' => false),
                  );
-include('../libs/getopts.php');
+$OPTIONS = new Cornac_Options();
+$OPTIONS->setConfig($options);
+$OPTIONS->init();
 
-define('CLEAN_DATABASE', !empty($INI['clean']));
+define('CLEAN_DATABASE', !empty($OPTIONS->clean));
 
+// @todo this should move out of this script
 $modules = array(
 'AuditeurDefault',
 
@@ -305,20 +308,20 @@ $modules = array(
 
 $DATABASE = new Cornac_Database();
 
-define('FORCE', $INI['force']);
+define('FORCE', $OPTIONS->force);
 
-if ($INI['list']) {
+if ($OPTIONS->list) {
     foreach($modules as $module) {
         print "$module\n";
     }
     die();
 }
 
-if ($INI['init']) {
-    if ($INI['analyzers'] == 'all' ) {
+if ($OPTIONS->init) {
+    if ($OPTIONS->analyzers == 'all' ) {
      // @doc every single modules
     } else {
-        $m = explode(',', $INI['analyzers']);
+        $m = explode(',', $OPTIONS->analyzers);
 
         $diff = array_diff($m , $modules);
         if (count($diff) > 0) {
@@ -343,7 +346,7 @@ if ($INI['init']) {
     }
 
 // @todo move this to abstract/module, so that initialisation will be next to the right checks. 
-if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
+if (isset($OPTIONS->mysql) && $OPTIONS->mysql['active'] == true) {
 // @note element column size should match the code column in <tokens>
     if (CLEAN_DATABASE) {
         $DATABASE->query('DROP TABLE IF EXISTS <report>');
@@ -390,9 +393,9 @@ if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
   PRIMARY KEY (`module`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1');
 
-} elseif (isset($INI['sqlite'])  && $INI['sqlite']['active'] == true) {
+} elseif (isset($OPTIONS->sqlite)  && $OPTIONS->sqlite['active'] == true) {
 // @todo : support drop of table with option -K
-// @code $database->query('DELETE FROM '.$INI['cornac']['prefix'].'_report WHERE file = "'.$file.'"');
+// @code $database->query('DELETE FROM '.$OPTIONS->cornac['prefix'].'_report WHERE file = "'.$file.'"');
     $DATABASE->query('CREATE TABLE IF NOT EXISTS <report>
   (id       INTEGER PRIMARY KEY   AUTOINCREMENT  ,
   `file` varchar(500) NOT NULL,
@@ -451,13 +454,13 @@ while (1) {
         analyse_module($module);
         $counter++;
         
-        if ($INI['slave'] > 0 && $counter >= $INI['slave']) {
+        if ($OPTIONS->slave > 0 && $counter >= $OPTIONS->slave) {
             print "$counter analyzer processed. Terminating.\n";
             die();
         }
     }
 
-    if ($INI['slave'] == 0) {
+    if ($OPTIONS->slave == 0) {
         print "all analyzers tasks processed. Terminating.\n";
         die();
     }
@@ -477,7 +480,7 @@ function auditeur_autoload($classname) {
 }
 
 function analyse_module($module_name) {
-    global  $DATABASE, $sommaire, $INI;
+    global $DATABASE, $sommaire, $OPTIONS;
 
     if (!FORCE) {
         $res = $DATABASE->query('SELECT * FROM <report_module> WHERE module = "'.$module_name.'"');
@@ -519,12 +522,12 @@ function analyse_module($module_name) {
         if (count($missing) > 0) {
             foreach($missing as $m) {
                 $out = "  +  $m ";
-                if ($INI['dependences']) {
+                if ($OPTIONS->dependences) {
                     analyse_module($m);
                 } else {
                     $res = $DATABASE->query('SELECT * FROM <report_module> WHERE module="'.$m.'"');
                     $row = $res->fetch();
-                    if (!FOREC && isset($row['module'])) {
+                    if (!FORCE && isset($row['module'])) {
                         print "$out omitted (already in base) \n";
                     } else {
                         $DATABASE->query('REPLACE INTO <tasks> VALUES (0, "auditeur", "'.$m.'", "", now(), 0)');
@@ -539,8 +542,9 @@ function analyse_module($module_name) {
     }
 
     $init_time = microtime(true);
-    if (isset($INI['auditeur.'.$module_name])) {
-        $module->init($INI['auditeur.'.$module_name]);
+    $options = 'auditeur.'.$module_name;
+    if (isset($OPTIONS->$options)) {
+        $module->init($OPTIONS->$options);
     }
 
     $module->analyse();
@@ -548,7 +552,7 @@ function analyse_module($module_name) {
     $finish_time = microtime(true);
 
     $log = new Cornac_Log('auditeur',Cornac_Log::ADD);
-    $log->log("\t$module_name\t{$INI['ini']}\t".number_format(($finish_time - $init_time) * 1000, 2,',',''));
+    $log->log("\t$module_name\t{$OPTIONS->ini}\t".number_format(($finish_time - $init_time) * 1000, 2,',',''));
 
     $module->sauve();
 

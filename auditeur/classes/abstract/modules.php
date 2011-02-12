@@ -39,29 +39,10 @@ abstract class modules {
     protected  $format = modules::FORMAT_HTMLLIST;
     protected  $web = modules::WEB_DISPLAY;
 
-    function __construct($mid) {
-        global $INI;
-        
-        if (empty($INI['cornac']['prefix'])) {
-            $prefixe = 'tokens';
-        } else {
-            $prefixe = $INI['cornac']['prefix'];
-        }
-        
-        
-        $this->mid = $mid;
+    function __construct($database) {
+        $this->mid = $database;
         $this->format_export = modules::FORMAT_DEFAULT;
         
-        $this->tables = array('<report>' => $prefixe.'_report',
-                              '<report_scope>' => $prefixe.'_report_scope',
-                              '<tokens>' => $prefixe.'',
-                              '<tokens_cache>' => $prefixe.'_cache',
-                              '<tokens_tags>' => $prefixe.'_tags',
-                              '<report_module>' => $prefixe.'_report_module',
-                              '<report_attributes>' => $prefixe.'_report_attributes',
-                              '<report_dot>' => $prefixe.'_report_dot',
-                            );
-
        $this->name = get_class($this);
     }
     
@@ -141,9 +122,9 @@ abstract class modules {
     }
 
     function prepare_query($query) {
-        $query = str_replace(array_keys($this->tables), array_values($this->tables), $query);
-        
-        // @note removing literals between ''
+        $query = $this->mid->setup_query($query);
+
+        // @note removing literals between '', to avoid search collision
         $check = preg_replace("/'[^']+'/is", '', $query);
         if (preg_match_all('/<\w+>/', $check, $r)) {
             print "There are some more tables to process : ".join(', ', $r[0])."\n";
@@ -445,10 +426,10 @@ SQL;
     function concat() {
         $args = func_get_args();
         
-        global $INI;
-        if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
+        global $OPTIONS;
+        if (isset($OPTIONS->mysql) && $OPTIONS->mysql['active'] == true) {
             return "CONCAT(".join(",", $args).")";
-        } elseif (isset($INI['sqlite']) && $INI['sqlite']['active'] == true) {
+        } elseif (isset($OPTIONS->sqlite) && $OPTIONS->sqlite['active'] == true) {
             return "".join("||", $args)."";
         } else {
             print "Concat isn't defined for this database!";

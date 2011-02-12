@@ -47,20 +47,23 @@ $options = array('help' => array('help' => 'display this help',
                                              'option' => 'F',
                                              'compulsory' => false),
                  );
-include('../libs/getopts.php');
+$OPTIONS = new Cornac_Options();
+$OPTIONS->setConfig($options);
+$OPTIONS->init();
 
 // @todo : check $format for values
 // @todo : check output for being a folder
 
 // @question : should options be constants?
 
-$INI['reader']['module'] = $INI['analyzer'];
-$INI['reader']['file']   = $INI['file'];
-$INI['reader']['output'] = $INI['output'];
-$INI['reader']['format'] = $INI['format'];
+$OPTIONS->reader = $m = array('module' => $OPTIONS->analyzer,
+                         'file' => $OPTIONS->file,
+                         'output' => $OPTIONS->output,
+                         'format' => $OPTIONS->format);
+                         
 
 // validations
-if (empty($INI['reader']['format']) || !in_array($INI['reader']['format'],array('xml','html'))) {
+if (empty($OPTIONS->reader['format']) || !in_array($OPTIONS->reader['format'],array('xml','html'))) {
     print "Output format is needed (option -F) : xml or html\n";
     print help();
     die();
@@ -72,24 +75,24 @@ if (empty($INI['reader']['format']) || !in_array($INI['reader']['format'],array(
 
 $DATABASE = new Cornac_Database();
 
-$query = 'SELECT * FROM <report_module> WHERE module='.$DATABASE->quote($INI['reader']['module']);
+$query = 'SELECT * FROM <report_module> WHERE module='.$DATABASE->quote($OPTIONS->reader['module']);
 $res = $DATABASE->query($query);
 $row = $res->fetch();
 unset($res);
 
 // @todo check that all those columns are needed. 
 if (!$row) {
-    print "No module with name '{$INI['reader']['module']}'. Aborting\n";
+    print "No module with name '{$OPTIONS->reader['module']}'. Aborting\n";
     die();
 } elseif ($row['format'] == 'html') {
     // @attention : should also support _dot reports
-    $query = 'SELECT * FROM <report> WHERE module='.$DATABASE->quote($INI['reader']['module']);
-    if (!empty($INI['reader']['file'])) {
-        $query .= ' AND file='.$DATABASE->quote($INI['reader']['file']);
+    $query = 'SELECT * FROM <report> WHERE module='.$DATABASE->quote($OPTIONS->reader['module']);
+    if (!empty($OPTIONS->reader['file'])) {
+        $query .= ' AND file='.$DATABASE->quote($OPTIONS->reader['file']);
     }
 } elseif ($row['format'] == 'dot') {
     // @attention : should also support _dot reports
-    $query = 'SELECT * FROM <report_dot> WHERE module='.$DATABASE->quote($INI['reader']['module']);
+    $query = 'SELECT * FROM <report_dot> WHERE module='.$DATABASE->quote($OPTIONS->reader['module']);
     // @todo file option is ignored here. This is normal. 
 } elseif ($row['format'] == 'attribute') {
     $query = 'SELECT T1.file, TC.code AS element, T1.id FROM <report_attributes> TA
@@ -97,9 +100,9 @@ if (!$row) {
         ON TA.id = T1.id
     JOIN <tokens_cache> TC
         ON TC.id = T1.id
-    WHERE `'.$INI['reader']['module'].'` = "Yes"';
-    if (!empty($INI['reader']['file'])) {
-        $query .= ' AND T1.file='.$DATABASE->quote($INI['reader']['file']);
+    WHERE `'.$OPTIONS->reader['module'].'` = "Yes"';
+    if (!empty($OPTIONS->reader['file'])) {
+        $query .= ' AND T1.file='.$DATABASE->quote($OPTIONS->reader['file']);
     }
 } else {
     print "Format '{$row['format']}' is not understood. Aborting\n";
@@ -109,14 +112,14 @@ $res = $DATABASE->query($query);
 
 // @attention : should support -s for summaries.
 
-include('render/'.$INI['reader']['format'].'.php');
-$class = "Render_".$INI['reader']['format'];
+include('render/'.$OPTIONS->reader['format'].'.php');
+$class = "Render_".$OPTIONS->reader['format'];
 
-$view = new $class($INI['reader']['file']);
+$view = new $class($OPTIONS->reader['file']);
 
 // @bug : shouldn't be here
 if (get_class($view) == 'Render_html') {
-    $view->SetFolder($INI['reader']['output']);
+    $view->SetFolder($OPTIONS->reader['output']);
 }
 
 if (!$res) {

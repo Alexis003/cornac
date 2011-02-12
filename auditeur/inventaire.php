@@ -1,4 +1,4 @@
-g#!/usr/bin/env php
+#!/usr/bin/env php
 <?php
 /*
    +----------------------------------------------------------------------+
@@ -21,72 +21,60 @@ g#!/usr/bin/env php
 include('../library/Cornac/Autoload.php');
 spl_autoload_register('Cornac_Autoload::autoload');
 
-include('../libs/getopts.php');
+$options = array('help' => array('help' => 'display this help',
+                                 'option' => '?',
+                                 'compulsory' => false),
+                 'ini' => array('help' => 'configuration set or file',
+                                 'get_arg_value' => null,
+                                 'option' => 'I',
+                                 'compulsory' => true),
+                 'output' => array('help' => 'output file name (default inventory)',
+                                 'get_arg_value' => 'inventory',
+                                 'option' => 'o',
+                                 'compulsory' => false),
+                 'format' => array('help' => 'output file name (not supported. Only ODS at the moment)',
+                                 'get_arg_value' => 'ods',
+                                 'option' => 'f',
+                                 'compulsory' => false),
+// @todo option to run auditeur if missing values. 
+                 'clean' => array('help' => 'remove output file',
+                                 'option' => 'K',
+                                 'compulsory' => false),
+);
 
-// @todo use options from getopts library
-$args = $argv;
+$OPTIONS = new Cornac_Options();
+$OPTIONS->setConfig($options);
+$OPTIONS->init();
 
-$help = get_arg($args, '-?') ;
-if ($help) { help(); }
-
-$output_file = get_arg_value($args, '-o','inventory');
-if (preg_match('#[^a-zA-Z0-9_/\.\-]#', $output_file)) {
-    print "Invalid output file '$output_file'. Aborting\n";
+if (preg_match('#[^a-zA-Z0-9_/\.\-]#', $OPTIONS->output)) {
+    print "Invalid output file '$OPTIONS->output'. Aborting\n";
     die();
 }
-if (strtolower(substr($output_file, 0, -4)) != '.ods') {
-    $output_file .= ".ods";
+
+if (strtolower(substr($OPTIONS->output, 0, -4)) != '.ods') {
+    $OPTIONS->output .= ".ods";
 }
 
-if (file_exists($output_file)) {
-    if (get_arg($args, '-k')) {
-        unlink($output_file);
-        print "Old file '$output_file' removed\n";
+if (file_exists($OPTIONS->output)) {
+    if ($OPTIONS->clean) {
+        unlink($OPTIONS->output);
+        print "Old file '$OPTIONS->output' removed\n";
     } else {
-        print "$output_file already exists. Use -k to force removal. Aborting\n";
+        print "$OPTIONS->output already exists. Use -K to force removal. Aborting\n";
         die();
     }
 }
 
-// @todo : check $format for values
-// @todo : check output for being a folder
-
-// @question : should options be constants?
-// default values, stored in a INI file
-$ini = get_arg_value($args, '-I', null);
-if (!is_null($ini)) {
-    global $INI;
-    if (file_exists('../ini/'.$ini)) {
-        define('INI','../ini/'.$ini);
-    } elseif (file_exists('../ini/'.$ini.".ini")) {
-        define('INI','../ini/'.$ini.".ini");
-    } elseif (file_exists($ini)) {
-        define('INI',$ini);
-    } else {
-        if (!file_exists('../ini/'.'tokenizeur.ini')) {
-            die("No configuration file available ($ini nor tokenizeur.ini)\n");
-        }
-        define('INI','../ini/'.'tokenizeur.ini');
-    }
-    $INI = parse_ini_file(INI, true);
-} else {
-    define('INI',null);
-    $INI = array("reader" => array( 'file' => '', ));
-}
-
-$INI['reader']['dependences'] = (bool) get_arg_value($args, '-d', false);
-$INI['reader']['module'] = get_arg_value($args, '-a', @$INI['reader']['module']);
-$INI['reader']['file']   = get_arg_value($args, '-f', ''  );
-$INI['reader']['output'] = get_arg_value($args, '-o', @$INI['reader']['output']);
-$INI['reader']['format'] = get_arg_value($args, '-F', @$INI['reader']['format']);
-
-// validations
-if (empty($INI['reader']['format'])) {
-    print "Output format is needed (option -F) : xml or html\n";
+if (empty($OPTIONS->format) || !in_array($OPTIONS->format, array('ods'))) {
+    print "Output format is needed (option -f) : ods only\n";
     help();
 }
 
-// @todo put this into a central library
+
+// @todo : check $format for values
+// @todo : check output for being a folder
+// @todo : check that ini is really read. That seems OK, but need to be tested. :)
+
 $DATABASE = new Cornac_Database();
 
 $res = $DATABASE->query("SHOW TABLES LIKE '<report>'");
@@ -248,24 +236,28 @@ foreach($names as $name => $conf) {
         }
     }
 
-
     foreach($headers as $id => $header) {
         $ods->setCell($name, 1, $id + 1, $header);
         $ods->setCellStyle($name, 1, $id + 1, "ce1");
     }
 
     foreach($columns as $id => $col) {
-       $r = $DATABASE->query_one_array($query, $col);
-       $r[] = $r[0];
-       unset($r[0]);
-       $r[] = $r[1];
-       unset($r[1]);
-       $ods->setCol($name, $id + 1, $r);
+        $r = $DATABASE->query_one_array($query, $col);
+        if (!isset($r[0])) { 
+            print "'$name' didn't bring anything. Ignoring\n"; 
+            continue;
+        }
+        $r[] = $r[0];
+        unset($r[0]);
+        $r[] = $r[1];
+        unset($r[1]);
+        $ods->setCol($name, $id + 1, $r);
     }
 }
 
-$filename = "./$output_file";
+$filename = "./$OPTIONS->output";
 
+// @todo have an export class, like for Log, that will export files in the right folder
 if ($ods->save($filename)) {
     print "Done\n";
 } else {
