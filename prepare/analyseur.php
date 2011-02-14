@@ -24,6 +24,7 @@ class analyseur {
     private $any_token = false; 
 
     function __construct($restrict = array()) {
+        // @todo this structure order has an impact on function and speed. This may be interesting to study
         $this->structures = array(
                                   'ifthen',
                                   'literals', 
