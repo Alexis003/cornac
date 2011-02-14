@@ -19,8 +19,11 @@
  */
 
 class Cornac_Options {
-    private $INI = array();
+    private $INI = array('cornac' => array());
+    
+    // @todo those will soon disappear
     private $options = array();
+    private $cornac = array();
 
     function __get($name) {
         return $this->INI[$name];
@@ -31,6 +34,7 @@ class Cornac_Options {
             $this->$name = $value; 
         } elseif (is_array($value)) {
         // @note last array overwrite previous values
+            if (!isset($this->INI[$name])) { $this->INI[$name] = array(); }
             $this->INI[$name] = array_merge($this->INI[$name], $value);
         } else {
             $this->INI[$name] = $value;
