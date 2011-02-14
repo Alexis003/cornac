@@ -27,13 +27,16 @@ $files = glob('../References/'.$name.'*');
 if (count($files) == 0) {
     print "Can't find $name project in reference. Aborting\n\n";
     die();
+} elseif ( in_array('../References/'.$name, $files)) {
+    print "Found exact matching \n";
 } elseif ( count($files) > 1) {
-    print "Found too many project (".count($files)."): ".str_replace('./References/','', join(', ', $files)).". Aborting\n\n";
+    print "Found too many project (".count($files)."): ".str_replace('../References/','', join(', ', $files)).". Aborting\n\n";
     die();
 }
 
 if (file_exists('./ini/'.$name.'.ini')) {
-    print "$name.ini already exists.\nAborting\n";
+    print "$name.ini already exists.\n\nNothing to do\n";
+    print "\n./tokenizeur.php -r -I $name -g mysql,cache -d {$files[0]}/\n";
     die();
 }
 // ini file
@@ -49,7 +52,7 @@ $code = file_get_contents('../References/tokenizeur.sh');
 $code = str_replace("# next test\n","echo \"$name\\n\";
 ./tokenizeur.php -r -I $name -g mysql,cache -d {$files[0]}/
 # next test\n", $code);
-file_put_contents('tokenizeur.sh', $code);
+file_put_contents('../tokenizeur.sh', $code);
 print "tokenizeur.sh updated\n";
 
 print "\n./tokenizeur.php -r -I $name -g mysql,cache -d {$files[0]}/\n";
