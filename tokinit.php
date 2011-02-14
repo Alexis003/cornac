@@ -21,8 +21,6 @@
 include('library/Cornac/Autoload.php');
 spl_autoload_register('Cornac_Autoload::autoload');
 
-include("prepare/analyseur.php");
-
 // @synopsis : configuration
 ini_set('memory_limit',234217728);
 
