@@ -46,19 +46,18 @@ class global_simple_regex extends analyseur_regex {
         $var = $t;
 
         while($var->checkOperator(',') || $var->checkToken(T_GLOBAL)) {
-                // @note registering a new global each comma
-                    $args = array(1);
-                    $remove = array(1);
+        // @note registering a new global each comma
+            $args = array(1);
+            $remove = array(1);
 
-                    $repl = $var;
-                    $var = $var->getNext(1);
+            $repl = $var;
+            $var = $var->getNext(1);
 
-                    $regex = new modele_regex('_global',$args, $remove);
-                    Token::applyRegex($repl, '_global', $regex);
+            $regex = new modele_regex('_global',$args, $remove);
+            Token::applyRegex($repl, '_global', $regex);
 
-                    Cornac_Log::getInstance('tokenizer')->log(get_class($var)." => _global  (".__CLASS__.")");
-                    continue;
-                    
+            Cornac_Log::getInstance('tokenizer')->log(get_class($var)." => _global  (".__CLASS__.")");
+            continue;
         }
         
         return false;
