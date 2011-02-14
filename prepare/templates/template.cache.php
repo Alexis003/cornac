@@ -30,30 +30,31 @@ class template_cache extends template {
     function __construct($root, $file = null) {
         parent::__construct();
         
-        global $INI;
-        $this->table = $INI['cornac']['prefix'] ?: 'tokens';
-
+        global $DATABASE;
+        $this->database = $DATABASE;
         
-        if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
-            $this->database = new pdo($INI['mysql']['dsn'],$INI['mysql']['username'], $INI['mysql']['password']);
+        // @todo delegation to the right DATABASE driver. 
+//        if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
+//            $this->database = new pdo($INI['mysql']['dsn'],$INI['mysql']['username'], $INI['mysql']['password']);
 
-            $this->database->query('DELETE FROM '.$this->table.'_cache WHERE file = "'.$file.'"');
-            $this->database->query('CREATE TABLE IF NOT EXISTS '.$this->table.'_cache (
+            $this->database->query('DELETE FROM <tokens_cache> WHERE file = "'.$file.'"');
+            $this->database->query('CREATE TABLE IF NOT EXISTS <tokens_cache> (
                                                           id       INTEGER PRIMARY KEY AUTO_INCREMENT, 
                                                           code     VARCHAR(255),
                                                           file  VARCHAR(255)
                                                           )');
 
-            $this->database->query('CREATE TABLE IF NOT EXISTS '.$this->table.'_cache_TMP (
+            $this->database->query('CREATE TABLE IF NOT EXISTS <tokens_cache_tmp> (
                                                           id       INTEGER PRIMARY KEY AUTO_INCREMENT, 
                                                           code     VARCHAR(255),
                                                           file  VARCHAR(255)
                                                           )');
+/* @todo currently drop sqlite support !! 
         } elseif (isset($INI['sqlite']) && $INI['sqlite']['active'] == true) {
             $this->database = new pdo($INI['sqlite']['dsn']);
 
-            $this->database->query('DELETE FROM '.$this->table.'_cache WHERE file = "'.$file.'"');
-            $this->database->query('CREATE TABLE IF NOT EXISTS '.$this->table.'_cache (
+            $this->database->query('DELETE FROM <tokens_cache> WHERE file = "'.$file.'"');
+            $this->database->query('CREATE TABLE IF NOT EXISTS <tokens_cache> (
                                                           id       INTEGER PRIMARY KEY AUTOINCREMENT, 
                                                           code     VARCHAR(255),
                                                           file  VARCHAR(255)
@@ -62,7 +63,7 @@ class template_cache extends template {
             print "No database configuration provided (no db)\n";
             die(__METHOD__."\n");
         }
-        
+*/
         $this->table_tags = $this->table.'_tags';
 
         $this->root = $root;
@@ -71,8 +72,8 @@ class template_cache extends template {
     function save($filename = null) {
         $auto_increment = template_mysql::$auto_increment;
 
-        $this->database->query('INSERT INTO '.$this->table.'_cache SELECT id + '.$auto_increment.', `code`, `file` FROM '.$this->table.'_cache_TMP');
-        $this->database->query('DROP TABLE '.$this->table.'_cache_TMP');
+        $this->database->query('INSERT INTO <tokens_cache> SELECT id + '.$auto_increment.', `code`, `file` FROM <tokens_cache_tmp>');
+        $this->database->query('DROP TABLE <tokens_cache_tmp>');
         return true; 
     }
     
@@ -131,7 +132,7 @@ class template_cache extends template {
             die();
         }
         
-        $requete = "INSERT INTO {$this->table}_cache_TMP VALUES 
+        $requete = "INSERT INTO <tokens_cache_tmp> VALUES 
             (
              '".$node->database_id."',
              ".$this->database->quote($node->cache).",
@@ -950,7 +951,7 @@ class template_cache extends template {
     
     function display_Token($node, $level) {
         print_r(xdebug_get_function_stack());        
-        print "Attention, Token affiché : '$node'\n";
+        print "Warning : Token displayed (and it shouldn\'t) : '$node'\n";
         die();
     }
 }

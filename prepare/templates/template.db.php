@@ -22,7 +22,6 @@ class template_db extends template {
     protected $scope = 'global';
     protected $class = '';
     
-    protected $table = 'tokens';
     protected $tags = array();
     
     function __construct($root, $fichier = null) {
@@ -98,7 +97,7 @@ class template_db extends template {
             $this->line = $node->getline() + 0;
         } 
         
-        $requete = "INSERT INTO {$this->table}_TMP VALUES 
+        $requete = "INSERT INTO <tokens_tmp> VALUES 
             (NULL ,
              '".$node->myleft."',
              '".$node->myright."',
@@ -123,7 +122,7 @@ class template_db extends template {
         if (is_array($this->tags) && count($this->tags) > 0) {
             foreach($this->tags as $label => $tokens) {
                 foreach($tokens as $token) {
-                    $requete = "INSERT INTO {$this->table_tags}_TMP VALUES 
+                    $requete = "INSERT INTO <tokens_tags_tmp> VALUES 
                     ($return ,
                      '".$token."',
                      '".$label."')";

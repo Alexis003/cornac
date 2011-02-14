@@ -27,20 +27,11 @@ class template_mysql extends template_db {
     function __construct($root, $file = null) {
         parent::__construct($root, $file);
         
-        global $INI;
-        
-        $this->table = $INI['cornac']['prefix'] ?: 'tokens'; 
-        $this->table_tags = $this->table.'_tags';
+        global $DATABASE;
+        $this->database = $DATABASE;
 
-        if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
-           $this->database = new pdo($INI['mysql']['dsn'],$INI['mysql']['username'], $INI['mysql']['password']);
-        } else {
-            print "No database configuration provided (no mysql)\n";
-            die();
-        }
-
-        $this->database->query('DELETE FROM '.$this->table.' WHERE file = "'.$file.'"');
-        $this->database->query('CREATE TABLE IF NOT EXISTS '.$this->table.' (
+        $this->database->query('DELETE FROM <tokens> WHERE file = "'.$file.'"');
+        $this->database->query('CREATE TABLE IF NOT EXISTS <tokens> (
                                                           `id`       INT NOT NULL AUTO_INCREMENT, 
                                                           `left`     INT UNSIGNED, 
                                                           `right`    INT UNSIGNED,
@@ -60,7 +51,7 @@ class template_mysql extends template_db {
                                                           KEY `code` (`code`)
                                                           ) ENGINE=MyISAM DEFAULT CHARSET=latin1');
 
-        $this->database->query('CREATE TEMPORARY TABLE IF NOT EXISTS '.$this->table.'_TMP (
+        $this->database->query('CREATE TEMPORARY TABLE IF NOT EXISTS <tokens_tmp> (
                                                           `id`       INT NOT NULL AUTO_INCREMENT, 
                                                           `left`     INT UNSIGNED, 
                                                           `right`    INT UNSIGNED,
@@ -79,9 +70,9 @@ class template_mysql extends template_db {
                                                           KEY `right` (`right`),
                                                           KEY `code` (`code`)
                                                           ) ENGINE=MyISAM DEFAULT CHARSET=latin1');
-
-        $this->database->query('DELETE FROM '.$this->table_tags.' WHERE file = "'.$file.'"');
-        $this->database->query('CREATE TABLE IF NOT EXISTS '.$this->table_tags.' (
+// @todo clean table based on file. But file is in <tokens>, not in tokens_tags!
+//        $this->database->query('DELETE FROM <tokens_tags> WHERE file = "'.$file.'"');
+        $this->database->query('CREATE TABLE IF NOT EXISTS <tokens_tags> (
   `token_id` int(10) unsigned NOT NULL,
   `token_sub_id` int(10) unsigned NOT NULL,
   `type` varchar(50) NOT NULL,
@@ -90,39 +81,41 @@ class template_mysql extends template_db {
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1');
 
 // @todo if exists => stop! 
-        $this->database->query('CREATE TEMPORARY TABLE IF NOT EXISTS '.$this->table_tags.'_TMP (
+        $this->database->query('CREATE TEMPORARY TABLE IF NOT EXISTS <tokens_tags_tmp> (
   `token_id` int(10) unsigned NOT NULL,
   `token_sub_id` int(10) unsigned NOT NULL,
   `type` varchar(50) NOT NULL,
   KEY `token_id` (`token_id`),
   KEY `token_sub_id` (`token_sub_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1');
-        $this->database->query('DELETE FROM '.$this->table_tags.'_TMP');
+        $this->database->query('DELETE FROM <tokens_tags_tmp>');
 
-        $this->database->query('delimiter //');
-        $this->database->query('CREATE TRIGGER auto_tag BEFORE DELETE ON `tokens`
+/*
+    @todo this has never worked. Is this useful?
+        $this->database->query('DELIMITER //');
+        $this->database->query('CREATE TRIGGER auto_tag BEFORE DELETE ON `<tokens>`
 FOR EACH ROW
 BEGIN
-DELETE FROM tokens_tags WHERE token_id = OLD.id OR token_sub_id = OLD.id;
+DELETE FROM <tokens_tags> WHERE token_id = OLD.id OR token_sub_id = OLD.id;
 END;
 //');
         $this->database->query('delimiter ;');
-        
+*/
         $this->root = $root;
     }
     
     function save($filename = null) {
     // @todo take into account initial auto_increment in table, to add in table_tmp and tags_tmp
-        $res = $this->database->query('SHOW TABLE STATUS LIKE "'.$this->table.'"');
+        $res = $this->database->query('SHOW TABLE STATUS LIKE "<tokens>"');
         $row = $res->fetch();
-        
+
         self::$auto_increment = $row['Auto_increment'];
 
-        $this->database->query('INSERT INTO '.$this->table.' SELECT id + '.$row['Auto_increment'].', `left`, `right`, type, code, file, line, scope, class, level FROM '.$this->table.'_TMP');
-        $this->database->query('DROP TABLE '.$this->table.'_TMP');
+        $this->database->query('INSERT INTO <tokens> SELECT id + '.$row['Auto_increment'].', `left`, `right`, type, code, file, line, scope, class, level FROM  <tokens_tmp>');
+        $this->database->query('DROP TABLE <tokens_tmp>');
         
-        $this->database->query('INSERT INTO '.$this->table_tags.' SELECT token_id + '.$row['Auto_increment'].', token_sub_id + '.$row['Auto_increment'].', type FROM '.$this->table_tags.'_TMP');
-        $this->database->query('DROP TABLE '.$this->table_tags.'_TMP');
+        $this->database->query('INSERT INTO <tokens_tags> SELECT token_id + '.$row['Auto_increment'].', token_sub_id + '.$row['Auto_increment'].', type FROM  <tokens_tags_tmp>');
+        $this->database->query('DROP TABLE <tokens_tags_tmp>');
         return true;
     }
 
