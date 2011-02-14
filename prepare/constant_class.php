@@ -24,8 +24,13 @@ class constant_class extends token {
     function __construct($expression) {
         parent::__construct();
         
-        $this->name = $expression[0];
-        $this->constant = $expression[1];
+        if (count($expression) == 2) {
+            $this->name = $expression[0];
+            $this->constant = $expression[1];
+        } else { // @note this is an affectation object. 
+            $this->name = $expression[0]->getLeft();
+            $this->constant = $expression[0]->getRight();
+        }
     }
 
     function getName() {  

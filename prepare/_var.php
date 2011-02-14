@@ -26,6 +26,72 @@ class _var extends instruction {
     function __construct($expression) {
         parent::__construct(array());
 
+        switch($expression[0]->getToken()) {
+            case T_VAR: 
+                $expression[0]->setCode('var');
+                $this->_visibility = $this->makeProcessedToken('_ppp_', $expression[0]);
+                break 1;
+
+            case T_VAR + T_STATIC : 
+                $expression[0]->setCode('var');
+                $expression[0]->setToken(T_VAR);
+                $this->_visibility = $this->makeProcessedToken('_ppp_', $expression[0]);
+                $expression[0]->setCode('static');
+                $expression[0]->setToken(T_STATIC);
+                $this->_static = $this->makeProcessedToken('_static_', $expression[0]);
+                break 1;
+
+            case T_PUBLIC: 
+                $expression[0]->setCode('public');
+                $this->_visibility = $this->makeProcessedToken('_ppp_', $expression[0]);
+                break 1;
+
+            case T_PUBLIC + T_STATIC : 
+                $expression[0]->setCode('public');
+                $expression[0]->setToken(T_PUBLIC);
+                $this->_visibility = $this->makeProcessedToken('_ppp_', $expression[0]);
+                $expression[0]->setCode('static');
+                $expression[0]->setToken(T_STATIC);
+                $this->_static = $this->makeProcessedToken('_static_', $expression[0]);
+                break 1;
+
+            case T_PROTECTED: 
+                $expression[0]->setCode('protected');
+                $this->_visibility = $this->makeProcessedToken('_ppp_', $expression[0]);
+                break 1;
+
+            case T_PROTECTED + T_STATIC : 
+                $expression[0]->setCode('protected');
+                $expression[0]->setToken(T_PROTECTED);
+                $this->_visibility = $this->makeProcessedToken('_ppp_', $expression[0]);
+                $expression[0]->setCode('static');
+                $expression[0]->setToken(T_STATIC);
+                $this->_static = $this->makeProcessedToken('_static_', $expression[0]);
+                $this->setToken(T_PROTECTED);
+                break 1;
+
+            case T_PRIVATE: 
+                $expression[0]->setCode('private');
+                $this->_visibility = $this->makeProcessedToken('_ppp_', $expression[0]);
+                break 1;
+
+            case T_PRIVATE + T_STATIC : 
+                $expression[0]->setCode('private');
+                $expression[0]->setToken(T_PRIVATE);
+                $this->_visibility = $this->makeProcessedToken('_ppp_', $expression[0]);
+                $expression[0]->setCode('static');
+                $expression[0]->setToken(T_STATIC);
+                $this->_static = $this->makeProcessedToken('_static_', $expression[0]);
+                break 1;
+
+            default : 
+                print $expression[0];
+                $this->stopOnError(" Unexpected token for ".$expression[0]->getToken()." : ".get_class($expression[0])." in ".__METHOD__);
+        }
+
+        unset($expression[0]);
+        $expression = array_values($expression);
+        /*
         while ($expression[0]->checkToken(array(T_VAR, T_PRIVATE, T_PROTECTED, T_PUBLIC, T_STATIC))) {
             if ($expression[0]->checkToken(array(T_VAR, T_PRIVATE, T_PROTECTED, T_PUBLIC))) {
                 $this->_visibility = $this->makeProcessedToken('_ppp_', $expression[0]);
@@ -37,7 +103,7 @@ class _var extends instruction {
 
             unset($expression[0]);
             $expression = array_values($expression);
-        }
+        }*/
         
         foreach($expression as $id => $e) {
             if ($e->checkClass('variable')) {

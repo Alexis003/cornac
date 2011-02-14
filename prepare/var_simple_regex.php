@@ -33,7 +33,7 @@ class var_simple_regex extends analyseur_regex {
         $this->remove = array(1);
 
         if ($t->hasPrev() &&
-            $t->getPrev()->checkToken(array( T_STATIC))) { 
+            $t->getPrev()->checkToken(array(T_STATIC))) { 
 
             $this->args[] = -1;
             $this->remove[] = -1;
@@ -42,89 +42,57 @@ class var_simple_regex extends analyseur_regex {
             sort($this->remove);
         }
 
-        if ($t->getNext()->checkToken(array( T_STATIC))) { 
-            $this->args[] = 2;
-            $this->remove[] = 2;
-
-            sort($this->args);
-            sort($this->remove);
-
-            if ($t->getNext(1)->checkNotClass(array('variable','affectation'))) { return false; }
-
+        if ($t->getNext()->checkToken(array(T_STATIC))) { 
             $var = $t->getNext(2);
-            $i = 1;
         } else {
             $var = $t->getNext(1);
-            $i = 0;
-
-            if ($t->getNext()->checkNotClass(array('variable','affectation'))) { return false; }
         }
 
-        if ($var->checkOperator('=') &&
-            $var->getNext()->checkClass(array('functioncall','literals','sign'))) {
-
-                $args =   array(-1, 0, 1);
-                $remove = array(-1, 0, 1);
-
-                $regex = new modele_regex('affectation',$args, $remove);
-                Token::applyRegex($var, 'affectation', $regex);
-                    
-                Cornac_Log::getInstance('tokenizer')->log(get_class($t)." (".__CLASS__.")0  => Affectation");
-                return false;
-        }
+        if ($var->getPrev()->checkNotClass(array('variable','affectation'))) { return false; }
 
         while($var->checkOperator(',')) {
-            if ($var->getNext()->checkClass('variable') && 
-                $var->getNext(1)->checkCode('=') && 
-                $var->getNext(2)->checkClass(array('literals','functioncall','_constant','sign'))) {
-
-                    $args = array(0,1, 2);
-                    $remove = array(0,1, 2);
-                    
-                    $regex = new modele_regex('affectation',$args, $remove);
-                    Token::applyRegex($var->getNext(), 'affectation', $regex);
-                    
-                    Cornac_Log::getInstance('tokenizer')->log(get_class($t)." (".__CLASS__.")1  => Affectation");
-                    return false;
-            }
-
-            if ($var->getNext()->checkClass(array('variable','affectation')) &&
-                $var->getNext(1)->checkNotCode('=')) {
-                    $i += 2;
-                
-                    $this->args[] = $i + 1;
-                    $this->remove[] = $i;
-                    $this->remove[] = $i + 1;
-                    
-                    if (!$var->hasNext(1)) { return false;}
-                    $var = $var->getNext(1);
-
-                    continue;
-                }
-                return false;
-        }
-
-        if ( $var->checkOperator(';')) {
-            
-            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".__CLASS__);
-            return true; 
-        } elseif ($var->checkOperator('=')) {
-            if ($var->getNext()->checkClass(array('literals','functioncall','_constant','constant_static')) &&
-                $var->getNext(1)->checkCode(';')) {
-
-                $args   = array(0, 1, 2);
-                $remove = array(0, 1, 2);
-
-                $regex = new modele_regex('affectation',$args, $remove);
-                Token::applyRegex($t->getNext(), 'affectation', $regex);
-                    
-                Cornac_Log::getInstance('tokenizer')->log(get_class($t)." (".__CLASS__.")2  => Affectation");
-                return false;
-            }
-        } else {
-            return false;
+            if ($var->getNext()->checkNotClass(array('variable','affectation'))) { return false; }
+            $var = $var->getNext(1);
         }
         
+        if ($var->checkNotOperator(';') &&
+            $var->checkNotToken(T_CLOSE_TAG) &&
+            $var->checkNotClass('rawtext')) {
+            return false;
+        }
+
+// @todo static est abandonné!
+        if ($t->getNext()->checkToken(array(T_STATIC))) { 
+            $var = $t->getNext();
+            $token_bis = $t->getToken() + T_STATIC;
+        } elseif ($t->getPrev()->checkToken(array(T_STATIC))) { 
+            $var = $t;
+            $token_bis = $t->getToken() + T_STATIC;
+        } else {
+            $var = $t;
+            $token_bis = $t->getToken();
+        }
+
+        while($var->checkOperator(',') || $var->checkToken(array(T_VAR, T_PRIVATE, T_PROTECTED, T_PUBLIC, T_STATIC))) {
+                // @note registering a new global each comma
+                    $args = array(0, 1);
+                    $remove = array(1);
+                    if ($var->getPrev()->checkToken(array(T_VAR, T_PRIVATE, T_PROTECTED, T_PUBLIC, T_STATIC))) {
+                        $remove[] = -1;
+                        sort($remove);
+                    }
+
+                    $repl = $var;
+                    $repl->setToken($token_bis);
+                    $var = $var->getNext(1);
+
+                    $regex = new modele_regex('_var', $args, $remove);
+                    Token::applyRegex($repl, '_var', $regex);
+
+                    Cornac_Log::getInstance('tokenizer')->log(get_class($var)." => _var  (".__CLASS__.")");
+                    continue;
+        }
+
         return false;
     }
 }
