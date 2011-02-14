@@ -5,8 +5,10 @@ tests/tokenizeur/scripts/class.21.test.php
        class 307 "x"
           block 
           0 : 
-               343 "protected"variable $input, variable $output = literals 
+               343 "protected"variable $input
           1 : 
+               343 "protected"variable $output = literals 
+          2 : 
               function literals x ( )
                   block 
                   0 : 

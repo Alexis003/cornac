@@ -5,19 +5,35 @@ tests/tokenizeur/scripts/class.19.test.php
        class 307 "x"
           block 
           0 : 
-               343 "protected"variable $x, variable $y, variable $z
+               343 "protected"variable $x
           1 : 
-               344 "private"variable $a, variable $b, variable $c
+               343 "protected"variable $y
           2 : 
-               342 "public"variable $d, variable $e, variable $f
+               343 "protected"variable $z
           3 : 
-               348 "var"variable $g, variable $h, variable $i
+               344 "private"variable $a
           4 : 
+               344 "private"variable $b
+          5 : 
+               344 "private"variable $c
+          6 : 
+               342 "public"variable $d
+          7 : 
+               342 "public"variable $e
+          8 : 
+               342 "public"variable $f
+          9 : 
+               348 "var"variable $g
+          10 : 
+               348 "var"variable $h
+          11 : 
+               348 "var"variable $i
+          12 : 
               _static 
                   variable $k
-          5 : 
+          13 : 
               _static 
                   variable $l
-          6 : 
+          14 : 
               _static 
                   variable $m
