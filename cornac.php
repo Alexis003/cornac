@@ -17,94 +17,71 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
-include('libs/getopts.php');
-$args = $argv;
 
-if (get_arg($args, '-?')) { help(); }
+include('library/Cornac/Autoload.php');
+spl_autoload_register('Cornac_Autoload::autoload');
 
-// default values, stored in a INI file
-$ini = get_arg_value($args, '-I', null);
-if (!is_null($ini)) {
-    global $INI;
-    if (file_exists('ini/'.$ini)) {
-        define('INI','ini/'.$ini);
-    } elseif (file_exists('ini/'.$ini.".ini")) {
-        define('INI','ini/'.$ini.".ini");
-    } elseif (file_exists($ini)) {
-        define('INI',$ini);
-    } else {
-        $INI = parse_ini_file('ini/'.'cornac.ini', true);
-        define('INI','ini/'.$ini.'.ini');
-    }
-    $INI = parse_ini_file(INI, true);
-} else {
-    define('INI',null);
-    $INI = array('cornac' => array('destination' => ''));
+$options = array('help' => array('help' => 'display this help',
+                                 'option' => '?',
+                                 'compulsory' => false),
+                 'ini' => array('help' => 'configuration set or file',
+                                 'get_arg_value' => null,
+                                 'option' => 'I',
+                                 'compulsory' => true),
+                 'directory' => array('help' => 'directory to work in',
+                                      'get_arg_value' => null,
+                                      'option' => 'd',
+                                      'compulsory' => true),
+                 'destination' => array('help' => 'output directory',
+                                      'get_arg_value' => null,
+                                      'option' => 'o',
+                                      'compulsory' => true),
+                 'clean' => array('help' => 'clean tasks',
+                                 'option' => 'K',
+                                 'compulsory' => false),
+);
+$OPTIONS = new Cornac_Options();
+$OPTIONS->setConfig($options);
+$OPTIONS->init();
+
+$OPTIONS->cornac = array('ini' => $OPTIONS->ini);
+$OPTIONS->cornac = array('prefix' => $OPTIONS->ini);
+
+$OPTIONS->cornac = array('origin' => $OPTIONS->directory);
+if (empty($OPTIONS->cornac['origin'])) {
+    print "Origin folder is missing : use option -d\n";
+    $OPTIONS->help();
 }
-$INI['cornac']['ini'] = $ini;
-$INI['cornac']['prefix'] = $ini;
-unset($ini);
-
-$INI['cornac']['origin'] = get_arg_value($args, '-d', $INI['cornac']['origin']);
-if (is_null($INI['cornac']['origin'])) {
-    print "Origin folder is missing : option -d\n";
-    help();
-}
-
-$INI['cornac']['destination'] = get_arg_value($args, '-o', @$INI['cornac']['destination']);
-if (empty($INI['cornac']['destination'])) {
-    print "Destination folder is missing : option -o\n";
-    help();
-}
-
-$INI['cornac']['storage'] = get_arg_value($args, '-s', @$INI['cornac']['storage'] ?: 'mysql' );
-if (!in_array($INI['cornac']['storage'],array('mysql','sqlite'))) {
-    print "No storage provided : option -s\n";
-    help();
-}
-
-/*
-if (!is_dir($INI['cornac']['destination'])) {
-    print "Output path '{$INI['cornac']['destination']}' isn't a directory : update ".INI."\n";
-    help();
-}
-
-if (!is_writable($INI['cornac']['destination'])) {
-    print "Output path '{$INI['cornac']['destination']}' isn't writable : update ".INI."\n";
-    help();
-}
-$INI['reader']['output'] = $INI['cornac']['destination'];
-*/
 // @notes validations
-if (!file_exists($INI['cornac']['origin'])) {
-    print "Source folder '{$INI['cornac']['origin']}' doesn't exist\n";
+if (!file_exists($OPTIONS->cornac['origin']['origin'])) {
+    print "Source folder '{$OPTIONS->cornac['origin']}' doesn't exist\n";
     die();
 }
 
-/*
-if (!file_exists($INI['cornac']['destination'])) {
-    print "Output folder '{$INI['cornac']['destination']}' doesn't exist\n";
-    die();
-}
-*/
 
-if (realpath($INI['cornac']['origin']) == realpath($INI['cornac']['destination'])) {
+$OPTIONS->cornac = array('destination' => $OPTIONS->destination);
+if (empty($OPTIONS->cornac['destination'])) {
+    print "Destination folder is missing : use option -o\n";
+    help();
+}
+
+// @todo check this. 
+if (realpath($OPTIONS->cornac['origin']) == realpath($OPTIONS->cornac['destination'])) {
     print "Please, don't use the same folder for source and destination\n";
     die();
 }
 
-if ($INI['cornac']['storage'] == 'mysql') {
+if ($OPTIONS->cornac['storage'] == 'mysql') {
     $INI['mysql']['active'] = 1;
     $INI['sqlite']['active'] = 0;
 
-    if (get_arg($args, '-K')) {
-        $database = new pdo($INI['mysql']['dsn'],$INI['mysql']['username'], $INI['mysql']['password']);
-        $table = $INI['cornac']['prefix'] ?: 'tokens';
+    if ($OPTIONS->clean) {
+        $database = new Cornac_Database();
         // @todo add some more verifications (existence, number actually destroyed..)
-        $database->query("DROP TABLE {$table}, {$table}_cache, {$table}_rapport, {$table}_rapport_dot, {$table}_rapport_module, {$table}_tags");
-        print "tables {$table}_* erased\n";
+        $database->query("DROP TABLE '<report>', '<tokens>', '<cache>', '<tokens_cache>', '<tags>', '<tokens_tags>', '<report_module>', '<report_dot>', '<report_attributes>', '<tasks>'");
+        print "tables erased\n";
     }
-} elseif ($INI['cornac']['storage'] == 'sqlite') {
+} elseif ($OPTIONS->cornac['storage'] == 'sqlite') {
     $INI['mysql']['active'] = 0;
     $INI['sqlite']['active'] = 1;
 } else {
@@ -114,20 +91,20 @@ if ($INI['cornac']['storage'] == 'mysql') {
 
 // execution
 print "
-Folder : {$INI['cornac']['origin']}
-Output : {$INI['cornac']['destination']}\n";
+Folder : {$OPTIONS->cornac['origin']}
+Output : {$OPTIONS->cornac['destination']}\n";
 
-if (!empty($INI['cornac']['ini'])) { $ini = " -I {$INI['cornac']['ini']} "; } else { $ini = ""; }
+if (!empty($OPTIONS->cornac['ini'])) { $ini = " -I {$OPTIONS->cornac['ini']} "; } else { $ini = ""; }
 
 print "Tokenizeur\n";
-shell_exec("./tokenizeur.php -r -d {$INI['cornac']['origin']} -g {$INI['cornac']['storage']},cache $ini "); // @todo : note the log
+shell_exec("./tokenizeur.php -r -d {$OPTIONS->cornac['origin']} -g {$OPTIONS->cornac['storage']},cache $ini "); // @todo : note the log
                                                                                                             // @sqlite as default ?
 print "Auditeur\n";
-shell_exec("cd auditeur; ./auditeur.php $ini -o -d {$INI['cornac']['destination']}");
+shell_exec("cd auditeur; ./auditeur.php $ini -o -d {$OPTIONS->cornac['destination']}");
 // @todo clean audits tables before.
 
 print "Export\n";
-shell_exec("cd auditeur; ./reader.php $ini -F html -o {$INI['cornac']['destination']} ");
+shell_exec("cd auditeur; ./reader.php $ini -F html -o {$OPTIONS->cornac['destination']} ");
 
 print "Done\n";
 
