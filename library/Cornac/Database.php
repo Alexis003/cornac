@@ -63,10 +63,13 @@ class Cornac_Database  {
         
         $this->tables = array('<report>' => $this->prefix.'_report',
                               '<tokens>' => $this->prefix.'',
+                              '<tokens_tmp>' => $this->prefix.'_TMP',
                               '<cache>' => $this->prefix.'_cache',
                               '<tokens_cache>' => $this->prefix.'_cache',
+                              '<tokens_cache_tmp>' => $this->prefix.'_cache_TMP',
                               '<tags>' => $this->prefix.'_tags',
                               '<tokens_tags>' => $this->prefix.'_tags',
+                              '<tokens_tags_tmp>' => $this->prefix.'_tags_TMP',
                               '<report_module>' => $this->prefix.'_report_module',
                               '<report_dot>' => $this->prefix.'_report_dot',
                               '<report_attributes>' => $this->prefix.'_report_attributes',
@@ -109,6 +112,14 @@ class Cornac_Database  {
         } else {
             return $this->pdo->errorInfo();
         }
+    }
+
+    function errorCode() {
+        return $this->pdo->errorCode();
+    }
+
+    function lastInsertId() {
+        return $this->pdo->lastInsertId();
     }
     
     function insert_id() {
