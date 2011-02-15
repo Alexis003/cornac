@@ -30,7 +30,6 @@ new Cornac_Log('tokenizer');
 
 include('prepare/common.php');
 include("prepare/analyseur.php");
-include('prepare/templates/template.php');
 
 $options = array('help' => array('help' => 'display this help',
                                  'option' => '?',
@@ -372,8 +371,7 @@ class file_processor {
         }
     
         if (STATS) {
-            include('prepare/template.stats.php');
-            $template = new template_stats($root);
+            $template = new Cornac_Tokenizeur_Template_Stats($root);
             $template->display();
     
             print $analyseur->verifs." checks were made\n";
@@ -395,10 +393,7 @@ class file_processor {
         
         $return = array();
         foreach($templates as $template) {
-            $class = "template_".$template;
-            if (!class_exists($class, false)) {
-                include('prepare/templates/template.'.$template.'.php');
-            }
+            $class = "Cornac_Tokenizeur_Template_".ucfirst(strtolower($template));
             $return[$template] = new $class($racine, $file);
         }
         return $return;
