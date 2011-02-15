@@ -18,9 +18,6 @@
    +----------------------------------------------------------------------+
  */
 
-include('../libs/getopts.php');
-include('../libs/write_ini_file.php');
-
 $args = $argv;
 if (get_arg($args, '-f')) { define('SHOW_FILES','true'); }
 if (get_arg($args, '-d')) { define('SHOW_DIRS','true'); }
@@ -70,5 +67,30 @@ function display($list) {
     }
 
     return true;
+}
+
+function get_arg(&$args, $option) {
+    if ($id = array_search($option, $args)) {
+        unset($args[$id]);
+        $return = true;
+    } else {
+        $return = false;
+    }
+    return $return; 
+}
+
+function get_arg_value(&$args, $option=null, $default_value=null) {
+    if ($id = array_search($option, $args)) {
+        if (!isset($args[$id + 1])) { 
+            unset($args[$id]);
+            return $default_value;
+        }
+        $return = $args[$id + 1];
+        unset($args[$id]);
+        unset($args[$id + 1]);
+    } else {
+        $return = $default_value;
+    }
+    return $return; 
 }
 ?>
