@@ -71,7 +71,7 @@ $FIN['debut'] = microtime(true);
 $templates = explode(',', $OPTIONS->templates);
 $templates = array_unique($templates);
 foreach ($templates as $i => $template) {
-    if (!file_exists('prepare/templates/template.'.$template.'.php')) {
+    if (!class_exists("Cornac_Tokenizeur_Template_".ucfirst(strtolower($template)))) {
         print "$i) '$template' doesn't exist. Ignoring\n";
         unset($templates[$i]);
     } else {
@@ -127,7 +127,8 @@ if ($OPTIONS->directory != "") {
         $code = file_get_contents($file);
         if (strpos($code, '<?') === false) { continue; }
 
-        $query = "INSERT IGNORE INTO <tasks> VALUES (NULL, 'tokenize', ".$DATABASE->quote($file).", ".$DATABASE->quote(GABARIT).",NOW(), 0)";
+        $query = "INSERT INTO <tasks> VALUES (NULL, 'tokenize', ".$DATABASE->quote($file).", ".$DATABASE->quote(GABARIT).",NOW(), 0)
+         ON DUPLICATE KEY UPDATE date_update=NOW(), completed=0, template=".$DATABASE->quote(GABARIT)."";
         $DATABASE->query($query);
     }
 } elseif ($OPTIONS->file != "") {
@@ -139,7 +140,7 @@ if ($OPTIONS->directory != "") {
     print "Working on file '{$file}'\n";
 
     $query = "INSERT INTO <tasks> VALUES (NULL, 'tokenize', ".$DATABASE->quote($file).", ".$DATABASE->quote(GABARIT).", NOW(), 0) 
-                ON DUPLICATE KEY UPDATE date_update=NOW(), completed=0";
+                ON DUPLICATE KEY UPDATE date_update=NOW(), completed=0, template=".$DATABASE->quote(GABARIT)."";
     $DATABASE->query($query);
 } else {
     print "No files to work on\n";
