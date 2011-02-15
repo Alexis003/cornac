@@ -18,6 +18,8 @@
    +----------------------------------------------------------------------+
  */
 
+chdir('../auditeur');
+
 if (!isset($argv[1])) {
     die("Usage : skel [new analyzer name]\nCreates a new skeleton for analyze, in classes directory. \n");
 }
