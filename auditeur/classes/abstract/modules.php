@@ -422,6 +422,10 @@ SQL;
     public function init($ini) {
         $this->ini = $ini;
     }
+
+    public function make_in($array) {
+        return "'".join("', '", $array)."'";
+    }
     
     function concat() {
         $args = func_get_args();

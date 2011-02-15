@@ -303,6 +303,10 @@ $modules = array(
 'Zf_Session',
 'Zf_TypeView',
 'Zf_ViewVariables',
+'Zf_FormElement',
+'Zf_FormElementNew',
+'Zf_FormElementWithValidation',
+'Zf_Validator',
 // new analyzers
 );
 

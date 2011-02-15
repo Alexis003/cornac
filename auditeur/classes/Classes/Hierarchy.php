@@ -31,7 +31,7 @@ class Classes_Hierarchy extends modules {
         $this->clean_report();
 
         $query = <<<SQL
-SELECT distinct T2.code, T2.class,'', '{$this->name}'
+SELECT T2.code, T2.class,'', '{$this->name}'
 FROM <tokens_tags> TT
 JOIN <tokens> T2
    ON TT.token_sub_id = T2.id
