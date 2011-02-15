@@ -97,14 +97,14 @@ Output : {$OPTIONS->cornac['destination']}\n";
 if (!empty($OPTIONS->cornac['ini'])) { $ini = " -I {$OPTIONS->cornac['ini']} "; } else { $ini = ""; }
 
 print "Tokenizeur\n";
-shell_exec("./tokenizeur.php -r -d {$OPTIONS->cornac['origin']} -g {$OPTIONS->cornac['storage']},cache $ini "); // @todo : note the log
+shell_exec("php tokenizeur.php -r -d {$OPTIONS->cornac['origin']} -g {$OPTIONS->cornac['storage']},cache $ini "); // @todo : note the log
                                                                                                             // @sqlite as default ?
 print "Auditeur\n";
-shell_exec("cd auditeur; ./auditeur.php $ini -o -d {$OPTIONS->cornac['destination']}");
+shell_exec("cd auditeur; php auditeur.php $ini -o -d {$OPTIONS->cornac['destination']}");
 // @todo clean audits tables before.
 
 print "Export\n";
-shell_exec("cd auditeur; ./reader.php $ini -F html -o {$OPTIONS->cornac['destination']} ");
+shell_exec("cd auditeur; php reader.php $ini -F html -o {$OPTIONS->cornac['destination']} ");
 
 print "Done\n";
 

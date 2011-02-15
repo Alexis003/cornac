@@ -60,7 +60,7 @@ $OPTIONS = new Cornac_Options();
 $OPTIONS->setConfig($options);
 $OPTIONS->init();
 
-$shell = './tokinit.php -I '.$OPTIONS->ini.' -g '.$OPTIONS->templates.' -K -f '.$OPTIONS->file;
+$shell = 'php tokinit.php -I '.$OPTIONS->ini.' -g '.$OPTIONS->templates.' -K -f '.$OPTIONS->file;
 if (!empty($OPTIONS->directory)) {
     shell_exec($shell.' -r -d '.$OPTIONS->directory);
 } elseif (!empty($OPTIONS->file)) {
@@ -80,6 +80,6 @@ $ini .= " -i ".$OPTIONS->limit;
 // @todo must remove the dependency to the database : this is silly
 $ini .= ' -I '.($OPTIONS->ini ?: 'cornac');
 
-print shell_exec('./tokclient.php '.$ini);
+print shell_exec('php tokclient.php '.$ini);
 
 ?>
