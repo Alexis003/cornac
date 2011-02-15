@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class template_tree extends template {
+class Cornac_Tokenizeur_Template_Tree extends Cornac_Tokenizeur_Template {
     protected $root = null;
     
     function __construct($root) {
@@ -273,7 +273,6 @@ class template_tree extends template {
     function display_functioncall($node, $level) {
         print str_repeat('  ', $level).get_class($node)." ".$node->getCode()."\n";
         print str_repeat('  ', $level)."function call : ".$node->getFunction().": \n";
-//        print str_repeat('  ', $level)."function call : ".$node->getFunction()->getCode().": \n";
 
         $args = $node->getArgs();
         $this->display($args, $level + 1);

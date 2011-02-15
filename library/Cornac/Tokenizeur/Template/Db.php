@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class template_db extends template {
+class Cornac_Tokenizeur_Template_Db extends Cornac_Tokenizeur_Template {
     protected $line = 0;
     protected $scope = 'global';
     protected $class = '';

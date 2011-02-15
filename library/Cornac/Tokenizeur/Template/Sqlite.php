@@ -17,9 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-include_once('template.db.php');
-
-class template_sqlite extends template_db {
+class Cornac_Tokenizeur_Template_Sqlite extends Cornac_Tokenizeur_Template {
     
     function __construct($root, $fichier = null) {
         parent::__construct($root, $fichier);

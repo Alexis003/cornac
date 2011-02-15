@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class template_cache extends template {
+class Cornac_Tokenizeur_Template_Cache extends library_Cornac_Tokenizeur_Template {
     protected $root = null;
     private $database = null;
     private $line = 0;
@@ -37,7 +37,12 @@ class template_cache extends template {
 //        if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
 //            $this->database = new pdo($INI['mysql']['dsn'],$INI['mysql']['username'], $INI['mysql']['password']);
 
-            $this->database->query('DELETE FROM <tokens_cache> WHERE file = "'.$file.'"');
+            $rows = $this->database->query_one_array('SELECT TC.id AS ids FROM <tokens_cache> T1
+            LEFT JOIN <tokens> TC
+                ON T1.id = TC.id 
+            WHERE T1.id  LIMIT 1000');
+            $this->database->query('DELETE FROM <tokens_cache> WHERE id IN ('.join(',', $rows).')');
+
             $this->database->query('CREATE TABLE IF NOT EXISTS <tokens_cache> (
                                                           id       INTEGER PRIMARY KEY AUTO_INCREMENT, 
                                                           code     VARCHAR(255),

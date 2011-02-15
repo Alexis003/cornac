@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class template_stats extends template {
+class Cornac_Tokenizeur_Template_Stats extends Cornac_Tokenizeur_Template {
     protected $root = null;
     protected $stats = array('missing' => array());
     
@@ -26,7 +26,11 @@ class template_stats extends template {
         
         $this->root = $root;
     }
-    
+
+    function save($filename = null) {
+        print_r($this->stats);
+    }
+
     function display($node = null, $niveau = 0) {
         if (is_null($node)) {
             $node = $this->root;

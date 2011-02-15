@@ -17,18 +17,12 @@
    +----------------------------------------------------------------------+
  */
 
-class template_none extends template {
+
+abstract class Cornac_Tokenizeur_Template {
+
+    function __construct() { }
     
-    function __construct($root) {
-        parent::__construct();
-    }
-    
-    function save($filename = null) {
-        return false;
-    }
-    
-    function display($node = null, $niveau = 0) {
-        return;
-    }
+    abstract function display($node = null, $niveau = 0); 
 }
+
 ?>

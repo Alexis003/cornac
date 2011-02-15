@@ -17,9 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-include_once('template.db.php');
-
-class template_mysql extends template_db {
+class Cornac_Tokenizeur_Template_Mysql extends Cornac_Tokenizeur_Template {
     protected $root = null;
     protected $database = null;
     static public $auto_increment = 0;
@@ -91,7 +89,7 @@ class template_mysql extends template_db {
         $this->database->query('DELETE FROM <tokens_tags_tmp>');
 
 /*
-    @todo this has never worked. Is this useful?
+    TODO : add extra test to clean tags. THis used to be done with this trigger.
         $this->database->query('DELIMITER //');
         $this->database->query('CREATE TRIGGER auto_tag BEFORE DELETE ON `<tokens>`
 FOR EACH ROW
@@ -106,9 +104,13 @@ END;
     
     function save($filename = null) {
     // @todo take into account initial auto_increment in table, to add in table_tmp and tags_tmp
+    
+    // @todo needs table lock or transaction
+        $res = $this->database->query('LOCK TABLES <tokens> WRITE, <tokens_tmp> WRITE,
+                                                   <tokens_tags> WRITE, <tokens_tags_tmp> WRITE');
         $res = $this->database->query('SHOW TABLE STATUS LIKE "<tokens>"');
         $row = $res->fetch();
-
+        
         self::$auto_increment = $row['Auto_increment'];
 
         $this->database->query('INSERT INTO <tokens> SELECT id + '.$row['Auto_increment'].', `left`, `right`, type, code, file, line, scope, class, level FROM  <tokens_tmp>');
@@ -116,6 +118,7 @@ END;
         
         $this->database->query('INSERT INTO <tokens_tags> SELECT token_id + '.$row['Auto_increment'].', token_sub_id + '.$row['Auto_increment'].', type FROM  <tokens_tags_tmp>');
         $this->database->query('DROP TABLE <tokens_tags_tmp>');
+        $this->database->query('UNLOCK TABLES;');
         return true;
     }
 
