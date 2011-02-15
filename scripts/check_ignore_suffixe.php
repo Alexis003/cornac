@@ -20,7 +20,7 @@
 include('../library/Cornac/Autoload.php');
 spl_autoload_register('Cornac_Autoload::autoload');
 
-$list = ".gif,.jpg,.bak,.psd,.png,.htm,.xml,.js,.txt,.old,.gz,.db,.jpeg,.html,.swf,.scc,.rar,.zip,.ico,.sh,.patch,.sql,.dll,.ai,.afm,.jar,.docx,.dat,.mp3,.ttf,.table,.pdf,.z,.fla,.bmp,.cgi,.csv,.xsl,.svg,.doc,.docx,.odt,.odp,.wsdl,.xsd,.dist,.markdown,.awk,.war,.md,.ott,.odg,.ts,.xmi,.dba,.ezt,.o,.cpp,.java,.manifest,.rng,.md5,.jsb,.in,.dia,.ctp,.sgml,.sample,.mxml,.dtd,.lin,.fre,.JPG,.tar,.xslt,.flv,.resx,.mpg,.info,.tiff,.exe,.rdf,.rss,.yml,.bat,.py,.pl,.c,.h,.pfb,.xap,.xul,.css,.config,.darwin,.default,.hlp,.pas,.bdsproj,.bdsgroup,.bpr,.DLL,.src,.CAB,.xcf,.woff,.eot,.icc,.xad,.xls,.doc,.ppt,.so,.sxw,.sit,.sitx,.desc,.tex,.linux,.mo,.po,.tif,.tga,.pcx,.lss,.bpk,.sxd,.bin,.as3proj,.selenium,.mwb,.vsd,.conf,.mso,.gem,.swz,.csproj,.launch,.mno,.architect";
+$list = ".gif,.jpg,.bak,.psd,.png,.htm,.xml,.js,.txt,.old,.gz,.db,.jpeg,.html,.swf,.scc,.rar,.zip,.ico,.sh,.patch,.sql,.dll,.ai,.afm,.jar,.docx,.dat,.mp3,.ttf,.table,.pdf,.z,.fla,.bmp,.cgi,.csv,.xsl,.svg,.doc,.odt,.odp,.wsdl,.xsd,.dist,.markdown,.awk,.war,.md,.ott,.odg,.ts,.xmi,.dba,.ezt,.o,.cpp,.java,.manifest,.rng,.md5,.jsb,.in,.dia,.ctp,.sgml,.sample,.mxml,.dtd,.lin,.fre,.tar,.xslt,.flv,.resx,.mpg,.info,.tiff,.exe,.rdf,.rss,.yml,.bat,.py,.pl,.c,.h,.pfb,.xap,.xul,.css,.config,.darwin,.default,.hlp,.pas,.bdsproj,.bdsgroup,.bpr,.src,.CAB,.xcf,.woff,.eot,.icc,.xad,.xls,.ppt,.so,.sxw,.sit,.sitx,.desc,.tex,.linux,.mo,.po,.tif,.tga,.pcx,.lss,.bpk,.sxd,.bin,.as3proj,.selenium,.mwb,.vsd,.conf,.mso,.gem,.swz,.csproj,.launch,.mno,.architect,.tis";
 $list = explode(',', $list);
 $list2 = array_unique($list);
 
@@ -57,5 +57,20 @@ foreach($files as $file) {
     }
     
     unset($DATABASE);
+}
+
+function write_ini_file($array, $file)
+{
+    $res = array();
+    foreach($array as $key => $val)
+    {
+        if(is_array($val))
+        {
+            $res[] = "[$key]";
+            foreach($val as $skey => $sval) $res[] = "$skey = ".(is_numeric($sval) ? $sval : '"'.$sval.'"');
+        }
+        else $res[] = "$key = ".(is_numeric($val) ? $val : '"'.$val.'"');
+    }
+    file_put_contents($file, implode("\r\n", $res));
 }
 ?>
