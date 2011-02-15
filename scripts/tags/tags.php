@@ -20,8 +20,6 @@
 
 // @todo merge comments nexting each other
 
-include('../../libs/getopts.php');
-
 $options = array('help' => array('help' => 'display this help',
                                  'option' => '?',
                                  'compulsory' => false),
@@ -50,7 +48,7 @@ $options = array('help' => array('help' => 'display this help',
                                    'option' => 'i',
                                    'compulsory' => false),
                  );
-include('../../libs/getopts.php');
+include('getopts.php');
 
 $formats = array('html','csv','php','json','xml','print_r');
 
