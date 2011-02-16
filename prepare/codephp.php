@@ -18,6 +18,7 @@
  */
 
 class codephp extends instruction {
+    protected $tname = 'codephp';
     private $php_code = array();
     
     function __construct($expression = null) {
