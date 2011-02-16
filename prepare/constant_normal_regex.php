@@ -23,13 +23,13 @@ class constant_normal_regex extends analyseur_regex {
     }
 
     function getTokens() {
-        return array(T_STRING );
+        return array(T_STRING);
     }
     
     function check($t) {
         if (!$t->hasNext()) { return false; }
         if (!$t->hasPrev()) { return false; }
-        
+
         if ($t->checkNotClass('Token')) { return false; } 
         if ($t->checkNotToken(array(T_STRING, 
                                     T_DIR, 
