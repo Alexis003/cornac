@@ -18,6 +18,7 @@
  */
 
 class _interface extends instruction {
+    protected $tname = '_interface';
     protected $name = null;
     protected $block = null;
     protected $extends = array();
@@ -35,7 +36,7 @@ class _interface extends instruction {
     }
 
     function __toString() {
-        $return = __CLASS__." interface {$this->name} ";
+        $return = $this->getTname()." interface {$this->name} ";
         if (count($this->extends) > 0) {
             $return .= " extends ".join(', ', $this->extends);
         }

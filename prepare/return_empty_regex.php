@@ -18,6 +18,8 @@
  */
 
 class return_empty_regex extends analyseur_regex {
+    protected $tname = 'return_empty_regex';
+
     function __construct() {
         parent::__construct(array());
     }
@@ -35,7 +37,7 @@ class return_empty_regex extends analyseur_regex {
               $this->args = array();
               $this->remove = array();
   
-              Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".__CLASS__);
+              Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
               return true;
         } else {
             return false;

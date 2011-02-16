@@ -18,6 +18,8 @@
  */
 
 class ifthenelse_alternative_regex extends analyseur_regex {
+    protected $tname = 'ifthenelse_alternative_regex';
+
     function __construct() {
         parent::__construct(array());
     }
@@ -82,7 +84,7 @@ class ifthenelse_alternative_regex extends analyseur_regex {
         $regex = new modele_regex('block',$args, $remove);
         Token::applyRegex($t->getNext(1), 'block', $regex);
 
-        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => block (".__CLASS__.")");
+        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => block (".$this->getTname().")");
         return false; 
     }
 }

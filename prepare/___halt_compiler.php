@@ -18,6 +18,7 @@
  */
 
 class ___halt_compiler extends instruction {
+    protected $tname = '___halt_compiler';
 
     function __construct($expression = null) {
         parent::__construct(array());
@@ -26,7 +27,7 @@ class ___halt_compiler extends instruction {
     }
     
     function __toString() {
-         $return = __CLASS__;
+         $return = $this->getTname();
          return $return;
     }
 

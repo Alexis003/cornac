@@ -18,6 +18,7 @@
  */
 
 class _continue extends instruction {
+    protected $tname = '_continue';
     protected $levels = null;
     
     function __construct($expression = null) {
@@ -31,7 +32,7 @@ class _continue extends instruction {
     }
 
     function __toString() {
-        return __CLASS__." ".$this->code;
+        return $this->getTname()." ".$this->code;
     }
 
     function getLevels() {

@@ -18,6 +18,8 @@
  */
 
 class arglist_regex extends analyseur_regex {
+    protected $tname = 'arglist_regex';
+
     function __construct() {
         parent::__construct(array());
     }
@@ -77,7 +79,7 @@ class arglist_regex extends analyseur_regex {
                 return false;
             }
             
-            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." =>1 ".__CLASS__);
+            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." =>1 ".$this->getTname());
             return true; 
         } elseif ($var->getNext()->checkOperator(')')) {
             if ($var->checkClass('Token') &&
@@ -97,7 +99,7 @@ class arglist_regex extends analyseur_regex {
             $this->remove[]  = $pos ;
             $this->remove[]  = $pos + 1;
 
-            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." =>2 ".__CLASS__);
+            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." =>2 ".$this->getTname());
             return true; 
         } else {
             $this->args = array();

@@ -18,6 +18,7 @@
  */
 
 class parenthesis extends instruction {
+    protected $tname = 'parenthesis';
     protected $contenu = null;
     
     function __construct($parenthesis) {
@@ -28,7 +29,7 @@ class parenthesis extends instruction {
     }
 
     function __toString() {
-        return __CLASS__." (".$this->contenu.")";
+        return $this->getTname()." (".$this->contenu.")";
     }
 
     function getContenu() {

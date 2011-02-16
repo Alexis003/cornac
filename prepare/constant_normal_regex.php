@@ -62,7 +62,7 @@ class constant_normal_regex extends analyseur_regex {
                                             T_AS,
                                             T_GOTO))) { return false; }
 
-        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".__CLASS__);
+        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
         return true; 
     }
 }

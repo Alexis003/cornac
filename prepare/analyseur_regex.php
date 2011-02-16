@@ -18,6 +18,7 @@
  */
 
 class analyseur_regex {
+    protected $tname = 'regex';
     protected $args = array();
     protected $remove = array();
     
@@ -25,6 +26,10 @@ class analyseur_regex {
 
     function __construct($expression) {
         
+    }
+
+    function getTname( ) {
+        return $this->tname;
     }
     
     function getArgs( ) {

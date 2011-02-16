@@ -85,7 +85,7 @@ class class_simple_regex extends analyseur_regex {
                       sort($this->remove);
                   }
 
-                  Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".__CLASS__);
+                  Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
                   return true;
               }
               

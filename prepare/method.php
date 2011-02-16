@@ -18,6 +18,7 @@
  */
 
 class method extends instruction {
+    protected $tname = 'method';
     private $object = null;
     private $method = null;
     
@@ -46,7 +47,7 @@ class method extends instruction {
     }
 
     function __toString() {
-        return __CLASS__." ".$this->object."->".$this->method;
+        return $this->getTname()." ".$this->object."->".$this->method;
     }
 
     function getRegex(){

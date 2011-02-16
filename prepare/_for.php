@@ -18,6 +18,7 @@
  */
 
 class _for extends instruction {
+    protected $tname = '_for';
     protected $init = null;
     protected $end = null;
     protected $increment = null;
@@ -54,7 +55,7 @@ class _for extends instruction {
     }
     
     function __toString() {
-        return __CLASS__." for (".$this->init."; ".$this->end."; ".$this->increment." ) {".$this->block."} ";
+        return $this->getTname()." for (".$this->init."; ".$this->end."; ".$this->increment." ) {".$this->block."} ";
     }
 
     function getInit() {

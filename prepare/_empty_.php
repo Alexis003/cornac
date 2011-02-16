@@ -18,6 +18,7 @@
  */
 
 class _empty_ extends processedToken {
+    protected $tname = '_empty_';
 }
 
 ?>

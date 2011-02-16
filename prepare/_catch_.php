@@ -18,6 +18,7 @@
  */
 
 class _catch_ extends processedToken {
+    protected $tname = '_catch_';
 }
 
 ?>

@@ -18,6 +18,8 @@
  */
 
 class switch_simple_regex extends analyseur_regex {
+    protected $tname = 'switch_simple_regex';
+
     function __construct() {
         parent::__construct(array());
     }
@@ -37,7 +39,7 @@ class switch_simple_regex extends analyseur_regex {
             $this->args = array(1,2);
             $this->remove = array(1,2);
 
-            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".__CLASS__);
+            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
             return true; 
         } 
         return false;

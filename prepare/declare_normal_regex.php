@@ -18,6 +18,8 @@
  */
 
 class declare_normal_regex extends analyseur_regex {
+    protected $tname = 'declare_normal_regex';
+
     function __construct() {
         parent::__construct(array());
     }
@@ -35,7 +37,7 @@ class declare_normal_regex extends analyseur_regex {
             $this->args = array(1);
             $this->remove = array(1);
 
-            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".__CLASS__);
+            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
             return true; 
         }
 
@@ -44,7 +46,7 @@ class declare_normal_regex extends analyseur_regex {
             $this->args = array(1, 2);
             $this->remove = array(1, 2);
 
-            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".__CLASS__);
+            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
             return true; 
         }
         
@@ -59,7 +61,7 @@ class declare_normal_regex extends analyseur_regex {
             $this->args = array(2,4);
             $this->remove = array(1,2,3,4,5);
 
-            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".__CLASS__);
+            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
             return true; 
         }
         

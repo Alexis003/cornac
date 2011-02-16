@@ -18,6 +18,7 @@
  */
 
 class operation extends instruction {
+    protected $tname = 'operation';
     protected $left = null;
     protected $operation = null;
     protected $right = null;
@@ -35,7 +36,7 @@ class operation extends instruction {
     }
 
     function __toString() {
-        return __CLASS__." ".$this->left." ".$this->operation." ".$this->right;
+        return $this->getTname()." ".$this->left." ".$this->operation." ".$this->right;
     }
 
     function getRight() {

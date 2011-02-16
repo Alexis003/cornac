@@ -18,6 +18,8 @@
  */
 
 class nsname_normal_regex extends analyseur_regex {
+    protected $tname = 'nsname_normal_regex';
+
     function __construct() {
         parent::__construct(array());
     }
@@ -57,7 +59,7 @@ class nsname_normal_regex extends analyseur_regex {
             $pos += 2;
         }
         
-        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".__CLASS__);
+        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
         return true; 
     }
 }

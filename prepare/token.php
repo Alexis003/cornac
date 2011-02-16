@@ -470,11 +470,7 @@ class Token {
     }
 
     public function checkSubclass($classes) {
-        if (is_array($classes)) {
-           $classes = array_shift($classes);
-        } else {
-            // @empty_ifelse otherwise it is a string
-        }
+        // @note classes must be an array
         return is_subclass_of($this, $classes);
     }
 

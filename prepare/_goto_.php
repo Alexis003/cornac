@@ -18,6 +18,7 @@
  */
 
 class _goto_ extends processedToken {
+    protected $tname = '_goto_';
 }
 
 ?>

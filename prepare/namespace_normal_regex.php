@@ -18,6 +18,8 @@
  */
 
 class namespace_normal_regex extends analyseur_regex {
+    protected $tname = 'namespace_normal_regex';
+
     function __construct() {
         parent::__construct(array());
     }
@@ -35,7 +37,7 @@ class namespace_normal_regex extends analyseur_regex {
             $this->args[] = 1;
             $this->remove[] = 1;
 
-            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".__CLASS__);
+            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
             return true; 
         } elseif ($t->getNext()->checkClass('Token')) {
             if ($t->getNext()->checkCode(array(',','=>',';',')'))) { return false; }

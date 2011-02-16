@@ -18,6 +18,7 @@
  */
 
 class _switch extends instruction {
+    protected $tname = '_switch';
     protected $block = null;
     protected $condition = null;
     
@@ -29,7 +30,7 @@ class _switch extends instruction {
     }
 
     function __toString() {
-        return __CLASS__." ".$this->code;
+        return $this->getTname()." ".$this->code;
     }
 
     function getCondition() {

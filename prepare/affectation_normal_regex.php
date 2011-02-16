@@ -18,6 +18,8 @@
  */
 
 class affectation_normal_regex extends analyseur_regex {
+    protected $tname = 'affectation_normal_regex';
+
     function __construct() {
         parent::__construct(array());
     }
@@ -37,7 +39,7 @@ class affectation_normal_regex extends analyseur_regex {
                 ) { return false;}
 
         if ($t->hasPrev(1) && $t->getPrev(1)->checkOperator(array('&','$','::','@','->'))) { return false;}
-        if (($t->getPrev()->checkClass(array('variable',
+        if (($t->getPrev()->checkNotClass(array('variable',
                                              'property',
                                              'opappend',
                                              'functioncall',
@@ -47,9 +49,9 @@ class affectation_normal_regex extends analyseur_regex {
                                              'reference',
                                              'cast',
                                              'sign',
-                                             '_constant',)) || 
-             $t->getPrev()->checkSubclass('variable')) &&
-            ($t->getNext()->checkClass(array('literals', 'variable','_array','sign','noscream',
+                                             '_constant',)) && 
+             $t->getPrev()->checkNotSubclass('variable'))) { return false; }
+         if ($t->getNext()->checkNotClass(array('literals', 'variable','_array','sign','noscream',
                                              'property', 'method'  ,'ternaryop',
                                              'functioncall','operation','logical',
                                              'method_static','operation','ternaryop',
@@ -58,17 +60,15 @@ class affectation_normal_regex extends analyseur_regex {
                                              'not','affectation','shell','bitshift','comparison',
                                              'reference','concatenation','variable',
                                              'property_static','postplusplus','preplusplus','inclusion',
-                                             '_closure')))
+                                             '_closure'))
             
-            ) {
-                $this->args = array(-1, 0, 1);
-                $this->remove = array( -1, 1);
-                
-                Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".__CLASS__);
-                return true;
-            } else {
-                return false;
-            }
+            ) { return false; }
+
+            $this->args = array(-1, 0, 1);
+            $this->remove = array( -1, 1);
+            
+            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
+            return true;
     }
 }
 

@@ -18,6 +18,7 @@
  */
 
 class _affectation_ extends processedToken {
+    protected $tname = '_affectation_';
 }
 
 ?>

@@ -17,7 +17,8 @@
    +----------------------------------------------------------------------+
  */
 
-class variable extends token {
+class variable extends Token {
+    protected $tname = 'variable';
     protected $name = null;
 
     function __construct($expression = null) {
@@ -42,7 +43,7 @@ class variable extends token {
     }
 
     function __toString() {
-        return __CLASS__." ".$this->name;
+        return $this->getTname()." ".$this->name;
     }
     
     function getName() {

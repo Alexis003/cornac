@@ -18,6 +18,7 @@
  */
 
 class _logical_ extends processedToken {
+    protected $tname = '_logical_';
 }
 
 ?>

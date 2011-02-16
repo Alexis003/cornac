@@ -18,6 +18,8 @@
  */
 
 class variable_separatedcurly_regex extends analyseur_regex {
+    protected $tname = 'variable_separatedcurly_regex';
+
     function __construct() {
         parent::__construct(array());
     }

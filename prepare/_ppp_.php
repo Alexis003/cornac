@@ -18,6 +18,7 @@
  */
 
 class _ppp_ extends processedToken {
+    protected $tname = '_ppp_';
 }
 
 ?>

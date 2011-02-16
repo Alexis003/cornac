@@ -18,6 +18,8 @@
  */
 
 class affectation_list_regex extends analyseur_regex {
+    protected $tname = 'affectation_list_regex';
+
     function __construct() {
         parent::__construct(array());
     }
@@ -35,13 +37,13 @@ class affectation_list_regex extends analyseur_regex {
         if ($t->hasPrev(2) && $t->getPrev(1)->checkOperator('@')) { return false; }
         
         if (($t->getPrev()->checkClass('functioncall') && $t->getPrev()->getCode() == 'list') &&
-            ($t->getNext()->checkSubclass(array('instruction'))  || 
+            ($t->getNext()->checkSubclass('instruction')  || 
              $t->getNext()->checkClass(array('variable','_array','property','method','functioncall'))) &&
              $t->getNext(1)->checkCode(array(';',')'))) {
                 $this->args = array(-1, 0, 1);
                 $this->remove = array( -1, 1);
     
-                Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".__CLASS__);
+                Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
                 return true;
             } else {
                 return false;

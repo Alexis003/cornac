@@ -18,6 +18,7 @@
  */
 
 class noscream extends instruction {
+    protected $tname = 'noscream';
     protected $expression = null;
     
     function __construct($expression) {
@@ -28,7 +29,7 @@ class noscream extends instruction {
     }
 
     function __toString() {
-        return __CLASS__." ".$this->code;
+        return $this->getTname()." ".$this->code;
     }
 
     function getExpression() {

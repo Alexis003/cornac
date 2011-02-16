@@ -18,6 +18,7 @@
  */
 
 class _declare extends instruction {
+    protected $tname = '_declare';
     protected $ticks = null;
     protected $encoding = null;
     protected $block = null;
@@ -61,7 +62,7 @@ class _declare extends instruction {
     }
 
     function __toString() {
-        $string = __CLASS__." ticks= ".$this->tick." encoding = ".$this->encoding;
+        $string = $this->getTname()." ticks= ".$this->tick." encoding = ".$this->encoding;
         if (!is_null($this->block)) { $string .= " ".$this->block;}
         return $string; 
     }

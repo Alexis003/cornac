@@ -18,6 +18,7 @@
  */
 
 class _try extends instruction {
+    protected $tname = '_try';
     protected $block = null;
     protected $catch = null;
     
@@ -30,7 +31,7 @@ class _try extends instruction {
     }
 
     function __toString() {
-        return __CLASS__." try { ".$this->block." } ";
+        return $this->getTname()." try { ".$this->block." } ";
     }
 
     function getBlock() {

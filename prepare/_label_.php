@@ -18,6 +18,7 @@
  */
 
 class _label_ extends processedToken {
+    protected $tname = '_label_';
 }
 
 ?>

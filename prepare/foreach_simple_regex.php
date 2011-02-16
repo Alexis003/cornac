@@ -18,6 +18,8 @@
  */
 
 class foreach_simple_regex extends analyseur_regex {
+    protected $tname = 'foreach_simple_regex';
+
     function __construct() {
         parent::__construct(array());
     }
@@ -38,27 +40,27 @@ class foreach_simple_regex extends analyseur_regex {
         if ($t->getNext(5)->checkClass('block')) {
             $this->args = array(2, 4, 6);
             $this->remove = array(1,2,3,4,5,6);
-            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".__CLASS__);
+            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
             return true;
         } elseif ($t->getNext(5)->checkForBlock()) {
             if ($t->getNext(6)->checkForAssignation()) { return false; }
             $regex = new modele_regex('block',array(0), array());
             Token::applyRegex($t->getNext(5), 'block', $regex);
 
-            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => block (".__CLASS__.")");
+            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => block (".$this->getTname().")");
             return false; 
         } elseif ($t->getNext(5)->checkClass(array('variable','_array','property','property_static'))) {
             if ($t->getNext(6)->checkNotCode(';')) { return false; }
             $regex = new modele_regex('block',array(0), array());
             Token::applyRegex($t->getNext(5), 'block', $regex);
 
-            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => block (".__CLASS__.")");
+            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => block (".$this->getTname().")");
             return false; 
         } elseif ($t->getNext(5)->checkCode(';')) {
             $this->args = array(2, 4, 6);
             $this->remove = array(1,2,3,4,5,6);
             
-            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => no block ".__CLASS__);
+            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => no block ".$this->getTname());
             return true;
         } else {
             return false;

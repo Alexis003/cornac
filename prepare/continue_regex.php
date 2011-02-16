@@ -37,7 +37,7 @@ class continue_regex extends analyseur_regex {
             $this->args = array(0 );
             $this->remove = array();
 
-            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".__CLASS__);
+            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
             return true; 
         } 
         return false;

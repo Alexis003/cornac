@@ -18,6 +18,8 @@
  */
 
 class interface_normal_regex extends analyseur_regex {
+    protected $tname = 'interface_normal_regex';
+
     function __construct() {
         parent::__construct(array());
     }
@@ -58,7 +60,7 @@ class interface_normal_regex extends analyseur_regex {
         $this->args[] = $pos + 1;
         $this->remove[] = $pos + 1;
         
-        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".__CLASS__);
+        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
         return true; 
     }
 }

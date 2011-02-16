@@ -18,6 +18,8 @@
  */
 
 class var_simple_regex extends analyseur_regex {
+    protected $tname = 'var_simple_regex';
+
     function __construct() {
         parent::__construct(array());
     }
@@ -89,7 +91,7 @@ class var_simple_regex extends analyseur_regex {
                     $regex = new modele_regex('_var', $args, $remove);
                     Token::applyRegex($repl, '_var', $regex);
 
-                    Cornac_Log::getInstance('tokenizer')->log(get_class($var)." => _var  (".__CLASS__.")");
+                    Cornac_Log::getInstance('tokenizer')->log(get_class($var)." => _var  (".$this->getTname().")");
                     continue;
         }
 

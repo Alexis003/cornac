@@ -47,7 +47,7 @@ class case_between_regex extends analyseur_regex {
         } elseif ($t->checkClass(array('_case','_default'))) {
             return false; 
         } else {
-            Cornac_Log::getInstance('tokenizer')->log("Trying to spot ".__CLASS__." => block but '".$t."' is not T_CASE, nor T_DEFAULT");
+            Cornac_Log::getInstance('tokenizer')->log("Trying to spot ".$this->getTname()." => block but '".$t."' is not T_CASE, nor T_DEFAULT");
             return false;
         }
         $args = array();
@@ -76,14 +76,14 @@ class case_between_regex extends analyseur_regex {
 
         if (empty($args) && empty($remove)) { 
             // @note empty case, but case nonetheless. 
-            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".__CLASS__);
+            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
             return true; 
         }
 
         $regex = new modele_regex('block',$args, $remove);
         Token::applyRegex($init, 'block', $regex);
 
-        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => block (".__CLASS__.")");
+        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => block (".$this->getTname().")");
 
         $this->args = $args;
         $this->remove = $remove;

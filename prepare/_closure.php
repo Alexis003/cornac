@@ -18,6 +18,7 @@
  */
 
 class _closure extends instruction {
+    protected $tname = '_closure';
     protected $block = null;
     protected $args = null;
     

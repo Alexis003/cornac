@@ -18,6 +18,7 @@
  */
 
 class keyvalue extends instruction {
+    protected $tname = 'keyvalue';
     protected $key = null;
     protected $value = null;
     
@@ -29,7 +30,7 @@ class keyvalue extends instruction {
     }
 
     function __toString() {
-        return __CLASS__." ".$this->key." => ".$this->value;
+        return $this->getTname()." ".$this->key." => ".$this->value;
     }
 
     function getKey() {

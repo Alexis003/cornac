@@ -18,6 +18,7 @@
  */
 
 class inclusion extends instruction {
+    protected $tname = 'inclusion';
     protected $inclusion;
     
     function __construct($inclusion) {
@@ -27,7 +28,7 @@ class inclusion extends instruction {
     }
 
     function __toString() {
-        return __CLASS__." ".$this->inclusion;
+        return $this->getTname()." ".$this->inclusion;
     }
 
     function getInclusion() {

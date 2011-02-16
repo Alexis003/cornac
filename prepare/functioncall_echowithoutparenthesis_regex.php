@@ -18,6 +18,8 @@
  */
 
 class functioncall_echowithoutparenthesis_regex extends analyseur_regex {
+    protected $tname = 'functioncall_echowithoutparenthesis_regex';
+
     function __construct() {
         parent::__construct(array());
     }
@@ -64,7 +66,7 @@ class functioncall_echowithoutparenthesis_regex extends analyseur_regex {
             $regex = new modele_regex('arglist',$args, $remove);
             Token::applyRegex($t->getNext(), 'arglist', $regex);
 
-            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => arglist (".__CLASS__.")");
+            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => arglist (".$this->getTname().")");
             return false; 
         } else {
             return false;

@@ -18,6 +18,7 @@
  */
 
 class _break extends instruction {
+    protected $tname = '_break';
     protected $levels = null;
     
     function __construct($expression = null) {
@@ -33,7 +34,7 @@ class _break extends instruction {
     }
 
     function __toString() {
-        return __CLASS__." ".$this->code;
+        return $this->getTname()." ".$this->code;
     }
 
     function getLevels() {

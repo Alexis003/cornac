@@ -18,6 +18,7 @@
  */
 
 class concatenation extends instruction {
+    protected $tname = 'concatenation';
     protected $list = array();
     
     function __construct($list) {
@@ -37,7 +38,7 @@ class concatenation extends instruction {
     }
 
     function __toString() {
-        $return = __CLASS__." ";
+        $return = $this->getTname()." ";
         
         foreach($this->list as $a) {
             $return .= $a." . ";

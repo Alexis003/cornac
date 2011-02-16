@@ -20,6 +20,7 @@
 define('T_NAMESPACED_NAME', 500);
 
 class _nsname extends instruction {
+    protected $tname = '_nsname';
     protected $namespace = array();
     
     function __construct($expression) {

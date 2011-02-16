@@ -18,6 +18,7 @@
  */
 
 class _foreach extends instruction {
+    protected $tname = '_foreach';
     protected $array = array();
     protected $key = null;
     protected $value = null;
@@ -68,7 +69,7 @@ class _foreach extends instruction {
     }
     
     function __toString() {
-        return __CLASS__." foreach (".$this->array.") { ".$this->block." } ";
+        return $this->getTname()." foreach (".$this->array.") { ".$this->block." } ";
     }
 
     function getArray() {

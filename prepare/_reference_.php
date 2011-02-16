@@ -18,6 +18,7 @@
  */
 
 class _reference_ extends processedToken {
+    protected $tname = '_reference_';
 }
 
 ?>

@@ -18,6 +18,7 @@
  */
 
 class comparison extends instruction {
+    protected $tname = 'comparison';
     protected $left = null;
     protected $operator = null;
     protected $right = null;
@@ -35,7 +36,7 @@ class comparison extends instruction {
     }
 
     function __toString() {
-        return __CLASS__." ".$this->left." ".$this->operator." ".$this->right;
+        return $this->getTname()." ".$this->left." ".$this->operator." ".$this->right;
     }
 
     function getRight() {

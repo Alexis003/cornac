@@ -18,6 +18,7 @@
  */
 
 class functioncall extends instruction {
+    protected $tname = 'functioncall';
     protected $function = null;
     protected $args = null;
     
@@ -43,7 +44,7 @@ class functioncall extends instruction {
     }
 
     function __toString() {
-        return __CLASS__." ".$this->function." ( ".$this->args. " ) ";
+        return $this->getTname()." ".$this->function." ( ".$this->args. " ) ";
     }
 
     function getFunction() {

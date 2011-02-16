@@ -18,6 +18,8 @@
  */
 
 class break_leveled_regex extends analyseur_regex {
+    protected $tname = 'break_leveled_regex';
+
     function __construct() {
         parent::__construct(array());
     }
@@ -37,7 +39,7 @@ class break_leveled_regex extends analyseur_regex {
             $this->args = array(0, 1);
             $this->remove = array( 1);
 
-            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".__CLASS__);
+            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
             return true; 
         } 
 
@@ -49,7 +51,7 @@ class break_leveled_regex extends analyseur_regex {
             $this->args = array(0, 1);
             $this->remove = array( 1);
 
-            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." =>2 ".__CLASS__);
+            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." =>2 ".$this->getTname());
             return true; 
         } 
         return false;

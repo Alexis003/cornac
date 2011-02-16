@@ -18,6 +18,7 @@
  */
 
 class _clone extends instruction {
+    protected $tname = '_clone';
     protected $expression = null;
     
     function __construct($expression) {
@@ -27,7 +28,7 @@ class _clone extends instruction {
     }
 
     function __toString() {
-        return __CLASS__." ".$this->code;
+        return $this->getTname()." ".$this->code;
     }
 
     function getExpression() {

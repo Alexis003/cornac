@@ -18,6 +18,7 @@
  */
 
 class invert extends instruction {
+    protected $tname = 'invert';
     protected $expression = null;
     
     function __construct($expression) {
@@ -27,7 +28,7 @@ class invert extends instruction {
     }
 
     function __toString() {
-        return __CLASS__." ".$this->expression;
+        return $this->getTname()." ".$this->expression;
     }
 
     function getExpression() {

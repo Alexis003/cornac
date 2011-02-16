@@ -18,6 +18,7 @@
  */
 
 class sign extends instruction {
+    protected $tname = 'sign';
     protected $sign = null;
     protected $expression = null;
     
@@ -29,7 +30,7 @@ class sign extends instruction {
     }
 
     function __toString() {
-        return __CLASS__." ".$this->sign.$this->expression;
+        return $this->getTname()." ".$this->sign.$this->expression;
     }
 
     function getExpression() {

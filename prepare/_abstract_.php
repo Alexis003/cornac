@@ -18,6 +18,7 @@
  */
 
 class _abstract_ extends processedToken {
+    protected $tname = '_abstract_';
 }
 
 ?>

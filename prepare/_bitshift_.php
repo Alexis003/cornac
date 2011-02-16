@@ -18,6 +18,7 @@
  */
 
 class _bitshift_ extends processedToken {
+    protected $tname = '_bitshift_';
 }
 
 ?>

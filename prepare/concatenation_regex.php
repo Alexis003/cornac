@@ -55,7 +55,7 @@ class concatenation_regex extends analyseur_regex {
         }
 
         if ($var->checkEndInstruction()) {
-            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".__CLASS__);
+            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
             return true; 
         } else {
             $this->args = array();

@@ -48,7 +48,7 @@ class codephp_empty_regex extends analyseur_regex {
             return false;
         }
 
-        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".__CLASS__);
+        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
         return true;
      }
 }

@@ -18,6 +18,7 @@
  */
 
 class _while extends instruction {
+    protected $tname = '_while';
     protected $condition = null;
     protected $block = null;
     
@@ -29,7 +30,7 @@ class _while extends instruction {
     }
 
     function __toString() {
-        return __CLASS__." ".$this->code;
+        return $this->getTname()." ".$this->code;
     }
 
     function getBlock() {

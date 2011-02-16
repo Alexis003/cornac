@@ -18,6 +18,7 @@
  */
 
 class _var extends instruction {
+    protected $tname = '_var';
     protected $_static = null;
     protected $_visibility = null;
     protected $variable = array();
@@ -113,13 +114,13 @@ class _var extends instruction {
                 $this->variable[] = $e->getLeft();
                 $this->init[] = $e->getRight();
             } else {
-                $this->stopOnError(" Unexpected class for ".__CLASS__." : ".get_class($e)." $e $id in ".__METHOD__);
+                $this->stopOnError(" Unexpected class for ".$this->getTname()." : ".get_class($e)." $e $id in ".__METHOD__);
             }
         }
     }
     
     function __toString() {
-         $return = __CLASS__." ".$this->getVisibility();
+         $return = $this->getTname()." ".$this->getVisibility();
          
          $r = array();
          foreach($this->variable as $id => $variable) {

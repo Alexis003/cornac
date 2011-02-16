@@ -18,6 +18,8 @@
  */
 
 class inclusion_normal_regex extends analyseur_regex {
+    protected $tname = 'inclusion_normal_regex';
+
     function __construct() {
         parent::__construct(array());
     }
@@ -39,7 +41,7 @@ class inclusion_normal_regex extends analyseur_regex {
             $this->args = array(2);
             $this->remove = array(1,2,3);
 
-            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => inclusion (".__CLASS__.")");
+            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => inclusion (".$this->getTname().")");
             return true; 
         } 
         return false;

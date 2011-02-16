@@ -35,7 +35,7 @@ class codephp_unfinishedwithsemicolon_regex extends analyseur_regex {
             $this->args = array(1);
             $this->remove = array(1,2);
             
-            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => codePHP (".__CLASS__.")");
+            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => codePHP (".$this->getTname().")");
             return true;
         } 
         return false;

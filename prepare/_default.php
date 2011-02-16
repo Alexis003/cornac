@@ -18,6 +18,7 @@
  */
 
 class _default extends instruction {
+    protected $tname = '_default';
     protected $expression = null;
     
     function __construct($expression = null) {
@@ -27,7 +28,7 @@ class _default extends instruction {
     }
 
     function __toString() {
-        return __CLASS__." ".$this->code;
+        return $this->getTname()." ".$this->code;
     }
 
     function getBlock() {

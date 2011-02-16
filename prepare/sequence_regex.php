@@ -18,6 +18,8 @@
  */
 
 class sequence_regex extends analyseur_regex {
+    protected $tname = 'sequence_regex';
+
     function __construct() {
         parent::__construct(array());
     }
@@ -62,11 +64,11 @@ class sequence_regex extends analyseur_regex {
             $pos = 2;
 
             if (is_null($var)) {
-                Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => 0null ".__CLASS__);
+                Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => 0null ".$this->getTname());
                 return true; 
             }
             if (!$var->hasNext()) {
-                Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => 1null ".__CLASS__);
+                Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => 1null ".$this->getTname());
                 
                 return !$var->checkToken(T_CLOSE_TAG); 
             }
@@ -79,7 +81,7 @@ class sequence_regex extends analyseur_regex {
                 $var = $var->getNext();
 
                 if (is_null($var)) {
-                    Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => nnull ".__CLASS__);
+                    Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => nnull ".$this->getTname());
                     return true; 
                 }
 
@@ -89,7 +91,7 @@ class sequence_regex extends analyseur_regex {
                     $pos += 1;
                     $var = $var->getNext();
                     if (is_null($var)) {
-                        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => nnull2 ".__CLASS__);
+                        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => nnull2 ".$this->getTname());
                         return true; 
                     }
                 } elseif ($var->checkToken(T_LOGICAL_OR, T_LOGICAL_AND, T_LOGICAL_XOR)) {
@@ -120,7 +122,7 @@ class sequence_regex extends analyseur_regex {
                 return false;
             } elseif (count($this->args) > 0) {
                 // @doc OK we are good now
-                Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".__CLASS__);
+                Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
                 return true; 
             } else {
                 // @doc Not processed? aborting. 

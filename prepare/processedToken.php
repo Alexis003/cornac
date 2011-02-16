@@ -18,6 +18,7 @@
  */
 
 class processedToken extends Token {
+    protected $tname = 'processedToken';
     
     function __construct($t) {
         parent::__construct();
@@ -29,7 +30,7 @@ class processedToken extends Token {
             $this->code = $t;
             $this->setLine(-2);
         }
-        Cornac_Log::getInstance('tokenizer')->log(__CLASS__);
+        Cornac_Log::getInstance('tokenizer')->log($this->getTname());
     }
 }
 

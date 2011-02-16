@@ -18,6 +18,7 @@
  */
 
 class _class extends instruction {
+    protected $tname = '_class';
     protected $_abstract = null;
     protected $name = array();
     protected $extends = null;
@@ -58,7 +59,7 @@ class _class extends instruction {
     }
     
     function __toString() {
-        $return = __CLASS__." class ".$this->name;
+        $return = $this->getTname()." class ".$this->name;
         if (!is_null($this->extends)) {
             $return .= " extends ".$this->extends;
         }

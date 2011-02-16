@@ -18,6 +18,8 @@
  */
 
 class declare_alternative_regex extends analyseur_regex {
+    protected $tname = 'declare_alternative_regex';
+
     function __construct() {
         parent::__construct(array());
     }
@@ -104,7 +106,7 @@ class declare_alternative_regex extends analyseur_regex {
         
         $this->args[] = 
 
-        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => block (".__CLASS__.")");
+        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => block (".$this->getTname().")");
         return true;
     }
 }

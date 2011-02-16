@@ -18,6 +18,8 @@
  */
 
 class dowhile_simple_regex extends analyseur_regex {
+    protected $tname = 'dowhile_simple_regex';
+
     function __construct() {
         parent::__construct(array());
     }
@@ -39,7 +41,7 @@ class dowhile_simple_regex extends analyseur_regex {
         $regex = new modele_regex('block',$args, $remove);
         Token::applyRegex($t->getNext(), 'block', $regex);
 
-        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => block (".__CLASS__.")");
+        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => block (".$this->getTname().")");
         return false; 
     }
 }

@@ -18,6 +18,8 @@
  */
 
 class function_reference_regex extends analyseur_regex {
+    protected $tname = 'function_reference_regex';
+
     function __construct() {
         parent::__construct(array());
         
@@ -37,7 +39,7 @@ class function_reference_regex extends analyseur_regex {
             $t->getNext(1)->checkNotClass('literals')) { return false; }
         if ($t->getNext(2)->checkNotClass('arglist')) { return false; }
 
-        Cornac_Log::getInstance('tokenizer')->log(get_class($t->getNext(1))." => literals  (".__CLASS__.")");
+        Cornac_Log::getInstance('tokenizer')->log(get_class($t->getNext(1))." => literals  (".$this->getTname().")");
         $regex = new modele_regex('literals',array(0), array());
         Token::applyRegex($t->getNext(1), 'literals', $regex);
 
@@ -74,7 +76,7 @@ class function_reference_regex extends analyseur_regex {
         sort($this->args);
         sort($this->remove);
 
-        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".__CLASS__);
+        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
         return true;
     }
 }

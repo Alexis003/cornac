@@ -18,6 +18,7 @@
  */
 
 class constant_static extends token {
+    protected $tname = 'constant_static';
     protected $class = null;
     protected $constant = null;
     
@@ -50,7 +51,7 @@ class constant_static extends token {
     }
 
     function __toString() {
-        return __CLASS__." ".$this->class."::".$this->constant;
+        return $this->getTname()." ".$this->class."::".$this->constant;
     }
 
     function getRegex(){

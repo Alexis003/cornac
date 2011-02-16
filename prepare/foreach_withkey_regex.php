@@ -18,6 +18,8 @@
  */
 
 class foreach_withkey_regex extends analyseur_regex {
+    protected $tname = 'foreach_withkey_regex';
+
     function __construct() {
         parent::__construct(array());
     }
@@ -41,7 +43,7 @@ class foreach_withkey_regex extends analyseur_regex {
           $this->args = array(2, 4, 6, 8);
           $this->remove = array(1,2,3,4,5,6,7,8);
 
-          Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".__CLASS__);
+          Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
           return true;
         } elseif ($t->getNext(7)->checkForBlock()) {
             if ($t->getNext(8)->checkForAssignation()) {return false; }
@@ -49,13 +51,13 @@ class foreach_withkey_regex extends analyseur_regex {
             $regex = new modele_regex('block',array(0), array());
             Token::applyRegex($t->getNext(7), 'block', $regex);
 
-            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => block (".__CLASS__.")");
+            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => block (".$this->getTname().")");
             return false; 
         } elseif ($t->getNext(7)->checkCode(';')) {
           $this->args = array(2, 4, 6, 8);
           $this->remove = array(1,2,3,4,5,6,7,8);
             
-            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => no block ".__CLASS__);
+            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => no block ".$this->getTname());
             return true;
         } else {
             return false;

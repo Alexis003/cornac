@@ -18,6 +18,7 @@
  */
 
 class _cast_ extends processedToken {
+    protected $tname = '_cast_';
 }
 
 ?>

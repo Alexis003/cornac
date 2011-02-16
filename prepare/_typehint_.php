@@ -18,6 +18,7 @@
  */
 
 class _typehint_ extends processedToken {
+    protected $tname = '_typehint_';
 }
 
 ?>

@@ -18,6 +18,7 @@
  */
 
 class _postplusplus_ extends processedToken {
+    protected $tname = '_postplusplus_';
 }
 
 ?>

@@ -18,6 +18,7 @@
  */
 
 class label extends instruction {
+    protected $tname = 'label';
     protected $name = null;
     
     function __construct($expression) {

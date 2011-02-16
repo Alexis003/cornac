@@ -18,6 +18,7 @@
  */
 
 class _catch extends instruction {
+    protected $tname = '_catch';
     protected $exception = null;
     protected $variable = null;
     protected $block = null;
@@ -35,7 +36,7 @@ class _catch extends instruction {
     }
 
     function __toString() {
-        return __CLASS__." (".$this->exception." ".$this->variable.") ";
+        return $this->getTname()." (".$this->exception." ".$this->variable.") ";
     }
 
     function getException() {

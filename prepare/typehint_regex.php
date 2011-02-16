@@ -18,6 +18,8 @@
  */
 
 class typehint_regex extends analyseur_regex {
+    protected $tname = 'typehint_regex';
+
     function __construct() {
         parent::__construct(array());
     }
@@ -62,7 +64,7 @@ class typehint_regex extends analyseur_regex {
         $regex = new modele_regex('typehint',array(0, 1), array(1));
         Token::applyRegex($t, 'typehint', $regex);
 
-        Cornac_Log::getInstance('tokenizer')->log(get_class($t->getNext())." => typehint (".__CLASS__.")");
+        Cornac_Log::getInstance('tokenizer')->log(get_class($t->getNext())." => typehint (".$this->getTname().")");
         return false;
     }
 }

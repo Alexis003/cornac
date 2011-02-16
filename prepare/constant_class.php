@@ -47,7 +47,7 @@ class constant_class extends token {
     }
 
     function __toString() {
-        return __CLASS__." ".$this->name."::".$this->constant;
+        return $this->getTname()." ".$this->name."::".$this->constant;
     }
 
     function getRegex(){

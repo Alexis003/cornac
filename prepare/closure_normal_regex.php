@@ -58,7 +58,7 @@ class closure_normal_regex extends analyseur_regex {
         $this->args[] = $pos + 1;
         $this->remove[] = $pos + 1;
 
-        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".__CLASS__);
+        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
         return true; 
     }
 }

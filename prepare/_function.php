@@ -18,6 +18,7 @@
  */
 
 class _function extends instruction {
+    protected $tname = '_function';
     protected $name = '';
     protected $_abstract = null;
     protected $_static = null;
@@ -84,7 +85,7 @@ class _function extends instruction {
     }
     
     function __toString() {
-        return __CLASS__." function ".$this->name." (".$this->args.") {".$this->block."} ";
+        return $this->getTname()." function ".$this->name." (".$this->args.") {".$this->block."} ";
     }
 
     function getName() {

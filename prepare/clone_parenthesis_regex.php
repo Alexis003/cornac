@@ -38,7 +38,7 @@ class clone_parenthesis_regex extends analyseur_regex {
         $this->args = array(2);
         $this->remove = array(1,2,3);
 
-        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".__CLASS__);
+        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
         return true; 
     }
 }

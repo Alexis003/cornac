@@ -18,6 +18,7 @@
  */
 
 class _throw extends instruction {
+    protected $tname = '_throw';
     protected $exception = null;
     
     function __construct($expression = null) {
@@ -27,7 +28,7 @@ class _throw extends instruction {
     }
 
     function __toString() {
-        return __CLASS__." ".$this->exception;
+        return $this->getTname()." ".$this->exception;
     }
 
     function getException() {

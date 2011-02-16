@@ -18,6 +18,7 @@
  */
 
 class _sign_ extends processedToken {
+    protected $tname = '_sign_';
 }
 
 ?>

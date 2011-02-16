@@ -18,6 +18,7 @@
  */
 
 class rawtext extends instruction {
+    protected $tname = 'rawtext';
     protected $rawtext = null;
 
     function __construct($expression = null) {
@@ -34,7 +35,7 @@ class rawtext extends instruction {
     }
 
     function __toString() {
-        return __CLASS__." ".$this->rawtext;
+        return $this->getTname()." ".$this->rawtext;
     }
     
     function getText() {

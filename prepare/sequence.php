@@ -18,6 +18,7 @@
  */
 
 class sequence extends instruction {
+    protected $tname = 'sequence';
     protected $elements = array();
     
     function __construct($expression = array()) {
@@ -42,7 +43,7 @@ class sequence extends instruction {
     }
 
     function __toString() {
-        $return = __CLASS__;
+        $return = $this->getTname();
         if (count($this->elements) == 0) {
         // @note this shouldn't happen...
             $return .= "Empty Sequence\n";
@@ -55,7 +56,7 @@ class sequence extends instruction {
     }
 
     function getCode() {
-        return __CLASS__;
+        return $this->getTname();
     }
     
     function getElements() {

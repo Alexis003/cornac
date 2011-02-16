@@ -19,6 +19,8 @@
 
 // @note this is a skeleton for patterns. 
 class modele_regex extends analyseur_regex {
+    protected $tname = 'modele_regex';
+
 
     function __construct($class, $args, $remove) {
         parent::__construct(array());

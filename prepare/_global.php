@@ -18,6 +18,7 @@
  */
 
 class _global extends instruction {
+    protected $tname = '_global';
     protected $variables = array();
 
     function __construct($expression) {
@@ -27,7 +28,7 @@ class _global extends instruction {
     }
     
     function __toString() {
-        return __CLASS__." ".join(', ', $this->variables);
+        return $this->getTname()." ".join(', ', $this->variables);
     }
 
     function getVariables() {

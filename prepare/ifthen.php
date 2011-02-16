@@ -18,6 +18,7 @@
  */
 
 class ifthen extends instruction {
+    protected $tname = 'ifthen';
     protected $condition = array();
     protected $then = array();
     protected $else = null;
@@ -41,7 +42,7 @@ class ifthen extends instruction {
     }
 
     function __toString() {
-        return __CLASS__." if (".$this->condition.") then ".$this->then." else ".$this->else;
+        return $this->getTname()." if (".$this->condition.") then ".$this->then." else ".$this->else;
     }
 
     function getCondition() {

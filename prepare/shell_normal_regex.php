@@ -18,6 +18,8 @@
  */
 
 class shell_normal_regex extends analyseur_regex {
+    protected $tname = 'shell_normal_regex';
+
     function __construct() {
         parent::__construct(array());
         
@@ -61,7 +63,7 @@ class shell_normal_regex extends analyseur_regex {
                 $regex = new modele_regex('variable',array(0), array(-1, 1));
                 Token::applyRegex($var->getNext(), 'variable', $regex);
 
-                Cornac_Log::getInstance('tokenizer')->log(get_class($var->getNext())." => ".get_class($var->getNext())." (".__CLASS__.")");
+                Cornac_Log::getInstance('tokenizer')->log(get_class($var->getNext())." => ".get_class($var->getNext())." (".$this->getTname().")");
                 return false;
             }
 
@@ -78,7 +80,7 @@ class shell_normal_regex extends analyseur_regex {
 
         $this->remove[]  = $pos; // @note final "
         
-        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".__CLASS__);
+        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
         return true; 
     }
 }

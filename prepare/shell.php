@@ -18,6 +18,7 @@
  */
 
 class shell extends instruction {
+    protected $tname = 'shell';
     protected $expression = array();
     
     function __construct($expression) {
@@ -34,7 +35,7 @@ class shell extends instruction {
     }
 
     function __toString() {
-        return __CLASS__." `".$this->code."`";
+        return $this->getTname()." `".$this->code."`";
     }
 
     function getExpression() {

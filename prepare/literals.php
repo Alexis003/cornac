@@ -18,6 +18,8 @@
  */
 
 class literals extends token {
+    protected $tname = 'literals';
+
     private $value = null;     // @note value of the literal
     private $delimiter = null; // @note delimter used. Used for string literals
     private $type = 'literals';
@@ -51,7 +53,7 @@ class literals extends token {
     }
 
     function __toString() {
-        return __CLASS__." ".$this->value;
+        return $this->getTname()." ".$this->value;
     }
 
     function getLiteral() {

@@ -18,6 +18,7 @@
  */
 
 class _use extends instruction {
+    protected $tname = '_use';
     protected $namespace = null;
     protected $alias = null;
     

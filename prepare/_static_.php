@@ -18,6 +18,7 @@
  */
 
 class _static_ extends processedToken {
+    protected $tname = '_static_';
 }
 
 ?>

@@ -18,6 +18,7 @@
  */
 
 class block extends instruction {
+    protected $tname = 'block';
     protected $list = array();
     
     function __construct($expression = array()) {
@@ -42,7 +43,7 @@ class block extends instruction {
     }
 
     function __toString() {
-        return __CLASS__." {".join("\n", $this->list)." }";
+        return $this->getTname()." {".join("\n", $this->list)." }";
     }
 
     function getList() {

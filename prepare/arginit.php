@@ -18,6 +18,7 @@
  */
 
 class arginit extends instruction {
+    protected $tname = 'arginit';
     protected $variable = array();
     protected $value = null;
 
@@ -29,7 +30,7 @@ class arginit extends instruction {
     }
     
     function __toString() {
-        return __CLASS__." ".$this->variable." = ".$this->value." ";
+        return $this->getTname()." ".$this->variable." = ".$this->value." ";
     }
 
     function getVariable() {

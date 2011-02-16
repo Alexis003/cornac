@@ -18,6 +18,7 @@
  */
 
 class reference extends instruction {
+    protected $tname = 'reference';
     private $expression = null;
     
     function __construct($expression) {
@@ -27,7 +28,7 @@ class reference extends instruction {
     }
 
     function __toString() {
-        return __CLASS__." &".$this->expression;
+        return $this->getTname()." &".$this->expression;
     }
 
     function getExpression() {

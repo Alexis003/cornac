@@ -18,6 +18,8 @@
  */
 
 class ___halt_compiler_regex extends analyseur_regex {
+    protected $tname = '___halt_compiler_regex';
+
     function __construct() {
         parent::__construct(array());
     }
@@ -36,7 +38,7 @@ class ___halt_compiler_regex extends analyseur_regex {
         $this->args = array();
         $this->remove = array(1, 2);
 
-        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".__CLASS__);
+        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
         return true; 
     }
 }

@@ -18,6 +18,7 @@
  */
 
 class _nsname_ extends processedToken {
+    protected $tname = '_nsname_';
 }
 
 ?>

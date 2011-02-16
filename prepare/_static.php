@@ -18,6 +18,7 @@
  */
 
 class _static extends instruction {
+    protected $tname = '_static';
     protected $expression = null;
     
     function __construct($expression = null) {
@@ -27,7 +28,7 @@ class _static extends instruction {
     }
 
     function __toString() {
-        return __CLASS__." ".$this->expression;
+        return $this->getTname()." ".$this->expression;
     }
 
     function getExpression() {

@@ -18,6 +18,8 @@
  */
 
 class typehint extends token {
+    protected $tname = 'typehint';
+
     protected $type = null;
     protected $name = null;
 
@@ -33,7 +35,7 @@ class typehint extends token {
     }
 
     function __toString() {
-        return __CLASS__." ".$this->type." ".$this->name;
+        return $this->getTname()." ".$this->type." ".$this->name;
     }
     
     function getName() {

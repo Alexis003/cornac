@@ -18,6 +18,7 @@
  */
 
 class _interfacename_ extends processedToken {
+    protected $tname = '_interfacename_';
 }
 
 ?>

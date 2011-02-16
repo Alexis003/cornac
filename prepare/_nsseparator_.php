@@ -18,6 +18,7 @@
  */
 
 class _nsseparator_ extends processedToken {
+    protected $tname = '_nsseparator_';
 }
 
 ?>

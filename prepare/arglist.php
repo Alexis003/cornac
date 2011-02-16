@@ -18,6 +18,8 @@
  */
 
 class arglist extends token {
+    protected $tname = 'arglist';
+
     protected $list = array();
     
     function __construct($expression = array()) {
@@ -38,7 +40,7 @@ class arglist extends token {
     }
 
     function __toString() {
-        $return = __CLASS__."(";
+        $return = $this->getTname()."(";
         
         if (count($this->list) > 0) {
             foreach($this->list as $a) {

@@ -18,6 +18,7 @@
  */
 
 class _return extends instruction {
+    protected $tname = '_return';
     protected $return = null;
 
     function __construct($expression = null) {
@@ -29,7 +30,7 @@ class _return extends instruction {
     }
     
     function __toString() {
-        return __CLASS__." return ".$this->return;
+        return $this->getTname()." return ".$this->return;
     }
 
     function getReturn() {

@@ -18,6 +18,7 @@
  */
 
 class opappend extends instruction {
+    protected $tname = 'opappend';
     protected $variable = null;
     
     function __construct($variable) {
@@ -28,7 +29,7 @@ class opappend extends instruction {
     }
 
     function __toString() {
-        return __CLASS__." ".$this->code."[]";
+        return $this->getTname()." ".$this->code."[]";
     }
 
     function getVariable() {

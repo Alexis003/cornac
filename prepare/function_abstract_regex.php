@@ -18,6 +18,8 @@
  */
 
 class function_abstract_regex extends analyseur_regex {
+    protected $tname = 'function_abstract_regex';
+
     function __construct() {
         parent::__construct(array());
     }
@@ -34,7 +36,7 @@ class function_abstract_regex extends analyseur_regex {
         if ($t->getNext(2)->checkNotCode(';') ) { return false; }
         // @note : si ca compile et qu'on arrive ici, il y aura surement un abstract
 
-        Cornac_Log::getInstance('tokenizer')->log(get_class($t->getNext())." => literals  (".__CLASS__.")");
+        Cornac_Log::getInstance('tokenizer')->log(get_class($t->getNext())." => literals  (".$this->getTname().")");
         $regex = new modele_regex('literals',array(0), array());
         Token::applyRegex($t->getNext(), 'literals', $regex);
 
@@ -59,7 +61,7 @@ class function_abstract_regex extends analyseur_regex {
         sort($this->args);
         sort($this->remove);
 
-        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".__CLASS__);
+        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
         return true;
     }
 }

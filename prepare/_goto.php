@@ -18,6 +18,7 @@
  */
 
 class _goto extends instruction {
+    protected $tname = '_goto';
     protected $label = null;
 
     function __construct($expression) {

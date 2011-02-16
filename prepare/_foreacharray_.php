@@ -18,6 +18,7 @@
  */
 
 class _foreacharray_ extends processedToken {
+    protected $tname = '_foreacharray_';
 }
 
 ?>

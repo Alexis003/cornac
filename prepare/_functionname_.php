@@ -18,6 +18,7 @@
  */
 
 class _functionname_ extends processedToken {
+    protected $tname = '_functionname_';
 }
 
 ?>

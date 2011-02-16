@@ -18,6 +18,7 @@
  */
 
 class postplusplus extends instruction {
+    protected $tname = 'postplusplus';
     protected $variable = null;
     protected $operator = null;
     
@@ -29,7 +30,7 @@ class postplusplus extends instruction {
     }
 
     function __toString() {
-        return __CLASS__." ".$this->operator.$this->variable;
+        return $this->getTname()." ".$this->operator.$this->variable;
     }
 
     function getVariable() {

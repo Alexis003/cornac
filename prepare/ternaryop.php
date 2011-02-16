@@ -18,6 +18,7 @@
  */
 
 class ternaryop extends instruction {
+    protected $tname = 'ternaryop';
     protected $condition = null;
     protected $then = null;
     protected $else = null;
@@ -50,7 +51,7 @@ class ternaryop extends instruction {
     }
 
     function __toString() {
-        return __CLASS__." ".$this->code;
+        return $this->getTname()." ".$this->code;
     }
 
     static function getRegex() {

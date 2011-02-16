@@ -18,13 +18,15 @@
  */
 
 class instruction extends token {
+    protected $tname = 'instruction';
+
     
     function __construct($array) {
         parent::__construct($array);
     }
 
     function __toString() {
-        return __CLASS__." ";
+        return $this->getTname()." ";
     }
 
 

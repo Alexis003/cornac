@@ -18,6 +18,7 @@
  */
 
 class preplusplus extends instruction {
+    protected $tname = 'preplusplus';
     protected $variable = null;
     protected $operator = null;
     
@@ -29,7 +30,7 @@ class preplusplus extends instruction {
     }
 
     function __toString() {
-        return __CLASS__." ".$this->variable.$this->operator;
+        return $this->getTname()." ".$this->variable.$this->operator;
     }
 
     function getVariable() {

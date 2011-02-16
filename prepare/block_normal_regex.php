@@ -18,6 +18,8 @@
  */
 
 class block_normal_regex extends analyseur_regex {
+    protected $tname = 'block_normal_regex';
+
     function __construct() {
         parent::__construct(array());
     }
@@ -85,7 +87,7 @@ class block_normal_regex extends analyseur_regex {
         
         $this->remove[] = $i ; // @note Removing final }
         
-        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".__CLASS__);
+        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
         return true;
     }
 }

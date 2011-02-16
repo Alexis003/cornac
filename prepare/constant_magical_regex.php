@@ -30,7 +30,7 @@ class constant_magical_regex extends analyseur_regex {
     // @note getTokens also checks for code value, not only token. 
         if ($t->checkNotToken(array(T_FILE, T_DIR, T_CLASS_C, T_LINE, T_METHOD_C, T_FUNC_C, T_NS_C))) { return false; }
         
-        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".__CLASS__);
+        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
         return true; 
     }
 }

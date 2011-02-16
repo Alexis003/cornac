@@ -18,6 +18,7 @@
  */
 
 class _break_ extends processedToken {
+    protected $tname = '_break_';
 }
 
 ?>

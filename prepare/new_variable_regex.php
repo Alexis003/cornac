@@ -18,6 +18,8 @@
  */
 
 class new_variable_regex extends analyseur_regex {
+    protected $tname = 'new_variable_regex';
+
     function __construct() {
         parent::__construct(array());
     }
@@ -59,7 +61,7 @@ class new_variable_regex extends analyseur_regex {
             $this->remove[] = 2;
         } 
 
-        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".__CLASS__);
+        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
         return true; 
     }
 }

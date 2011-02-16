@@ -18,6 +18,8 @@
  */
 
 class static_normal_regex extends analyseur_regex {
+    protected $tname = 'static_normal_regex';
+
     function __construct() {
         parent::__construct(array());
     }
@@ -60,7 +62,7 @@ class static_normal_regex extends analyseur_regex {
             $regex = new modele_regex('_static',$args, $remove);
             Token::applyRegex($repl, '_static', $regex);
 
-            Cornac_Log::getInstance('tokenizer')->log(get_class($var)." => _static  (".__CLASS__.")");
+            Cornac_Log::getInstance('tokenizer')->log(get_class($var)." => _static  (".$this->getTname().")");
             continue;
         }
         
@@ -82,7 +84,7 @@ class static_normal_regex extends analyseur_regex {
             return false;
         }
 
-        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".__CLASS__);
+        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
         return true; 
 */    }
 }

@@ -18,6 +18,7 @@
  */
 
 class _namespace extends instruction {
+    protected $tname = '_namespace';
     protected $namespace = null;
     
     function __construct($expression) {

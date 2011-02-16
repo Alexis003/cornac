@@ -17,7 +17,8 @@
    +----------------------------------------------------------------------+
  */
 
-class property extends token { 
+class property extends Token { 
+    protected $tname = 'property';
     private $object = null;
     private $property = null;
 
@@ -47,7 +48,7 @@ class property extends token {
     }
 
     function __toString() {
-        return __CLASS__." ".$this->object."->".$this->property;
+        return $this->getTname()." ".$this->object."->".$this->property;
     }
 
     function getRegex(){

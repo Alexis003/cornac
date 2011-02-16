@@ -18,6 +18,7 @@
  */
 
 class _array extends variable {
+    protected $tname = '_array';
     protected $variable = null;
     protected $index = null;
 
@@ -41,7 +42,7 @@ class _array extends variable {
     }
 
     function __toString() {
-        return __CLASS__." ".$this->variable."[".$this->index."]";
+        return $this->getTname()." ".$this->variable."[".$this->index."]";
     }
 
     function getVariable() {

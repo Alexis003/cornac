@@ -18,6 +18,7 @@
  */
 
 class _continue_ extends processedToken {
+    protected $tname = '_continue_';
 }
 
 ?>

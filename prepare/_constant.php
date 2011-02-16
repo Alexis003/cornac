@@ -18,6 +18,7 @@
  */
 
 class _constant extends instruction {
+    protected $tname = '_constant';
     
     function __construct() {
         parent::__construct(array());
@@ -25,7 +26,7 @@ class _constant extends instruction {
     }
 
     function __toString() {
-        return __CLASS__." ".$this->code;
+        return $this->getTname()." ".$this->code;
     }
 
     function getName() {

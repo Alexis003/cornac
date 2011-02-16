@@ -18,6 +18,8 @@
  */
 
 class functioncall_variableempty_regex extends analyseur_regex {
+    protected $tname = 'functioncall_variableempty_regex';
+
     function __construct() {
         parent::__construct(array());
     }
@@ -37,7 +39,7 @@ class functioncall_variableempty_regex extends analyseur_regex {
         $this->args = array(-1 );
         $this->remove = array( -1, 1);
 
-        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".__CLASS__);
+        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
         return true; 
     }
 }

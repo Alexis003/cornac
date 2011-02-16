@@ -18,6 +18,8 @@
  */
 
 class sequence_suite_regex extends analyseur_regex {
+    protected $tname = 'sequence_suite_regex';
+
     function __construct() {
         parent::__construct(array());
     }
@@ -40,7 +42,7 @@ class sequence_suite_regex extends analyseur_regex {
             $pos = 2;
             
             if (is_null($var)) {
-                Cornac_Log::getInstance('tokenizer')->log(get_class($t)." merge ".count($this->args)." sequences (before, 1,  ".__CLASS__.")");
+                Cornac_Log::getInstance('tokenizer')->log(get_class($t)." merge ".count($this->args)." sequences (before, 1,  ".$this->getTname().")");
                 return true; 
             }
             
@@ -51,7 +53,7 @@ class sequence_suite_regex extends analyseur_regex {
                 $pos += 1;
                 $var = $var->getNext();
                 if (is_null($var)) {
-                    Cornac_Log::getInstance('tokenizer')->log(get_class($t)." merge ".count($this->args)." sequences (before, 2, ".__CLASS__.")");
+                    Cornac_Log::getInstance('tokenizer')->log(get_class($t)." merge ".count($this->args)." sequences (before, 2, ".$this->getTname().")");
                     return true; 
                 }
             } 
@@ -63,7 +65,7 @@ class sequence_suite_regex extends analyseur_regex {
                 return false;
             }
             
-            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." merge ".count($this->args)." sequences (before, 3, ".__CLASS__.")");
+            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." merge ".count($this->args)." sequences (before, 3, ".$this->getTname().")");
             return true; 
         } 
         

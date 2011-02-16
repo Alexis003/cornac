@@ -18,6 +18,8 @@
  */
 
 class sequence_cdr_regex extends analyseur_regex {
+    protected $tname = 'sequence_cdr_regex';
+
     function __construct() {
         parent::__construct(array());
     }
@@ -36,7 +38,7 @@ class sequence_cdr_regex extends analyseur_regex {
         $regex = new modele_regex('sequence',array(-2, 0), array(-2));
         Token::applyRegex($t->getNext(), 'sequence', $regex);
 
-        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => spot a rawtext (".__CLASS__.")");
+        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => spot a rawtext (".$this->getTname().")");
         return false; 
     }
 }

@@ -18,6 +18,8 @@
  */
 
 class property_static extends token {
+    protected $tname = 'property_static';
+
     protected $class = null;
     protected $property = null;
     
@@ -46,7 +48,7 @@ class property_static extends token {
     }
 
     function __toString() {
-        return __CLASS__." ".$this->class."::".$this->property;
+        return $this->getTname()." ".$this->class."::".$this->property;
     }
 
     function getRegex(){

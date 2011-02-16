@@ -18,6 +18,7 @@
  */
 
 class method_static extends instruction {
+    protected $tname = 'method_static';
     protected $class = null;
     protected $method = null;
     
@@ -50,7 +51,7 @@ class method_static extends instruction {
     }
 
     function __toString() {
-        return __CLASS__." ".$this->class."::".$this->method;
+        return $this->getTname()." ".$this->class."::".$this->method;
     }
 
     function getRegex(){

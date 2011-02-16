@@ -18,6 +18,7 @@
  */
 
 class xxxxxx extends instruction {
+    protected $tname = 'xxxxxx';
     protected $condition = null;
     protected $then = null;
     protected $else = null;
@@ -32,7 +33,7 @@ class xxxxxx extends instruction {
     }
 
     function __toString() {
-        return __CLASS__." if (".$this->condition.") then ".$this->then." else ".$this->else;
+        return $this->getTname()." if (".$this->condition.") then ".$this->then." else ".$this->else;
     }
 
     function getCondition() {

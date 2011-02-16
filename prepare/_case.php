@@ -18,6 +18,7 @@
  */
 
 class _case extends instruction {
+    protected $tname = '_case';
     protected $condition = null;
     protected $block      = null;
     
@@ -44,7 +45,7 @@ class _case extends instruction {
     }
 
     function __toString() {
-        return __CLASS__." ".$this->code;
+        return $this->getTname()." ".$this->code;
     }
 
     function getCondition() {

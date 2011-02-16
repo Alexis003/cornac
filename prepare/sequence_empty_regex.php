@@ -18,6 +18,8 @@
  */
 
 class sequence_empty_regex extends analyseur_regex {
+    protected $tname = 'sequence_empty_regex';
+
     function __construct() {
         parent::__construct(array());
     }
@@ -44,7 +46,7 @@ class sequence_empty_regex extends analyseur_regex {
             $var = $var->getNext();
         } 
         
-        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." removes ".count($this->args)." semi-colon (".__CLASS__.")");
+        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." removes ".count($this->args)." semi-colon (".$this->getTname().")");
         return true; 
     }
 

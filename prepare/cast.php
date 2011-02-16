@@ -18,6 +18,7 @@
  */
 
 class cast extends instruction {
+    protected $tname = 'cast';
     protected $cast = null;
     protected $expression = null;
     
@@ -29,7 +30,7 @@ class cast extends instruction {
     }
 
     function __toString() {
-        return __CLASS__." ".$this->code;
+        return $this->getTname()." ".$this->code;
     }
 
     function getCast() {

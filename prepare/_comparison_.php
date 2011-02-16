@@ -18,6 +18,7 @@
  */
 
 class _comparison_ extends processedToken {
+    protected $tname = '_comparison_';
 }
 
 ?>
