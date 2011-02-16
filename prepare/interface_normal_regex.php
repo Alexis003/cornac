@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class interface_normal_regex extends analyseur_regex {
+class interface_normal_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'interface_normal_regex';
 
     function __construct() {

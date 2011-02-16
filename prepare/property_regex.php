@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class property_regex extends analyseur_regex {
+class property_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'property_regex';
 
     function __construct() {
@@ -48,7 +48,7 @@ class property_regex extends analyseur_regex {
         if ( $t->getNext(1)->checkClass(array('arglist'))) { return false; }
         if ($t->getNext()->checkToken(T_STRING)) {
             $regex = new modele_regex('literals',array(0), array());
-            Token::applyRegex($t->getNext(), 'literals', $regex);
+            Cornac_Tokenizeur_Token::applyRegex($t->getNext(), 'literals', $regex);
             return false;
         } elseif ( $t->getNext()->checkNotClass(array('variable','_array','literals'))) { 
             return false; 

@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class shell_normal_regex extends analyseur_regex {
+class shell_normal_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'shell_normal_regex';
 
     function __construct() {
@@ -61,7 +61,7 @@ class shell_normal_regex extends analyseur_regex {
                   $var->getNext(1)->checkOperator('}')) {
 
                 $regex = new modele_regex('variable',array(0), array(-1, 1));
-                Token::applyRegex($var->getNext(), 'variable', $regex);
+                Cornac_Tokenizeur_Token::applyRegex($var->getNext(), 'variable', $regex);
 
                 Cornac_Log::getInstance('tokenizer')->log(get_class($var->getNext())." => ".get_class($var->getNext())." (".$this->getTname().")");
                 return false;

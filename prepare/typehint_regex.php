@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class typehint_regex extends analyseur_regex {
+class typehint_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'typehint_regex';
 
     function __construct() {
@@ -62,7 +62,7 @@ class typehint_regex extends analyseur_regex {
         if ($t->getNext(1)->checkNotOperator(array(',',')'))) { return false; }
 
         $regex = new modele_regex('typehint',array(0, 1), array(1));
-        Token::applyRegex($t, 'typehint', $regex);
+        Cornac_Tokenizeur_Token::applyRegex($t, 'typehint', $regex);
 
         Cornac_Log::getInstance('tokenizer')->log(get_class($t->getNext())." => typehint (".$this->getTname().")");
         return false;

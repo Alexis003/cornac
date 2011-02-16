@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class noscream_normal_regex extends analyseur_regex {
+class noscream_normal_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'noscream_normal_regex';
 
     function __construct() {

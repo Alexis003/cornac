@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class functioncall_variable_regex extends analyseur_regex {
+class functioncall_variable_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'functioncall_variable_regex';
 
     function __construct() {
@@ -25,7 +25,7 @@ class functioncall_variable_regex extends analyseur_regex {
     }
 
     function getTokens() {
-        return array(Token::ANY_TOKEN);
+        return array(Cornac_Tokenizeur_Token::ANY_TOKEN);
     }
  
     function check($t) {

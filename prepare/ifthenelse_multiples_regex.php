@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class ifthenelse_multiples_regex extends analyseur_regex {
+class ifthenelse_multiples_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'ifthenelse_multiples_regex';
 
     function __construct() {

@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class switch_simple_regex extends analyseur_regex {
+class switch_simple_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'switch_simple_regex';
 
     function __construct() {

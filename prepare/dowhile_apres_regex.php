@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class dowhile_apres_regex extends analyseur_regex {
+class dowhile_apres_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'dowhile_apres_regex';
 
     function __construct() {

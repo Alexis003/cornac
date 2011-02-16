@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class while_alternative_regex extends analyseur_regex {
+class while_alternative_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'while_alternative_regex';
 
     function __construct() {
@@ -85,7 +85,7 @@ class while_alternative_regex extends analyseur_regex {
         $remove[] = $pos;
 
         $regex = new modele_regex('block',$args, $remove);
-        Token::applyRegex($init, 'block', $regex);
+        Cornac_Tokenizeur_Token::applyRegex($init, 'block', $regex);
 
         Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => block (".$this->getTname().")");
         return false; 

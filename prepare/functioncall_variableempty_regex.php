@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class functioncall_variableempty_regex extends analyseur_regex {
+class functioncall_variableempty_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'functioncall_variableempty_regex';
 
     function __construct() {

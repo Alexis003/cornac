@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class case_block_regex extends analyseur_regex {
+class case_block_regex extends Cornac_Tokenizeur_Regex {
     function __construct() {
         parent::__construct(array());
     }

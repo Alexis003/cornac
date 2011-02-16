@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class for_simple_regex extends analyseur_regex {
+class for_simple_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'for_simple_regex';
 
     function __construct() {
@@ -122,7 +122,7 @@ class for_simple_regex extends analyseur_regex {
 
         if ($t->getNext($pos)->checkCode(';')) {
             $regex = new modele_regex('block',array(), array());
-            Token::applyRegex($t->getNext($pos), 'block', $regex);
+            Cornac_Tokenizeur_Token::applyRegex($t->getNext($pos), 'block', $regex);
 
             Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => block (position $pos) (from ; ) (".$this->getTname().")");            
             // @note no return, we carry on

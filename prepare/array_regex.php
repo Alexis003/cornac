@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class array_regex extends analyseur_regex {
+class array_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'array_regex';
 
     function __construct() {

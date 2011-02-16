@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class bitshift_regex extends analyseur_regex {
+class bitshift_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'bitshift_regex';
 
     function __construct() {

@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class affectation_normal_regex extends analyseur_regex {
+class affectation_normal_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'affectation_normal_regex';
 
     function __construct() {
@@ -51,7 +51,7 @@ class affectation_normal_regex extends analyseur_regex {
                                              'sign',
                                              '_constant',)) && 
              $t->getPrev()->checkNotSubclass('variable'))) { return false; }
-         if ($t->getNext()->checkNotClass(array('literals', 'variable','_array','sign','noscream',
+        if ($t->getNext()->checkNotClass(array('literals', 'variable','_array','sign','noscream',
                                              'property', 'method'  ,'ternaryop',
                                              'functioncall','operation','logical',
                                              'method_static','operation','ternaryop',
@@ -61,7 +61,6 @@ class affectation_normal_regex extends analyseur_regex {
                                              'reference','concatenation','variable',
                                              'property_static','postplusplus','preplusplus','inclusion',
                                              '_closure'))
-            
             ) { return false; }
 
             $this->args = array(-1, 0, 1);

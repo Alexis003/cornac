@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class property extends Token { 
+class property extends Cornac_Tokenizeur_Token { 
     protected $tname = 'property';
     private $object = null;
     private $property = null;

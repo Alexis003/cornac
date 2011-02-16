@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class try_normal_regex extends analyseur_regex {
+class try_normal_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'try_normal_regex';
 
     function __construct() {

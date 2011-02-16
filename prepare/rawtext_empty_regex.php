@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class rawtext_empty_regex extends analyseur_regex {
+class rawtext_empty_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'rawtext_empty_regex';
 
     function __construct() {

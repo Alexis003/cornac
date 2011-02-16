@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class while_noblock_regex extends analyseur_regex {
+class while_noblock_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'while_noblock_regex';
 
     function __construct() {
@@ -44,7 +44,7 @@ class while_noblock_regex extends analyseur_regex {
             if ($t->getPrev()->checkClass('block') &&              
                 $t->getPrev(1)->checkToken(T_DO))  { return false; }
             $regex = new modele_regex('block',array(), array());
-            Token::applyRegex($t->getNext(1), 'block', $regex);
+            Cornac_Tokenizeur_Token::applyRegex($t->getNext(1), 'block', $regex);
 
             Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => block semi-colon (from ".get_class($t->getNext(1)).") (".$this->getTname().")");
             return false; 
@@ -56,7 +56,7 @@ class while_noblock_regex extends analyseur_regex {
         if ($t->getNext(2)->checkClass('arglist')) { return false; }
 
         $regex = new modele_regex('block',array(0), array());
-        Token::applyRegex($t->getNext(1), 'block', $regex);
+        Cornac_Tokenizeur_Token::applyRegex($t->getNext(1), 'block', $regex);
 
         Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => block (from ".get_class($t->getNext(1)).") (".$this->getTname().")");
         return false; 

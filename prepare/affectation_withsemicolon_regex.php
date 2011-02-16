@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class affectation_withsemicolon_regex extends analyseur_regex {
+class affectation_withsemicolon_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'affectation_withsemicolon_regex';
 
     function __construct() {

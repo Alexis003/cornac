@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class new_variable_regex extends analyseur_regex {
+class new_variable_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'new_variable_regex';
 
     function __construct() {

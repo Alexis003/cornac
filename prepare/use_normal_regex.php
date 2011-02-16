@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class use_normal_regex extends analyseur_regex {
+class use_normal_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'use_normal_regex';
 
     function __construct() {
@@ -39,7 +39,7 @@ class use_normal_regex extends analyseur_regex {
                 $var->getNext(3)->checkOperator(array(',',';'))) { 
 
                 $regex = new modele_regex('_nsname',array(0), array());
-                Token::applyRegex($var->getNext(), '_nsname', $regex);
+                Cornac_Tokenizeur_Token::applyRegex($var->getNext(), '_nsname', $regex);
     
                 Cornac_Log::getInstance('tokenizer')->log(get_class($t)." =>2 ".$this->getTname());
                 
@@ -54,7 +54,7 @@ class use_normal_regex extends analyseur_regex {
                 if ($var->getNext(1)->checkOperator('\\')) { return false; }
             
                 $regex = new modele_regex('_nsname',array(0), array());
-                Token::applyRegex($var->getNext(), '_nsname', $regex);
+                Cornac_Tokenizeur_Token::applyRegex($var->getNext(), '_nsname', $regex);
     
                 Cornac_Log::getInstance('tokenizer')->log(get_class($t)." =>1 ".$this->getTname());
                 
@@ -94,7 +94,7 @@ class use_normal_regex extends analyseur_regex {
 
 
                     $regex = new modele_regex('_use',$args, $remove);
-                    Token::applyRegex($repl, '_use', $regex);
+                    Cornac_Tokenizeur_Token::applyRegex($repl, '_use', $regex);
 
                     Cornac_Log::getInstance('tokenizer')->log(get_class($var)." => _use  (".$this->getTname().")");
                     continue;

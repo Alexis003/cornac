@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class functioncall_withoutparenthesis_regex extends analyseur_regex {
+class functioncall_withoutparenthesis_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'functioncall_withoutparenthesis_regex';
 
     function __construct() {
@@ -35,7 +35,7 @@ class functioncall_withoutparenthesis_regex extends analyseur_regex {
         if (!$t->getNext(1)->checkEndInstruction()) { return false; }
 
         $regex = new modele_regex('arglist',array(0), array());
-        Token::applyRegex($t->getNext(), 'arglist', $regex);
+        Cornac_Tokenizeur_Token::applyRegex($t->getNext(), 'arglist', $regex);
 
         Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => arglist (".$this->getTname().")");
         return false; 

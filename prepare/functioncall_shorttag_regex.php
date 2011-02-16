@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class functioncall_shorttag_regex extends analyseur_regex {
+class functioncall_shorttag_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'functioncall_shorttag_regex';
 
     function __construct() {
@@ -45,7 +45,7 @@ class functioncall_shorttag_regex extends analyseur_regex {
         }
         
         $regex = new modele_regex('functioncall',$args,$delete);
-        Token::applyRegex($t->getNext(), 'functioncall', $regex);
+        Cornac_Tokenizeur_Token::applyRegex($t->getNext(), 'functioncall', $regex);
 
         Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => echo block (from <?= ) (".$this->getTname().")");
         return true;

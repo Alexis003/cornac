@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class literals_heredoc_regex extends analyseur_regex {
+class literals_heredoc_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'literals_heredoc_regex';
 
     function __construct() {

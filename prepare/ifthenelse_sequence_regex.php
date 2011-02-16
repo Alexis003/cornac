@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class ifthenelse_sequence_regex extends analyseur_regex {
+class ifthenelse_sequence_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'ifthenelse_sequence_regex';
 
     function __construct() {
@@ -34,7 +34,7 @@ class ifthenelse_sequence_regex extends analyseur_regex {
         if ($t->getNext()->checkNotClass('sequence')) { return false; }
 
         $regex = new modele_regex('block',array(0), array());
-        Token::applyRegex($t->getNext(), 'block', $regex);
+        Cornac_Tokenizeur_Token::applyRegex($t->getNext(), 'block', $regex);
 
         Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => block (".$this->getTname().")");
         return false; 

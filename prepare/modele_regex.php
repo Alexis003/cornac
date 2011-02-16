@@ -18,7 +18,7 @@
  */
 
 // @note this is a skeleton for patterns. 
-class modele_regex extends analyseur_regex {
+class modele_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'modele_regex';
 
 

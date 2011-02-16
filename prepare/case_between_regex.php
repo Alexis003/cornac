@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class case_between_regex extends analyseur_regex {
+class case_between_regex extends Cornac_Tokenizeur_Regex {
     function __construct() {
         parent::__construct(array());
     }
@@ -81,7 +81,7 @@ class case_between_regex extends analyseur_regex {
         }
 
         $regex = new modele_regex('block',$args, $remove);
-        Token::applyRegex($init, 'block', $regex);
+        Cornac_Tokenizeur_Token::applyRegex($init, 'block', $regex);
 
         Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => block (".$this->getTname().")");
 

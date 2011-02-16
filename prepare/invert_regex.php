@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class invert_regex extends analyseur_regex {
+class invert_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'invert_regex';
 
     function __construct() {

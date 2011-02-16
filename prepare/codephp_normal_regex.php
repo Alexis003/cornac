@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class codephp_normal_regex extends analyseur_regex {
+class codephp_normal_regex extends Cornac_Tokenizeur_Regex {
     function __construct() {
         parent::__construct(array());
     }

@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class for_sequence_regex extends analyseur_regex {
+class for_sequence_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'for_sequence_regex';
 
     function __construct() {

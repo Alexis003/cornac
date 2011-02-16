@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class new_single_regex extends analyseur_regex {
+class new_single_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'new_single_regex';
 
     function __construct() {

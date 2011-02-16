@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class keyvalue_regex extends analyseur_regex {
+class keyvalue_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'keyvalue_regex';
 
     function __construct() {

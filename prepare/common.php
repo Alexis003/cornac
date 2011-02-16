@@ -22,10 +22,9 @@ $includes = array_flip(glob('prepare/*.php'));
 unset($includes['prepare/common.php']);
 unset($includes['prepare/analyseur.php']);
 
-$firsts = array('prepare/token.php',
+$firsts = array(
                 'prepare/processedToken.php',
                 'prepare/instruction.php',
-                'prepare/analyseur_regex.php',
                 'prepare/variable.php',
                 );
 foreach($firsts as $file) {

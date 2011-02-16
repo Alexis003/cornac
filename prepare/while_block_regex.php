@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class while_block_regex extends analyseur_regex {
+class while_block_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'while_block_regex';
 
     function __construct() {

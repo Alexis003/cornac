@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class arglist_regex extends analyseur_regex {
+class arglist_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'arglist_regex';
 
     function __construct() {

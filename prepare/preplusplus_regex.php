@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class preplusplus_regex extends analyseur_regex {
+class preplusplus_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'preplusplus_regex';
 
     function __construct() {

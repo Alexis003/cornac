@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class property_static extends token {
+class property_static extends Cornac_Tokenizeur_Token {
     protected $tname = 'property_static';
 
     protected $class = null;

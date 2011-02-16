@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class constant_static extends token {
+class constant_static extends Cornac_Tokenizeur_Token {
     protected $tname = 'constant_static';
     protected $class = null;
     protected $constant = null;

@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class function_typehintreference_regex extends analyseur_regex {
+class function_typehintreference_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'function_typehintreference_regex';
 
     function __construct() {
@@ -43,17 +43,17 @@ class function_typehintreference_regex extends analyseur_regex {
                     $var->getNext(3)->checkNotClass('Token')) {
                           
                         $regex = new modele_regex('reference',array(1), array(1));
-                        Token::applyRegex($var->getNext(), 'reference', $regex);
+                        Cornac_Tokenizeur_Token::applyRegex($var->getNext(), 'reference', $regex);
     
                         Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => reference 1 (".$this->getTname().")");
 
                         $regex = new modele_regex('affectation',array(0, 1, 2), array(1, 2));
-                        Token::applyRegex($var->getNext(), 'affectation', $regex);
+                        Cornac_Tokenizeur_Token::applyRegex($var->getNext(), 'affectation', $regex);
     
                         Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => affectation (".$this->getTname().")");
 
                         $regex = new modele_regex('typehint',array(0, 1), array(1));
-                        Token::applyRegex($var, 'typehint', $regex);
+                        Cornac_Tokenizeur_Token::applyRegex($var, 'typehint', $regex);
     
                         Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => typehint = (".$this->getTname().")");
 
@@ -62,12 +62,12 @@ class function_typehintreference_regex extends analyseur_regex {
                         continue; 
                 } elseif ($var->getNext(2)->checkNotCode('=')) {
                     $regex = new modele_regex('reference',array(1), array(1));
-                    Token::applyRegex($var->getNext(), 'reference', $regex);
+                    Cornac_Tokenizeur_Token::applyRegex($var->getNext(), 'reference', $regex);
     
                     Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => reference 2 (".$this->getTname().")");                    
                     
                     $regex = new modele_regex('typehint',array(0, 1), array(1));
-                    Token::applyRegex($var, 'typehint', $regex);
+                    Cornac_Tokenizeur_Token::applyRegex($var, 'typehint', $regex);
     
                     Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => typehint init =2 (".$this->getTname().")");
                     
@@ -76,12 +76,12 @@ class function_typehintreference_regex extends analyseur_regex {
                     continue; 
                 } elseif ($var->getNext(2)->checkCode(array(',',')'))) {
                     $regex = new modele_regex('reference',array(1), array(1));
-                    Token::applyRegex($var->getNext(), 'reference', $regex);
+                    Cornac_Tokenizeur_Token::applyRegex($var->getNext(), 'reference', $regex);
     
                     Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => reference 3 (".$this->getTname().")");
 
                     $regex = new modele_regex('typehint',array(0, 1), array(1));
-                    Token::applyRegex($var, 'typehint', $regex);
+                    Cornac_Tokenizeur_Token::applyRegex($var, 'typehint', $regex);
     
                     Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => typehint =3 (".$this->getTname().")");
                     

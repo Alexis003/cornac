@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class inclusion_noparenthesis_regex extends analyseur_regex {
+class inclusion_noparenthesis_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'inclusion_noparenthesis_regex';
 
     function __construct() {

@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class method_curly_regex extends analyseur_regex {
+class method_curly_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'method_curly_regex';
 
     function __construct() {
@@ -42,7 +42,7 @@ class method_curly_regex extends analyseur_regex {
              $t->getNext(3)->checkOperator(')')) {
              
             $regex = new modele_regex('functioncall',array(0), array(-1, 0, 1));
-            Token::applyRegex($t->getNext(), 'functioncall', $regex);
+            Cornac_Tokenizeur_Token::applyRegex($t->getNext(), 'functioncall', $regex);
 
             Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => functioncall + '()' (".$this->getTname().")");
             return false; 
@@ -50,7 +50,7 @@ class method_curly_regex extends analyseur_regex {
 
       if ( $t->getNext(2)->checkClass('arglist')) {
            $regex = new modele_regex('functioncall',array(0, 2), array(-1, 1, 2));
-           Token::applyRegex($t->getNext(), 'functioncall', $regex);
+           Cornac_Tokenizeur_Token::applyRegex($t->getNext(), 'functioncall', $regex);
 
             Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => functioncall + arglist (".$this->getTname().")");
             return false; 

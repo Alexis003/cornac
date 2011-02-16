@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class functioncall_simple_regex extends analyseur_regex {
+class functioncall_simple_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'functioncall_simple_regex';
 
     function __construct() {

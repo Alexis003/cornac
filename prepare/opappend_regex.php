@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class opappend_regex extends analyseur_regex {
+class opappend_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'opappend_regex';
 
     function __construct() {

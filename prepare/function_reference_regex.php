@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class function_reference_regex extends analyseur_regex {
+class function_reference_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'function_reference_regex';
 
     function __construct() {
@@ -41,7 +41,7 @@ class function_reference_regex extends analyseur_regex {
 
         Cornac_Log::getInstance('tokenizer')->log(get_class($t->getNext(1))." => literals  (".$this->getTname().")");
         $regex = new modele_regex('literals',array(0), array());
-        Token::applyRegex($t->getNext(1), 'literals', $regex);
+        Cornac_Tokenizeur_Token::applyRegex($t->getNext(1), 'literals', $regex);
 
         $this->args = array(1,2,3);
         $this->remove = array(1,2,3);

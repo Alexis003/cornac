@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class clone_parenthesis_regex extends analyseur_regex {
+class clone_parenthesis_regex extends Cornac_Tokenizeur_Regex {
     function __construct() {
         parent::__construct(array());
     }

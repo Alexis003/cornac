@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class sign_suite_regex extends analyseur_regex {
+class sign_suite_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'sign_suite_regex';
 
     function __construct() {

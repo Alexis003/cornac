@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class ifthenelse_simple_regex extends analyseur_regex {
+class ifthenelse_simple_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'ifthenelse_simple_regex';
 
     function __construct() {
@@ -41,7 +41,7 @@ class ifthenelse_simple_regex extends analyseur_regex {
             ) {
 
             $regex = new modele_regex('block',array(0), array(1));
-            Token::applyRegex($t->getNext(), 'block', $regex);
+            Cornac_Tokenizeur_Token::applyRegex($t->getNext(), 'block', $regex);
 
             Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => block (from ".get_class($t).") (".$this->getTname().")");
             return false; 
@@ -59,7 +59,7 @@ class ifthenelse_simple_regex extends analyseur_regex {
                 $t->getNext(1)->checkNotEndInstruction()) { return false; }
             
             $regex = new modele_regex('block',array(0), array());
-            Token::applyRegex($t->getNext(), 'block', $regex);
+            Cornac_Tokenizeur_Token::applyRegex($t->getNext(), 'block', $regex);
 
             Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => block (from instruction) (".$this->getTname().")");
             return false; 

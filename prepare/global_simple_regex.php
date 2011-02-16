@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class global_simple_regex extends analyseur_regex {
+class global_simple_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'global_simple_regex';
 
     function __construct() {
@@ -56,7 +56,7 @@ class global_simple_regex extends analyseur_regex {
             $var = $var->getNext(1);
 
             $regex = new modele_regex('_global',$args, $remove);
-            Token::applyRegex($repl, '_global', $regex);
+            Cornac_Tokenizeur_Token::applyRegex($repl, '_global', $regex);
 
             Cornac_Log::getInstance('tokenizer')->log(get_class($var)." => _global  (".$this->getTname().")");
             continue;

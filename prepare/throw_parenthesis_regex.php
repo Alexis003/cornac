@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class throw_parenthesis_regex extends analyseur_regex {
+class throw_parenthesis_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'throw_parenthesis_regex';
 
     function __construct() {

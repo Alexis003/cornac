@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class break_leveled_regex extends analyseur_regex {
+class break_leveled_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'break_leveled_regex';
 
     function __construct() {

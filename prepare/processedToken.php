@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class processedToken extends Token {
+class processedToken extends Cornac_Tokenizeur_Token {
     protected $tname = 'processedToken';
     
     function __construct($t) {

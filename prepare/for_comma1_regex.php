@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class for_comma1_regex extends analyseur_regex {
+class for_comma1_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'for_comma1_regex';
 
     function __construct() {
@@ -59,7 +59,7 @@ class for_comma1_regex extends analyseur_regex {
             $remove[] = $pos;
 
             $regex = new modele_regex('block',$args, $remove);
-            Token::applyRegex($t->getNext(1), 'block', $regex);
+            Cornac_Tokenizeur_Token::applyRegex($t->getNext(1), 'block', $regex);
 
             Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => block (position 1) (from ".get_class($t->getNext(1)).") (".$this->getTname().")");
             return false; 

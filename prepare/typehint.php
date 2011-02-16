@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class typehint extends token {
+class typehint extends Cornac_Tokenizeur_Token {
     protected $tname = 'typehint';
 
     protected $type = null;

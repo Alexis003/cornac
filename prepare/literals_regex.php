@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class literals_regex extends analyseur_regex {
+class literals_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'literals_regex';
 
     function __construct() {

@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class return_empty_regex extends analyseur_regex {
+class return_empty_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'return_empty_regex';
 
     function __construct() {

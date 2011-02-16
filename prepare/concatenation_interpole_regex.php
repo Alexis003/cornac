@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class concatenation_interpole_regex extends analyseur_regex {
+class concatenation_interpole_regex extends Cornac_Tokenizeur_Regex {
     function __construct() {
         parent::__construct(array());
         
@@ -64,7 +64,7 @@ class concatenation_interpole_regex extends analyseur_regex {
                 $var->getNext()->checkClass(array('literals','concatenation')) && 
                 $var->getNext(1)->checkOperator('}')) {
                     $regex = new modele_regex('variable',array(0), array(-1, 1));
-                    Token::applyRegex($var->getNext(), 'variable', $regex);
+                    Cornac_Tokenizeur_Token::applyRegex($var->getNext(), 'variable', $regex);
 
                     Cornac_Log::getInstance('tokenizer')->log(get_class($var->getNext())." => ".get_class($var->getNext())." (".$this->getTname().")");
                     return false;
@@ -86,7 +86,7 @@ class concatenation_interpole_regex extends analyseur_regex {
                     continue;
                 } else {
                     $regex = new modele_regex('variable',array(0), array(-1, 1));
-                    Token::applyRegex($var->getNext(), 'variable', $regex);
+                    Cornac_Tokenizeur_Token::applyRegex($var->getNext(), 'variable', $regex);
 
                     Cornac_Log::getInstance('tokenizer')->log(get_class($var->getNext())." => ".get_class($var->getNext())." (".$this->getTname().")");
                     return false;

@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class ifthenelse_alternativeblock_regex extends analyseur_regex {
+class ifthenelse_alternativeblock_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'ifthenelse_alternativeblock_regex';
 
     function __construct() {

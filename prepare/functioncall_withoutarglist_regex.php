@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class functioncall_withoutarglist_regex extends analyseur_regex {
+class functioncall_withoutarglist_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'functioncall_withoutarglist_regex';
 
     function __construct() {

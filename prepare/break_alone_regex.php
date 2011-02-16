@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class break_alone_regex extends analyseur_regex {
+class break_alone_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'break_alone_regex';
 
     function __construct() {

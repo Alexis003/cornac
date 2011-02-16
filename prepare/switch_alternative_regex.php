@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class switch_alternative_regex extends analyseur_regex {
+class switch_alternative_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'switch_alternative_regex';
 
     function __construct() {
@@ -58,7 +58,7 @@ class switch_alternative_regex extends analyseur_regex {
         }
         
         $regex = new modele_regex('block',$args, $remove);
-        Token::applyRegex($t->getNext(2), 'block', $regex);
+        Cornac_Tokenizeur_Token::applyRegex($t->getNext(2), 'block', $regex);
 
         $this->args = array(1, 3);
         $this->remove = array(1, 2, 3, 4);

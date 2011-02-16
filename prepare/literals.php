@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class literals extends token {
+class literals extends Cornac_Tokenizeur_Token {
     protected $tname = 'literals';
 
     private $value = null;     // @note value of the literal

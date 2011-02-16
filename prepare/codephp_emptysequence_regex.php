@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class codephp_emptysequence_regex extends analyseur_regex {
+class codephp_emptysequence_regex extends Cornac_Tokenizeur_Regex {
     function __construct() {
         parent::__construct(array());
     }
@@ -39,7 +39,7 @@ class codephp_emptysequence_regex extends analyseur_regex {
         $remove = array(0);
 
         $regex = new modele_regex('sequence',$args, $remove);
-        Token::applyRegex($t->getNext(), 'sequence', $regex);
+        Cornac_Tokenizeur_Token::applyRegex($t->getNext(), 'sequence', $regex);
 
         
         Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => codePHP (".$this->getTname().")");

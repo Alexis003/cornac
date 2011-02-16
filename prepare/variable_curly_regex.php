@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class variable_curly_regex extends analyseur_regex {
+class variable_curly_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'variable_curly_regex';
 
     function __construct() {

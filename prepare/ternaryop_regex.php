@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class ternaryop_regex extends analyseur_regex {
+class ternaryop_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'ternaryop_regex';
 
     function __construct() {
@@ -61,7 +61,7 @@ class ternaryop_regex extends analyseur_regex {
            !$t->getNext(2)->checkForAssignation()
             ) {
                 $regex = new modele_regex('block',array(), array());
-                Token::applyRegex($t->getNext(), 'block', $regex);
+                Cornac_Tokenizeur_Token::applyRegex($t->getNext(), 'block', $regex);
 
                 $this->args = array(-1, 1, 2);
                 $this->remove = array( -1, 1, 2);

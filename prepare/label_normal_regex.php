@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class label_normal_regex extends analyseur_regex {
+class label_normal_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'label_normal_regex';
 
     function __construct() {

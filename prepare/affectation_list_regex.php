@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class affectation_list_regex extends analyseur_regex {
+class affectation_list_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'affectation_list_regex';
 
     function __construct() {

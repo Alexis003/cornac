@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class namespace_normal_regex extends analyseur_regex {
+class namespace_normal_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'namespace_normal_regex';
 
     function __construct() {
@@ -46,7 +46,7 @@ class namespace_normal_regex extends analyseur_regex {
             if ($t->hasNext(2) && $t->getNext(1)->checkOperator('\\')) { return false; }
             
             $regex = new modele_regex('_nsname',array(0), array());
-            Token::applyRegex($t->getNext(), '_nsname', $regex);
+            Cornac_Tokenizeur_Token::applyRegex($t->getNext(), '_nsname', $regex);
 
             Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => _nsname");
 

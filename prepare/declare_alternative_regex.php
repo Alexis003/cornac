@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class declare_alternative_regex extends analyseur_regex {
+class declare_alternative_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'declare_alternative_regex';
 
     function __construct() {
@@ -102,7 +102,7 @@ class declare_alternative_regex extends analyseur_regex {
         $remove[] = $pos;
 
         $regex = new modele_regex('block',$args, $remove);
-        Token::applyRegex($init, 'block', $regex);
+        Cornac_Tokenizeur_Token::applyRegex($init, 'block', $regex);
         
         $this->args[] = 
 

@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class sequence_cdr_regex extends analyseur_regex {
+class sequence_cdr_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'sequence_cdr_regex';
 
     function __construct() {
@@ -36,7 +36,7 @@ class sequence_cdr_regex extends analyseur_regex {
         if ($t->getNext()->checkNotClass(array('sequence'))) { return false; }
 
         $regex = new modele_regex('sequence',array(-2, 0), array(-2));
-        Token::applyRegex($t->getNext(), 'sequence', $regex);
+        Cornac_Tokenizeur_Token::applyRegex($t->getNext(), 'sequence', $regex);
 
         Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => spot a rawtext (".$this->getTname().")");
         return false; 

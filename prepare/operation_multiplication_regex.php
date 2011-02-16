@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class operation_multiplication_regex extends analyseur_regex {
+class operation_multiplication_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'operation_multiplication_regex';
 
     function __construct() {

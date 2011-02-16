@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class ___halt_compiler_regex extends analyseur_regex {
+class ___halt_compiler_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = '___halt_compiler_regex';
 
     function __construct() {

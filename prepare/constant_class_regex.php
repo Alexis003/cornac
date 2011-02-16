@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class constant_class_regex extends analyseur_regex {
+class constant_class_regex extends Cornac_Tokenizeur_Regex {
     function __construct() {
         parent::__construct(array());
     }
@@ -54,7 +54,7 @@ class constant_class_regex extends analyseur_regex {
                     $var = $var->getNext(1);
 
                     $regex = new modele_regex('constant_class',$args, $remove);
-                    Token::applyRegex($repl, 'constant_class', $regex);
+                    Cornac_Tokenizeur_Token::applyRegex($repl, 'constant_class', $regex);
 
                     Cornac_Log::getInstance('tokenizer')->log(get_class($var)." => constant_class  (".$this->getTname().")");
                     continue;
@@ -85,7 +85,7 @@ class constant_class_regex extends analyseur_regex {
                     $var = $var->getNext(3);
                     
                     $regex = new modele_regex('constant_class',$args, $remove);
-                    Token::applyRegex($repl, 'constant_class', $regex);
+                    Cornac_Tokenizeur_Token::applyRegex($repl, 'constant_class', $regex);
                     continue;
              }
           */
@@ -97,7 +97,7 @@ class constant_class_regex extends analyseur_regex {
                     $var = $var->getNext(1);
                     
                     $regex = new modele_regex('constant_class',$args, $remove);
-                    Token::applyRegex($repl, 'constant_class', $regex);
+                    Cornac_Tokenizeur_Token::applyRegex($repl, 'constant_class', $regex);
                     continue;
                 }
             // @note if we reach here, there is a problem

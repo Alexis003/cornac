@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class property_static_regex extends analyseur_regex {
+class property_static_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'property_static_regex';
 
     function __construct() {

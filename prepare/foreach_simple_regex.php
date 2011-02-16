@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class foreach_simple_regex extends analyseur_regex {
+class foreach_simple_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'foreach_simple_regex';
 
     function __construct() {
@@ -45,14 +45,14 @@ class foreach_simple_regex extends analyseur_regex {
         } elseif ($t->getNext(5)->checkForBlock()) {
             if ($t->getNext(6)->checkForAssignation()) { return false; }
             $regex = new modele_regex('block',array(0), array());
-            Token::applyRegex($t->getNext(5), 'block', $regex);
+            Cornac_Tokenizeur_Token::applyRegex($t->getNext(5), 'block', $regex);
 
             Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => block (".$this->getTname().")");
             return false; 
         } elseif ($t->getNext(5)->checkClass(array('variable','_array','property','property_static'))) {
             if ($t->getNext(6)->checkNotCode(';')) { return false; }
             $regex = new modele_regex('block',array(0), array());
-            Token::applyRegex($t->getNext(5), 'block', $regex);
+            Cornac_Tokenizeur_Token::applyRegex($t->getNext(5), 'block', $regex);
 
             Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => block (".$this->getTname().")");
             return false; 

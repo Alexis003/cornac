@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class not_regex extends analyseur_regex {
+class not_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'not_regex';
 
     function __construct() {

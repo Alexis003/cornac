@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class ifthenelseif_alternative_regex extends analyseur_regex {
+class ifthenelseif_alternative_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'ifthenelseif_alternative_regex';
 
     function __construct() {
@@ -90,7 +90,7 @@ class ifthenelseif_alternative_regex extends analyseur_regex {
         }
 
         $regex = new modele_regex('block',$args, $remove);
-        Token::applyRegex($t->getNext(1), 'block', $regex);
+        Cornac_Tokenizeur_Token::applyRegex($t->getNext(1), 'block', $regex);
 
         Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => block (".$this->getTname().")");
         return false; 

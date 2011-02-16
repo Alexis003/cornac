@@ -133,7 +133,7 @@ class analyseur {
         $this->any_token = true;
     }
 
-    public function upgrade(Token $t) {
+    public function upgrade(Cornac_Tokenizeur_Token $t) {
         $token = $t->getToken();
         
         // @note we won't process those one. Just skip it. 

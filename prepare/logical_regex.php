@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class logical_regex extends analyseur_regex {
+class logical_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'logical_regex';
 
     function __construct() {

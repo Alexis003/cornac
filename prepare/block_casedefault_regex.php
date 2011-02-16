@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class block_casedefault_regex extends analyseur_regex {
+class block_casedefault_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'block_casedefault_regex';
 
     function __construct() {

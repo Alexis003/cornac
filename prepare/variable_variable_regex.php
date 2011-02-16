@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class variable_variable_regex extends analyseur_regex {
+class variable_variable_regex extends Cornac_Tokenizeur_Regex {
     protected $tname = 'variable_variable_regex';
 
     function __construct() {

@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class arglist extends token {
+class arglist extends Cornac_Tokenizeur_Token {
     protected $tname = 'arglist';
 
     protected $list = array();
