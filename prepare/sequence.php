@@ -24,13 +24,13 @@ class sequence extends instruction {
         parent::__construct(array());
         
         foreach($expression as $l) {
-            if (get_class($l) == 'sequence') {
+            if ($l->checkClass('sequence')) {
                 $this->elements = array_merge($this->elements, $l->getElements());
-            } elseif (get_class($l) == 'block') {
+            } elseif ($l->checkClass('block')) {
                 $this->elements = array_merge($this->elements, $l->getList());
-            } elseif (get_class($l) == 'codephp') {
+            } elseif ($l->checkClass('codephp')) {
                 $code = $l->getphp_code();
-                if (get_class($code) == 'sequence') {
+                if ($l->checkClass('sequence')) {
                     $this->elements = array_merge($this->elements, $code->getElements());
                 } else {
                     $this->elements[] = $code;

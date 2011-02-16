@@ -24,11 +24,11 @@ class concatenation extends instruction {
         parent::__construct(array());
         
         foreach($list as $l) {
-            if (get_class($l) == 'concatenation') {
+            if ($l->checkClass('concatenation')) {
                 $this->list = array_merge($this->list, $l->getList());
-            } elseif (get_class($l) == 'sequence') {
+            } elseif ($l->checkClass('sequence')) {
                 $this->list = array_merge($this->list, $l->getElements());
-            } elseif (get_class($l) == 'block') {
+            } elseif ($l->checkClass('block')) {
                 $this->list = array_merge($this->list, $l->getList());
             } else {
                 $this->list[] = $l;

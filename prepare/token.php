@@ -470,7 +470,7 @@ class Token {
     }
 
     public function checkFunction() {
-        if (get_class($this) == '_nsname') {
+        if ($this->checkClass('_nsname')) {
         // @note name with namespace
             return true; 
         } else {
@@ -509,10 +509,10 @@ class Token {
                                          T_OBJECT_CAST, T_UNSET_CAST, T_ELSE))) {
             return true;
         }
-        if (in_array(get_class($this), array('rawtext','sequence','ifthen',
-                                             'functioncall','affectation',
-                                             'parenthesis','block','sequence',
-                                             '_global','_use','_static'))) {
+        if ($this->checkClass(array('rawtext','sequence','ifthen',
+                                    'functioncall','affectation',
+                                    'parenthesis','block','sequence',
+                                    '_global','_use','_static'))) {
             return true;
         }
         return false;
@@ -539,7 +539,7 @@ class Token {
         if (in_array($this->token, array(T_CASE,T_DEFAULT))) {
             return true;
         }
-        if (in_array(get_class($this), array('_case'))) {
+        if ($this->checkClass('_case')) {
             return true;
         }
         return false;

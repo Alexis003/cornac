@@ -25,17 +25,17 @@ class _new extends instruction {
         parent::__construct(array());
         
         $constructor = $expression[0];
-        if (get_class($constructor) == 'functioncall') {
+        if ($constructor->checkClass('functioncall')) {
             $this->class = $constructor->getFunction();
             $this->args = $constructor->getargs();
-        } elseif (get_class($constructor) == 'method') {
+        } elseif ($constructor->checkClass('method')) {
             $this->class = $constructor;
             if (!isset($expression[1])) {
                 $this->args = new arglist();
             } else {
                 $this->args = $expression[1];
             }
-        } elseif ($constructor->checkClass(array('_constant'))) {
+        } elseif ($constructor->checkClass('_constant')) {
             $this->class =  new _classname_($constructor->getName());
             if (!isset($expression[1])) {
                 $this->args = new arglist();

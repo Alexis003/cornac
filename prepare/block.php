@@ -28,9 +28,9 @@ class block extends instruction {
         }
 
         foreach($expression as $l) {
-            if (get_class($l) == 'sequence') {
+            if ($l->checkClass('sequence')) {
                 $this->list = array_merge($this->list, $l->getElements());
-            } elseif (get_class($l) == 'block') {
+            } elseif ($l->checkClass('block')) {
                 $this->list = array_merge($this->list, $l->getList());
             } else {
                 $this->list[] = $l;
