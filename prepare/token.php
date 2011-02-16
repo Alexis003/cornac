@@ -27,7 +27,9 @@ class Token {
     protected $code = null;
     protected $line = -1;
     protected $id = null;
-    
+
+    protected $tname = 'token';
+
     static private $test_id = null;
 
 // configuration @_
@@ -37,6 +39,10 @@ class Token {
     
     public function __construct() {
 
+    }
+
+    public function getTname() {
+        return $this->tname;
     }
 
     function __call($method, $args) {
@@ -445,6 +451,13 @@ class Token {
     }
     
     public function checkClass($classes) {
+        if (isset($this->tname) && $this->tname != 'token') {
+            if (!is_array($classes)) {
+                return $this->tname == $classes;
+            } else {
+                return in_array($this->tname, $classes);
+            }
+        }
         if (!is_array($classes)) {
             return get_class($this) == $classes;
         } else {
