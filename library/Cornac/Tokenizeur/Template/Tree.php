@@ -544,7 +544,7 @@ class Cornac_Tokenizeur_Template_Tree extends Cornac_Tokenizeur_Template {
     }
     
     function display_Token($node, $level) {
-        print str_repeat('  ', $level).get_class($node)." ".$node->getCode()." (default display)\n";
+        print str_repeat('  ', $level).$node->getTname()." ".$node->getCode()." (default display)\n";
     }
 
 }
