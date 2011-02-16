@@ -17,7 +17,8 @@
    +----------------------------------------------------------------------+
  */
 
-class _new extends instruction {
+class Cornac_Tokenizeur_Token_New extends instruction {
+    protected $tname = '_new';
     protected $class = null;
     protected $expression = null;
     
@@ -64,7 +65,7 @@ class _new extends instruction {
     }
 
     function __toString() {
-        return __CLASS__." ".$this->expression;
+        return $this->tname." ".$this->expression;
     }
 
     function getClass() {
