@@ -50,7 +50,11 @@ class Cornac_Tokenizeur_Template_Tree extends Cornac_Tokenizeur_Template {
             print "Fatal : attempting to display a non-object in ".__METHOD__."\n\n";
             die(__METHOD__."\n");
         }
+        
         $class = get_class($node);
+        if (substr($class, 0, 7) == 'Cornac_') {
+            $class = $node->getTname();
+        }
         $method = "display_$class";
         
         if (method_exists($this, $method)) {
