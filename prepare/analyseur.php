@@ -55,7 +55,7 @@ class analyseur {
                                   'comparison',
                                   'method',
                                   'method_static',
-                                  '_new',
+                                  'Cornac_Tokenizeur_Token_New', // @removing '_new',
                                   '_foreach',
                                   '_while',
                                   '_dowhile',
@@ -178,7 +178,7 @@ class analyseur {
                     $this->rates[] = $name;
                     continue;
                 }
-    
+                
                 $return = analyseur::applyRegex($t, $this->tokens[$name], $regex);
                 if ($return->getLine() == -1) { 
                     print $t->getLine()."\n"; 
