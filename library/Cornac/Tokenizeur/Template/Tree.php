@@ -51,16 +51,13 @@ class Cornac_Tokenizeur_Template_Tree extends Cornac_Tokenizeur_Template {
             die(__METHOD__."\n");
         }
         
-        $class = get_class($node);
-        if (substr($class, 0, 7) == 'Cornac_') {
-            $class = $node->getTname();
-        }
+        $class = $node->getTname();
         $method = "display_$class";
         
         if (method_exists($this, $method)) {
             $this->$method($node, $level + 1);
         } else {
-            print "Displaying ".__CLASS__." in '".$method."'\n";
+            print "Unknown method  ".$method." for class '".get_class($node)."'\n";
             die(__METHOD__."\n");
         }
 

@@ -37,9 +37,9 @@ class Cornac_Tokenizeur_Template_Stats extends Cornac_Tokenizeur_Template {
         }
         
         if (!is_object($node)) {
-            print "Fatal : attemptint to display a non-object in ".__METHOD__."\n\n";
+            print "Fatal : attempting to display a non-object in ".__METHOD__."\n\n";
         }
-        $class = get_class($node);
+        $class = $node->getTname();
         $method = "display_$class";
 
         if (method_exists($this, $method)) {

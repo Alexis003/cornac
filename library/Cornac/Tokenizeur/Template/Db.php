@@ -54,7 +54,8 @@ class Cornac_Tokenizeur_Template_Db extends Cornac_Tokenizeur_Template {
             print "Attention, node $node is not an (".gettype($node).")\n";
             die(__METHOD__."\n");
         }
-        $class = get_class($node);
+
+        $class = $node->getTname();
         if (substr($class, -1) == '_') {
             $method = "display_processedToken";
         } else {

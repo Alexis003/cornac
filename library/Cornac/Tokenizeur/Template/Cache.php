@@ -103,7 +103,8 @@ class Cornac_Tokenizeur_Template_Cache extends library_Cornac_Tokenizeur_Templat
             print "Fatal, $node is not an object (".gettype($node).")\n";
             die(__METHOD__);
         }
-        $class = get_class($node);
+
+        $class = $node->getTname();
         if (substr($class, -1) == '_') {
             $method = "display_processedToken";
         } else {
