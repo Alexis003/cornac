@@ -242,7 +242,7 @@ class file_processor {
             return false; 
         }
     
-        $root = new Token();
+        $root = new Cornac_Tokenizeur_Token();
         $suite = null;
         $ligne = 0;
 
@@ -251,7 +251,7 @@ class file_processor {
         foreach($raw as $id => $b) {
             // @note actually removing all coments and whitespace even before turning them into token
             if (is_array($b) && in_array($b[0], array(T_COMMENT, T_DOC_COMMENT, T_WHITESPACE))) { continue; }
-            $t = new Token();
+            $t = new Cornac_Tokenizeur_Token();
     
             $t->setId($id);
             if (is_array($b)) {
@@ -300,7 +300,7 @@ class file_processor {
             $nb_tokens_courant = 0;
             do {
                 $t = $analyseur->upgrade($t);
-                if (get_class($t) == 'Token') { $nb_tokens_courant++; }
+                if (get_class($t) == 'Cornac_Tokenizeur_Token') { $nb_tokens_courant++; }
                 if ($t->getId() == 0 && $t != $root) {
                     Cornac_Log::getInstance('tokenizer')->log("New root : ".$t."");
                     $root = $t;
