@@ -27,7 +27,7 @@ class bitshift extends instruction {
         parent::__construct(array());
 
         $this->left = $expression[0];
-        $this->operator = $this->makeProcessedToken('_bitshift_', $expression[1]);
+        $this->operator = $this->makeProcessed('_bitshift_', $expression[1]);
         $this->right = $expression[2];
     }
 

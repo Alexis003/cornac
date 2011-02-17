@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _final_ extends processedToken {
+class _final_ extends Cornac_Tokenizeur_Token_Processed {
     protected $tname = '_final_';
 }
 

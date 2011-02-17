@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _goto_ extends processedToken {
+class _goto_ extends Cornac_Tokenizeur_Token_Processed {
     protected $tname = '_goto_';
 }
 

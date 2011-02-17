@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _ppp_ extends processedToken {
+class _ppp_ extends Cornac_Tokenizeur_Token_Processed {
     protected $tname = '_ppp_';
 }
 

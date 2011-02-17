@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _empty_ extends processedToken {
+class _empty_ extends Cornac_Tokenizeur_Token_Processed {
     protected $tname = '_empty_';
 }
 

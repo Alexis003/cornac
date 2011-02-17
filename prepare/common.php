@@ -23,7 +23,7 @@ unset($includes['prepare/common.php']);
 unset($includes['prepare/analyseur.php']);
 
 $firsts = array(
-                'prepare/processedToken.php',
+//                'prepare/Cornac_Tokenizeur_Token_Processed.php',
                 'prepare/instruction.php',
                 'prepare/variable.php',
                 );

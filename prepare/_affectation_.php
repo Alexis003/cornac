@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _affectation_ extends processedToken {
+class _affectation_ extends Cornac_Tokenizeur_Token_Processed {
     protected $tname = '_affectation_';
 }
 

@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _cast_ extends processedToken {
+class _cast_ extends Cornac_Tokenizeur_Token_Processed {
     protected $tname = '_cast_';
 }
 

@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _nsname_ extends processedToken {
+class _nsname_ extends Cornac_Tokenizeur_Token_Processed {
     protected $tname = '_nsname_';
 }
 

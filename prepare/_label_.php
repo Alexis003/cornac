@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _label_ extends processedToken {
+class _label_ extends Cornac_Tokenizeur_Token_Processed {
     protected $tname = '_label_';
 }
 

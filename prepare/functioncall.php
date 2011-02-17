@@ -30,7 +30,7 @@ class functioncall extends instruction {
         }
         
         if ($expression[0]->checkClass('Token')) {
-            $this->function = $this->makeProcessedToken('_functionname_', $expression[0]);
+            $this->function = $this->makeProcessed('_functionname_', $expression[0]);
         } else {
             $this->function = $expression[0];
         }

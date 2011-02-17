@@ -32,7 +32,7 @@ class affectation extends instruction {
 
         $this->left = $expression[0];
         $expression[1]->setLine($expression[0]->getLine());
-        $this->operator = $this->makeProcessedToken('_affectation_', $expression[1]);
+        $this->operator = $this->makeProcessed('_affectation_', $expression[1]);
         $this->right = $expression[2];
         $this->setLine($this->left->getLine());
     }

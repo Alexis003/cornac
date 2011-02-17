@@ -52,7 +52,7 @@ class Cornac_Tokenizeur_Token_New extends instruction {
                 $this->args = $expression[1];
             }
         } elseif ($constructor->checkToken(T_STATIC) ) {
-            $this->class = $this->makeProcessedToken('_static_', $constructor);
+            $this->class = $this->makeProcessed('_static_', $constructor);
 
             if (!isset($expression[1])) {
                 $this->args = new arglist();

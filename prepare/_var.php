@@ -30,59 +30,59 @@ class _var extends instruction {
         switch($expression[0]->getToken()) {
             case T_VAR: 
                 $expression[0]->setCode('var');
-                $this->_visibility = $this->makeProcessedToken('_ppp_', $expression[0]);
+                $this->_visibility = $this->makeProcessed('_ppp_', $expression[0]);
                 break 1;
 
             case T_VAR + T_STATIC : 
                 $expression[0]->setCode('var');
                 $expression[0]->setToken(T_VAR);
-                $this->_visibility = $this->makeProcessedToken('_ppp_', $expression[0]);
+                $this->_visibility = $this->makeProcessed('_ppp_', $expression[0]);
                 $expression[0]->setCode('static');
                 $expression[0]->setToken(T_STATIC);
-                $this->_static = $this->makeProcessedToken('_static_', $expression[0]);
+                $this->_static = $this->makeProcessed('_static_', $expression[0]);
                 break 1;
 
             case T_PUBLIC: 
                 $expression[0]->setCode('public');
-                $this->_visibility = $this->makeProcessedToken('_ppp_', $expression[0]);
+                $this->_visibility = $this->makeProcessed('_ppp_', $expression[0]);
                 break 1;
 
             case T_PUBLIC + T_STATIC : 
                 $expression[0]->setCode('public');
                 $expression[0]->setToken(T_PUBLIC);
-                $this->_visibility = $this->makeProcessedToken('_ppp_', $expression[0]);
+                $this->_visibility = $this->makeProcessed('_ppp_', $expression[0]);
                 $expression[0]->setCode('static');
                 $expression[0]->setToken(T_STATIC);
-                $this->_static = $this->makeProcessedToken('_static_', $expression[0]);
+                $this->_static = $this->makeProcessed('_static_', $expression[0]);
                 break 1;
 
             case T_PROTECTED: 
                 $expression[0]->setCode('protected');
-                $this->_visibility = $this->makeProcessedToken('_ppp_', $expression[0]);
+                $this->_visibility = $this->makeProcessed('_ppp_', $expression[0]);
                 break 1;
 
             case T_PROTECTED + T_STATIC : 
                 $expression[0]->setCode('protected');
                 $expression[0]->setToken(T_PROTECTED);
-                $this->_visibility = $this->makeProcessedToken('_ppp_', $expression[0]);
+                $this->_visibility = $this->makeProcessed('_ppp_', $expression[0]);
                 $expression[0]->setCode('static');
                 $expression[0]->setToken(T_STATIC);
-                $this->_static = $this->makeProcessedToken('_static_', $expression[0]);
+                $this->_static = $this->makeProcessed('_static_', $expression[0]);
                 $this->setToken(T_PROTECTED);
                 break 1;
 
             case T_PRIVATE: 
                 $expression[0]->setCode('private');
-                $this->_visibility = $this->makeProcessedToken('_ppp_', $expression[0]);
+                $this->_visibility = $this->makeProcessed('_ppp_', $expression[0]);
                 break 1;
 
             case T_PRIVATE + T_STATIC : 
                 $expression[0]->setCode('private');
                 $expression[0]->setToken(T_PRIVATE);
-                $this->_visibility = $this->makeProcessedToken('_ppp_', $expression[0]);
+                $this->_visibility = $this->makeProcessed('_ppp_', $expression[0]);
                 $expression[0]->setCode('static');
                 $expression[0]->setToken(T_STATIC);
-                $this->_static = $this->makeProcessedToken('_static_', $expression[0]);
+                $this->_static = $this->makeProcessed('_static_', $expression[0]);
                 break 1;
 
             default : 
@@ -95,9 +95,9 @@ class _var extends instruction {
         /*
         while ($expression[0]->checkToken(array(T_VAR, T_PRIVATE, T_PROTECTED, T_PUBLIC, T_STATIC))) {
             if ($expression[0]->checkToken(array(T_VAR, T_PRIVATE, T_PROTECTED, T_PUBLIC))) {
-                $this->_visibility = $this->makeProcessedToken('_ppp_', $expression[0]);
+                $this->_visibility = $this->makeProcessed('_ppp_', $expression[0]);
             } elseif ($expression[0]->checkToken(T_STATIC)) {
-                $this->_static = $this->makeProcessedToken('_static_', $expression[0]);
+                $this->_static = $this->makeProcessed('_static_', $expression[0]);
             } else {
                 $this->stopOnError("Unknown class attribute : ".count($expression)." in ".__METHOD__);
             }

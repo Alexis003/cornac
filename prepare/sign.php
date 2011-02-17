@@ -25,7 +25,7 @@ class sign extends instruction {
     function __construct($expression = null) {
         parent::__construct(array());
 
-        $this->sign = $this->makeProcessedToken('_sign_', $expression[0]);
+        $this->sign = $this->makeProcessed('_sign_', $expression[0]);
         $this->expression = $expression[1];
     }
 

@@ -283,7 +283,7 @@ class Cornac_Tokenizeur_Token {
         return $t;
     }
 
-    function makeProcessedToken($class, $token) {
+    function makeProcessed($class, $token) {
         $clone = clone $token;
         
         if (!in_array($class, array('_extends_',

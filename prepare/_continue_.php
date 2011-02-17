@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _continue_ extends processedToken {
+class _continue_ extends Cornac_Tokenizeur_Token_Processed {
     protected $tname = '_continue_';
 }
 

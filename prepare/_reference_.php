@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _reference_ extends processedToken {
+class _reference_ extends Cornac_Tokenizeur_Token_Processed {
     protected $tname = '_reference_';
 }
 

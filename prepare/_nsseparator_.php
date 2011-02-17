@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _nsseparator_ extends processedToken {
+class _nsseparator_ extends Cornac_Tokenizeur_Token_Processed {
     protected $tname = '_nsseparator_';
 }
 

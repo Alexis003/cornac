@@ -24,7 +24,7 @@ class label extends instruction {
     function __construct($expression) {
         parent::__construct(array());
         
-        $this->name = $this->makeProcessedToken('_label_', $expression[0]);
+        $this->name = $this->makeProcessed('_label_', $expression[0]);
     }
 
     function __toString() {

@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _catch_ extends processedToken {
+class _catch_ extends Cornac_Tokenizeur_Token_Processed {
     protected $tname = '_catch_';
 }
 

@@ -34,14 +34,14 @@ class _function extends instruction {
         while($expression[0]->checkToken(array(T_PUBLIC, T_PROTECTED, T_PRIVATE, T_STATIC, T_ABSTRACT, T_FINAL))) {
 
             if ($expression[0]->checkToken(array(T_PUBLIC, T_PROTECTED, T_PRIVATE))) {
-                $this->_visibility = $this->makeProcessedToken('_ppp_', $expression[0]);
+                $this->_visibility = $this->makeProcessed('_ppp_', $expression[0]);
                 unset($expression[0]);
                 $expression = array_values($expression);
                 continue;
             }
 
             if ($expression[0]->checkToken(T_STATIC)) {
-                $this->_static = $this->makeProcessedToken('_static_', $expression[0]);
+                $this->_static = $this->makeProcessed('_static_', $expression[0]);
 
                 unset($expression[0]);
                 $expression = array_values($expression);
@@ -49,13 +49,13 @@ class _function extends instruction {
             }
 
             if ($expression[0]->checkToken(T_FINAL)) {
-                $this->_abstract = $this->makeProcessedToken('_final_', $expression[0]);
+                $this->_abstract = $this->makeProcessed('_final_', $expression[0]);
 
                 unset($expression[0]);
                 $expression = array_values($expression);
                 continue;
             } elseif ($expression[0]->checkToken(T_ABSTRACT)) {
-                $this->_abstract = $this->makeProcessedToken('_abstract_', $expression[0]);
+                $this->_abstract = $this->makeProcessed('_abstract_', $expression[0]);
 
                 unset($expression[0]);
                 $expression = array_values($expression);
@@ -74,7 +74,7 @@ class _function extends instruction {
             } elseif ($e->checkClass('literals')) {
                 $this->name = $e;
             } elseif ($e->checkOperator('&')) {
-                $this->reference = $this->makeProcessedToken('_reference_', $e);
+                $this->reference = $this->makeProcessed('_reference_', $e);
             } elseif ($e->checkCode(';')) {
                 $this->block = new block();
             } else {

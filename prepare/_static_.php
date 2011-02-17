@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _static_ extends processedToken {
+class _static_ extends Cornac_Tokenizeur_Token_Processed {
     protected $tname = '_static_';
 }
 

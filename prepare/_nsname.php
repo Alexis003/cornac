@@ -28,11 +28,11 @@ class _nsname extends instruction {
         
         foreach($expression as $e) {
             if ($e->checkToken(T_NS_SEPARATOR)) {
-                $f = $this->makeProcessedToken('_nsseparator_',$e);
+                $f = $this->makeProcessed('_nsseparator_',$e);
                 $this->namespace[] = $f;
                 $f->setCode('\\');
             } elseif ($e->checkClass('Token')) {
-                $this->namespace[] = $this->makeProcessedToken('_nsname_', $e);
+                $this->namespace[] = $this->makeProcessed('_nsname_', $e);
             } else {
                 $this->namespace[] = $e;
             }

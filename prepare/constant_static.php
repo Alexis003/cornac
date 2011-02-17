@@ -27,7 +27,7 @@ class constant_static extends Cornac_Tokenizeur_Token {
         
         if (is_array($expression)) {
             if ($expression[0]->checkClass('Token')) {
-                $this->class = $this->makeProcessedToken('_classname_', $expression[0]);
+                $this->class = $this->makeProcessed('_classname_', $expression[0]);
             } else {
                 $this->class = $expression[0];
             }

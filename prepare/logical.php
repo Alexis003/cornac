@@ -28,7 +28,7 @@ class logical extends instruction {
         
         if (is_array($expression)) {
             $this->left = $expression[0];
-            $this->operator = $this->makeProcessedToken('_logical_', $expression[1]);
+            $this->operator = $this->makeProcessed('_logical_', $expression[1]);
             $this->right = $expression[2];
         } else {
             $this->stopOnError("Must receive an array as argument : ".count($expression)." received\n");

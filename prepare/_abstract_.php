@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _abstract_ extends processedToken {
+class _abstract_ extends Cornac_Tokenizeur_Token_Processed {
     protected $tname = '_abstract_';
 }
 

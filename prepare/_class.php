@@ -31,27 +31,27 @@ class _class extends instruction {
 
         $pos = 0;
         if ($expression[$pos]->checkToken(T_ABSTRACT)) {
-            $this->_abstract = $this->makeProcessedToken('_abstract_',$expression[$pos]);
+            $this->_abstract = $this->makeProcessed('_abstract_',$expression[$pos]);
             $pos += 1;
         } elseif ($expression[$pos]->checkToken(T_FINAL)) {
-            $this->_abstract = $this->makeProcessedToken('_final_',$expression[$pos]);
+            $this->_abstract = $this->makeProcessed('_final_',$expression[$pos]);
             $pos += 1;
         }
 
-        $this->name = $this->makeProcessedToken('_classname_',$expression[$pos]);
+        $this->name = $this->makeProcessed('_classname_',$expression[$pos]);
         $pos ++;
         
         if ($expression[$pos]->checkToken(T_EXTENDS)) {
-            $this->extends = $this->makeProcessedToken('_extends_',$expression[$pos + 1]);
+            $this->extends = $this->makeProcessed('_extends_',$expression[$pos + 1]);
             $pos += 2;
         }
 
         if ($expression[$pos]->checkToken(T_IMPLEMENTS)) {
-            $this->implements[] = $this->makeProcessedToken('_implements_',$expression[$pos + 1]);
+            $this->implements[] = $this->makeProcessed('_implements_',$expression[$pos + 1]);
             $pos += 2;
             
             while ($expression[$pos]->checkCode(',')) {
-                $this->implements[] = $this->makeProcessedToken('_implements_',$expression[$pos + 1]);
+                $this->implements[] = $this->makeProcessed('_implements_',$expression[$pos + 1]);
                 $pos += 2;
             }
         }

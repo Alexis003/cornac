@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _comparison_ extends processedToken {
+class _comparison_ extends Cornac_Tokenizeur_Token_Processed {
     protected $tname = '_comparison_';
 }
 

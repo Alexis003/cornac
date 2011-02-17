@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _postplusplus_ extends processedToken {
+class _postplusplus_ extends Cornac_Tokenizeur_Token_Processed {
     protected $tname = '_postplusplus_';
 }
 
