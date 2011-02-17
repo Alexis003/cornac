@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class xxxxxx extends instruction {
+class xxxxxx extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = 'xxxxxx';
     protected $condition = null;
     protected $then = null;
