@@ -25,16 +25,9 @@ class constant_class extends Cornac_Tokenizeur_Token {
     function __construct($expression) {
         parent::__construct();
 
-/*        
-        if (count($expression) == 2) {
-            $this->name = $expression[0];
-            $this->constant = $expression[1];
-        } else { 
-        */
-            // @note this is an affectation object. 
-            $this->name = $expression[0]->getLeft();
-            $this->constant = $expression[0]->getRight();
-//        }
+        // @note $expression is an affectation object. 
+        $this->name = $expression[0]->getLeft();
+        $this->constant = $expression[0]->getRight();
     }
 
     function getName() {  
@@ -47,8 +40,6 @@ class constant_class extends Cornac_Tokenizeur_Token {
 
     function neutralise() {
     // @doc already done in affection object 
-//        $this->name->detach();
-//        $this->constant->detach();
     }
 
     function __toString() {
