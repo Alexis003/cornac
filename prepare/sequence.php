@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class sequence extends instruction {
+class sequence extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = 'sequence';
     protected $elements = array();
     

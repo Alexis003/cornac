@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class Cornac_Tokenizeur_Token_New extends instruction {
+class Cornac_Tokenizeur_Token_New extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = '_new';
     protected $class = null;
     protected $expression = null;

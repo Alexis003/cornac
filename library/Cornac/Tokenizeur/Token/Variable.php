@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class variable extends Cornac_Tokenizeur_Token {
+class Cornac_Tokenizeur_Token_Variable extends Cornac_Tokenizeur_Token {
     protected $tname = 'variable';
     protected $name = null;
 

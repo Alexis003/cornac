@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class affectation extends instruction {
+class affectation extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = 'affectation';
     protected $left           = null;
     protected $operator       = null;

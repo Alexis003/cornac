@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class codephp extends instruction {
+class codephp extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = 'codephp';
     private $php_code = array();
     

@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _try extends instruction {
+class _try extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = '_try';
     protected $block = null;
     protected $catch = null;

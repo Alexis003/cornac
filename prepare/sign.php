@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class sign extends instruction {
+class sign extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = 'sign';
     protected $sign = null;
     protected $expression = null;

@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class concatenation extends instruction {
+class concatenation extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = 'concatenation';
     protected $list = array();
     

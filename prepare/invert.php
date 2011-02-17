@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class invert extends instruction {
+class invert extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = 'invert';
     protected $expression = null;
     

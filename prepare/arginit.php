@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class arginit extends instruction {
+class arginit extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = 'arginit';
     protected $variable = array();
     protected $value = null;

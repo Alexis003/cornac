@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class logical extends instruction {
+class logical extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = 'logical';
     protected $left = null;
     protected $operator = null;

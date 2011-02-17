@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class label extends instruction {
+class label extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = 'label';
     protected $name = null;
     

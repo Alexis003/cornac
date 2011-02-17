@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _constant extends instruction {
+class _constant extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = '_constant';
     
     function __construct() {

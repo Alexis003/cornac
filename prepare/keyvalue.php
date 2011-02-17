@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class keyvalue extends instruction {
+class keyvalue extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = 'keyvalue';
     protected $key = null;
     protected $value = null;

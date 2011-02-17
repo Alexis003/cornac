@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class method_static extends instruction {
+class method_static extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = 'method_static';
     protected $class = null;
     protected $method = null;

@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class comparison extends instruction {
+class comparison extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = 'comparison';
     protected $left = null;
     protected $operator = null;

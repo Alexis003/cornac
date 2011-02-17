@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class block extends instruction {
+class block extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = 'block';
     protected $list = array();
     

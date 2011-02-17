@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _switch extends instruction {
+class _switch extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = '_switch';
     protected $block = null;
     protected $condition = null;

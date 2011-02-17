@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class ternaryop extends instruction {
+class ternaryop extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = 'ternaryop';
     protected $condition = null;
     protected $then = null;

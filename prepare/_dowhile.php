@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _dowhile extends instruction {
+class _dowhile extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = '_dowhile';
     protected $block = null;
     protected $condition = null;

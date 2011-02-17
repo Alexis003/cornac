@@ -18,7 +18,7 @@ class Cornac_Autoload {
         if (file_exists($file)) {
             include($file);
         } else { 
-            print $file." not found";
+            // @note no display here, please. May be some error handling?
         }
     }
 }

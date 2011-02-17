@@ -28,7 +28,7 @@ class analyseur {
         $this->structures = array(
                                   'ifthen',
                                   'literals', 
-                                  'variable', 
+                                  'Cornac_Tokenizeur_Token_Variable', //'variable', 
                                   '_array', 
                                   'rawtext', 
                                   'parenthesis', 

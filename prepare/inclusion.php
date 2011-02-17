@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class inclusion extends instruction {
+class inclusion extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = 'inclusion';
     protected $inclusion;
     

@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class postplusplus extends instruction {
+class postplusplus extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = 'postplusplus';
     protected $variable = null;
     protected $operator = null;

@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class method extends instruction {
+class method extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = 'method';
     private $object = null;
     private $method = null;

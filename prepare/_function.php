@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _function extends instruction {
+class _function extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = '_function';
     protected $name = '';
     protected $_abstract = null;

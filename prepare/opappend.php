@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class opappend extends instruction {
+class opappend extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = 'opappend';
     protected $variable = null;
     

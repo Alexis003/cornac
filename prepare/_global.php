@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _global extends instruction {
+class _global extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = '_global';
     protected $variables = array();
 

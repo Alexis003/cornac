@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class noscream extends instruction {
+class noscream extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = 'noscream';
     protected $expression = null;
     

@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _continue extends instruction {
+class _continue extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = '_continue';
     protected $levels = null;
     

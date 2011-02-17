@@ -57,7 +57,7 @@ class Cornac_Tokenizeur_Template_Tree extends Cornac_Tokenizeur_Template {
         if (method_exists($this, $method)) {
             $this->$method($node, $level + 1);
         } else {
-            print "Unknown method  ".$method." for class '".get_class($node)."'\n";
+            print "Unknown method  ".$method." for class '".$node->getTname()."'\n";
             die(__METHOD__."\n");
         }
 
@@ -81,7 +81,7 @@ class Cornac_Tokenizeur_Template_Tree extends Cornac_Tokenizeur_Template {
     }
 
     function display_arglist($node, $level) {
-        print str_repeat('  ', $level).get_class($node)." \n";
+        print str_repeat('  ', $level).$node->getTname()." \n";
         $elements = $node->getList();
         if (count($elements) == 0) {
             print str_repeat('  ', $level)."Empty arglist\n";
@@ -96,7 +96,7 @@ class Cornac_Tokenizeur_Template_Tree extends Cornac_Tokenizeur_Template {
     }
 
     function display_affectation($node, $level) {
-        print str_repeat('  ', $level).get_class($node)." \n";
+        print str_repeat('  ', $level).$node->getTname()." \n";
         print str_repeat('  ', $level)."left : \n";
         $this->display($node->getLeft(), $level + 1);
         print str_repeat('  ', $level).$node->getOperator()." \n";
@@ -105,13 +105,13 @@ class Cornac_Tokenizeur_Template_Tree extends Cornac_Tokenizeur_Template {
     }
 
     function display__array($node, $level) {
-        print str_repeat('  ', $level).get_class($node)."\n";
+        print str_repeat('  ', $level).$node->getTname()."\n";
         $this->display($node->getVariable(), $level + 1);
         $this->display($node->getIndex(), $level + 1);
     }
 
     function display_block($node, $level) {
-        print str_repeat('  ', $level).get_class($node)." \n";
+        print str_repeat('  ', $level).$node->getTname()." \n";
         $elements = $node->getList();
         foreach($elements as $id => $e) {
             print str_repeat('  ', $level)."$id : \n";
@@ -120,24 +120,24 @@ class Cornac_Tokenizeur_Template_Tree extends Cornac_Tokenizeur_Template {
     }
 
     function display__break($node, $level) {
-         print str_repeat('  ', $level).get_class($node)." \n";
+         print str_repeat('  ', $level).$node->getTname()." \n";
          print str_repeat('  ', $level)."Number : \"".$node->getLevels()."\"\n";    
     }
 
     function display__case($node, $level) {
-        print str_repeat('  ', $level).get_class($node)." \n";
+        print str_repeat('  ', $level).$node->getTname()." \n";
         $this->display($node->getCondition(), $level + 1);
         $this->display($node->getBlock(), $level + 1);
     }
 
     function display_cast($node, $level) {
-        print str_repeat('  ', $level).get_class($node)." (".$node->getCast().")".$node->getExpression()."\n";
+        print str_repeat('  ', $level).$node->getTname()." (".$node->getCast().")".$node->getExpression()."\n";
         $this->display($node->getExpression(), $level + 1);
     }
     
 
     function display__catch($node, $level) {
-        print str_repeat('  ', $level).get_class($node)." (".$node->getException().")".$node->getVariable()."\n";
+        print str_repeat('  ', $level).$node->getTname()." (".$node->getException().")".$node->getVariable()."\n";
          $this->display($node->getBlock(), $level + 1);
     }
 
@@ -156,7 +156,7 @@ class Cornac_Tokenizeur_Template_Tree extends Cornac_Tokenizeur_Template {
     }
 
     function display__clone($node, $level) {
-        print str_repeat('  ', $level).get_class($node)." \n";
+        print str_repeat('  ', $level).$node->getTname()." \n";
         $this->display($node->getExpression(), $level + 1);
     }
 
@@ -174,7 +174,7 @@ class Cornac_Tokenizeur_Template_Tree extends Cornac_Tokenizeur_Template {
     }
 
     function display_comparison($node, $level) {
-         print str_repeat('  ', $level).get_class($node)." \n";
+         print str_repeat('  ', $level).$node->getTname()." \n";
          print str_repeat('  ', $level)."left : \n";
          $this->display($node->getLeft(), $level + 1);
          print str_repeat('  ', $level)."operateur : ".$node->getOperator()."\n";
@@ -183,11 +183,11 @@ class Cornac_Tokenizeur_Template_Tree extends Cornac_Tokenizeur_Template {
     }
 
     function display__continue($node, $level) {
-         print str_repeat('  ', $level).get_class($node).$node->getLevels()." \n";
+         print str_repeat('  ', $level).$node->getTname().$node->getLevels()." \n";
     }
     
     function display_ternaryop($node, $level) {
-        print str_repeat('  ', $level).get_class($node)." ".$node->getCode()."\n";
+        print str_repeat('  ', $level).$node->getTname()." ".$node->getCode()."\n";
         print str_repeat('  ', $level).$node->getCondition();
         print " ? ".$node->getThen()." : ".$node->getElse()."\n";
         $this->display($node->getCondition(), $level + 1);
@@ -196,13 +196,13 @@ class Cornac_Tokenizeur_Template_Tree extends Cornac_Tokenizeur_Template {
     }
 
     function display_codephp($node, $level) {
-        print str_repeat('  ', $level).get_class($node)." ".$node->getCode()."\n";
+        print str_repeat('  ', $level).$node->getTname()." ".$node->getCode()."\n";
         print str_repeat('  ', $level)."code : \n";
         $this->display($node->getphp_code(), $level + 1);
     }
 
     function display_concatenation($node, $level) {
-        print str_repeat('  ', $level).get_class($node)." \n";
+        print str_repeat('  ', $level).$node->getTname()." \n";
         $elements = $node->getList();
         foreach($elements as $id => $e) {
             print str_repeat('  ', $level)."$id : \n";
@@ -211,22 +211,22 @@ class Cornac_Tokenizeur_Template_Tree extends Cornac_Tokenizeur_Template {
     }
 
     function display__constant($node, $level) {
-         print str_repeat('  ', $level).get_class($node)." (";
+         print str_repeat('  ', $level).$node->getTname()." (";
          print str_repeat('  ', $level)."".$node->getName()." )\n";    
     }
 
     function display_constant_static($node, $level) {
-         print str_repeat('  ', $level).get_class($node)." (";
+         print str_repeat('  ', $level).$node->getTname()." (";
          print str_repeat('  ', $level)."".$node->getClass()."::".$node->getConstant()." )\n";    
     }
 
     function display_constant_class($node, $level) {
-         print str_repeat('  ', $level).get_class($node)." ";
+         print str_repeat('  ', $level).$node->getTname()." ";
          print str_repeat('  ', $level)."".$node->getName()." = ".$node->getConstant()." \n";    
     }
 
     function display_bitshift($node, $level) {
-         print str_repeat('  ', $level).get_class($node)." \n";
+         print str_repeat('  ', $level).$node->getTname()." \n";
          print str_repeat('  ', $level)."left : \n";
          $this->display($node->getLeft(), $level + 1);
          print str_repeat('  ', $level)."operation : ".$node->getOperator()."\n";
@@ -235,7 +235,7 @@ class Cornac_Tokenizeur_Template_Tree extends Cornac_Tokenizeur_Template {
     }
 
     function display__declare($node, $level) {
-         print str_repeat('  ', $level).get_class($node)." \n";
+         print str_repeat('  ', $level).$node->getTname()." \n";
          print str_repeat('  ', $level + 1).' ticks = '.$node->getTicks()."\n";
          print str_repeat('  ', $level + 1).' encoding = '.$node->getEncoding()."\n";
          $n = $node->getBlock();
@@ -245,7 +245,7 @@ class Cornac_Tokenizeur_Template_Tree extends Cornac_Tokenizeur_Template {
     }
     
     function display__default($node, $level) {
-        print str_repeat('  ', $level).get_class($node)." \n";
+        print str_repeat('  ', $level).$node->getTname()." \n";
         $this->display($node->getBlock(), $level + 1);
     }
 
@@ -254,7 +254,7 @@ class Cornac_Tokenizeur_Template_Tree extends Cornac_Tokenizeur_Template {
     }
 
     function display__for($node, $level) {
-        print str_repeat('  ', $level).get_class($node)." \n";
+        print str_repeat('  ', $level).$node->getTname()." \n";
         print str_repeat('  ', $level)."  Init : ".$node->getInit().";\n";
         print str_repeat('  ', $level)."  End  : ".$node->getEnd().";\n";
         print str_repeat('  ', $level)."  Incr : ".$node->getIncrement().";\n";
@@ -262,7 +262,7 @@ class Cornac_Tokenizeur_Template_Tree extends Cornac_Tokenizeur_Template {
     }
 
     function display__foreach($node, $level) {
-        print str_repeat('  ', $level).get_class($node)." (".$node->getArray()." as ".$node->getKey()." => ".$node->getValue().")\n";
+        print str_repeat('  ', $level).$node->getTname()." (".$node->getArray()." as ".$node->getKey()." => ".$node->getValue().")\n";
          $this->display($node->getBlock(), $level + 1);
     }
 
@@ -272,7 +272,7 @@ class Cornac_Tokenizeur_Template_Tree extends Cornac_Tokenizeur_Template {
     }
 
     function display_functioncall($node, $level) {
-        print str_repeat('  ', $level).get_class($node)." ".$node->getCode()."\n";
+        print str_repeat('  ', $level).$node->getTname()." ".$node->getCode()."\n";
         print str_repeat('  ', $level)."function call : ".$node->getFunction().": \n";
 
         $args = $node->getArgs();
@@ -280,7 +280,7 @@ class Cornac_Tokenizeur_Template_Tree extends Cornac_Tokenizeur_Template {
     }
 
     function display__global($node, $level) {
-        print str_repeat('  ', $level).get_class($node)." \n";
+        print str_repeat('  ', $level).$node->getTname()." \n";
         $elements = $node->getVariables();
         foreach($elements as $id => $e) {
             print str_repeat('  ', $level)."$id : \n";
@@ -293,11 +293,11 @@ class Cornac_Tokenizeur_Template_Tree extends Cornac_Tokenizeur_Template {
     }
 
     function display____halt_compiler($node, $level) {
-        print str_repeat('  ', $level).get_class($node)." \n";
+        print str_repeat('  ', $level).$node->getTname()." \n";
     }
 
     function display_ifthen($node, $level) {
-        print str_repeat('  ', $level).get_class($node)." ".$node->getCode()."\n";
+        print str_repeat('  ', $level).$node->getTname()." ".$node->getCode()."\n";
         $conditions = $node->getCondition();
         $thens = $node->getThen();
         foreach($conditions as $id => $condition) {
@@ -312,14 +312,14 @@ class Cornac_Tokenizeur_Template_Tree extends Cornac_Tokenizeur_Template {
     }
 
     function display_inclusion($node, $level) {
-        print str_repeat('  ', $level).get_class($node)." ".$node->getCode()."\n";
+        print str_repeat('  ', $level).$node->getTname()." ".$node->getCode()."\n";
 
         $inclusion = $node->getInclusion();
         $this->display($inclusion, $level + 1);
     }
 
     function display__interface($node, $level) {
-        print str_repeat('  ', $level).get_class($node)." ".$node->getName()."\n";
+        print str_repeat('  ', $level).$node->getTname()." ".$node->getName()."\n";
         $e = $node->getExtends();
         if (count($e) > 0) {
             print str_repeat('  ', $level).' extends '.join(', ', $e)."\n";
@@ -328,7 +328,7 @@ class Cornac_Tokenizeur_Template_Tree extends Cornac_Tokenizeur_Template {
     }
 
     function display_invert($node, $level) {
-        print str_repeat('  ', $level).get_class($node)." ~\n";
+        print str_repeat('  ', $level).$node->getTname()." ~\n";
         $this->display($node->getExpression(), $level + 1);
     }
 
@@ -337,7 +337,7 @@ class Cornac_Tokenizeur_Template_Tree extends Cornac_Tokenizeur_Template {
     }
 
     function display_logical($node, $level) {
-         print str_repeat('  ', $level).get_class($node)." \n";
+         print str_repeat('  ', $level).$node->getTname()." \n";
          print str_repeat('  ', $level)."left : \n";
          $this->display($node->getLeft(), $level + 1);
          print str_repeat('  ', $level)."operateur : ".$node->getOperator()."\n";
@@ -346,24 +346,24 @@ class Cornac_Tokenizeur_Template_Tree extends Cornac_Tokenizeur_Template {
     }
 
     function display_not($node, $level) {
-        print str_repeat('  ', $level).get_class($node)." ".$node->getCode()."\n";
+        print str_repeat('  ', $level).$node->getTname()." ".$node->getCode()."\n";
          $this->display($node->getExpression(), $level + 1);
     }
 
     function display_literals($node, $level) {
 // @todo add delimiter in the display
-        print str_repeat('  ', $level).get_class($node)." ".$node->getLiteral()."\n";
+        print str_repeat('  ', $level).$node->getTname()." ".$node->getLiteral()."\n";
     }
 
     function display_method($node, $level) {
-        print str_repeat('  ', $level).get_class($node)." ".$node->getObject()."\n";
+        print str_repeat('  ', $level).$node->getTname()." ".$node->getObject()."\n";
         $method = $node->getMethod();
         print str_repeat('  ', $level)."method call : ".$method.": \n";
         $this->display($method, $level + 1);
     }
 
     function display_method_static($node, $level) {
-        print str_repeat('  ', $level).get_class($node)." \n";
+        print str_repeat('  ', $level).$node->getTname()." \n";
         $method = $node->getMethod();
         print str_repeat('  ', $level).$node->getClass()."::".$method.": \n";
         $this->display($method, $level + 1);
@@ -382,7 +382,7 @@ class Cornac_Tokenizeur_Template_Tree extends Cornac_Tokenizeur_Template {
     }
     
     function display_noscream($node, $level) {
-        print str_repeat('  ', $level).get_class($node)." @\n";
+        print str_repeat('  ', $level).$node->getTname()." @\n";
         $this->display($node->getExpression(), $level + 1);
     }
 
@@ -392,7 +392,7 @@ class Cornac_Tokenizeur_Template_Tree extends Cornac_Tokenizeur_Template {
     }
 
     function display_operation($node, $level) {
-         print str_repeat('  ', $level).get_class($node)." \n";
+         print str_repeat('  ', $level).$node->getTname()." \n";
          print str_repeat('  ', $level)."left : \n";
          $this->display($node->getLeft(), $level + 1);
          print str_repeat('  ', $level)."operation : ".$node->getOperation()."\n";
@@ -401,7 +401,7 @@ class Cornac_Tokenizeur_Template_Tree extends Cornac_Tokenizeur_Template {
     }
 
     function display_parenthesis($node, $level) {
-         print str_repeat('  ', $level).get_class($node)." \n";
+         print str_repeat('  ', $level).$node->getTname()." \n";
          print str_repeat('  ', $level)."( \"".$node->getContenu()."\" )\n";    
     }
 
@@ -416,30 +416,30 @@ class Cornac_Tokenizeur_Template_Tree extends Cornac_Tokenizeur_Template {
     }
 
     function display_property($node, $level) {
-        print str_repeat('  ', $level).get_class($node)." ".$node->getObject()."".$node->getProperty()."->\n";
+        print str_repeat('  ', $level).$node->getTname()." ".$node->getObject()."".$node->getProperty()."->\n";
     }
 
     function display_property_static($node, $level) {
-        print str_repeat('  ', $level).get_class($node)." ".$node->getClass()."::".$node->getProperty()."->\n";
+        print str_repeat('  ', $level).$node->getTname()." ".$node->getClass()."::".$node->getProperty()."->\n";
     }
 
     function display_rawtext($node, $level) {
-         print str_repeat('  ', $level).get_class($node)." \n";
+         print str_repeat('  ', $level).$node->getTname()." \n";
          print str_repeat('  ', $level)."Texte : \"".$node->getText()."\"\n";    
     }
 
     function display_reference($node, $level) {
-        print str_repeat('  ', $level).get_class($node)." &\n";
+        print str_repeat('  ', $level).$node->getTname()." &\n";
         $this->display($node->getExpression(), $level + 1);
     }
 
     function display__return($node, $level) {
-        print str_repeat('  ', $level).get_class($node)." \n";
+        print str_repeat('  ', $level).$node->getTname()." \n";
         print str_repeat('  ', $level)."return : \"".$node->getReturn()."\"\n";    
     }
 
     function display_sequence($node, $level) {
-        print str_repeat('  ', $level).get_class($node)." \n";
+        print str_repeat('  ', $level).$node->getTname()." \n";
         $elements = $node->getElements();
         foreach($elements as $id => $e) {
             print str_repeat('  ', $level)."$id : \n";
@@ -448,7 +448,7 @@ class Cornac_Tokenizeur_Template_Tree extends Cornac_Tokenizeur_Template {
     }
 
     function display_shell($node, $level) {
-        print str_repeat('  ', $level).get_class($node)." \n";
+        print str_repeat('  ', $level).$node->getTname()." \n";
         $elements = $node->getExpression();
         foreach($elements as $id => $e) {
             print str_repeat('  ', $level)."$id : \n";
@@ -457,17 +457,17 @@ class Cornac_Tokenizeur_Template_Tree extends Cornac_Tokenizeur_Template {
     }
 
     function display_sign($node, $level) {
-        print str_repeat('  ', $level).get_class($node)." ".$node->getsign().$node->getExpression()."\n";
+        print str_repeat('  ', $level).$node->getTname()." ".$node->getsign().$node->getExpression()."\n";
         $this->display($node->getExpression(), $level + 1);
     }
 
     function display__static($node, $level) {
-         print str_repeat('  ', $level).get_class($node)." \n";
+         print str_repeat('  ', $level).$node->getTname()." \n";
          $this->display($node->getExpression(), $level + 1);
     }
 
     function display__switch($node, $level) {
-        print str_repeat('  ', $level).get_class($node)." \n";
+        print str_repeat('  ', $level).$node->getTname()." \n";
         $this->display($node->getCondition(), $level + 1);
         $this->display($node->getBlock(), $level + 1);
     }
@@ -484,24 +484,24 @@ class Cornac_Tokenizeur_Template_Tree extends Cornac_Tokenizeur_Template {
     }
 
     function display__throw($node, $level) {
-        print str_repeat('  ', $level).get_class($node)." \n";
+        print str_repeat('  ', $level).$node->getTname()." \n";
         $this->display($node->getException(), $level + 1);
     }
 
     function display_processedToken($node, $level) {
-        print get_class($node);
+        print $node->getTname();
     
         print str_repeat('  ', $level).$node->getCode()." \n";
     }
 
     function display_typehint($node, $level) {
-        print str_repeat('  ', $level).get_class($node)."\n";
+        print str_repeat('  ', $level).$node->getTname()."\n";
         $this->display($node->getType(), $level + 1);
         $this->display($node->getName(), $level + 1);
     }
 
     function display__try($node, $level) {
-        print str_repeat('  ', $level).get_class($node)." \n";
+        print str_repeat('  ', $level).$node->getTname()." \n";
         $this->display($node->getBlock(), $level + 1);
         $elements = $node->getCatch();
         foreach($elements as $id => $e) {
@@ -528,17 +528,17 @@ class Cornac_Tokenizeur_Template_Tree extends Cornac_Tokenizeur_Template {
     }
 
     function display_variable($node, $level) {
-        print str_repeat('  ', $level).get_class($node)." ".$node->getName()."\n";
+        print str_repeat('  ', $level).$node->getTname()." ".$node->getName()."\n";
     }
 
     function display__while($node, $level) {
-        print str_repeat('  ', $level).get_class($node)." \n";
+        print str_repeat('  ', $level).$node->getTname()." \n";
         $this->display($node->getCondition(), $level + 1);
         $this->display($node->getBlock(), $level + 1);
     }
 
     function display__dowhile($node, $level) {
-        print str_repeat('  ', $level).get_class($node)." \n";
+        print str_repeat('  ', $level).$node->getTname()." \n";
         $this->display($node->getBlock(), $level + 1);
         $this->display($node->getCondition(), $level + 1);
     }

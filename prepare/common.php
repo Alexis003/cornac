@@ -21,16 +21,6 @@
 $includes = array_flip(glob('prepare/*.php'));
 unset($includes['prepare/common.php']);
 unset($includes['prepare/analyseur.php']);
-
-$firsts = array(
-//                'prepare/Cornac_Tokenizeur_Token_Processed.php',
-                'prepare/instruction.php',
-                'prepare/variable.php',
-                );
-foreach($firsts as $file) {
-    include($file);
-    unset($includes[$file]);
-}
 $includes = array_keys($includes);
 
 // @note including everything is faster than JIT

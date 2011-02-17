@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class parenthesis extends instruction {
+class parenthesis extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = 'parenthesis';
     protected $contenu = null;
     

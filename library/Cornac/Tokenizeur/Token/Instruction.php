@@ -17,9 +17,8 @@
    +----------------------------------------------------------------------+
  */
 
-class instruction extends Cornac_Tokenizeur_Token {
+class Cornac_Tokenizeur_Token_Instruction extends Cornac_Tokenizeur_Token {
     protected $tname = 'instruction';
-
     
     function __construct($array) {
         parent::__construct($array);

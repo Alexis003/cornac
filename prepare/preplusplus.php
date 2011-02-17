@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class preplusplus extends instruction {
+class preplusplus extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = 'preplusplus';
     protected $variable = null;
     protected $operator = null;

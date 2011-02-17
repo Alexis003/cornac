@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _break extends instruction {
+class _break extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = '_break';
     protected $levels = null;
     

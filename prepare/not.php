@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class not extends instruction {
+class not extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = 'not';
     protected $expression = null;
     

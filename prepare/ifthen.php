@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class ifthen extends instruction {
+class ifthen extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = 'ifthen';
     protected $condition = array();
     protected $then = array();

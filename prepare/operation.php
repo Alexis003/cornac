@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class operation extends instruction {
+class operation extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = 'operation';
     protected $left = null;
     protected $operation = null;

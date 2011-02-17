@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _throw extends instruction {
+class _throw extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = '_throw';
     protected $exception = null;
     

@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _interface extends instruction {
+class _interface extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = '_interface';
     protected $name = null;
     protected $block = null;

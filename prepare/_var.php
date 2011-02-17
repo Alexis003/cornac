@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _var extends instruction {
+class _var extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = '_var';
     protected $_static = null;
     protected $_visibility = null;

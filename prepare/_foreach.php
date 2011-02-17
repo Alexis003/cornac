@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _foreach extends instruction {
+class _foreach extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = '_foreach';
     protected $array = array();
     protected $key = null;

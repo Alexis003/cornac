@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _declare extends instruction {
+class _declare extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = '_declare';
     protected $ticks = null;
     protected $encoding = null;

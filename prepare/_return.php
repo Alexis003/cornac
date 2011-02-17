@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _return extends instruction {
+class _return extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = '_return';
     protected $return = null;
 

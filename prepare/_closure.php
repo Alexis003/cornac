@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _closure extends instruction {
+class _closure extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = '_closure';
     protected $block = null;
     protected $args = null;

@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _goto extends instruction {
+class _goto extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = '_goto';
     protected $label = null;
 

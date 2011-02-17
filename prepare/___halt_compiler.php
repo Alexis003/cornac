@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class ___halt_compiler extends instruction {
+class ___halt_compiler extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = '___halt_compiler';
 
     function __construct($expression = null) {

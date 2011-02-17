@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class functioncall extends instruction {
+class functioncall extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = 'functioncall';
     protected $function = null;
     protected $args = null;

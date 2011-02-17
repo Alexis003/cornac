@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class reference extends instruction {
+class reference extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = 'reference';
     private $expression = null;
     

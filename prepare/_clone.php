@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _clone extends instruction {
+class _clone extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = '_clone';
     protected $expression = null;
     

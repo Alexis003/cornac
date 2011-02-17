@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _case extends instruction {
+class _case extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = '_case';
     protected $condition = null;
     protected $block      = null;

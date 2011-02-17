@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _while extends instruction {
+class _while extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = '_while';
     protected $condition = null;
     protected $block = null;

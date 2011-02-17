@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class cast extends instruction {
+class cast extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = 'cast';
     protected $cast = null;
     protected $expression = null;

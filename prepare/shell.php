@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class shell extends instruction {
+class shell extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = 'shell';
     protected $expression = array();
     

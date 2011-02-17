@@ -342,6 +342,10 @@ class Cornac_Tokenizeur_Token {
             }
         }
         
+        if (!class_exists($class)) {
+            $class = 'Cornac_Tokenizeur_Token_'.ucfirst(strtolower($class));
+        }
+
         if (empty($args)) {
             $return = new $class();
         } else {
@@ -469,6 +473,7 @@ class Cornac_Tokenizeur_Token {
 
     public function checkSubclass($classes) {
         // @note classes must be an array
+        $classes = 'Cornac_Tokenizeur_Token_'.ucfirst(strtolower($classes));
         return is_subclass_of($this, $classes);
     }
 
