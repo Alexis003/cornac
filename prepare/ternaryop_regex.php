@@ -57,7 +57,7 @@ class ternaryop_regex extends Cornac_Tokenizeur_Regex {
             $t->getNext()->checkOperator(':') &&
             $t->getNext(1)->checkNotClass('Token') &&
             $t->getNext(2)->checkNotOperator(array('->','[','(','::')) &&
-            $t->getNext(2)->checkNotClass(array('arglist')) &&
+            $t->getNext(2)->checkNotClass('arglist') &&
            !$t->getNext(2)->checkForAssignation()
             ) {
                 $regex = new modele_regex('block',array(), array());

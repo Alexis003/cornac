@@ -31,7 +31,7 @@ class for_simple_regex extends Cornac_Tokenizeur_Regex {
     function check($t) {
         if (!$t->hasNext(4)) { return false; }
 
-        if ($t->getNext()->checkNotOperator(array('('))) { return false; } 
+        if ($t->getNext()->checkNotOperator('(')) { return false; } 
 
         $args = array();
         $remove = array(1);
@@ -56,7 +56,7 @@ class for_simple_regex extends Cornac_Tokenizeur_Regex {
                 $pos += 1;
             }
         } elseif ($t->getNext($pos)->checkNotClass(array('Token','sequence')) &&
-            $t->getNext($pos + 1)->checkCode(';'))
+            $t->getNext($pos + 1)->checkOperator(';'))
         {
             $args[] = $pos + 1  ;
 
@@ -68,13 +68,13 @@ class for_simple_regex extends Cornac_Tokenizeur_Regex {
             return false;
         }
 
-        if ($t->getNext($pos)->checkCode(';')) {
+        if ($t->getNext($pos)->checkOperator(';')) {
             $args[] = $pos + 1;
 
             $remove[] = $pos + 1;
             
             $pos += 1;
-        } elseif ($t->getNext($pos)->checkClass(array('Token')) ) {
+        } elseif ($t->getNext($pos)->checkClass('Token') ) {
             return false; 
         } elseif ($t->getNext($pos)->checkClass(array('block','sequence')) ) {
             $args[] = $pos + 1  ;
@@ -86,7 +86,7 @@ class for_simple_regex extends Cornac_Tokenizeur_Regex {
                 $pos += 1;
             }
         } elseif ($t->getNext($pos)->checkNotClass(array('Token','sequence')) &&
-            $t->getNext($pos + 1)->checkCode(';')
+            $t->getNext($pos + 1)->checkOperator(';')
         ) {
             $args[] = $pos + 1  ;
 
@@ -98,7 +98,7 @@ class for_simple_regex extends Cornac_Tokenizeur_Regex {
             return false;
         }
 
-        if ($t->getNext($pos)->checkCode(')')) {
+        if ($t->getNext($pos)->checkOperator(')')) {
             $args[] = $pos + 1;
 
             $remove[] = $pos + 1;
@@ -108,7 +108,7 @@ class for_simple_regex extends Cornac_Tokenizeur_Regex {
             return false; 
         } elseif ($t->getNext($pos)->checkNotClass(array('Token','sequence')) &&
                   !is_null($t->getNext($pos + 1)) && 
-                  $t->getNext($pos + 1)->checkCode(')')
+                  $t->getNext($pos + 1)->checkOperator(')')
         ) {
             $args[] = $pos + 1  ;
 
@@ -120,7 +120,7 @@ class for_simple_regex extends Cornac_Tokenizeur_Regex {
             return false;
         } 
 
-        if ($t->getNext($pos)->checkCode(';')) {
+        if ($t->getNext($pos)->checkOperator(';')) {
             $regex = new modele_regex('block',array(), array());
             Cornac_Tokenizeur_Token::applyRegex($t->getNext($pos), 'block', $regex);
 

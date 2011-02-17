@@ -36,7 +36,7 @@ class rawtext_regex extends Cornac_Tokenizeur_Regex {
             if ($t->getPrev()->checkToken(T_CLOSE_TAG) &&
                 $t->getNext()->checkToken(T_OPEN_TAG)) {
                 
-                if ($t->hasNext(1) && $t->getNext(1)->checkCode('=')) {
+                if ($t->hasNext(1) && $t->getNext(1)->checkOperator('=')) {
                     // @note case of a short tag
                     return false;
                 }
@@ -47,7 +47,7 @@ class rawtext_regex extends Cornac_Tokenizeur_Regex {
             } elseif ($t->getPrev()->checkClass('codephp') &&
                       $t->getNext()->checkToken(T_OPEN_TAG)) {
                 
-                if ($t->getNext(1)->checkCode('=')) {
+                if ($t->getNext(1)->checkOperator('=')) {
                     // @note case of a short tag
                     return false;
                 } 

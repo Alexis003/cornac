@@ -53,12 +53,12 @@ class typehint_regex extends Cornac_Tokenizeur_Regex {
 
         $t = $t->getNext();
         if ($t->checkNotToken(array(T_STRING, T_ARRAY)) &&
-            $t->checkNotClass(array('_nsname'))) { return false; }
+            $t->checkNotClass('_nsname')) { return false; }
 
         if (!$t->hasNext() ) { return false; }
 
         if ($t->getNext()->checkNotClass(array('variable','affectation','reference'))) { return false; }
-        if ($t->getNext(1)->checkCode(array('='))) { return false; }
+        if ($t->getNext(1)->checkOperator('=')) { return false; }
         if ($t->getNext(1)->checkNotOperator(array(',',')'))) { return false; }
 
         $regex = new modele_regex('typehint',array(0, 1), array(1));

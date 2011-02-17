@@ -33,7 +33,7 @@ class clone_parenthesis_regex extends Cornac_Tokenizeur_Regex {
                                                 'property','property_static',
                                                 'method','method_static',
                                                'functioncall'))) { return false; }
-        if ($t->getNext(2)->checkNotCode(array(')'))) { return false; }
+        if ($t->getNext(2)->checkNotOperator(')')) { return false; }
 
         $this->args = array(2);
         $this->remove = array(1,2,3);

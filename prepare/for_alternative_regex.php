@@ -32,7 +32,7 @@ class for_alternative_regex extends Cornac_Tokenizeur_Regex {
         if (!$t->hasNext(4)) { return false; }
 
         if ($t->checkNotToken(array(T_FOR))) { return false; } 
-        if ($t->getNext()->checkNotCode(array('('))) { return false; } 
+        if ($t->getNext()->checkNotOperator('(')) { return false; } 
         
         $var = $t->getNext(1);
         while($var->checkNotCode(')')) {

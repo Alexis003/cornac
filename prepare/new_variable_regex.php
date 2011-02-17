@@ -46,8 +46,8 @@ class new_variable_regex extends Cornac_Tokenizeur_Regex {
         $this->remove = array(1);
         
         if ( $t->hasNext(3) &&
-             $t->getNext(1)->checkCode('(') &&
-             $t->getNext(2)->checkCode(')')
+             $t->getNext(1)->checkOperator('(') &&
+             $t->getNext(2)->checkOperator(')')
              ) {
 
             $this->args[]   = 2;

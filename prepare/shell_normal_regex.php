@@ -68,7 +68,7 @@ class shell_normal_regex extends Cornac_Tokenizeur_Regex {
             }
 
             if ($var->checkNotClass($this->sequence_classes) &&
-                $var->checkNotClass(array('sign'))) { return false; }
+                $var->checkNotClass('sign')) { return false; }
         
             $this->args[]    = $pos;
             $this->remove[]  = $pos;

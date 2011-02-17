@@ -25,7 +25,7 @@ class functioncall extends Cornac_Tokenizeur_Token_Instruction {
     function __construct($expression) {
         parent::__construct(array());
         
-        if ($expression[0]->checkCode('=')) {
+        if ($expression[0]->checkOperator('=')) {
             $expression[0]->code = 'echo';
         }
         

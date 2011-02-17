@@ -31,7 +31,7 @@ class continue_leveled_regex extends Cornac_Tokenizeur_Regex {
 
         if ($t->checkToken(T_CONTINUE) &&
             $t->getNext()->checkClass('literals')  &&
-            $t->getNext(1)->checkCode(';')
+            $t->getNext(1)->checkOperator(';')
             ) {
 
             $this->args = array(0, 1);
@@ -42,10 +42,10 @@ class continue_leveled_regex extends Cornac_Tokenizeur_Regex {
         } 
 
         if ($t->checkToken(T_CONTINUE) &&
-            $t->getNext()->checkCode('(') &&
+            $t->getNext()->checkOperator('(') &&
             $t->getNext(1)->checkClass('literals')  &&
-            $t->getNext(2)->checkCode(')') &&
-            $t->getNext(3)->checkCode(';')
+            $t->getNext(2)->checkOperator(')') &&
+            $t->getNext(3)->checkOperator(';')
             ) {
 
             $this->args = array(0, 2);

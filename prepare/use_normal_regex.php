@@ -33,7 +33,7 @@ class use_normal_regex extends Cornac_Tokenizeur_Regex {
 
         $var = $t;
         while($var->checkOperator(',') || $var->checkToken(T_USE)) {
-            if ($var->getNext()->checkClass(array('Token')) &&
+            if ($var->getNext()->checkClass('Token') &&
                 $var->getNext(1)->checkToken(T_AS) &&
                 $var->getNext(2)->checkClass('Token') &&
                 $var->getNext(3)->checkOperator(array(',',';'))) { 

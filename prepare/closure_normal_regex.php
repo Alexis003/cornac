@@ -29,8 +29,8 @@ class closure_normal_regex extends Cornac_Tokenizeur_Regex {
     function check($t) {
         if (!$t->hasNext(2)) { return false; }
 
-        if ($t->getNext()->checkOperator(array('(')) && 
-            $t->getNext(1)->checkOperator(array(')'))) { 
+        if ($t->getNext()->checkOperator('(') && 
+            $t->getNext(1)->checkOperator(')')) { 
             $pos = 2;
 
             $this->args = array();
@@ -44,17 +44,19 @@ class closure_normal_regex extends Cornac_Tokenizeur_Regex {
             return false;
         }
 
-        if ($t->getNext($pos)->checkToken(T_USE) &&
-            $t->getNext($pos + 1)->checkClass('arglist')) {
+        $var = $t->getNext($pos);
+        if ($var->checkToken(T_USE) &&
+            $var->getNext()->checkClass('arglist')) {
                 
             $this->args[] = $pos + 2;
             $this->remove[] = $pos + 1;
             $this->remove[] = $pos + 2;
             
             $pos += 2;
+            $var = $var->getNext(1);
         }
 
-        if ($t->getNext($pos)->checkNotClass(array('block'))) { return false; }
+        if ($var->checkNotClass('block')) { return false; }
         $this->args[] = $pos + 1;
         $this->remove[] = $pos + 1;
 

@@ -31,20 +31,15 @@ class inclusion_normal_regex extends Cornac_Tokenizeur_Regex {
     function check($t) {
         if (!$t->hasNext()) { return false; }
 
-        if ($t->checkToken(array(T_REQUIRE, T_INCLUDE, T_INCLUDE_ONCE, T_REQUIRE_ONCE)) &&
-            $t->getNext()->checkCode('(') &&
-            $t->getNext(1)->checkNotClass('Token') &&
-            $t->getNext(2)->checkCode(')')
+        if ($t->getNext()->checkNotOperator('(')) { return false; }
+        if ($t->getNext(1)->checkClass('Token')) { return false; }
+        if ($t->getNext(2)->checkNotOperator(')')) { return false; }
             
-            ) {
+        $this->args = array(2);
+        $this->remove = array(1,2,3);
 
-            $this->args = array(2);
-            $this->remove = array(1,2,3);
-
-            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => inclusion (".$this->getTname().")");
-            return true; 
-        } 
-        return false;
+        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => inclusion (".$this->getTname().")");
+        return true; 
     }
 }
 ?>

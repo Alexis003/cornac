@@ -39,7 +39,7 @@ class function_typehintreference_regex extends Cornac_Tokenizeur_Regex {
                 $var->getNext()->checkOperator('&') &&
                 $var->getNext(1)->checkClass('variable')) {
                 
-                if ($var->getNext(2)->checkCode('=') &&
+                if ($var->getNext(2)->checkOperator('=') &&
                     $var->getNext(3)->checkNotClass('Token')) {
                           
                         $regex = new modele_regex('reference',array(1), array(1));
@@ -74,7 +74,7 @@ class function_typehintreference_regex extends Cornac_Tokenizeur_Regex {
                     $var = $var->getNext();
                     if (is_null($var)) { return false; }
                     continue; 
-                } elseif ($var->getNext(2)->checkCode(array(',',')'))) {
+                } elseif ($var->getNext(2)->checkOperator(array(',',')'))) {
                     $regex = new modele_regex('reference',array(1), array(1));
                     Cornac_Tokenizeur_Token::applyRegex($var->getNext(), 'reference', $regex);
     

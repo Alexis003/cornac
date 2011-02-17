@@ -46,7 +46,7 @@ class sequence_suite_regex extends Cornac_Tokenizeur_Regex {
                 return true; 
             }
             
-            while ($var->checkForBlock(true) || $var->checkClass(array('codephp')) ) {
+            while ($var->checkForBlock(true) || $var->checkClass('codephp') ) {
                 $this->args[]    = $pos ;
                 
                 $this->remove[]  = $pos;

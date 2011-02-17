@@ -33,7 +33,7 @@ class sign_suite_regex extends Cornac_Tokenizeur_Regex {
         if (!$t->hasNext()) { return false; }
 
         if ( $t->getPrev()->checkNotOperator(array('+','-'))) { return false; }
-        if ( $t->getPrev()->checkClass(array('operation'))) { return false; }
+        if ( $t->getPrev()->checkClass('operation')) { return false; }
         if ( $t->getNext()->checkNotClass(array('sign','variable','property','property_static','method','method_static','functioncall','_constant','literals')) ) { return false ;}
         if ( $t->getNext(1)->checkOperator(array('->','[','{','::','++','--'))) { return false; }
         

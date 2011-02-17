@@ -48,7 +48,7 @@ class sign_regex extends Cornac_Tokenizeur_Regex {
         if ( $t->getPrev()->checkClass(array('variable','operation','property','property_static'))) { return false; }
         
         if ( $t->getNext(1)->checkOperator(array('->','[','*','/','%','++','--')) ) { return false; }
-        if ( $t->getNext(1)->checkClass(array('arglist')) ) { return false; }
+        if ( $t->getNext(1)->checkClass('arglist') ) { return false; }
         
         $this->args = array(0, 1 );
         $this->remove = array(1);

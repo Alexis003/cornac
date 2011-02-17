@@ -35,8 +35,9 @@ class comparison_regex extends Cornac_Tokenizeur_Regex {
         // @note must be a real operator
         if ($t->checkNotClass('Token')) { return false; }
 
-        if ($t->hasPrev(2) && ($t->getPrev(1)->checkCode(array('->','$','::','++','--','new','-','+','&')) ||
-                               $t->getPrev(1)->checkClass(array('variable')) ||
+        if ($t->hasPrev(2) && ($t->getPrev(1)->checkOperator(array('->','$','::','++','--','-','+','&')) ||
+                               $t->getPrev(1)->checkToken(T_NEW) ||
+                               $t->getPrev(1)->checkClass('variable') ||
                                $t->getPrev(1)->checkForComparison() )) { return false; }
 
         if ($t->getPrev()->checkClass(array('Token','arglist'))) { return false; }

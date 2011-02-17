@@ -32,7 +32,7 @@ class case_between_regex extends Cornac_Tokenizeur_Regex {
         if (!$t->checkGenericCase()) { return false; }
         
         if ($t->checkToken(T_CASE)) {
-            if ($t->getNext()->checkClass(array('Token'))) { return false; }
+            if ($t->getNext()->checkClass('Token')) { return false; }
             $var = $t->getNext(2);
             $init = $t->getNext(2);
 
@@ -65,7 +65,7 @@ class case_between_regex extends Cornac_Tokenizeur_Regex {
                 continue;
             }    
             // @note waiting for all structures to be processed
-            if ($var->checkClass(array('Token')))                      { return false; }
+            if ($var->checkClass('Token'))                             { return false; }
             if ($var->checkCode('{') && $var->checkNotClass('block'))  { return false; } 
 
             $args[] = $pos;

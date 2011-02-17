@@ -34,7 +34,7 @@ class concatenation_regex extends Cornac_Tokenizeur_Regex {
 
         if ($t->getPrev()->checkClass(array('Token','arglist','block','ifthen'))) { return false; }
         if ($t->getPrev(1)->checkOperator(array('.','->','@','::','++','--','$'))) { return false; }
-        if ($t->getPrev(1)->checkCode(array('new'))) { return false; }
+        if ($t->getPrev(1)->checkToken(T_NEW)) { return false; }
         
         $var = $t; 
         $this->args   = array( -1 );

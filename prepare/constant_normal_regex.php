@@ -41,7 +41,7 @@ class constant_normal_regex extends Cornac_Tokenizeur_Regex {
                                     T_CLASS_C))) { return false; }
         if ($t->getNext()->checkOperator(array('(','::','{', '\\'))) { return false; }
 
-        if ($t->getNext()->checkCode(array(':'))) {
+        if ($t->getNext()->checkCode(':')) {
             if ($t->getPrev()->checkNotOperator(array('->','::','?','.', '+','-','*','/','%',':','!')) && 
                 $t->getPrev()->checkNotToken(array(T_CASE, T_NEW)) && 
                !$t->getPrev()->checkForAssignation() &&

@@ -37,13 +37,13 @@ class ifthenelseif_simple_regex extends Cornac_Tokenizeur_Regex {
                 return false;
             }
 
-            if ($t->hasNext(2) && $t->getNext(2)->checkCode(array('->','[','::'))) {
+            if ($t->hasNext(2) && $t->getNext(2)->checkOperator(array('->','[','::'))) {
                 return false;
             }
             
             $remove = array();
             if ($t->hasNext(2) && 
-                $t->getNext(2)->checkCode(';')) {
+                $t->getNext(2)->checkOperator(';')) {
                 $remove = array(1);
             }
             $regex = new modele_regex('block',array(0),$remove);
@@ -54,7 +54,7 @@ class ifthenelseif_simple_regex extends Cornac_Tokenizeur_Regex {
         } 
 
         if ($t->getNext(1)->checkNotClass('Token') &&
-            $t->getNext(2)->checkCode(';')) {
+            $t->getNext(2)->checkOperator(';')) {
 
             $regex = new modele_regex('block',array(0), array(1));
             Cornac_Tokenizeur_Token::applyRegex($t->getNext(1), 'block', $regex);

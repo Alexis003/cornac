@@ -32,10 +32,10 @@ class property_static_regex extends Cornac_Tokenizeur_Regex {
         if (!$t->hasPrev() ) { return false; }
         if (!$t->hasNext() ) { return false; }
 
-        if ($t->getNext(1)->checkCode(array('[')) &&
-            $t->getNext(2)->checkNotCode(array(']'))) { return false;}
+        if ($t->getNext(1)->checkOperator('[') &&
+            $t->getNext(2)->checkNotOperator(']')) { return false;}
 
-        if ($t->getNext(1)->checkCode(array('('))) { return false;}
+        if ($t->getNext(1)->checkOperator('(')) { return false;}
 
         if ( ($t->getPrev()->checkNotToken(array(T_STRING,T_STATIC)) &&
               $t->getPrev()->checkNotClass(array('variable','_array','_nsname')))) { return false; }

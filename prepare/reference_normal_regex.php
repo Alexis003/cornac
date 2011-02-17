@@ -33,7 +33,7 @@ class reference_normal_regex extends Cornac_Tokenizeur_Regex {
 
         if ( $t->checkClass('literals')) { return false; }
         if ( $t->getNext(1)->checkOperator(array('->','[','(','::'))) { return false; }
-        if ( $t->getNext(1)->checkClass(array('arglist'))) { return false; }
+        if ( $t->getNext(1)->checkClass(array('block','arglist'))) { return false; }
 
         if ($t->getPrev()->checkToken(T_AS)) {
             // @note this ok, this is an exception

@@ -35,9 +35,9 @@ class for_sequence_regex extends Cornac_Tokenizeur_Regex {
         if ($t->getNext()->checkNotCode('(')) { return false;}
         
         if ($t->getNext(1)->checkNotClass('Token')  &&
-            $t->getNext(2)->checkCode(";")          &&
+            $t->getNext(2)->checkOperator(";")          &&
             $t->getNext(3)->checkClass('sequence')  &&
-            $t->getNext(4)->checkCode(")")          &&
+            $t->getNext(4)->checkOperator(")")          &&
             $t->getNext(5)->checkForBlock(true)
             
             ) {
@@ -48,10 +48,10 @@ class for_sequence_regex extends Cornac_Tokenizeur_Regex {
               Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => (Token; sequence) ".$this->getTname());
               return true;
         } elseif ($t->getNext(1)->checkNotClass('Token')  &&
-                  $t->getNext(2)->checkCode(";")          &&
+                  $t->getNext(2)->checkOperator(";")          &&
                   $t->getNext(3)->checkClass('sequence')  &&
                   $t->getNext(4)->checkNotClass('Token')  &&
-                  $t->getNext(5)->checkCode(")")          &&
+                  $t->getNext(5)->checkOperator(")")          &&
                   $t->getNext(6)->checkForBlock(true)
  
             
@@ -62,10 +62,10 @@ class for_sequence_regex extends Cornac_Tokenizeur_Regex {
   
               Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => (Token; sequence Token) ".$this->getTname());
               return true;
-        } elseif ($t->getNext(1)->checkCode(";")          &&
+        } elseif ($t->getNext(1)->checkOperator(";")          &&
                   $t->getNext(2)->checkClass('sequence')  &&
                   $t->getNext(3)->checkNotClass('Token')  &&
-                  $t->getNext(4)->checkCode(")")          &&
+                  $t->getNext(4)->checkOperator(")")          &&
                   $t->getNext(5)->checkForBlock(true)
             
             ) {

@@ -38,8 +38,10 @@ class keyvalue_regex extends Cornac_Tokenizeur_Regex {
         if ($t->getPrev(1)->checkOperator(array('->','::'))) { return false; } 
         if ($t->getNext(1)->checkOperator(array('->','::'))) { return false; } 
 
-        if ($t->getNext(1)->checkCode(array('[','->','++','--','=','.=','*=','+=','-=','/=','%=',
-                                                 '>>=','&=','^=','>>>=', '|=','<<=','>>=','?','(','{'))) { return false; }
+        if ($t->getNext(1)->checkOperator(array('[','->','++','--','=','.=',
+                                                '*=','+=','-=','/=','%=',
+                                                '>>=','&=','^=','>>>=', '|=',
+                                                '<<=','>>=','?','(','{'))) { return false; }
         if ($t->getNext(1)->checkClass(array('arglist','parenthesis'))) { return false; }
 
         $this->args = array(-1, 1);

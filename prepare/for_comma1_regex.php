@@ -32,9 +32,9 @@ class for_comma1_regex extends Cornac_Tokenizeur_Regex {
         if (!$t->hasNext(4)) { return false; }
 
         if ($t->checkNotToken(array(T_FOR))) { return false; } 
-        if ($t->getNext()->checkNotCode(array('('))) { return false; } 
-        if ($t->getNext(1)->checkClass(array('Token'))) { return false; } 
-        if ($t->getNext(2)->checkNotCode(array(','))) { return false; } 
+        if ($t->getNext()->checkNotCode('(')) { return false; } 
+        if ($t->getNext(1)->checkClass('Token')) { return false; } 
+        if ($t->getNext(2)->checkNotCode(',')) { return false; } 
         
         $args = array(0);
         $remove = array(1);
@@ -54,7 +54,7 @@ class for_comma1_regex extends Cornac_Tokenizeur_Regex {
         }
 
         if ($var->checkNotClass('Token') &&
-           $var->getNext()->checkCode(';')) {
+           $var->getNext()->checkOperator(';')) {
             $args[] = $pos;
             $remove[] = $pos;
 

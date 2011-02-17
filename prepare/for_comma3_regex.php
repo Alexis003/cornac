@@ -32,27 +32,27 @@ class for_comma3_regex extends Cornac_Tokenizeur_Regex {
         if (!$t->hasNext(8)) { return false; }
 
         if ($t->checkNotToken(array(T_FOR))) { return false; } 
-        if ($t->getNext()->checkNotCode(array('('))) { return false; } 
+        if ($t->getNext()->checkNotCode('(')) { return false; } 
 
         $pos = 1;
-        if ($t->getNext($pos)->checkCode(array(';'))) { 
+        if ($t->getNext($pos)->checkOperator(';')) { 
             $pos++; 
-        } elseif ($t->getNext($pos + 1)->checkNotCode(array(';'))) {  
+        } elseif ($t->getNext($pos + 1)->checkNotCode(';')) {  
             return false; 
         } else {
             $pos += 2;
         }
 
-        if ($t->getNext($pos)->checkCode(array(';'))) { 
+        if ($t->getNext($pos)->checkOperator(';')) { 
             $pos++; 
-        } elseif ($t->getNext($pos + 1)->checkNotCode(array(';'))) {  
+        } elseif ($t->getNext($pos + 1)->checkNotCode(';')) {  
             return false; 
         } else {
             $pos += 2;
         }
 
-        if ($t->getNext($pos)->checkClass(array('Token'))) { return false; } 
-        if ($t->getNext($pos + 1)->checkNotCode(array(','))) { return false; } 
+        if ($t->getNext($pos)->checkClass('Token')) { return false; } 
+        if ($t->getNext($pos + 1)->checkNotOperator(',')) { return false; } 
         
         $args = array(0);
         $remove = array(1);
@@ -62,7 +62,7 @@ class for_comma3_regex extends Cornac_Tokenizeur_Regex {
         $var = $t->getNext($pos_init + 2);
         
         while($var->checkNotClass('Token') &&
-              $var->getNext()->checkCode(',')) {
+              $var->getNext()->checkOperator(',')) {
             
             $args[] = $pos;
             
@@ -74,7 +74,7 @@ class for_comma3_regex extends Cornac_Tokenizeur_Regex {
         }
 
         if ($var->checkNotClass('Token') &&
-           $var->getNext()->checkCode(')')) {
+           $var->getNext()->checkOperator(')')) {
             $args[] = $pos;
             
             $remove[] = $pos;

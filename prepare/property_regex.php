@@ -44,8 +44,8 @@ class property_regex extends Cornac_Tokenizeur_Regex {
             return false; 
         }
 // @note this avoid interfering with functioncall by detecting ( early enough not to make a literals
-        if ( $t->getNext(1)->checkOperator(array('('))) { return false; }
-        if ( $t->getNext(1)->checkClass(array('arglist'))) { return false; }
+        if ( $t->getNext(1)->checkOperator('(')) { return false; }
+        if ( $t->getNext(1)->checkClass('arglist')) { return false; }
         if ($t->getNext()->checkToken(T_STRING)) {
             $regex = new modele_regex('literals',array(0), array());
             Cornac_Tokenizeur_Token::applyRegex($t->getNext(), 'literals', $regex);

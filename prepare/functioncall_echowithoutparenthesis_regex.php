@@ -59,7 +59,7 @@ class functioncall_echowithoutparenthesis_regex extends Cornac_Tokenizeur_Regex 
             $var->getNext()->checkNotClass('parenthesis')
             ) {
             
-            if ($var->getNext()->checkOperator(array('?'))) { return false; }
+            if ($var->getNext()->checkOperator('?')) { return false; }
             $args[]    = $pos;
             $remove[]  = $pos;
 

@@ -36,7 +36,7 @@ class ifthenelse_simple_regex extends Cornac_Tokenizeur_Regex {
 
         if ($t->getNext()->checkForBlock(true) && 
             (!$t->hasNext(1) || 
-              ($t->getNext(1)->checkCode(';') ||
+              ($t->getNext(1)->checkOperator(';') ||
                $t->getNext(1)->checkToken(T_CLOSE_TAG)))
             ) {
 
@@ -54,7 +54,7 @@ class ifthenelse_simple_regex extends Cornac_Tokenizeur_Regex {
             ) {
 
             if ($t->getNext(1)->checkForAssignation()) { return false; }
-            if ($t->getNext(1)->checkCode(array('.','->','[','::'))) { return false; }
+            if ($t->getNext(1)->checkOperator(array('.','->','[','::'))) { return false; }
             if ($t->getNext(1)->checkClass(array('Token','arglist')) &&
                 $t->getNext(1)->checkNotEndInstruction()) { return false; }
             

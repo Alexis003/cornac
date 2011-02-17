@@ -55,7 +55,7 @@ class ifthenelse_alternative_regex extends Cornac_Tokenizeur_Regex {
             }
 
             if ($var->checkNotClass(array('block','Token')) && 
-                $var->getNext()->checkCode(';')) {
+                $var->getNext()->checkOperator(';')) {
                 $args[] = $pos;
 
                 $remove[] = $pos;
@@ -66,7 +66,7 @@ class ifthenelse_alternative_regex extends Cornac_Tokenizeur_Regex {
                 continue;
             }
 
-            if ($var->checkCode(';') ) {
+            if ($var->checkOperator(';') ) {
                 // @note trailing semi-colon? just ignore this
                 $remove[] = $pos;
                 $pos++;

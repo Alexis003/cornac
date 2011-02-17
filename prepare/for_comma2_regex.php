@@ -31,18 +31,18 @@ class for_comma2_regex extends Cornac_Tokenizeur_Regex {
     function check($t) {
         if (!$t->hasNext(4)) { return false; }
 
-        if ($t->getNext()->checkNotCode(array('('))) { return false; } 
+        if ($t->getNext()->checkNotOperator('(')) { return false; } 
         
         $pos = 0;
-        if ($t->getNext(1)->checkOperator(array(';'))) { 
+        if ($t->getNext(1)->checkOperator(';')) { 
             $pos++;
-        } elseif ($t->getNext(2)->checkOperator(array(';'))) { 
+        } elseif ($t->getNext(2)->checkOperator(';')) { 
             $pos += 2;
         } else {
             return false;
         }
-        if ($t->getNext($pos + 1)->checkClass(array('Token'))) { return false; } 
-        if ($t->getNext($pos + 2)->checkNotCode(array(','))) { return false; } 
+        if ($t->getNext($pos + 1)->checkClass('Token')) { return false; } 
+        if ($t->getNext($pos + 2)->checkNotOperator(',')) { return false; } 
         
         $args = array();
         $remove = array();
@@ -51,7 +51,7 @@ class for_comma2_regex extends Cornac_Tokenizeur_Regex {
         $pos = 0;
         
         while($var->checkNotClass('Token') &&
-              $var->getNext()->checkCode(',')) {
+              $var->getNext()->checkOperator(',')) {
             
             $args[] = $pos ;
             
@@ -63,7 +63,7 @@ class for_comma2_regex extends Cornac_Tokenizeur_Regex {
         }
 
         if ($var->checkNotClass('Token') &&
-           $var->getNext()->checkCode(';')) {
+           $var->getNext()->checkOperator(';')) {
             $args[] = $pos ;
             
             $remove[] = $pos ;

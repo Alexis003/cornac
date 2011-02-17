@@ -32,8 +32,8 @@ class sequence_cdr_regex extends Cornac_Tokenizeur_Regex {
         if (!$t->hasNext() ) { return false; }
         if (!$t->hasPrev() ) { return false; }
         
-        if ($t->getPrev()->checkNotClass(array('sequence'))) { return false; }
-        if ($t->getNext()->checkNotClass(array('sequence'))) { return false; }
+        if ($t->getPrev()->checkNotClass('sequence')) { return false; }
+        if ($t->getNext()->checkNotClass('sequence')) { return false; }
 
         $regex = new modele_regex('sequence',array(-2, 0), array(-2));
         Cornac_Tokenizeur_Token::applyRegex($t->getNext(), 'sequence', $regex);
