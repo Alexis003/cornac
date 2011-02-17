@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class Cornac_Tokenizeur_Template_Sqlite extends Cornac_Tokenizeur_Template {
+class Cornac_Tokenizeur_Template_Sqlite extends Cornac_Tokenizeur_Template_Db {
     
     function __construct($root, $fichier = null) {
         parent::__construct($root, $fichier);

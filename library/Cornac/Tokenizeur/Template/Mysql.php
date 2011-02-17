@@ -17,14 +17,14 @@
    +----------------------------------------------------------------------+
  */
 
-class Cornac_Tokenizeur_Template_Mysql extends Cornac_Tokenizeur_Template {
+class Cornac_Tokenizeur_Template_Mysql extends Cornac_Tokenizeur_Template_Db {
     protected $root = null;
     protected $database = null;
     static public $auto_increment = 0;
     
     function __construct($root, $file = null) {
         parent::__construct($root, $file);
-        
+
         global $DATABASE;
         $this->database = $DATABASE;
 
@@ -101,7 +101,7 @@ END;
 */
         $this->root = $root;
     }
-    
+
     function save($filename = null) {
     // @todo take into account initial auto_increment in table, to add in table_tmp and tags_tmp
     

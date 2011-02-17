@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class Cornac_Tokenizeur_Template_Cache extends library_Cornac_Tokenizeur_Template {
+class Cornac_Tokenizeur_Template_Cache extends Cornac_Tokenizeur_Template {
     protected $root = null;
     private $database = null;
     private $line = 0;
@@ -29,10 +29,10 @@ class Cornac_Tokenizeur_Template_Cache extends library_Cornac_Tokenizeur_Templat
     
     function __construct($root, $file = null) {
         parent::__construct();
-        
+
         global $DATABASE;
         $this->database = $DATABASE;
-        
+
         // @todo delegation to the right DATABASE driver. 
 //        if (isset($INI['mysql']) && $INI['mysql']['active'] == true) {
 //            $this->database = new pdo($INI['mysql']['dsn'],$INI['mysql']['username'], $INI['mysql']['password']);
@@ -40,16 +40,18 @@ class Cornac_Tokenizeur_Template_Cache extends library_Cornac_Tokenizeur_Templat
             $rows = $this->database->query_one_array('SELECT TC.id AS ids FROM <tokens_cache> T1
             LEFT JOIN <tokens> TC
                 ON T1.id = TC.id 
-            WHERE T1.id  LIMIT 1000');
-            $this->database->query('DELETE FROM <tokens_cache> WHERE id IN ('.join(',', $rows).')');
-
+            WHERE T1.id  LIMIT 1000','ids');
+            
+            if (count($rows) > 0) {
+                $this->database->query('DELETE FROM <tokens_cache> WHERE id IN ('.join(',', $rows).')');
+            }
             $this->database->query('CREATE TABLE IF NOT EXISTS <tokens_cache> (
                                                           id       INTEGER PRIMARY KEY AUTO_INCREMENT, 
                                                           code     VARCHAR(255),
                                                           file  VARCHAR(255)
                                                           )');
 
-            $this->database->query('CREATE TABLE IF NOT EXISTS <tokens_cache_tmp> (
+            $this->database->query('CREATE TEMPORARY TABLE IF NOT EXISTS <tokens_cache_tmp> (
                                                           id       INTEGER PRIMARY KEY AUTO_INCREMENT, 
                                                           code     VARCHAR(255),
                                                           file  VARCHAR(255)
@@ -75,7 +77,8 @@ class Cornac_Tokenizeur_Template_Cache extends library_Cornac_Tokenizeur_Templat
     }
     
     function save($filename = null) {
-        $auto_increment = template_mysql::$auto_increment;
+        // @todo @warning @hyperstatism Cache should be merged with mysql...
+        $auto_increment = Cornac_Tokenizeur_Template_Mysql::$auto_increment;
 
         $this->database->query('INSERT INTO <tokens_cache> SELECT id + '.$auto_increment.', `code`, `file` FROM <tokens_cache_tmp>');
         $this->database->query('DROP TABLE <tokens_cache_tmp>');
@@ -200,7 +203,7 @@ class Cornac_Tokenizeur_Template_Cache extends library_Cornac_Tokenizeur_Templat
                     $this->display($e, $level + 1);
                     if (!isset($e->cache)) {
                         print $e;
-                        die();
+                        die(__METHOD__);
                     }
                     $labels[] = $e->cache;
                 }

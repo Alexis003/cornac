@@ -60,7 +60,9 @@ $OPTIONS = new Cornac_Options();
 $OPTIONS->setConfig($options);
 $OPTIONS->init();
 
-$shell = 'php tokinit.php -I '.$OPTIONS->ini.' -g '.$OPTIONS->templates.' -K -f '.$OPTIONS->file;
+// @todo this should echo shell_exec values
+// @todo try to remove the shell_exec, and use inclusion. This will speed up things
+$shell = 'php tokinit.php -I '.$OPTIONS->ini.' -g '.$OPTIONS->templates.' -K ';
 if (!empty($OPTIONS->directory)) {
     shell_exec($shell.' -r -d '.$OPTIONS->directory);
 } elseif (!empty($OPTIONS->file)) {

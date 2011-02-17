@@ -350,7 +350,7 @@ class file_processor {
         $loop = $root;
         $id = 0;
         while(!is_null($loop)) {
-            if (get_class($loop) == "Token") {
+            if ($loop->checkClass("Token")) {
                 $token++;
             }
             $loop = $loop->getNext();

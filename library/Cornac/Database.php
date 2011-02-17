@@ -136,7 +136,11 @@ class Cornac_Database  {
         if (is_null($index)) {
             list($k, $v) = each($array);
             
-            if (!is_array($v)) { var_dump($array); die; }
+            if (!is_array($v)) { 
+                print __METHOD__."\n";
+                var_dump($array); 
+                die; 
+            }
             list($index, $V) = each($v);
             
             $r[$k] = $V;
