@@ -17,51 +17,35 @@
    +----------------------------------------------------------------------+
  */
 
-class try_normal_regex extends Cornac_Tokenizeur_Regex {
-    protected $tname = 'try_normal_regex';
+class Cornac_Tokenizeur_Regex_Throw_Simple extends Cornac_Tokenizeur_Regex {
+    protected $tname = 'throw_regex';
 
     function __construct() {
         parent::__construct(array());
     }
 
     function getTokens() {
-        return array(T_TRY );
+        return array(T_THROW );
     }
     
     function check($t) {
         if (!$t->hasNext(1)) { return false; }
 
-        if ($t->checkNotToken(T_TRY)) { return false; } 
-        if ($t->getNext()->checkNotClass('block')) { return false; } 
-        if ($t->getNext(1)->checkNotClass('_catch')) { return false; } 
+        if ($t->getNext()->checkNotClass(array('_new',
+                                               'variable',
+                                               'property',
+                                               'method',
+                                               '_array',
+                                               '_constant',
+                                               'parenthesis',
+                                               'ternaryop',
+                                               'method_static',
+                                               'functioncall',
+                                               'literals'))) { return false; }
+        if ($t->getNext(1)->checkOperator(array('->','::','['))) { return false; }
 
-        $this->args = array(1, 2);
-        $this->remove = array(1,2);
-        $var = $t->getNext(2);
-        $pos = 3;
-        
-        if (is_null($var)) {
-            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
-            return true; 
-        }
-        
-        while($var->checkClass('_catch')) {
-            $this->args[] = $pos;
-            $this->remove[] = $pos;
-
-            $pos ++;
-            $var = $var->getNext();
-            if (is_null($var)) {
-                Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
-                return true; 
-            }
-        }
-                
-        if ($var->checkToken(T_CATCH)) {
-            $this->args = array();
-            $this->remove = array();
-            return false;
-        }
+        $this->args = array(1);
+        $this->remove = array( 1);
 
         Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
         return true; 

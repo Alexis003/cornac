@@ -17,38 +17,43 @@
    +----------------------------------------------------------------------+
  */
 
-class throw_regex extends Cornac_Tokenizeur_Regex {
-    protected $tname = 'throw_regex';
-
-    function __construct() {
-        parent::__construct(array());
-    }
-
-    function getTokens() {
-        return array(T_THROW );
-    }
+class Cornac_Tokenizeur_Token_Try extends Cornac_Tokenizeur_Token_Instruction {
+    protected $tname = '_try';
+    protected $block = null;
+    protected $catch = null;
     
-    function check($t) {
-        if (!$t->hasNext(1)) { return false; }
-
-        if ($t->getNext()->checkNotClass(array('_new',
-                                               'variable',
-                                               'property',
-                                               'method',
-                                               '_array',
-                                               '_constant',
-                                               'parenthesis',
-                                               'ternaryop',
-                                               'method_static',
-                                               'functioncall',
-                                               'literals'))) { return false; }
-        if ($t->getNext(1)->checkOperator(array('->','::','['))) { return false; }
-
-        $this->args = array(1);
-        $this->remove = array( 1);
-
-        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
-        return true; 
+    function __construct($expression = null) {
+        parent::__construct(array());
+        
+        $this->block = $expression[0];
+        unset($expression[0]);
+        $this->catch = array_values($expression);
     }
+
+    function __toString() {
+        return $this->getTname()." try { ".$this->block." } ";
+    }
+
+    function getBlock() {
+        return $this->block;
+    }
+
+    function getCatch() {
+        return $this->catch;
+    }
+
+    function neutralise() {
+        $this->block->detach();
+        foreach($this->catch as $e) {
+            $e->detach();
+        }
+    }
+
+    function getRegex(){
+        return array('Cornac_Tokenizeur_Regex_Try',
+                    );
+    }
+
 }
+
 ?>

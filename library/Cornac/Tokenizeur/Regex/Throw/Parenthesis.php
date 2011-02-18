@@ -17,34 +17,34 @@
    +----------------------------------------------------------------------+
  */
 
-class label extends Cornac_Tokenizeur_Token_Instruction {
-    protected $tname = 'label';
-    protected $name = null;
-    
-    function __construct($expression) {
+class Cornac_Tokenizeur_Regex_Throw_Parenthesis extends Cornac_Tokenizeur_Regex {
+    protected $tname = 'throw_parenthesis_regex';
+
+    function __construct() {
         parent::__construct(array());
-        
-        $this->name = $this->makeProcessed('_label_', $expression[0]);
     }
 
-    function __toString() {
-        $return = $this->name." : ";
-        return $return;
+    function getTokens() {
+        return array(T_THROW );
     }
+    
+    function check($t) {
+        if (!$t->hasNext(1)) { return false; }
 
-    function getName() {
-        return $this->name;
+        if ($t->checkToken(T_THROW) &&
+            $t->getNext()->checkOperator('(') &&
+            $t->getNext(1)->checkClass(array('_new','variable','property','method','_array','method_static','functioncall')) &&
+            $t->getNext(2)->checkOperator(')') &&
+            $t->getNext(3)->checkNotCode(array('->','['))
+            ) {
+
+            $this->args = array(2);
+            $this->remove = array( 1,2,3);
+
+            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
+            return true; 
+        } 
+        return false;
     }
-
-    function neutralise() {
-        $this->name->detach();
-    }
-
-    function getRegex(){
-        return array('label_normal_regex',
-                    );
-    }
-
 }
-
 ?>

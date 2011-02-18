@@ -17,40 +17,31 @@
    +----------------------------------------------------------------------+
  */
 
-class _try extends Cornac_Tokenizeur_Token_Instruction {
-    protected $tname = '_try';
-    protected $block = null;
-    protected $catch = null;
+class Cornac_Tokenizeur_Token_Throw extends Cornac_Tokenizeur_Token_Instruction {
+    protected $tname = '_throw';
+    protected $exception = null;
     
     function __construct($expression = null) {
         parent::__construct(array());
-        
-        $this->block = $expression[0];
-        unset($expression[0]);
-        $this->catch = array_values($expression);
+
+        $this->exception = $expression[0];
     }
 
     function __toString() {
-        return $this->getTname()." try { ".$this->block." } ";
+        return $this->getTname()." ".$this->exception;
     }
 
-    function getBlock() {
-        return $this->block;
-    }
-
-    function getCatch() {
-        return $this->catch;
+    function getException() {
+        return $this->exception;
     }
 
     function neutralise() {
-        $this->block->detach();
-        foreach($this->catch as $e) {
-            $e->detach();
-        }
+        $this->exception->detach();
     }
 
     function getRegex(){
-        return array('try_normal_regex',
+        return array('Cornac_Tokenizeur_Regex_Throw_Simple',
+                     'Cornac_Tokenizeur_Regex_Throw_Parenthesis',
                     );
     }
 

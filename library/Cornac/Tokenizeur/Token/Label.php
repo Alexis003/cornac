@@ -17,31 +17,31 @@
    +----------------------------------------------------------------------+
  */
 
-class _throw extends Cornac_Tokenizeur_Token_Instruction {
-    protected $tname = '_throw';
-    protected $exception = null;
+class Cornac_Tokenizeur_Token_Label extends Cornac_Tokenizeur_Token_Instruction {
+    protected $tname = 'label';
+    protected $name = null;
     
-    function __construct($expression = null) {
+    function __construct($expression) {
         parent::__construct(array());
-
-        $this->exception = $expression[0];
+        
+        $this->name = $this->makeProcessed('_label_', $expression[0]);
     }
 
     function __toString() {
-        return $this->getTname()." ".$this->exception;
+        $return = $this->name." : ";
+        return $return;
     }
 
-    function getException() {
-        return $this->exception;
+    function getName() {
+        return $this->name;
     }
 
     function neutralise() {
-        $this->exception->detach();
+        $this->name->detach();
     }
 
     function getRegex(){
-        return array('throw_regex',
-                     'throw_parenthesis_regex',
+        return array('Cornac_Tokenizeur_Regex_Label',
                     );
     }
 
