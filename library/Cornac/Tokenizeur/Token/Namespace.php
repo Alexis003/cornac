@@ -17,49 +17,33 @@
    +----------------------------------------------------------------------+
  */
 
-class comparison extends Cornac_Tokenizeur_Token_Instruction {
-    protected $tname = 'comparison';
-    protected $left = null;
-    protected $operator = null;
-    protected $right = null;
+class Cornac_Tokenizeur_Token_Namespace extends Cornac_Tokenizeur_Token_Instruction {
+    protected $tname = '_namespace';
+    protected $namespace = null;
     
     function __construct($expression) {
         parent::__construct(array());
         
-        if (is_array($expression) && count($expression) == 3) {
-            $this->left = $expression[0];
-            $this->operator = $this->makeProcessed('_comparison_', $expression[1]);
-            $this->right = $expression[2];
-        } else {
-            $this->stopOnError("Wrong number of arguments  : '".count($expression)."' in ".__METHOD__);
-        }
+        $this->namespace = $expression[0];
     }
 
     function __toString() {
-        return $this->getTname()." ".$this->left." ".$this->operator." ".$this->right;
+        return "namespace ".$this->namespace;
     }
 
-    function getRight() {
-        return $this->right;
-    }
-
-    function getOperator() {
-        return $this->operator;
-    }
-
-    function getLeft() {
-        return $this->left;
+    function getNamespace() {
+        return $this->namespace;
     }
 
     function neutralise() {
-       $this->left->detach();
-       $this->operator->detach();
-       $this->right->detach();
+        $this->namespace->detach();
     }
 
-    static function getRegex() {
-        return array('comparison_regex');
+    function getRegex(){
+        return array('Cornac_Tokenizeur_Regex_Namespace',
+                    );
     }
+
 }
 
 ?>

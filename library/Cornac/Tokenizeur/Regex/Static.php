@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class static_normal_regex extends Cornac_Tokenizeur_Regex {
+class Cornac_Tokenizeur_Regex_Static extends Cornac_Tokenizeur_Regex {
     protected $tname = 'static_normal_regex';
 
     function __construct() {
@@ -59,33 +59,14 @@ class static_normal_regex extends Cornac_Tokenizeur_Regex {
             $repl = $var;
             $var = $var->getNext(1);
 
-            $regex = new modele_regex('_static',$args, $remove);
-            Cornac_Tokenizeur_Token::applyRegex($repl, '_static', $regex);
+            $regex = new modele_regex('Cornac_Tokenizeur_Token_Static',$args, $remove);
+            Cornac_Tokenizeur_Token::applyRegex($repl, 'Cornac_Tokenizeur_Token_Static', $regex);
 
             Cornac_Log::getInstance('tokenizer')->log(get_class($var)." => _static  (".$this->getTname().")");
             continue;
         }
         
         return false;
-/*        
-        if ($t->getNext()->checkNotClass(array('variable','affectation'))) { return false; }
-        if ($t->getNext(1)->checkOperator('=')) { return false; }
-
-        $this->args = array(1);
-        $this->remove = array(1);
-        
-        // @todo static should work as global (with a while)
-        if ($t->getNext(1)->checkBeginInstruction()) {
-        // @note may be a new instruction (even a sequence)
-            // @note OK, but do nothing
-        } elseif ($t->getNext(1)->checkToken(T_CLOSE_TAG)) {
-            // @note OK, but do nothing
-        } else {
-            return false;
-        }
-
-        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
-        return true; 
-*/    }
+    }
 }
 ?>

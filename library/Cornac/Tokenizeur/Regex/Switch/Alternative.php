@@ -17,38 +17,52 @@
    +----------------------------------------------------------------------+
  */
 
-class comparison_regex extends Cornac_Tokenizeur_Regex {
+class Cornac_Tokenizeur_Regex_Switch_Alternative extends Cornac_Tokenizeur_Regex {
+    protected $tname = 'switch_alternative_regex';
+
     function __construct() {
         parent::__construct(array());
     }
 
     function getTokens() {
-        return array(T_IS_EQUAL, T_IS_SMALLER_OR_EQUAL, T_IS_NOT_IDENTICAL, 
-                     T_IS_NOT_EQUAL, T_IS_IDENTICAL, T_IS_GREATER_OR_EQUAL, 
-                     T_INSTANCEOF, '>', '<');
+        return array(T_SWITCH);
     }
     
     function check($t) {
-        if (!$t->hasPrev() ) { return false; }
-        if (!$t->hasNext() ) { return false; }
+        if (!$t->hasNext(2)) { return false; }
+
+        if ($t->getNext()->checkNotClass('parenthesis')) { return false; }
+        if ($t->getNext(1)->checkNotOperator(':')) { return false; }
+
+        $pos = 0;
+        $var = $t->getNext(2);
         
-        // @note must be a real operator
-        if ($t->checkNotClass('Token')) { return false; }
-
-        if ($t->hasPrev(2) && ($t->getPrev(1)->checkOperator(array('->','$','::','++','--','-','+','&')) ||
-                               $t->getPrev(1)->checkToken(T_NEW) ||
-                               $t->getPrev(1)->checkClass('variable') ||
-                               $t->getPrev(1)->checkForComparison() )) { return false; }
-
-        if ($t->getPrev()->checkClass(array('Token','arglist'))) { return false; }
+        $args = array();
+        $remove = array();
         
-        if ($t->getNext()->checkClass('Token')) { return false; }
-        if ($t->getNext(1)->checkOperator(array('(','[','->','::','+','-','/','*','%','{','++','--','=')) ||
-            $t->getNext(1)->checkClass(array('parenthesis','arglist'))) { return false; }
+        while($var->checkNotToken(T_ENDSWITCH)) {
+            
+            if ($var->checkClass('rawtext')) {
+                $remove[] = $pos;
+                $pos++;
+                $var = $var->getNext();
+                continue;
+            }
+            if ($var->checkNotClass(array('_case','_default'))) { return false; }
+            
+            $args[] = $pos;
+            $remove[] = $pos;
+            $pos++;
+            
+            $var = $var->getNext();
+        }
+        
+        $regex = new modele_regex('block',$args, $remove);
+        Cornac_Tokenizeur_Token::applyRegex($t->getNext(2), 'block', $regex);
 
-        $this->args   = array(-1, 0, 1);
-        $this->remove = array(-1, 1);
-
+        $this->args = array(1, 3);
+        $this->remove = array(1, 2, 3, 4);
+        
         Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
         return true; 
     }

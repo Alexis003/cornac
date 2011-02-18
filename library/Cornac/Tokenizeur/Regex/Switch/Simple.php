@@ -17,33 +17,32 @@
    +----------------------------------------------------------------------+
  */
 
-class _static extends Cornac_Tokenizeur_Token_Instruction {
-    protected $tname = '_static';
-    protected $expression = null;
-    
-    function __construct($expression = null) {
+class Cornac_Tokenizeur_Regex_Switch_Simple extends Cornac_Tokenizeur_Regex {
+    protected $tname = 'switch_simple_regex';
+
+    function __construct() {
         parent::__construct(array());
-        
-        $this->expression = $expression[0];
     }
 
-    function __toString() {
-        return $this->getTname()." ".$this->expression;
+    function getTokens() {
+        return array(T_SWITCH);
     }
+    
+    function check($t) {
+        if (!$t->hasNext(1)) { return false; }
 
-    function getExpression() {
-        return $this->expression;
+        if ($t->checkToken(T_SWITCH) &&
+            $t->getNext()->checkClass('parenthesis') &&
+            $t->getNext(1)->checkClass('block')
+            ) {
+
+            $this->args = array(1,2);
+            $this->remove = array(1,2);
+
+            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
+            return true; 
+        } 
+        return false;
     }
-
-    function neutralise() {
-        $this->expression->detach();
-    }
-
-    function getRegex(){
-        return array('static_normal_regex',
-                    );
-    }
-
 }
-
 ?>

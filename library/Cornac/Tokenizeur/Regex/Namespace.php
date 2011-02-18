@@ -17,32 +17,41 @@
    +----------------------------------------------------------------------+
  */
 
-class switch_simple_regex extends Cornac_Tokenizeur_Regex {
-    protected $tname = 'switch_simple_regex';
+class Cornac_Tokenizeur_Regex_Namespace extends Cornac_Tokenizeur_Regex {
+    protected $tname = 'namespace_normal_regex';
 
     function __construct() {
         parent::__construct(array());
     }
 
     function getTokens() {
-        return array(T_SWITCH);
+        return array(T_NAMESPACE);
     }
     
     function check($t) {
-        if (!$t->hasNext(1)) { return false; }
+        if (!$t->hasNext()) { return false; }
 
-        if ($t->checkToken(T_SWITCH) &&
-            $t->getNext()->checkClass('parenthesis') &&
-            $t->getNext(1)->checkClass('block')
-            ) {
-
-            $this->args = array(1,2);
-            $this->remove = array(1,2);
+        if ($t->getNext()->checkNotClass(array('_nsname','Token'))) { return false; }
+        
+        if ($t->getNext()->checkClass('_nsname')) {
+            $this->args[] = 1;
+            $this->remove[] = 1;
 
             Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
             return true; 
-        } 
-        return false;
+        } elseif ($t->getNext()->checkClass('Token')) {
+            if ($t->getNext()->checkCode(array(',','=>',';',')'))) { return false; }
+            if ($t->getNext()->checkToken(array(T_CLOSE_TAG))) { return false; }
+            // @note allow \ to appear after. 
+            if ($t->hasNext(2) && $t->getNext(1)->checkOperator('\\')) { return false; }
+            
+            $regex = new modele_regex('_nsname',array(0), array());
+            Cornac_Tokenizeur_Token::applyRegex($t->getNext(), '_nsname', $regex);
+
+            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => _nsname");
+
+            return false;
+        } // @empty_elseif
     }
 }
 ?>
