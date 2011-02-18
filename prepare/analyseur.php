@@ -57,7 +57,7 @@ class analyseur {
                                   'method_static',
                                   'Cornac_Tokenizeur_Token_New', // @removing '_new',
                                   '_foreach',
-                                  '_while',
+                                  'Cornac_Tokenizeur_Token_While', //'_while',
                                   '_dowhile',
                                   '_switch',
                                   '_case',
@@ -121,12 +121,15 @@ class analyseur {
         }
     }
     
-    private function analog($message, $duration) {
-        return false;
+    private function analog($message, $duration, $success) {
+//        return false;
+        // @todo move this to Cornac_log class! 
         if (!isset($this->fp)) {
             $this->fp = fopen("/tmp/analyseur.log","a");
         }
-        fwrite($this->fp, "$message\t$duration\t".getmypid()."\t\n");
+        $duration *= 1000000;
+        $this->order++;
+        fwrite($this->fp, "$this->order\t$message\t$duration\t".getmypid()."\t$success\n");
     }
 
     public function setAny_Token($flag) {
@@ -153,11 +156,12 @@ class analyseur {
                 $debut = microtime(true);
                 if (!$regex->check($t)) {
                     $fin = microtime(true);
-                    unset($regex);
-                    $this->analog($name, $fin - $debut);
+                    $this->analog($name, $fin - $debut, 0);
                     $this->rates[] = $name;
                     continue;
                 }
+                $fin = microtime(true);
+                $this->analog($name, $fin - $debut, 1);
     
                 $return = analyseur::applyRegex($t, $this->tokens[$name], $regex);
                 Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".get_class($return));
@@ -173,11 +177,12 @@ class analyseur {
                 $debut = microtime(true);
                 if (!$regex->check($t)) {
                     $fin = microtime(true);
-                    unset($regex);
-                    $this->analog($name, $fin - $debut);
+                    $this->analog($name, $fin - $debut, 0);
                     $this->rates[] = $name;
                     continue;
                 }
+                $fin = microtime(true);
+                $this->analog($name, $fin - $debut, 1);
                 
                 $return = analyseur::applyRegex($t, $this->tokens[$name], $regex);
                 if ($return->getLine() == -1) { 
@@ -196,10 +201,11 @@ class analyseur {
             $debut = microtime(true);
             if (!$regex->check($t)) {
                 $fin = microtime(true);
-                unset($regex);
-                $this->analog($name, $fin - $debut);
+                $this->analog($name, $fin - $debut, 0);
                 continue;
             }
+            $fin = microtime(true);
+            $this->analog($name, $fin - $debut, 1);
 
             $return = analyseur::applyRegex($t, $this->tokens[$name], $regex);
             Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".get_class($return));

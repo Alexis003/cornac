@@ -85,7 +85,7 @@ class Cornac_Tokenizeur_Token_New extends Cornac_Tokenizeur_Token_Instruction {
         return array('new_normal_regex',
                      'new_single_regex',
                      'new_variable_regex',
-                     'new_static_regex',
+//                     'new_static_regex',
                     );
     }
 

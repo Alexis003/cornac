@@ -30,6 +30,12 @@ class literals extends Cornac_Tokenizeur_Token {
         if (count($expression) == 2) {
             $this->delimiter = trim(substr($expression[0]->getCode(), 3));
             $this->value = $expression[1]->getCode();
+        } elseif (count($expression) == 3) {
+            $this->value = $expression[1];
+            if (strlen($this->value) > 0 && ($this->value[0] == '"' || $this->value[0] == "'")) {
+                $this->delimiter = $this->value[0];
+                $this->value = substr($this->value, 1, -1);
+            }
         } else {
             // @note only 1 element
             $this->value = $expression[0]->getCode();

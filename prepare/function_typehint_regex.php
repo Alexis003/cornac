@@ -30,14 +30,19 @@ class function_typehint_regex extends Cornac_Tokenizeur_Regex {
     
     function check($t) {
         if (!$t->hasNext(3)) { return false; }
+        
+        // @doc this is function x() {} . 
+        // @doc speed optimisation
+        if ($t->getNext(1)->checkClass('arglist')) { return false; }
 
         $var = $t->getNext(2);
-        
+
         while ($var->checkNotOperator(')')) {
+
             if (!$var->hasNext()) { return false; }
-            if (($var->checkClass('_constant') ||
-                 $var->checkToken(array(T_ARRAY,T_STRING))) &&
-                 $var->getNext()->checkClass('variable')) {
+            if ($var->checkNotClass('_constant') &&
+                 $var->checkNotToken(array(T_ARRAY,T_STRING))){ return false; }
+            if ($var->getNext()->checkNotClass('variable')) { return false; }
                 
                 if ($var->getNext(1)->checkOperator('=') &&
                     $var->getNext(2)->checkNotClass('Token')) {
@@ -84,7 +89,6 @@ class function_typehint_regex extends Cornac_Tokenizeur_Regex {
                     $var = $var->getNext();
                     continue; 
                 } 
-            }
 
             // @note typehint with initialisation
             if ($var->checkOperator('(')) {

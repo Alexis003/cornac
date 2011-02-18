@@ -65,7 +65,7 @@ class affectation extends Cornac_Tokenizeur_Token_Instruction {
 
     function getRegex(){
         return array('affectation_normal_regex', 
-                     'affectation_withsemicolon_regex', 
+//                     'affectation_withsemicolon_regex', 
                      'affectation_list_regex',
                     );
     }
