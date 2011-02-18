@@ -17,55 +17,43 @@
    +----------------------------------------------------------------------+
  */
 
-class Cornac_Tokenizeur_Token_Variable extends Cornac_Tokenizeur_Token {
-    protected $tname = 'variable';
-    protected $name = null;
-
+class Cornac_Tokenizeur_Token_While extends Cornac_Tokenizeur_Token_Instruction {
+    protected $tname = '_while';
+    protected $condition = null;
+    protected $block = null;
+    
     function __construct($expression = null) {
         parent::__construct(array());
-
-        if (is_null($expression)) { // @note  coming from class _array
-            return ;
-        }
-
-        if (count($expression) == 1) {
-            if ($expression[0]->checkClass(array('variable','Token'))) {
-                $this->name = $expression[0]->getCode();
-            } else {
-                $this->name = $expression[0];
-            }
-            $this->setLine($expression[0]->getLine());
-        } elseif (count($expression) == 3) {
-            // @doc coming from token
-            $this->name = $expression[1];
-        } else {
-          $this->name = $expression[1];
-          $this->code = $this->name->getCode();
-          $this->setLine($this->name->getLine());
-        }
+        
+        $this->condition = $expression[0];
+        $this->block = $expression[1];
     }
 
     function __toString() {
-        return $this->getTname()." ".$this->name;
+        return $this->getTname()." ".$this->code;
     }
-    
-    function getName() {
-        return $this->name;
+
+    function getBlock() {
+        return $this->block;
     }
-    
+
+    function getCondition() {
+        return $this->condition;
+    }
+
     function neutralise() {
-        if (is_object($this->name)) {
-            $this->name->detach();
-        }
+        $this->condition->detach();
+        $this->block->detach();
     }
 
     function getRegex(){
-        return array('variable_regex',
-                     'variable_separatedcurly_regex',
-                     'variable_curly_regex',
-                     'variable_variable_regex',
-                     );
+        return array('Cornac_Tokenizeur_Regex_While_Block',
+                     'Cornac_Tokenizeur_Regex_While_Noblock',
+                     'Cornac_Tokenizeur_Regex_While_Alternative',
+                     'Cornac_Tokenizeur_Regex_Dowhile_Simple',
+                    );
     }
+
 }
 
 ?>
