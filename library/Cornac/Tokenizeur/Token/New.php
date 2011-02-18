@@ -32,14 +32,14 @@ class Cornac_Tokenizeur_Token_New extends Cornac_Tokenizeur_Token_Instruction {
         } elseif ($constructor->checkClass('method')) {
             $this->class = $constructor;
             if (!isset($expression[1])) {
-                $this->args = new arglist();
+                $this->args = new Cornac_Tokenizeur_Token_Arglist();
             } else {
                 $this->args = $expression[1];
             }
         } elseif ($constructor->checkClass('_constant')) {
             $this->class =  new Cornac_Tokenizeur_Token_Processed_Classname($constructor->getName());
             if (!isset($expression[1])) {
-                $this->args = new arglist();
+                $this->args = new Cornac_Tokenizeur_Token_Arglist();
             } else {
                 $this->args = $expression[1];
             }
@@ -47,7 +47,7 @@ class Cornac_Tokenizeur_Token_New extends Cornac_Tokenizeur_Token_Instruction {
             $this->class = $constructor;
 
             if (!isset($expression[1])) {
-                $this->args = new arglist();
+                $this->args = new Cornac_Tokenizeur_Token_Arglist();
             } else {
                 $this->args = $expression[1];
             }
@@ -55,7 +55,7 @@ class Cornac_Tokenizeur_Token_New extends Cornac_Tokenizeur_Token_Instruction {
             $this->class = $this->makeProcessed('_static_', $constructor);
 
             if (!isset($expression[1])) {
-                $this->args = new arglist();
+                $this->args = new Cornac_Tokenizeur_Token_Arglist();
             } else {
                 $this->args = $expression[1];
             }
@@ -85,7 +85,6 @@ class Cornac_Tokenizeur_Token_New extends Cornac_Tokenizeur_Token_Instruction {
         return array('new_normal_regex',
                      'new_single_regex',
                      'new_variable_regex',
-//                     'new_static_regex',
                     );
     }
 
