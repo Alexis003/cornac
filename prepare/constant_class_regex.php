@@ -46,19 +46,19 @@ class constant_class_regex extends Cornac_Tokenizeur_Regex {
         $var = $t;
 
         while($var->checkOperator(',') || $var->checkToken(T_CONST)) {
-                // @note registering a new constante each comma
-                    $args = array(1);
-                    $remove = array(1);
+        // @note registering a new constante each comma
+            $args = array(1);
+            $remove = array(1);
 
-                    // @note $var is changed before $repl is replaced
-                    $repl = $var;
-                    $var = $var->getNext(1);
+            // @note $var is changed before $repl is replaced
+            $repl = $var;
+            $var = $var->getNext(1);
 
-                    $regex = new modele_regex('constant_class',$args, $remove);
-                    Cornac_Tokenizeur_Token::applyRegex($repl, 'constant_class', $regex);
+            $regex = new modele_regex('constant_class',$args, $remove);
+            Cornac_Tokenizeur_Token::applyRegex($repl, 'constant_class', $regex);
 
-                    Cornac_Log::getInstance('tokenizer')->log(get_class($var)." => constant_class  (".$this->getTname().")");
-                    continue;
+            Cornac_Log::getInstance('tokenizer')->log(get_class($var)." => constant_class  (".$this->getTname().")");
+            continue;
         }
         
         return false; 
