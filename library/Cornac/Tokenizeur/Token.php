@@ -433,10 +433,11 @@ class Cornac_Tokenizeur_Token {
                                                T_NS_SEPARATOR,
                                                ))) { return false; }
 
-        if (!is_array($code)) {
-            $code = array($code);
+        if (is_array($code)) {
+            return in_array($this->getCode(), $code);
+        } else {
+            return $this->getCode() == $code;
         }
-        return in_array($this->getCode(), $code);
     }
 
     public function checkNotOperator($code) {
