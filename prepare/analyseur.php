@@ -74,7 +74,7 @@ class analyseur {
                                   'typehint',
                                   '_class',
                                   '_interface',
-                                  '_var',
+                                  'Cornac_Tokenizeur_Token_Var', //'_var',
                                   'reference',
                                   'sign',
                                   'cast',
@@ -92,7 +92,7 @@ class analyseur {
                                   'label',
                                   '_nsname',
                                   '_namespace',
-                                  '_use',
+                                  'Cornac_Tokenizeur_Token_Use', //'_use',
                                   );
         $this->regex = array();
         foreach ($this->structures as $id => $structure) {

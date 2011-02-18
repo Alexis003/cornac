@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _use extends Cornac_Tokenizeur_Token_Instruction {
+class Cornac_Tokenizeur_Token_Use extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = '_use';
     protected $namespace = null;
     protected $alias = null;
@@ -56,7 +56,7 @@ class _use extends Cornac_Tokenizeur_Token_Instruction {
     }
 
     function getRegex(){
-        return array('use_normal_regex',
+        return array('Cornac_Tokenizeur_Regex_Use_Simple',
                     );
     }
 

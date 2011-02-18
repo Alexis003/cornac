@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class use_normal_regex extends Cornac_Tokenizeur_Regex {
+class Cornac_Tokenizeur_Regex_Use_Simple extends Cornac_Tokenizeur_Regex {
     protected $tname = 'use_normal_regex';
 
     function __construct() {
@@ -93,8 +93,8 @@ class use_normal_regex extends Cornac_Tokenizeur_Regex {
                     }
 
 
-                    $regex = new modele_regex('_use',$args, $remove);
-                    Cornac_Tokenizeur_Token::applyRegex($repl, '_use', $regex);
+                    $regex = new modele_regex('Cornac_Tokenizeur_Token_Use',$args, $remove);
+                    Cornac_Tokenizeur_Token::applyRegex($repl, 'Cornac_Tokenizeur_Token_Use', $regex);
 
                     Cornac_Log::getInstance('tokenizer')->log(get_class($var)." => _use  (".$this->getTname().")");
                     continue;

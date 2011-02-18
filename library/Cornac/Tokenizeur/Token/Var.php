@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _var extends Cornac_Tokenizeur_Token_Instruction {
+class Cornac_Tokenizeur_Token_Var extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = '_var';
     protected $_static = null;
     protected $_visibility = null;
@@ -92,20 +92,7 @@ class _var extends Cornac_Tokenizeur_Token_Instruction {
 
         unset($expression[0]);
         $expression = array_values($expression);
-        /*
-        while ($expression[0]->checkToken(array(T_VAR, T_PRIVATE, T_PROTECTED, T_PUBLIC, T_STATIC))) {
-            if ($expression[0]->checkToken(array(T_VAR, T_PRIVATE, T_PROTECTED, T_PUBLIC))) {
-                $this->_visibility = $this->makeProcessed('_ppp_', $expression[0]);
-            } elseif ($expression[0]->checkToken(T_STATIC)) {
-                $this->_static = $this->makeProcessed('_static_', $expression[0]);
-            } else {
-                $this->stopOnError("Unknown class attribute : ".count($expression)." in ".__METHOD__);
-            }
 
-            unset($expression[0]);
-            $expression = array_values($expression);
-        }*/
-        
         foreach($expression as $id => $e) {
             if ($e->checkClass('variable')) {
                 $this->variable[] = $e;
@@ -165,7 +152,7 @@ class _var extends Cornac_Tokenizeur_Token_Instruction {
 
     function getRegex() {
         return array(
-                      'var_simple_regex',
+                      'Cornac_Tokenizeur_Regex_Var_Simple',
                     );
     }
 }

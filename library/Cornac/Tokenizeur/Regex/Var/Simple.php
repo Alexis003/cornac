@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class var_simple_regex extends Cornac_Tokenizeur_Regex {
+class Cornac_Tokenizeur_Regex_Var_Simple extends Cornac_Tokenizeur_Regex {
     protected $tname = 'var_simple_regex';
 
     function __construct() {
@@ -88,8 +88,8 @@ class var_simple_regex extends Cornac_Tokenizeur_Regex {
                     $repl->setToken($token_bis);
                     $var = $var->getNext(1);
 
-                    $regex = new modele_regex('_var', $args, $remove);
-                    Cornac_Tokenizeur_Token::applyRegex($repl, '_var', $regex);
+                    $regex = new modele_regex('Cornac_Tokenizeur_Token_Var', $args, $remove);
+                    Cornac_Tokenizeur_Token::applyRegex($repl, 'Cornac_Tokenizeur_Token_Var', $regex);
 
                     Cornac_Log::getInstance('tokenizer')->log(get_class($var)." => _var  (".$this->getTname().")");
                     continue;
