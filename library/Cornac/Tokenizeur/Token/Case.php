@@ -30,14 +30,14 @@ class Cornac_Tokenizeur_Token_Case extends Cornac_Tokenizeur_Token_Instruction {
             if (isset($expression[2])) {
                 $this->block     = $expression[2];
             } else {
-                $this->block     = new block();
+                $this->block     = new Cornac_Tokenizeur_Token_Block();
             }
         } elseif ($expression[0]->checkToken(T_DEFAULT)) {
-            $this->condition = new block();
+            $this->condition = new Cornac_Tokenizeur_Token_Block();
             if (isset($expression[1])) {
                 $this->block     = $expression[1];
             } else {
-                $this->block     = new block();
+                $this->block     = new Cornac_Tokenizeur_Token_Block();
             }
         } else {
             $this->stopOnError("Unexpected TOKEN received : '".$expression[0]->getToken()."' in ".__METHOD__);

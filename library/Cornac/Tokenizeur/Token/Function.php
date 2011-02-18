@@ -76,7 +76,7 @@ class Cornac_Tokenizeur_Token_Function extends Cornac_Tokenizeur_Token_Instructi
             } elseif ($e->checkOperator('&')) {
                 $this->reference = $this->makeProcessed('_reference_', $e);
             } elseif ($e->checkCode(';')) {
-                $this->block = new block();
+                $this->block = new Cornac_Tokenizeur_Token_Block();
             } else {
             // @note this is an error. We should log this
                 $this->stopOnError( $e." (".get_class($e).") Unknown\n");

@@ -37,7 +37,7 @@ class Cornac_Tokenizeur_Token_Foreach extends Cornac_Tokenizeur_Token_Instructio
             
         $block = array_pop($expression);
         if ($block->checkCode(';')) {
-            $real = new block(array());
+            $real = new Cornac_Tokenizeur_Token_Block(array());
             $real->replace($block);
             
             $expression[] = $real;
