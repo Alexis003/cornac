@@ -38,8 +38,8 @@ class Cornac_Tokenizeur_Regex_Use_Simple extends Cornac_Tokenizeur_Regex {
                 $var->getNext(2)->checkClass('Token') &&
                 $var->getNext(3)->checkOperator(array(',',';'))) { 
 
-                $regex = new modele_regex('_nsname',array(0), array());
-                Cornac_Tokenizeur_Token::applyRegex($var->getNext(), '_nsname', $regex);
+                $regex = new modele_regex('Cornac_Tokenizeur_Token_Nsname',array(0), array());
+                Cornac_Tokenizeur_Token::applyRegex($var->getNext(), 'Cornac_Tokenizeur_Token_Nsname', $regex);
     
                 Cornac_Log::getInstance('tokenizer')->log(get_class($t)." =>2 ".$this->getTname());
                 
@@ -53,8 +53,8 @@ class Cornac_Tokenizeur_Regex_Use_Simple extends Cornac_Tokenizeur_Regex {
                 // @note allow \ to appear after. 
                 if ($var->getNext(1)->checkOperator('\\')) { return false; }
             
-                $regex = new modele_regex('_nsname',array(0), array());
-                Cornac_Tokenizeur_Token::applyRegex($var->getNext(), '_nsname', $regex);
+                $regex = new modele_regex('Cornac_Tokenizeur_Token_Nsname',array(0), array());
+                Cornac_Tokenizeur_Token::applyRegex($var->getNext(), 'Cornac_Tokenizeur_Token_Nsname', $regex);
     
                 Cornac_Log::getInstance('tokenizer')->log(get_class($t)." =>1 ".$this->getTname());
                 

@@ -17,37 +17,28 @@
    +----------------------------------------------------------------------+
  */
 
-class _return extends Cornac_Tokenizeur_Token_Instruction {
-    protected $tname = '_return';
-    protected $return = null;
+class Cornac_Tokenizeur_Regex_Return_Simple extends Cornac_Tokenizeur_Regex {
+    protected $tname = 'return_simple_regex';
 
-    function __construct($expression = null) {
+    function __construct() {
         parent::__construct(array());
+    }
 
-        if (isset($expression[0])) {
-            $this->return = $expression[0];
-        } 
+    function getTokens() {
+        return array(T_RETURN);
     }
     
-    function __toString() {
-        return $this->getTname()." return ".$this->return;
-    }
+    function check($t) {
+        if (!$t->hasNext(1)) { return false; }
 
-    function getReturn() {
-        return $this->return;
-    }
+        if ($t->getNext()->checkClass('Token')) { return false; }
+        if ($t->getNext(1)->checkNotOperator(';')) { return false; }
 
-    function neutralise() {
-        if (!is_null($this->return)) {
-            $this->return->detach();
-        }
-    }
-
-    function getRegex() {
-        return array(
-        'return_simple_regex',
-        'return_empty_regex',
-);
+        $this->args = array(1);
+        $this->remove = array(1);
+        
+        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
+        return true;
     }
 }
 

@@ -17,49 +17,37 @@
    +----------------------------------------------------------------------+
  */
 
-define('T_NAMESPACED_NAME', 500);
+class Cornac_Tokenizeur_Token_Return extends Cornac_Tokenizeur_Token_Instruction {
+    protected $tname = '_return';
+    protected $return = null;
 
-class _nsname extends Cornac_Tokenizeur_Token_Instruction {
-    protected $tname = '_nsname';
-    protected $namespace = array();
-    
-    function __construct($expression) {
+    function __construct($expression = null) {
         parent::__construct(array());
-        
-        foreach($expression as $e) {
-            if ($e->checkToken(T_NS_SEPARATOR)) {
-                $f = $this->makeProcessed('_nsseparator_',$e);
-                $this->namespace[] = $f;
-                $f->setCode('\\');
-            } elseif ($e->checkClass('Token')) {
-                $this->namespace[] = $this->makeProcessed('_nsname_', $e);
-            } else {
-                $this->namespace[] = $e;
-            }
-        }
-    }
 
+        if (isset($expression[0])) {
+            $this->return = $expression[0];
+        } 
+    }
+    
     function __toString() {
-        return join('\\', $this->namespace);
+        return $this->getTname()." return ".$this->return;
     }
 
-    function getNamespace() {
-        return $this->namespace;
+    function getReturn() {
+        return $this->return;
     }
 
     function neutralise() {
-        foreach($this->namespace as $e) {
-            $e->detach();
+        if (!is_null($this->return)) {
+            $this->return->detach();
         }
     }
 
-    function getRegex(){
-        return array('nsname_normal_regex',
-                    );
-    }
-    
-    function getToken() {
-        return T_NAMESPACED_NAME;
+    function getRegex() {
+        return array(
+        'Cornac_Tokenizeur_Regex_Return_Simple',
+        'Cornac_Tokenizeur_Regex_Return_Empty',
+);
     }
 }
 

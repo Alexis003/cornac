@@ -1,5 +1,7 @@
 <?php
 
+// @configuration all constants should be gathered in one file
+define('T_NAMESPACED_NAME', 500);
 
 class Cornac_Autoload {
     static public function autoload($name) {

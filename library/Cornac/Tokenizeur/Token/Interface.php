@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _interface extends Cornac_Tokenizeur_Token_Instruction {
+class Cornac_Tokenizeur_Token_Interface extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = '_interface';
     protected $name = null;
     protected $block = null;
@@ -66,7 +66,7 @@ class _interface extends Cornac_Tokenizeur_Token_Instruction {
     }
 
     function getRegex(){
-        return array('interface_normal_regex',
+        return array('Cornac_Tokenizeur_Regex_Interface',
                     );
     }
 

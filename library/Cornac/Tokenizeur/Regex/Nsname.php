@@ -17,48 +17,47 @@
    +----------------------------------------------------------------------+
  */
 
-class interface_normal_regex extends Cornac_Tokenizeur_Regex {
-    protected $tname = 'interface_normal_regex';
+class Cornac_Tokenizeur_Regex_Nsname extends Cornac_Tokenizeur_Regex {
+    protected $tname = 'nsname_normal_regex';
 
     function __construct() {
         parent::__construct(array());
     }
 
     function getTokens() {
-        return array(T_INTERFACE );
+        return array(T_NS_SEPARATOR);
     }
     
     function check($t) {
-        if (!$t->hasNext(1)) { return false; }
-        if ($t->checkNotToken(T_INTERFACE)) { return false; } 
-
-        $this->args = array(1);
-        $this->remove = array(1);
+        if (!$t->hasNext()) { return false; }
         
-        $pos = 1;
+        // @note we need a real token, not just coincidence at code level
+        if ($t->checkNotToken(T_NS_SEPARATOR)) { return false; }
+
+// @note NSname may actually start by \ \htmlentities
+        if ($t->getPrev()->checkToken(array(T_STRING))) { 
+            $this->args = array(-1);
+            $this->remove = array(-1);
+        } else {
+        // @note we use this to tell _nsname that this is a root call
+            $this->args = array(0);
+        }
+
+        if ($t->getNext()->checkNotClass('Token')) { return false; }
+        $this->args[] = 1;
+        $this->remove[] = 0;
+        $this->remove[] = 1;
+        
         $var = $t->getNext(1);
-        if ($var->checkToken(T_EXTENDS)) {
+        $pos = 1;
+        while($var->checkOperator('\\')) {
             $this->args[] = $pos + 2;
             $this->remove[] = $pos + 1;
             $this->remove[] = $pos + 2;
-
+            
             $var = $var->getNext(1);
-            $pos = $pos + 2;
-
-            while ($var->checkCode(',')) {
-                $this->args[] = $pos + 2;
-                $this->remove[] = $pos + 1;
-                $this->remove[] = $pos + 2;
-
-                $var = $var->getNext(1);
-                $pos = $pos + 2;
-            }
+            $pos += 2;
         }
-        
-        if ($var->checkNotClass('block')) { return false; } 
-
-        $this->args[] = $pos + 1;
-        $this->remove[] = $pos + 1;
         
         Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
         return true; 

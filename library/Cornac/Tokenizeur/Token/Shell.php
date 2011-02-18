@@ -17,32 +17,42 @@
    +----------------------------------------------------------------------+
  */
 
-class return_empty_regex extends Cornac_Tokenizeur_Regex {
-    protected $tname = 'return_empty_regex';
-
-    function __construct() {
-        parent::__construct(array());
-    }
-
-    function getTokens() {
-        return array(T_RETURN);
-    }
+class Cornac_Tokenizeur_Token_Shell extends Cornac_Tokenizeur_Token_Instruction {
+    protected $tname = 'shell';
+    protected $expression = array();
     
-    function check($t) {
-        if (!$t->hasNext(1)) { return false; }
-
-        if ($t->checkToken(array(T_RETURN)) &&
-            $t->getNext()->checkCode(';')
-            ) {
-              $this->args = array();
-              $this->remove = array();
-  
-              Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
-              return true;
-        } else {
-            return false;
+    function __construct($expression) {
+        parent::__construct(array());
+        
+        foreach($expression as $e) {
+            if ($e->checkClass('sequence')) {
+                $this->expression = array_merge($this->expression, $e->getElements());
+            } else {
+                // @todo accept anything?
+                $this->expression[] = $e;
+            }
         }
     }
+
+    function __toString() {
+        return $this->getTname()." `".$this->code."`";
+    }
+
+    function getExpression() {
+        return $this->expression;
+    }
+
+    function neutralise() {
+        foreach($this->expression as $e) {
+            $e->detach();
+        }
+    }
+
+    static function getRegex(){
+        return array('Cornac_Tokenizeur_Regex_Shell'
+                    );
+    }
+
 }
 
 ?>

@@ -17,28 +17,47 @@
    +----------------------------------------------------------------------+
  */
 
-class return_simple_regex extends Cornac_Tokenizeur_Regex {
-    protected $tname = 'return_simple_regex';
-
-    function __construct() {
+class Cornac_Tokenizeur_Token_Nsname extends Cornac_Tokenizeur_Token_Instruction {
+    protected $tname = '_nsname';
+    protected $namespace = array();
+    
+    function __construct($expression) {
         parent::__construct(array());
+        
+        foreach($expression as $e) {
+            if ($e->checkToken(T_NS_SEPARATOR)) {
+                $f = $this->makeProcessed('_nsseparator_',$e);
+                $this->namespace[] = $f;
+                $f->setCode('\\');
+            } elseif ($e->checkClass('Token')) {
+                $this->namespace[] = $this->makeProcessed('_nsname_', $e);
+            } else {
+                $this->namespace[] = $e;
+            }
+        }
     }
 
-    function getTokens() {
-        return array(T_RETURN);
+    function __toString() {
+        return join('\\', $this->namespace);
+    }
+
+    function getNamespace() {
+        return $this->namespace;
+    }
+
+    function neutralise() {
+        foreach($this->namespace as $e) {
+            $e->detach();
+        }
+    }
+
+    function getRegex(){
+        return array('Cornac_Tokenizeur_Regex_Nsname',
+                    );
     }
     
-    function check($t) {
-        if (!$t->hasNext(1)) { return false; }
-
-        if ($t->getNext()->checkClass('Token')) { return false; }
-        if ($t->getNext(1)->checkNotOperator(';')) { return false; }
-
-        $this->args = array(1);
-        $this->remove = array(1);
-        
-        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
-        return true;
+    function getToken() {
+        return T_NAMESPACED_NAME;
     }
 }
 

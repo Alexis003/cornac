@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class shell_normal_regex extends Cornac_Tokenizeur_Regex {
+class Cornac_Tokenizeur_Regex_Shell extends Cornac_Tokenizeur_Regex {
     protected $tname = 'shell_normal_regex';
 
     function __construct() {
