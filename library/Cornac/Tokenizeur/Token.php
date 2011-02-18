@@ -321,6 +321,7 @@ class Cornac_Tokenizeur_Token {
             die(__METHOD__);
         }
 
+        $class = 'Cornac_Tokenizeur_Token_Processed_'. ucfirst(strtolower(substr($class, 1, -1)));
         $return = new $class($clone);
         $return->replace($clone);
         $return->setToken($token->getToken());

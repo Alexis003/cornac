@@ -17,39 +17,26 @@
    +----------------------------------------------------------------------+
  */
 
-class _break extends Cornac_Tokenizeur_Token_Instruction {
-    protected $tname = '_break';
-    protected $levels = null;
-    
-    function __construct($expression = null) {
+class Cornac_Tokenizeur_Regex_Goto extends Cornac_Tokenizeur_Regex {
+    protected $tname = 'goto_normal_regex';
+
+    function __construct() {
         parent::__construct(array());
-        
-        if (!isset($expression[1])) {
-            $this->levels = new Cornac_Tokenizeur_Token_Processed_Break(1);
-        } elseif ($expression[1]->checkClass('parenthesis')) {
-            $this->levels =  new Cornac_Tokenizeur_Token_Processed_Break($expression[1]->getContenu()->getCode());
-        } else {
-            $this->levels =  new Cornac_Tokenizeur_Token_Processed_Break($expression[1]->getCode());
-        }
     }
 
-    function __toString() {
-        return $this->getTname()." ".$this->code;
+    function getTokens() {
+        return array(T_GOTO);
     }
+    
+    function check($t) {
+        if (!$t->hasNext(1)) { return false; }
 
-    function getLevels() {
-        return $this->levels;
+        if ($t->getNext()->checkNotToken(T_STRING)) { return false; }
+        $this->args = array(1);
+        $this->remove = array(1);
+
+        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => goto  (".$this->getTname().")");
+        return true;
     }
-
-    function neutralise() {
-    }
-
-    function getRegex(){
-        return array('break_alone_regex',
-                     'break_leveled_regex',
-                    );
-    }
-
 }
-
 ?>

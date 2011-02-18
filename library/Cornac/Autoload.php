@@ -5,6 +5,7 @@ class Cornac_Autoload {
     static public function autoload($name) {
         // @todo path may have to be configurable
         if (basename($_SERVER['PWD']) == 'auditeur'){
+        // @todo remove this by moving auditeur in bin dir. 
             $path = '../library';
         } elseif (basename($_SERVER['PWD']) == 'scripts') {
             $path = '../library';

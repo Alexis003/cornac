@@ -29,7 +29,7 @@ class arglist extends Cornac_Tokenizeur_Token {
             if (is_null($l)) {
                 $this->list[] = $l;
             } elseif ($l->checkOperator(',')) {
-                $this->list[] = new _empty_('[empty]');
+                $this->list[] = new Cornac_Tokenizeur_Token_Processed_Empty('[empty]');
             } else {
                 $this->list[] = $l;
             }

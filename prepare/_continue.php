@@ -25,9 +25,9 @@ class _continue extends Cornac_Tokenizeur_Token_Instruction {
         parent::__construct(array());
         
         if (!isset($expression[1])) {
-            $this->levels = new _continue_(1);
+            $this->levels = new Cornac_Tokenizeur_Token_Processed_Continue(1);
         } else {
-            $this->levels = new _continue_($expression[1]->getCode());
+            $this->levels = new Cornac_Tokenizeur_Token_Processed_Continue($expression[1]->getCode());
         }
     }
 

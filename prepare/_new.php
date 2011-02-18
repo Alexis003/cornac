@@ -37,7 +37,7 @@ class Cornac_Tokenizeur_Token_New extends Cornac_Tokenizeur_Token_Instruction {
                 $this->args = $expression[1];
             }
         } elseif ($constructor->checkClass('_constant')) {
-            $this->class =  new _classname_($constructor->getName());
+            $this->class =  new Cornac_Tokenizeur_Token_Processed_Classname($constructor->getName());
             if (!isset($expression[1])) {
                 $this->args = new arglist();
             } else {

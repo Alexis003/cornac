@@ -17,36 +17,44 @@
    +----------------------------------------------------------------------+
  */
 
-class _break extends Cornac_Tokenizeur_Token_Instruction {
-    protected $tname = '_break';
-    protected $levels = null;
+class Cornac_Tokenizeur_Token_Bitshift extends Cornac_Tokenizeur_Token_Instruction {
+    protected $tname = 'bitshift';
+    protected $left = null;
+    protected $operator = null;
+    protected $right = null;
     
     function __construct($expression = null) {
         parent::__construct(array());
-        
-        if (!isset($expression[1])) {
-            $this->levels = new Cornac_Tokenizeur_Token_Processed_Break(1);
-        } elseif ($expression[1]->checkClass('parenthesis')) {
-            $this->levels =  new Cornac_Tokenizeur_Token_Processed_Break($expression[1]->getContenu()->getCode());
-        } else {
-            $this->levels =  new Cornac_Tokenizeur_Token_Processed_Break($expression[1]->getCode());
-        }
+
+        $this->left = $expression[0];
+        $this->operator = $this->makeProcessed('_bitshift_', $expression[1]);
+        $this->right = $expression[2];
     }
 
     function __toString() {
-        return $this->getTname()." ".$this->code;
+        return $this->getTname()." ".$this->left." "." ".$this->operator." "." ".$this->right." ";
     }
 
-    function getLevels() {
-        return $this->levels;
+    function getRight() {
+        return $this->right;
+    }
+
+    function getOperator() {
+        return $this->operator;
+    }
+
+    function getLeft() {
+        return $this->left;
     }
 
     function neutralise() {
+        $this->left->detach();
+        $this->operator->detach();
+        $this->right->detach();
     }
 
     function getRegex(){
-        return array('break_alone_regex',
-                     'break_leveled_regex',
+        return array('Cornac_Tokenizeur_Regex_Bitshift',
                     );
     }
 

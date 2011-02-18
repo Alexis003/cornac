@@ -17,39 +17,8 @@
    +----------------------------------------------------------------------+
  */
 
-class _break extends Cornac_Tokenizeur_Token_Instruction {
-    protected $tname = '_break';
-    protected $levels = null;
-    
-    function __construct($expression = null) {
-        parent::__construct(array());
-        
-        if (!isset($expression[1])) {
-            $this->levels = new Cornac_Tokenizeur_Token_Processed_Break(1);
-        } elseif ($expression[1]->checkClass('parenthesis')) {
-            $this->levels =  new Cornac_Tokenizeur_Token_Processed_Break($expression[1]->getContenu()->getCode());
-        } else {
-            $this->levels =  new Cornac_Tokenizeur_Token_Processed_Break($expression[1]->getCode());
-        }
-    }
-
-    function __toString() {
-        return $this->getTname()." ".$this->code;
-    }
-
-    function getLevels() {
-        return $this->levels;
-    }
-
-    function neutralise() {
-    }
-
-    function getRegex(){
-        return array('break_alone_regex',
-                     'break_leveled_regex',
-                    );
-    }
-
+class Cornac_Tokenizeur_Token_Processed_Extends extends Cornac_Tokenizeur_Token_Processed {
+    protected $tname = '_extends_';
 }
 
 ?>
