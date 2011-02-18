@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class foreach_withkey_regex extends Cornac_Tokenizeur_Regex {
+class Cornac_Tokenizeur_Regex_Foreach_Withkey extends Cornac_Tokenizeur_Regex {
     protected $tname = 'foreach_withkey_regex';
 
     function __construct() {
@@ -32,11 +32,11 @@ class foreach_withkey_regex extends Cornac_Tokenizeur_Regex {
         if (!$t->hasNext(6)) { return false; }
 
         if ($t->getNext()->checkNotOperator('(')) { return false; }
-        if ($t->getNext(1)->checkNotClass(_foreach::$incoming_vars)) { return false; }
+        if ($t->getNext(1)->checkNotClass(Cornac_Tokenizeur_Token_Foreach::$incoming_vars)) { return false; }
         if ($t->getNext(2)->checkNotToken(T_AS)) { return false; }
-        if ($t->getNext(3)->checkNotClass(_foreach::$blind_keys)) { return false; }
+        if ($t->getNext(3)->checkNotClass(Cornac_Tokenizeur_Token_Foreach::$blind_keys)) { return false; }
         if ($t->getNext(4)->checkNotToken(T_DOUBLE_ARROW)) { return false; }
-        if ($t->getNext(5)->checkNotClass(_foreach::$blind_values)) { return false; }
+        if ($t->getNext(5)->checkNotClass(Cornac_Tokenizeur_Token_Foreach::$blind_values)) { return false; }
         if ($t->getNext(6)->checkNotCode(')')) { return false; }
 
         if ($t->getNext(7)->checkClass(array('block','sequence'))) {

@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class function_typehint_regex extends Cornac_Tokenizeur_Regex {
+class Cornac_Tokenizeur_Regex_Function_Typehint extends Cornac_Tokenizeur_Regex {
     protected $tname = 'function_typehint_regex';
 
     function __construct() {

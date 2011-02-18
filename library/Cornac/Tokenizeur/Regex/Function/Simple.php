@@ -17,8 +17,8 @@
    +----------------------------------------------------------------------+
  */
 
-class function_abstract_regex extends Cornac_Tokenizeur_Regex {
-    protected $tname = 'function_abstract_regex';
+class Cornac_Tokenizeur_Regex_Function_Simple extends Cornac_Tokenizeur_Regex {
+    protected $tname = 'function_simple_regex';
 
     function __construct() {
         parent::__construct(array());
@@ -33,8 +33,7 @@ class function_abstract_regex extends Cornac_Tokenizeur_Regex {
         if ($t->checkNotToken(array(T_FUNCTION))) { return false; }
         if ($t->getNext()->checkNotToken(T_STRING)) { return false; }
         if ($t->getNext(1)->checkNotClass('arglist')) { return false; }
-        if ($t->getNext(2)->checkNotCode(';') ) { return false; }
-        // @note : si ca compile et qu'on arrive ici, il y aura surement un abstract
+        if ($t->getNext(2)->checkNotClass('block') ) { return false; }
 
         Cornac_Log::getInstance('tokenizer')->log(get_class($t->getNext())." => literals  (".$this->getTname().")");
         $regex = new modele_regex('literals',array(0), array());
@@ -43,19 +42,19 @@ class function_abstract_regex extends Cornac_Tokenizeur_Regex {
         $this->args = array(1,2,3);
         $this->remove = array(1,2,3);
         
-        if ($t->hasPrev() && $t->getPrev()->checkToken(array(T_PUBLIC, T_PROTECTED, T_PRIVATE, T_STATIC, T_FINAL, T_ABSTRACT))) {
+        if ($t->hasPrev() && $t->getPrev()->checkToken(array(T_PUBLIC, T_PROTECTED, T_PRIVATE, T_STATIC, T_FINAL))) {
             $this->args[] = -1;
             $this->remove[] = -1;
-        }
 
-        if ($t->hasPrev(1) && $t->getPrev(1)->checkToken(array(T_PUBLIC, T_PROTECTED, T_PRIVATE, T_STATIC, T_FINAL, T_ABSTRACT))) {
-            $this->args[] = -2;
-            $this->remove[] = -2;
-        }
+            if ($t->hasPrev(1) && $t->getPrev(1)->checkToken(array(T_PUBLIC, T_PROTECTED, T_PRIVATE, T_STATIC, T_FINAL))) {
+                $this->args[] = -2;
+                $this->remove[] = -2;
 
-        if ($t->hasPrev(2) && $t->getPrev(2)->checkToken(array(T_PUBLIC, T_PROTECTED, T_PRIVATE, T_STATIC, T_FINAL, T_ABSTRACT))) {
-            $this->args[] = -3;
-            $this->remove[] = -3;
+                if ($t->hasPrev(2) && $t->getPrev(2)->checkToken(array(T_PUBLIC, T_PROTECTED, T_PRIVATE, T_STATIC, T_FINAL))) {
+                    $this->args[] = -3;
+                    $this->remove[] = -3;
+                }
+            }
         }
 
         sort($this->args);

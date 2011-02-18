@@ -17,29 +17,36 @@
    +----------------------------------------------------------------------+
  */
 
-class clone_parenthesis_regex extends Cornac_Tokenizeur_Regex {
+class Cornac_Tokenizeur_Regex_Dowhile_After extends Cornac_Tokenizeur_Regex {
+    protected $tname = 'dowhile_apres_regex';
+
     function __construct() {
         parent::__construct(array());
     }
 
     function getTokens() {
-        return array(T_CLONE);
+        return array(T_WHILE);
     }
     
     function check($t) {
-        if (!$t->hasNext()) { return false; }
-        if ($t->getNext()->checkNotCode('(')) { return false; }
-        if ($t->getNext(1)->checkNotClass(array('variable','_array',
-                                                'property','property_static',
-                                                'method','method_static',
-                                               'functioncall'))) { return false; }
-        if ($t->getNext(2)->checkNotOperator(')')) { return false; }
+        return false;
+        if (!$t->hasNext(2)) { return false; }
+        if (!$t->hasPrev()) { return false; }
 
-        $this->args = array(2);
-        $this->remove = array(1,2,3);
+        if ($t->getNext()->checkClass('parenthesis') &&
+            $t->getNext(1)->checkCode(';') &&
+            $t->getPrev()->checkClass('block')
+            ) {
+            
+            if ($t->hasPrev(1) && $t->getPrev(1)->checkToken(T_DO)) { return false; }
 
-        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
-        return true; 
+            $this->args = array( 1, -1 );
+            $this->remove = array(-1, 1);
+
+            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
+            return true; 
+        } 
+        return false;
     }
 }
 ?>

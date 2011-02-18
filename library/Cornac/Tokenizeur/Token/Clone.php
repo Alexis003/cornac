@@ -17,35 +17,34 @@
    +----------------------------------------------------------------------+
  */
 
-class _global extends Cornac_Tokenizeur_Token_Instruction {
-    protected $tname = '_global';
-    protected $variables = array();
-
+class Cornac_Tokenizeur_Token_Clone extends Cornac_Tokenizeur_Token_Instruction {
+    protected $tname = '_clone';
+    protected $expression = null;
+    
     function __construct($expression) {
         parent::__construct(array());
-
-        $this->variables = $expression;
+        
+        $this->expression = $expression[0];
     }
-    
+
     function __toString() {
-        return $this->getTname()." ".join(', ', $this->variables);
+        return $this->getTname()." ".$this->code;
     }
 
-    function getVariables() {
-        return $this->variables;
+    function getExpression() {
+        return $this->expression;
     }
 
     function neutralise() {
-        foreach($this->variables as $v) {
-            $v->detach();
-        }
+        $this->expression->detach();
     }
 
-    function getRegex() {
-        return array(
-    'global_simple_regex',
-);
+    function getRegex(){
+        return array('Cornac_Tokenizeur_Regex_Clone_Simple',
+                     'Cornac_Tokenizeur_Regex_Clone_Parenthesis',
+                    );
     }
+
 }
 
 ?>

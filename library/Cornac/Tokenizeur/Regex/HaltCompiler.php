@@ -17,47 +17,29 @@
    +----------------------------------------------------------------------+
  */
 
-class _closure extends Cornac_Tokenizeur_Token_Instruction {
-    protected $tname = '_closure';
-    protected $block = null;
-    protected $args = null;
-    
-    function __construct($expression) {
+class Cornac_Tokenizeur_Regex_HaltCompiler extends Cornac_Tokenizeur_Regex {
+    protected $tname = '___halt_compiler_regex';
+
+    function __construct() {
         parent::__construct(array());
+    }
+
+    function getTokens() {
+        return array(T_HALT_COMPILER);
+    }
+ 
+    
+    function check($t) {
+        if (!$t->hasNext(2)) { return false; }
         
-        if ($expression[0]->checkClass('arglist')) {
-            $this->args = $expression[0];
-            array_shift($expression);
-            $expression = array_values($expression);
-        } else {
-            $this->args = new arglist();
-        }
+        if ($t->getNext()->checkNotOperator('(')) { return false; }
+        if ($t->getNext(1)->checkNotOperator(')')) { return false; }
 
-        $this->block = $expression[0];
+        $this->args = array();
+        $this->remove = array(1, 2);
+
+        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
+        return true; 
     }
-
-    function __toString() {
-        return "function() ".$this->block;
-    }
-
-    function getBlock() {
-        return $this->block;
-    }
-
-    function getArgs() {
-        return $this->args;
-    }
-
-    function neutralise() {
-        $this->args->detach();
-        $this->block->detach();
-    }
-
-    function getRegex(){
-        return array('closure_normal_regex',
-                    );
-    }
-
 }
-
 ?>

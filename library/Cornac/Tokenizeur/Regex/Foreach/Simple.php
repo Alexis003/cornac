@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class foreach_simple_regex extends Cornac_Tokenizeur_Regex {
+class Cornac_Tokenizeur_Regex_Foreach_Simple extends Cornac_Tokenizeur_Regex {
     protected $tname = 'foreach_simple_regex';
 
     function __construct() {
@@ -32,9 +32,9 @@ class foreach_simple_regex extends Cornac_Tokenizeur_Regex {
         if (!$t->hasNext(5)) { return false; }
 
         if ($t->getNext()->checkNotCode('(')) { return false; }
-        if ($t->getNext(1)->checkNotClass(_foreach::$incoming_vars)) { return false; }
+        if ($t->getNext(1)->checkNotClass(Cornac_Tokenizeur_Token_Foreach::$incoming_vars)) { return false; }
         if ($t->getNext(2)->checkNotToken(T_AS)) { return false;}
-        if ($t->getNext(3)->checkNotClass(_foreach::$blind_values)) { return false; }
+        if ($t->getNext(3)->checkNotClass(Cornac_Tokenizeur_Token_Foreach::$blind_values)) { return false; }
         if ($t->getNext(4)->checkNotOperator(')')) { return false; }
         
         if ($t->getNext(5)->checkClass('block')) {

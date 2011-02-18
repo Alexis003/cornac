@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _foreach extends Cornac_Tokenizeur_Token_Instruction {
+class Cornac_Tokenizeur_Token_Foreach extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = '_foreach';
     protected $array = array();
     protected $key = null;
@@ -99,10 +99,9 @@ class _foreach extends Cornac_Tokenizeur_Token_Instruction {
 
     function getRegex() {
         return array(
-    'foreach_simple_regex',
-    'foreach_withkey_regex',
-
-    'foreach_alternative_regex',
+    'Cornac_Tokenizeur_Regex_Foreach_Simple',
+    'Cornac_Tokenizeur_Regex_Foreach_Withkey',
+    'Cornac_Tokenizeur_Regex_Foreach_Alternative',
 );
     }
 }

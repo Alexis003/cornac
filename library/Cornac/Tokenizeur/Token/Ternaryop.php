@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class ternaryop extends Cornac_Tokenizeur_Token_Instruction {
+class Cornac_Tokenizeur_Token_Ternaryop extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = 'ternaryop';
     protected $condition = null;
     protected $then = null;
@@ -55,7 +55,7 @@ class ternaryop extends Cornac_Tokenizeur_Token_Instruction {
     }
 
     static function getRegex() {
-        return array('ternaryop_regex');
+        return array('Cornac_Tokenizeur_Regex_Ternaryop');
     }
 
     function getCondition() {

@@ -17,33 +17,28 @@
    +----------------------------------------------------------------------+
  */
 
-class dowhile_block_regex extends Cornac_Tokenizeur_Regex {
-    protected $tname = 'dowhile_block_regex';
+class Cornac_Tokenizeur_Token_HaltCompiler extends Cornac_Tokenizeur_Token_Instruction {
+    protected $tname = '___halt_compiler';
 
-    function __construct() {
+    function __construct($expression = null) {
         parent::__construct(array());
-    }
-
-    function getTokens() {
-        return array(T_DO);
+        
+        // @note empty constructor : nothing to do, as this won't take arg : just stop PHP
     }
     
-    function check($t) {
-        if (!$t->hasNext(2)) { return false; }
+    function __toString() {
+         $return = $this->getTname();
+         return $return;
+    }
 
-        if ( $t->checkToken(T_DO) &&
-             $t->getNext()->checkClass('block') && 
-             $t->getNext(1)->checkToken(T_WHILE) &&
-             $t->getNext(2)->checkClass('parenthesis')
-           ) {
+    function neutralise() {
+    }
 
-            $this->args = array(1, 3 );
-            $this->remove = array(1, 2, 3 );
-
-            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
-            return true; 
-        } 
-        return false;
+    function getRegex() {
+        return array(
+    'Cornac_Tokenizeur_Regex_HaltCompiler',
+                    );
     }
 }
+
 ?>

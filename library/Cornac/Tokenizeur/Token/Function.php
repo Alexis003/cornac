@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _function extends Cornac_Tokenizeur_Token_Instruction {
+class Cornac_Tokenizeur_Token_Function extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = '_function';
     protected $name = '';
     protected $_abstract = null;
@@ -141,11 +141,11 @@ class _function extends Cornac_Tokenizeur_Token_Instruction {
 
     function getRegex() {
         return array(
-    'function_simple_regex',
-    'function_reference_regex',
-    'function_abstract_regex',
-    'function_typehint_regex',
-    'function_typehintreference_regex',
+    'Cornac_Tokenizeur_Regex_Function_Simple',
+    'Cornac_Tokenizeur_Regex_Function_Reference',
+    'Cornac_Tokenizeur_Regex_Function_Abstract',
+    'Cornac_Tokenizeur_Regex_Function_Typehint',
+    'Cornac_Tokenizeur_Regex_Function_Typehintreference',
 );
     }
 }

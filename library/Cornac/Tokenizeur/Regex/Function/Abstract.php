@@ -17,58 +17,43 @@
    +----------------------------------------------------------------------+
  */
 
-class function_reference_regex extends Cornac_Tokenizeur_Regex {
-    protected $tname = 'function_reference_regex';
+class Cornac_Tokenizeur_Regex_Function_Abstract extends Cornac_Tokenizeur_Regex {
+    protected $tname = 'function_abstract_regex';
 
     function __construct() {
         parent::__construct(array());
-        
-        $this->options = array(T_ABSTRACT, T_PUBLIC, T_PROTECTED, T_PRIVATE, T_STATIC, T_FINAL);
     }
 
     function getTokens() {
         return array(T_FUNCTION);
-    }
-    
+    }    
     function check($t) {
-        if (!$t->hasNext(3)) { return false; }
-
+        if (!$t->hasNext(2)) { return false; }
+        
         if ($t->checkNotToken(array(T_FUNCTION))) { return false; }
-        if ($t->getNext()->checkNotCode('&')) { return false; }
-        if ($t->getNext(1)->checkNotToken(T_STRING) && 
-            $t->getNext(1)->checkNotClass('literals')) { return false; }
-        if ($t->getNext(2)->checkNotClass('arglist')) { return false; }
+        if ($t->getNext()->checkNotToken(T_STRING)) { return false; }
+        if ($t->getNext(1)->checkNotClass('arglist')) { return false; }
+        if ($t->getNext(2)->checkNotCode(';') ) { return false; }
+        // @note : si ca compile et qu'on arrive ici, il y aura surement un abstract
 
-        Cornac_Log::getInstance('tokenizer')->log(get_class($t->getNext(1))." => literals  (".$this->getTname().")");
+        Cornac_Log::getInstance('tokenizer')->log(get_class($t->getNext())." => literals  (".$this->getTname().")");
         $regex = new modele_regex('literals',array(0), array());
-        Cornac_Tokenizeur_Token::applyRegex($t->getNext(1), 'literals', $regex);
+        Cornac_Tokenizeur_Token::applyRegex($t->getNext(), 'literals', $regex);
 
         $this->args = array(1,2,3);
         $this->remove = array(1,2,3);
-
-        if ($t->getNext(3)->checkClass('block') ) { 
-            $this->args[] = 4;
-            $this->remove[] = 4;
-        } elseif ($t->getNext(3)->checkOperator(';') ) { 
-            $this->args[] = 4;
-            $this->remove[] = 4;
-        } elseif ($t->getNext(3)->checkClass('Token') ) { 
-            return false;
-        } else {
-            return false;
-        }
-
-        if ($t->hasPrev() && $t->getPrev()->checkToken($this->options)) {
+        
+        if ($t->hasPrev() && $t->getPrev()->checkToken(array(T_PUBLIC, T_PROTECTED, T_PRIVATE, T_STATIC, T_FINAL, T_ABSTRACT))) {
             $this->args[] = -1;
             $this->remove[] = -1;
         }
 
-        if ($t->hasPrev(1) && $t->getPrev(1)->checkToken($this->options)) {
+        if ($t->hasPrev(1) && $t->getPrev(1)->checkToken(array(T_PUBLIC, T_PROTECTED, T_PRIVATE, T_STATIC, T_FINAL, T_ABSTRACT))) {
             $this->args[] = -2;
             $this->remove[] = -2;
         }
 
-        if ($t->hasPrev(2) && $t->getPrev(2)->checkToken($this->options)) {
+        if ($t->hasPrev(2) && $t->getPrev(2)->checkToken(array(T_PUBLIC, T_PROTECTED, T_PRIVATE, T_STATIC, T_FINAL, T_ABSTRACT))) {
             $this->args[] = -3;
             $this->remove[] = -3;
         }

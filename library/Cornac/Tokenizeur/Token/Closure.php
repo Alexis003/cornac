@@ -17,30 +17,47 @@
    +----------------------------------------------------------------------+
  */
 
-class clone_normal_regex extends Cornac_Tokenizeur_Regex {
-    function __construct() {
-        parent::__construct(array());
-    }
-
-    function getTokens() {
-        return array(T_CLONE);
-    }
- 
+class Cornac_Tokenizeur_Token_Closure extends Cornac_Tokenizeur_Token_Instruction {
+    protected $tname = '_closure';
+    protected $block = null;
+    protected $args = null;
     
-    function check($t) {
-        if (!$t->hasNext()) { return false; }
+    function __construct($expression) {
+        parent::__construct(array());
+        
+        if ($expression[0]->checkClass('arglist')) {
+            $this->args = $expression[0];
+            array_shift($expression);
+            $expression = array_values($expression);
+        } else {
+            $this->args = new arglist();
+        }
 
-        if ($t->getNext()->checkNotClass(array('variable','_array',
-                                            'property','property_static',
-                                            'method','method_static',
-                                            'functioncall', '_new'))) { return false; }
-        if (!$t->getNext(1)->checkEndInstruction()) { return false; }
-
-        $this->args = array(1);
-        $this->remove = array(1);
-
-        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
-        return true; 
+        $this->block = $expression[0];
     }
+
+    function __toString() {
+        return "function() ".$this->block;
+    }
+
+    function getBlock() {
+        return $this->block;
+    }
+
+    function getArgs() {
+        return $this->args;
+    }
+
+    function neutralise() {
+        $this->args->detach();
+        $this->block->detach();
+    }
+
+    function getRegex(){
+        return array('Cornac_Tokenizeur_Regex_Closure',
+                    );
+    }
+
 }
+
 ?>

@@ -17,55 +17,44 @@
    +----------------------------------------------------------------------+
  */
 
-class declare_alternative_regex extends Cornac_Tokenizeur_Regex {
-    protected $tname = 'declare_alternative_regex';
+class Cornac_Tokenizeur_Regex_Foreach_Alternative extends Cornac_Tokenizeur_Regex {
+    protected $tname = 'foreach_alternative_regex';
 
     function __construct() {
         parent::__construct(array());
     }
 
     function getTokens() {
-        return array(T_DECLARE);
+        return array(T_FOREACH);
     }
- 
     
     function check($t) {
-        if (!$t->hasNext()) { return false; }
+        if (!$t->hasNext(6)) { return false; }
+
+        if ($t->getNext()->checkNotOperator('(')) { return false; }
+        if ($t->getNext(1)->checkNotClass(Cornac_Tokenizeur_Token_Foreach::$incoming_vars)) { return false; }
+        if ($t->getNext(2)->checkNotToken(T_AS)) { return false; }
         
-        if ($t->getNext()->checkClass('parenthesis') && 
-            $t->getNext(1)->checkOperator(':')) {
-            $this->args = array(1, 3);
-            $this->remove = array(1, 2, 3);
-
-            $var = $t->getNext(2);
-            $init = $var;
-            
-            $args = array();
-            $remove = array(-1);
-            $pos = 0;
-
-        } elseif ($t->getNext()->checkOperator('(') && 
-            $t->getNext(1)->checkClass('affectation') &&
-            $t->getNext(2)->checkOperator(',') &&
-            $t->getNext(3)->checkClass('affectation') &&
-            $t->getNext(4)->checkOperator(')') && 
-            $t->getNext(5)->checkOperator(':') 
-            ) {            
-            $this->args = array(2,4, 6);
-            $this->remove = array(1,2,3,4,5, 6);
-
-            $var = $t->getNext(6);
-            $init = $var;
-            
-            $args = array();
-            $remove = array(-1);
-            $pos = 0;
-        } else {
-            return false;
+        $posi = 3;
+        
+        if ($t->getNext(3)->checkClass(array('variable','_array','property','reference'))  &&
+            $t->getNext(4)->checkToken(T_DOUBLE_ARROW)) {
+            $posi = 5;    
         }
-        
 
-         while($var->checkNotToken(T_ENDDECLARE)) {
+        if ( $t->getNext($posi)->checkNotClass(array('variable','_array','property','reference'))  ||
+             $t->getNext($posi + 1)->checkNotCode(')')) {
+             return false;
+        } 
+        $posi += 2;
+        if ($t->getNext($posi)->checkNotOperator(':')) { return false; }
+
+        $args = array();
+        $remove = array(-1);
+        $pos = 0;
+        $var = $t->getNext($posi + 1);
+        
+        while($var->checkNotToken(T_ENDFOREACH)) {
             if ($var->checkForBlock()) {
                 $args[] = $pos;
                 $remove[] = $pos;
@@ -76,7 +65,7 @@ class declare_alternative_regex extends Cornac_Tokenizeur_Regex {
             }
 
             if ($var->checkNotClass(array('block','Token')) && 
-                $var->getNext()->checkCode(';')) {
+                $var->getNext()->checkOperator(';')) {
                 $args[] = $pos;
 
                 $remove[] = $pos;
@@ -87,27 +76,33 @@ class declare_alternative_regex extends Cornac_Tokenizeur_Regex {
                 continue;
             }
 
+            if ($var->checkToken(T_FOREACH) ) {
+                // @note nested foreach? We'll process this later
+                return false;
+            }
+            
             if ($var->checkOperator(';') ) {
-                // @note trailing semi-colon : just ignore it
+                // @note trailing semi-colon? Ignoring. 
                 $remove[] = $pos;
                 $pos++;
                 $var = $var->getNext();
                 continue;
             }
 
-            // @note coun't figure this out? Aborting.
+            // @note counldn't figure it out? Ignoring
+            $this->args = array();
+            $this->remove = array();
             return false;
-         }
-
+        }
+        
         $remove[] = $pos;
 
         $regex = new modele_regex('block',$args, $remove);
-        Cornac_Tokenizeur_Token::applyRegex($init, 'block', $regex);
-        
-        $this->args[] = 
+        Cornac_Tokenizeur_Token::applyRegex($t->getNext($posi+1), 'block', $regex);
 
         Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => block (".$this->getTname().")");
-        return true;
+        return false; 
     }
 }
+
 ?>

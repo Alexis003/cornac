@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class ternaryop_regex extends Cornac_Tokenizeur_Regex {
+class Cornac_Tokenizeur_Regex_Ternaryop extends Cornac_Tokenizeur_Regex {
     protected $tname = 'ternaryop_regex';
 
     function __construct() {

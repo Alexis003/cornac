@@ -17,55 +17,32 @@
    +----------------------------------------------------------------------+
  */
 
-class declare_normal_regex extends Cornac_Tokenizeur_Regex {
-    protected $tname = 'declare_normal_regex';
+class Cornac_Tokenizeur_Regex_Dowhile_Block extends Cornac_Tokenizeur_Regex {
+    protected $tname = 'dowhile_block_regex';
 
     function __construct() {
         parent::__construct(array());
     }
 
     function getTokens() {
-        return array(T_DECLARE);
+        return array(T_DO);
     }
- 
     
     function check($t) {
-        if (!$t->hasNext()) { return false; }
-        
-        if ($t->getNext()->checkClass('parenthesis') && 
-            $t->getNext(1)->checkOperator(';')) {
-            $this->args = array(1);
-            $this->remove = array(1);
+        if (!$t->hasNext(2)) { return false; }
+
+        if ( $t->checkToken(T_DO) &&
+             $t->getNext()->checkClass('block') && 
+             $t->getNext(1)->checkToken(T_WHILE) &&
+             $t->getNext(2)->checkClass('parenthesis')
+           ) {
+
+            $this->args = array(1, 3 );
+            $this->remove = array(1, 2, 3 );
 
             Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
             return true; 
-        }
-
-        if ($t->getNext()->checkClass('parenthesis') && 
-            $t->getNext(1)->checkClass('block')) {
-            $this->args = array(1, 2);
-            $this->remove = array(1, 2);
-
-            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
-            return true; 
-        }
-        
-        if ($t->getNext()->checkOperator('(') && 
-            $t->getNext(1)->checkClass('affectation') &&
-            $t->getNext(2)->checkCode(',') &&
-            $t->getNext(3)->checkClass('affectation') &&
-            $t->getNext(4)->checkOperator(')') &&
-            $t->getNext(5)->checkNotOperator(':')
-            ) {
-            
-            $this->args = array(2,4);
-            $this->remove = array(1,2,3,4,5);
-
-            Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
-            return true; 
-        }
-        
-        
+        } 
         return false;
     }
 }

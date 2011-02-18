@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class _declare extends Cornac_Tokenizeur_Token_Instruction {
+class Cornac_Tokenizeur_Token_Declare extends Cornac_Tokenizeur_Token_Instruction {
     protected $tname = '_declare';
     protected $ticks = null;
     protected $encoding = null;
@@ -92,8 +92,8 @@ class _declare extends Cornac_Tokenizeur_Token_Instruction {
     }
 
     function getRegex(){
-        return array('declare_normal_regex',
-                     'declare_alternative_regex',
+        return array('Cornac_Tokenizeur_Regex_Declare_Simple',
+                     'Cornac_Tokenizeur_Regex_Declare_Alternative',
                     );
     }
 

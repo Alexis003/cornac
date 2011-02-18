@@ -17,27 +17,34 @@
    +----------------------------------------------------------------------+
  */
 
-class ___halt_compiler extends Cornac_Tokenizeur_Token_Instruction {
-    protected $tname = '___halt_compiler';
+class Cornac_Tokenizeur_Token_Global extends Cornac_Tokenizeur_Token_Instruction {
+    protected $tname = '_global';
+    protected $variables = array();
 
-    function __construct($expression = null) {
+    function __construct($expression) {
         parent::__construct(array());
-        
-        // @note empty constructor : nothing to do, as this won't take arg : just stop PHP
+
+        $this->variables = $expression;
     }
     
     function __toString() {
-         $return = $this->getTname();
-         return $return;
+        return $this->getTname()." ".join(', ', $this->variables);
+    }
+
+    function getVariables() {
+        return $this->variables;
     }
 
     function neutralise() {
+        foreach($this->variables as $v) {
+            $v->detach();
+        }
     }
 
     function getRegex() {
         return array(
-    '___halt_compiler_regex',
-                    );
+    'Cornac_Tokenizeur_Regex_Global',
+);
     }
 }
 

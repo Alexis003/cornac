@@ -17,26 +17,27 @@
    +----------------------------------------------------------------------+
  */
 
-class ___halt_compiler_regex extends Cornac_Tokenizeur_Regex {
-    protected $tname = '___halt_compiler_regex';
-
+class Cornac_Tokenizeur_Regex_Clone_Simple extends Cornac_Tokenizeur_Regex {
     function __construct() {
         parent::__construct(array());
     }
 
     function getTokens() {
-        return array(T_HALT_COMPILER);
+        return array(T_CLONE);
     }
  
     
     function check($t) {
-        if (!$t->hasNext(2)) { return false; }
-        
-        if ($t->getNext()->checkNotOperator('(')) { return false; }
-        if ($t->getNext(1)->checkNotOperator(')')) { return false; }
+        if (!$t->hasNext()) { return false; }
 
-        $this->args = array();
-        $this->remove = array(1, 2);
+        if ($t->getNext()->checkNotClass(array('variable','_array',
+                                            'property','property_static',
+                                            'method','method_static',
+                                            'functioncall', '_new'))) { return false; }
+        if (!$t->getNext(1)->checkEndInstruction()) { return false; }
+
+        $this->args = array(1);
+        $this->remove = array(1);
 
         Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
         return true; 

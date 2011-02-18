@@ -17,31 +17,38 @@
    +----------------------------------------------------------------------+
  */
 
-class _clone extends Cornac_Tokenizeur_Token_Instruction {
-    protected $tname = '_clone';
-    protected $expression = null;
+class Cornac_Tokenizeur_Token_Dowhile extends Cornac_Tokenizeur_Token_Instruction {
+    protected $tname = '_dowhile';
+    protected $block = null;
+    protected $condition = null;
     
-    function __construct($expression) {
+    function __construct($expression = null) {
         parent::__construct(array());
         
-        $this->expression = $expression[0];
+        $this->block = $expression[0];
+        $this->condition = $expression[1];
     }
 
     function __toString() {
         return $this->getTname()." ".$this->code;
     }
 
-    function getExpression() {
-        return $this->expression;
+    function getBlock() {
+        return $this->block;
+    }
+
+    function getCondition() {
+        return $this->condition;
     }
 
     function neutralise() {
-        $this->expression->detach();
+        $this->condition->detach();
+        $this->block->detach();
     }
 
     function getRegex(){
-        return array('clone_normal_regex',
-                     'clone_parenthesis_regex',
+        return array('Cornac_Tokenizeur_Regex_Dowhile_Block',
+                     'Cornac_Tokenizeur_Regex_Dowhile_After',
                     );
     }
 

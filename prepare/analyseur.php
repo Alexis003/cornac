@@ -42,11 +42,11 @@ class analyseur {
                                   'inclusion', 
                                   'codephp',
                                   'concatenation',
-                                  'ternaryop',
+                                  'Cornac_Tokenizeur_Token_Ternaryop', //'ternaryop',
                                   'block',
                                   'not',
                                   'invert',
-                                  '_function', // @attention : function must be before logical
+                                  'Cornac_Tokenizeur_Token_Function', //'_function', // @attention : function must be before logical
                                   'logical',
                                   'preplusplus',
                                   'postplusplus',
@@ -56,9 +56,9 @@ class analyseur {
                                   'method',
                                   'method_static',
                                   'Cornac_Tokenizeur_Token_New', // @removing '_new',
-                                  '_foreach',
+                                  'Cornac_Tokenizeur_Token_Foreach', //'_foreach',
                                   'Cornac_Tokenizeur_Token_While', //'_while',
-                                  '_dowhile',
+                                  'Cornac_Tokenizeur_Token_Dowhile', //'_dowhile',
                                   'Cornac_Tokenizeur_Token_Switch',//'_switch',
                                   '_case',
                                   '_default',
@@ -69,7 +69,7 @@ class analyseur {
                                   '_constant',
                                   'constant_static',
                                   'constant_class',
-                                  '_global',
+                                  'Cornac_Tokenizeur_Token_Global', // '_global'
                                   'Cornac_Tokenizeur_Token_Return', //'_return',
                                   'typehint',
                                   '_class',
@@ -83,18 +83,18 @@ class analyseur {
                                   '_catch',
                                   'Cornac_Tokenizeur_Token_Bitshift', //'bitshift',
                                   'Cornac_Tokenizeur_Token_Throw', //'_throw',
-                                  '_clone',
-                                  '_declare',
+                                  'Cornac_Tokenizeur_Token_Clone', //'_clone',
+                                  'Cornac_Tokenizeur_Token_Declare', //'_declare',
                                   'Cornac_Tokenizeur_Token_Shell', //'shell',
-                                  '___halt_compiler',
-                                  '_closure',
+                                  'Cornac_Tokenizeur_Token_HaltCompiler', // 'haltCompiler'
+                                  'Cornac_Tokenizeur_Token_Closure', // '_closure'
                                   'Cornac_Tokenizeur_Token_Goto', //'_goto',
                                   'Cornac_Tokenizeur_Token_Label', //'label',
                                   'Cornac_Tokenizeur_Token_Nsname', //'_nsname',
                                   'Cornac_Tokenizeur_Token_Namespace', //'_namespace',
                                   'Cornac_Tokenizeur_Token_Use', //'_use',
                                   );
-        $this->regex = array();
+        $this->b = array();
         foreach ($this->structures as $id => $structure) {
             if (!method_exists($structure, 'getRegex')) { continue; }
             $regex = $structure::getRegex(); 
