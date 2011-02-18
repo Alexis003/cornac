@@ -63,7 +63,7 @@ class Cornac_Tokenizeur_Regex_Functioncall_Echowithoutparenthesis extends Cornac
             $args[]    = $pos;
             $remove[]  = $pos;
 
-            $regex = new modele_regex('arglist',$args, $remove);
+            $regex = new Cornac_Tokenizeur_Regex_Model('arglist',$args, $remove);
             Cornac_Tokenizeur_Token::applyRegex($t->getNext(), 'arglist', $regex);
 
             Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => arglist (".$this->getTname().")");

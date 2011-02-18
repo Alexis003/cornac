@@ -60,10 +60,10 @@ class Cornac_Tokenizeur_Token_Variable extends Cornac_Tokenizeur_Token {
     }
 
     function getRegex(){
-        return array('variable_regex',
-                     'variable_separatedcurly_regex',
-                     'variable_curly_regex',
-                     'variable_variable_regex',
+        return array('Cornac_Tokenizeur_Regex_Variable_Simple',
+                     'Cornac_Tokenizeur_Regex_Variable_Separatedcurly',
+                     'Cornac_Tokenizeur_Regex_Variable_Curly',
+                     'Cornac_Tokenizeur_Regex_Variable_Variable',
                      );
     }
 }

@@ -82,9 +82,9 @@ class Cornac_Tokenizeur_Token_New extends Cornac_Tokenizeur_Token_Instruction {
     }
 
     function getRegex(){
-        return array('new_normal_regex',
-                     'new_single_regex',
-                     'new_variable_regex',
+        return array('Cornac_Tokenizeur_Regex_New_Simple',
+                     'Cornac_Tokenizeur_Regex_New_Single',
+                     'Cornac_Tokenizeur_Regex_New_Variable',
                     );
     }
 

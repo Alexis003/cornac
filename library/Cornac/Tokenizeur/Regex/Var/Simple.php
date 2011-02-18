@@ -88,7 +88,7 @@ class Cornac_Tokenizeur_Regex_Var_Simple extends Cornac_Tokenizeur_Regex {
                     $repl->setToken($token_bis);
                     $var = $var->getNext(1);
 
-                    $regex = new modele_regex('Cornac_Tokenizeur_Token_Var', $args, $remove);
+                    $regex = new Cornac_Tokenizeur_Regex_Model('Cornac_Tokenizeur_Token_Var', $args, $remove);
                     Cornac_Tokenizeur_Token::applyRegex($repl, 'Cornac_Tokenizeur_Token_Var', $regex);
 
                     Cornac_Log::getInstance('tokenizer')->log(get_class($var)." => _var  (".$this->getTname().")");

@@ -59,7 +59,7 @@ class Cornac_Tokenizeur_Regex_Static extends Cornac_Tokenizeur_Regex {
             $repl = $var;
             $var = $var->getNext(1);
 
-            $regex = new modele_regex('Cornac_Tokenizeur_Token_Static',$args, $remove);
+            $regex = new Cornac_Tokenizeur_Regex_Model('Cornac_Tokenizeur_Token_Static',$args, $remove);
             Cornac_Tokenizeur_Token::applyRegex($repl, 'Cornac_Tokenizeur_Token_Static', $regex);
 
             Cornac_Log::getInstance('tokenizer')->log(get_class($var)." => _static  (".$this->getTname().")");

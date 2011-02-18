@@ -44,7 +44,7 @@ class Cornac_Tokenizeur_Regex_Functioncall_Shorttag extends Cornac_Tokenizeur_Re
             $delete[] = 2;
         }
         
-        $regex = new modele_regex('functioncall',$args,$delete);
+        $regex = new Cornac_Tokenizeur_Regex_Model('functioncall',$args,$delete);
         Cornac_Tokenizeur_Token::applyRegex($t->getNext(), 'functioncall', $regex);
 
         Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => echo block (from <?= ) (".$this->getTname().")");

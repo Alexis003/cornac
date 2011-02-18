@@ -121,7 +121,7 @@ class Cornac_Tokenizeur_Regex_For_Simple extends Cornac_Tokenizeur_Regex {
         } 
 
         if ($t->getNext($pos)->checkOperator(';')) {
-            $regex = new modele_regex('block',array(), array());
+            $regex = new Cornac_Tokenizeur_Regex_Model('block',array(), array());
             Cornac_Tokenizeur_Token::applyRegex($t->getNext($pos), 'block', $regex);
 
             Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => block (position $pos) (from ; ) (".$this->getTname().")");            

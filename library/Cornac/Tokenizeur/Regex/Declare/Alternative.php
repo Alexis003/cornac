@@ -101,7 +101,7 @@ class Cornac_Tokenizeur_Regex_Declare_Alternative extends Cornac_Tokenizeur_Rege
 
         $remove[] = $pos;
 
-        $regex = new modele_regex('block',$args, $remove);
+        $regex = new Cornac_Tokenizeur_Regex_Model('block',$args, $remove);
         Cornac_Tokenizeur_Token::applyRegex($init, 'block', $regex);
         
         $this->args[] = 

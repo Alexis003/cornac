@@ -38,7 +38,7 @@ class Cornac_Tokenizeur_Regex_Codephp_Emptysequence extends Cornac_Tokenizeur_Re
         $args = array();
         $remove = array(0);
 
-        $regex = new modele_regex('sequence',$args, $remove);
+        $regex = new Cornac_Tokenizeur_Regex_Model('sequence',$args, $remove);
         Cornac_Tokenizeur_Token::applyRegex($t->getNext(), 'sequence', $regex);
 
         

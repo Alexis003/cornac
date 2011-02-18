@@ -55,7 +55,7 @@ class Cornac_Tokenizeur_Regex_Global extends Cornac_Tokenizeur_Regex {
             $repl = $var;
             $var = $var->getNext(1);
 
-            $regex = new modele_regex('Cornac_Tokenizeur_Token_Global',$args, $remove);
+            $regex = new Cornac_Tokenizeur_Regex_Model('Cornac_Tokenizeur_Token_Global',$args, $remove);
             Cornac_Tokenizeur_Token::applyRegex($repl, 'Cornac_Tokenizeur_Token_Global', $regex);
 
             Cornac_Log::getInstance('tokenizer')->log(get_class($var)." => _global  (".$this->getTname().")");

@@ -46,12 +46,12 @@ class Cornac_Tokenizeur_Regex_Function_Typehint extends Cornac_Tokenizeur_Regex 
                 
                 if ($var->getNext(1)->checkOperator('=') &&
                     $var->getNext(2)->checkNotClass('Token')) {
-                        $regex = new modele_regex('affectation',array(0, 1, 2), array(1, 2));
+                        $regex = new Cornac_Tokenizeur_Regex_Model('affectation',array(0, 1, 2), array(1, 2));
                         Cornac_Tokenizeur_Token::applyRegex($var->getNext(), 'affectation', $regex);
 
                         Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => affectation (".$this->getTname().")");
 
-                        $regex = new modele_regex('typehint',array(0, 1), array(1));
+                        $regex = new Cornac_Tokenizeur_Regex_Model('typehint',array(0, 1), array(1));
                         Cornac_Tokenizeur_Token::applyRegex($var, 'typehint', $regex);
 
                         Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => typehint (".$this->getTname().")");
@@ -61,19 +61,19 @@ class Cornac_Tokenizeur_Regex_Function_Typehint extends Cornac_Tokenizeur_Regex 
                 } elseif ($var->getNext(1)->checkOperator('=')) {
                     if ($var->getNext(2)->checkClass('Token')) { return false; }
                     if ($var->getNext(3)->checkClass('arglist')) {
-                        $regex = new modele_regex('functioncall',array(0, 1), array(1));
+                        $regex = new Cornac_Tokenizeur_Regex_Model('functioncall',array(0, 1), array(1));
                         Cornac_Tokenizeur_Token::applyRegex($var->getNext(2), 'functioncall', $regex);
 
                         Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => affectation (".$this->getTname().")");
                         // @note return? 
                     }
                     
-                    $regex = new modele_regex('affectation',array(0, 1, 2), array(1, 2));
+                    $regex = new Cornac_Tokenizeur_Regex_Model('affectation',array(0, 1, 2), array(1, 2));
                     Cornac_Tokenizeur_Token::applyRegex($var->getNext(), 'affectation', $regex);
 
                     Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => affectation (".$this->getTname().")");
 
-                    $regex = new modele_regex('typehint',array(0, 1), array(1));
+                    $regex = new Cornac_Tokenizeur_Regex_Model('typehint',array(0, 1), array(1));
                     Cornac_Tokenizeur_Token::applyRegex($var, 'typehint', $regex);
     
                     Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => typehint = (".$this->getTname().")");
@@ -81,7 +81,7 @@ class Cornac_Tokenizeur_Regex_Function_Typehint extends Cornac_Tokenizeur_Regex 
                     $var = $var->getNext();
                     continue; 
                 } elseif ($var->getNext(1)->checkOperator(array(',',')'))) {
-                    $regex = new modele_regex('typehint',array(0, 1), array(1));
+                    $regex = new Cornac_Tokenizeur_Regex_Model('typehint',array(0, 1), array(1));
                     Cornac_Tokenizeur_Token::applyRegex($var, 'typehint', $regex);
     
                     Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => typehint ,) (".$this->getTname().")");

@@ -60,7 +60,7 @@ class Cornac_Tokenizeur_Regex_Ternaryop extends Cornac_Tokenizeur_Regex {
             $t->getNext(2)->checkNotClass('arglist') &&
            !$t->getNext(2)->checkForAssignation()
             ) {
-                $regex = new modele_regex('block',array(), array());
+                $regex = new Cornac_Tokenizeur_Regex_Model('block',array(), array());
                 Cornac_Tokenizeur_Token::applyRegex($t->getNext(), 'block', $regex);
 
                 $this->args = array(-1, 1, 2);

@@ -34,7 +34,7 @@ class Cornac_Tokenizeur_Regex_Functioncall_Withoutparenthesis extends Cornac_Tok
         if ($t->getNext()->checkClass(array('Token','arglist'))) { return false; }
         if (!$t->getNext(1)->checkEndInstruction()) { return false; }
 
-        $regex = new modele_regex('arglist',array(0), array());
+        $regex = new Cornac_Tokenizeur_Regex_Model('arglist',array(0), array());
         Cornac_Tokenizeur_Token::applyRegex($t->getNext(), 'arglist', $regex);
 
         Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => arglist (".$this->getTname().")");

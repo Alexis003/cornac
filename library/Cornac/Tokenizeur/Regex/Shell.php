@@ -60,7 +60,7 @@ class Cornac_Tokenizeur_Regex_Shell extends Cornac_Tokenizeur_Regex {
                 $var->getNext()->checkClass($this->sequence_classes) && 
                   $var->getNext(1)->checkOperator('}')) {
 
-                $regex = new modele_regex('variable',array(0), array(-1, 1));
+                $regex = new Cornac_Tokenizeur_Regex_Model('variable',array(0), array(-1, 1));
                 Cornac_Tokenizeur_Token::applyRegex($var->getNext(), 'variable', $regex);
 
                 Cornac_Log::getInstance('tokenizer')->log(get_class($var->getNext())." => ".get_class($var->getNext())." (".$this->getTname().")");

@@ -36,7 +36,7 @@ class Cornac_Tokenizeur_Regex_Function_Simple extends Cornac_Tokenizeur_Regex {
         if ($t->getNext(2)->checkNotClass('block') ) { return false; }
 
         Cornac_Log::getInstance('tokenizer')->log(get_class($t->getNext())." => literals  (".$this->getTname().")");
-        $regex = new modele_regex('literals',array(0), array());
+        $regex = new Cornac_Tokenizeur_Regex_Model('literals',array(0), array());
         Cornac_Tokenizeur_Token::applyRegex($t->getNext(), 'literals', $regex);
 
         $this->args = array(1,2,3);

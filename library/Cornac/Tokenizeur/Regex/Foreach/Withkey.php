@@ -48,7 +48,7 @@ class Cornac_Tokenizeur_Regex_Foreach_Withkey extends Cornac_Tokenizeur_Regex {
         } elseif ($t->getNext(7)->checkForBlock()) {
             if ($t->getNext(8)->checkForAssignation()) {return false; }
 
-            $regex = new modele_regex('block',array(0), array());
+            $regex = new Cornac_Tokenizeur_Regex_Model('block',array(0), array());
             Cornac_Tokenizeur_Token::applyRegex($t->getNext(7), 'block', $regex);
 
             Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => block (".$this->getTname().")");

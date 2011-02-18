@@ -44,14 +44,14 @@ class Cornac_Tokenizeur_Regex_Foreach_Simple extends Cornac_Tokenizeur_Regex {
             return true;
         } elseif ($t->getNext(5)->checkForBlock()) {
             if ($t->getNext(6)->checkForAssignation()) { return false; }
-            $regex = new modele_regex('block',array(0), array());
+            $regex = new Cornac_Tokenizeur_Regex_Model('block',array(0), array());
             Cornac_Tokenizeur_Token::applyRegex($t->getNext(5), 'block', $regex);
 
             Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => block (".$this->getTname().")");
             return false; 
         } elseif ($t->getNext(5)->checkClass(array('variable','_array','property','property_static'))) {
             if ($t->getNext(6)->checkNotCode(';')) { return false; }
-            $regex = new modele_regex('block',array(0), array());
+            $regex = new Cornac_Tokenizeur_Regex_Model('block',array(0), array());
             Cornac_Tokenizeur_Token::applyRegex($t->getNext(5), 'block', $regex);
 
             Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => block (".$this->getTname().")");

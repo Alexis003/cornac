@@ -38,7 +38,7 @@ class Cornac_Tokenizeur_Regex_Dowhile_Simple extends Cornac_Tokenizeur_Regex {
         $args = array(0);
         $remove = array(1);
         
-        $regex = new modele_regex('block',$args, $remove);
+        $regex = new Cornac_Tokenizeur_Regex_Model('block',$args, $remove);
         Cornac_Tokenizeur_Token::applyRegex($t->getNext(), 'block', $regex);
 
         Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => block (".$this->getTname().")");

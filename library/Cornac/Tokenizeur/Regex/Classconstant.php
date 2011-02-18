@@ -54,7 +54,7 @@ class Cornac_Tokenizeur_Regex_Classconstant extends Cornac_Tokenizeur_Regex {
             $repl = $var;
             $var = $var->getNext(1);
 
-            $regex = new modele_regex('Cornac_Tokenizeur_Token_Classconstant',$args, $remove);
+            $regex = new Cornac_Tokenizeur_Regex_Model('Cornac_Tokenizeur_Token_Classconstant',$args, $remove);
             Cornac_Tokenizeur_Token::applyRegex($repl, 'Cornac_Tokenizeur_Token_Classconstant', $regex);
 
             Cornac_Log::getInstance('tokenizer')->log(get_class($var)." => constant_class  (".$this->getTname().")");

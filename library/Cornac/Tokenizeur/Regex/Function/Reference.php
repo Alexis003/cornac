@@ -40,7 +40,7 @@ class Cornac_Tokenizeur_Regex_Function_Reference extends Cornac_Tokenizeur_Regex
         if ($t->getNext(2)->checkNotClass('arglist')) { return false; }
 
         Cornac_Log::getInstance('tokenizer')->log(get_class($t->getNext(1))." => literals  (".$this->getTname().")");
-        $regex = new modele_regex('literals',array(0), array());
+        $regex = new Cornac_Tokenizeur_Regex_Model('literals',array(0), array());
         Cornac_Tokenizeur_Token::applyRegex($t->getNext(1), 'literals', $regex);
 
         $this->args = array(1,2,3);

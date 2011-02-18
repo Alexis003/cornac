@@ -28,9 +28,6 @@ spl_autoload_register('Cornac_Autoload::autoload');
 
 new Cornac_Log('tokenizer');
 
-include('prepare/common.php');
-include("prepare/analyseur.php");
-
 $options = array('help' => array('help' => 'display this help',
                                  'option' => '?',
                                  'compulsory' => false),
@@ -279,7 +276,7 @@ class file_processor {
         unset($raw);
     
         Cornac_Log::getInstance('tokenizer')->log("New analyseur");
-        $analyseur = new analyseur(array_keys($distinct_tokens));
+        $analyseur = new Cornac_Tokenizeur_Analyseur(array_keys($distinct_tokens));
     
         $nb_tokens_courant = -1;
         $nb_tokens_precedent = array(-1);

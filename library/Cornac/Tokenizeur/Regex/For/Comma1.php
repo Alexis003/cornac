@@ -58,7 +58,7 @@ class Cornac_Tokenizeur_Regex_For_Comma1 extends Cornac_Tokenizeur_Regex {
             $args[] = $pos;
             $remove[] = $pos;
 
-            $regex = new modele_regex('block',$args, $remove);
+            $regex = new Cornac_Tokenizeur_Regex_Model('block',$args, $remove);
             Cornac_Tokenizeur_Token::applyRegex($t->getNext(1), 'block', $regex);
 
             Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => block (position 1) (from ".get_class($t->getNext(1)).") (".$this->getTname().")");

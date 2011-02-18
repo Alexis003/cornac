@@ -97,7 +97,7 @@ class Cornac_Tokenizeur_Regex_Foreach_Alternative extends Cornac_Tokenizeur_Rege
         
         $remove[] = $pos;
 
-        $regex = new modele_regex('block',$args, $remove);
+        $regex = new Cornac_Tokenizeur_Regex_Model('block',$args, $remove);
         Cornac_Tokenizeur_Token::applyRegex($t->getNext($posi+1), 'block', $regex);
 
         Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => block (".$this->getTname().")");

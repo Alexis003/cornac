@@ -57,7 +57,7 @@ class Cornac_Tokenizeur_Regex_Switch_Alternative extends Cornac_Tokenizeur_Regex
             $var = $var->getNext();
         }
         
-        $regex = new modele_regex('block',$args, $remove);
+        $regex = new Cornac_Tokenizeur_Regex_Model('block',$args, $remove);
         Cornac_Tokenizeur_Token::applyRegex($t->getNext(2), 'block', $regex);
 
         $this->args = array(1, 3);

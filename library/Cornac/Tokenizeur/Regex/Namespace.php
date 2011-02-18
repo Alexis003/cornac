@@ -45,7 +45,7 @@ class Cornac_Tokenizeur_Regex_Namespace extends Cornac_Tokenizeur_Regex {
             // @note allow \ to appear after. 
             if ($t->hasNext(2) && $t->getNext(1)->checkOperator('\\')) { return false; }
             
-            $regex = new modele_regex('Cornac_Tokenizeur_Token_Nsname',array(0), array());
+            $regex = new Cornac_Tokenizeur_Regex_Model('Cornac_Tokenizeur_Token_Nsname',array(0), array());
             Cornac_Tokenizeur_Token::applyRegex($t->getNext(), 'Cornac_Tokenizeur_Token_Nsname', $regex);
 
             Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => _nsname");

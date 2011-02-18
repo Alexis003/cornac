@@ -61,7 +61,7 @@ class Cornac_Tokenizeur_Regex_Typehint extends Cornac_Tokenizeur_Regex {
         if ($t->getNext(1)->checkOperator('=')) { return false; }
         if ($t->getNext(1)->checkNotOperator(array(',',')'))) { return false; }
 
-        $regex = new modele_regex('typehint',array(0, 1), array(1));
+        $regex = new Cornac_Tokenizeur_Regex_Model('typehint',array(0, 1), array(1));
         Cornac_Tokenizeur_Token::applyRegex($t, 'typehint', $regex);
 
         Cornac_Log::getInstance('tokenizer')->log(get_class($t->getNext())." => typehint (".$this->getTname().")");

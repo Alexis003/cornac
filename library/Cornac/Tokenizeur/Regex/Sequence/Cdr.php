@@ -35,7 +35,7 @@ class Cornac_Tokenizeur_Regex_Sequence_Cdr extends Cornac_Tokenizeur_Regex {
         if ($t->getPrev()->checkNotClass('sequence')) { return false; }
         if ($t->getNext()->checkNotClass('sequence')) { return false; }
 
-        $regex = new modele_regex('sequence',array(-2, 0), array(-2));
+        $regex = new Cornac_Tokenizeur_Regex_Model('sequence',array(-2, 0), array(-2));
         Cornac_Tokenizeur_Token::applyRegex($t->getNext(), 'sequence', $regex);
 
         Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => spot a rawtext (".$this->getTname().")");
