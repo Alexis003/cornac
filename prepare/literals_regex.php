@@ -33,20 +33,11 @@ class literals_regex extends Cornac_Tokenizeur_Regex {
     }
     
     function check($t) {
-            
-        if ($t->checkToken(array(T_LNUMBER, 
-                                 T_CONSTANT_ENCAPSED_STRING, 
-                                 T_ENCAPSED_AND_WHITESPACE, 
-                                 T_NUM_STRING,
-                                 T_DNUMBER))) {
-              $this->args = array(0);
-              $this->remove = array();
+        $this->args = array(0);
+        $this->remove = array();
 
-              Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
-              return true;
-        } else {
-            return false;
-        }
+        Cornac_Log::getInstance('tokenizer')->log(get_class($t)." => ".$this->getTname());
+        return true;
     }
 }
 
