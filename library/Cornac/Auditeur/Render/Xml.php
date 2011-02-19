@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class Render_xml {
+class Cornac_Auditeur_Render_Xml {
     
     function render($lines) {
         $return = "<?xml version=\"1.0\" encoding=\"UTF-8\"?".">\n";

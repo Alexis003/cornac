@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class Render_html {
+class Cornac_Auditeur_Render_Html {
     private $db = null;
     private $folder = '/tmp';
     

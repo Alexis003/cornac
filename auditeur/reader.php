@@ -112,8 +112,8 @@ $res = $DATABASE->query($query);
 
 // @attention : should support -s for summaries.
 
-include('render/'.$OPTIONS->reader['format'].'.php');
-$class = "Render_".$OPTIONS->reader['format'];
+//include('render/'.$OPTIONS->reader['format'].'.php');
+$class = "Cornac_Auditeur_Render_".ucfirst(strtolower($OPTIONS->reader['format']));
 
 $view = new $class($OPTIONS->reader['file']);
 
