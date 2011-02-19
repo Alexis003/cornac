@@ -17,48 +17,43 @@
    +----------------------------------------------------------------------+
  */
 
-class Cornac_Auditeur_Analyzer_Variables_Relations extends Cornac_Auditeur_Analyzer
+class Cornac_Auditeur_Analyzer_Functions_ArglistCalled extends Cornac_Auditeur_Analyzer
  {
-	protected	$title = 'Link between variables';
-	protected	$description = 'Linked variables : when two variables are in the same instructures ($x = $a + $b), then, they are in relation.';
+    protected    $title = 'Used arguments';
+    protected    $description = 'List the number of arguments being used in functioncall. For example, f(1,2,3) => f(3 args), f() => f(0 args). ';
 
-	function __construct($mid) {
+    function __construct($mid) {
         parent::__construct($mid);
-        
-        $this->format = Cornac_Auditeur_Analyzer::FORMAT_DOT;
-	}
-	
-	public function analyse() {
+    }
+
+    public function analyse() {
         $this->clean_report();
 
-// @todo : this should be done context by context. How can I do that? 
-// @note I need another table for this        
         $query = <<<SQL
-SELECT  T4.code, T2.code, CONCAT(T1.class,'::',T1.scope), '{$this->name}' 
+SELECT NULL, T1.file, CONCAT(T2.code,'(', count(*),' args)') AS code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
 JOIN <tokens_tags> TT1
     ON T1.id = TT1.token_id AND 
-       TT1.type='left'
+       TT1.type = 'function'
 JOIN <tokens> T2
-    ON T2.id = TT1.token_sub_id AND 
-       T2.type='variable' AND 
-       T1.file =T2.file
+    ON T2.file = T1.file AND 
+       TT1.token_sub_id = T2.id
 JOIN <tokens_tags> TT2
     ON T1.id = TT2.token_id AND 
-       TT2.type='right'
+       TT2.type='args'
 JOIN <tokens> T3
-    ON T3.file = T1.file AND 
-       T3.id = TT2.token_sub_id
+    ON T3.file = T1.file AND TT2.token_sub_id = T3.id AND T3.type = 'arglist'
 JOIN <tokens> T4
     ON T4.file = T1.file AND 
-       T4.left BETWEEN T3.left AND T3.right AND
-       T4.type='variable'
-WHERE T1.type = 'affectation'
+       T4.left BETWEEN T3.left AND T3.right AND 
+       T4.level = T3.level + 1
+WHERE T1.type = 'functioncall'
+GROUP BY T1.id;
 SQL;
-        $this->exec_query_insert('report_dot', $query);
+        $this->exec_query_insert('report', $query);
 
         return true;
-	}
+    }
 }
 
 ?>

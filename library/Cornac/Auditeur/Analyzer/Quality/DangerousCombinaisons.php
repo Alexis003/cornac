@@ -17,46 +17,36 @@
    +----------------------------------------------------------------------+
  */
 
-class Cornac_Auditeur_Analyzer_Variables_Relations extends Cornac_Auditeur_Analyzer
+class Cornac_Auditeur_Analyzer_Quality_DangerousCombinaisons extends Cornac_Auditeur_Analyzer
  {
-	protected	$title = 'Link between variables';
-	protected	$description = 'Linked variables : when two variables are in the same instructures ($x = $a + $b), then, they are in relation.';
+	protected	$title = 'Dangerous matchings';
+	protected	$description = 'List of file that are combining several dangerous values or structures (ex. $_POST and shell_exec). Probably worth checking.';
 
 	function __construct($mid) {
         parent::__construct($mid);
-        
-        $this->format = Cornac_Auditeur_Analyzer::FORMAT_DOT;
 	}
-	
+
 	public function analyse() {
         $this->clean_report();
+        
+        $combinaisons = parse_ini_file('../dict/combinaisons.ini', true);
 
-// @todo : this should be done context by context. How can I do that? 
-// @note I need another table for this        
-        $query = <<<SQL
-SELECT  T4.code, T2.code, CONCAT(T1.class,'::',T1.scope), '{$this->name}' 
+        foreach ($combinaisons as $nom => $combinaison) {
+            $in = "'".join("','", $combinaison['combinaison'])."'";
+            $count = count($combinaison['combinaison']);
+            // @todo : this shouldn't be sufficient. One must work on distinct occurences... may be a sub query will do
+
+// @note : some token duplicate code from other tokens (like functioncall, which have no code by itself, but get a copy of their name for easy reference)
+// @note so, we need to ignore some types. 
+            $query = <<<SQL
+SELECT NULL, T1.file, '$nom', T1.code, '{$this->name}', 0
 FROM <tokens> T1
-JOIN <tokens_tags> TT1
-    ON T1.id = TT1.token_id AND 
-       TT1.type='left'
-JOIN <tokens> T2
-    ON T2.id = TT1.token_sub_id AND 
-       T2.type='variable' AND 
-       T1.file =T2.file
-JOIN <tokens_tags> TT2
-    ON T1.id = TT2.token_id AND 
-       TT2.type='right'
-JOIN <tokens> T3
-    ON T3.file = T1.file AND 
-       T3.id = TT2.token_sub_id
-JOIN <tokens> T4
-    ON T4.file = T1.file AND 
-       T4.left BETWEEN T3.left AND T3.right AND
-       T4.type='variable'
-WHERE T1.type = 'affectation'
+WHERE T1.type NOT IN ('functioncall','method')
+GROUP BY file
+HAVING SUM(IF (code IN ($in), 1, 0)) >= $count
 SQL;
-        $this->exec_query_insert('report_dot', $query);
-
+            $this->exec_query_insert('report', $query);
+        }
         return true;
 	}
 }

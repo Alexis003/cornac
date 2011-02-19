@@ -17,47 +17,47 @@
    +----------------------------------------------------------------------+
  */
 
-class Cornac_Auditeur_Analyzer_Variables_Relations extends Cornac_Auditeur_Analyzer
+class Cornac_Auditeur_Analyzer_Functions_Emptys extends Cornac_Auditeur_Analyzer
  {
-	protected	$title = 'Link between variables';
-	protected	$description = 'Linked variables : when two variables are in the same instructures ($x = $a + $b), then, they are in relation.';
+	protected	$title = 'Empty functions';
+	protected	$description = 'Functions which body is empty (not abstract or interface functions).';
 
 	function __construct($mid) {
         parent::__construct($mid);
-        
-        $this->format = Cornac_Auditeur_Analyzer::FORMAT_DOT;
+	}
+
+	function dependsOn() {
+	    return array('Classes_Interfaces');
 	}
 	
 	public function analyse() {
         $this->clean_report();
 
-// @todo : this should be done context by context. How can I do that? 
-// @note I need another table for this        
-        $query = <<<SQL
-SELECT  T4.code, T2.code, CONCAT(T1.class,'::',T1.scope), '{$this->name}' 
-FROM <tokens> T1
-JOIN <tokens_tags> TT1
-    ON T1.id = TT1.token_id AND 
-       TT1.type='left'
-JOIN <tokens> T2
-    ON T2.id = TT1.token_sub_id AND 
-       T2.type='variable' AND 
-       T1.file =T2.file
-JOIN <tokens_tags> TT2
-    ON T1.id = TT2.token_id AND 
-       TT2.type='right'
+	    $query = <<<SQL
+SELECT NULL, T1.file, T4.code, T1.id, '{$this->name}', 0
+FROM <tokens> T1 
+JOIN <tokens_tags> T2
+    ON T1.id = T2.token_id
 JOIN <tokens> T3
-    ON T3.file = T1.file AND 
-       T3.id = TT2.token_sub_id
+    ON T3.id = T2.token_sub_id
+JOIN <tokens_tags> T5
+    ON T1.id = T5.token_id     AND 
+       T5.type = 'name'
 JOIN <tokens> T4
-    ON T4.file = T1.file AND 
-       T4.left BETWEEN T3.left AND T3.right AND
-       T4.type='variable'
-WHERE T1.type = 'affectation'
+    ON T1.file = T4.file       AND
+       T4.id = T5.token_sub_id
+LEFT JOIN <report> TR
+    ON T1.file = TR.file       AND
+       T4.class = TR.element   AND
+       TR.module='Classes_Interfaces'
+WHERE 
+    T1.type = '_function'      AND
+    T2.type = 'block'          AND
+    T3.right - T3.left = 1     AND
+    TR.id IS NULL
 SQL;
-        $this->exec_query_insert('report_dot', $query);
 
-        return true;
+        $this->exec_query_insert('report', $query);
 	}
 }
 

@@ -17,45 +17,36 @@
    +----------------------------------------------------------------------+
  */
 
-class Cornac_Auditeur_Analyzer_Variables_Relations extends Cornac_Auditeur_Analyzer
+
+class Cornac_Auditeur_Analyzer_Structures_LoopsLong extends Cornac_Auditeur_Analyzer
  {
-	protected	$title = 'Link between variables';
-	protected	$description = 'Linked variables : when two variables are in the same instructures ($x = $a + $b), then, they are in relation.';
+	protected	$title = 'Long loops';
+	protected	$description = 'Spot loops that have too many lines (more than 10).';
+	protected   $tags = array('quality');
 
 	function __construct($mid) {
         parent::__construct($mid);
-        
-        $this->format = Cornac_Auditeur_Analyzer::FORMAT_DOT;
 	}
-	
+
+	function dependsOn() {
+	    return array();
+	}
+
 	public function analyse() {
         $this->clean_report();
 
-// @todo : this should be done context by context. How can I do that? 
-// @note I need another table for this        
-        $query = <<<SQL
-SELECT  T4.code, T2.code, CONCAT(T1.class,'::',T1.scope), '{$this->name}' 
+	    $query = <<<SQL
+SELECT NULL, T1.file, TC.code, T1.id, '{$this->name}', 0
 FROM <tokens> T1
-JOIN <tokens_tags> TT1
-    ON T1.id = TT1.token_id AND 
-       TT1.type='left'
 JOIN <tokens> T2
-    ON T2.id = TT1.token_sub_id AND 
-       T2.type='variable' AND 
-       T1.file =T2.file
-JOIN <tokens_tags> TT2
-    ON T1.id = TT2.token_id AND 
-       TT2.type='right'
-JOIN <tokens> T3
-    ON T3.file = T1.file AND 
-       T3.id = TT2.token_sub_id
-JOIN <tokens> T4
-    ON T4.file = T1.file AND 
-       T4.left BETWEEN T3.left AND T3.right AND
-       T4.type='variable'
-WHERE T1.type = 'affectation'
+    ON T2.file = T1.file AND
+       T2.left = T1.right + 1
+JOIN <tokens_cache> TC
+    ON T1.id = TC.id
+WHERE T1.type IN ('_for','_while','_do','_foreach') AND
+      T2.line - T1.line > 10
 SQL;
-        $this->exec_query_insert('report_dot', $query);
+        $this->exec_query_insert('report', $query);
 
         return true;
 	}
