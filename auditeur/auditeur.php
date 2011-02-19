@@ -442,12 +442,14 @@ if (isset($OPTIONS->mysql) && $OPTIONS->mysql['active'] == true) {
 // @synopsis validation done
 
 // @inclusions abstract classes
-include 'classes/abstract/modules.php';
-include 'classes/abstract/modules_classe_dependances.php';
-include 'classes/abstract/modules_head.php';
-include 'classes/abstract/functioncalls.php';
-include 'classes/abstract/typecalls.php';
-include 'classes/abstract/noms.php';
+//include 'classes/abstract/modules.php';
+//include 'classes/abstract/functioncalls.php';
+
+// @todo move those!
+//include 'classes/abstract/modules_classe_dependances.php';
+//include 'classes/abstract/modules_head.php';
+//include 'classes/abstract/typecalls.php';
+//include 'classes/abstract/noms.php';
 
 // @todo the init could take into account the current content of the database, avoiding reprocess
 
@@ -511,7 +513,8 @@ function analyse_module($module_name) {
     // @note make sure we have an integer. 0 is OK.
     $completed = intval($row['completed']);
 
-    $module = new $module_name($DATABASE);
+    $classname = 'Cornac_Auditeur_Analyzer_'.$module_name;
+    $module = new $classname($DATABASE);
     $dependances = $module->dependsOn();
     
     if (count($dependances) > 0) {

@@ -17,20 +17,38 @@
    +----------------------------------------------------------------------+
  */
 
-class Php_Phpinfo extends functioncalls {
-	protected	$title = 'phpinfo';
-	protected	$description = 'Usage of phpinfo';
+class Cornac_Auditeur_Analyzer_Functioncalls extends Cornac_Auditeur_Analyzer {
+    protected $not = false; 
+    protected $functions = array();
 
-	function __construct($mid) {
+    function __construct($mid) {
         parent::__construct($mid);
-	}
-	
-	public function analyse() {
-	    $this->functions = array('phpinfo');
-	    parent::analyse();
-	    
-	    return true;
-	}
+    }
+    
+    public function analyse() {
+        if (!is_array($this->functions) || empty($this->functions)) {
+            print "No function name provided for class ".get_class($this)." Aborting.\n";
+            die(__METHOD__);
+        }
+        $in = join("','", $this->functions);
+        $this->functions = array();
+
+        if ($this->not) {
+            $not = ' not ';
+        } else {
+            $not = '';
+        }
+        
+        $this->clean_report();
+
+        $query = <<<SQL
+SELECT NULL, T1.file, T1.code AS code, T1.id, '{$this->name}', 0
+FROM <tokens> T1 
+WHERE T1.type='functioncall' AND 
+      T1.code $not IN ('$in')
+SQL;
+        $this->exec_query_insert('report', $query);
+    }
 }
 
 ?>

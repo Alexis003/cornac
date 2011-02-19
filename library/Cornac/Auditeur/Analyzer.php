@@ -19,7 +19,7 @@
 
 // @todo : centraliser les rquêtes SQL 
 // @todo : mettre en parmètre 
-abstract class modules {
+abstract class Cornac_Auditeur_Analyzer {
     protected  $occurrences = 0;
     protected  $files_identifies = 0;
     protected  $total_de_files = 0;
@@ -36,12 +36,12 @@ abstract class modules {
     const WEB_DISPLAY = 'yes';
     const WEB_NOT_DISPLAY = 'no';
 
-    protected  $format = modules::FORMAT_HTMLLIST;
-    protected  $web = modules::WEB_DISPLAY;
+    protected  $format = Cornac_Auditeur_Analyzer::FORMAT_HTMLLIST;
+    protected  $web = Cornac_Auditeur_Analyzer::WEB_DISPLAY;
 
     function __construct($database) {
         $this->mid = $database;
-        $this->format_export = modules::FORMAT_DEFAULT;
+        $this->format_export = Cornac_Auditeur_Analyzer::FORMAT_DEFAULT;
         
        $this->name = get_class($this);
     }
@@ -94,7 +94,7 @@ abstract class modules {
     }
 
     function getfilename() {
-        if ($this->format_export == modules::FORMAT_DOT) {
+        if ($this->format_export == Cornac_Auditeur_Analyzer::FORMAT_DOT) {
             return $this->name.".dot";
         } else {
             return $this->name.".html";
@@ -284,17 +284,17 @@ DELETE FROM <report_module> WHERE module='{$this->name}'
 SQL;
         $this->exec_query($query);
         
-        if ($this->format == modules::FORMAT_HTMLLIST) {
+        if ($this->format == Cornac_Auditeur_Analyzer::FORMAT_HTMLLIST) {
             $query = <<<SQL
 DELETE FROM <report> WHERE module='{$this->name}'
 SQL;
             $this->exec_query($query);
-        } elseif ($this->format == modules::FORMAT_DOT) {
+        } elseif ($this->format == Cornac_Auditeur_Analyzer::FORMAT_DOT) {
             $query = <<<SQL
 DELETE FROM <report_dot> WHERE module='{$this->name}'
 SQL;
             $this->exec_query($query);
-        } elseif ($this->format == modules::FORMAT_ATTRIBUTE) {
+        } elseif ($this->format == Cornac_Auditeur_Analyzer::FORMAT_ATTRIBUTE) {
             $query = <<<SQL
 UPDATE <report_attributes> SET {$this->name} = 'No'
 SQL;
