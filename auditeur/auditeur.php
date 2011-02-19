@@ -67,6 +67,7 @@ define('CLEAN_DATABASE', !empty($OPTIONS->clean));
 
 // @todo this should move out of this script
 $modules = array(
+'All',
 'AuditeurDefault',
 
 'Classes',
@@ -440,16 +441,6 @@ if (isset($OPTIONS->mysql) && $OPTIONS->mysql['active'] == true) {
     print count($modules)." modules will be treated : ".join(', ', $modules)."\n";
 
 // @synopsis validation done
-
-// @inclusions abstract classes
-//include 'classes/abstract/modules.php';
-//include 'classes/abstract/functioncalls.php';
-
-// @todo move those!
-//include 'classes/abstract/modules_classe_dependances.php';
-//include 'classes/abstract/modules_head.php';
-//include 'classes/abstract/typecalls.php';
-//include 'classes/abstract/noms.php';
 
 // @todo the init could take into account the current content of the database, avoiding reprocess
 
