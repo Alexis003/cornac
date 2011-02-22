@@ -1,10 +1,11 @@
+#!/usr/bin/env php
 <?php
 
 include('../library/Cornac/Autoload.php');
 spl_autoload_register('Cornac_Autoload::autoload');
 
 print "\n";
-if (in_array('-W', $argv)) {
+if (in_array('-W', $_SERVER['argv'])) {
     print "Updating disclaimer\n\n";
     sleep(3);
     define("WRITE", true);
@@ -82,6 +83,11 @@ foreach($fichiers as $fichier) {
     if (!isset($pathinfo['extension'])) { continue; }
 
     $code = file_get_contents($fichier);
+    
+    $x = preg_match_all('/damien.seguy@gmail.com/is', $code, $r);
+    if ($x > 1) {
+        print "$x occurrences of disclaimer in $fichier\n";
+    }
 
     foreach($olds as $version => $old) {
         if (strpos($code, $old) !== false) {
