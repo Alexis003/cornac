@@ -17,6 +17,8 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
+ 
+// @todo use getoption class
 if ($id = array_search('-f', $argv)) {
     unset($argv[$id]);
     define('CREATE', true);
@@ -31,7 +33,7 @@ foreach($args as $arg) {
     if (!file_exists("./scripts/".$arg.".test.php")) {
         $module = glob("./scripts/".$arg.".*.test.php");
         if (count($module) == 0) {
-            print "Le script d'exécution './scripts/".$arg.".test.php' n'existe pas\n";
+            print "Test script './scripts/".$arg.".test.php' doesn't exist\n";
             die();
         }
 
@@ -47,14 +49,14 @@ foreach($args as $arg) {
 
     if (!file_exists("./exp/".$arg.".test.exp")) {
         if (!CREATE) {
-            print "Le script de resultat './exp/".$arg.".test.exp' n'existe pas\n";
+            print "Result script './exp/".$arg.".test.exp' doesn't exist\n";
 //            die();
         }
     }
 
     if (CREATE) {
       print "Modification de /exp/".$arg.".test.exp\n";
-      shell_exec("cd ../../; ./tokenizeur.php -f tests/tokenizeur/scripts/".$arg.".test.php -I testsunitaires -g tree > tests/tokenizeur/exp/".$arg.".test.exp");
+      shell_exec("cd ../../; php bin/tokenizeur -f tests/tokenizeur/scripts/".$arg.".test.php -I testsunitaires -g tree > tests/tokenizeur/exp/".$arg.".test.exp");
 
       $fichier = "exp/".$arg.".test.exp";
       $exp = file_get_contents($fichier);
@@ -66,7 +68,7 @@ foreach($args as $arg) {
       file_put_contents($fichier, $exp);
     } else {
       shell_exec("bbedit ./exp/".$arg.".test.exp");
-      shell_exec("cd ../../; ./tokenizeur.php -f tests/tokenizeur/scripts/".$arg.".test.php  -I testsunitaires -g tree | bbedit");
+      shell_exec("cd ../../; php bin/tokenizeur -f tests/tokenizeur/scripts/".$arg.".test.php  -I testsunitaires -g tree | bbedit");
     }
 }
 

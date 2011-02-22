@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 static $a = 0 
 ?>
 <?php 

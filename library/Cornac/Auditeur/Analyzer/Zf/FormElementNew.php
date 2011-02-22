@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 
 
 class Cornac_Auditeur_Analyzer_Zf_FormElementNew extends Cornac_Auditeur_Analyzer

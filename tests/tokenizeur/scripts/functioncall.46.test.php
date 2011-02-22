@@ -1,1 +1,1 @@
- <?php echo $a->b($d) ?>(<?php echo $e->f($g) ?>);
+<?php echo $a->b($d) ?>(<?php echo $e->f($g) ?>);
