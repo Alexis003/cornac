@@ -308,6 +308,8 @@ $modules = array(
 'Zf_FormElementNew',
 'Zf_FormElementWithValidation',
 'Zf_Validator',
+
+'Ez_Getgpc', 
 // new analyzers
 );
 
