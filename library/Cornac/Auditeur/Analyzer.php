@@ -43,7 +43,7 @@ abstract class Cornac_Auditeur_Analyzer {
         $this->mid = $database;
         $this->format_export = Cornac_Auditeur_Analyzer::FORMAT_DEFAULT;
         
-       $this->name = get_class($this);
+       $this->name = str_replace('Cornac_Auditeur_Analyzer_', '', get_class($this));
     }
     
     abstract function analyse();
