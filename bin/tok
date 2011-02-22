@@ -62,7 +62,7 @@ $OPTIONS->init();
 
 // @todo this should echo shell_exec values
 // @todo try to remove the shell_exec, and use inclusion. This will speed up things
-$shell = 'php tokinit.php -I '.$OPTIONS->ini.' -g '.$OPTIONS->templates.' -K ';
+$shell = 'php bin/tokinit -I '.$OPTIONS->ini.' -g '.$OPTIONS->templates.' -K ';
 if (!empty($OPTIONS->directory)) {
     shell_exec($shell.' -r -d '.$OPTIONS->directory);
 } elseif (!empty($OPTIONS->file)) {
@@ -82,6 +82,6 @@ $ini .= " -i ".$OPTIONS->limit;
 // @todo must remove the dependency to the database : this is silly
 $ini .= ' -I '.($OPTIONS->ini ?: 'cornac');
 
-print shell_exec('php tokclient.php '.$ini);
+print shell_exec('php bin/tokclient '.$ini);
 
 ?>

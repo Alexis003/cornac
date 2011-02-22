@@ -19,7 +19,7 @@
  */
 
 spl_autoload_register('auditeur_autoload');
-include('../library/Cornac/Autoload.php');
+include('library/Cornac/Autoload.php');
 spl_autoload_register('Cornac_Autoload::autoload');
 
 // @synopsis : read options

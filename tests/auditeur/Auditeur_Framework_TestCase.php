@@ -26,10 +26,9 @@ if (in_array('-f', $args)) {
     print "\nFull analysis of test files\n";
     $shell = <<<SHELL
 cd ../..
-./tokinit.php -r -d ./tests/auditeur/scripts/ -I testsunitaires -K -g mysql,cache
-./tokclient.php -I testsunitaires
-cd auditeur
-./auditeur.php -d -p tu -I testsunitaires
+php bin/tokinit -r -d ./tests/auditeur/scripts/ -I testsunitaires -K -g mysql,cache
+php bin/tokclient -I testsunitaires
+php bin/auditeur -d -p tu -I testsunitaires
 SHELL;
     $return = shell_exec($shell);
 
@@ -42,8 +41,8 @@ SHELL;
 if (in_array('-a', $args)) {
     print "\nFull update of auditeur's tasks (No tokenizeur used)\n";
     $shell = <<<SHELL
-cd ../../auditeur
-./auditeur.php -d -p tu -I testsunitaires
+cd ../..
+php bin/auditeur -d -p tu -I testsunitaires
 SHELL;
     $return = shell_exec($shell);
     
@@ -131,8 +130,8 @@ SHELL;
     function read_log() {
 
         $shell = <<<SHELL
-cd ../../auditeur
-./reader.php -I testsunitaires -F xml -a {$this->prefix} -f ./tests/auditeur/scripts/{$this->prefix}.php
+cd ../..
+php bin/reader -I testsunitaires -F xml -a {$this->prefix} -f ./tests/auditeur/scripts/{$this->prefix}.php
 SHELL;
 
         $return = shell_exec($shell);
