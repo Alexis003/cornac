@@ -2,7 +2,7 @@ Add SPIP 2.1.x, ezpublish 4.4.
 Extract xdebug functions to external class to avoid dependency
 move classes from tests to library
 move test classes in own directory
-
+add a diff mode, that will make tokinit check for update in files, and only update those. 
 
 [cornac]
 add remove table option for cornac / auditeur
