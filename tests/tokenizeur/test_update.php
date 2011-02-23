@@ -50,7 +50,6 @@ foreach($args as $arg) {
     if (!file_exists("./exp/".$arg.".test.exp")) {
         if (!CREATE) {
             print "Result script './exp/".$arg.".test.exp' doesn't exist\n";
-//            die();
         }
     }
 
