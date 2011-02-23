@@ -189,14 +189,14 @@ class Framework_AllTests
         
         foreach($tests as $i => $test ) {
             $file = trim($test); // @note precaution. I happened to leave some white space 
-            if (!file_exists($file)) {
+            if (!file_exists('class/'.$file)) {
                 unset($tests[$i]); 
                 print "Test file '$test' not available : omitted\n";
                 continue;
             }
-            require (dirname(__FILE__)."/".$file);
+            require (dirname(__FILE__)."/class/".$file);
             
-            $code = file_get_contents(dirname(__FILE__)."/".$file);
+            $code = file_get_contents(dirname(__FILE__)."/class/".$file);
             if (!preg_match('$class (.*?_Test) $', $code, $r)) {
                 print "Couldn't find the test class in file '$file'\n";
                 die();
