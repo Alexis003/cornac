@@ -304,14 +304,14 @@ SQL;
 
     static public function getPHPConstants($ext = null) {
         if (is_null($ext)) {
-            $ini = parse_ini_file('../dict/constant2ext.ini', false);
+            $ini = parse_ini_file('dict/constant2ext.ini', false);
             
     // @note : not useful, but maybe later...
             $extras = array();
 
             return array_merge($ini['constant'], $extras);
         } else {
-            $ini = parse_ini_file('../dict/constant2ext.ini', true);
+            $ini = parse_ini_file('dict/constant2ext.ini', true);
             
             if (isset($ini[$ext])) {
                 return $ini[$ext]['constant'];
@@ -323,13 +323,13 @@ SQL;
     
     static public function getPHPFunctions($ext = null) {
         if (is_null($ext)) {
-            $ini = parse_ini_file('../dict/functions2ext.ini', false);
+            $ini = parse_ini_file('dict/functions2ext.ini', false);
     
             $extras = array('echo','print','die','exit','isset','empty','array','list','unset','eval','dl');
 
             return array_merge($ini['function'], $extras);
         } else {
-            $ini = parse_ini_file('../dict/functions2ext.ini', true);
+            $ini = parse_ini_file('dict/functions2ext.ini', true);
             
             if (isset($ini[$ext])) {
                 return $ini[$ext]['function'];
@@ -340,64 +340,64 @@ SQL;
     }
     
     static public function getPHPExtensions() {
-        $ini = parse_ini_file('../dict/functions2ext.ini', true);
+        $ini = parse_ini_file('dict/functions2ext.ini', true);
         
         $exts = array_keys($ini);
         return $exts;
     }
 
     static public function getDrupal5Hooks() {
-        $hook = parse_ini_file('../dict/drupal5_hook.ini', false);
+        $hook = parse_ini_file('dict/drupal5_hook.ini', false);
         return $hook['hook'];
     }
 
     static public function getDrupal6Hooks() {
-        $hook = parse_ini_file('../dict/drupal6_hook.ini', false);
+        $hook = parse_ini_file('dict/drupal6_hook.ini', false);
         return $hook['hook'];
     }
 
     static public function getDrupal7Hooks() {
-        $hook = parse_ini_file('../dict/drupal7_hook.ini', false);
+        $hook = parse_ini_file('dict/drupal7_hook.ini', false);
         return $hook['hook'];
     }
 
     static public function getPHPClasses() {
-        $classes = parse_ini_file('../dict/class2ext.ini', false);
+        $classes = parse_ini_file('dict/class2ext.ini', false);
         return $classes['classes'];
     }
 
     static public function getPHPExtClasses() {
-        $classes = parse_ini_file('../dict/class2ext.ini', true);
+        $classes = parse_ini_file('dict/class2ext.ini', true);
         return $classes;
     }
 
     static public function getZendFrameworkClasses() {
-        $classes = parse_ini_file('../dict/zfClasses.ini', true);
+        $classes = parse_ini_file('dict/zfClasses.ini', true);
         return $classes['classes'];
     }
 
     static public function getSymfonyClasses() {
-        $classes = parse_ini_file('../dict/sfClasses.ini', true);
+        $classes = parse_ini_file('dict/sfClasses.ini', true);
         return $classes['classes'];
     }
 
     static public function getPearClasses() {
-        $classes = parse_ini_file('../dict/pearClasses.ini', true);
+        $classes = parse_ini_file('dict/pearClasses.ini', true);
         return $classes['classes'];
     }
 
     static public function getPHPKeywords() {
-        $keywords = parse_ini_file('../dict/keywords.ini', true);
+        $keywords = parse_ini_file('dict/keywords.ini', true);
         return $keywords['keyword'];
     }
 
     static public function getPHPHandlers() {
-        $functions = parse_ini_file('../dict/phphandlers.ini', true);
+        $functions = parse_ini_file('dict/phphandlers.ini', true);
         return $functions['function'];
     }
 
     static public function getPopLib() {
-        $list = parse_ini_file('../dict/poplib.ini', true);
+        $list = parse_ini_file('dict/poplib.ini', true);
         return $list;
     }
 
