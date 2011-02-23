@@ -18,7 +18,6 @@
    +----------------------------------------------------------------------+
  */
 
-spl_autoload_register('auditeur_autoload');
 include('library/Cornac/Autoload.php');
 spl_autoload_register('Cornac_Autoload::autoload');
 
@@ -466,16 +465,6 @@ while (1) {
     
     sleep(5);
     print "Processed $counter tasks. Waiting for 5s\n";
-}
-
-function auditeur_autoload($classname) {
-    $path = str_replace('_','/', $classname);
-
-    if (file_exists('classes/'.$path.'.php')) {
-        require_once('classes/'.$path.'.php');
-    } elseif (file_exists('classes/'.$classname.'.php')) {
-        require_once('classes/'.$classname.'.php');
-    }
 }
 
 function analyse_module($module_name) {
