@@ -16,9 +16,11 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
-include_once('Auditeur_Framework_TestCase.php');
 
-class Variables_Names_Test extends Auditeur_Framework_TestCase
+include_once('../../library/Cornac/Autoload.php');
+spl_autoload_register('Cornac_Autoload::autoload');
+
+class Variables_Names_Test extends Cornac_Tests_Auditeur
 {
     public function testVariables()  { 
         $this->expected = array('$a','$b','$c','$d','$e','$y', '$or', '$x', '$$or', '$$or2', '$or2');

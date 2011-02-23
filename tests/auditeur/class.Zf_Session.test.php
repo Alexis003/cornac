@@ -18,9 +18,11 @@
  */
 
 
-include_once('Auditeur_Framework_TestCase.php');
 
-class Zf_Session_Test extends Auditeur_Framework_TestCase
+include_once('../../library/Cornac/Autoload.php');
+spl_autoload_register('Cornac_Autoload::autoload');
+
+class Zf_Session_Test extends Cornac_Tests_Auditeur
 {
     public function test_Zf_Session()  {
         $this->expected = array( 'Zend_Session_Namespace');

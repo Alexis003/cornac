@@ -18,9 +18,11 @@
  */
 
 
-include_once('Auditeur_Framework_TestCase.php');
 
-class Structures_ComparisonConstants_Test extends Auditeur_Framework_TestCase
+include_once('../../library/Cornac/Autoload.php');
+spl_autoload_register('Cornac_Autoload::autoload');
+
+class Structures_ComparisonConstants_Test extends Cornac_Tests_Auditeur
 {
     public function testcomparison_constant()  {
         $this->expected = array( 'true && false','1 == 1');

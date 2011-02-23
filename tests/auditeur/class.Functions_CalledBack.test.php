@@ -16,9 +16,11 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
-include_once('Auditeur_Framework_TestCase.php');
 
-class Functions_CalledBack_Test extends Auditeur_Framework_TestCase
+include_once('../../library/Cornac/Autoload.php');
+spl_autoload_register('Cornac_Autoload::autoload');
+
+class Functions_CalledBack_Test extends Cornac_Tests_Auditeur
 {
     public function testcallback_functions()  { 
         $this->expected = array( 'cb_1_1','cb_1_2','cb_1_3','cb_0_1','cb_0_2','cb_2_1' );

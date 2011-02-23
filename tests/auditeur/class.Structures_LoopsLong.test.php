@@ -18,9 +18,11 @@
  */
 
 
-include_once('Auditeur_Framework_TestCase.php');
 
-class Structures_LoopsLong_Test extends Auditeur_Framework_TestCase
+include_once('../../library/Cornac/Autoload.php');
+spl_autoload_register('Cornac_Autoload::autoload');
+
+class Structures_LoopsLong_Test extends Cornac_Tests_Auditeur
 {
     public function testlong_loops()  {
         $this->expected = array( 'while ($x = 1)');

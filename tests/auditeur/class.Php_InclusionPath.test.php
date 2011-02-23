@@ -16,9 +16,11 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
-include_once('Auditeur_Framework_TestCase.php');
 
-class Php_InclusionPath_Test extends Auditeur_Framework_TestCase
+include_once('../../library/Cornac/Autoload.php');
+spl_autoload_register('Cornac_Autoload::autoload');
+
+class Php_InclusionPath_Test extends Cornac_Tests_Auditeur
 {
     public function testVariables()  { 
         $this->expected = array('inclusion.php',

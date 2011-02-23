@@ -18,9 +18,11 @@
  */
 
 
-include_once('Auditeur_Framework_TestCase.php');
 
-class Quality_ConstructNameOfClass_Test extends Auditeur_Framework_TestCase
+include_once('../../library/Cornac/Autoload.php');
+spl_autoload_register('Cornac_Autoload::autoload');
+
+class Quality_ConstructNameOfClass_Test extends Cornac_Tests_Auditeur
 {
     public function testQuality_ConstructNameOfClass()  {
         $this->expected = array( 'constructor_both::__construct', 

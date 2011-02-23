@@ -18,9 +18,11 @@
  */
 
 
-include_once('Auditeur_Framework_TestCase.php');
 
-class Literals_RawtextWhitespace_Test extends Auditeur_Framework_TestCase
+include_once('../../library/Cornac/Autoload.php');
+spl_autoload_register('Cornac_Autoload::autoload');
+
+class Literals_RawtextWhitespace_Test extends Cornac_Tests_Auditeur
 {
     public function testrawtext_whitespace()  {
         $this->expected = array( 'line 22');

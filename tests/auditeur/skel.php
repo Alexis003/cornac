@@ -54,9 +54,11 @@ $code = '<?'.'php ';
 $code .= "
 
 
-include_once('Auditeur_Framework_TestCase.php');
 
-class {$analyzer}_Test extends Auditeur_Framework_TestCase
+include_once('../../library/Cornac/Autoload.php');
+spl_autoload_register('Cornac_Autoload::autoload');
+
+class {$analyzer}_Test extends Cornac_Tests_Auditeur
 {
     public function test{$analyzer}()  {
         \$this->expected = array( '');

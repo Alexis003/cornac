@@ -16,9 +16,11 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
-include_once('Auditeur_Framework_TestCase.php');
 
-class Classes_MethodsSpecial_Test extends Auditeur_Framework_TestCase
+include_once('../../library/Cornac/Autoload.php');
+spl_autoload_register('Cornac_Autoload::autoload');
+
+class Classes_MethodsSpecial_Test extends Cornac_Tests_Auditeur
 {
     public function testVariables()  { 
         $this->expected = array('a->__toString','a->__construct','a->a','a->__destruct','a->__clone','a->__set','a->__get','a->__call','a->__callStatic','a->__unset','a->__isset','a->__wakeup','a->__set_state','a->__sleep','a->__invoke','__autoload');

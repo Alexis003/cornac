@@ -16,9 +16,11 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
-include_once('Auditeur_Framework_TestCase.php');
 
-class Functions_ArrayUsage_Test extends Auditeur_Framework_TestCase
+include_once('../../library/Cornac/Autoload.php');
+spl_autoload_register('Cornac_Autoload::autoload');
+
+class Functions_ArrayUsage_Test extends Cornac_Tests_Auditeur
 {
     public function testVariables()  { 
         $this->expected = array('$a[1]','$b[2]','$b[2][3]','$e[$f[1]]','$f[1]','$d[$e[$f[1]]]');

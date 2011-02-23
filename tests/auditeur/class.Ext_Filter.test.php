@@ -15,9 +15,11 @@
    +----------------------------------------------------------------------+
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
- */include_once('Auditeur_Framework_TestCase.php');
+ */
+include_once('../../library/Cornac/Autoload.php');
+spl_autoload_register('Cornac_Autoload::autoload');
 
-class Ext_Filter_Test extends Auditeur_Framework_TestCase
+class Ext_Filter_Test extends Cornac_Tests_Auditeur
 {
     public function testfilter_functions()  {
         $this->expected = array( 

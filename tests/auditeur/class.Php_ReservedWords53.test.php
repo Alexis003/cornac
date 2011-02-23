@@ -18,9 +18,11 @@
  */
 
 
-include_once('Auditeur_Framework_TestCase.php');
 
-class Php_ReservedWords53_Test extends Auditeur_Framework_TestCase
+include_once('../../library/Cornac/Autoload.php');
+spl_autoload_register('Cornac_Autoload::autoload');
+
+class Php_ReservedWords53_Test extends Cornac_Tests_Auditeur
 {
     public function testPhp_ReservedWords53()  {
         $this->markTestSkipped('Won\'t must work with PHP 5.2 (max)');

@@ -18,9 +18,11 @@
  */
 
 
-include_once('Auditeur_Framework_TestCase.php');
 
-class Structures_LoopsInfinite_Test extends Auditeur_Framework_TestCase
+include_once('../../library/Cornac/Autoload.php');
+spl_autoload_register('Cornac_Autoload::autoload');
+
+class Structures_LoopsInfinite_Test extends Cornac_Tests_Auditeur
 {
     public function testinfinite_loop()  {
         $this->expected = array( 'line 20','line 22','line 24','line 26');

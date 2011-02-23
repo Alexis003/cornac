@@ -18,9 +18,11 @@
  */
 
 
-include_once('Auditeur_Framework_TestCase.php');
 
-class Classes_MethodsWithoutPpp_Test extends Auditeur_Framework_TestCase
+include_once('../../library/Cornac/Autoload.php');
+spl_autoload_register('Cornac_Autoload::autoload');
+
+class Classes_MethodsWithoutPpp_Test extends Cornac_Tests_Auditeur
 {
     function  testmethod_without_ppp()  {
         $this->expected = array( 

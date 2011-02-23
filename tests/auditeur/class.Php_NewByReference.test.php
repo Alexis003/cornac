@@ -18,9 +18,11 @@
  */
 
 
-include_once('Auditeur_Framework_TestCase.php');
 
-class Php_NewByReference_Test extends Auditeur_Framework_TestCase
+include_once('../../library/Cornac/Autoload.php');
+spl_autoload_register('Cornac_Autoload::autoload');
+
+class Php_NewByReference_Test extends Cornac_Tests_Auditeur
 {
     public function testPhp_NewByReference()  {
         $this->expected = array( 'new StdClass()');

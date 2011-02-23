@@ -15,9 +15,11 @@
    +----------------------------------------------------------------------+
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
- */include_once('Auditeur_Framework_TestCase.php');
+ */
+include_once('../../library/Cornac/Autoload.php');
+spl_autoload_register('Cornac_Autoload::autoload');
 
-class Functions_ArglistUnused_Test extends Auditeur_Framework_TestCase
+class Functions_ArglistUnused_Test extends Cornac_Tests_Auditeur
 {
     public function testunused_args()  { 
         $this->expected = array( 'function x($a, $b, $d, $e = 1, $f = 2)');

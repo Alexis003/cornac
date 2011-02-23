@@ -15,9 +15,11 @@
    +----------------------------------------------------------------------+
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
- */include_once('Auditeur_Framework_TestCase.php');
+ */
+include_once('../../library/Cornac/Autoload.php');
+spl_autoload_register('Cornac_Autoload::autoload');
 
-class Php_FunctionsConflict_Test extends Auditeur_Framework_TestCase
+class Php_FunctionsConflict_Test extends Cornac_Tests_Auditeur
 {
     public function testphp_functions_name_conflict()  { 
         $this->expected = array( 'fbsql_username');

@@ -18,9 +18,11 @@
  */
 
 
-include_once('Auditeur_Framework_TestCase.php');
 
-class Literals_InArglist_Test extends Auditeur_Framework_TestCase
+include_once('../../library/Cornac/Autoload.php');
+spl_autoload_register('Cornac_Autoload::autoload');
+
+class Literals_InArglist_Test extends Cornac_Tests_Auditeur
 {
     public function testliterals_as_argref()  {
         $this->markTestSkipped('Won\'t work on PHP 5.3');

@@ -15,9 +15,11 @@
    +----------------------------------------------------------------------+
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
- */include_once('Auditeur_Framework_TestCase.php');
+ */
+include_once('../../library/Cornac/Autoload.php');
+spl_autoload_register('Cornac_Autoload::autoload');
 
-class Ext_Execs_Test extends Auditeur_Framework_TestCase
+class Ext_Execs_Test extends Cornac_Tests_Auditeur
 {
     public function testexecs()  {
         $this->expected = array( 'exec','shell_exec','system','passthru');

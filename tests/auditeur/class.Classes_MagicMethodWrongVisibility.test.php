@@ -18,9 +18,11 @@
  */
 
 
-include_once('Auditeur_Framework_TestCase.php');
 
-class Classes_MagicMethodWrongVisibility_Test extends Auditeur_Framework_TestCase
+include_once('../../library/Cornac/Autoload.php');
+spl_autoload_register('Cornac_Autoload::autoload');
+
+class Classes_MagicMethodWrongVisibility_Test extends Cornac_Tests_Auditeur
 {
     public function testClasses_MagicMethodWrongVisibility()  {
         $this->expected = array( 

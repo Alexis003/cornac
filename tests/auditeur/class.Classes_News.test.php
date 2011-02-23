@@ -16,9 +16,11 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
-include_once('Auditeur_Framework_TestCase.php');
 
-class Classes_News_Test extends Auditeur_Framework_TestCase
+include_once('../../library/Cornac/Autoload.php');
+spl_autoload_register('Cornac_Autoload::autoload');
+
+class Classes_News_Test extends Cornac_Tests_Auditeur
 {
     public function testVariables()  { 
         $this->expected = array('$a','$asp','StdClass', 'classe_sans_parenthese','z');

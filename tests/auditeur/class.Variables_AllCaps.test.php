@@ -18,9 +18,11 @@
  */
 
 
-include_once('Auditeur_Framework_TestCase.php');
 
-class Variables_AllCaps_Test extends Auditeur_Framework_TestCase
+include_once('../../library/Cornac/Autoload.php');
+spl_autoload_register('Cornac_Autoload::autoload');
+
+class Variables_AllCaps_Test extends Cornac_Tests_Auditeur
 {
     public function testVariables_AllCaps()  {
         $this->expected = array( '$ALL_CAPS');
