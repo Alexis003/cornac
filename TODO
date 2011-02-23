@@ -1,4 +1,4 @@
-Add SPIP 2.1.x, ezpublish 4.4.
+Make a list of auditeur's basic actions, so as to start a reference doc for auditeur/analyzers
 Extract xdebug functions to external class to avoid dependency
 move classes from tests to library
 move test classes in own directory
@@ -8,8 +8,6 @@ add a diff mode, that will make tokinit check for update in files, and only upda
 add remove table option for cornac / auditeur
 
 database : some query (like for cache) may end up breaking the maximum sql query size. This should be checked.
-
-merge the 2 database classes into one
 
 Add an Export class, to handle export to a configurable folder.
 
@@ -31,8 +29,8 @@ Add a log to show progress
 Add support for a version of Cornac (checking for config files, tables configurations, etc.)
 add file restriction in the cornac.ini file
 
-Move prepare to classes folder
 Move auditeur.php to English
+prepare an internationalisation folder
 Move auditeur.php to upper directory
 
 make a script to change name of auditeur's analyser git : move auditeur/classes/, auditeur/auditeur.php, tests/auditeur/ scripts, class.*.test.php, alltests.php 
