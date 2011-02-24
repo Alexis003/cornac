@@ -1,13 +1,17 @@
-<html>                                                                  
- <head>                                                                  
- <script type="text/javascript" src="js/jquery.min.js"></script>          
- </head>                                                                 
- <body>   
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+ <title>Cornac analysis for this project : Auditeur report</title>
+</head>
+<body>
+<a href="index.php">Main</a>
 <?php
 
 include('include/config.php');
 
 $stats = array();
+$html = '';
 
 $res = $DATABASE->query('SELECT COUNT(*) AS count
                                 FROM <tasks> 
@@ -32,13 +36,12 @@ $stats['Ran'] = $rows[0]['count'];
 $res = $DATABASE->query('SELECT * FROM <tasks> WHERE task="auditeur"');
 $rows = $res->fetchAll(PDO::FETCH_ASSOC);
 
-$groups = glob('../auditeur/classes/*.php');
+// @todo abstract this in a method list. This should be managed
+$groups = glob('../library/Cornac/Auditeur/Analyzer/*.php');
 
-include('../auditeur/classes/abstract/modules.php');
-include('../auditeur/classes/abstract/modules_head.php');
 foreach($groups as $group) {
-    include_once($group);
-    $class = substr(basename($group,'php'), 0, -1);
+    $class = 'Cornac_Auditeur_Analyzer_'.substr(basename($group,'php'), 0, -1);
+    if (in_array($class, array('Cornac_Auditeur_Analyzer_Group'))) { continue; }
     
     $object = new $class(null);
     $dependencies = $object->dependsOn();
@@ -50,13 +53,16 @@ foreach($groups as $group) {
         }
     }
     
-    print "$class\n";
-    print count($dependencies)." count\n";
-    print $done."\n\n";
-    $rows[] = array('target' => $class, 
-                    'completed' => number_format($done * 100 / count($dependencies), 0));
+    if (count($dependencies) == 0) {
+        $rows[] = array('target' => $class, 
+                        'completed' => 1);
+    } else {
+        $rows[] = array('target' => $class, 
+                        'completed' => number_format($done * 100 / count($dependencies), 0));
+    }
 }
 
+// @todo abstract this in a method list. This should be managed
 $groups = glob('../auditeur/classes/*/*.php');
 foreach($groups as $id => &$group) {
     if (strpos($group, 'abstract') !== false) { 

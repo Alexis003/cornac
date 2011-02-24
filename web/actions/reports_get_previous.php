@@ -16,27 +16,28 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
-function get_html_check($lines) {
-    get_html_level2($lines);
+include('../include/config.php');
+
+// @todo tss tss @security
+$analyzer = $_GET['analyzer'];
+
+$sql = <<<SQL
+SELECT TRM.module, TRM.fait
+FROM <report_module> TRM
+WHERE TRM.module < '$analyzer'
+ORDER BY TRM.module DESC
+LIMIT 1
+SQL;
+$res = $DATABASE->query($sql);
+$res = $res->fetchAll();
+
+// @todo Also clean reports
+// @todo also clean token tables
+
+if (!empty($res[0]['module'])) {
+    header('Location: ../reports_analyzer.php?analyzer='.$res[0]['module']);
+} else {
+    header('Location: ../reports.php');
 }
-
-function get_html_level2($lines) {
-    global $DATABASE;
-    
-    $query = "SELECT DISTINCT concat(file,';','white') AS all_files FROM <tokens> ";
-    $rows = $DATABASE->query_one_array($query);
-    
-    $image = new Cornac_Format_File2png();
-    $image->setArray($rows);
-    $image->process();
-    $image->save();
-}
-
-function print_entete($prefix='No Name') {
-
-}
-
-function print_pieddepage($prefix='No Name') {
-
-}
+die();
 ?>

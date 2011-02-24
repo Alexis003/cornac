@@ -15,22 +15,29 @@
    +----------------------------------------------------------------------+
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
- */    $dot =  "digraph G {
-size=\"8,6\"; ratio=fill; node[fontsize=24];
-";
-        $clusters = array();
-        foreach($lignes as $ligne) {
-            $dot .= "\"{$ligne['a']}\" -> \"{$ligne['b']}\";\n";
-            if ($ligne['cluster']) {
-                $clusters[$ligne['cluster']][] = $ligne['a'];
-            }
-        }
-        
-        if (count($clusters) > 0) {
-          foreach($clusters as $nom => $liens) {
-            $dot .= "subgraph \"cluster_$nom\" {label=\"$nom\"; \"".join('"; "', $liens)."\"; }\n";
-          }
-        }
-        
-        $dot .= '}';
+ */
+include('../include/config.php');
+
+// @todo tss tss @security
+$analyzer = $_GET['analyzer'];
+
+$sql = <<<SQL
+SELECT TRM.module, TRM.fait
+FROM <report_module> TRM
+WHERE TRM.module > '$analyzer'
+ORDER BY TRM.module
+LIMIT 1
+SQL;
+$res = $DATABASE->query($sql);
+$res = $res->fetchAll();
+
+// @todo Also clean reports
+// @todo also clean token tables
+
+if (!empty($res[0]['module'])) {
+    header('Location: ../reports_analyzer.php?analyzer='.$res[0]['module']);
+} else {
+    header('Location: ../reports.php');
+}
+die();
 ?>

@@ -16,8 +16,9 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
-include('include/config.php');
+include('../include/config.php');
 
+// @todo tss tss @security
 $filename = $_GET['file'];
 
 $res = $DATABASE->query('UPDATE <tasks> SET completed=0 
@@ -26,6 +27,6 @@ $res = $DATABASE->query('UPDATE <tasks> SET completed=0
 // @todo Also clean reports
 // @todo also clean token tables
 
-header('Location: status_file.php');
+header('Location: ../tok_status.php');
 die();
 ?>

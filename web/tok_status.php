@@ -1,12 +1,16 @@
-<html>                                                                  
- <head>                                                                  
- <script type="text/javascript" src="js/jquery.min.js"></script>          
- </head>                                                                 
- <body>   
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+ <title>Cornac analysis for this project : Tokenizeur report</title>
+</head>
+<body>
+<a href="index.php">Main</a>
 <?php
 
 include('include/config.php');
 
+$html = '';
 $stats = array();
 
 $res = $DATABASE->query('SELECT COUNT(*) AS count
@@ -85,10 +89,11 @@ foreach($rows as $row) {
             $result = '??';
     }
     $target_urlencoded = urlencode($row['target']);
+    // @todo make this ajax
     $html .= <<<HTML
 <tr>
   <td>{$row['target']}</td>
-  <td><a href="rebuild.php?file=$target_urlencoded">$result</a></td>
+  <td><a href="actions/tok_rebuild.php?file=$target_urlencoded">$result</a></td>
 </tr>
 HTML;
 }
@@ -96,5 +101,6 @@ $html .= "
 </table>";
 print $html;
 
-?></body>                                                                 
- </html>
+?>
+</body>
+</html>
