@@ -21,20 +21,8 @@ define('T_NAMESPACED_NAME', 500);
 
 class Cornac_Autoload {
     static public function autoload($name) {
-        // @todo path may have to be configurable
-        if (dirname($_SERVER['SCRIPT_FILENAME']) == 'scripts') {
-        // @doc scripts case, in scripts folder
-            $path = '../library';
-        } elseif (isset($_SERVER['HTTP_HOST'])) {
-        // @doc web case, in scripts folder
-            $path = '../library';
-        } elseif (basename($_SERVER['SCRIPT_FILENAME']) == 'phpunit') {
-        // @doc test case, in scripts tests/*/
-            $path = '../../library';
-        } else {
-            $path = 'library';
-        }
-
+        $path = dirname(dirname(__FILE__));
+        
         $file = $path.'/'.str_replace('_', '/', $name).'.php';
         if (file_exists($file)) {
             include($file);
