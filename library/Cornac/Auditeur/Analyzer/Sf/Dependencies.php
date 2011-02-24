@@ -17,9 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-
-class Cornac_Auditeur_Analyzer_Sf_Dependencies extends Cornac_Auditeur_Analyzer
-_classe_dependances {
+class Cornac_Auditeur_Analyzer_Sf_Dependencies extends Cornac_Auditeur_Analyzer_Classesusage {
 	protected	$title = 'Sf : Symfony dependance';
 	protected	$description = 'Dependencies toward Symfony Framework : by heritage or composition, those classes from the Symfony are needed.';
 
