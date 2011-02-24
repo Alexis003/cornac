@@ -42,7 +42,7 @@ $options = array('help' => array('help' => 'display this help',
                                              'get_arg_value' => '',
                                              'option' => 'o',
                                              'compulsory' => false),
-                 'format' => array('help' => 'output format (default, xml or html)',
+                 'format' => array('help' => 'output format (default, xml, text or html)',
                                              'get_arg_value' => 'xml',
                                              'option' => 'F',
                                              'compulsory' => false),
@@ -63,9 +63,11 @@ $OPTIONS->reader = $m = array('module' => $OPTIONS->analyzer,
                          
 
 // validations
-if (empty($OPTIONS->reader['format']) || !in_array($OPTIONS->reader['format'],array('xml','html'))) {
-    print "Output format is needed (option -F) : xml or html\n";
-    print help();
+// @todo validate this with the available classes in Cornac_Auditeur_Render
+$formats = array('xml','html','text','csv');
+if (empty($OPTIONS->reader['format']) || !in_array($OPTIONS->reader['format'], $formats)) {
+    print "Output format is needed (option -F) : ".join(', ', $formats)."\n";
+    print $OPTIONS->help();
     die();
 }
 
@@ -85,6 +87,12 @@ if (!$row) {
     print "No module with name '{$OPTIONS->reader['module']}'. Aborting\n";
     die();
 } elseif ($row['format'] == 'html') {
+    // @attention : should also support _dot reports
+    $query = 'SELECT * FROM <report> WHERE module='.$DATABASE->quote($OPTIONS->reader['module']);
+    if (!empty($OPTIONS->reader['file'])) {
+        $query .= ' AND file='.$DATABASE->quote($OPTIONS->reader['file']);
+    }
+} elseif ($row['format'] == 'text') {
     // @attention : should also support _dot reports
     $query = 'SELECT * FROM <report> WHERE module='.$DATABASE->quote($OPTIONS->reader['module']);
     if (!empty($OPTIONS->reader['file'])) {
