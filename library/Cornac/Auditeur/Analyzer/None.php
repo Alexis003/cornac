@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class Cornac_Auditeur_Analyzer_All extends Cornac_Auditeur_Analyzer  {
+class Cornac_Auditeur_Analyzer_None extends Cornac_Auditeur_Analyzer  {
     function __construct($mid) {
         parent::__construct($mid);
     }
