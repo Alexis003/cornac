@@ -80,7 +80,7 @@ $DATABASE = new Cornac_Database();
 $res = $DATABASE->query("SHOW TABLES LIKE '<report>'");
 $row = $res->fetch();
 if (!$row) {
-    print "Auditeur haven't been run yet. Run it before inventaire.\n ./auditeur.php -I $ini -a Inventaire\n";
+    print "Auditeur haven't been run yet. Run it before inventaire.\n ./bin/auditeur -I $OPTIONS->ini -a Inventaire\n";
     die();
 }
 
