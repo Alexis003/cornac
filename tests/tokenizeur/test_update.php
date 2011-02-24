@@ -55,7 +55,7 @@ foreach($args as $arg) {
 
     if (CREATE) {
       print "Modification de /exp/".$arg.".test.exp\n";
-      shell_exec("cd ../../; php bin/tokenizeur -f tests/tokenizeur/scripts/".$arg.".test.php -I testsunitaires -g tree > tests/tokenizeur/exp/".$arg.".test.exp");
+      shell_exec("cd ../../; php bin/tok -f tests/tokenizeur/scripts/".$arg.".test.php -I testsunitaires -g tree > tests/tokenizeur/exp/".$arg.".test.exp");
 
       $fichier = "exp/".$arg.".test.exp";
       $exp = file_get_contents($fichier);
@@ -67,7 +67,7 @@ foreach($args as $arg) {
       file_put_contents($fichier, $exp);
     } else {
       shell_exec("bbedit ./exp/".$arg.".test.exp");
-      shell_exec("cd ../../; php bin/tokenizeur -f tests/tokenizeur/scripts/".$arg.".test.php  -I testsunitaires -g tree | bbedit");
+      shell_exec("cd ../../; php bin/tok -f tests/tokenizeur/scripts/".$arg.".test.php  -I testsunitaires -g tree | bbedit");
     }
 }
 
