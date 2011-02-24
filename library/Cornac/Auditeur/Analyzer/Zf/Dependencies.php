@@ -16,8 +16,7 @@
    | Author: Damien Seguy <damien.seguy@gmail.com>                        |
    +----------------------------------------------------------------------+
  */
-class Cornac_Auditeur_Analyzer_Zf_Dependencies extends Cornac_Auditeur_Analyzer
-_classe_dependances {
+class Cornac_Auditeur_Analyzer_Zf_Dependencies extends Cornac_Auditeur_Analyzer_Classesusage {
 	protected	$title = 'ZF : Zend Framework dependance';
 	protected	$description = 'Dependencies toward ZF  : by heritage or composition, those classes from the ZF are needed.';
 
