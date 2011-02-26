@@ -13,12 +13,12 @@ class Cornac_Tests_Auditeur extends PHPUnit_Framework_TestCase {
         $debut = microtime(true);
         if (in_array('-f', $args)) {
             $file = str_replace('_Test','.php', get_class($this));
+            $test = str_replace('_Test','', get_class($this));
             print "Full analysis of test file (script/$file)\n";
             $shell = <<<SHELL
 cd ../..
-php bin/tokinit -r -f ./tests/auditeur/scripts/$file -I testsunitaires -K -g mysql,cache
-php bin/tokclient -I testsunitaires
-php bin/auditeur -d -p tu -I testsunitaires
+php bin/tok -r -f ./tests/auditeur/scripts/$file -I testsunitaires -K -g mysql,cache
+php bin/auditeur -I testsunitaires -a $test -f
 SHELL;
             $return = shell_exec($shell);
         
