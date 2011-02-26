@@ -17,8 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class Cornac_Auditeur_Analyzer_Classes_This extends Cornac_Auditeur_Analyzer
- {
+class Cornac_Auditeur_Analyzer_Classes_This extends Cornac_Auditeur_Analyzer {
     protected    $title = 'Wrong usage of $this';
     protected    $description = 'List usage of $this variable, outside a class scope. Noone should do this.';
 
