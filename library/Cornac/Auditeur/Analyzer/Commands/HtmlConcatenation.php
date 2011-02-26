@@ -18,8 +18,7 @@
  */
 
 
-class Cornac_Auditeur_Analyzer_Commands_HtmlConcatenation extends Cornac_Auditeur_Analyzer
- {
+class Cornac_Auditeur_Analyzer_Commands_HtmlConcatenation extends Cornac_Auditeur_Analyzer {
 	protected	$title = 'Html concatenation';
 	protected	$description = 'Spot concatenations that are building HTML files.';
 
@@ -32,6 +31,8 @@ class Cornac_Auditeur_Analyzer_Commands_HtmlConcatenation extends Cornac_Auditeu
 	}
 
 	public function analyse() {
+// @todo create a analyze et renommmer celle-ci en doAnalyze
+// @todo exprimer le standard de notation kekpart
         $this->clean_report();
 
 	    $query = <<<SQL
