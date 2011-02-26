@@ -17,8 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class Cornac_Auditeur_Analyzer_Php_Modules extends Cornac_Auditeur_Analyzer
- {
+class Cornac_Auditeur_Analyzer_Php_Modules extends Cornac_Auditeur_Analyzer {
 	protected	$title = 'Needed PHP extension';
 	protected	$description = 'List of needed PHP extensions. Functions, Constants and classes are checked.';
 
