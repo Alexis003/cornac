@@ -23,7 +23,7 @@ spl_autoload_register('Cornac_Autoload::autoload');
 class Classes_Undefined_Test extends Cornac_Tests_Auditeur
 {
     public function testVariables()  { 
-        $this->expected = array('z','$w','_array variable $request[literals 3]');
+        $this->expected = array('z','$w','$request[3]');
         $this->unexpected = array('a','$x','$y','$z','$v','StdClass',);
         
         parent::generic_counted_test();
