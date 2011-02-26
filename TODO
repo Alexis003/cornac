@@ -1,3 +1,17 @@
+spot useless heritage     function __construct($mid) {
+        parent::__construct($mid);
+    }
+
+Vérifier les colonnes class et scope dans token.
+Ramener la colonne cache dans token?
+Avoir la possibilité de mettre les tables en base, au lieu de préfixes comme actuellement
+attention aux -1 dans les tokens
+
+
+
+Add script to check all script validates 
+Add deploy directory
+
 Make a list of auditeur's basic actions, so as to start a reference doc for auditeur/analyzers
 Extract xdebug functions to external class to avoid dependency
 move classes from tests to library
@@ -98,7 +112,6 @@ see how tokclient may not stop stupidly, and keep going when there are still som
 Add information code when tokclient fail at parsing a file. (php not compile, etc.)
 
 check that "$r[g]" doesn't interpolate an array in the string (contrary to "{$r[g]}").
-rename 'constante' in _constant
 rename mon_log into my_log...
 
 use select in tokclient to // processing
