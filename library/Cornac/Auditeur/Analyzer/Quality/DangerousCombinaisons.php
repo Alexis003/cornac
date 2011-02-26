@@ -29,7 +29,8 @@ class Cornac_Auditeur_Analyzer_Quality_DangerousCombinaisons extends Cornac_Audi
 	public function analyse() {
         $this->clean_report();
         
-        $combinaisons = parse_ini_file('../dict/combinaisons.ini', true);
+        // @todo move this to Module
+        $combinaisons = parse_ini_file('dict/combinaisons.ini', true);
 
         foreach ($combinaisons as $nom => $combinaison) {
             $in = "'".join("','", $combinaison['combinaison'])."'";
