@@ -1,19 +1,17 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
- <title>Cornac analysis for this project : Tokenizeur report</title>
-</head>
-<body>
 <?php
 
 include('include/config.php');
 
+$view = new Cornac_View();
+
 // @todo validate this! 
 $analyzer = $_GET['analyzer'];
 
-print "<h1>$analyzer</h1>";
-echo '<a href="index.php">Main</a> - <a href="reports.php">Reports</a> - <a href="reports_analyzer.php?analyzer='.$analyzer.'">Reports by file</a>';
+$view->analyzer = $analyzer;
+
+$view->url_main = 'index.php';
+$view->url_reports = 'reports.php';
+$view->url_report_analyzer = 'reports_analyzer.php?analyzer='.$analyzer.'';
 
 $html = '';
 $stats = array();
@@ -45,30 +43,8 @@ $rows = $res->fetchAll(PDO::FETCH_ASSOC);
 
 $stats['total'] = count($rows);
 
-$html .= "<table>\n";
-foreach($stats as $name => $value) {
-    $html .= "<tr>
-  <td>{$name}</td>
-  <td>{$value}</td>
-</tr>
-";
-}
-$html .= "</table>\n";
-
-$html .= "<table>\n";
-foreach($rows as $id => $row) {
-    $html .= "<tr>
-  <td>{$row['file']}</td>
-  <td>{$row['line']}</td>
-  <td>{$row['element']}</td>
-</tr>
-";
-}
-
-$html .= "</table>\n";
-
-print $html;
+$view->rows = $rows;
+$view->stats = $stats;
+echo $view->process('template/reports_files.php', $rows);
 
 ?>
-</body>
-</html>

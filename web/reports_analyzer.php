@@ -1,10 +1,3 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
- <title>Cornac analysis for this project : report</title>
-</head>
-<body>
 <?php
 
 include('include/config.php');
@@ -12,10 +5,13 @@ include('include/config.php');
 // @todo validate this! 
 $analyzer = $_GET['analyzer'];
 
-print "<h1>$analyzer</h1>";
+$view = new Cornac_View();
 
-echo '<a href="index.php">Main</a> - <a href="reports.php">Reports</a> - <a href="reports_files.php?analyzer='.$analyzer.'">Reports by file</a> - ';
-echo '<a href="actions/reports_get_previous.php?analyzer='.$analyzer.'">Previous Analyzer</a> - <a href="actions/reports_get_next.php?analyzer='.$analyzer.'">Next Analyzer</a> ';
+$view->url_main = 'index.php';
+$view->url_reports = 'reports.php';
+$view->url_report_file = 'reports_files.php?analyzer='.$analyzer.'';
+$view->analyzer = $analyzer;
+
 $html = '';
 $stats = array();
 
@@ -33,7 +29,6 @@ $rows = $res->fetchAll(PDO::FETCH_ASSOC);
 
 $stats['distinct'] = count($rows);
 
-
 $sql = <<<SQL
 SELECT TR.element, TR.file, T1.line
 FROM <report> TR
@@ -47,31 +42,8 @@ $rows = $res->fetchAll(PDO::FETCH_ASSOC);
 
 $stats['total'] = count($rows);
 
-$html .= "<table>\n";
-foreach($stats as $name => $value) {
-    $html .= "<tr>
-  <td>{$name}</td>
-  <td>{$value}</td>
-</tr>
-";
-}
-$html .= "</table>\n";
-
-
-$html .= "<table>\n";
-foreach($rows as $id => $row) {
-    $html .= "<tr>
-  <td>{$row['element']}</td>
-  <td>{$row['file']}</td>
-  <td>{$row['line']}</td>
-</tr>
-";
-}
-
-$html .= "</table>\n";
-
-print $html;
+$view->rows = $rows;
+$view->stats = $stats;
+echo $view->process('template/reports_analyzer.php', $rows);
 
 ?>
-</body>
-</html>
