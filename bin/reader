@@ -30,7 +30,7 @@ $options = array('help' => array('help' => 'display this help',
                                  'option' => 'I',
                                  'compulsory' => true),
                  'analyzer' => array('help' => 'analyzer',
-                                     'get_arg_value' => 'all',
+                                     'get_arg_value' => '',
                                      'option' => 'a',
                                      'compulsory' => false),
 // @todo limit to one folder?
@@ -38,7 +38,7 @@ $options = array('help' => array('help' => 'display this help',
                                       'get_arg_value' => '',
                                       'option' => 'f',
                                       'compulsory' => false),
-                 'output' => array('help' => 'output folder (will be created anyway)',
+                 'output' => array('help' => 'output folder (will be created anyway; default to stdout)',
                                              'get_arg_value' => '',
                                              'option' => 'o',
                                              'compulsory' => false),
@@ -124,7 +124,7 @@ $class = "Cornac_Auditeur_Render_".ucfirst(strtolower($OPTIONS->reader['format']
 
 $view = new $class($OPTIONS->reader['file']);
 
-// @bug : shouldn't be here
+// @bug : shouldn't be here. Options should be relayed directly, and the render class will pick the one it needs.
 if (get_class($view) == 'Render_html') {
     $view->SetFolder($OPTIONS->reader['output']);
 }
@@ -136,10 +136,17 @@ if (!$res) {
     $result = $view->render($rows);
 }
 
-if (empty($output)) {
+if (empty($OPTIONS->output)) {
     print $result;
 } else {
-    print "File written in '$output'\n";
+    $fp = @fopen($OPTIONS->output, 'w+');
+    if (is_resource($fp)) {
+        fwrite($fp, $result);
+        fclose($fp);
+        print "File written in '$OPTIONS->output'\n";
+    } else {
+        print "Couldn't open file for output : '$OPTIONS->output'\n";
+    }
 }
 
 ?>
