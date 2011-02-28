@@ -1,24 +1,7 @@
-spot useless heritage     function __construct($mid) {
-        parent::__construct($mid);
-    }
-
-Vérifier les colonnes class et scope dans token.
-Ramener la colonne cache dans token?
-Avoir la possibilité de mettre les tables en base, au lieu de préfixes comme actuellement
-attention aux -1 dans les tokens
-
-
-
+[cornac]
 Add script to check all script validates 
 Add deploy directory
 
-Make a list of auditeur's basic actions, so as to start a reference doc for auditeur/analyzers
-Extract xdebug functions to external class to avoid dependency
-move classes from tests to library
-move test classes in own directory
-add a diff mode, that will make tokinit check for update in files, and only update those. 
-
-[cornac]
 add remove table option for cornac / auditeur
 
 database : some query (like for cache) may end up breaking the maximum sql query size. This should be checked.
@@ -81,9 +64,25 @@ Display dots when processing analyzers (auditeur)
 Add a file lister, that will also display ignored files from tokenizeur (export current function to external scripts/)
 
 [tokenizeur]
+move classes from tests to library
+move test classes in own directory
+
+Extract xdebug functions to external class to avoid dependency
+
+Move column cache in table tokens
+Fully fill the column cache 
+Remove the template 'cache'
+
+Check the actual value of column class and scope dans token table
+Remove all -1 mentions in column line for tokens
+
 tokenizeur : store literal type (string, bool, int, real...)
 
-Check for table structure before using 
+add a diff mode, that will make tokinit check for update in files, and only update those. 
+
+move _static as an attribute, and not a type of token. 
+
+Check for table structure before using MCD
 check tokclient, to make sure he keeps going on when a script can't be processed. 
 
 Compile some more PHP version to use for outsourcing token_get_all() function
@@ -117,6 +116,8 @@ rename mon_log into my_log...
 use select in tokclient to // processing
 
 [auditeur]
+Make a list of auditeur's basic actions, so as to start a reference doc for auditeur/analyzers
+
 Log time of analyseur's process
 
 Detect tables available for MCD, and stop if this is not compatible
@@ -177,6 +178,9 @@ check tokens? and version for PHP. This must be done in tokenizer.
 Prepare auditeur for wordpress, joomla, drupal, sf, zf, ci. 
 
 [analysers ideas]
+spot method that do not use $this (property or method). 
+Suggest moving public to private, based on method usage (within or outside).
+
 Make a tree with view calling each other (that coud word on controllers too, and models). 
 CHeck for calls between controlers/models/view!  (This shouldn't happen...)
 
@@ -285,6 +289,7 @@ différences entre les variables de vue et de controleur
 
 check for proxy classes : X methods call their parent methods
 Relay functions : call another method with the same args
+spot useless heritage     function __construct($mid) {  parent::__construct($mid);    } 
 Methods that call their parent:: or self::
 Classes that overload parent methods
 Classes that uses parent properties
@@ -323,7 +328,7 @@ Make better display
 [inventaire]
 Add unit tests for inventaires (through other output format?)
 make 'inventaire' work on one file only
-make 'inventaire' export to other format (TEXT...)
+make 'inventaire' export to other format (TEXT, csv, json...)
 
 add information on inventaire.ods about processing of application.
 
