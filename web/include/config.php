@@ -17,12 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-// @todo ugly hack
-if (file_exists('../library/Cornac/Autoload.php')) {
-    include('../library/Cornac/Autoload.php');
-} else {
-    include('../../library/Cornac/Autoload.php');
-}
+include(dirname(dirname(dirname(__FILE__))).'/library/Cornac/Autoload.php');
 spl_autoload_register('Cornac_Autoload::autoload');
 
 // @todo this should come from the .ini file
