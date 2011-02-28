@@ -29,7 +29,7 @@ class Cornac_Auditeur_Analyzer_Classes_Accessors extends Cornac_Auditeur_Analyze
 
 // @doc if this analyzer is based on previous result, use this to make sure the results are here
 	function dependsOn() {
-	    return array();
+	    return array('Classes_MethodsDefinition', 'Classes_Properties' );
 	}
 
 	public function analyse() {
