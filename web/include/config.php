@@ -3,7 +3,7 @@
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
    +----------------------------------------------------------------------+
-   | Copyright (c) 2010 - 2011 Alter Way Solutions (France)               |
+   | Copyright (c) 2010 - 2011                                            |
    +----------------------------------------------------------------------+
    | This source file is subject to version 3.01 of the PHP license,      |
    | that is bundled with this package in the file LICENSE, and is        |
@@ -17,14 +17,15 @@
    +----------------------------------------------------------------------+
  */
 
-include('../library/Cornac/Autoload.php');
+include(dirname(dirname(dirname(__FILE__))).'/library/Cornac/Autoload.php');
 spl_autoload_register('Cornac_Autoload::autoload');
 
+// @todo this should come from the .ini file
 $ini = array('mysql' => array('active' => 1,
                               'dsn' => 'mysql:dbname=analyseur;host=127.0.0.1',
                               'username' => 'root',
                               'password' => ''),
-             'cornac' => array('prefix' => 'allomusic' ) );
+             'cornac' => array('prefix' => 'huanui' ) );
 $DATABASE = new Cornac_Database($ini);
 
 $res = $DATABASE->query('SHOW TABLES LIKE "'.$ini['cornac']['prefix'].'%"');
@@ -32,6 +33,5 @@ if ($res->rowCount() == 0) {
     print $ini['cornac']['prefix']." doesn't exists in the database. Fix config file. Aborting. \n";
     die();
 }
-
 
 ?>

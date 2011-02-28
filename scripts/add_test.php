@@ -3,7 +3,7 @@
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
    +----------------------------------------------------------------------+
-   | Copyright (c) 2010 - 2011 Alter Way Solutions (France)               |
+   | Copyright (c) 2010 - 2011                                            |
    +----------------------------------------------------------------------+
    | This source file is subject to version 3.01 of the PHP license,      |
    | that is bundled with this package in the file LICENSE, and is        |
@@ -36,7 +36,7 @@ if (count($files) == 0) {
 
 if (file_exists('./ini/'.$name.'.ini')) {
     print "$name.ini already exists.\n\nNothing to do\n";
-    print "\n./tokenizeur.php -r -I $name -g mysql,cache -d {$files[0]}/\n";
+    print "\n./bin/tok -r -I $name -g mysql,cache -d {$files[0]}/\n";
     die();
 }
 // ini file
@@ -50,12 +50,12 @@ print "ini/$name created\n";
 // tokenizeur.sh
 $code = file_get_contents('../References/tokenizeur.sh');
 $code = str_replace("# next test\n","echo \"$name\\n\";
-./tokenizeur.php -r -I $name -g mysql,cache -d {$files[0]}/
+./bin/tok -r -I $name -g mysql,cache -d {$files[0]}/
 # next test\n", $code);
-file_put_contents('../tokenizeur.sh', $code);
+file_put_contents('../References/tokenizeur.sh', $code);
 print "tokenizeur.sh updated\n";
 
-print "\n./tokenizeur.php -r -I $name -g mysql,cache -d {$files[0]}/\n";
+print "\n./bin/tok -r -I $name -g mysql,cache -d {$files[0]}/\n";
 
 print preg_match_all('$echo$is', $code, $r)." projects\n";
 

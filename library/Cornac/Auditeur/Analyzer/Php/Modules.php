@@ -3,7 +3,7 @@
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
    +----------------------------------------------------------------------+
-   | Copyright (c) 2010 - 2011 Alter Way Solutions (France)               |
+   | Copyright (c) 2010 - 2011                                            |
    +----------------------------------------------------------------------+
    | This source file is subject to version 3.01 of the PHP license,      |
    | that is bundled with this package in the file LICENSE, and is        |
@@ -17,8 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-class Cornac_Auditeur_Analyzer_Php_Modules extends Cornac_Auditeur_Analyzer
- {
+class Cornac_Auditeur_Analyzer_Php_Modules extends Cornac_Auditeur_Analyzer {
 	protected	$title = 'Needed PHP extension';
 	protected	$description = 'List of needed PHP extensions. Functions, Constants and classes are checked.';
 

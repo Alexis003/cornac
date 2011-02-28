@@ -3,7 +3,7 @@
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
    +----------------------------------------------------------------------+
-   | Copyright (c) 2010 - 2011 Alter Way Solutions (France)               |
+   | Copyright (c) 2010 - 2011                                            |
    +----------------------------------------------------------------------+
    | This source file is subject to version 3.01 of the PHP license,      |
    | that is bundled with this package in the file LICENSE, and is        |
@@ -188,7 +188,7 @@ class Cornac_Tokenizeur_Template_Db extends Cornac_Tokenizeur_Template {
 
         $elements = $node->getList();
         if (count($elements) == 0) {
-            $processedToken = new _empty_(new Cornac_Tokenizeur_Token());
+            $processedToken = new Cornac_Tokenizeur_Token_Processed_Empty(new Cornac_Tokenizeur_Token());
             $this->display($processedToken, $level + 1);
             // @note create an empty token, to materialize the empty list
         } else {

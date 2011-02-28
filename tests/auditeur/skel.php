@@ -4,7 +4,7 @@
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
    +----------------------------------------------------------------------+
-   | Copyright (c) 2010 - 2011 Alter Way Solutions (France)               |
+   | Copyright (c) 2010 - 2011                                            |
    +----------------------------------------------------------------------+
    | This source file is subject to version 3.01 of the PHP license,      |
    | that is bundled with this package in the file LICENSE, and is        |
@@ -54,9 +54,11 @@ $code = '<?'.'php ';
 $code .= "
 
 
-include_once('Auditeur_Framework_TestCase.php');
 
-class {$analyzer}_Test extends Auditeur_Framework_TestCase
+include_once('../../library/Cornac/Autoload.php');
+spl_autoload_register('Cornac_Autoload::autoload');
+
+class {$analyzer}_Test extends Cornac_Tests_Auditeur
 {
     public function test{$analyzer}()  {
         \$this->expected = array( '');

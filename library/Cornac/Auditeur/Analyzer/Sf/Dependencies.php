@@ -3,7 +3,7 @@
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
    +----------------------------------------------------------------------+
-   | Copyright (c) 2010 - 2011 Alter Way Solutions (France)               |
+   | Copyright (c) 2010 - 2011                                            |
    +----------------------------------------------------------------------+
    | This source file is subject to version 3.01 of the PHP license,      |
    | that is bundled with this package in the file LICENSE, and is        |
@@ -17,9 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-
-class Cornac_Auditeur_Analyzer_Sf_Dependencies extends Cornac_Auditeur_Analyzer
-_classe_dependances {
+class Cornac_Auditeur_Analyzer_Sf_Dependencies extends Cornac_Auditeur_Analyzer_Classesusage {
 	protected	$title = 'Sf : Symfony dependance';
 	protected	$description = 'Dependencies toward Symfony Framework : by heritage or composition, those classes from the Symfony are needed.';
 

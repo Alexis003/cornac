@@ -1,7 +1,6 @@
 tests/tokenizeur/scripts/functioncall.46.test.php
-  rawtext 
-  Texte : "311 " ""
-  codephp <?php 
+  codephp <?php
+
   code : 
       sequence 
       0 : 
@@ -32,5 +31,4 @@ tests/tokenizeur/scripts/functioncall.46.test.php
                           0 : 
                               variable $g
   rawtext 
-  Texte : "311 ");
-""
+  Texte : "311 ");""

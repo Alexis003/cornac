@@ -1,9 +1,10 @@
 [cornac]
+Add script to check all script validates 
+Add deploy directory
+
 add remove table option for cornac / auditeur
 
 database : some query (like for cache) may end up breaking the maximum sql query size. This should be checked.
-
-merge the 2 database classes into one
 
 Add an Export class, to handle export to a configurable folder.
 
@@ -25,8 +26,8 @@ Add a log to show progress
 Add support for a version of Cornac (checking for config files, tables configurations, etc.)
 add file restriction in the cornac.ini file
 
-Move prepare to classes folder
 Move auditeur.php to English
+prepare an internationalisation folder
 Move auditeur.php to upper directory
 
 make a script to change name of auditeur's analyser git : move auditeur/classes/, auditeur/auditeur.php, tests/auditeur/ scripts, class.*.test.php, alltests.php 
@@ -63,9 +64,25 @@ Display dots when processing analyzers (auditeur)
 Add a file lister, that will also display ignored files from tokenizeur (export current function to external scripts/)
 
 [tokenizeur]
+move classes from tests to library
+move test classes in own directory
+
+Extract xdebug functions to external class to avoid dependency
+
+Move column cache in table tokens
+Fully fill the column cache 
+Remove the template 'cache'
+
+Check the actual value of column class and scope dans token table
+Remove all -1 mentions in column line for tokens
+
 tokenizeur : store literal type (string, bool, int, real...)
 
-Check for table structure before using 
+add a diff mode, that will make tokinit check for update in files, and only update those. 
+
+move _static as an attribute, and not a type of token. 
+
+Check for table structure before using MCD
 check tokclient, to make sure he keeps going on when a script can't be processed. 
 
 Compile some more PHP version to use for outsourcing token_get_all() function
@@ -94,12 +111,13 @@ see how tokclient may not stop stupidly, and keep going when there are still som
 Add information code when tokclient fail at parsing a file. (php not compile, etc.)
 
 check that "$r[g]" doesn't interpolate an array in the string (contrary to "{$r[g]}").
-rename 'constante' in _constant
 rename mon_log into my_log...
 
 use select in tokclient to // processing
 
 [auditeur]
+Make a list of auditeur's basic actions, so as to start a reference doc for auditeur/analyzers
+
 Log time of analyseur's process
 
 Detect tables available for MCD, and stop if this is not compatible
@@ -160,6 +178,9 @@ check tokens? and version for PHP. This must be done in tokenizer.
 Prepare auditeur for wordpress, joomla, drupal, sf, zf, ci. 
 
 [analysers ideas]
+spot method that do not use $this (property or method). 
+Suggest moving public to private, based on method usage (within or outside).
+
 Make a tree with view calling each other (that coud word on controllers too, and models). 
 CHeck for calls between controlers/models/view!  (This shouldn't happen...)
 
@@ -268,6 +289,7 @@ différences entre les variables de vue et de controleur
 
 check for proxy classes : X methods call their parent methods
 Relay functions : call another method with the same args
+spot useless heritage     function __construct($mid) {  parent::__construct($mid);    } 
 Methods that call their parent:: or self::
 Classes that overload parent methods
 Classes that uses parent properties
@@ -306,7 +328,7 @@ Make better display
 [inventaire]
 Add unit tests for inventaires (through other output format?)
 make 'inventaire' work on one file only
-make 'inventaire' export to other format (TEXT...)
+make 'inventaire' export to other format (TEXT, csv, json...)
 
 add information on inventaire.ods about processing of application.
 

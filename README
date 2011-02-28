@@ -1,7 +1,7 @@
 Cornac : PHP Code Analyzer
 
 Copyright (c) 2010 - 2011 Alter Way Solutions (France)
-Code by Damien Seguy (damien.seguy@gmail.com)
+Code by Damien Seguy (dams@php.net)
 
 This software is part of the Open Source Cornac Project. 
 
@@ -16,16 +16,16 @@ Usage :
    Check the first section, that should be enough. 
 
 2) at the root of cornac folder, run this command : 
-./cornac.php -I [application]
+bin/cornac -I <ini>
 
-3) Stand by ... some (probably) long time. 
+3) Stand by ... some time. 
 
 4) When cornac says 'Done' : 
  a) go in your destination directory, HTML version will be there, starting with index.html
  b) link (ln -s) you web root to the 'web' directory in cornac, and then,
     point your browser to the good path (http://localhost/web) : 
     All should be there
- c) cd to auditeur, run ./inventaire.php and open the resulting .ods with Open Office
+ c) Run bin/inventory -I <ini> and open the resulting .ods with Open Office
  
  
 May be of interest :

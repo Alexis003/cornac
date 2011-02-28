@@ -3,7 +3,7 @@
    +----------------------------------------------------------------------+
    | Cornac, PHP code inventory                                           |
    +----------------------------------------------------------------------+
-   | Copyright (c) 2010 - 2011 Alter Way Solutions (France)               |
+   | Copyright (c) 2010 - 2011                                            |
    +----------------------------------------------------------------------+
    | This source file is subject to version 3.01 of the PHP license,      |
    | that is bundled with this package in the file LICENSE, and is        |
@@ -18,8 +18,7 @@
  */
 
 
-class Cornac_Auditeur_Analyzer_Quality_StrposEquals extends Cornac_Auditeur_Analyzer
- {
+class Cornac_Auditeur_Analyzer_Quality_StrposEquals extends Cornac_Auditeur_Analyzer {
 	protected	$title = 'Strpos ==';
 	protected	$description = 'Strpos() should be used with ==, or finding the string in position 0 will go undetected.';
     protected    $tags = array('quality');
@@ -31,7 +30,7 @@ class Cornac_Auditeur_Analyzer_Quality_StrposEquals extends Cornac_Auditeur_Anal
 	public function analyse() {
         $this->clean_report();
 
-        $in = "'strpos', 'stripos','strrpos','strtok',";
+        $in = "'strpos', 'stripos','strrpos','strtok'";
 // @note strpos == 0 or 0 == strpos
 	    $query = <<<SQL
 SELECT NULL, T1.file, TC.code, T1.id,'{$this->name}', 0
